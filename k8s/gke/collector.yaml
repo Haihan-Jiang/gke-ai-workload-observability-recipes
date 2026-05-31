@@ -1,0 +1,168 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: otel-collector
+  namespace: telemetry
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: otel-collector-readonly
+rules:
+  - apiGroups: [""]
+    resources: [events, namespaces, nodes, pods, services]
+    verbs: [get, list, watch]
+  - apiGroups: [apps]
+    resources: [daemonsets, deployments, replicasets, statefulsets]
+    verbs: [get, list, watch]
+  - apiGroups: [batch]
+    resources: [jobs, cronjobs]
+    verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: otel-collector-readonly
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: otel-collector-readonly
+subjects:
+  - kind: ServiceAccount
+    name: otel-collector
+    namespace: telemetry
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: otel-collector-queue
+  namespace: telemetry
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otel-collector-config
+  namespace: telemetry
+data:
+  config.yaml: |
+    extensions:
+      file_storage:
+        directory: /var/lib/otelcol/queue
+
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+      k8s_cluster:
+        auth_type: serviceAccount
+
+    processors:
+      memory_limiter:
+        check_interval: 5s
+        limit_percentage: 80
+        spike_limit_percentage: 25
+      k8sattributes:
+        auth_type: serviceAccount
+        passthrough: false
+        extract:
+          metadata:
+            - k8s.namespace.name
+            - k8s.pod.name
+            - k8s.deployment.name
+            - k8s.node.name
+      resource/gke:
+        attributes:
+          - key: cloud.provider
+            value: gcp
+            action: upsert
+          - key: deployment.environment
+            value: demo
+            action: upsert
+      batch:
+
+    exporters:
+      debug:
+        verbosity: basic
+      otlphttp/upstream:
+        endpoint: http://otel-gateway.example.com:4318
+        sending_queue:
+          enabled: true
+          storage: file_storage
+        retry_on_failure:
+          enabled: true
+
+    service:
+      extensions: [file_storage]
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter, k8sattributes, resource/gke, batch]
+          exporters: [debug, otlphttp/upstream]
+        metrics:
+          receivers: [otlp, k8s_cluster]
+          processors: [memory_limiter, k8sattributes, resource/gke, batch]
+          exporters: [debug, otlphttp/upstream]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-collector
+  namespace: telemetry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otel-collector
+  template:
+    metadata:
+      labels:
+        app: otel-collector
+    spec:
+      serviceAccountName: otel-collector
+      containers:
+        - name: otel-collector
+          image: otel/opentelemetry-collector-contrib:0.112.0
+          args: ["--config=/etc/otelcol/config.yaml"]
+          ports:
+            - name: otlp-grpc
+              containerPort: 4317
+            - name: otlp-http
+              containerPort: 4318
+          volumeMounts:
+            - name: config
+              mountPath: /etc/otelcol
+              readOnly: true
+            - name: queue
+              mountPath: /var/lib/otelcol/queue
+      volumes:
+        - name: config
+          configMap:
+            name: otel-collector-config
+        - name: queue
+          persistentVolumeClaim:
+            claimName: otel-collector-queue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otel-collector
+  namespace: telemetry
+spec:
+  selector:
+    app: otel-collector
+  ports:
+    - name: otlp-grpc
+      port: 4317
+      targetPort: otlp-grpc
+    - name: otlp-http
+      port: 4318
+      targetPort: otlp-http
+

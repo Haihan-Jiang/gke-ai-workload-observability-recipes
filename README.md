@@ -1,0 +1,99 @@
+# GKE AI Workload Observability Recipes
+
+Runnable observability recipes for Kubernetes and AI workloads using
+OpenTelemetry.
+
+The goal is practical: show how a platform/SRE team can wire traces, resource
+context, Kubernetes cluster signals, and durable collector delivery before an
+AI service reaches production.
+
+This repository is a personal reference project. Related upstream Google Cloud
+OpenTelemetry sample PRs are tracked in
+[docs/google-oss-upstream.md](docs/google-oss-upstream.md), but pending PRs are
+not described as merged.
+
+## What This Demonstrates
+
+- A zero-cost local OTLP trace flow with no Python dependencies.
+- A GKE/Kubernetes collector layout with resource context and durable queue
+  storage.
+- Cross-namespace OpenTelemetry auto-instrumentation references.
+- A concise production checklist for SRE/platform review.
+- A case study that connects the work to real incident-debugging needs.
+
+## Quick Start
+
+Validate the repo:
+
+```bash
+./scripts/validate.sh
+```
+
+Run the local demo:
+
+```bash
+./scripts/run-local-demo.sh
+```
+
+When the Docker daemon is available, the local demo starts an OpenTelemetry
+Collector container, sends a synthetic AI inference trace over OTLP/HTTP, prints
+the collector debug output, and then cleans up the container. If Docker is not
+running, it falls back to a tiny Python OTLP debug receiver so the trace flow is
+still runnable without Docker Compose, `kind`, or a cloud account.
+
+## Kubernetes / GKE Recipe
+
+The Kubernetes manifests live under [k8s/gke](k8s/gke):
+
+- [namespace.yaml](k8s/gke/namespace.yaml): separates the telemetry control
+  plane from the sample workload namespace.
+- [collector.yaml](k8s/gke/collector.yaml): collector Deployment, Service,
+  RBAC, ConfigMap, and PVC-backed queue storage.
+- [instrumentation.yaml](k8s/gke/instrumentation.yaml): cross-namespace
+  Python auto-instrumentation reference.
+- [sample-app.yaml](k8s/gke/sample-app.yaml): small workload annotated to use
+  instrumentation from the telemetry namespace.
+
+These manifests are intentionally small and reviewable. For real production
+use, replace the placeholder upstream OTLP endpoint in `collector.yaml` with a
+Cloud Trace, Managed Service for Prometheus, or organization-managed collector
+gateway exporter.
+
+## Production Checklist
+
+Before adapting this to a real GKE cluster:
+
+1. Confirm which namespace owns the `Instrumentation` resource.
+2. Use explicit `namespace/name` instrumentation annotation values across
+   namespaces.
+3. Mount persistent storage for collector queues before relying on telemetry
+   during rollouts.
+4. Keep collector RBAC read-only and scoped to required Kubernetes metadata.
+5. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+   internal telemetry gateway.
+6. For private GKE clusters, verify webhook/firewall access for any operators
+   or admission webhooks.
+7. Treat telemetry as production evidence: validate it during staged rollout,
+   not after an incident.
+
+## Case Study
+
+See [docs/case-study.md](docs/case-study.md).
+
+## Resume Wording
+
+Current wording before upstream merges:
+
+> Built a runnable GKE AI workload observability reference project and opened
+> related Google Cloud OSS PRs for OpenTelemetry Operator recipes covering
+> cross-namespace instrumentation, persistent telemetry queues, resource
+> detection, and Kubernetes cluster metrics.
+
+After an upstream PR merges, update this to:
+
+> Built a runnable GKE AI workload observability reference project and
+> contributed related recipes to Google Cloud OSS.
+
+## License
+
+Apache-2.0; see [LICENSE](LICENSE).

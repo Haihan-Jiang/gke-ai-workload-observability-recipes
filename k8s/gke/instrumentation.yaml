@@ -1,0 +1,19 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: python-instrumentation
+  namespace: telemetry
+spec:
+  exporter:
+    endpoint: http://otel-collector.telemetry.svc.cluster.local:4318
+  propagators:
+    - tracecontext
+    - baggage
+  sampler:
+    type: parentbased_traceidratio
+    argument: "1.0"
+  python:
+    env:
+      - name: OTEL_SERVICE_NAME
+        value: toy-ai-inference-api
+
