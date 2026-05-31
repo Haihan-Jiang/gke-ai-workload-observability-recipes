@@ -14,12 +14,17 @@ not described as merged.
 
 ## What This Demonstrates
 
-- A zero-cost local OTLP trace flow with no Python dependencies.
+- A zero-cost local incident replay with no Python dependencies.
+- AI inference scenarios for baseline traffic, cache-miss latency, dependency
+  timeout, and rollout regression.
+- A generated incident report that turns raw telemetry into a reviewer-friendly
+  debugging narrative.
 - A GKE/Kubernetes collector layout with resource context and durable queue
   storage.
 - Cross-namespace OpenTelemetry auto-instrumentation references.
 - A concise production checklist for SRE/platform review.
 - A case study that connects the work to real incident-debugging needs.
+- Optional Docker Compose wiring for OpenTelemetry Collector and Jaeger.
 
 ## Quick Start
 
@@ -35,11 +40,31 @@ Run the local demo:
 ./scripts/run-local-demo.sh
 ```
 
+This replays four AI inference incidents, sends OTLP/HTTP traces, and writes:
+
+```text
+out/incident-replay/report.md
+out/incident-replay/summary.json
+```
+
 When the Docker daemon is available, the local demo starts an OpenTelemetry
-Collector container, sends a synthetic AI inference trace over OTLP/HTTP, prints
-the collector debug output, and then cleans up the container. If Docker is not
-running, it falls back to a tiny Python OTLP debug receiver so the trace flow is
-still runnable without Docker Compose, `kind`, or a cloud account.
+Collector container, sends the replayed traces, prints the collector debug
+output, and then cleans up the container. If Docker is not running, it falls
+back to a tiny Python OTLP debug receiver so the trace flow is still runnable
+without Docker Compose, `kind`, or a cloud account.
+
+## Optional Jaeger UI
+
+For a local trace UI:
+
+```bash
+docker compose up -d
+python3 demo/incident_replay.py
+open http://localhost:16686
+```
+
+Search for `toy-ai-inference-api` in Jaeger, then compare the baseline,
+cache-miss, dependency-timeout, and rollout-regression traces.
 
 ## Kubernetes / GKE Recipe
 
@@ -80,19 +105,25 @@ Before adapting this to a real GKE cluster:
 
 See [docs/case-study.md](docs/case-study.md).
 
+## Architecture
+
+See [docs/architecture/incident-replay.md](docs/architecture/incident-replay.md).
+
 ## Resume Wording
 
 Current wording before upstream merges:
 
 > Built a runnable GKE AI workload observability reference project and opened
 > related Google Cloud OSS PRs for OpenTelemetry Operator recipes covering
-> cross-namespace instrumentation, persistent telemetry queues, resource
-> detection, and Kubernetes cluster metrics.
+> incident replay, cross-namespace instrumentation, persistent telemetry
+> queues, resource detection, and Kubernetes cluster metrics.
 
 After an upstream PR merges, update this to:
 
-> Built a runnable GKE AI workload observability reference project and
-> contributed related recipes to Google Cloud OSS.
+> Built a runnable GKE AI workload observability lab for inference services,
+> with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
+> collector queues, incident replay scenarios, and related Google Cloud OSS
+> recipe contributions.
 
 ## License
 

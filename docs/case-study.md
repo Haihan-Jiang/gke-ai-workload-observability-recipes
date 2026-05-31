@@ -8,15 +8,17 @@ model path, a cache, a node, an overloaded dependency, a rollout, or a missing
 telemetry path. Without trace context, Kubernetes metadata, and durable
 collector delivery, debugging becomes guesswork.
 
-This project turns that operational need into a small runnable reference.
+This project turns that operational need into a runnable incident lab.
 
 ## Design
 
-The project has two layers:
+The project has three layers:
 
 1. A local OTLP demo that proves the trace path without requiring a cloud
    account.
-2. Kubernetes/GKE manifests that show the production shape: collector service,
+2. Incident replay scenarios that show how latency, dependency errors, and
+   rollout regressions appear in traces.
+3. Kubernetes/GKE manifests that show the production shape: collector service,
    resource enrichment, Kubernetes metadata, read-only RBAC, persistent queue
    storage, and cross-namespace instrumentation references.
 
@@ -31,6 +33,23 @@ parts that are easy to get wrong:
 - Kubernetes metadata enrichment;
 - a clear separation between sample workload and telemetry control plane;
 - a checklist that can be reviewed during production readiness.
+- incident reports that connect telemetry attributes to SRE triage decisions.
+
+## Incident Replay
+
+The v2 lab replays four scenarios:
+
+| Scenario | Failure mode | Primary signal |
+| --- | --- | --- |
+| `baseline` | healthy inference path | normal latency and cache hits |
+| `cache_miss_storm` | vector cache misses | `cache.result=miss`, high p95 latency |
+| `dependency_timeout` | feature-store timeout | dependency child span dominates trace time |
+| `rollout_regression` | bad service version | `service.version=v2`, elevated latency and errors |
+
+The replay writes `out/incident-replay/report.md` and
+`out/incident-replay/summary.json`. That makes the repo useful as a portfolio
+artifact: a reviewer can run it, inspect the generated report, and see how the
+observability design supports incident debugging.
 
 ## Validation
 
@@ -44,6 +63,12 @@ Runnable local trace demo:
 
 ```bash
 ./scripts/run-local-demo.sh
+```
+
+Generate the report without sending OTLP:
+
+```bash
+python3 demo/incident_replay.py --no-send
 ```
 
 ## Upstream Connection
@@ -60,10 +85,12 @@ merges, the README can be updated with the exact upstream proof.
 Before upstream merge:
 
 > Built a runnable GKE AI workload observability reference project and opened
-> related Google Cloud OSS PRs for OpenTelemetry Operator recipes.
+> related Google Cloud OSS PRs for OpenTelemetry Operator recipes, with local
+> incident replay for AI inference latency and rollout failures.
 
 After upstream merge:
 
-> Built a runnable GKE AI workload observability reference project and
-> contributed related recipes to Google Cloud OSS.
-
+> Built a runnable GKE AI workload observability lab for inference services,
+> with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
+> collector queues, incident replay scenarios, and related Google Cloud OSS
+> recipe contributions.

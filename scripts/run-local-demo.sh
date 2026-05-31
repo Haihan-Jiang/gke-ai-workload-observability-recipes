@@ -9,6 +9,7 @@ fi
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 container_name="gke-ai-observability-otelcol"
 receiver_pid=""
+report_dir="${repo_root}/out/incident-replay"
 
 cleanup() {
   if command -v docker >/dev/null 2>&1; then
@@ -47,7 +48,7 @@ if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then
     otel/opentelemetry-collector-contrib:0.112.0 \
     --config=/etc/otelcol/config.yaml >/dev/null
   wait_for_port
-  python3 "${repo_root}/demo/send_otlp_trace.py"
+  python3 "${repo_root}/demo/incident_replay.py" --output-dir "${report_dir}"
   sleep 2
 
   echo
@@ -58,6 +59,9 @@ else
   python3 "${repo_root}/demo/otlp_debug_receiver.py" &
   receiver_pid="$!"
   wait_for_port
-  python3 "${repo_root}/demo/send_otlp_trace.py"
+  python3 "${repo_root}/demo/incident_replay.py" --output-dir "${report_dir}"
   sleep 1
 fi
+
+echo
+echo "incident replay report: ${report_dir}/report.md"

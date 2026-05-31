@@ -32,16 +32,25 @@ def summarize(payload: dict[str, Any]) -> list[str]:
         resource = resource_span.get("resource") or {}
         resource_attrs = attrs_to_dict(resource.get("attributes") or [])
         service = resource_attrs.get("service.name", "unknown-service")
+        scenario = resource_attrs.get("incident.scenario", "-")
         for scope_span in resource_span.get("scopeSpans", []):
             for span in scope_span.get("spans", []):
                 span_attrs = attrs_to_dict(span.get("attributes") or [])
+                latency = span_attrs.get("ai.inference.latency_ms", "-")
+                cache = span_attrs.get("cache.result", "-")
                 lines.append(
                     "span="
                     + str(span.get("name") or "unnamed")
                     + " service="
                     + service
+                    + " scenario="
+                    + span_attrs.get("incident.scenario", scenario)
                     + " signal="
                     + span_attrs.get("sre.signal", "-")
+                    + " latency_ms="
+                    + latency
+                    + " cache="
+                    + cache
                 )
     return lines
 
