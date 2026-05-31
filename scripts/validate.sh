@@ -7,9 +7,16 @@ cd "${repo_root}"
 python3 -m py_compile \
   demo/send_otlp_trace.py \
   demo/otlp_debug_receiver.py \
-  demo/incident_replay.py
+  demo/incident_replay.py \
+  demo/render_incident_evidence.py
 
 python3 demo/incident_replay.py --no-send --output-dir out/incident-replay-validate >/dev/null
+./scripts/generate-evidence.sh >/dev/null
+python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
+
+if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then
+  git diff --exit-code -- docs/evidence
+fi
 
 if command -v ruby >/dev/null 2>&1; then
   yaml_files="$(find .github collector k8s -type f \( -name '*.yaml' -o -name '*.yml' \) 2>/dev/null | sort)"

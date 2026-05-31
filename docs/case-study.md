@@ -51,6 +51,13 @@ The replay writes `out/incident-replay/report.md` and
 artifact: a reviewer can run it, inspect the generated report, and see how the
 observability design supports incident debugging.
 
+The repository also commits a sample output under [evidence](evidence/README.md)
+so a reviewer can inspect the result before running anything locally:
+
+- [sample incident report](evidence/sample-incident-report.md)
+- [sample summary JSON](evidence/sample-summary.json)
+- [incident replay dashboard](evidence/incident-dashboard.svg)
+
 ## Validation
 
 Current local validation:

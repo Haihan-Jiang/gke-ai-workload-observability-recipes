@@ -1,0 +1,50 @@
+[
+  {
+    "scenario": "baseline",
+    "description": "Healthy inference path with cache hits and stable model latency.",
+    "requests": 8,
+    "errors": 0,
+    "error_rate": 0.0,
+    "p50_ms": 45,
+    "p95_ms": 48,
+    "cache_miss_rate": 0.0,
+    "service_version": "v1",
+    "triage": "Healthy control group; use as the comparison baseline."
+  },
+  {
+    "scenario": "cache_miss_storm",
+    "description": "Vector cache misses push model latency above the SLO.",
+    "requests": 7,
+    "errors": 0,
+    "error_rate": 0.0,
+    "p50_ms": 206,
+    "p95_ms": 251,
+    "cache_miss_rate": 1.0,
+    "service_version": "v1",
+    "triage": "Look for cache.result=miss and longer vector-cache spans before tuning the model path."
+  },
+  {
+    "scenario": "dependency_timeout",
+    "description": "Feature-store timeouts create elevated latency and user-visible errors.",
+    "requests": 6,
+    "errors": 3,
+    "error_rate": 0.5,
+    "p50_ms": 1050,
+    "p95_ms": 1320,
+    "cache_miss_rate": 0.0,
+    "service_version": "v1",
+    "triage": "Trace child spans isolate feature-store lookup as the dominant latency source."
+  },
+  {
+    "scenario": "rollout_regression",
+    "description": "A new service version increases latency and error rate during rollout.",
+    "requests": 7,
+    "errors": 2,
+    "error_rate": 0.29,
+    "p50_ms": 370,
+    "p95_ms": 455,
+    "cache_miss_rate": 0.43,
+    "service_version": "v2",
+    "triage": "Compare service.version=v2 traces against baseline before rolling forward."
+  }
+]
