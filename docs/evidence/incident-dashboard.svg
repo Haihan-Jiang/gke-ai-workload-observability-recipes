@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="980" height="526" viewBox="0 0 980 526">
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="612" viewBox="0 0 980 612">
 <rect width="100%" height="100%" fill="#f8fafc"/>
-<text x="40" y="46" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">GKE AI Observability Incident Replay</text>
+<text x="40" y="46" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">GKE AI Inference Reliability Lab</text>
 <text x="40" y="74" font-family="Arial, sans-serif" font-size="14" fill="#4b5563">Sample output: latency, errors, and cache behavior across replayed inference incidents.</text>
 <text x="310" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">p95 latency</text>
 <text x="650" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">errors</text>
-<text x="775" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">cache miss rate</text>
+<text x="775" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">telemetry loss</text>
 <rect x="32" y="102" width="916" height="68" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
 <text x="54" y="128" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">baseline</text>
 <text x="54" y="152" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Healthy control group; use as the comparison baseline.</text>
@@ -21,8 +21,8 @@
 <text x="310" y="236" font-family="Arial, sans-serif" font-size="13" fill="#374151">251 ms</text>
 <rect x="650" y="201" width="2" height="18" rx="4" fill="#dc2626"/>
 <text x="650" y="236" font-family="Arial, sans-serif" font-size="13" fill="#374151">0 errors</text>
-<rect x="775" y="201" width="120" height="18" rx="4" fill="#7c3aed"/>
-<text x="775" y="236" font-family="Arial, sans-serif" font-size="13" fill="#374151">1.00</text>
+<rect x="775" y="201" width="2" height="18" rx="4" fill="#7c3aed"/>
+<text x="775" y="236" font-family="Arial, sans-serif" font-size="13" fill="#374151">0.00</text>
 <rect x="32" y="274" width="916" height="68" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
 <text x="54" y="300" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">dependency_timeout</text>
 <text x="54" y="324" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Trace child spans isolate feature-store lookup as the dominant latency source.</text>
@@ -39,7 +39,16 @@
 <text x="310" y="408" font-family="Arial, sans-serif" font-size="13" fill="#374151">455 ms</text>
 <rect x="650" y="373" width="53" height="18" rx="4" fill="#dc2626"/>
 <text x="650" y="408" font-family="Arial, sans-serif" font-size="13" fill="#374151">2 errors</text>
-<rect x="775" y="373" width="52" height="18" rx="4" fill="#7c3aed"/>
-<text x="775" y="408" font-family="Arial, sans-serif" font-size="13" fill="#374151">0.43</text>
-<text x="40" y="490" font-family="Arial, sans-serif" font-size="13" fill="#4b5563">Generated from demo/incident_replay.py with no cloud account required.</text>
+<rect x="775" y="373" width="2" height="18" rx="4" fill="#7c3aed"/>
+<text x="775" y="408" font-family="Arial, sans-serif" font-size="13" fill="#374151">0.00</text>
+<rect x="32" y="446" width="916" height="68" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
+<text x="54" y="472" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">collector_queue_pressure</text>
+<text x="54" y="496" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Separate app health from telemetry delivery; inspect collector queue, retry, and exporter backpressure.</text>
+<rect x="310" y="459" width="27" height="18" rx="4" fill="#4b5563"/>
+<text x="310" y="494" font-family="Arial, sans-serif" font-size="13" fill="#374151">126 ms</text>
+<rect x="650" y="459" width="2" height="18" rx="4" fill="#dc2626"/>
+<text x="650" y="494" font-family="Arial, sans-serif" font-size="13" fill="#374151">0 errors</text>
+<rect x="775" y="459" width="50" height="18" rx="4" fill="#7c3aed"/>
+<text x="775" y="494" font-family="Arial, sans-serif" font-size="13" fill="#374151">0.42</text>
+<text x="40" y="576" font-family="Arial, sans-serif" font-size="13" fill="#4b5563">Generated from demo/incident_replay.py with no cloud account required.</text>
 </svg>

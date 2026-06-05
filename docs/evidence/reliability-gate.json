@@ -16,6 +16,10 @@
         {
           "ok": true,
           "message": "baseline cache miss rate is low"
+        },
+        {
+          "ok": true,
+          "message": "baseline telemetry delivery is loss-free"
         }
       ],
       "status": "pass"
@@ -76,7 +80,30 @@
         }
       ],
       "status": "pass"
+    },
+    {
+      "name": "collector_queue_pressure_detected",
+      "intent": "Telemetry delivery loss should be detected separately from user-facing app failure.",
+      "checks": [
+        {
+          "ok": true,
+          "message": "collector pressure has no app errors"
+        },
+        {
+          "ok": true,
+          "message": "telemetry loss rate is high enough to trigger delivery investigation"
+        },
+        {
+          "ok": true,
+          "message": "collector queue pressure is classified as high"
+        },
+        {
+          "ok": true,
+          "message": "application latency remains inside the collector-pressure ceiling"
+        }
+      ],
+      "status": "pass"
     }
   ],
-  "resume_claim": "Runnable GKE AI inference reliability lab with incident replay, SLO-style reliability gates, Kubernetes metadata, and collector delivery proof."
+  "resume_claim": "Runnable GKE AI inference reliability lab with incident replay, configurable SLO gates, Kubernetes metadata, and collector delivery proof."
 }

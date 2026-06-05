@@ -18,9 +18,13 @@ not described as merged.
 
 - A zero-cost local incident replay with no Python dependencies.
 - AI inference scenarios for baseline traffic, cache-miss latency, dependency
-  timeout, and rollout regression.
-- SLO-style reliability gates that verify the healthy baseline and classify
-  failure scenarios by the production signal an SRE would need.
+  timeout, rollout regression, and collector queue pressure.
+- Configurable SLO-style reliability gates that verify the healthy baseline
+  and classify failure scenarios by the production signal an SRE would need.
+- Capacity-planning evidence that separates scaling problems from reliability
+  incidents.
+- Generated runbooks for first-response debugging.
+- A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
 - Committed evidence artifacts so reviewers can inspect the replay result
@@ -60,7 +64,22 @@ Run the reliability gate against the generated replay:
 ```bash
 python3 demo/reliability_gate.py \
   --summary out/incident-replay/summary.json \
+  --slo-config config/reliability-slo.json \
   --output-dir out/reliability-gate
+```
+
+Generate capacity and runbook evidence:
+
+```bash
+python3 demo/capacity_planner.py \
+  --summary out/incident-replay/summary.json \
+  --slo-config config/reliability-slo.json \
+  --output-dir out/capacity-plan
+
+python3 demo/runbook_generator.py \
+  --summary out/incident-replay/summary.json \
+  --gate out/reliability-gate/reliability-gate.json \
+  --output-dir out/incident-runbooks
 ```
 
 When the Docker daemon is available, the local demo starts an OpenTelemetry
@@ -93,6 +112,9 @@ script:
 - [Sample summary JSON](docs/evidence/sample-summary.json)
 - [Reliability gate report](docs/evidence/reliability-gate.md)
 - [Reliability gate JSON](docs/evidence/reliability-gate.json)
+- [Capacity plan](docs/evidence/capacity-plan.md)
+- [Incident runbooks](docs/evidence/incident-runbooks.md)
+- [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
 Regenerate the evidence:
@@ -154,6 +176,12 @@ Before adapting this to a real GKE cluster:
 
 See [docs/case-study.md](docs/case-study.md).
 
+## Industry Map
+
+See [docs/industry-map.md](docs/industry-map.md) for five reference projects,
+ten concrete industry problems, and the five feature contributions this repo
+adds on top of the first lab version.
+
 ## Architecture
 
 See [docs/architecture/incident-replay.md](docs/architecture/incident-replay.md).
@@ -164,6 +192,7 @@ Current wording before upstream merges:
 
 > Built a runnable GKE AI inference reliability lab and opened related Google
 > Cloud OSS PRs for OpenTelemetry Operator recipes covering incident replay,
+> configurable SLO gates, capacity planning, generated incident runbooks,
 > cross-namespace instrumentation, persistent telemetry queues, resource
 > detection, and Kubernetes cluster metrics.
 
@@ -171,8 +200,9 @@ After an upstream PR merges, update this to:
 
 > Built a runnable GKE AI inference reliability lab for inference services,
 > with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
-> collector queues, incident replay scenarios, SLO-style reliability gates, and
-> related Google Cloud OSS recipe contributions.
+> collector queues, incident replay scenarios, configurable SLO gates,
+> capacity/readiness evidence, generated runbooks, and related Google Cloud OSS
+> recipe contributions.
 
 ## License
 

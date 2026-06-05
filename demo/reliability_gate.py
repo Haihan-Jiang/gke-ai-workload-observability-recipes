@@ -21,12 +21,29 @@ def load_summary(path: Path) -> dict[str, dict[str, Any]]:
     return result
 
 
+def load_slo_config(path: Path) -> dict[str, Any]:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or "scenarios" not in data:
+        raise ValueError("SLO config must be an object with a scenarios field")
+    return data
+
+
 def check(condition: bool, message: str) -> dict[str, Any]:
     return {"ok": bool(condition), "message": message}
 
 
-def evaluate(summary: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    required = {"baseline", "cache_miss_storm", "dependency_timeout", "rollout_regression"}
+def scenario_slo(slo_config: dict[str, Any], scenario: str) -> dict[str, Any]:
+    scenarios = slo_config.get("scenarios", {})
+    if not isinstance(scenarios, dict) or scenario not in scenarios:
+        raise ValueError(f"missing SLO config for scenario {scenario}")
+    value = scenarios[scenario]
+    if not isinstance(value, dict):
+        raise ValueError(f"SLO config for scenario {scenario} must be an object")
+    return value
+
+
+def evaluate(summary: dict[str, dict[str, Any]], slo_config: dict[str, Any]) -> list[dict[str, Any]]:
+    required = set(slo_config["scenarios"])
     missing = sorted(required - set(summary))
     if missing:
         return [
@@ -41,42 +58,98 @@ def evaluate(summary: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     cache = summary["cache_miss_storm"]
     dependency = summary["dependency_timeout"]
     rollout = summary["rollout_regression"]
+    collector = summary["collector_queue_pressure"]
+    baseline_slo = scenario_slo(slo_config, "baseline")
+    cache_slo = scenario_slo(slo_config, "cache_miss_storm")
+    dependency_slo = scenario_slo(slo_config, "dependency_timeout")
+    rollout_slo = scenario_slo(slo_config, "rollout_regression")
+    collector_slo = scenario_slo(slo_config, "collector_queue_pressure")
 
     gates = [
         {
             "name": "healthy_baseline",
             "intent": "The control group should stay inside the inference SLO.",
             "checks": [
-                check(int(baseline["errors"]) == 0, "baseline has no user-visible errors"),
-                check(int(baseline["p95_ms"]) <= 100, "baseline p95 latency is <= 100 ms"),
-                check(float(baseline["cache_miss_rate"]) <= 0.10, "baseline cache miss rate is low"),
+                check(int(baseline["errors"]) <= int(baseline_slo["max_errors"]), "baseline has no user-visible errors"),
+                check(
+                    int(baseline["p95_ms"]) <= int(baseline_slo["max_p95_ms"]),
+                    f"baseline p95 latency is <= {baseline_slo['max_p95_ms']} ms",
+                ),
+                check(
+                    float(baseline["cache_miss_rate"]) <= float(baseline_slo["max_cache_miss_rate"]),
+                    "baseline cache miss rate is low",
+                ),
+                check(
+                    float(baseline["telemetry_loss_rate"]) <= float(baseline_slo["max_telemetry_loss_rate"]),
+                    "baseline telemetry delivery is loss-free",
+                ),
             ],
         },
         {
             "name": "cache_miss_storm_detected",
             "intent": "Cache miss storms should be classified as latency incidents, not model incidents.",
             "checks": [
-                check(int(cache["errors"]) == 0, "cache miss storm has no synthetic upstream errors"),
-                check(float(cache["cache_miss_rate"]) >= 0.75, "cache miss rate is high enough to explain latency"),
-                check(int(cache["p95_ms"]) >= 150, "cache miss storm breaches the latency SLO"),
+                check(int(cache["errors"]) <= int(cache_slo["max_errors"]), "cache miss storm has no synthetic upstream errors"),
+                check(
+                    float(cache["cache_miss_rate"]) >= float(cache_slo["min_cache_miss_rate"]),
+                    "cache miss rate is high enough to explain latency",
+                ),
+                check(int(cache["p95_ms"]) >= int(cache_slo["min_p95_ms"]), "cache miss storm breaches the latency SLO"),
             ],
         },
         {
             "name": "dependency_timeout_detected",
             "intent": "Feature-store timeouts should be visible as dependency-driven errors.",
             "checks": [
-                check(int(dependency["errors"]) >= 1, "dependency timeout creates user-visible errors"),
-                check(float(dependency["error_rate"]) >= 0.30, "dependency timeout error rate is material"),
-                check(int(dependency["p95_ms"]) >= 500, "dependency timeout p95 latency is clearly degraded"),
+                check(
+                    int(dependency["errors"]) >= int(dependency_slo["min_errors"]),
+                    "dependency timeout creates user-visible errors",
+                ),
+                check(
+                    float(dependency["error_rate"]) >= float(dependency_slo["min_error_rate"]),
+                    "dependency timeout error rate is material",
+                ),
+                check(
+                    int(dependency["p95_ms"]) >= int(dependency_slo["min_p95_ms"]),
+                    "dependency timeout p95 latency is clearly degraded",
+                ),
             ],
         },
         {
             "name": "rollout_regression_detected",
             "intent": "A bad service version should be separable from baseline traffic.",
             "checks": [
-                check(str(rollout["service_version"]) == "v2", "rollout regression is tied to service.version=v2"),
-                check(int(rollout["errors"]) >= 1, "rollout regression creates user-visible errors"),
-                check(int(rollout["p95_ms"]) >= 300, "rollout regression breaches the latency SLO"),
+                check(
+                    str(rollout["service_version"]) == str(rollout_slo["expected_service_version"]),
+                    f"rollout regression is tied to service.version={rollout_slo['expected_service_version']}",
+                ),
+                check(
+                    int(rollout["errors"]) >= int(rollout_slo["min_errors"]),
+                    "rollout regression creates user-visible errors",
+                ),
+                check(
+                    int(rollout["p95_ms"]) >= int(rollout_slo["min_p95_ms"]),
+                    "rollout regression breaches the latency SLO",
+                ),
+            ],
+        },
+        {
+            "name": "collector_queue_pressure_detected",
+            "intent": "Telemetry delivery loss should be detected separately from user-facing app failure.",
+            "checks": [
+                check(int(collector["errors"]) <= int(collector_slo["max_errors"]), "collector pressure has no app errors"),
+                check(
+                    float(collector["telemetry_loss_rate"]) >= float(collector_slo["min_telemetry_loss_rate"]),
+                    "telemetry loss rate is high enough to trigger delivery investigation",
+                ),
+                check(
+                    str(collector["collector_queue_pressure"]) == str(collector_slo["expected_collector_queue_pressure"]),
+                    "collector queue pressure is classified as high",
+                ),
+                check(
+                    int(collector["p95_ms"]) <= int(collector_slo["max_p95_ms"]),
+                    "application latency remains inside the collector-pressure ceiling",
+                ),
             ],
         },
     ]
@@ -91,7 +164,7 @@ def write_json(gates: list[dict[str, Any]], output_dir: Path) -> None:
         "gates": gates,
         "resume_claim": (
             "Runnable GKE AI inference reliability lab with incident replay, "
-            "SLO-style reliability gates, Kubernetes metadata, and collector delivery proof."
+            "configurable SLO gates, Kubernetes metadata, and collector delivery proof."
         ),
     }
     (output_dir / "reliability-gate.json").write_text(
@@ -143,12 +216,13 @@ def write_markdown(gates: list[dict[str, Any]], output_dir: Path) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--summary", default="out/incident-replay/summary.json")
+    parser.add_argument("--slo-config", default="config/reliability-slo.json")
     parser.add_argument("--output-dir", default="out/reliability-gate")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    gates = evaluate(load_summary(Path(args.summary)))
+    gates = evaluate(load_summary(Path(args.summary)), load_slo_config(Path(args.slo_config)))
     write_json(gates, output_dir)
     write_markdown(gates, output_dir)
     print(f"wrote {output_dir / 'reliability-gate.json'}")

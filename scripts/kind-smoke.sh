@@ -63,6 +63,7 @@ python3 "${repo_root}/demo/incident_replay.py" \
   --output-dir "${repo_root}/out/kind-incident-replay"
 python3 "${repo_root}/demo/reliability_gate.py" \
   --summary "${repo_root}/out/kind-incident-replay/summary.json" \
+  --slo-config "${repo_root}/config/reliability-slo.json" \
   --output-dir "${repo_root}/out/kind-reliability-gate"
 
 echo "kind smoke passed"

@@ -33,12 +33,12 @@ def write_markdown(summary: list[dict[str, Any]], output_dir: Path) -> None:
         "",
         "![Incident replay dashboard](incident-dashboard.svg)",
         "",
-        "| Scenario | Requests | Errors | p50 ms | p95 ms | Cache miss rate | Triage signal |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
+        "| Scenario | Requests | Errors | p50 ms | p95 ms | Cache miss rate | Telemetry loss | Queue pressure | Triage signal |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |",
     ]
     for item in summary:
         lines.append(
-            "| {scenario} | {requests} | {errors} | {p50_ms} | {p95_ms} | {cache_miss_rate} | {triage} |".format(
+            "| {scenario} | {requests} | {errors} | {p50_ms} | {p95_ms} | {cache_miss_rate} | {telemetry_loss_rate} | {collector_queue_pressure} | {triage} |".format(
                 **item
             )
         )
@@ -52,6 +52,7 @@ def write_markdown(summary: list[dict[str, Any]], output_dir: Path) -> None:
             "- `cache_miss_storm` points to the cache path instead of the model path.",
             "- `dependency_timeout` isolates feature-store latency and user-visible errors.",
             "- `rollout_regression` ties degraded behavior to `service.version=v2`.",
+            "- `collector_queue_pressure` separates app health from telemetry delivery loss.",
             "",
             "## Why It Matters",
             "",
@@ -87,11 +88,11 @@ def write_svg(summary: list[dict[str, Any]], output_dir: Path) -> None:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="#f8fafc"/>',
-        '<text x="40" y="46" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">GKE AI Observability Incident Replay</text>',
+        '<text x="40" y="46" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">GKE AI Inference Reliability Lab</text>',
         '<text x="40" y="74" font-family="Arial, sans-serif" font-size="14" fill="#4b5563">Sample output: latency, errors, and cache behavior across replayed inference incidents.</text>',
         '<text x="310" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">p95 latency</text>',
         '<text x="650" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">errors</text>',
-        '<text x="775" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">cache miss rate</text>',
+        '<text x="775" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">telemetry loss</text>',
     ]
 
     for index, item in enumerate(summary):
@@ -99,7 +100,7 @@ def write_svg(summary: list[dict[str, Any]], output_dir: Path) -> None:
         scenario = str(item["scenario"])
         p95 = float(item["p95_ms"])
         errors = float(item["errors"])
-        cache_miss_rate = float(item["cache_miss_rate"])
+        telemetry_loss_rate = float(item["telemetry_loss_rate"])
         color = colors.get(scenario, "#4b5563")
         parts.extend(
             [
@@ -110,8 +111,8 @@ def write_svg(summary: list[dict[str, Any]], output_dir: Path) -> None:
                 f'<text x="310" y="{y + 14}" font-family="Arial, sans-serif" font-size="13" fill="#374151">{int(p95)} ms</text>',
                 f'<rect x="650" y="{y - 21}" width="{bar_width(errors, max_errors, 80)}" height="18" rx="4" fill="#dc2626"/>',
                 f'<text x="650" y="{y + 14}" font-family="Arial, sans-serif" font-size="13" fill="#374151">{int(errors)} errors</text>',
-                f'<rect x="775" y="{y - 21}" width="{bar_width(cache_miss_rate, 1.0, 120)}" height="18" rx="4" fill="#7c3aed"/>',
-                f'<text x="775" y="{y + 14}" font-family="Arial, sans-serif" font-size="13" fill="#374151">{cache_miss_rate:.2f}</text>',
+                f'<rect x="775" y="{y - 21}" width="{bar_width(telemetry_loss_rate, 1.0, 120)}" height="18" rx="4" fill="#7c3aed"/>',
+                f'<text x="775" y="{y + 14}" font-family="Arial, sans-serif" font-size="13" fill="#374151">{telemetry_loss_rate:.2f}</text>',
             ]
         )
 
@@ -136,6 +137,12 @@ def write_index(output_dir: Path) -> None:
                 "- [Incident replay dashboard](incident-dashboard.svg)",
                 "- [Reliability gate report](reliability-gate.md)",
                 "- [Reliability gate JSON](reliability-gate.json)",
+                "- [Capacity plan](capacity-plan.md)",
+                "- [Capacity plan JSON](capacity-plan.json)",
+                "- [Incident runbooks](incident-runbooks.md)",
+                "- [Incident runbooks JSON](incident-runbooks.json)",
+                "- [Release readiness report](release-readiness.md)",
+                "- [Release readiness JSON](release-readiness.json)",
                 "",
             ]
         ),

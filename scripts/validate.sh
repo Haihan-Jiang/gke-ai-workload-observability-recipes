@@ -8,16 +8,38 @@ python3 -m py_compile \
   demo/send_otlp_trace.py \
   demo/otlp_debug_receiver.py \
   demo/incident_replay.py \
+  demo/capacity_planner.py \
+  demo/runbook_generator.py \
+  demo/release_readiness.py \
   demo/reliability_gate.py \
   demo/render_incident_evidence.py
 
 python3 demo/incident_replay.py --no-send --output-dir out/incident-replay-validate >/dev/null
+python3 -m json.tool config/reliability-slo.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
+  --slo-config config/reliability-slo.json \
   --output-dir out/reliability-gate-validate >/dev/null
+python3 demo/capacity_planner.py \
+  --summary out/incident-replay-validate/summary.json \
+  --slo-config config/reliability-slo.json \
+  --output-dir out/capacity-plan-validate >/dev/null
+python3 demo/runbook_generator.py \
+  --summary out/incident-replay-validate/summary.json \
+  --gate out/reliability-gate-validate/reliability-gate.json \
+  --output-dir out/incident-runbooks-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
+python3 demo/release_readiness.py \
+  --gate docs/evidence/reliability-gate.json \
+  --capacity docs/evidence/capacity-plan.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --evidence-dir docs/evidence \
+  --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
 python3 -m json.tool docs/evidence/reliability-gate.json >/dev/null
+python3 -m json.tool docs/evidence/capacity-plan.json >/dev/null
+python3 -m json.tool docs/evidence/incident-runbooks.json >/dev/null
+python3 -m json.tool docs/evidence/release-readiness.json >/dev/null
 
 if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then
   git diff --exit-code -- docs/evidence

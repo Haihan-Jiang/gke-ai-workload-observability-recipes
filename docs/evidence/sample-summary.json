@@ -9,6 +9,8 @@
     "p95_ms": 48,
     "cache_miss_rate": 0.0,
     "service_version": "v1",
+    "telemetry_loss_rate": 0.0,
+    "collector_queue_pressure": "normal",
     "triage": "Healthy control group; use as the comparison baseline."
   },
   {
@@ -21,6 +23,8 @@
     "p95_ms": 251,
     "cache_miss_rate": 1.0,
     "service_version": "v1",
+    "telemetry_loss_rate": 0.0,
+    "collector_queue_pressure": "normal",
     "triage": "Look for cache.result=miss and longer vector-cache spans before tuning the model path."
   },
   {
@@ -33,6 +37,8 @@
     "p95_ms": 1320,
     "cache_miss_rate": 0.0,
     "service_version": "v1",
+    "telemetry_loss_rate": 0.0,
+    "collector_queue_pressure": "normal",
     "triage": "Trace child spans isolate feature-store lookup as the dominant latency source."
   },
   {
@@ -45,6 +51,22 @@
     "p95_ms": 455,
     "cache_miss_rate": 0.43,
     "service_version": "v2",
+    "telemetry_loss_rate": 0.0,
+    "collector_queue_pressure": "normal",
     "triage": "Compare service.version=v2 traces against baseline before rolling forward."
+  },
+  {
+    "scenario": "collector_queue_pressure",
+    "description": "Collector queue pressure drops telemetry while user traffic still looks healthy.",
+    "requests": 6,
+    "errors": 0,
+    "error_rate": 0.0,
+    "p50_ms": 99,
+    "p95_ms": 126,
+    "cache_miss_rate": 0.0,
+    "service_version": "v1",
+    "telemetry_loss_rate": 0.42,
+    "collector_queue_pressure": "high",
+    "triage": "Separate app health from telemetry delivery; inspect collector queue, retry, and exporter backpressure."
   }
 ]

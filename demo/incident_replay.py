@@ -83,6 +83,20 @@ SCENARIOS: list[dict[str, Any]] = [
         "service_version": "v2",
         "triage": "Compare service.version=v2 traces against baseline before rolling forward.",
     },
+    {
+        "name": "collector_queue_pressure",
+        "description": "Collector queue pressure drops telemetry while user traffic still looks healthy.",
+        "requests": 6,
+        "latencies_ms": [88, 91, 94, 105, 118, 126],
+        "cache": "hit",
+        "dependency_ms": 18,
+        "status_code": 200,
+        "error_rate": 0.0,
+        "service_version": "v1",
+        "telemetry_loss_rate": 0.42,
+        "collector_queue_pressure": "high",
+        "triage": "Separate app health from telemetry delivery; inspect collector queue, retry, and exporter backpressure.",
+    },
 ]
 
 
@@ -148,6 +162,14 @@ def build_scenario_payload(scenario: dict[str, Any], base_ns: int) -> dict[str, 
             attribute("service.version", str(scenario["service_version"])),
             attribute("sre.signal", "latency"),
         ]
+        if "telemetry_loss_rate" in scenario:
+            root_attrs.extend(
+                [
+                    attribute("telemetry.loss_rate", float(scenario["telemetry_loss_rate"])),
+                    attribute("collector.queue.pressure", str(scenario["collector_queue_pressure"])),
+                    attribute("sre.signal", "telemetry-delivery"),
+                ]
+            )
         if is_error:
             root_attrs.extend(
                 [
@@ -226,6 +248,8 @@ def build_scenario_payload(scenario: dict[str, Any], base_ns: int) -> dict[str, 
                         attribute("k8s.namespace.name", "ai-observability-demo"),
                         attribute("service.version", str(scenario["service_version"])),
                         attribute("incident.scenario", str(scenario["name"])),
+                        attribute("telemetry.loss_rate", float(scenario.get("telemetry_loss_rate", 0.0))),
+                        attribute("collector.queue.pressure", str(scenario.get("collector_queue_pressure", "normal"))),
                     ]
                 },
                 "scopeSpans": [
@@ -270,6 +294,8 @@ def summarize_scenario(scenario: dict[str, Any]) -> dict[str, object]:
         "p95_ms": percentile(latencies, 95),
         "cache_miss_rate": round(miss_count / request_count, 2),
         "service_version": scenario["service_version"],
+        "telemetry_loss_rate": round(float(scenario.get("telemetry_loss_rate", 0.0)), 2),
+        "collector_queue_pressure": scenario.get("collector_queue_pressure", "normal"),
         "triage": scenario["triage"],
     }
 
@@ -286,12 +312,12 @@ def write_report(output_dir: Path, summaries: list[dict[str, object]], endpoint:
         f"- OTLP endpoint: `{endpoint}`",
         f"- Sent to collector: `{str(sent).lower()}`",
         "",
-        "| Scenario | Requests | Errors | p50 ms | p95 ms | Cache miss rate | Triage signal |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
+        "| Scenario | Requests | Errors | p50 ms | p95 ms | Cache miss rate | Telemetry loss | Queue pressure | Triage signal |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |",
     ]
     for item in summaries:
         lines.append(
-            "| {scenario} | {requests} | {errors} | {p50_ms} | {p95_ms} | {cache_miss_rate} | {triage} |".format(
+            "| {scenario} | {requests} | {errors} | {p50_ms} | {p95_ms} | {cache_miss_rate} | {telemetry_loss_rate} | {collector_queue_pressure} | {triage} |".format(
                 **item
             )
         )

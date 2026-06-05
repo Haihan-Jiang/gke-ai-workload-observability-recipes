@@ -1,0 +1,64 @@
+{
+  "status": "pass",
+  "checks": [
+    {
+      "name": "reliability_gate",
+      "ok": true
+    },
+    {
+      "name": "evidence_files",
+      "ok": true
+    },
+    {
+      "name": "runbook_coverage",
+      "ok": true
+    },
+    {
+      "name": "capacity_plan",
+      "ok": true
+    }
+  ],
+  "evidence": [
+    {
+      "path": "sample-incident-report.md",
+      "exists": true
+    },
+    {
+      "path": "sample-summary.json",
+      "exists": true
+    },
+    {
+      "path": "incident-dashboard.svg",
+      "exists": true
+    },
+    {
+      "path": "reliability-gate.md",
+      "exists": true
+    },
+    {
+      "path": "reliability-gate.json",
+      "exists": true
+    },
+    {
+      "path": "capacity-plan.md",
+      "exists": true
+    },
+    {
+      "path": "capacity-plan.json",
+      "exists": true
+    },
+    {
+      "path": "incident-runbooks.md",
+      "exists": true
+    },
+    {
+      "path": "incident-runbooks.json",
+      "exists": true
+    }
+  ],
+  "warnings": [
+    "do not scale traffic until user-visible errors are isolated",
+    "fix collector delivery before trusting production dashboards",
+    "required replicas exceed the demo budget; treat as a dependency or design issue"
+  ]
+}

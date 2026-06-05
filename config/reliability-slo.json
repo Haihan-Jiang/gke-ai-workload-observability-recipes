@@ -1,0 +1,39 @@
+{
+  "profile": "gke-ai-inference-reliability-lab-v1",
+  "description": "SLO and operating assumptions for the local inference reliability lab.",
+  "scenarios": {
+    "baseline": {
+      "max_errors": 0,
+      "max_p95_ms": 100,
+      "max_cache_miss_rate": 0.1,
+      "max_telemetry_loss_rate": 0.0
+    },
+    "cache_miss_storm": {
+      "max_errors": 0,
+      "min_cache_miss_rate": 0.75,
+      "min_p95_ms": 150
+    },
+    "dependency_timeout": {
+      "min_errors": 1,
+      "min_error_rate": 0.3,
+      "min_p95_ms": 500
+    },
+    "rollout_regression": {
+      "expected_service_version": "v2",
+      "min_errors": 1,
+      "min_p95_ms": 300
+    },
+    "collector_queue_pressure": {
+      "max_errors": 0,
+      "min_telemetry_loss_rate": 0.25,
+      "expected_collector_queue_pressure": "high",
+      "max_p95_ms": 150
+    }
+  },
+  "capacity": {
+    "target_rps": 100,
+    "concurrency_per_replica": 8,
+    "headroom_factor": 1.4,
+    "max_replicas_budget": 12
+  }
+}

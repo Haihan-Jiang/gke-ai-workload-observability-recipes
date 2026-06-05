@@ -1,0 +1,76 @@
+{
+  "profile": "gke-ai-inference-reliability-lab-v1",
+  "target_rps": 100,
+  "concurrency_per_replica": 8,
+  "headroom_factor": 1.4,
+  "max_replicas_budget": 12,
+  "scenarios": [
+    {
+      "scenario": "baseline",
+      "bottleneck": "normal inference path",
+      "p95_ms": 48,
+      "error_rate": 0.0,
+      "telemetry_loss_rate": 0.0,
+      "estimated_rps_per_replica": 166.67,
+      "target_rps": 100.0,
+      "headroom_factor": 1.4,
+      "required_replicas": 1,
+      "warnings": []
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "bottleneck": "vector cache and retrieval path",
+      "p95_ms": 251,
+      "error_rate": 0.0,
+      "telemetry_loss_rate": 0.0,
+      "estimated_rps_per_replica": 31.87,
+      "target_rps": 100.0,
+      "headroom_factor": 1.4,
+      "required_replicas": 5,
+      "warnings": []
+    },
+    {
+      "scenario": "dependency_timeout",
+      "bottleneck": "feature-store dependency",
+      "p95_ms": 1320,
+      "error_rate": 0.5,
+      "telemetry_loss_rate": 0.0,
+      "estimated_rps_per_replica": 6.06,
+      "target_rps": 100.0,
+      "headroom_factor": 1.4,
+      "required_replicas": 24,
+      "warnings": [
+        "do not scale traffic until user-visible errors are isolated",
+        "required replicas exceed the demo budget; treat as a dependency or design issue"
+      ]
+    },
+    {
+      "scenario": "rollout_regression",
+      "bottleneck": "service rollout and version skew",
+      "p95_ms": 455,
+      "error_rate": 0.29,
+      "telemetry_loss_rate": 0.0,
+      "estimated_rps_per_replica": 17.58,
+      "target_rps": 100.0,
+      "headroom_factor": 1.4,
+      "required_replicas": 8,
+      "warnings": [
+        "do not scale traffic until user-visible errors are isolated"
+      ]
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "bottleneck": "telemetry collector delivery path",
+      "p95_ms": 126,
+      "error_rate": 0.0,
+      "telemetry_loss_rate": 0.42,
+      "estimated_rps_per_replica": 63.49,
+      "target_rps": 100.0,
+      "headroom_factor": 1.4,
+      "required_replicas": 3,
+      "warnings": [
+        "fix collector delivery before trusting production dashboards"
+      ]
+    }
+  ]
+}
