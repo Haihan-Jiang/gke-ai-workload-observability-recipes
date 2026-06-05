@@ -16,6 +16,10 @@
     {
       "name": "capacity_plan",
       "ok": true
+    },
+    {
+      "name": "advanced_problem_coverage",
+      "ok": true
     }
   ],
   "evidence": [
@@ -53,6 +57,54 @@
     },
     {
       "path": "incident-runbooks.json",
+      "exists": true
+    },
+    {
+      "path": "burn-rate-analysis.md",
+      "exists": true
+    },
+    {
+      "path": "burn-rate-analysis.json",
+      "exists": true
+    },
+    {
+      "path": "rollout-guard.md",
+      "exists": true
+    },
+    {
+      "path": "rollout-guard.json",
+      "exists": true
+    },
+    {
+      "path": "trace-quality-audit.md",
+      "exists": true
+    },
+    {
+      "path": "trace-quality-audit.json",
+      "exists": true
+    },
+    {
+      "path": "collector-resilience.md",
+      "exists": true
+    },
+    {
+      "path": "collector-resilience.json",
+      "exists": true
+    },
+    {
+      "path": "incident-correlation.md",
+      "exists": true
+    },
+    {
+      "path": "incident-correlation.json",
+      "exists": true
+    },
+    {
+      "path": "complex-problems.md",
+      "exists": true
+    },
+    {
+      "path": "complex-problems.json",
       "exists": true
     }
   ],

@@ -15,7 +15,7 @@ inference incidents before a service reaches production.
 | [vLLM Production Stack](https://github.com/vllm-project/production-stack) | Kubernetes-native stack for cluster-wide LLM serving. | This lab adds a lightweight local reliability gate that can be understood without GPUs or a paid cluster. |
 | [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) | End-to-end Kubernetes monitoring manifests, dashboards, and alerting rules. | This lab complements cluster monitoring with trace-driven inference triage and runbooks. |
 
-## Ten Concrete Industry Problems
+## Ten Concrete Industry Problems Covered By The First Feature Set
 
 | ID | Problem | Why It Hurts In Production | Lab Coverage |
 | --- | --- | --- | --- |
@@ -56,6 +56,40 @@ inference incidents before a service reaches production.
    - Code: [demo/release_readiness.py](../demo/release_readiness.py)
    - Evidence: [release readiness report](evidence/release-readiness.md)
    - Covers: P01, P08, P09, P10
+
+## Five More Complex Problems Covered By The Advanced Feature Set
+
+| ID | Problem | Why It Is Harder | Lab Coverage |
+| --- | --- | --- | --- |
+| C01 | Multi-window SLO burn rate | A short incident can burn the error budget even when daily averages look fine. | [burn-rate analysis](evidence/burn-rate-analysis.md) |
+| C02 | Automated canary rollback decision | A new version must be compared against baseline on latency, errors, cache, and telemetry before rollout expands. | [rollout guard](evidence/rollout-guard.md) |
+| C03 | Trace completeness and cardinality audit | Traces can exist but be unusable if key attributes are missing or high-cardinality labels explode storage. | [trace quality audit](evidence/trace-quality-audit.md) |
+| C04 | Collector outage and queue resilience | Persistent queue sizing must survive exporter outages without losing the traces needed for incident review. | [collector resilience](evidence/collector-resilience.md) |
+| C05 | Incident correlation and deduplication | One root cause can emit latency, error, rollout, and telemetry alerts that must be grouped for the responder. | [incident correlation](evidence/incident-correlation.md) |
+
+## Advanced Feature Contributions
+
+1. **Multi-window burn-rate analysis**
+   - Code: [demo/advanced_reliability.py](../demo/advanced_reliability.py)
+   - Config: [config/advanced-reliability.json](../config/advanced-reliability.json)
+   - Evidence: [burn-rate analysis](evidence/burn-rate-analysis.md)
+
+2. **Canary rollout guard**
+   - Code: [demo/advanced_reliability.py](../demo/advanced_reliability.py)
+   - Evidence: [rollout guard](evidence/rollout-guard.md)
+
+3. **OTLP trace quality and cardinality audit**
+   - Code: [demo/advanced_reliability.py](../demo/advanced_reliability.py)
+   - Input: per-scenario OTLP payloads emitted by [demo/incident_replay.py](../demo/incident_replay.py)
+   - Evidence: [trace quality audit](evidence/trace-quality-audit.md)
+
+4. **Collector outage resilience model**
+   - Code: [demo/advanced_reliability.py](../demo/advanced_reliability.py)
+   - Evidence: [collector resilience](evidence/collector-resilience.md)
+
+5. **Incident correlation and deduplication**
+   - Code: [demo/advanced_reliability.py](../demo/advanced_reliability.py)
+   - Evidence: [incident correlation](evidence/incident-correlation.md)
 
 ## Boundary
 

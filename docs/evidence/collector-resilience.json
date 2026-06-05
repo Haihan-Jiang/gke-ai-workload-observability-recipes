@@ -1,0 +1,11 @@
+{
+  "problem_id": "C04",
+  "ingress_spans_during_outage": 288000,
+  "queue_capacity_spans": 300000,
+  "queue_utilization": 0.96,
+  "required_storage_mib": 371,
+  "configured_storage_mib": 512.0,
+  "estimated_lost_spans": 0,
+  "risk": "ok",
+  "recommendation": "queue and storage are sufficient for the modeled outage"
+}

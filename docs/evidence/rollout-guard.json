@@ -1,0 +1,16 @@
+{
+  "problem_id": "C02",
+  "baseline": "baseline",
+  "candidate": "rollout_regression",
+  "candidate_version": "v2",
+  "p95_ratio": 9.48,
+  "error_rate_delta": 0.29,
+  "cache_miss_delta": 0.43,
+  "telemetry_loss_delta": 0.0,
+  "violations": [
+    "p95 ratio 9.48 exceeds 3.0",
+    "error delta 0.29 exceeds 0.05",
+    "cache miss delta 0.43 exceeds 0.25"
+  ],
+  "decision": "rollback"
+}

@@ -1,0 +1,95 @@
+{
+  "profile": "gke-ai-inference-advanced-reliability-v1",
+  "description": "Advanced production-readiness checks for inference reliability evidence.",
+  "burn_rate": {
+    "error_budget_percent": 1.0,
+    "page_threshold": 14.4,
+    "ticket_threshold": 2.0,
+    "latency_breach_weight": 0.6,
+    "telemetry_loss_weight": 0.4,
+    "windows": [
+      {
+        "name": "5m",
+        "total_requests": 10000,
+        "scenario_mix": {
+          "baseline": 0.55,
+          "cache_miss_storm": 0.2,
+          "dependency_timeout": 0.1,
+          "rollout_regression": 0.1,
+          "collector_queue_pressure": 0.05
+        }
+      },
+      {
+        "name": "30m",
+        "total_requests": 60000,
+        "scenario_mix": {
+          "baseline": 0.74,
+          "cache_miss_storm": 0.1,
+          "dependency_timeout": 0.06,
+          "rollout_regression": 0.05,
+          "collector_queue_pressure": 0.05
+        }
+      }
+    ]
+  },
+  "rollout_guard": {
+    "baseline": "baseline",
+    "candidate": "rollout_regression",
+    "max_p95_ratio": 3.0,
+    "max_error_rate_delta": 0.05,
+    "max_cache_miss_delta": 0.25,
+    "max_telemetry_loss_delta": 0.05
+  },
+  "trace_quality": {
+    "required_resource_attributes": [
+      "service.name",
+      "deployment.environment",
+      "cloud.provider",
+      "k8s.cluster.name",
+      "k8s.namespace.name",
+      "service.version",
+      "incident.scenario"
+    ],
+    "required_root_span_attributes": [
+      "http.route",
+      "http.status_code",
+      "ai.model",
+      "ai.inference.latency_ms",
+      "cache.result",
+      "incident.scenario",
+      "service.version",
+      "sre.signal"
+    ],
+    "required_child_spans": [
+      "vector-cache lookup",
+      "feature-store lookup",
+      "model inference"
+    ],
+    "max_cardinality": {
+      "http.route": 4,
+      "service.version": 4,
+      "incident.scenario": 16,
+      "cache.result": 4,
+      "sre.signal": 8
+    }
+  },
+  "collector_resilience": {
+    "ingress_rps": 120,
+    "spans_per_request": 4,
+    "avg_span_bytes": 900,
+    "exporter_outage_minutes": 10,
+    "queue_capacity_spans": 300000,
+    "persistent_storage_mib": 512,
+    "headroom_factor": 1.5
+  },
+  "incident_correlation": {
+    "dedupe_window_minutes": 30,
+    "root_cause_priority": [
+      "telemetry_delivery",
+      "rollout_regression",
+      "dependency_timeout",
+      "cache_miss_storm",
+      "capacity_pressure"
+    ]
+  }
+}

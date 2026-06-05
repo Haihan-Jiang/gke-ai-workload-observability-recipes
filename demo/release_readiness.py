@@ -19,6 +19,18 @@ REQUIRED_EVIDENCE = [
     "capacity-plan.json",
     "incident-runbooks.md",
     "incident-runbooks.json",
+    "burn-rate-analysis.md",
+    "burn-rate-analysis.json",
+    "rollout-guard.md",
+    "rollout-guard.json",
+    "trace-quality-audit.md",
+    "trace-quality-audit.json",
+    "collector-resilience.md",
+    "collector-resilience.json",
+    "incident-correlation.md",
+    "incident-correlation.json",
+    "complex-problems.md",
+    "complex-problems.json",
 ]
 
 
@@ -31,6 +43,7 @@ def evaluate(
     gate: dict[str, Any],
     capacity: dict[str, Any],
     runbooks: dict[str, Any],
+    advanced: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
     evidence = [
@@ -49,6 +62,7 @@ def evaluate(
         {"name": "evidence_files", "ok": all(item["exists"] for item in evidence)},
         {"name": "runbook_coverage", "ok": scenario_names == runbook_names and len(runbook_names) > 0},
         {"name": "capacity_plan", "ok": len(capacity.get("scenarios", [])) >= 5},
+        {"name": "advanced_problem_coverage", "ok": len(advanced.get("problems", [])) >= 5},
     ]
     return {
         "status": "pass" if all(item["ok"] for item in checks) else "fail",
@@ -70,8 +84,9 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         f"Overall status: **{status}**",
         "",
         "This report is the final local gate for the portfolio lab. It verifies",
-        "that the replay, reliability gate, capacity plan, runbooks, and committed",
-        "evidence are present and internally consistent.",
+        "that the replay, reliability gate, capacity plan, runbooks, advanced",
+        "reliability controls, and committed evidence are present and internally",
+        "consistent.",
         "",
         "## Checks",
         "",
@@ -100,6 +115,7 @@ def main() -> int:
     parser.add_argument("--gate", default="out/reliability-gate/reliability-gate.json")
     parser.add_argument("--capacity", default="out/capacity-plan/capacity-plan.json")
     parser.add_argument("--runbooks", default="out/incident-runbooks/incident-runbooks.json")
+    parser.add_argument("--advanced", default="out/advanced-reliability/complex-problems.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
     args = parser.parse_args()
@@ -108,6 +124,7 @@ def main() -> int:
         gate=load_json(Path(args.gate)),
         capacity=load_json(Path(args.capacity)),
         runbooks=load_json(Path(args.runbooks)),
+        advanced=load_json(Path(args.advanced)),
         evidence_dir=Path(args.evidence_dir),
     )
     output_dir = Path(args.output_dir)

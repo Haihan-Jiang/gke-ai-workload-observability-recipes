@@ -1,0 +1,55 @@
+{
+  "problem_id": "C05",
+  "dedupe_window_minutes": 30,
+  "incident_count": 4,
+  "unique_dedupe_keys": [
+    "cache_miss_storm:v1",
+    "dependency_timeout:v1",
+    "rollout_regression:v2",
+    "telemetry_delivery:v1"
+  ],
+  "incidents": [
+    {
+      "scenario": "cache_miss_storm",
+      "root_cause": "cache_miss_storm",
+      "dedupe_key": "cache_miss_storm:v1",
+      "symptoms": [
+        "latency",
+        "cache_miss"
+      ],
+      "owner_hint": "inference retrieval owner"
+    },
+    {
+      "scenario": "dependency_timeout",
+      "root_cause": "dependency_timeout",
+      "dedupe_key": "dependency_timeout:v1",
+      "symptoms": [
+        "latency",
+        "errors"
+      ],
+      "owner_hint": "feature platform / dependency owner"
+    },
+    {
+      "scenario": "rollout_regression",
+      "root_cause": "rollout_regression",
+      "dedupe_key": "rollout_regression:v2",
+      "symptoms": [
+        "latency",
+        "errors",
+        "cache_miss",
+        "new_version"
+      ],
+      "owner_hint": "service owner / release engineer"
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "root_cause": "telemetry_delivery",
+      "dedupe_key": "telemetry_delivery:v1",
+      "symptoms": [
+        "latency",
+        "telemetry_loss"
+      ],
+      "owner_hint": "observability platform"
+    }
+  ]
+}

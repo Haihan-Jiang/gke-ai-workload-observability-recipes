@@ -23,7 +23,9 @@ The project has four layers:
    classify the expected incident signals.
 4. Capacity planning and generated runbooks that turn telemetry into response
    decisions.
-5. Kubernetes/GKE manifests that show the production shape: collector service,
+5. Advanced reliability controls for burn-rate paging, canary rollback, trace
+   quality, collector outage resilience, and incident correlation.
+6. Kubernetes/GKE manifests that show the production shape: collector service,
    resource enrichment, Kubernetes metadata, read-only RBAC, persistent queue
    storage, and cross-namespace instrumentation references.
 
@@ -42,6 +44,8 @@ parts that are easy to get wrong:
 - incident reports that connect telemetry attributes to SRE triage decisions.
 - generated runbooks that turn each replayed failure into first-response
   actions.
+- advanced gates that review burn rate, rollout safety, trace completeness,
+  collector queue capacity, and alert deduplication.
 
 ## Incident Replay
 
@@ -77,10 +81,12 @@ so a reviewer can inspect the result before running anything locally:
 ## Industry Map
 
 The lab is grounded in five reference projects and ten concrete production
-problems in [industry-map.md](industry-map.md). That file is the feature
-backlog and boundary document for this repo: it explains why the lab focuses on
-inference incidents, SLO gates, capacity sanity checks, runbooks, and
-telemetry-delivery evidence instead of trying to become a full serving platform.
+problems in [industry-map.md](industry-map.md), then extends into five more
+complex production problems. That file is the feature backlog and boundary
+document for this repo: it explains why the lab focuses on inference incidents,
+SLO gates, burn-rate analysis, canary decisions, trace quality, capacity sanity
+checks, runbooks, and telemetry-delivery evidence instead of trying to become a
+full serving platform.
 
 ## Validation
 
@@ -125,6 +131,22 @@ python3 demo/runbook_generator.py \
   --output-dir out/incident-runbooks
 ```
 
+Run the advanced reliability controls:
+
+```bash
+python3 demo/incident_replay.py \
+  --no-send \
+  --output-dir out/incident-replay \
+  --payload-dir out/incident-replay-payloads
+
+python3 demo/advanced_reliability.py \
+  --summary out/incident-replay/summary.json \
+  --payload-dir out/incident-replay-payloads \
+  --slo-config config/reliability-slo.json \
+  --advanced-config config/advanced-reliability.json \
+  --output-dir out/advanced-reliability
+```
+
 ## Upstream Connection
 
 This project is connected to related Google Cloud OSS work in
@@ -140,12 +162,14 @@ Before upstream merge:
 
 > Built a runnable GKE AI inference reliability lab and opened related Google
 > Cloud OSS PRs for OpenTelemetry Operator recipes, with local incident replay
-> for AI inference latency, telemetry delivery, capacity, and rollout failures.
+> for AI inference latency, telemetry delivery, capacity, rollout failures,
+> burn-rate analysis, canary decisions, and trace quality.
 
 After upstream merge:
 
 > Built a runnable GKE AI inference reliability lab for inference services,
 > with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
 > collector queues, incident replay scenarios, configurable SLO gates,
-> capacity/readiness evidence, generated runbooks, and related Google Cloud OSS
-> recipe contributions.
+> capacity/readiness evidence, burn-rate and canary decision controls, trace
+> quality audits, generated runbooks, and related Google Cloud OSS recipe
+> contributions.

@@ -335,6 +335,15 @@ def write_report(output_dir: Path, summaries: list[dict[str, object]], endpoint:
     (output_dir / "report.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def write_payloads(payloads: list[tuple[str, dict[str, object]]], payload_dir: Path) -> None:
+    payload_dir.mkdir(parents=True, exist_ok=True)
+    for scenario_name, payload in payloads:
+        (payload_dir / f"{scenario_name}.otlp.json").write_text(
+            json.dumps(payload, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -342,19 +351,27 @@ def main() -> int:
         default=os.environ.get("OTLP_HTTP_ENDPOINT", "http://127.0.0.1:4318/v1/traces"),
     )
     parser.add_argument("--output-dir", default="out/incident-replay")
+    parser.add_argument("--payload-dir", help="write per-scenario OTLP payloads for trace quality audits")
     parser.add_argument("--no-send", action="store_true", help="generate the report without sending OTLP")
     args = parser.parse_args()
 
     base_ns = time.time_ns()
     summaries = [summarize_scenario(scenario) for scenario in SCENARIOS]
+    payloads = [
+        (str(scenario["name"]), build_scenario_payload(scenario, base_ns + offset * 2_000_000_000))
+        for offset, scenario in enumerate(SCENARIOS)
+    ]
     sent = not args.no_send
     if sent:
-        for offset, scenario in enumerate(SCENARIOS):
-            status = post_payload(args.endpoint, build_scenario_payload(scenario, base_ns + offset * 2_000_000_000))
-            print(f"sent scenario={scenario['name']} status={status}")
+        for scenario_name, payload in payloads:
+            status = post_payload(args.endpoint, payload)
+            print(f"sent scenario={scenario_name} status={status}")
 
     output_dir = Path(args.output_dir)
     write_report(output_dir, summaries, args.endpoint, sent)
+    if args.payload_dir:
+        write_payloads(payloads, Path(args.payload_dir))
+        print(f"wrote payloads to {args.payload_dir}")
     print(f"wrote {output_dir / 'report.md'}")
     print(f"wrote {output_dir / 'summary.json'}")
     return 0

@@ -6,6 +6,10 @@ inference workloads using OpenTelemetry.
 The goal is practical: show how a platform/SRE team can replay inference
 incidents, validate SLO-style reliability gates, wire Kubernetes metadata, and
 keep collector delivery durable before an AI service reaches production.
+The second-stage goal is to make the lab look credible from code review, not
+only from prose: the repo now includes multi-window burn-rate analysis, canary
+rollback decisions, OTLP trace-quality auditing, collector outage modeling,
+and incident correlation.
 
 This repository is a personal reference project. Related upstream Google Cloud
 OpenTelemetry sample PRs are tracked in
@@ -24,6 +28,8 @@ not described as merged.
 - Capacity-planning evidence that separates scaling problems from reliability
   incidents.
 - Generated runbooks for first-response debugging.
+- Advanced reliability controls for burn-rate paging, canary rollback, trace
+  quality, collector outage resilience, and alert deduplication.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -52,7 +58,7 @@ Run the local demo:
 ./scripts/run-local-demo.sh
 ```
 
-This replays four AI inference incidents, sends OTLP/HTTP traces, and writes:
+This replays five AI inference incidents, sends OTLP/HTTP traces, and writes:
 
 ```text
 out/incident-replay/report.md
@@ -82,6 +88,22 @@ python3 demo/runbook_generator.py \
   --output-dir out/incident-runbooks
 ```
 
+Run the advanced reliability controls:
+
+```bash
+python3 demo/incident_replay.py \
+  --no-send \
+  --output-dir out/incident-replay \
+  --payload-dir out/incident-replay-payloads
+
+python3 demo/advanced_reliability.py \
+  --summary out/incident-replay/summary.json \
+  --payload-dir out/incident-replay-payloads \
+  --slo-config config/reliability-slo.json \
+  --advanced-config config/advanced-reliability.json \
+  --output-dir out/advanced-reliability
+```
+
 When the Docker daemon is available, the local demo starts an OpenTelemetry
 Collector container, sends the replayed traces, prints the collector debug
 output, and then cleans up the container. If Docker is not running, it falls
@@ -99,7 +121,8 @@ open http://localhost:16686
 ```
 
 Search for `toy-ai-inference-api` in Jaeger, then compare the baseline,
-cache-miss, dependency-timeout, and rollout-regression traces.
+cache-miss, dependency-timeout, rollout-regression, and collector-pressure
+traces.
 
 ## Evidence
 
@@ -114,6 +137,12 @@ script:
 - [Reliability gate JSON](docs/evidence/reliability-gate.json)
 - [Capacity plan](docs/evidence/capacity-plan.md)
 - [Incident runbooks](docs/evidence/incident-runbooks.md)
+- [Burn rate analysis](docs/evidence/burn-rate-analysis.md)
+- [Rollout guard](docs/evidence/rollout-guard.md)
+- [Trace quality audit](docs/evidence/trace-quality-audit.md)
+- [Collector resilience model](docs/evidence/collector-resilience.md)
+- [Incident correlation](docs/evidence/incident-correlation.md)
+- [Complex problem coverage](docs/evidence/complex-problems.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -179,8 +208,8 @@ See [docs/case-study.md](docs/case-study.md).
 ## Industry Map
 
 See [docs/industry-map.md](docs/industry-map.md) for five reference projects,
-ten concrete industry problems, and the five feature contributions this repo
-adds on top of the first lab version.
+ten baseline industry problems, five advanced production problems, and the
+feature contributions this repo adds on top of the first lab version.
 
 ## Architecture
 
@@ -192,17 +221,19 @@ Current wording before upstream merges:
 
 > Built a runnable GKE AI inference reliability lab and opened related Google
 > Cloud OSS PRs for OpenTelemetry Operator recipes covering incident replay,
-> configurable SLO gates, capacity planning, generated incident runbooks,
-> cross-namespace instrumentation, persistent telemetry queues, resource
-> detection, and Kubernetes cluster metrics.
+> configurable SLO gates, burn-rate analysis, rollout rollback guards, trace
+> quality audits, collector resilience modeling, generated incident runbooks,
+> cross-namespace instrumentation, persistent telemetry queues, and Kubernetes
+> metadata.
 
 After an upstream PR merges, update this to:
 
 > Built a runnable GKE AI inference reliability lab for inference services,
 > with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
 > collector queues, incident replay scenarios, configurable SLO gates,
-> capacity/readiness evidence, generated runbooks, and related Google Cloud OSS
-> recipe contributions.
+> capacity/readiness evidence, burn-rate and canary decision controls, trace
+> quality audits, generated runbooks, and related Google Cloud OSS recipe
+> contributions.
 
 ## License
 

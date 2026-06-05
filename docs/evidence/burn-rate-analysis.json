@@ -1,0 +1,87 @@
+{
+  "problem_id": "C01",
+  "status": "generated",
+  "error_budget_percent": 1.0,
+  "windows": [
+    {
+      "window": "5m",
+      "total_requests": 10000,
+      "estimated_bad_events": 3474.0,
+      "observed_bad_rate": 0.3474,
+      "burn_rate": 34.74,
+      "action": "page",
+      "contributions": [
+        {
+          "scenario": "baseline",
+          "traffic_share": 0.55,
+          "estimated_bad_rate": 0.0,
+          "estimated_bad_events": 0.0
+        },
+        {
+          "scenario": "cache_miss_storm",
+          "traffic_share": 0.2,
+          "estimated_bad_rate": 0.6,
+          "estimated_bad_events": 1200.0
+        },
+        {
+          "scenario": "dependency_timeout",
+          "traffic_share": 0.1,
+          "estimated_bad_rate": 1.0,
+          "estimated_bad_events": 1000.0
+        },
+        {
+          "scenario": "rollout_regression",
+          "traffic_share": 0.1,
+          "estimated_bad_rate": 0.89,
+          "estimated_bad_events": 890.0
+        },
+        {
+          "scenario": "collector_queue_pressure",
+          "traffic_share": 0.05,
+          "estimated_bad_rate": 0.768,
+          "estimated_bad_events": 384.0
+        }
+      ]
+    },
+    {
+      "window": "30m",
+      "total_requests": 60000,
+      "estimated_bad_events": 12174.0,
+      "observed_bad_rate": 0.2029,
+      "burn_rate": 20.29,
+      "action": "page",
+      "contributions": [
+        {
+          "scenario": "baseline",
+          "traffic_share": 0.74,
+          "estimated_bad_rate": 0.0,
+          "estimated_bad_events": 0.0
+        },
+        {
+          "scenario": "cache_miss_storm",
+          "traffic_share": 0.1,
+          "estimated_bad_rate": 0.6,
+          "estimated_bad_events": 3600.0
+        },
+        {
+          "scenario": "dependency_timeout",
+          "traffic_share": 0.06,
+          "estimated_bad_rate": 1.0,
+          "estimated_bad_events": 3600.0
+        },
+        {
+          "scenario": "rollout_regression",
+          "traffic_share": 0.05,
+          "estimated_bad_rate": 0.89,
+          "estimated_bad_events": 2670.0
+        },
+        {
+          "scenario": "collector_queue_pressure",
+          "traffic_share": 0.05,
+          "estimated_bad_rate": 0.768,
+          "estimated_bad_events": 2304.0
+        }
+      ]
+    }
+  ]
+}

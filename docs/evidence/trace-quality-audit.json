@@ -1,0 +1,61 @@
+{
+  "problem_id": "C03",
+  "status": "pass",
+  "payloads": 5,
+  "spans": 136,
+  "resource_missing": {},
+  "root_missing": {},
+  "child_span_missing": {},
+  "cardinality": {
+    "http.route": {
+      "count": 1,
+      "limit": 4,
+      "values": [
+        "/v1/infer"
+      ],
+      "ok": true
+    },
+    "service.version": {
+      "count": 2,
+      "limit": 4,
+      "values": [
+        "v1",
+        "v2"
+      ],
+      "ok": true
+    },
+    "incident.scenario": {
+      "count": 5,
+      "limit": 16,
+      "values": [
+        "baseline",
+        "cache_miss_storm",
+        "collector_queue_pressure",
+        "dependency_timeout",
+        "rollout_regression"
+      ],
+      "ok": true
+    },
+    "cache.result": {
+      "count": 2,
+      "limit": 4,
+      "values": [
+        "hit",
+        "miss"
+      ],
+      "ok": true
+    },
+    "sre.signal": {
+      "count": 5,
+      "limit": 8,
+      "values": [
+        "dependency",
+        "error",
+        "latency",
+        "model",
+        "telemetry-delivery"
+      ],
+      "ok": true
+    }
+  }
+}

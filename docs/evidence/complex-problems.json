@@ -1,0 +1,34 @@
+{
+  "problems": [
+    {
+      "id": "C01",
+      "name": "Multi-window SLO burn rate",
+      "risk": "A single incident can consume error budget faster than aggregate monthly dashboards show.",
+      "artifact": "burn-rate-analysis.md"
+    },
+    {
+      "id": "C02",
+      "name": "Automated canary rollback decision",
+      "risk": "A bad model or service version can look acceptable in aggregate traffic until the rollout expands.",
+      "artifact": "rollout-guard.md"
+    },
+    {
+      "id": "C03",
+      "name": "Trace completeness and cardinality audit",
+      "risk": "Telemetry can exist but still be unusable because key attributes are missing or too high-cardinality.",
+      "artifact": "trace-quality-audit.md"
+    },
+    {
+      "id": "C04",
+      "name": "Collector outage and queue resilience",
+      "risk": "Collector/exporter backpressure can silently drop traces during the exact window an incident needs evidence.",
+      "artifact": "collector-resilience.md"
+    },
+    {
+      "id": "C05",
+      "name": "Incident correlation and deduplication",
+      "risk": "Latency, dependency, rollout, and telemetry symptoms create separate alerts for one operator-facing incident.",
+      "artifact": "incident-correlation.md"
+    }
+  ]
+}
