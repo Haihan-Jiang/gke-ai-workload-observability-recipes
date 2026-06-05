@@ -1,0 +1,34 @@
+{
+  "problems": [
+    {
+      "id": "C06",
+      "name": "Critical-path span attribution",
+      "risk": "Root latency is not actionable unless the dominant child span is identified.",
+      "artifact": "critical-path-attribution.md"
+    },
+    {
+      "id": "C07",
+      "name": "Tail-sampling evidence coverage",
+      "risk": "Incident traces can be sampled away even when aggregate metrics show a problem.",
+      "artifact": "evidence-coverage.md"
+    },
+    {
+      "id": "C08",
+      "name": "Autoscaler lag and cold-start recovery",
+      "risk": "A capacity plan can look adequate while scale-up latency still misses the incident window.",
+      "artifact": "hpa-lag-analysis.md"
+    },
+    {
+      "id": "C09",
+      "name": "Tenant blast-radius detection",
+      "risk": "A premium tenant can be impacted while aggregate service health looks only moderately degraded.",
+      "artifact": "tenant-blast-radius.md"
+    },
+    {
+      "id": "C10",
+      "name": "Token and GPU cost guardrail",
+      "risk": "Long prompts and expensive model variants can create reliability and cost regressions together.",
+      "artifact": "token-cost-guard.md"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "problem_id": "C10",
+  "scenarios": [
+    {
+      "scenario": "baseline",
+      "model_variant": "recommender-small",
+      "total_tokens": 282,
+      "gpu_ms": 18,
+      "estimated_cost_per_1k_requests": 0.213,
+      "violations": [],
+      "decision": "allow"
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "model_variant": "recommender-small",
+      "total_tokens": 348,
+      "gpu_ms": 38,
+      "estimated_cost_per_1k_requests": 0.262,
+      "violations": [],
+      "decision": "allow"
+    },
+    {
+      "scenario": "dependency_timeout",
+      "model_variant": "recommender-small",
+      "total_tokens": 432,
+      "gpu_ms": 82,
+      "estimated_cost_per_1k_requests": 0.338,
+      "violations": [],
+      "decision": "allow"
+    },
+    {
+      "scenario": "rollout_regression",
+      "model_variant": "recommender-v2",
+      "total_tokens": 578,
+      "gpu_ms": 210,
+      "estimated_cost_per_1k_requests": 0.477,
+      "violations": [
+        "tokens 578 exceed 520",
+        "gpu_ms 210 exceeds 180"
+      ],
+      "decision": "block_or_review"
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "model_variant": "recommender-small",
+      "total_tokens": 336,
+      "gpu_ms": 62,
+      "estimated_cost_per_1k_requests": 0.264,
+      "violations": [],
+      "decision": "allow"
+    }
+  ]
+}

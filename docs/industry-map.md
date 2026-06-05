@@ -91,6 +91,40 @@ inference incidents before a service reaches production.
    - Code: [demo/advanced_reliability.py](../demo/advanced_reliability.py)
    - Evidence: [incident correlation](evidence/incident-correlation.md)
 
+## Five More Detailed Problems Covered By The Third Feature Set
+
+| ID | Problem | Why It Is More Detailed | Lab Coverage |
+| --- | --- | --- | --- |
+| C06 | Critical-path span attribution | It inspects child span durations instead of only scenario-level p95 latency. | [critical-path attribution](evidence/critical-path-attribution.md) |
+| C07 | Tail-sampling evidence coverage | It checks whether error, high-latency, and telemetry-loss traces are preserved. | [evidence coverage](evidence/evidence-coverage.md) |
+| C08 | Autoscaler lag and cold-start recovery | It separates scale-up actions from dependency/rollout problems that scaling cannot solve. | [HPA lag analysis](evidence/hpa-lag-analysis.md) |
+| C09 | Tenant blast-radius detection | It checks tier-specific SLOs instead of relying on aggregate service health. | [tenant blast radius](evidence/tenant-blast-radius.md) |
+| C10 | Token and GPU cost guardrail | It links prompt size, output tokens, model variant, and GPU time to rollout review. | [token cost guard](evidence/token-cost-guard.md) |
+
+## Detailed Feature Contributions
+
+1. **Critical-path span attribution**
+   - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
+   - Input: OTLP child spans emitted by [demo/incident_replay.py](../demo/incident_replay.py)
+   - Evidence: [critical-path attribution](evidence/critical-path-attribution.md)
+
+2. **Tail-sampling evidence coverage**
+   - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
+   - Evidence: [evidence coverage](evidence/evidence-coverage.md)
+
+3. **HPA lag and cold-start analysis**
+   - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
+   - Config: [config/detailed-reliability.json](../config/detailed-reliability.json)
+   - Evidence: [HPA lag analysis](evidence/hpa-lag-analysis.md)
+
+4. **Tenant blast-radius detection**
+   - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
+   - Evidence: [tenant blast radius](evidence/tenant-blast-radius.md)
+
+5. **Token and GPU cost guardrail**
+   - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
+   - Evidence: [token cost guard](evidence/token-cost-guard.md)
+
 ## Boundary
 
 The lab is production-oriented, not production-deployed. It gives a reviewer a

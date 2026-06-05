@@ -9,7 +9,8 @@ keep collector delivery durable before an AI service reaches production.
 The second-stage goal is to make the lab look credible from code review, not
 only from prose: the repo now includes multi-window burn-rate analysis, canary
 rollback decisions, OTLP trace-quality auditing, collector outage modeling,
-and incident correlation.
+incident correlation, critical-path attribution, evidence coverage checks,
+HPA lag modeling, tenant blast-radius detection, and token/GPU cost guardrails.
 
 This repository is a personal reference project. Related upstream Google Cloud
 OpenTelemetry sample PRs are tracked in
@@ -30,6 +31,8 @@ not described as merged.
 - Generated runbooks for first-response debugging.
 - Advanced reliability controls for burn-rate paging, canary rollback, trace
   quality, collector outage resilience, and alert deduplication.
+- Detailed inference controls for critical-path attribution, sampling evidence
+  coverage, HPA lag, tenant blast radius, and token/GPU cost guardrails.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -104,6 +107,16 @@ python3 demo/advanced_reliability.py \
   --output-dir out/advanced-reliability
 ```
 
+Run the detailed reliability controls:
+
+```bash
+python3 demo/detailed_reliability.py \
+  --summary out/incident-replay/summary.json \
+  --payload-dir out/incident-replay-payloads \
+  --detailed-config config/detailed-reliability.json \
+  --output-dir out/detailed-reliability
+```
+
 When the Docker daemon is available, the local demo starts an OpenTelemetry
 Collector container, sends the replayed traces, prints the collector debug
 output, and then cleans up the container. If Docker is not running, it falls
@@ -143,6 +156,12 @@ script:
 - [Collector resilience model](docs/evidence/collector-resilience.md)
 - [Incident correlation](docs/evidence/incident-correlation.md)
 - [Complex problem coverage](docs/evidence/complex-problems.md)
+- [Critical path attribution](docs/evidence/critical-path-attribution.md)
+- [Evidence coverage](docs/evidence/evidence-coverage.md)
+- [HPA lag analysis](docs/evidence/hpa-lag-analysis.md)
+- [Tenant blast radius](docs/evidence/tenant-blast-radius.md)
+- [Token cost guard](docs/evidence/token-cost-guard.md)
+- [Detailed problem coverage](docs/evidence/detailed-problems.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -209,7 +228,8 @@ See [docs/case-study.md](docs/case-study.md).
 
 See [docs/industry-map.md](docs/industry-map.md) for five reference projects,
 ten baseline industry problems, five advanced production problems, and the
-feature contributions this repo adds on top of the first lab version.
+five more detailed production problems this repo adds on top of the first lab
+version.
 
 ## Architecture
 
@@ -223,8 +243,9 @@ Current wording before upstream merges:
 > Cloud OSS PRs for OpenTelemetry Operator recipes covering incident replay,
 > configurable SLO gates, burn-rate analysis, rollout rollback guards, trace
 > quality audits, collector resilience modeling, generated incident runbooks,
-> cross-namespace instrumentation, persistent telemetry queues, and Kubernetes
-> metadata.
+> critical-path attribution, HPA lag analysis, tenant blast-radius checks,
+> token/GPU guardrails, cross-namespace instrumentation, persistent telemetry
+> queues, and Kubernetes metadata.
 
 After an upstream PR merges, update this to:
 
@@ -232,8 +253,9 @@ After an upstream PR merges, update this to:
 > with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
 > collector queues, incident replay scenarios, configurable SLO gates,
 > capacity/readiness evidence, burn-rate and canary decision controls, trace
-> quality audits, generated runbooks, and related Google Cloud OSS recipe
-> contributions.
+> quality audits, critical-path attribution, HPA lag analysis, tenant blast
+> radius checks, token/GPU guardrails, generated runbooks, and related Google
+> Cloud OSS recipe contributions.
 
 ## License
 

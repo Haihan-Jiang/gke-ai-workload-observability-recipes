@@ -20,6 +20,10 @@
     {
       "name": "advanced_problem_coverage",
       "ok": true
+    },
+    {
+      "name": "detailed_problem_coverage",
+      "ok": true
     }
   ],
   "evidence": [
@@ -105,6 +109,54 @@
     },
     {
       "path": "complex-problems.json",
+      "exists": true
+    },
+    {
+      "path": "critical-path-attribution.md",
+      "exists": true
+    },
+    {
+      "path": "critical-path-attribution.json",
+      "exists": true
+    },
+    {
+      "path": "evidence-coverage.md",
+      "exists": true
+    },
+    {
+      "path": "evidence-coverage.json",
+      "exists": true
+    },
+    {
+      "path": "hpa-lag-analysis.md",
+      "exists": true
+    },
+    {
+      "path": "hpa-lag-analysis.json",
+      "exists": true
+    },
+    {
+      "path": "tenant-blast-radius.md",
+      "exists": true
+    },
+    {
+      "path": "tenant-blast-radius.json",
+      "exists": true
+    },
+    {
+      "path": "token-cost-guard.md",
+      "exists": true
+    },
+    {
+      "path": "token-cost-guard.json",
+      "exists": true
+    },
+    {
+      "path": "detailed-problems.md",
+      "exists": true
+    },
+    {
+      "path": "detailed-problems.json",
       "exists": true
     }
   ],

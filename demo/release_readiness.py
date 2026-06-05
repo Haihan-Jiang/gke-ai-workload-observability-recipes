@@ -31,6 +31,18 @@ REQUIRED_EVIDENCE = [
     "incident-correlation.json",
     "complex-problems.md",
     "complex-problems.json",
+    "critical-path-attribution.md",
+    "critical-path-attribution.json",
+    "evidence-coverage.md",
+    "evidence-coverage.json",
+    "hpa-lag-analysis.md",
+    "hpa-lag-analysis.json",
+    "tenant-blast-radius.md",
+    "tenant-blast-radius.json",
+    "token-cost-guard.md",
+    "token-cost-guard.json",
+    "detailed-problems.md",
+    "detailed-problems.json",
 ]
 
 
@@ -44,6 +56,7 @@ def evaluate(
     capacity: dict[str, Any],
     runbooks: dict[str, Any],
     advanced: dict[str, Any],
+    detailed: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
     evidence = [
@@ -63,6 +76,7 @@ def evaluate(
         {"name": "runbook_coverage", "ok": scenario_names == runbook_names and len(runbook_names) > 0},
         {"name": "capacity_plan", "ok": len(capacity.get("scenarios", [])) >= 5},
         {"name": "advanced_problem_coverage", "ok": len(advanced.get("problems", [])) >= 5},
+        {"name": "detailed_problem_coverage", "ok": len(detailed.get("problems", [])) >= 5},
     ]
     return {
         "status": "pass" if all(item["ok"] for item in checks) else "fail",
@@ -85,8 +99,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "",
         "This report is the final local gate for the portfolio lab. It verifies",
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
-        "reliability controls, and committed evidence are present and internally",
-        "consistent.",
+        "reliability controls, detailed reliability controls, and committed",
+        "evidence are present and internally consistent.",
         "",
         "## Checks",
         "",
@@ -116,6 +130,7 @@ def main() -> int:
     parser.add_argument("--capacity", default="out/capacity-plan/capacity-plan.json")
     parser.add_argument("--runbooks", default="out/incident-runbooks/incident-runbooks.json")
     parser.add_argument("--advanced", default="out/advanced-reliability/complex-problems.json")
+    parser.add_argument("--detailed", default="out/detailed-reliability/detailed-problems.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
     args = parser.parse_args()
@@ -125,6 +140,7 @@ def main() -> int:
         capacity=load_json(Path(args.capacity)),
         runbooks=load_json(Path(args.runbooks)),
         advanced=load_json(Path(args.advanced)),
+        detailed=load_json(Path(args.detailed)),
         evidence_dir=Path(args.evidence_dir),
     )
     output_dir = Path(args.output_dir)

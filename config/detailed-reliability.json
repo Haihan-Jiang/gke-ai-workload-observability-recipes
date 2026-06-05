@@ -1,0 +1,53 @@
+{
+  "profile": "gke-ai-inference-detailed-reliability-v1",
+  "description": "Third-stage detailed checks for inference reliability review.",
+  "critical_path": {
+    "root_span": "POST /v1/infer",
+    "tracked_child_spans": [
+      "vector-cache lookup",
+      "feature-store lookup",
+      "model inference"
+    ],
+    "dominance_ratio_threshold": 0.5
+  },
+  "evidence_coverage": {
+    "min_root_spans_per_scenario": 6,
+    "high_latency_ms": 300,
+    "telemetry_loss_threshold": 0.25,
+    "required_tail_reasons": [
+      "error",
+      "high_latency",
+      "telemetry_loss"
+    ]
+  },
+  "hpa_lag": {
+    "target_rps": 100,
+    "concurrency_per_replica": 8,
+    "current_replicas": 2,
+    "max_scale_up_replicas_per_minute": 3,
+    "cold_start_seconds": 45,
+    "max_recovery_seconds": 180,
+    "non_scalable_error_rate": 0.05
+  },
+  "tenant_blast_radius": {
+    "tiers": {
+      "premium": {
+        "max_p95_ms": 220,
+        "max_error_rate": 0.02,
+        "max_telemetry_loss_rate": 0.02
+      },
+      "standard": {
+        "max_p95_ms": 300,
+        "max_error_rate": 0.05,
+        "max_telemetry_loss_rate": 0.05
+      }
+    }
+  },
+  "token_cost_guard": {
+    "max_total_tokens_per_request": 520,
+    "max_gpu_ms_per_request": 180,
+    "input_token_cost_per_1k": 0.0005,
+    "output_token_cost_per_1k": 0.0015,
+    "max_cost_per_1k_requests": 0.75
+  }
+}

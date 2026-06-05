@@ -1,0 +1,60 @@
+{
+  "problem_id": "C06",
+  "scenarios": [
+    {
+      "scenario": "baseline",
+      "average_child_span_ms": {
+        "vector-cache lookup": 6.0,
+        "feature-store lookup": 8.0,
+        "model inference": 28.0
+      },
+      "dominant_span": "model inference",
+      "dominance_ratio": 0.667,
+      "actionable": true
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "average_child_span_ms": {
+        "vector-cache lookup": 128.0,
+        "feature-store lookup": 64.0,
+        "model inference": 48.0
+      },
+      "dominant_span": "vector-cache lookup",
+      "dominance_ratio": 0.533,
+      "actionable": true
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "average_child_span_ms": {
+        "vector-cache lookup": 6.0,
+        "feature-store lookup": 18.0,
+        "model inference": 74.0
+      },
+      "dominant_span": "model inference",
+      "dominance_ratio": 0.755,
+      "actionable": true
+    },
+    {
+      "scenario": "dependency_timeout",
+      "average_child_span_ms": {
+        "vector-cache lookup": 6.0,
+        "feature-store lookup": 730.0,
+        "model inference": 116.0
+      },
+      "dominant_span": "feature-store lookup",
+      "dominance_ratio": 0.857,
+      "actionable": true
+    },
+    {
+      "scenario": "rollout_regression",
+      "average_child_span_ms": {
+        "vector-cache lookup": 34.29,
+        "feature-store lookup": 90.0,
+        "model inference": 246.0
+      },
+      "dominant_span": "model inference",
+      "dominance_ratio": 0.664,
+      "actionable": true
+    }
+  ]
+}

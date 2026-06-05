@@ -1,0 +1,57 @@
+{
+  "problem_id": "C07",
+  "status": "pass",
+  "scenarios": [
+    {
+      "scenario": "baseline",
+      "root_spans": 8,
+      "expected_tail_reasons": [],
+      "observed_tail_reasons": [],
+      "coverage_ok": true
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "root_spans": 7,
+      "expected_tail_reasons": [],
+      "observed_tail_reasons": [],
+      "coverage_ok": true
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "root_spans": 6,
+      "expected_tail_reasons": [
+        "telemetry_loss"
+      ],
+      "observed_tail_reasons": [
+        "telemetry_loss"
+      ],
+      "coverage_ok": true
+    },
+    {
+      "scenario": "dependency_timeout",
+      "root_spans": 6,
+      "expected_tail_reasons": [
+        "error",
+        "high_latency"
+      ],
+      "observed_tail_reasons": [
+        "error",
+        "high_latency"
+      ],
+      "coverage_ok": true
+    },
+    {
+      "scenario": "rollout_regression",
+      "root_spans": 7,
+      "expected_tail_reasons": [
+        "error",
+        "high_latency"
+      ],
+      "observed_tail_reasons": [
+        "error",
+        "high_latency"
+      ],
+      "coverage_ok": true
+    }
+  ]
+}

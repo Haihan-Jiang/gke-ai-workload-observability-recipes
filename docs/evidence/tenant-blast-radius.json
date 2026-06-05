@@ -1,0 +1,48 @@
+{
+  "problem_id": "C09",
+  "breached_scenarios": [
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "scenarios": [
+    {
+      "scenario": "baseline",
+      "tenant_tier": "standard",
+      "violations": [],
+      "blast_radius": "contained"
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "tenant_tier": "standard",
+      "violations": [],
+      "blast_radius": "contained"
+    },
+    {
+      "scenario": "dependency_timeout",
+      "tenant_tier": "standard",
+      "violations": [
+        "p95 1320ms exceeds 300ms",
+        "error rate 0.5 exceeds 0.05"
+      ],
+      "blast_radius": "tenant_slo_breach"
+    },
+    {
+      "scenario": "rollout_regression",
+      "tenant_tier": "premium",
+      "violations": [
+        "p95 455ms exceeds 220ms",
+        "error rate 0.29 exceeds 0.02"
+      ],
+      "blast_radius": "tenant_slo_breach"
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "tenant_tier": "standard",
+      "violations": [
+        "telemetry loss 0.42 exceeds 0.05"
+      ],
+      "blast_radius": "tenant_slo_breach"
+    }
+  ]
+}

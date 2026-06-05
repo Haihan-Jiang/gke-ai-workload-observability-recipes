@@ -9,6 +9,7 @@ python3 -m py_compile \
   demo/otlp_debug_receiver.py \
   demo/incident_replay.py \
   demo/advanced_reliability.py \
+  demo/detailed_reliability.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -21,6 +22,7 @@ python3 demo/incident_replay.py \
   --payload-dir out/incident-replay-payloads-validate >/dev/null
 python3 -m json.tool config/reliability-slo.json >/dev/null
 python3 -m json.tool config/advanced-reliability.json >/dev/null
+python3 -m json.tool config/detailed-reliability.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -39,12 +41,18 @@ python3 demo/advanced_reliability.py \
   --slo-config config/reliability-slo.json \
   --advanced-config config/advanced-reliability.json \
   --output-dir out/advanced-reliability-validate >/dev/null
+python3 demo/detailed_reliability.py \
+  --summary out/incident-replay-validate/summary.json \
+  --payload-dir out/incident-replay-payloads-validate \
+  --detailed-config config/detailed-reliability.json \
+  --output-dir out/detailed-reliability-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
   --capacity docs/evidence/capacity-plan.json \
   --runbooks docs/evidence/incident-runbooks.json \
   --advanced docs/evidence/complex-problems.json \
+  --detailed docs/evidence/detailed-problems.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
@@ -58,6 +66,12 @@ python3 -m json.tool docs/evidence/trace-quality-audit.json >/dev/null
 python3 -m json.tool docs/evidence/collector-resilience.json >/dev/null
 python3 -m json.tool docs/evidence/incident-correlation.json >/dev/null
 python3 -m json.tool docs/evidence/complex-problems.json >/dev/null
+python3 -m json.tool docs/evidence/critical-path-attribution.json >/dev/null
+python3 -m json.tool docs/evidence/evidence-coverage.json >/dev/null
+python3 -m json.tool docs/evidence/hpa-lag-analysis.json >/dev/null
+python3 -m json.tool docs/evidence/tenant-blast-radius.json >/dev/null
+python3 -m json.tool docs/evidence/token-cost-guard.json >/dev/null
+python3 -m json.tool docs/evidence/detailed-problems.json >/dev/null
 python3 -m unittest discover -s tests
 
 if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then

@@ -25,7 +25,9 @@ The project has four layers:
    decisions.
 5. Advanced reliability controls for burn-rate paging, canary rollback, trace
    quality, collector outage resilience, and incident correlation.
-6. Kubernetes/GKE manifests that show the production shape: collector service,
+6. Detailed reliability controls for critical-path attribution, evidence
+   coverage, HPA lag, tenant blast radius, and token/GPU guardrails.
+7. Kubernetes/GKE manifests that show the production shape: collector service,
    resource enrichment, Kubernetes metadata, read-only RBAC, persistent queue
    storage, and cross-namespace instrumentation references.
 
@@ -46,6 +48,8 @@ parts that are easy to get wrong:
   actions.
 - advanced gates that review burn rate, rollout safety, trace completeness,
   collector queue capacity, and alert deduplication.
+- detailed gates that inspect child spans, tail evidence, scale-up timing,
+  tenant SLOs, and model token/GPU budgets.
 
 ## Incident Replay
 
@@ -82,11 +86,13 @@ so a reviewer can inspect the result before running anything locally:
 
 The lab is grounded in five reference projects and ten concrete production
 problems in [industry-map.md](industry-map.md), then extends into five more
-complex production problems. That file is the feature backlog and boundary
-document for this repo: it explains why the lab focuses on inference incidents,
-SLO gates, burn-rate analysis, canary decisions, trace quality, capacity sanity
-checks, runbooks, and telemetry-delivery evidence instead of trying to become a
-full serving platform.
+complex production problems and five more detailed production problems. That
+file is the feature backlog and boundary document for this repo: it explains
+why the lab focuses on inference incidents, SLO gates, burn-rate analysis,
+canary decisions, trace quality, critical-path attribution, HPA lag, tenant
+blast radius, token/GPU guardrails, capacity sanity checks, runbooks, and
+telemetry-delivery evidence instead of trying to become a full serving
+platform.
 
 ## Validation
 
@@ -147,6 +153,16 @@ python3 demo/advanced_reliability.py \
   --output-dir out/advanced-reliability
 ```
 
+Run the detailed reliability controls:
+
+```bash
+python3 demo/detailed_reliability.py \
+  --summary out/incident-replay/summary.json \
+  --payload-dir out/incident-replay-payloads \
+  --detailed-config config/detailed-reliability.json \
+  --output-dir out/detailed-reliability
+```
+
 ## Upstream Connection
 
 This project is connected to related Google Cloud OSS work in
@@ -163,7 +179,8 @@ Before upstream merge:
 > Built a runnable GKE AI inference reliability lab and opened related Google
 > Cloud OSS PRs for OpenTelemetry Operator recipes, with local incident replay
 > for AI inference latency, telemetry delivery, capacity, rollout failures,
-> burn-rate analysis, canary decisions, and trace quality.
+> burn-rate analysis, canary decisions, trace quality, critical-path
+> attribution, HPA lag, tenant blast radius, and token/GPU guardrails.
 
 After upstream merge:
 
@@ -171,5 +188,6 @@ After upstream merge:
 > with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
 > collector queues, incident replay scenarios, configurable SLO gates,
 > capacity/readiness evidence, burn-rate and canary decision controls, trace
-> quality audits, generated runbooks, and related Google Cloud OSS recipe
-> contributions.
+> quality audits, critical-path attribution, HPA lag analysis, tenant blast
+> radius checks, token/GPU guardrails, generated runbooks, and related Google
+> Cloud OSS recipe contributions.

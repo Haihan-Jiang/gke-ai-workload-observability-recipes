@@ -1,0 +1,45 @@
+{
+  "problem_id": "C08",
+  "scenarios": [
+    {
+      "scenario": "baseline",
+      "required_replicas": 1,
+      "missing_replicas": 0,
+      "estimated_recovery_seconds": 0,
+      "scalable": true,
+      "decision": "steady_state"
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "required_replicas": 4,
+      "missing_replicas": 2,
+      "estimated_recovery_seconds": 105,
+      "scalable": true,
+      "decision": "scale"
+    },
+    {
+      "scenario": "dependency_timeout",
+      "required_replicas": 17,
+      "missing_replicas": 15,
+      "estimated_recovery_seconds": 345,
+      "scalable": false,
+      "decision": "fix_dependency_or_rollout"
+    },
+    {
+      "scenario": "rollout_regression",
+      "required_replicas": 6,
+      "missing_replicas": 4,
+      "estimated_recovery_seconds": 165,
+      "scalable": false,
+      "decision": "fix_dependency_or_rollout"
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "required_replicas": 2,
+      "missing_replicas": 0,
+      "estimated_recovery_seconds": 0,
+      "scalable": true,
+      "decision": "steady_state"
+    }
+  ]
+}
