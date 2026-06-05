@@ -8,11 +8,16 @@ python3 -m py_compile \
   demo/send_otlp_trace.py \
   demo/otlp_debug_receiver.py \
   demo/incident_replay.py \
+  demo/reliability_gate.py \
   demo/render_incident_evidence.py
 
 python3 demo/incident_replay.py --no-send --output-dir out/incident-replay-validate >/dev/null
+python3 demo/reliability_gate.py \
+  --summary out/incident-replay-validate/summary.json \
+  --output-dir out/reliability-gate-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
+python3 -m json.tool docs/evidence/reliability-gate.json >/dev/null
 
 if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then
   git diff --exit-code -- docs/evidence

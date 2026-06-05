@@ -1,22 +1,26 @@
-# GKE AI Workload Observability Recipes
+# GKE AI Inference Reliability Lab
 
-Runnable observability recipes for Kubernetes and AI workloads using
-OpenTelemetry.
+A production-oriented Kubernetes observability and reliability lab for AI
+inference workloads using OpenTelemetry.
 
-The goal is practical: show how a platform/SRE team can wire traces, resource
-context, Kubernetes cluster signals, and durable collector delivery before an
-AI service reaches production.
+The goal is practical: show how a platform/SRE team can replay inference
+incidents, validate SLO-style reliability gates, wire Kubernetes metadata, and
+keep collector delivery durable before an AI service reaches production.
 
 This repository is a personal reference project. Related upstream Google Cloud
 OpenTelemetry sample PRs are tracked in
 [docs/google-oss-upstream.md](docs/google-oss-upstream.md), but pending PRs are
 not described as merged.
 
+![Incident replay dashboard](docs/evidence/incident-dashboard.svg)
+
 ## What This Demonstrates
 
 - A zero-cost local incident replay with no Python dependencies.
 - AI inference scenarios for baseline traffic, cache-miss latency, dependency
   timeout, and rollout regression.
+- SLO-style reliability gates that verify the healthy baseline and classify
+  failure scenarios by the production signal an SRE would need.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
 - Committed evidence artifacts so reviewers can inspect the replay result
@@ -27,6 +31,8 @@ not described as merged.
 - A concise production checklist for SRE/platform review.
 - A case study that connects the work to real incident-debugging needs.
 - Optional Docker Compose wiring for OpenTelemetry Collector and Jaeger.
+- Optional kind smoke test that applies the Kubernetes manifests, port-forwards
+  the collector, replays incidents, and runs the reliability gate.
 
 ## Quick Start
 
@@ -47,6 +53,14 @@ This replays four AI inference incidents, sends OTLP/HTTP traces, and writes:
 ```text
 out/incident-replay/report.md
 out/incident-replay/summary.json
+```
+
+Run the reliability gate against the generated replay:
+
+```bash
+python3 demo/reliability_gate.py \
+  --summary out/incident-replay/summary.json \
+  --output-dir out/reliability-gate
 ```
 
 When the Docker daemon is available, the local demo starts an OpenTelemetry
@@ -77,6 +91,8 @@ script:
 
 - [Sample incident report](docs/evidence/sample-incident-report.md)
 - [Sample summary JSON](docs/evidence/sample-summary.json)
+- [Reliability gate report](docs/evidence/reliability-gate.md)
+- [Reliability gate JSON](docs/evidence/reliability-gate.json)
 - [Evidence index](docs/evidence/README.md)
 
 Regenerate the evidence:
@@ -84,6 +100,20 @@ Regenerate the evidence:
 ```bash
 ./scripts/generate-evidence.sh
 ```
+
+## Kind / GKE-Style Smoke
+
+For a stronger local Kubernetes proof, run:
+
+```bash
+CREATE_KIND_CLUSTER=1 ./scripts/kind-smoke.sh
+```
+
+This applies the GKE-shaped manifests to kind, waits for the collector and
+sample inference workload, port-forwards OTLP/HTTP, replays incidents through
+the in-cluster collector, and evaluates the same reliability gate.
+
+See [docs/kind-e2e.md](docs/kind-e2e.md).
 
 ## Kubernetes / GKE Recipe
 
@@ -132,17 +162,17 @@ See [docs/architecture/incident-replay.md](docs/architecture/incident-replay.md)
 
 Current wording before upstream merges:
 
-> Built a runnable GKE AI workload observability reference project and opened
-> related Google Cloud OSS PRs for OpenTelemetry Operator recipes covering
-> incident replay, cross-namespace instrumentation, persistent telemetry
-> queues, resource detection, and Kubernetes cluster metrics.
+> Built a runnable GKE AI inference reliability lab and opened related Google
+> Cloud OSS PRs for OpenTelemetry Operator recipes covering incident replay,
+> cross-namespace instrumentation, persistent telemetry queues, resource
+> detection, and Kubernetes cluster metrics.
 
 After an upstream PR merges, update this to:
 
-> Built a runnable GKE AI workload observability lab for inference services,
+> Built a runnable GKE AI inference reliability lab for inference services,
 > with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
-> collector queues, incident replay scenarios, and related Google Cloud OSS
-> recipe contributions.
+> collector queues, incident replay scenarios, SLO-style reliability gates, and
+> related Google Cloud OSS recipe contributions.
 
 ## License
 

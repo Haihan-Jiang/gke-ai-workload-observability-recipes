@@ -1,4 +1,4 @@
-# Case Study: GKE AI Workload Observability Recipes
+# Case Study: GKE AI Inference Reliability Lab
 
 ## Problem
 
@@ -8,17 +8,20 @@ model path, a cache, a node, an overloaded dependency, a rollout, or a missing
 telemetry path. Without trace context, Kubernetes metadata, and durable
 collector delivery, debugging becomes guesswork.
 
-This project turns that operational need into a runnable incident lab.
+This project turns that operational need into a runnable inference reliability
+lab.
 
 ## Design
 
-The project has three layers:
+The project has four layers:
 
 1. A local OTLP demo that proves the trace path without requiring a cloud
    account.
 2. Incident replay scenarios that show how latency, dependency errors, and
    rollout regressions appear in traces.
-3. Kubernetes/GKE manifests that show the production shape: collector service,
+3. Reliability gates that verify healthy baseline behavior and classify the
+   expected incident signals.
+4. Kubernetes/GKE manifests that show the production shape: collector service,
    resource enrichment, Kubernetes metadata, read-only RBAC, persistent queue
    storage, and cross-namespace instrumentation references.
 
@@ -47,15 +50,18 @@ The v2 lab replays four scenarios:
 | `rollout_regression` | bad service version | `service.version=v2`, elevated latency and errors |
 
 The replay writes `out/incident-replay/report.md` and
-`out/incident-replay/summary.json`. That makes the repo useful as a portfolio
-artifact: a reviewer can run it, inspect the generated report, and see how the
-observability design supports incident debugging.
+`out/incident-replay/summary.json`. The reliability gate then writes
+`out/reliability-gate/reliability-gate.md` and
+`out/reliability-gate/reliability-gate.json`. That makes the repo useful as a
+portfolio artifact: a reviewer can run it, inspect the generated report, and
+see how the observability design supports incident debugging.
 
 The repository also commits a sample output under [evidence](evidence/README.md)
 so a reviewer can inspect the result before running anything locally:
 
 - [sample incident report](evidence/sample-incident-report.md)
 - [sample summary JSON](evidence/sample-summary.json)
+- [reliability gate report](evidence/reliability-gate.md)
 - [incident replay dashboard](evidence/incident-dashboard.svg)
 
 ## Validation
@@ -78,6 +84,14 @@ Generate the report without sending OTLP:
 python3 demo/incident_replay.py --no-send
 ```
 
+Run the reliability gate:
+
+```bash
+python3 demo/reliability_gate.py \
+  --summary out/incident-replay/summary.json \
+  --output-dir out/reliability-gate
+```
+
 ## Upstream Connection
 
 This project is connected to related Google Cloud OSS work in
@@ -91,13 +105,13 @@ merges, the README can be updated with the exact upstream proof.
 
 Before upstream merge:
 
-> Built a runnable GKE AI workload observability reference project and opened
-> related Google Cloud OSS PRs for OpenTelemetry Operator recipes, with local
-> incident replay for AI inference latency and rollout failures.
+> Built a runnable GKE AI inference reliability lab and opened related Google
+> Cloud OSS PRs for OpenTelemetry Operator recipes, with local incident replay
+> for AI inference latency and rollout failures.
 
 After upstream merge:
 
-> Built a runnable GKE AI workload observability lab for inference services,
+> Built a runnable GKE AI inference reliability lab for inference services,
 > with OpenTelemetry-based traces, Kubernetes metadata enrichment, durable
-> collector queues, incident replay scenarios, and related Google Cloud OSS
-> recipe contributions.
+> collector queues, incident replay scenarios, SLO-style reliability gates, and
+> related Google Cloud OSS recipe contributions.

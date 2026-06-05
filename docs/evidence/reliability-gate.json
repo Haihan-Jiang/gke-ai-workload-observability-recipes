@@ -1,0 +1,82 @@
+{
+  "status": "pass",
+  "gates": [
+    {
+      "name": "healthy_baseline",
+      "intent": "The control group should stay inside the inference SLO.",
+      "checks": [
+        {
+          "ok": true,
+          "message": "baseline has no user-visible errors"
+        },
+        {
+          "ok": true,
+          "message": "baseline p95 latency is <= 100 ms"
+        },
+        {
+          "ok": true,
+          "message": "baseline cache miss rate is low"
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "name": "cache_miss_storm_detected",
+      "intent": "Cache miss storms should be classified as latency incidents, not model incidents.",
+      "checks": [
+        {
+          "ok": true,
+          "message": "cache miss storm has no synthetic upstream errors"
+        },
+        {
+          "ok": true,
+          "message": "cache miss rate is high enough to explain latency"
+        },
+        {
+          "ok": true,
+          "message": "cache miss storm breaches the latency SLO"
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "name": "dependency_timeout_detected",
+      "intent": "Feature-store timeouts should be visible as dependency-driven errors.",
+      "checks": [
+        {
+          "ok": true,
+          "message": "dependency timeout creates user-visible errors"
+        },
+        {
+          "ok": true,
+          "message": "dependency timeout error rate is material"
+        },
+        {
+          "ok": true,
+          "message": "dependency timeout p95 latency is clearly degraded"
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "name": "rollout_regression_detected",
+      "intent": "A bad service version should be separable from baseline traffic.",
+      "checks": [
+        {
+          "ok": true,
+          "message": "rollout regression is tied to service.version=v2"
+        },
+        {
+          "ok": true,
+          "message": "rollout regression creates user-visible errors"
+        },
+        {
+          "ok": true,
+          "message": "rollout regression breaches the latency SLO"
+        }
+      ],
+      "status": "pass"
+    }
+  ],
+  "resume_claim": "Runnable GKE AI inference reliability lab with incident replay, SLO-style reliability gates, Kubernetes metadata, and collector delivery proof."
+}
