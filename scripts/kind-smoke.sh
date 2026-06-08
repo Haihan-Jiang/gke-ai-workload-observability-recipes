@@ -39,6 +39,8 @@ else
   echo "PrometheusRule CRDs are not installed; skipping alerting rules." >&2
 fi
 
+kubectl apply -f "${repo_root}/k8s/gke/grafana-dashboard-configmap.yaml"
+
 kubectl apply -f "${repo_root}/k8s/gke/sample-app.yaml"
 kubectl -n telemetry rollout status deploy/otel-collector --timeout=120s
 kubectl -n ai-observability-demo rollout status deploy/toy-ai-inference-api --timeout=120s

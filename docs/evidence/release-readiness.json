@@ -40,6 +40,10 @@
     {
       "name": "slo_alerting_rules",
       "ok": true
+    },
+    {
+      "name": "grafana_dashboard",
+      "ok": true
     }
   ],
   "evidence": [
@@ -205,6 +209,14 @@
     },
     {
       "path": "alerting-rules.json",
+      "exists": true
+    },
+    {
+      "path": "grafana-dashboard.md",
+      "exists": true
+    },
+    {
+      "path": "grafana-dashboard.json",
       "exists": true
     }
   ],

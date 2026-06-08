@@ -53,6 +53,11 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "rule_count": 5,
             "failed_count": 0,
         },
+        "dashboard": {
+            "status": "pass",
+            "panel_count": 6,
+            "failed_count": 0,
+        },
         "evidence_dir": evidence_dir,
     }
 
@@ -94,6 +99,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["slo_alerting_rules"])
+
+    def test_requires_grafana_dashboard(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["dashboard"]["panel_count"] = 3
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["grafana_dashboard"])
 
 
 if __name__ == "__main__":

@@ -53,6 +53,13 @@ python3 demo/alerting_rules.py \
   --policy config/alerting-policy.json \
   --output-dir docs/evidence \
   --manifest k8s/gke/alerting-rules.yaml >/dev/null
+python3 demo/grafana_dashboard.py \
+  --slo-config config/reliability-slo.json \
+  --alert-policy config/alerting-policy.json \
+  --dashboard-policy config/dashboard-policy.json \
+  --output-dir docs/evidence \
+  --dashboard dashboards/grafana/gke-ai-inference-reliability.json \
+  --config-map k8s/gke/grafana-dashboard-configmap.yaml >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -66,6 +73,7 @@ python3 demo/release_readiness.py \
   --policy-regression docs/evidence/policy-regression-suite.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --alerting docs/evidence/alerting-rules.json \
+  --dashboard docs/evidence/grafana-dashboard.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 

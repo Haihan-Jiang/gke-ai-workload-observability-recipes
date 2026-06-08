@@ -44,6 +44,8 @@ not described as merged.
 - Generated SLO alerting rules that connect latency, dependency, rollout,
   cache, and telemetry-loss signals to severities, runbooks, and dashboard
   hints.
+- A generated Grafana dashboard and ConfigMap that cover every replayed SLO
+  scenario with Prometheus queries and runbook links.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -177,6 +179,7 @@ script:
 - [Policy regression suite](docs/evidence/policy-regression-suite.md)
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
 - [SLO alerting rules](docs/evidence/alerting-rules.md)
+- [Grafana dashboard evidence](docs/evidence/grafana-dashboard.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -215,6 +218,9 @@ The Kubernetes manifests live under [k8s/gke](k8s/gke):
 - [alerting-rules.yaml](k8s/gke/alerting-rules.yaml): optional
   PrometheusRule alerts for the replayed SLO scenarios when Prometheus
   Operator CRDs are installed.
+- [grafana-dashboard-configmap.yaml](k8s/gke/grafana-dashboard-configmap.yaml):
+  Grafana dashboard-as-code ConfigMap for clusters that import dashboards from
+  labeled ConfigMaps.
 
 These manifests are intentionally small and reviewable. For real production
 use, replace the placeholder upstream OTLP endpoint in `collector.yaml` with a
@@ -235,11 +241,12 @@ Before adapting this to a real GKE cluster:
    disruption budget, and NetworkPolicy aligned with the manifest audit.
 6. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
    alerting evidence before routing pages.
-7. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+7. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
+8. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-8. For private GKE clusters, verify webhook/firewall access for any operators
+9. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-9. Treat telemetry as production evidence: validate it during staged rollout,
+10. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study

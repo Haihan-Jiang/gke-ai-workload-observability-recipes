@@ -14,6 +14,7 @@ python3 -m py_compile \
   demo/policy_regression_suite.py \
   demo/k8s_hardening_audit.py \
   demo/alerting_rules.py \
+  demo/grafana_dashboard.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -30,6 +31,7 @@ python3 -m json.tool config/detailed-reliability.json >/dev/null
 python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
 python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
 python3 -m json.tool config/alerting-policy.json >/dev/null
+python3 -m json.tool config/dashboard-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -75,6 +77,13 @@ python3 demo/alerting_rules.py \
   --policy config/alerting-policy.json \
   --output-dir out/alerting-rules-validate \
   --manifest out/alerting-rules-validate/alerting-rules.yaml >/dev/null
+python3 demo/grafana_dashboard.py \
+  --slo-config config/reliability-slo.json \
+  --alert-policy config/alerting-policy.json \
+  --dashboard-policy config/dashboard-policy.json \
+  --output-dir out/grafana-dashboard-validate \
+  --dashboard out/grafana-dashboard-validate/grafana-dashboard.json \
+  --config-map out/grafana-dashboard-validate/grafana-dashboard-configmap.yaml >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
@@ -86,6 +95,7 @@ python3 demo/release_readiness.py \
   --policy-regression docs/evidence/policy-regression-suite.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --alerting docs/evidence/alerting-rules.json \
+  --dashboard docs/evidence/grafana-dashboard.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
@@ -109,10 +119,12 @@ python3 -m json.tool docs/evidence/deployment-policy.json >/dev/null
 python3 -m json.tool docs/evidence/policy-regression-suite.json >/dev/null
 python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
 python3 -m json.tool docs/evidence/alerting-rules.json >/dev/null
+python3 -m json.tool docs/evidence/grafana-dashboard.json >/dev/null
+python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null
 python3 -m unittest discover -s tests
 
 if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then
-  git diff --exit-code -- docs/evidence k8s/gke/alerting-rules.yaml
+  git diff --exit-code -- docs/evidence k8s/gke/alerting-rules.yaml k8s/gke/grafana-dashboard-configmap.yaml dashboards/grafana/gke-ai-inference-reliability.json
 fi
 
 if command -v ruby >/dev/null 2>&1; then
