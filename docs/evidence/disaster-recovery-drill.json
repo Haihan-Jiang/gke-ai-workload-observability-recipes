@@ -221,7 +221,7 @@
       "path": "scripts/validate.sh",
       "exists": true,
       "bytes": 18129,
-      "sha256": "ff69c6dd08b93e38d83004425bfe42e9fca6ba0287cdb7b600c936ac3b245269"
+      "sha256": "4aa9270ebaa76e76803cd7ce1aeb557bd96cf5377fe143be15af6d06ff1ce6c9"
     }
   ],
   "restored_artifacts": [
@@ -489,11 +489,11 @@
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
-      "expected_sha256": "ff69c6dd08b93e38d83004425bfe42e9fca6ba0287cdb7b600c936ac3b245269",
+      "expected_sha256": "4aa9270ebaa76e76803cd7ce1aeb557bd96cf5377fe143be15af6d06ff1ce6c9",
       "restored": true,
       "hash_match": true,
       "bytes": 18129,
-      "sha256": "ff69c6dd08b93e38d83004425bfe42e9fca6ba0287cdb7b600c936ac3b245269"
+      "sha256": "4aa9270ebaa76e76803cd7ce1aeb557bd96cf5377fe143be15af6d06ff1ce6c9"
     }
   ],
   "fixtures": [

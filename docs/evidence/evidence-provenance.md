@@ -105,7 +105,7 @@ evidence easier to detect during review.
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
 | `docs/evidence/disaster-recovery-drill.md` | 1031 | `81f0f1d0916ce338...` |
-| `docs/evidence/disaster-recovery-drill.json` | 21215 | `17b008be64dfb3c4...` |
+| `docs/evidence/disaster-recovery-drill.json` | 21215 | `26d3e5a92b6aade6...` |
 
 ## Generated Artifacts
 

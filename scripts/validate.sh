@@ -206,6 +206,11 @@ python3 demo/load_shedding_policy_audit.py \
   --synthetic-probe out/synthetic-probe-audit-validate/synthetic-probe-audit.json \
   --runbooks out/incident-runbooks-validate/incident-runbooks.json \
   --output-dir out/load-shedding-policy-audit-validate >/dev/null
+python3 demo/disaster_recovery_drill.py \
+  --repo-root . \
+  --policy config/disaster-recovery-policy.json \
+  --restore-dir out/disaster-recovery-restore-validate \
+  --output-dir out/disaster-recovery-drill-validate >/dev/null
 python3 demo/regional_failover_audit.py \
   --policy config/regional-failover-policy.json \
   --capacity out/capacity-plan-validate/capacity-plan.json \
@@ -225,11 +230,6 @@ python3 demo/release_waiver_governance.py \
   --rollback-drill out/rollback-drill-validate/rollback-drill.json \
   --post-incident-review out/post-incident-review-validate/post-incident-review.json \
   --output-dir out/release-waiver-governance-validate >/dev/null
-python3 demo/disaster_recovery_drill.py \
-  --repo-root . \
-  --policy config/disaster-recovery-policy.json \
-  --restore-dir out/disaster-recovery-restore-validate \
-  --output-dir out/disaster-recovery-drill-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/evidence_provenance.py \
   --policy config/evidence-provenance-policy.json \
