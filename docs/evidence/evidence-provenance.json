@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 68,
+  "artifact_count": 70,
   "generated_artifact_count": 4,
-  "source_input_count": 49,
+  "source_input_count": 51,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2060,
-      "sha256": "9ba8bcd4197bd11a40943deffe756b5827b995ed8ff2439870145f813781389d"
+      "bytes": 2120,
+      "sha256": "c07825802c55b1ccdf6fa8f24187fcbbdbb444ae9970204d8eb6dea82730b5fb"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -464,6 +464,20 @@
       "sha256": "64d702a73fbbf8a527f5ba3d5e18b7507be45be38591a479f5d63f8abef91566"
     },
     {
+      "path": "docs/evidence/dependency-contract-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1694,
+      "sha256": "e30ed92c42a7945d26a205de624f277a8946645aa3f6370727546a5d1194ff14"
+    },
+    {
+      "path": "docs/evidence/dependency-contract-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 7773,
+      "sha256": "a1d5f1a029a8f5a35a44270109cb60402044b8eb42fd81606f9d09b47c047694"
+    },
+    {
       "path": "docs/evidence/release-waiver-governance.md",
       "group": "evidence",
       "exists": true,
@@ -489,7 +503,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21213,
-      "sha256": "477bccaf3bde31658d16735002cd3e7806f27a346161e9d7462e67a1befb342c"
+      "sha256": "66c2b7b8623aee92fe63583cdafeed7bc7ae5b48810a36b8af9f67d519bdcf6b"
     }
   ],
   "generated_artifacts": [
@@ -527,15 +541,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 7781,
-      "sha256": "05f267c368cb81f8735da02da4404fac0ecd4066465c8c9c3d195bda05e5ee35"
+      "bytes": 8315,
+      "sha256": "ed8b2eafd1e831f1ff9fb21a41c13afb846647f09bf7d7ca96ae6274678f4dd1"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 14572,
-      "sha256": "52f9ef76709a3dbbb49948ce914e0fe334fbbcf213c0190b7dd4605224f31819"
+      "bytes": 15409,
+      "sha256": "7b1b8168ffc42d173fec5b9ecd0921127e7708363d9f0af0c0fd5dac2172d965"
     },
     {
       "path": "demo/incident_replay.py",
@@ -685,6 +699,13 @@
       "sha256": "9ca4f049c603bf83308f1342ba60fe58241f91112f37c8d013016ddfee283eac"
     },
     {
+      "path": "demo/dependency_contract_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 19679,
+      "sha256": "b30fe202ed4cf51304b922a7e84e74b0ff135f22377e414617b32d74b44e5730"
+    },
+    {
       "path": "demo/release_waiver_governance.py",
       "group": "source-input",
       "exists": true,
@@ -702,8 +723,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9704,
-      "sha256": "214201c043780df9fc6ec03b58c12b55fbec104ab0e18c419215aedbba993fab"
+      "bytes": 9783,
+      "sha256": "7a0419d84789cfb631c5851f94f2ca8db4bd61288112c843949475daa56f0189"
     },
     {
       "path": "config/reliability-slo.json",
@@ -825,6 +846,13 @@
       "sha256": "5c55b364b3ea33604e3aca5d198d296504ea05fa4733dfe2d1df09dc73767571"
     },
     {
+      "path": "config/dependency-contract-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 4184,
+      "sha256": "7959c64fb09e6604fd59f34f98e7a3fd4f722710da4e4d80663c964f7e1dd2ad"
+    },
+    {
       "path": "config/release-waiver-policy.json",
       "group": "source-input",
       "exists": true,
@@ -873,8 +901,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 68,
-        "minimum": 68
+        "count": 70,
+        "minimum": 70
       }
     },
     {
@@ -890,8 +918,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 49,
-        "minimum": 49
+        "count": 51,
+        "minimum": 51
       }
     },
     {

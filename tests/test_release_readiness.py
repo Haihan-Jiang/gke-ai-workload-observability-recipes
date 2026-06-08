@@ -128,6 +128,14 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 5,
             "failed_count": 0,
         },
+        "dependency_contract": {
+            "status": "pass",
+            "dependency_count": 4,
+            "incident_contract_count": 4,
+            "dominant_dependency_count": 3,
+            "detected_fixture_count": 5,
+            "failed_count": 0,
+        },
         "release_waiver_governance": {
             "status": "pass",
             "waiver_count": 4,
@@ -149,8 +157,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 68,
-            "source_input_count": 49,
+            "artifact_count": 70,
+            "source_input_count": 51,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -315,6 +323,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["incident_response_drill"])
+
+    def test_requires_dependency_contract_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["dependency_contract"]["detected_fixture_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["dependency_contract_audit"])
 
     def test_requires_release_waiver_governance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

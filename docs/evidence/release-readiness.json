@@ -86,6 +86,10 @@
       "ok": true
     },
     {
+      "name": "dependency_contract_audit",
+      "ok": true
+    },
+    {
       "name": "release_waiver_governance",
       "ok": true
     },
@@ -349,6 +353,14 @@
     },
     {
       "path": "incident-response-drill.json",
+      "exists": true
+    },
+    {
+      "path": "dependency-contract-audit.md",
+      "exists": true
+    },
+    {
+      "path": "dependency-contract-audit.json",
       "exists": true
     },
     {

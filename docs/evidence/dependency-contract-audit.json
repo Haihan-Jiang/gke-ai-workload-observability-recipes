@@ -1,0 +1,238 @@
+{
+  "status": "pass",
+  "dependency_count": 4,
+  "incident_contract_count": 4,
+  "dominant_dependency_count": 3,
+  "fixture_count": 5,
+  "detected_fixture_count": 5,
+  "failed_count": 0,
+  "contracts": [
+    {
+      "name": "vector_cache",
+      "scenario": "cache_miss_storm",
+      "owner": "Inference platform / retrieval owner",
+      "runbook_owner": "Inference platform / retrieval owner",
+      "alert": "GKEAIInferenceCacheMissStorm",
+      "alert_severity": "ticket",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#cache_miss_storm",
+      "observed_latency_ms": 128.0,
+      "observed_telemetry_loss_rate": 0.0,
+      "dominant_span": "vector-cache lookup",
+      "span_name": "vector-cache lookup",
+      "budget_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "rollback_response": "manual_review",
+      "timeout_ms": 150,
+      "max_retries": 1,
+      "fallback": "serve stale cache entries or rate-limit retrieval-heavy traffic",
+      "circuit_breaker": true,
+      "persistent_queue_required": false,
+      "trace_attributes_present": true,
+      "expected": {
+        "alert_severity": "ticket",
+        "budget_decision": "manual_review_required",
+        "release_action": "require_sre_review_before_rollout",
+        "rollback_response": "manual_review",
+        "incident_trigger_ms": 100,
+        "telemetry_loss_trigger": null
+      }
+    },
+    {
+      "name": "feature_store",
+      "scenario": "dependency_timeout",
+      "owner": "Feature platform / dependency owner",
+      "runbook_owner": "Feature platform / dependency owner",
+      "alert": "GKEAIInferenceDependencyErrorBudgetBurn",
+      "alert_severity": "page",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#dependency_timeout",
+      "observed_latency_ms": 730.0,
+      "observed_telemetry_loss_rate": 0.0,
+      "dominant_span": "feature-store lookup",
+      "span_name": "feature-store lookup",
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "rollback_response": "rollback_required",
+      "timeout_ms": 500,
+      "max_retries": 2,
+      "fallback": "fail closed with fallback feature values and cap retries",
+      "circuit_breaker": true,
+      "persistent_queue_required": false,
+      "trace_attributes_present": true,
+      "expected": {
+        "alert_severity": "page",
+        "budget_decision": "budget_exhausted",
+        "release_action": "block_release_or_rollback",
+        "rollback_response": "rollback_required",
+        "incident_trigger_ms": 500,
+        "telemetry_loss_trigger": null
+      }
+    },
+    {
+      "name": "model_runtime",
+      "scenario": "rollout_regression",
+      "owner": "Service owner / release engineer",
+      "runbook_owner": "Service owner / release engineer",
+      "alert": "GKEAIInferenceRolloutVersionRegression",
+      "alert_severity": "page",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression",
+      "observed_latency_ms": 246.0,
+      "observed_telemetry_loss_rate": 0.0,
+      "dominant_span": "model inference",
+      "span_name": "model inference",
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "rollback_response": "rollback_required",
+      "timeout_ms": 300,
+      "max_retries": 1,
+      "fallback": "rollback candidate service version and shift traffic to stable model runtime",
+      "circuit_breaker": true,
+      "persistent_queue_required": false,
+      "trace_attributes_present": true,
+      "expected": {
+        "alert_severity": "page",
+        "budget_decision": "budget_exhausted",
+        "release_action": "block_release_or_rollback",
+        "rollback_response": "rollback_required",
+        "incident_trigger_ms": 200,
+        "telemetry_loss_trigger": null
+      }
+    },
+    {
+      "name": "telemetry_exporter",
+      "scenario": "collector_queue_pressure",
+      "owner": "Observability platform",
+      "runbook_owner": "Observability platform",
+      "alert": "GKEAICollectorTelemetryLoss",
+      "alert_severity": "page",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#collector_queue_pressure",
+      "observed_latency_ms": null,
+      "observed_telemetry_loss_rate": 0.42,
+      "dominant_span": "model inference",
+      "span_name": null,
+      "budget_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "rollback_response": "manual_review",
+      "timeout_ms": 250,
+      "max_retries": 3,
+      "fallback": "protect persistent collector queue storage and reduce exporter pressure",
+      "circuit_breaker": false,
+      "persistent_queue_required": true,
+      "trace_attributes_present": true,
+      "expected": {
+        "alert_severity": "page",
+        "budget_decision": "manual_review_required",
+        "release_action": "require_sre_review_before_rollout",
+        "rollback_response": "manual_review",
+        "incident_trigger_ms": null,
+        "telemetry_loss_trigger": 0.25
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_dependency_owner",
+      "mutation": "remove_dependency_owner",
+      "dependency": "feature_store",
+      "expected_failed_check": "owner_runbook_contract",
+      "failed_checks": [
+        "owner_runbook_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_alert_severity",
+      "mutation": "set_alert_severity",
+      "dependency": "model_runtime",
+      "expected_failed_check": "alert_contract",
+      "failed_checks": [
+        "alert_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_fallback",
+      "mutation": "remove_fallback",
+      "dependency": "vector_cache",
+      "expected_failed_check": "resilience_settings",
+      "failed_checks": [
+        "resilience_settings"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_release_action",
+      "mutation": "set_release_action",
+      "dependency": "feature_store",
+      "expected_failed_check": "release_action_contract",
+      "failed_checks": [
+        "release_action_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_failure_signal",
+      "mutation": "lower_failure_signal",
+      "dependency": "feature_store",
+      "expected_failed_check": "failure_mode_contract",
+      "failed_checks": [
+        "failure_mode_contract"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "dependency_inventory",
+      "ok": true,
+      "evidence": {
+        "dependency_count": 4,
+        "missing_contracts": []
+      }
+    },
+    {
+      "name": "owner_runbook_contract",
+      "ok": true,
+      "evidence": {
+        "mismatches": []
+      }
+    },
+    {
+      "name": "alert_contract",
+      "ok": true,
+      "evidence": {
+        "violations": []
+      }
+    },
+    {
+      "name": "failure_mode_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": [],
+        "dominant_dependency_count": 3
+      }
+    },
+    {
+      "name": "release_action_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "resilience_settings",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 5,
+        "detected_fixture_count": 5,
+        "undetected": []
+      }
+    }
+  ]
+}

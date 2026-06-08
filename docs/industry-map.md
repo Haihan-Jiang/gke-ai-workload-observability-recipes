@@ -137,6 +137,7 @@ inference incidents before a service reaches production.
 | C16 | Release evidence can be lost or restored incorrectly | Incident response and release review need recoverable evidence and control-plane artifacts with checksum verification inside RTO/RPO targets. | [Disaster recovery drill](evidence/disaster-recovery-drill.md) |
 | C17 | Observability artifacts can drift while each one still passes alone | Alert rules, dashboards, OpenSLO contracts, and runbooks need to describe the same scenario set, severities, links, and first-response contract. | [Observability drift audit](evidence/observability-drift-audit.md) |
 | C18 | Alerts can fire without an executable on-call response path | Production teams need page/ticket routing, acknowledgement SLAs, escalation, rollback evidence, and RCA evidence tied to each alert scenario. | [Incident response drill](evidence/incident-response-drill.md) |
+| C19 | Critical AI dependencies can fail without an explicit operating contract | Vector cache, feature store, model runtime, and telemetry exporter paths need owners, timeout/retry/fallback controls, alert routing, trace attributes, and release actions. | [Dependency contract audit](evidence/dependency-contract-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -186,6 +187,12 @@ inference incidents before a service reaches production.
    - Policy: [config/incident-response-policy.json](../config/incident-response-policy.json)
    - Inputs: [alerting rules](evidence/alerting-rules.md), [incident runbooks](evidence/incident-runbooks.md), [incident correlation](evidence/incident-correlation.md), [rollback drill](evidence/rollback-drill.md), and [post-incident review](evidence/post-incident-review.md)
    - Evidence: [incident response drill](evidence/incident-response-drill.md)
+
+9. **Dependency contract audit**
+   - Code: [demo/dependency_contract_audit.py](../demo/dependency_contract_audit.py)
+   - Policy: [config/dependency-contract-policy.json](../config/dependency-contract-policy.json)
+   - Inputs: [critical-path attribution](evidence/critical-path-attribution.md), [alerting rules](evidence/alerting-rules.md), [incident runbooks](evidence/incident-runbooks.md), [error-budget ledger](evidence/error-budget-ledger.md), and [rollback drill](evidence/rollback-drill.md)
+   - Evidence: [dependency contract audit](evidence/dependency-contract-audit.md)
 
 ## Boundary
 

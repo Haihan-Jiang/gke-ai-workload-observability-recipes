@@ -24,6 +24,9 @@ scenario set and response contract.
 Incident response drill evidence checks that alert routes, runbook owners,
 acknowledgement SLAs, escalation, rollback drills, and post-incident reviews
 form an executable on-call path.
+Dependency contract evidence checks that vector cache, feature store, model
+runtime, and telemetry exporter failures have owners, timeout/retry/fallback
+controls, alert routes, and release actions.
 
 This repository is a personal reference project. Related upstream Google Cloud
 OpenTelemetry sample PRs are tracked in
@@ -84,6 +87,9 @@ not described as merged.
 - An incident response drill that verifies page/ticket routes, on-call
   acknowledgement SLAs, escalation stages, owners, rollback evidence, and RCA
   evidence for each replayed alert scenario.
+- A dependency contract audit that links critical AI inference dependencies to
+  owners, timeout/retry/fallback controls, trace attributes, alerts, runbooks,
+  error-budget decisions, and rollback/manual-review actions.
 - Release waiver governance that conditionally approves bounded manual-review
   exceptions while denying production-promotion overrides for budget-exhausted
   incidents.
@@ -236,6 +242,7 @@ script:
 - [Rollback drill](docs/evidence/rollback-drill.md)
 - [Post-incident review](docs/evidence/post-incident-review.md)
 - [Incident response drill](docs/evidence/incident-response-drill.md)
+- [Dependency contract audit](docs/evidence/dependency-contract-audit.md)
 - [Release waiver governance](docs/evidence/release-waiver-governance.md)
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
 - [Evidence provenance](docs/evidence/evidence-provenance.md)
@@ -327,18 +334,20 @@ Before adapting this to a real GKE cluster:
     and corrective actions instead of treating them as narrative-only notes.
 17. Run the incident response drill after changing alert severities, runbooks,
     escalation policy, rollback timelines, or RCA requirements.
-18. Keep release waivers bounded by owner, approver, expiry, rollback drill,
+18. Keep dependency contracts aligned with timeout/retry/fallback policy,
+    trace attributes, runbook owners, alert severities, and release actions.
+19. Keep release waivers bounded by owner, approver, expiry, rollback drill,
     post-incident review, linked evidence, and acknowledged error-budget
     impact.
-19. Verify disaster recovery after changing evidence, generated manifests,
+20. Verify disaster recovery after changing evidence, generated manifests,
     dashboards, SLO contracts, admission policies, or release control files.
-20. Regenerate evidence provenance after changing evidence scripts, generated
+21. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-21. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+22. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-22. For private GKE clusters, verify webhook/firewall access for any operators
+23. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-23. Treat telemetry as production evidence: validate it during staged rollout,
+24. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -367,7 +376,8 @@ Current wording before upstream merges:
 > critical-path attribution, HPA lag analysis, tenant blast-radius checks,
 > token/GPU guardrails, release waiver governance, disaster recovery drills,
 > observability drift auditing, incident response drill validation,
-> telemetry redaction and cost audits, supply-chain image checks,
+> dependency contract auditing, telemetry redaction and cost audits,
+> supply-chain image checks,
 > cross-namespace instrumentation, persistent telemetry queues, and Kubernetes
 > metadata.
 
@@ -381,7 +391,8 @@ After an upstream PR merges, update this to:
 > radius checks, token/GPU guardrails, policy-as-code deployment gates,
 > admission-policy simulation, release waiver governance, disaster recovery
 > drills, observability drift auditing, incident response drill validation,
-> telemetry redaction and cost audits, supply-chain image checks,
+> dependency contract auditing, telemetry redaction and cost audits,
+> supply-chain image checks,
 > generated runbooks, and related Google Cloud OSS recipe contributions.
 
 ## License

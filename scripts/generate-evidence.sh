@@ -120,6 +120,15 @@ python3 demo/incident_response_drill.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/dependency_contract_audit.py \
+  --policy config/dependency-contract-policy.json \
+  --summary docs/evidence/sample-summary.json \
+  --critical-path docs/evidence/critical-path-attribution.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --alerting docs/evidence/alerting-rules.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/release_waiver_governance.py \
   --policy config/release-waiver-policy.json \
   --waivers config/release-waivers.json \
@@ -160,6 +169,7 @@ python3 demo/release_readiness.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --incident-response-drill docs/evidence/incident-response-drill.json \
+  --dependency-contract docs/evidence/dependency-contract-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \

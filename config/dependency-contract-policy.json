@@ -1,0 +1,121 @@
+{
+  "description": "Policy for proving that critical AI inference dependencies have owners, timeout/retry/fallback controls, alert routing, and release-action linkage.",
+  "minimum_dependency_count": 4,
+  "minimum_incident_contracts": 4,
+  "dependencies": [
+    {
+      "name": "vector_cache",
+      "scenario": "cache_miss_storm",
+      "span_name": "vector-cache lookup",
+      "owner": "Inference platform / retrieval owner",
+      "required_alert_severity": "ticket",
+      "required_budget_decision": "manual_review_required",
+      "required_release_action": "require_sre_review_before_rollout",
+      "required_rollback_response": "manual_review",
+      "timeout_ms": 150,
+      "max_retries": 1,
+      "fallback": "serve stale cache entries or rate-limit retrieval-heavy traffic",
+      "circuit_breaker": true,
+      "incident_trigger_ms": 100,
+      "required_trace_attributes": [
+        "cache.result",
+        "incident.scenario",
+        "service.version"
+      ]
+    },
+    {
+      "name": "feature_store",
+      "scenario": "dependency_timeout",
+      "span_name": "feature-store lookup",
+      "owner": "Feature platform / dependency owner",
+      "required_alert_severity": "page",
+      "required_budget_decision": "budget_exhausted",
+      "required_release_action": "block_release_or_rollback",
+      "required_rollback_response": "rollback_required",
+      "timeout_ms": 500,
+      "max_retries": 2,
+      "fallback": "fail closed with fallback feature values and cap retries",
+      "circuit_breaker": true,
+      "incident_trigger_ms": 500,
+      "required_trace_attributes": [
+        "dependency.name",
+        "incident.scenario",
+        "service.version"
+      ]
+    },
+    {
+      "name": "model_runtime",
+      "scenario": "rollout_regression",
+      "span_name": "model inference",
+      "owner": "Service owner / release engineer",
+      "required_alert_severity": "page",
+      "required_budget_decision": "budget_exhausted",
+      "required_release_action": "block_release_or_rollback",
+      "required_rollback_response": "rollback_required",
+      "timeout_ms": 300,
+      "max_retries": 1,
+      "fallback": "rollback candidate service version and shift traffic to stable model runtime",
+      "circuit_breaker": true,
+      "incident_trigger_ms": 200,
+      "required_trace_attributes": [
+        "service.version",
+        "model.variant",
+        "incident.scenario"
+      ]
+    },
+    {
+      "name": "telemetry_exporter",
+      "scenario": "collector_queue_pressure",
+      "owner": "Observability platform",
+      "required_alert_severity": "page",
+      "required_budget_decision": "manual_review_required",
+      "required_release_action": "require_sre_review_before_rollout",
+      "required_rollback_response": "manual_review",
+      "timeout_ms": 250,
+      "max_retries": 3,
+      "fallback": "protect persistent collector queue storage and reduce exporter pressure",
+      "persistent_queue_required": true,
+      "telemetry_loss_trigger": 0.25,
+      "required_trace_attributes": [
+        "collector.queue_pressure",
+        "telemetry.loss_rate",
+        "incident.scenario"
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_dependency_owner",
+      "mutation": "remove_dependency_owner",
+      "dependency": "feature_store",
+      "expected_failed_check": "owner_runbook_contract"
+    },
+    {
+      "name": "wrong_alert_severity",
+      "mutation": "set_alert_severity",
+      "dependency": "model_runtime",
+      "severity": "ticket",
+      "expected_failed_check": "alert_contract"
+    },
+    {
+      "name": "missing_fallback",
+      "mutation": "remove_fallback",
+      "dependency": "vector_cache",
+      "expected_failed_check": "resilience_settings"
+    },
+    {
+      "name": "wrong_release_action",
+      "mutation": "set_release_action",
+      "dependency": "feature_store",
+      "release_action": "eligible_for_release",
+      "expected_failed_check": "release_action_contract"
+    },
+    {
+      "name": "missing_failure_signal",
+      "mutation": "lower_failure_signal",
+      "dependency": "feature_store",
+      "observed_ms": 50,
+      "expected_failed_check": "failure_mode_contract"
+    }
+  ]
+}

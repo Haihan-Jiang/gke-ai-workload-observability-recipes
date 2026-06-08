@@ -11,8 +11,8 @@ Grafana dashboard coverage, OpenSLO contract, observability drift
 detection,
 telemetry redaction, telemetry cost budget, error-budget accounting,
 rollback drill coverage, post-incident review coverage, incident
-response drill coverage, release waiver governance, disaster
-recovery drill coverage, evidence
+response drill coverage, dependency contract coverage, release
+waiver governance, disaster recovery drill coverage, evidence
 provenance, and committed evidence are present and internally
 consistent.
 
@@ -41,6 +41,7 @@ consistent.
 | `rollback_drill` | PASS |
 | `post_incident_review` | PASS |
 | `incident_response_drill` | PASS |
+| `dependency_contract_audit` | PASS |
 | `release_waiver_governance` | PASS |
 | `disaster_recovery_drill` | PASS |
 | `evidence_provenance` | PASS |
@@ -112,6 +113,8 @@ consistent.
 | `post-incident-review.json` | yes |
 | `incident-response-drill.md` | yes |
 | `incident-response-drill.json` | yes |
+| `dependency-contract-audit.md` | yes |
+| `dependency-contract-audit.json` | yes |
 | `release-waiver-governance.md` | yes |
 | `release-waiver-governance.json` | yes |
 | `disaster-recovery-drill.md` | yes |

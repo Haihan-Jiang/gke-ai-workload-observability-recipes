@@ -25,6 +25,7 @@ python3 -m py_compile \
   demo/rollback_drill.py \
   demo/post_incident_review.py \
   demo/incident_response_drill.py \
+  demo/dependency_contract_audit.py \
   demo/release_waiver_governance.py \
   demo/disaster_recovery_drill.py \
   demo/evidence_provenance.py \
@@ -55,6 +56,7 @@ python3 -m json.tool config/error-budget-policy.json >/dev/null
 python3 -m json.tool config/rollback-drill-policy.json >/dev/null
 python3 -m json.tool config/post-incident-review-policy.json >/dev/null
 python3 -m json.tool config/incident-response-policy.json >/dev/null
+python3 -m json.tool config/dependency-contract-policy.json >/dev/null
 python3 -m json.tool config/release-waiver-policy.json >/dev/null
 python3 -m json.tool config/release-waivers.json >/dev/null
 python3 -m json.tool config/disaster-recovery-policy.json >/dev/null
@@ -171,6 +173,15 @@ python3 demo/incident_response_drill.py \
   --rollback-drill out/rollback-drill-validate/rollback-drill.json \
   --post-incident-review out/post-incident-review-validate/post-incident-review.json \
   --output-dir out/incident-response-drill-validate >/dev/null
+python3 demo/dependency_contract_audit.py \
+  --policy config/dependency-contract-policy.json \
+  --summary out/incident-replay-validate/summary.json \
+  --critical-path out/detailed-reliability-validate/critical-path-attribution.json \
+  --runbooks out/incident-runbooks-validate/incident-runbooks.json \
+  --alerting out/alerting-rules-validate/alerting-rules.json \
+  --error-budget out/error-budget-ledger-validate/error-budget-ledger.json \
+  --rollback-drill out/rollback-drill-validate/rollback-drill.json \
+  --output-dir out/dependency-contract-audit-validate >/dev/null
 python3 demo/release_waiver_governance.py \
   --policy config/release-waiver-policy.json \
   --waivers config/release-waivers.json \
@@ -209,6 +220,7 @@ python3 demo/release_readiness.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --incident-response-drill docs/evidence/incident-response-drill.json \
+  --dependency-contract docs/evidence/dependency-contract-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
@@ -247,6 +259,7 @@ python3 -m json.tool docs/evidence/error-budget-ledger.json >/dev/null
 python3 -m json.tool docs/evidence/rollback-drill.json >/dev/null
 python3 -m json.tool docs/evidence/post-incident-review.json >/dev/null
 python3 -m json.tool docs/evidence/incident-response-drill.json >/dev/null
+python3 -m json.tool docs/evidence/dependency-contract-audit.json >/dev/null
 python3 -m json.tool docs/evidence/release-waiver-governance.json >/dev/null
 python3 -m json.tool docs/evidence/disaster-recovery-drill.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null
