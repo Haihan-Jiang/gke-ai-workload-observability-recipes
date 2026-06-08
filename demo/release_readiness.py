@@ -69,6 +69,8 @@ REQUIRED_EVIDENCE = [
     "rollback-drill.json",
     "post-incident-review.md",
     "post-incident-review.json",
+    "release-waiver-governance.md",
+    "release-waiver-governance.json",
     "evidence-provenance.md",
     "evidence-provenance.json",
 ]
@@ -109,6 +111,7 @@ def evaluate(
     error_budget: dict[str, Any],
     rollback_drill: dict[str, Any],
     post_incident_review: dict[str, Any],
+    release_waiver_governance: dict[str, Any],
     evidence_provenance: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
@@ -222,6 +225,16 @@ def evaluate(
             and int(post_incident_review.get("failed_count", -1)) == 0,
         },
         {
+            "name": "release_waiver_governance",
+            "ok": release_waiver_governance.get("status") == "pass"
+            and int(release_waiver_governance.get("waiver_count", 0)) >= 4
+            and int(release_waiver_governance.get("conditional_approval_count", 0)) >= 2
+            and int(release_waiver_governance.get("denied_override_count", 0)) >= 2
+            and int(release_waiver_governance.get("invalid_waiver_count", -1)) == 0
+            and int(release_waiver_governance.get("unsafe_approved_count", -1)) == 0
+            and int(release_waiver_governance.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
             and int(evidence_provenance.get("artifact_count", 0)) >= 45
@@ -255,8 +268,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "manifest hardening, admission policy simulation, SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
-        "rollback drill coverage, post-incident review coverage, evidence",
-        "provenance, and committed evidence are present and internally",
+        "rollback drill coverage, post-incident review coverage, release",
+        "waiver governance, evidence provenance, and committed evidence are present and internally",
         "consistent.",
         "",
         "## Checks",
@@ -301,6 +314,7 @@ def main() -> int:
     parser.add_argument("--error-budget", default="out/error-budget-ledger/error-budget-ledger.json")
     parser.add_argument("--rollback-drill", default="out/rollback-drill/rollback-drill.json")
     parser.add_argument("--post-incident-review", default="out/post-incident-review/post-incident-review.json")
+    parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
@@ -325,6 +339,7 @@ def main() -> int:
         error_budget=load_json(Path(args.error_budget)),
         rollback_drill=load_json(Path(args.rollback_drill)),
         post_incident_review=load_json(Path(args.post_incident_review)),
+        release_waiver_governance=load_json(Path(args.release_waiver_governance)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),
         evidence_dir=Path(args.evidence_dir),
     )

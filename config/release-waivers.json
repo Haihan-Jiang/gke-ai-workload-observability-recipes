@@ -1,0 +1,113 @@
+{
+  "description": "Sample release exception register for replayed AI inference incidents.",
+  "waivers": [
+    {
+      "id": "WVR-CACHE-001",
+      "scenario": "cache_miss_storm",
+      "requested_by": "Inference platform / retrieval owner",
+      "approvers": [
+        "sre_lead",
+        "product_oncall"
+      ],
+      "created_at": "2026-05-31T16:00:00Z",
+      "expires_at": "2026-06-03T16:00:00Z",
+      "max_traffic_percent": 10,
+      "reason": "Allow a limited replay-window exception while cache warming is validated before any wider traffic expansion.",
+      "risk_acceptance": "Only cache-miss mitigation traffic is eligible; rollout expansion remains frozen until evidence is regenerated.",
+      "rollback_drill": "cache_miss_storm",
+      "post_incident_review": "cache_miss_storm",
+      "release_action": "require_sre_review_before_rollout",
+      "budget_acknowledgement": {
+        "consumed_ratio": 5.0,
+        "budget_used_events": 5
+      },
+      "linked_evidence": [
+        "docs/evidence/deployment-policy.json",
+        "docs/evidence/error-budget-ledger.json",
+        "docs/evidence/rollback-drill.json",
+        "docs/evidence/post-incident-review.json"
+      ]
+    },
+    {
+      "id": "WVR-COLLECTOR-001",
+      "scenario": "collector_queue_pressure",
+      "requested_by": "Telemetry platform owner",
+      "approvers": [
+        "sre_lead",
+        "security_oncall"
+      ],
+      "created_at": "2026-05-31T18:00:00Z",
+      "expires_at": "2026-06-04T18:00:00Z",
+      "max_traffic_percent": 5,
+      "reason": "Allow telemetry-pipeline validation traffic while persistent queue capacity and export retry evidence are checked.",
+      "risk_acceptance": "No production promotion is allowed unless telemetry-loss evidence returns inside the release gate.",
+      "rollback_drill": "collector_queue_pressure",
+      "post_incident_review": "collector_queue_pressure",
+      "release_action": "require_sre_review_before_rollout",
+      "budget_acknowledgement": {
+        "consumed_ratio": 5.0,
+        "budget_used_events": 5
+      },
+      "linked_evidence": [
+        "docs/evidence/deployment-policy.json",
+        "docs/evidence/error-budget-ledger.json",
+        "docs/evidence/rollback-drill.json",
+        "docs/evidence/post-incident-review.json"
+      ]
+    },
+    {
+      "id": "WVR-DEPENDENCY-001",
+      "scenario": "dependency_timeout",
+      "requested_by": "Feature platform / dependency owner",
+      "approvers": [
+        "sre_lead",
+        "incident_commander"
+      ],
+      "created_at": "2026-05-31T19:00:00Z",
+      "expires_at": "2026-06-02T19:00:00Z",
+      "max_traffic_percent": 0,
+      "reason": "Track a requested override for dependency-timeout validation; production promotion must remain denied because the error budget is exhausted.",
+      "risk_acceptance": "Rollback-only validation is allowed after dependency fallback evidence is regenerated.",
+      "rollback_drill": "dependency_timeout",
+      "post_incident_review": "dependency_timeout",
+      "release_action": "block_release_or_rollback",
+      "budget_acknowledgement": {
+        "consumed_ratio": 9.0,
+        "budget_used_events": 9
+      },
+      "linked_evidence": [
+        "docs/evidence/deployment-policy.json",
+        "docs/evidence/error-budget-ledger.json",
+        "docs/evidence/rollback-drill.json",
+        "docs/evidence/post-incident-review.json"
+      ]
+    },
+    {
+      "id": "WVR-ROLLOUT-001",
+      "scenario": "rollout_regression",
+      "requested_by": "Release owner",
+      "approvers": [
+        "sre_lead",
+        "incident_commander"
+      ],
+      "created_at": "2026-05-31T20:00:00Z",
+      "expires_at": "2026-06-02T20:00:00Z",
+      "max_traffic_percent": 0,
+      "reason": "Track a requested override for the bad canary version; production promotion must remain denied until rollback evidence passes.",
+      "risk_acceptance": "Only rollback verification traffic is allowed; canary expansion is blocked.",
+      "rollback_drill": "rollout_regression",
+      "post_incident_review": "rollout_regression",
+      "release_action": "block_release_or_rollback",
+      "budget_acknowledgement": {
+        "consumed_ratio": 8.0,
+        "budget_used_events": 8
+      },
+      "linked_evidence": [
+        "docs/evidence/deployment-policy.json",
+        "docs/evidence/error-budget-ledger.json",
+        "docs/evidence/rollback-drill.json",
+        "docs/evidence/post-incident-review.json"
+      ]
+    }
+  ]
+}

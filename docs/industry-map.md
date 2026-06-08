@@ -125,7 +125,7 @@ inference incidents before a service reaches production.
    - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
    - Evidence: [token cost guard](evidence/token-cost-guard.md)
 
-## Security And Privacy Evidence Added By The Fourth Feature Set
+## Security, Policy, And Privacy Evidence Added By The Fourth Feature Set
 
 | ID | Problem | Why It Matters In Production | Lab Coverage |
 | --- | --- | --- | --- |
@@ -133,6 +133,7 @@ inference incidents before a service reaches production.
 | C12 | Trace volume can overwhelm observability budgets | AI inference traces often include multiple child spans and expensive high-signal incidents; teams need sampling and retention budgets before exporting everything. | [Telemetry cost budget](evidence/telemetry-cost-budget.md) |
 | C13 | Sample manifests can hide floating image risk | Reviewers need to see that even demo deployment recipes avoid `latest` tags and pin runtime artifacts by digest before being adapted to production. | [Supply chain audit](evidence/supply-chain-audit.md) |
 | C14 | Manifest drift can bypass review after the first audit | Platform teams need admission controls that block unsafe deployment changes at create/update time instead of discovering the drift after rollout. | [Admission policy audit](evidence/admission-policy-audit.md) |
+| C15 | Manual release exceptions can bypass reliability gates | SRE teams need bounded waiver requests with owner, approver, expiry, rollback, RCA, evidence, and budget acknowledgement instead of informal approvals. | [Release waiver governance](evidence/release-waiver-governance.md) |
 
 ## Fourth Feature Contribution
 
@@ -159,6 +160,12 @@ inference incidents before a service reaches production.
    - Config: [config/admission-policy.json](../config/admission-policy.json)
    - Policy: [gke-ai-inference-admission-policy.yaml](../policies/admission/gke-ai-inference-admission-policy.yaml)
    - Evidence: [admission policy audit](evidence/admission-policy-audit.md)
+
+5. **Release waiver governance**
+   - Code: [demo/release_waiver_governance.py](../demo/release_waiver_governance.py)
+   - Policy: [config/release-waiver-policy.json](../config/release-waiver-policy.json)
+   - Register: [config/release-waivers.json](../config/release-waivers.json)
+   - Evidence: [release waiver governance](evidence/release-waiver-governance.md)
 
 ## Boundary
 

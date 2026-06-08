@@ -9,8 +9,8 @@ policy, policy regression fixtures, supply-chain audit, Kubernetes
 manifest hardening, admission policy simulation, SLO alerting rules,
 Grafana dashboard coverage, OpenSLO contract,
 telemetry redaction, telemetry cost budget, error-budget accounting,
-rollback drill coverage, post-incident review coverage, evidence
-provenance, and committed evidence are present and internally
+rollback drill coverage, post-incident review coverage, release
+waiver governance, evidence provenance, and committed evidence are present and internally
 consistent.
 
 ## Checks
@@ -36,6 +36,7 @@ consistent.
 | `error_budget_ledger` | PASS |
 | `rollback_drill` | PASS |
 | `post_incident_review` | PASS |
+| `release_waiver_governance` | PASS |
 | `evidence_provenance` | PASS |
 
 ## Evidence Files
@@ -101,6 +102,8 @@ consistent.
 | `rollback-drill.json` | yes |
 | `post-incident-review.md` | yes |
 | `post-incident-review.json` | yes |
+| `release-waiver-governance.md` | yes |
+| `release-waiver-governance.json` | yes |
 | `evidence-provenance.md` | yes |
 | `evidence-provenance.json` | yes |
 

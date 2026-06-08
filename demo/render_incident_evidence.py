@@ -166,6 +166,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Error budget ledger](error-budget-ledger.md)",
                 "- [Rollback drill](rollback-drill.md)",
                 "- [Post-incident review](post-incident-review.md)",
+                "- [Release waiver governance](release-waiver-governance.md)",
                 "- [Evidence provenance](evidence-provenance.md)",
                 "- [Release readiness report](release-readiness.md)",
                 "- [Release readiness JSON](release-readiness.json)",

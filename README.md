@@ -14,6 +14,8 @@ HPA lag modeling, tenant blast-radius detection, and token/GPU cost guardrails.
 It also includes supply-chain, Kubernetes hardening, and admission-policy
 evidence so reviewers can see how deployment drift would be blocked before a
 bad manifest reaches a cluster.
+Release waiver governance is included so manual exceptions stay bounded,
+approved, time-limited, and linked back to rollback and RCA evidence.
 
 This repository is a personal reference project. Related upstream Google Cloud
 OpenTelemetry sample PRs are tracked in
@@ -68,6 +70,9 @@ not described as merged.
   named-owner incident timelines with RTO/RPO checks.
 - A post-incident review packet that links impact, root cause, timeline,
   corrective actions, and preventive controls back to generated evidence.
+- Release waiver governance that conditionally approves bounded manual-review
+  exceptions while denying production-promotion overrides for budget-exhausted
+  incidents.
 - An evidence provenance manifest with SHA-256 checksums for generated
   evidence, Kubernetes/Grafana/OpenSLO artifacts, and source inputs.
 - A release-readiness report that checks committed evidence coverage.
@@ -212,6 +217,7 @@ script:
 - [Error budget ledger](docs/evidence/error-budget-ledger.md)
 - [Rollback drill](docs/evidence/rollback-drill.md)
 - [Post-incident review](docs/evidence/post-incident-review.md)
+- [Release waiver governance](docs/evidence/release-waiver-governance.md)
 - [Evidence provenance](docs/evidence/evidence-provenance.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
@@ -297,13 +303,16 @@ Before adapting this to a real GKE cluster:
     budget policy so owner and RTO assumptions stay explicit.
 15. Keep post-incident reviews tied to replayed evidence, rollback timelines,
     and corrective actions instead of treating them as narrative-only notes.
-16. Regenerate evidence provenance after changing evidence scripts, generated
+16. Keep release waivers bounded by owner, approver, expiry, rollback drill,
+    post-incident review, linked evidence, and acknowledged error-budget
+    impact.
+17. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-17. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+18. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-18. For private GKE clusters, verify webhook/firewall access for any operators
+19. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-19. Treat telemetry as production evidence: validate it during staged rollout,
+20. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -330,9 +339,9 @@ Current wording before upstream merges:
 > configurable SLO gates, burn-rate analysis, rollout rollback guards, trace
 > quality audits, collector resilience modeling, generated incident runbooks,
 > critical-path attribution, HPA lag analysis, tenant blast-radius checks,
-> token/GPU guardrails, telemetry redaction and cost audits,
-> supply-chain image checks, cross-namespace instrumentation, persistent
-> telemetry queues, and Kubernetes metadata.
+> token/GPU guardrails, release waiver governance, telemetry redaction and
+> cost audits, supply-chain image checks, cross-namespace instrumentation,
+> persistent telemetry queues, and Kubernetes metadata.
 
 After an upstream PR merges, update this to:
 
@@ -342,9 +351,9 @@ After an upstream PR merges, update this to:
 > capacity/readiness evidence, burn-rate and canary decision controls, trace
 > quality audits, critical-path attribution, HPA lag analysis, tenant blast
 > radius checks, token/GPU guardrails, policy-as-code deployment gates,
-> admission-policy simulation, telemetry redaction and cost audits,
-> supply-chain image checks, generated runbooks, and related Google Cloud OSS
-> recipe contributions.
+> admission-policy simulation, release waiver governance, telemetry redaction
+> and cost audits, supply-chain image checks, generated runbooks, and related
+> Google Cloud OSS recipe contributions.
 
 ## License
 

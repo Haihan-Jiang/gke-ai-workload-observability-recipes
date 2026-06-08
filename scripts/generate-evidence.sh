@@ -105,6 +105,14 @@ python3 demo/post_incident_review.py \
   --deployment-policy docs/evidence/deployment-policy.json \
   --policy config/post-incident-review-policy.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/release_waiver_governance.py \
+  --policy config/release-waiver-policy.json \
+  --waivers config/release-waivers.json \
+  --deployment-policy docs/evidence/deployment-policy.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --post-incident-review docs/evidence/post-incident-review.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -131,6 +139,7 @@ python3 demo/release_readiness.py \
   --error-budget docs/evidence/error-budget-ledger.json \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
+  --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null

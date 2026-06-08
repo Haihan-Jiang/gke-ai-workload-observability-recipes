@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 60,
+  "artifact_count": 62,
   "generated_artifact_count": 4,
-  "source_input_count": 40,
+  "source_input_count": 43,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1828,
-      "sha256": "c19c48be847e7bfee3c09153b9def0ea4c9e76c5068bb9a90d8d5b3967c6cc0c"
+      "bytes": 1888,
+      "sha256": "1c3780dfaaa110ba413b990f63a5dd128d56d5b30ff9057ba84be5734820960b"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -434,6 +434,20 @@
       "exists": true,
       "bytes": 10972,
       "sha256": "ff1e12e67db2fd0693d4612f50fe9f9e61bec362c3f4a38ca52b78468c9369f9"
+    },
+    {
+      "path": "docs/evidence/release-waiver-governance.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1935,
+      "sha256": "391f2a465c60f6cba30a4ecddedbcbe30a676dac299a19724aaabf4eb5a58576"
+    },
+    {
+      "path": "docs/evidence/release-waiver-governance.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 39093,
+      "sha256": "61b4e70df2e3001a57490056a20b268cc775cc64bd8b26d08468489b26daa63c"
     }
   ],
   "generated_artifacts": [
@@ -471,15 +485,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 6113,
-      "sha256": "6fd1465ec5470c3ac9e425164e412c92581f915f7f5bce3693ac1ff600bef086"
+      "bytes": 6604,
+      "sha256": "a87f65d797d59b58767e65fa9e67a5adeaf5c1a9ab2ec98574f50e5f4aee46bd"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 11784,
-      "sha256": "0146ca95bbb5577d1fcf0d9ab0c3d2e71dc99a7f8c1469231e8f01269c85d795"
+      "bytes": 12611,
+      "sha256": "ef49411b538128cf09c5e70ac6c650683b3f3d0e3b56a9a868527cd0084f0a41"
     },
     {
       "path": "demo/incident_replay.py",
@@ -615,11 +629,18 @@
       "sha256": "8e37dc8812b2dea6d8ea4b982af5e119d044e76b5372698a97bd6a26876b9f91"
     },
     {
+      "path": "demo/release_waiver_governance.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 17052,
+      "sha256": "5429b2346be49daa7b57d388e8074deff77238efb69575e550676ebf210f34f2"
+    },
+    {
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9396,
-      "sha256": "93b995e8ece6aff33a8dceec73f7a7aa8c3b1c80233433742c4030bdf74bd01c"
+      "bytes": 9475,
+      "sha256": "96ed058b86cc7fb1255d1d9380c97fae20ea6c0d48175048ba2407cad2b8d1ca"
     },
     {
       "path": "config/reliability-slo.json",
@@ -727,6 +748,20 @@
       "sha256": "d11cc2926bb46a1d174a5a5e311409d84e06c319382b7a51ac210de68b14b839"
     },
     {
+      "path": "config/release-waiver-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1209,
+      "sha256": "086528d897374ab78d630babe98c2993ca369577009816f4492d44a5cdccf500"
+    },
+    {
+      "path": "config/release-waivers.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 4476,
+      "sha256": "7aeba4d4559ed59dbf695f41d15a7cc1a18e5a4292b4c5a5c6c40bf9d28eed11"
+    },
+    {
       "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
       "group": "source-input",
       "exists": true,
@@ -754,8 +789,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 60,
-        "minimum": 50
+        "count": 62,
+        "minimum": 55
       }
     },
     {
@@ -771,8 +806,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 40,
-        "minimum": 22
+        "count": 43,
+        "minimum": 25
       }
     },
     {

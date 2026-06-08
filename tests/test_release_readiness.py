@@ -112,6 +112,15 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "action_item_count": 8,
             "failed_count": 0,
         },
+        "release_waiver_governance": {
+            "status": "pass",
+            "waiver_count": 4,
+            "conditional_approval_count": 2,
+            "denied_override_count": 2,
+            "invalid_waiver_count": 0,
+            "unsafe_approved_count": 0,
+            "failed_count": 0,
+        },
         "evidence_provenance": {
             "status": "pass",
             "artifact_count": 50,
@@ -258,6 +267,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["post_incident_review"])
+
+    def test_requires_release_waiver_governance(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["release_waiver_governance"]["unsafe_approved_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["release_waiver_governance"])
 
     def test_requires_evidence_provenance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

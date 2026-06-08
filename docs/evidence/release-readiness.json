@@ -78,6 +78,10 @@
       "ok": true
     },
     {
+      "name": "release_waiver_governance",
+      "ok": true
+    },
+    {
       "name": "evidence_provenance",
       "ok": true
     }
@@ -317,6 +321,14 @@
     },
     {
       "path": "post-incident-review.json",
+      "exists": true
+    },
+    {
+      "path": "release-waiver-governance.md",
+      "exists": true
+    },
+    {
+      "path": "release-waiver-governance.json",
       "exists": true
     },
     {

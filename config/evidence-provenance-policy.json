@@ -1,7 +1,7 @@
 {
   "description": "Policy for producing a reproducible provenance manifest for generated lab evidence.",
-  "minimum_evidence_artifacts": 50,
-  "minimum_source_inputs": 22,
+  "minimum_evidence_artifacts": 55,
+  "minimum_source_inputs": 25,
   "required_artifacts": [
     "docs/evidence/README.md",
     "docs/evidence/sample-incident-report.md",
@@ -62,7 +62,9 @@
     "docs/evidence/rollback-drill.md",
     "docs/evidence/rollback-drill.json",
     "docs/evidence/post-incident-review.md",
-    "docs/evidence/post-incident-review.json"
+    "docs/evidence/post-incident-review.json",
+    "docs/evidence/release-waiver-governance.md",
+    "docs/evidence/release-waiver-governance.json"
   ],
   "generated_artifacts": [
     "k8s/gke/alerting-rules.yaml",
@@ -92,6 +94,7 @@
     "demo/error_budget_ledger.py",
     "demo/rollback_drill.py",
     "demo/post_incident_review.py",
+    "demo/release_waiver_governance.py",
     "demo/render_incident_evidence.py",
     "config/reliability-slo.json",
     "config/advanced-reliability.json",
@@ -108,6 +111,8 @@
     "config/error-budget-policy.json",
     "config/rollback-drill-policy.json",
     "config/post-incident-review-policy.json",
+    "config/release-waiver-policy.json",
+    "config/release-waivers.json",
     "policies/admission/gke-ai-inference-admission-policy.yaml",
     "k8s/gke/collector.yaml",
     "k8s/gke/sample-app.yaml"
