@@ -149,6 +149,7 @@ inference incidents before a service reaches production.
 | C28 | Workloads can pass static checks but still fail node or zone maintenance | Production GKE recipes need explicit replica floors, PDB coverage, topology spread constraints, selector alignment, and owner labels before rollout evidence is trusted. | [Availability topology audit](evidence/availability-topology-audit.md) |
 | C29 | HPA lag can be analyzed offline while manifests still lack a real scaling policy | Production GKE recipes need an actual HPA with bounded replicas, resource metrics, matching requests, and scale behavior before autoscaling claims are trusted. | [Autoscaling policy audit](evidence/autoscaling-policy-audit.md) |
 | C30 | Workload traffic can drift outside the intended telemetry path | Production GKE recipes need egress and ingress NetworkPolicy boundaries so sample workloads can reach telemetry and DNS without normalizing unrestricted namespace traffic. | [Network boundary audit](evidence/network-boundary-audit.md) |
+| C31 | Sampling can hide the traces needed for AI incident debugging | Production OpenTelemetry collectors need tail-sampling rules that retain errors, dependency timeouts, rollout regressions, and collector-pressure traces while keeping healthy baseline volume bounded. | [Telemetry sampling audit](evidence/telemetry-sampling-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -270,6 +271,12 @@ inference incidents before a service reaches production.
     - Policy: [config/network-boundary-policy.json](../config/network-boundary-policy.json)
     - Inputs: workload and collector NetworkPolicies under [k8s/gke](../k8s/gke)
     - Evidence: [network boundary audit](evidence/network-boundary-audit.md)
+
+21. **Telemetry sampling audit**
+    - Code: [demo/telemetry_sampling_audit.py](../demo/telemetry_sampling_audit.py)
+    - Policy: [config/telemetry-sampling-policy.json](../config/telemetry-sampling-policy.json)
+    - Inputs: collector ConfigMap and trace pipeline in [collector.yaml](../k8s/gke/collector.yaml)
+    - Evidence: [telemetry sampling audit](evidence/telemetry-sampling-audit.md)
 
 ## Boundary
 

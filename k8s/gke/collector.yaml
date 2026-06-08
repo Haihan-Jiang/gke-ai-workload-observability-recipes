@@ -105,6 +105,34 @@ data:
           - key: deployment.environment
             value: demo
             action: upsert
+      tail_sampling:
+        decision_wait: 10s
+        num_traces: 50000
+        expected_new_traces_per_sec: 120
+        policies:
+          - name: keep-error-traces
+            type: status_code
+            status_code:
+              status_codes: [ERROR]
+          - name: keep-dependency-timeouts
+            type: string_attribute
+            string_attribute:
+              key: error.type
+              values: [upstream_dependency]
+          - name: keep-rollout-regressions
+            type: string_attribute
+            string_attribute:
+              key: service.version
+              values: [v2]
+          - name: keep-collector-pressure
+            type: string_attribute
+            string_attribute:
+              key: collector.queue.pressure
+              values: [high]
+          - name: baseline-probabilistic-sample
+            type: probabilistic
+            probabilistic:
+              sampling_percentage: 2
       batch:
 
     exporters:
@@ -123,7 +151,7 @@ data:
       pipelines:
         traces:
           receivers: [otlp]
-          processors: [memory_limiter, k8sattributes, resource/gke, batch]
+          processors: [memory_limiter, k8sattributes, resource/gke, tail_sampling, batch]
           exporters: [debug, otlphttp/upstream]
         metrics:
           receivers: [otlp, k8s_cluster]

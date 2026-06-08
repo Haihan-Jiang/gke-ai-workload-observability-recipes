@@ -84,6 +84,14 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 10,
             "failed_count": 0,
         },
+        "telemetry_sampling": {
+            "status": "pass",
+            "policy_count": 5,
+            "critical_policy_count": 4,
+            "baseline_sampling_percentage": 2,
+            "detected_fixture_count": 10,
+            "failed_count": 0,
+        },
         "workload_identity": {
             "status": "pass",
             "check_count": 8,
@@ -240,8 +248,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 92,
-            "source_input_count": 73,
+            "artifact_count": 94,
+            "source_input_count": 75,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -340,6 +348,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["network_boundary_audit"])
+
+    def test_requires_telemetry_sampling_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["telemetry_sampling"]["baseline_sampling_percentage"] = 50
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["telemetry_sampling_audit"])
 
     def test_requires_admission_policy_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -68,6 +68,10 @@ python3 demo/network_boundary_audit.py \
   --policy config/network-boundary-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/telemetry_sampling_audit.py \
+  --policy config/telemetry-sampling-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/workload_identity_audit.py \
   --policy config/workload-identity-policy.json \
   --repo-root . \
@@ -239,6 +243,7 @@ python3 demo/release_readiness.py \
   --availability-topology docs/evidence/availability-topology-audit.json \
   --autoscaling-policy docs/evidence/autoscaling-policy-audit.json \
   --network-boundary docs/evidence/network-boundary-audit.json \
+  --telemetry-sampling docs/evidence/telemetry-sampling-audit.json \
   --workload-identity docs/evidence/workload-identity-audit.json \
   --admission-policy docs/evidence/admission-policy-audit.json \
   --alerting docs/evidence/alerting-rules.json \

@@ -58,6 +58,10 @@
       "ok": true
     },
     {
+      "name": "telemetry_sampling_audit",
+      "ok": true
+    },
+    {
       "name": "workload_identity_audit",
       "ok": true
     },
@@ -357,6 +361,14 @@
     },
     {
       "path": "network-boundary-audit.json",
+      "exists": true
+    },
+    {
+      "path": "telemetry-sampling-audit.md",
+      "exists": true
+    },
+    {
+      "path": "telemetry-sampling-audit.json",
       "exists": true
     },
     {

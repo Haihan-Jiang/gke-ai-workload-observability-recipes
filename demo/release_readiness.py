@@ -63,6 +63,8 @@ REQUIRED_EVIDENCE = [
     "autoscaling-policy-audit.json",
     "network-boundary-audit.md",
     "network-boundary-audit.json",
+    "telemetry-sampling-audit.md",
+    "telemetry-sampling-audit.json",
     "workload-identity-audit.md",
     "workload-identity-audit.json",
     "admission-policy-audit.md",
@@ -136,6 +138,7 @@ def evaluate(
     availability_topology: dict[str, Any],
     autoscaling_policy: dict[str, Any],
     network_boundary: dict[str, Any],
+    telemetry_sampling: dict[str, Any],
     workload_identity: dict[str, Any],
     admission_policy: dict[str, Any],
     alerting: dict[str, Any],
@@ -239,6 +242,15 @@ def evaluate(
             and int(network_boundary.get("egress_rule_count", 0)) >= 2
             and int(network_boundary.get("detected_fixture_count", 0)) >= 10
             and int(network_boundary.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "telemetry_sampling_audit",
+            "ok": telemetry_sampling.get("status") == "pass"
+            and int(telemetry_sampling.get("policy_count", 0)) >= 5
+            and int(telemetry_sampling.get("critical_policy_count", 0)) >= 4
+            and float(telemetry_sampling.get("baseline_sampling_percentage", 999999.0)) <= 5.0
+            and int(telemetry_sampling.get("detected_fixture_count", 0)) >= 10
+            and int(telemetry_sampling.get("failed_count", -1)) == 0,
         },
         {
             "name": "workload_identity_audit",
@@ -413,8 +425,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 92
-            and int(evidence_provenance.get("source_input_count", 0)) >= 73
+            and int(evidence_provenance.get("artifact_count", 0)) >= 94
+            and int(evidence_provenance.get("source_input_count", 0)) >= 75
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -443,7 +455,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
         "manifest hardening, namespace resource governance, availability",
         "topology governance, autoscaling policy governance, network boundary",
-        "governance, Workload Identity audit, admission policy simulation,",
+        "governance, telemetry sampling governance, Workload Identity audit,",
+        "admission policy simulation,",
         "SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
         "detection,",
@@ -495,6 +508,7 @@ def main() -> int:
     parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
     parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
     parser.add_argument("--network-boundary", default="out/network-boundary-audit/network-boundary-audit.json")
+    parser.add_argument("--telemetry-sampling", default="out/telemetry-sampling-audit/telemetry-sampling-audit.json")
     parser.add_argument("--workload-identity", default="out/workload-identity-audit/workload-identity-audit.json")
     parser.add_argument("--admission-policy", default="out/admission-policy-audit/admission-policy-audit.json")
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
@@ -535,6 +549,7 @@ def main() -> int:
         availability_topology=load_json(Path(args.availability_topology)),
         autoscaling_policy=load_json(Path(args.autoscaling_policy)),
         network_boundary=load_json(Path(args.network_boundary)),
+        telemetry_sampling=load_json(Path(args.telemetry_sampling)),
         workload_identity=load_json(Path(args.workload_identity)),
         admission_policy=load_json(Path(args.admission_policy)),
         alerting=load_json(Path(args.alerting)),

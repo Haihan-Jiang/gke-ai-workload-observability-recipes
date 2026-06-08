@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 92,
+  "artifact_count": 94,
   "generated_artifact_count": 4,
-  "source_input_count": 73,
+  "source_input_count": 75,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2780,
-      "sha256": "7482b339726d479ec1159f1e01b6720289a1ca44e3d3c1b8dbe650bf2ccde7f9"
+      "bytes": 2838,
+      "sha256": "bc37085833a71a87be7ee9391f5d7cda33e3c456be722642af2750a5e480a286"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -366,6 +366,20 @@
       "sha256": "73431d7117267ab45166cd7ae6b9ce855ed22b65df187693599a6d6dca05459c"
     },
     {
+      "path": "docs/evidence/telemetry-sampling-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1349,
+      "sha256": "a16bccdc9621eb845fe7051e0fc1a433cf18905a51f6f64db60046365f15a6f9"
+    },
+    {
+      "path": "docs/evidence/telemetry-sampling-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 6602,
+      "sha256": "a2d8e3d1747887744f761ec8b8a5ff7a4a9b3a725a61b7878c328e58389de403"
+    },
+    {
       "path": "docs/evidence/workload-identity-audit.md",
       "group": "evidence",
       "exists": true,
@@ -657,7 +671,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21217,
-      "sha256": "031fa49d4815695b72d5941b9dfa092d4b8f335d7442d4b2bf7a357ca005ea8f"
+      "sha256": "a0b2bca9b7d683ef85b3bef6cf35062ab0d86de41a6ee74fc39051fbf2d5520e"
     }
   ],
   "generated_artifacts": [
@@ -695,15 +709,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 12866,
-      "sha256": "1aab559441bd4a241fbf8f109f6b32989119fbca4dc39a6e8af22a34f4b56d5c"
+      "bytes": 13087,
+      "sha256": "53758d30b0d39e735a7c550e4356214c1ef3df5b9a16322e3c02e09db92c159f"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 22975,
-      "sha256": "27e7ee0d2a7d01e784aaf953c860356ca08947dfb07c0040c79ee3998fdd8022"
+      "bytes": 23403,
+      "sha256": "cf7646505d48877b6d4a0975f9d83b7884509129a8611316e773337c12f2e3e5"
     },
     {
       "path": "demo/incident_replay.py",
@@ -802,6 +816,13 @@
       "exists": true,
       "bytes": 17271,
       "sha256": "b4bd24ee78bd15030b359c4e73b2a880076622818d3173b115fec666837c73f6"
+    },
+    {
+      "path": "demo/telemetry_sampling_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 18593,
+      "sha256": "ab3aa113f287bd6455e728f541f0a92ee58c5834721b5ead375e4e4281f6f980"
     },
     {
       "path": "demo/workload_identity_audit.py",
@@ -954,8 +975,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 10652,
-      "sha256": "483c2aea5c1fc00b9329e838370578b8576e1c230e8e985edc20eace2990016e"
+      "bytes": 10729,
+      "sha256": "e980c9a6038b5b446dab81097bf28b19036803b017cd81aa64791b0181cfdce5"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1026,6 +1047,13 @@
       "exists": true,
       "bytes": 3315,
       "sha256": "f476659a31734f2338794550192749a63c3d1d7973dde5e44349a1533a78a1c0"
+    },
+    {
+      "path": "config/telemetry-sampling-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3999,
+      "sha256": "3184ee8ec82931e01cce62c8647f964162b571ce68223822728a8ab488df65b7"
     },
     {
       "path": "config/workload-identity-policy.json",
@@ -1192,8 +1220,8 @@
       "path": "k8s/gke/collector.yaml",
       "group": "source-input",
       "exists": true,
-      "bytes": 7088,
-      "sha256": "13f56673c863e3c4ef6588e1c828299149aaee2bc77eff801a368fc729985774"
+      "bytes": 8039,
+      "sha256": "17ab4ffaf70957b9cb16b1b7d95468c171d1f0c5d9e9d3efe2419d5ee0b8b51e"
     },
     {
       "path": "k8s/gke/sample-app.yaml",
@@ -1209,8 +1237,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 92,
-        "minimum": 92
+        "count": 94,
+        "minimum": 94
       }
     },
     {
@@ -1226,8 +1254,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 73,
-        "minimum": 73
+        "count": 75,
+        "minimum": 75
       }
     },
     {
