@@ -160,6 +160,14 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 7,
             "failed_count": 0,
         },
+        "accelerator_quota": {
+            "status": "pass",
+            "quota_count": 5,
+            "candidate_quota_count": 1,
+            "protected_tier_count": 2,
+            "detected_fixture_count": 7,
+            "failed_count": 0,
+        },
         "load_shedding_policy": {
             "status": "pass",
             "action_count": 5,
@@ -195,8 +203,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 76,
-            "source_input_count": 57,
+            "artifact_count": 82,
+            "source_input_count": 63,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -416,6 +424,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["shadow_traffic_replay_audit"])
+
+    def test_requires_accelerator_quota_fairness_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["accelerator_quota"]["protected_tier_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["accelerator_quota_fairness_audit"])
 
     def test_requires_regional_failover_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

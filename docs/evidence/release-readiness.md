@@ -13,7 +13,8 @@ telemetry redaction, telemetry cost budget, error-budget accounting,
 rollback drill coverage, post-incident review coverage, incident
 response drill coverage, dependency contract coverage, synthetic
 probe coverage, model release safety coverage, shadow traffic replay
-coverage, load-shedding policy coverage, regional failover coverage,
+coverage, accelerator quota fairness coverage, load-shedding policy
+coverage, regional failover coverage,
 waiver governance, disaster recovery
 drill coverage, evidence provenance, and committed evidence are
 present and internally
@@ -48,6 +49,7 @@ consistent.
 | `synthetic_probe_audit` | PASS |
 | `model_release_safety_audit` | PASS |
 | `shadow_traffic_replay_audit` | PASS |
+| `accelerator_quota_fairness_audit` | PASS |
 | `load_shedding_policy_audit` | PASS |
 | `regional_failover_audit` | PASS |
 | `release_waiver_governance` | PASS |
@@ -129,6 +131,8 @@ consistent.
 | `model-release-safety-audit.json` | yes |
 | `shadow-traffic-replay-audit.md` | yes |
 | `shadow-traffic-replay-audit.json` | yes |
+| `accelerator-quota-fairness-audit.md` | yes |
+| `accelerator-quota-fairness-audit.json` | yes |
 | `load-shedding-policy-audit.md` | yes |
 | `load-shedding-policy-audit.json` | yes |
 | `regional-failover-audit.md` | yes |

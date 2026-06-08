@@ -40,6 +40,7 @@
 - [Synthetic probe audit](synthetic-probe-audit.md)
 - [Model release safety audit](model-release-safety-audit.md)
 - [Shadow traffic replay audit](shadow-traffic-replay-audit.md)
+- [Accelerator quota fairness audit](accelerator-quota-fairness-audit.md)
 - [Load shedding policy audit](load-shedding-policy-audit.md)
 - [Regional failover audit](regional-failover-audit.md)
 - [Release waiver governance](release-waiver-governance.md)

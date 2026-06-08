@@ -30,6 +30,7 @@ python3 -m py_compile \
   demo/model_release_safety_audit.py \
   demo/shadow_traffic_replay_audit.py \
   demo/load_shedding_policy_audit.py \
+  demo/accelerator_quota_fairness_audit.py \
   demo/regional_failover_audit.py \
   demo/release_waiver_governance.py \
   demo/disaster_recovery_drill.py \
@@ -66,6 +67,7 @@ python3 -m json.tool config/synthetic-probe-policy.json >/dev/null
 python3 -m json.tool config/model-release-policy.json >/dev/null
 python3 -m json.tool config/shadow-traffic-policy.json >/dev/null
 python3 -m json.tool config/load-shedding-policy.json >/dev/null
+python3 -m json.tool config/accelerator-quota-policy.json >/dev/null
 python3 -m json.tool config/regional-failover-policy.json >/dev/null
 python3 -m json.tool config/release-waiver-policy.json >/dev/null
 python3 -m json.tool config/release-waivers.json >/dev/null
@@ -228,6 +230,15 @@ python3 demo/load_shedding_policy_audit.py \
   --synthetic-probe out/synthetic-probe-audit-validate/synthetic-probe-audit.json \
   --runbooks out/incident-runbooks-validate/incident-runbooks.json \
   --output-dir out/load-shedding-policy-audit-validate >/dev/null
+python3 demo/accelerator_quota_fairness_audit.py \
+  --policy config/accelerator-quota-policy.json \
+  --capacity out/capacity-plan-validate/capacity-plan.json \
+  --tenant-blast-radius out/detailed-reliability-validate/tenant-blast-radius.json \
+  --token-cost out/detailed-reliability-validate/token-cost-guard.json \
+  --load-shedding out/load-shedding-policy-audit-validate/load-shedding-policy-audit.json \
+  --shadow-traffic out/shadow-traffic-replay-audit-validate/shadow-traffic-replay-audit.json \
+  --model-release-safety out/model-release-safety-audit-validate/model-release-safety-audit.json \
+  --output-dir out/accelerator-quota-fairness-audit-validate >/dev/null
 python3 demo/disaster_recovery_drill.py \
   --repo-root . \
   --policy config/disaster-recovery-policy.json \
@@ -281,6 +292,7 @@ python3 demo/release_readiness.py \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --model-release-safety docs/evidence/model-release-safety-audit.json \
   --shadow-traffic-replay docs/evidence/shadow-traffic-replay-audit.json \
+  --accelerator-quota docs/evidence/accelerator-quota-fairness-audit.json \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
   --regional-failover docs/evidence/regional-failover-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
@@ -326,6 +338,7 @@ python3 -m json.tool docs/evidence/synthetic-probe-audit.json >/dev/null
 python3 -m json.tool docs/evidence/model-release-safety-audit.json >/dev/null
 python3 -m json.tool docs/evidence/shadow-traffic-replay-audit.json >/dev/null
 python3 -m json.tool docs/evidence/load-shedding-policy-audit.json >/dev/null
+python3 -m json.tool docs/evidence/accelerator-quota-fairness-audit.json >/dev/null
 python3 -m json.tool docs/evidence/regional-failover-audit.json >/dev/null
 python3 -m json.tool docs/evidence/release-waiver-governance.json >/dev/null
 python3 -m json.tool docs/evidence/disaster-recovery-drill.json >/dev/null

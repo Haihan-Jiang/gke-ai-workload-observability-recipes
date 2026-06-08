@@ -165,6 +165,15 @@ python3 demo/load_shedding_policy_audit.py \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --runbooks docs/evidence/incident-runbooks.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/accelerator_quota_fairness_audit.py \
+  --policy config/accelerator-quota-policy.json \
+  --capacity docs/evidence/capacity-plan.json \
+  --tenant-blast-radius docs/evidence/tenant-blast-radius.json \
+  --token-cost docs/evidence/token-cost-guard.json \
+  --load-shedding docs/evidence/load-shedding-policy-audit.json \
+  --shadow-traffic docs/evidence/shadow-traffic-replay-audit.json \
+  --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/regional_failover_audit.py \
   --policy config/regional-failover-policy.json \
   --capacity docs/evidence/capacity-plan.json \
@@ -220,6 +229,7 @@ python3 demo/release_readiness.py \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --model-release-safety docs/evidence/model-release-safety-audit.json \
   --shadow-traffic-replay docs/evidence/shadow-traffic-replay-audit.json \
+  --accelerator-quota docs/evidence/accelerator-quota-fairness-audit.json \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
   --regional-failover docs/evidence/regional-failover-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \

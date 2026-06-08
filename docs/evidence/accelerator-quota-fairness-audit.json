@@ -1,0 +1,382 @@
+{
+  "status": "pass",
+  "quota_count": 5,
+  "candidate_quota_count": 1,
+  "protected_tier_count": 2,
+  "fixture_count": 7,
+  "detected_fixture_count": 7,
+  "failed_count": 0,
+  "quotas": [
+    {
+      "name": "baseline_standard_quota",
+      "scenario": "baseline",
+      "tenant_tier": "standard",
+      "tier_max_gpu_ms": 120,
+      "tier_reserved_share": 0.35,
+      "expected": {
+        "cost_decision": "allow",
+        "release_action": "eligible_for_release",
+        "traffic_action": "no_action",
+        "requires_shadow_block": false,
+        "protect_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": []
+      },
+      "observed": {
+        "tenant_tier": "standard",
+        "blast_radius": "contained",
+        "tenant_violations": [],
+        "gpu_ms": 18,
+        "tokens": 282,
+        "cost_decision": "allow",
+        "cost_violations": [],
+        "required_replicas": 1,
+        "max_replicas_budget": 12,
+        "capacity_warnings": [],
+        "traffic_action": "no_action",
+        "release_action": "eligible_for_release",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [],
+        "fallback": "keep the healthy baseline as the comparison group",
+        "shadow_role": "stable",
+        "shadow_percent": 5,
+        "shadow_served_to_users": false
+      },
+      "shadow_traffic_status": "pass",
+      "blocked_shadow_count": 1,
+      "model_release_safety_status": "pass",
+      "blocked_candidate_count": 1
+    },
+    {
+      "name": "cache_standard_quota",
+      "scenario": "cache_miss_storm",
+      "tenant_tier": "standard",
+      "tier_max_gpu_ms": 120,
+      "tier_reserved_share": 0.35,
+      "expected": {
+        "cost_decision": "allow",
+        "release_action": "require_sre_review_before_rollout",
+        "traffic_action": "rate_limit_retrieval",
+        "requires_shadow_block": false,
+        "protect_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ]
+      },
+      "observed": {
+        "tenant_tier": "standard",
+        "blast_radius": "contained",
+        "tenant_violations": [],
+        "gpu_ms": 38,
+        "tokens": 348,
+        "cost_decision": "allow",
+        "cost_violations": [],
+        "required_replicas": 5,
+        "max_replicas_budget": 12,
+        "capacity_warnings": [],
+        "traffic_action": "rate_limit_retrieval",
+        "release_action": "require_sre_review_before_rollout",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ],
+        "fallback": "serve stale retrieval cache entries and reduce retrieval-heavy request concurrency",
+        "shadow_role": null,
+        "shadow_percent": null,
+        "shadow_served_to_users": null
+      },
+      "shadow_traffic_status": "pass",
+      "blocked_shadow_count": 1,
+      "model_release_safety_status": "pass",
+      "blocked_candidate_count": 1
+    },
+    {
+      "name": "dependency_standard_quota",
+      "scenario": "dependency_timeout",
+      "tenant_tier": "standard",
+      "tier_max_gpu_ms": 120,
+      "tier_reserved_share": 0.35,
+      "expected": {
+        "cost_decision": "allow",
+        "release_action": "block_release_or_rollback",
+        "traffic_action": "shed_best_effort",
+        "requires_shadow_block": false,
+        "protect_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ]
+      },
+      "observed": {
+        "tenant_tier": "standard",
+        "blast_radius": "tenant_slo_breach",
+        "tenant_violations": [
+          "p95 1320ms exceeds 300ms",
+          "error rate 0.5 exceeds 0.05"
+        ],
+        "gpu_ms": 82,
+        "tokens": 432,
+        "cost_decision": "allow",
+        "cost_violations": [],
+        "required_replicas": 24,
+        "max_replicas_budget": 12,
+        "capacity_warnings": [
+          "do not scale traffic until user-visible errors are isolated",
+          "required replicas exceed the demo budget; treat as a dependency or design issue"
+        ],
+        "traffic_action": "shed_best_effort",
+        "release_action": "block_release_or_rollback",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ],
+        "fallback": "use fallback feature values, cap retries, and shed best-effort traffic",
+        "shadow_role": null,
+        "shadow_percent": null,
+        "shadow_served_to_users": null
+      },
+      "shadow_traffic_status": "pass",
+      "blocked_shadow_count": 1,
+      "model_release_safety_status": "pass",
+      "blocked_candidate_count": 1
+    },
+    {
+      "name": "candidate_premium_quota",
+      "scenario": "rollout_regression",
+      "tenant_tier": "premium",
+      "tier_max_gpu_ms": 180,
+      "tier_reserved_share": 0.55,
+      "expected": {
+        "cost_decision": "block_or_review",
+        "release_action": "block_release_or_rollback",
+        "traffic_action": "rollback_canary",
+        "requires_shadow_block": true,
+        "protect_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ]
+      },
+      "observed": {
+        "tenant_tier": "premium",
+        "blast_radius": "tenant_slo_breach",
+        "tenant_violations": [
+          "p95 455ms exceeds 220ms",
+          "error rate 0.29 exceeds 0.02"
+        ],
+        "gpu_ms": 210,
+        "tokens": 578,
+        "cost_decision": "block_or_review",
+        "cost_violations": [
+          "tokens 578 exceed 520",
+          "gpu_ms 210 exceeds 180"
+        ],
+        "required_replicas": 8,
+        "max_replicas_budget": 12,
+        "capacity_warnings": [
+          "do not scale traffic until user-visible errors are isolated"
+        ],
+        "traffic_action": "rollback_canary",
+        "release_action": "block_release_or_rollback",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ],
+        "fallback": "shift traffic to the stable service version and fallback model runtime",
+        "shadow_role": "candidate",
+        "shadow_percent": 5,
+        "shadow_served_to_users": false
+      },
+      "shadow_traffic_status": "pass",
+      "blocked_shadow_count": 1,
+      "model_release_safety_status": "pass",
+      "blocked_candidate_count": 1
+    },
+    {
+      "name": "telemetry_standard_quota",
+      "scenario": "collector_queue_pressure",
+      "tenant_tier": "standard",
+      "tier_max_gpu_ms": 120,
+      "tier_reserved_share": 0.35,
+      "expected": {
+        "cost_decision": "allow",
+        "release_action": "require_sre_review_before_rollout",
+        "traffic_action": "protect_telemetry",
+        "requires_shadow_block": false,
+        "protect_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ]
+      },
+      "observed": {
+        "tenant_tier": "standard",
+        "blast_radius": "tenant_slo_breach",
+        "tenant_violations": [
+          "telemetry loss 0.42 exceeds 0.05"
+        ],
+        "gpu_ms": 62,
+        "tokens": 336,
+        "cost_decision": "allow",
+        "cost_violations": [],
+        "required_replicas": 3,
+        "max_replicas_budget": 12,
+        "capacity_warnings": [
+          "fix collector delivery before trusting production dashboards"
+        ],
+        "traffic_action": "protect_telemetry",
+        "release_action": "require_sre_review_before_rollout",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ],
+        "fallback": "protect persistent collector queues and reduce exporter pressure before trusting dashboards",
+        "shadow_role": null,
+        "shadow_percent": null,
+        "shadow_served_to_users": null
+      },
+      "shadow_traffic_status": "pass",
+      "blocked_shadow_count": 1,
+      "model_release_safety_status": "pass",
+      "blocked_candidate_count": 1
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_candidate_quota",
+      "mutation": "remove_quota",
+      "expected_failed_check": "quota_inventory",
+      "failed_checks": [
+        "quota_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "standard_quota_too_low",
+      "mutation": "set_tier_max_gpu_ms",
+      "expected_failed_check": "accelerator_budget_guard",
+      "failed_checks": [
+        "accelerator_budget_guard"
+      ],
+      "detected": true
+    },
+    {
+      "name": "candidate_expected_cost_allows_overage",
+      "mutation": "set_expected_cost_decision",
+      "expected_failed_check": "accelerator_budget_guard",
+      "failed_checks": [
+        "accelerator_budget_guard"
+      ],
+      "detected": true
+    },
+    {
+      "name": "premium_not_protected",
+      "mutation": "remove_protect_tier",
+      "expected_failed_check": "tenant_fairness_contract",
+      "failed_checks": [
+        "tenant_fairness_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "best_effort_not_shed",
+      "mutation": "remove_shed_tier",
+      "expected_failed_check": "tenant_fairness_contract",
+      "failed_checks": [
+        "tenant_fairness_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_traffic_action",
+      "mutation": "set_expected_traffic_action",
+      "expected_failed_check": "load_shedding_linkage",
+      "failed_checks": [
+        "load_shedding_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "candidate_shadow_not_required",
+      "mutation": "set_requires_shadow_block",
+      "expected_failed_check": "shadow_candidate_quota",
+      "failed_checks": [
+        "shadow_candidate_quota"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "quota_inventory",
+      "ok": true,
+      "evidence": {
+        "quota_count": 5,
+        "missing_scenarios": []
+      }
+    },
+    {
+      "name": "accelerator_budget_guard",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "tenant_fairness_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "load_shedding_linkage",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "shadow_candidate_quota",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 7,
+        "detected_fixture_count": 7,
+        "undetected": []
+      }
+    }
+  ]
+}

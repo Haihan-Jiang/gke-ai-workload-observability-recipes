@@ -81,6 +81,8 @@ REQUIRED_EVIDENCE = [
     "model-release-safety-audit.json",
     "shadow-traffic-replay-audit.md",
     "shadow-traffic-replay-audit.json",
+    "accelerator-quota-fairness-audit.md",
+    "accelerator-quota-fairness-audit.json",
     "load-shedding-policy-audit.md",
     "load-shedding-policy-audit.json",
     "regional-failover-audit.md",
@@ -135,6 +137,7 @@ def evaluate(
     synthetic_probe: dict[str, Any],
     model_release_safety: dict[str, Any],
     shadow_traffic_replay: dict[str, Any],
+    accelerator_quota: dict[str, Any],
     load_shedding_policy: dict[str, Any],
     regional_failover: dict[str, Any],
     release_waiver_governance: dict[str, Any],
@@ -306,6 +309,15 @@ def evaluate(
             and int(shadow_traffic_replay.get("failed_count", -1)) == 0,
         },
         {
+            "name": "accelerator_quota_fairness_audit",
+            "ok": accelerator_quota.get("status") == "pass"
+            and int(accelerator_quota.get("quota_count", 0)) >= 5
+            and int(accelerator_quota.get("candidate_quota_count", 0)) >= 1
+            and int(accelerator_quota.get("protected_tier_count", 0)) >= 2
+            and int(accelerator_quota.get("detected_fixture_count", 0)) >= 7
+            and int(accelerator_quota.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "load_shedding_policy_audit",
             "ok": load_shedding_policy.get("status") == "pass"
             and int(load_shedding_policy.get("action_count", 0)) >= 5
@@ -344,8 +356,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 76
-            and int(evidence_provenance.get("source_input_count", 0)) >= 57
+            and int(evidence_provenance.get("artifact_count", 0)) >= 82
+            and int(evidence_provenance.get("source_input_count", 0)) >= 63
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -379,7 +391,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "rollback drill coverage, post-incident review coverage, incident",
         "response drill coverage, dependency contract coverage, synthetic",
         "probe coverage, model release safety coverage, shadow traffic replay",
-        "coverage, load-shedding policy coverage, regional failover coverage,",
+        "coverage, accelerator quota fairness coverage, load-shedding policy",
+        "coverage, regional failover coverage,",
         "waiver governance, disaster recovery",
         "drill coverage, evidence provenance, and committed evidence are",
         "present and internally",
@@ -433,6 +446,7 @@ def main() -> int:
     parser.add_argument("--synthetic-probe", default="out/synthetic-probe-audit/synthetic-probe-audit.json")
     parser.add_argument("--model-release-safety", default="out/model-release-safety-audit/model-release-safety-audit.json")
     parser.add_argument("--shadow-traffic-replay", default="out/shadow-traffic-replay-audit/shadow-traffic-replay-audit.json")
+    parser.add_argument("--accelerator-quota", default="out/accelerator-quota-fairness-audit/accelerator-quota-fairness-audit.json")
     parser.add_argument("--load-shedding-policy", default="out/load-shedding-policy-audit/load-shedding-policy-audit.json")
     parser.add_argument("--regional-failover", default="out/regional-failover-audit/regional-failover-audit.json")
     parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
@@ -467,6 +481,7 @@ def main() -> int:
         synthetic_probe=load_json(Path(args.synthetic_probe)),
         model_release_safety=load_json(Path(args.model_release_safety)),
         shadow_traffic_replay=load_json(Path(args.shadow_traffic_replay)),
+        accelerator_quota=load_json(Path(args.accelerator_quota)),
         load_shedding_policy=load_json(Path(args.load_shedding_policy)),
         regional_failover=load_json(Path(args.regional_failover)),
         release_waiver_governance=load_json(Path(args.release_waiver_governance)),

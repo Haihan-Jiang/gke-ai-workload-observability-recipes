@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `80`
+- Evidence artifacts: `82`
 - Generated artifacts: `4`
-- Source inputs: `61`
+- Source inputs: `63`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 2416 | `141685a042455ac4...` |
+| `docs/evidence/README.md` | 2490 | `8f7e5deb4dd1b457...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -102,6 +102,8 @@ evidence easier to detect during review.
 | `docs/evidence/model-release-safety-audit.json` | 7331 | `2eae285f4229b605...` |
 | `docs/evidence/shadow-traffic-replay-audit.md` | 1505 | `fb6ea53bc370cfa5...` |
 | `docs/evidence/shadow-traffic-replay-audit.json` | 6999 | `7fbf1f8fc5a12554...` |
+| `docs/evidence/accelerator-quota-fairness-audit.md` | 1635 | `d666b7e9efab3af0...` |
+| `docs/evidence/accelerator-quota-fairness-audit.json` | 10753 | `c272ec7e01173147...` |
 | `docs/evidence/load-shedding-policy-audit.md` | 1904 | `a60b8c9c0b0caf91...` |
 | `docs/evidence/load-shedding-policy-audit.json` | 10561 | `afd997ee5c22bccb...` |
 | `docs/evidence/regional-failover-audit.md` | 1532 | `1def87beed205a66...` |
@@ -109,7 +111,7 @@ evidence easier to detect during review.
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
 | `docs/evidence/disaster-recovery-drill.md` | 1031 | `81f0f1d0916ce338...` |
-| `docs/evidence/disaster-recovery-drill.json` | 21215 | `08609442d8efd366...` |
+| `docs/evidence/disaster-recovery-drill.json` | 21215 | `0fddfbb808830198...` |
 
 ## Generated Artifacts
 
