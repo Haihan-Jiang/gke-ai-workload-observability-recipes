@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 58,
+  "artifact_count": 60,
   "generated_artifact_count": 4,
-  "source_input_count": 37,
+  "source_input_count": 40,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1774,
-      "sha256": "e96e36ed4c953f2f44626750e3bdaba3fcbedea8ca8bcf2cd0c98cbcac6f9124"
+      "bytes": 1828,
+      "sha256": "c19c48be847e7bfee3c09153b9def0ea4c9e76c5068bb9a90d8d5b3967c6cc0c"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -310,6 +310,20 @@
       "sha256": "40cad4f46752bda1f4149e05285b8ff719fdec53169168da5e8aecedbfd8c6c7"
     },
     {
+      "path": "docs/evidence/admission-policy-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1859,
+      "sha256": "f9af1e271477a16c2ac708c3b7fd5b9a6c9f4813330deaaba7bcf208a870ee2f"
+    },
+    {
+      "path": "docs/evidence/admission-policy-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 47340,
+      "sha256": "1fd2253203c05806d8da92bc2690d9889e75ece345aaef79cffdc2aae3669dc7"
+    },
+    {
       "path": "docs/evidence/alerting-rules.md",
       "group": "evidence",
       "exists": true,
@@ -457,15 +471,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 5907,
-      "sha256": "d70b01be7191848e60ec89711025440641e50c53d4775d64c39c633b1c251118"
+      "bytes": 6113,
+      "sha256": "6fd1465ec5470c3ac9e425164e412c92581f915f7f5bce3693ac1ff600bef086"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 11377,
-      "sha256": "797ad889f1dcd2301b3aa9c826ff62994d4a09112363c94af6751f2985eb6700"
+      "bytes": 11784,
+      "sha256": "0146ca95bbb5577d1fcf0d9ab0c3d2e71dc99a7f8c1469231e8f01269c85d795"
     },
     {
       "path": "demo/incident_replay.py",
@@ -538,6 +552,13 @@
       "sha256": "ef5632050873a76b6669f3b8ca4378fa267e22276f23bf31969d614867a2fd29"
     },
     {
+      "path": "demo/admission_policy_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 17935,
+      "sha256": "6ac56e4427211b2d99f759e65899f5b02d85ece92adb62c172cc780a37a26475"
+    },
+    {
       "path": "demo/alerting_rules.py",
       "group": "source-input",
       "exists": true,
@@ -597,8 +618,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9323,
-      "sha256": "2ef54d0d2d4d0ad0b409999eddba9f5979a0f80096945c761a54ed5e664b3d5a"
+      "bytes": 9396,
+      "sha256": "93b995e8ece6aff33a8dceec73f7a7aa8c3b1c80233433742c4030bdf74bd01c"
     },
     {
       "path": "config/reliability-slo.json",
@@ -641,6 +662,13 @@
       "exists": true,
       "bytes": 797,
       "sha256": "d95366692d264fc220a845e8f154695291d480eaeb4d61725fa3940650ffe8bf"
+    },
+    {
+      "path": "config/admission-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1919,
+      "sha256": "71eb540b1675a5ee2ac0b8f4d808062fe9b7b88126ccd08c1f9a4757db8bbdf2"
     },
     {
       "path": "config/alerting-policy.json",
@@ -699,6 +727,13 @@
       "sha256": "d11cc2926bb46a1d174a5a5e311409d84e06c319382b7a51ac210de68b14b839"
     },
     {
+      "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3842,
+      "sha256": "ec154bd67ebafecb4c4c49d3f7a56413d05aea20cbc0324b52ca9ce4f2d25bae"
+    },
+    {
       "path": "k8s/gke/collector.yaml",
       "group": "source-input",
       "exists": true,
@@ -719,8 +754,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 58,
-        "minimum": 45
+        "count": 60,
+        "minimum": 50
       }
     },
     {
@@ -736,8 +771,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 37,
-        "minimum": 18
+        "count": 40,
+        "minimum": 22
       }
     },
     {

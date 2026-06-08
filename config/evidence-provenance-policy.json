@@ -1,7 +1,7 @@
 {
   "description": "Policy for producing a reproducible provenance manifest for generated lab evidence.",
-  "minimum_evidence_artifacts": 45,
-  "minimum_source_inputs": 18,
+  "minimum_evidence_artifacts": 50,
+  "minimum_source_inputs": 22,
   "required_artifacts": [
     "docs/evidence/README.md",
     "docs/evidence/sample-incident-report.md",
@@ -45,6 +45,8 @@
     "docs/evidence/supply-chain-audit.json",
     "docs/evidence/k8s-hardening-audit.md",
     "docs/evidence/k8s-hardening-audit.json",
+    "docs/evidence/admission-policy-audit.md",
+    "docs/evidence/admission-policy-audit.json",
     "docs/evidence/alerting-rules.md",
     "docs/evidence/alerting-rules.json",
     "docs/evidence/grafana-dashboard.md",
@@ -81,6 +83,7 @@
     "demo/policy_regression_suite.py",
     "demo/supply_chain_audit.py",
     "demo/k8s_hardening_audit.py",
+    "demo/admission_policy_audit.py",
     "demo/alerting_rules.py",
     "demo/grafana_dashboard.py",
     "demo/openslo_contract.py",
@@ -96,6 +99,7 @@
     "config/deployment-policy-fixtures.json",
     "config/supply-chain-policy.json",
     "config/k8s-hardening-policy.json",
+    "config/admission-policy.json",
     "config/alerting-policy.json",
     "config/dashboard-policy.json",
     "config/openslo-policy.json",
@@ -104,6 +108,7 @@
     "config/error-budget-policy.json",
     "config/rollback-drill-policy.json",
     "config/post-incident-review-policy.json",
+    "policies/admission/gke-ai-inference-admission-policy.yaml",
     "k8s/gke/collector.yaml",
     "k8s/gke/sample-app.yaml"
   ],

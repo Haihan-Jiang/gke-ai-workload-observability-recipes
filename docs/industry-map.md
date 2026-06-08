@@ -132,6 +132,7 @@ inference incidents before a service reaches production.
 | C11 | Inference traces can leak prompts, responses, secrets, or direct identifiers | AI observability needs enough metadata for SRE triage without exporting customer text or credentials into tracing backends. | [Telemetry redaction audit](evidence/telemetry-redaction-audit.md) |
 | C12 | Trace volume can overwhelm observability budgets | AI inference traces often include multiple child spans and expensive high-signal incidents; teams need sampling and retention budgets before exporting everything. | [Telemetry cost budget](evidence/telemetry-cost-budget.md) |
 | C13 | Sample manifests can hide floating image risk | Reviewers need to see that even demo deployment recipes avoid `latest` tags and pin runtime artifacts by digest before being adapted to production. | [Supply chain audit](evidence/supply-chain-audit.md) |
+| C14 | Manifest drift can bypass review after the first audit | Platform teams need admission controls that block unsafe deployment changes at create/update time instead of discovering the drift after rollout. | [Admission policy audit](evidence/admission-policy-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -152,6 +153,12 @@ inference incidents before a service reaches production.
    - Config: [config/supply-chain-policy.json](../config/supply-chain-policy.json)
    - Input: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
    - Evidence: [supply chain audit](evidence/supply-chain-audit.md)
+
+4. **Kubernetes admission policy audit**
+   - Code: [demo/admission_policy_audit.py](../demo/admission_policy_audit.py)
+   - Config: [config/admission-policy.json](../config/admission-policy.json)
+   - Policy: [gke-ai-inference-admission-policy.yaml](../policies/admission/gke-ai-inference-admission-policy.yaml)
+   - Evidence: [admission policy audit](evidence/admission-policy-audit.md)
 
 ## Boundary
 

@@ -52,6 +52,10 @@ python3 demo/k8s_hardening_audit.py \
   --policy config/k8s-hardening-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/admission_policy_audit.py \
+  --policy config/admission-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/alerting_rules.py \
   --slo-config config/reliability-slo.json \
   --policy config/alerting-policy.json \
@@ -118,6 +122,7 @@ python3 demo/release_readiness.py \
   --policy-regression docs/evidence/policy-regression-suite.json \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
+  --admission-policy docs/evidence/admission-policy-audit.json \
   --alerting docs/evidence/alerting-rules.json \
   --dashboard docs/evidence/grafana-dashboard.json \
   --openslo docs/evidence/openslo-contract.json \

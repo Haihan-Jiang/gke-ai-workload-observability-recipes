@@ -42,6 +42,10 @@
       "ok": true
     },
     {
+      "name": "admission_policy_audit",
+      "ok": true
+    },
+    {
       "name": "slo_alerting_rules",
       "ok": true
     },
@@ -257,6 +261,14 @@
     },
     {
       "path": "k8s-hardening-audit.json",
+      "exists": true
+    },
+    {
+      "path": "admission-policy-audit.md",
+      "exists": true
+    },
+    {
+      "path": "admission-policy-audit.json",
       "exists": true
     },
     {

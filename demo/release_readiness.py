@@ -55,6 +55,8 @@ REQUIRED_EVIDENCE = [
     "supply-chain-audit.json",
     "k8s-hardening-audit.md",
     "k8s-hardening-audit.json",
+    "admission-policy-audit.md",
+    "admission-policy-audit.json",
     "alerting-rules.md",
     "alerting-rules.json",
     "grafana-dashboard.md",
@@ -98,6 +100,7 @@ def evaluate(
     policy_regression: dict[str, Any],
     supply_chain: dict[str, Any],
     k8s_hardening: dict[str, Any],
+    admission_policy: dict[str, Any],
     alerting: dict[str, Any],
     dashboard: dict[str, Any],
     openslo: dict[str, Any],
@@ -154,6 +157,14 @@ def evaluate(
             "ok": k8s_hardening.get("status") == "pass"
             and int(k8s_hardening.get("check_count", 0)) >= 11
             and int(k8s_hardening.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "admission_policy_audit",
+            "ok": admission_policy.get("status") == "pass"
+            and int(admission_policy.get("policy_check_count", 0)) >= 10
+            and int(admission_policy.get("allowed_deployment_count", 0)) >= 2
+            and int(admission_policy.get("denied_fixture_count", 0)) >= 8
+            and int(admission_policy.get("failed_count", -1)) == 0,
         },
         {
             "name": "slo_alerting_rules",
@@ -241,8 +252,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
-        "manifest hardening, SLO alerting rules, Grafana dashboard coverage,",
-        "OpenSLO contract,",
+        "manifest hardening, admission policy simulation, SLO alerting rules,",
+        "Grafana dashboard coverage, OpenSLO contract,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
         "rollback drill coverage, post-incident review coverage, evidence",
         "provenance, and committed evidence are present and internally",
@@ -281,6 +292,7 @@ def main() -> int:
     parser.add_argument("--policy-regression", default="out/policy-regression-suite/policy-regression-suite.json")
     parser.add_argument("--supply-chain", default="out/supply-chain-audit/supply-chain-audit.json")
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
+    parser.add_argument("--admission-policy", default="out/admission-policy-audit/admission-policy-audit.json")
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
     parser.add_argument("--dashboard", default="out/grafana-dashboard/grafana-dashboard.json")
     parser.add_argument("--openslo", default="out/openslo-contract/openslo-contract.json")
@@ -304,6 +316,7 @@ def main() -> int:
         policy_regression=load_json(Path(args.policy_regression)),
         supply_chain=load_json(Path(args.supply_chain)),
         k8s_hardening=load_json(Path(args.k8s_hardening)),
+        admission_policy=load_json(Path(args.admission_policy)),
         alerting=load_json(Path(args.alerting)),
         dashboard=load_json(Path(args.dashboard)),
         openslo=load_json(Path(args.openslo)),

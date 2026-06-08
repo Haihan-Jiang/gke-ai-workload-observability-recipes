@@ -14,6 +14,7 @@ python3 -m py_compile \
   demo/policy_regression_suite.py \
   demo/supply_chain_audit.py \
   demo/k8s_hardening_audit.py \
+  demo/admission_policy_audit.py \
   demo/alerting_rules.py \
   demo/grafana_dashboard.py \
   demo/openslo_contract.py \
@@ -39,6 +40,7 @@ python3 -m json.tool config/detailed-reliability.json >/dev/null
 python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
 python3 -m json.tool config/supply-chain-policy.json >/dev/null
 python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
+python3 -m json.tool config/admission-policy.json >/dev/null
 python3 -m json.tool config/alerting-policy.json >/dev/null
 python3 -m json.tool config/dashboard-policy.json >/dev/null
 python3 -m json.tool config/openslo-policy.json >/dev/null
@@ -92,6 +94,10 @@ python3 demo/k8s_hardening_audit.py \
   --policy config/k8s-hardening-policy.json \
   --repo-root . \
   --output-dir out/k8s-hardening-audit-validate >/dev/null
+python3 demo/admission_policy_audit.py \
+  --policy config/admission-policy.json \
+  --repo-root . \
+  --output-dir out/admission-policy-audit-validate >/dev/null
 python3 demo/alerting_rules.py \
   --slo-config config/reliability-slo.json \
   --policy config/alerting-policy.json \
@@ -156,6 +162,7 @@ python3 demo/release_readiness.py \
   --policy-regression docs/evidence/policy-regression-suite.json \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
+  --admission-policy docs/evidence/admission-policy-audit.json \
   --alerting docs/evidence/alerting-rules.json \
   --dashboard docs/evidence/grafana-dashboard.json \
   --openslo docs/evidence/openslo-contract.json \
@@ -188,6 +195,7 @@ python3 -m json.tool docs/evidence/deployment-policy.json >/dev/null
 python3 -m json.tool docs/evidence/policy-regression-suite.json >/dev/null
 python3 -m json.tool docs/evidence/supply-chain-audit.json >/dev/null
 python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
+python3 -m json.tool docs/evidence/admission-policy-audit.json >/dev/null
 python3 -m json.tool docs/evidence/alerting-rules.json >/dev/null
 python3 -m json.tool docs/evidence/grafana-dashboard.json >/dev/null
 python3 -m json.tool docs/evidence/openslo-contract.json >/dev/null
@@ -205,7 +213,7 @@ if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then
 fi
 
 if command -v ruby >/dev/null 2>&1; then
-  yaml_files="$(find .github collector k8s slos -type f \( -name '*.yaml' -o -name '*.yml' \) 2>/dev/null | sort)"
+  yaml_files="$(find .github collector k8s policies slos -type f \( -name '*.yaml' -o -name '*.yml' \) 2>/dev/null | sort)"
   if [ -f docker-compose.yaml ]; then
     yaml_files="${yaml_files}
 docker-compose.yaml"

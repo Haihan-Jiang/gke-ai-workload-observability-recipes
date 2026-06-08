@@ -1,0 +1,86 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: gke-ai-inference-reliability-deployments
+  labels:
+    app.kubernetes.io/name: gke-ai-inference-admission-policy
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+      - apiGroups: ["apps"]
+        apiVersions: ["v1"]
+        operations: ["CREATE", "UPDATE"]
+        resources: ["deployments"]
+  validations:
+    - expression: >-
+        has(object.metadata.labels) &&
+        'app.kubernetes.io/name' in object.metadata.labels &&
+        'app.kubernetes.io/part-of' in object.metadata.labels &&
+        object.metadata.labels['app.kubernetes.io/part-of'] == 'gke-ai-inference-reliability-lab'
+      message: "Deployment must keep owner labels for reliability evidence selection."
+      reason: Invalid
+    - expression: >-
+        object.spec.template.spec.containers.all(c,
+          c.image.matches('^[^@]+@sha256:[0-9a-f]{64}$'))
+      message: "Container images must be digest-pinned with sha256 references."
+      reason: Invalid
+    - expression: >-
+        object.spec.template.spec.containers.all(c,
+          c.image.startsWith('otel/') || c.image.startsWith('python:'))
+      message: "Container images must come from the approved demo registry set."
+      reason: Invalid
+    - expression: >-
+        has(object.spec.template.spec.securityContext) &&
+        object.spec.template.spec.securityContext.runAsNonRoot == true &&
+        has(object.spec.template.spec.securityContext.seccompProfile) &&
+        object.spec.template.spec.securityContext.seccompProfile.type == 'RuntimeDefault'
+      message: "Pod security must require non-root execution and RuntimeDefault seccomp."
+      reason: Invalid
+    - expression: >-
+        object.spec.template.spec.containers.all(c,
+          has(c.securityContext) &&
+          (!has(c.securityContext.privileged) || c.securityContext.privileged == false) &&
+          c.securityContext.allowPrivilegeEscalation == false &&
+          has(c.securityContext.capabilities) &&
+          c.securityContext.capabilities.drop.exists(cap, cap == 'ALL'))
+      message: "Containers must not be privileged, escalate privileges, or keep Linux capabilities."
+      reason: Invalid
+    - expression: >-
+        object.spec.template.spec.containers.all(c,
+          has(c.resources) &&
+          has(c.resources.requests) &&
+          has(c.resources.limits) &&
+          'cpu' in c.resources.requests &&
+          'memory' in c.resources.requests &&
+          'cpu' in c.resources.limits &&
+          'memory' in c.resources.limits)
+      message: "Containers must define CPU and memory requests and limits."
+      reason: Invalid
+    - expression: >-
+        object.spec.template.spec.containers.all(c,
+          has(c.readinessProbe) && has(c.livenessProbe))
+      message: "Containers must expose readiness and liveness probes."
+      reason: Invalid
+    - expression: >-
+        object.metadata.namespace != 'ai-observability-demo' ||
+        (has(object.spec.template.metadata.annotations) &&
+          'instrumentation.opentelemetry.io/inject-python' in object.spec.template.metadata.annotations)
+      message: "AI workload deployments must keep OpenTelemetry instrumentation injection enabled."
+      reason: Invalid
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: gke-ai-inference-reliability-deployments
+  labels:
+    app.kubernetes.io/name: gke-ai-inference-admission-policy
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  policyName: gke-ai-inference-reliability-deployments
+  validationActions: ["Deny"]
+  matchResources:
+    namespaceSelector:
+      matchLabels:
+        app.kubernetes.io/part-of: gke-ai-inference-reliability-lab

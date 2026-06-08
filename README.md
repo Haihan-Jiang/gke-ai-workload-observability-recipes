@@ -11,6 +11,9 @@ only from prose: the repo now includes multi-window burn-rate analysis, canary
 rollback decisions, OTLP trace-quality auditing, collector outage modeling,
 incident correlation, critical-path attribution, evidence coverage checks,
 HPA lag modeling, tenant blast-radius detection, and token/GPU cost guardrails.
+It also includes supply-chain, Kubernetes hardening, and admission-policy
+evidence so reviewers can see how deployment drift would be blocked before a
+bad manifest reaches a cluster.
 
 This repository is a personal reference project. Related upstream Google Cloud
 OpenTelemetry sample PRs are tracked in
@@ -43,6 +46,10 @@ not described as merged.
 - Kubernetes manifest hardening evidence for probes, resource budgets,
   restricted collector security context, disruption protection, and
   NetworkPolicy boundaries.
+- A Kubernetes admission policy pack and simulated admission audit that allow
+  the committed deployments while denying drift fixtures for unpinned images,
+  privileged containers, missing probes/resources, bad registries, and missing
+  OpenTelemetry instrumentation.
 - Generated SLO alerting rules that connect latency, dependency, rollout,
   cache, and telemetry-loss signals to severities, runbooks, and dashboard
   hints.
@@ -196,6 +203,7 @@ script:
 - [Policy regression suite](docs/evidence/policy-regression-suite.md)
 - [Supply chain audit](docs/evidence/supply-chain-audit.md)
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
+- [Admission policy audit](docs/evidence/admission-policy-audit.md)
 - [SLO alerting rules](docs/evidence/alerting-rules.md)
 - [Grafana dashboard evidence](docs/evidence/grafana-dashboard.md)
 - [OpenSLO contract evidence](docs/evidence/openslo-contract.md)
@@ -248,6 +256,9 @@ The Kubernetes manifests live under [k8s/gke](k8s/gke):
   labeled ConfigMaps.
 - [gke-ai-inference-slo.yaml](slos/openslo/gke-ai-inference-slo.yaml):
   OpenSLO-style service objective contract for platform review.
+- [gke-ai-inference-admission-policy.yaml](policies/admission/gke-ai-inference-admission-policy.yaml):
+  native Kubernetes ValidatingAdmissionPolicy and binding for deployment
+  guardrails.
 
 These manifests are intentionally small and reviewable. For real production
 use, replace the placeholder upstream OTLP endpoint in `collector.yaml` with a
@@ -268,28 +279,31 @@ Before adapting this to a real GKE cluster:
 5. Keep collector RBAC read-only and scoped to required Kubernetes metadata.
 6. Keep collector health probes, resource budgets, security context,
    disruption budget, and NetworkPolicy aligned with the manifest audit.
-7. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
+7. Keep the admission policy audit aligned with digest pinning, restricted
+   security context, probes, resources, registry allowlists, and
+   instrumentation requirements.
+8. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
    alerting evidence before routing pages.
-8. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
-9. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
+9. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
+10. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
    alerting, dashboard, and release-readiness evidence.
-10. Audit trace payloads for prompt, response, secret, and direct-identifier
+11. Audit trace payloads for prompt, response, secret, and direct-identifier
    leakage before using inference telemetry as production evidence.
-11. Keep trace sampling and retention budgets explicit before routing all
+12. Keep trace sampling and retention budgets explicit before routing all
     inference telemetry into a paid backend.
-12. Keep the error-budget ledger aligned with the SLO target before treating a
+13. Keep the error-budget ledger aligned with the SLO target before treating a
    canary or dependency incident as release-safe.
-13. Run the rollback drill after changing release gates, runbooks, or SLO
+14. Run the rollback drill after changing release gates, runbooks, or SLO
     budget policy so owner and RTO assumptions stay explicit.
-14. Keep post-incident reviews tied to replayed evidence, rollback timelines,
+15. Keep post-incident reviews tied to replayed evidence, rollback timelines,
     and corrective actions instead of treating them as narrative-only notes.
-15. Regenerate evidence provenance after changing evidence scripts, generated
+16. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-16. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+17. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-17. For private GKE clusters, verify webhook/firewall access for any operators
+18. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-18. Treat telemetry as production evidence: validate it during staged rollout,
+19. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -328,8 +342,9 @@ After an upstream PR merges, update this to:
 > capacity/readiness evidence, burn-rate and canary decision controls, trace
 > quality audits, critical-path attribution, HPA lag analysis, tenant blast
 > radius checks, token/GPU guardrails, policy-as-code deployment gates,
-> telemetry redaction and cost audits, supply-chain image checks, generated
-> runbooks, and related Google Cloud OSS recipe contributions.
+> admission-policy simulation, telemetry redaction and cost audits,
+> supply-chain image checks, generated runbooks, and related Google Cloud OSS
+> recipe contributions.
 
 ## License
 

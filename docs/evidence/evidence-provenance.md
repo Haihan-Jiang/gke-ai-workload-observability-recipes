@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `58`
+- Evidence artifacts: `60`
 - Generated artifacts: `4`
-- Source inputs: `37`
+- Source inputs: `40`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 1774 | `e96e36ed4c953f2f...` |
+| `docs/evidence/README.md` | 1828 | `c19c48be847e7bfe...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -72,6 +72,8 @@ evidence easier to detect during review.
 | `docs/evidence/supply-chain-audit.json` | 1667 | `7d881ef96bd2b874...` |
 | `docs/evidence/k8s-hardening-audit.md` | 1843 | `04ff59b9155bc9d8...` |
 | `docs/evidence/k8s-hardening-audit.json` | 4673 | `40cad4f46752bda1...` |
+| `docs/evidence/admission-policy-audit.md` | 1859 | `f9af1e271477a16c...` |
+| `docs/evidence/admission-policy-audit.json` | 47340 | `1fd2253203c05806...` |
 | `docs/evidence/alerting-rules.md` | 1034 | `dc833704511d7837...` |
 | `docs/evidence/alerting-rules.json` | 6615 | `8c9278ce2776866d...` |
 | `docs/evidence/grafana-dashboard.md` | 1103 | `5d0c98a3c0e701fb...` |

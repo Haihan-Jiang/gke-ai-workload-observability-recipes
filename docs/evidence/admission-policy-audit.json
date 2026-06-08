@@ -1,0 +1,1567 @@
+{
+  "status": "pass",
+  "policy_manifest": "policies/admission/gke-ai-inference-admission-policy.yaml",
+  "policy_check_count": 12,
+  "deployment_count": 2,
+  "allowed_deployment_count": 2,
+  "fixture_count": 10,
+  "denied_fixture_count": 10,
+  "failed_count": 0,
+  "policy_checks": [
+    {
+      "name": "validating_admission_policy_present",
+      "status": "pass",
+      "reason": "Native Kubernetes ValidatingAdmissionPolicy object is present.",
+      "evidence": {
+        "kinds": [
+          "ValidatingAdmissionPolicy",
+          "ValidatingAdmissionPolicyBinding"
+        ]
+      }
+    },
+    {
+      "name": "validating_admission_policy_binding_present",
+      "status": "pass",
+      "reason": "Policy binding is present so the policy can enforce matching requests.",
+      "evidence": {
+        "kinds": [
+          "ValidatingAdmissionPolicy",
+          "ValidatingAdmissionPolicyBinding"
+        ]
+      }
+    },
+    {
+      "name": "failure_policy_fail",
+      "status": "pass",
+      "reason": "Admission failure policy is fail-closed.",
+      "evidence": {
+        "failure_policy": "Fail"
+      }
+    },
+    {
+      "name": "deny_action",
+      "status": "pass",
+      "reason": "Policy binding denies invalid deployment create and update requests.",
+      "evidence": {
+        "validation_actions": [
+          "Deny"
+        ]
+      }
+    },
+    {
+      "name": "control_owner_labels",
+      "status": "pass",
+      "reason": "Admission policy contains the owner_labels validation.",
+      "evidence": {
+        "message_fragment": "owner labels"
+      }
+    },
+    {
+      "name": "control_digest_pinned_images",
+      "status": "pass",
+      "reason": "Admission policy contains the digest_pinned_images validation.",
+      "evidence": {
+        "message_fragment": "digest-pinned"
+      }
+    },
+    {
+      "name": "control_allowed_registry",
+      "status": "pass",
+      "reason": "Admission policy contains the allowed_registry validation.",
+      "evidence": {
+        "message_fragment": "approved demo registry"
+      }
+    },
+    {
+      "name": "control_restricted_pod_security",
+      "status": "pass",
+      "reason": "Admission policy contains the restricted_pod_security validation.",
+      "evidence": {
+        "message_fragment": "non-root execution"
+      }
+    },
+    {
+      "name": "control_restricted_container_security",
+      "status": "pass",
+      "reason": "Admission policy contains the restricted_container_security validation.",
+      "evidence": {
+        "message_fragment": "not be privileged"
+      }
+    },
+    {
+      "name": "control_container_resources",
+      "status": "pass",
+      "reason": "Admission policy contains the container_resources validation.",
+      "evidence": {
+        "message_fragment": "requests and limits"
+      }
+    },
+    {
+      "name": "control_health_probes",
+      "status": "pass",
+      "reason": "Admission policy contains the health_probes validation.",
+      "evidence": {
+        "message_fragment": "readiness and liveness probes"
+      }
+    },
+    {
+      "name": "control_otel_instrumentation",
+      "status": "pass",
+      "reason": "Admission policy contains the otel_instrumentation validation.",
+      "evidence": {
+        "message_fragment": "instrumentation injection"
+      }
+    }
+  ],
+  "current_decisions": [
+    {
+      "namespace": "telemetry",
+      "deployment": "otel-collector",
+      "decision": "allow",
+      "failed_controls": [],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "otel-collector",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "otel/opentelemetry-collector-contrib:0.112.0@sha256:2203eea06554f892c765d6eff8069cdf64ae8d4516526d03cab4a70e82775495"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "otel/opentelemetry-collector-contrib:0.112.0@sha256:2203eea06554f892c765d6eff8069cdf64ae8d4516526d03cab4a70e82775495",
+                "registry": "docker.io",
+                "tag": "0.112.0"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 10001,
+              "runAsGroup": 10001,
+              "fsGroup": 10001,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "readOnlyRootFilesystem": true,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "256Mi"
+                },
+                "limits": {
+                  "cpu": "500m",
+                  "memory": "512Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "otel-collector",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {},
+            "namespace": "telemetry"
+          }
+        }
+      ]
+    },
+    {
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "allow",
+      "failed_controls": [],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "docker.io",
+                "tag": "3.12-slim"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    }
+  ],
+  "fixture_decisions": [
+    {
+      "fixture": "missing_owner_label",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "owner_labels"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "fail",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "docker.io",
+                "tag": "3.12-slim"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "unpinned_image",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "digest_pinned_images"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "fail",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:3.12-slim"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:3.12-slim",
+                "registry": "docker.io",
+                "tag": "3.12-slim"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "latest_tag",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "allowed_registry"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:latest@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "fail",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:latest@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "docker.io",
+                "tag": "latest"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "disallowed_registry",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "allowed_registry"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "ghcr.io/example/toy-ai-inference-api:1.0@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "fail",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "ghcr.io/example/toy-ai-inference-api:1.0@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "ghcr.io",
+                "tag": "1.0"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "root_pod",
+      "namespace": "telemetry",
+      "deployment": "otel-collector",
+      "decision": "deny",
+      "failed_controls": [
+        "restricted_pod_security"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "otel-collector",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "otel/opentelemetry-collector-contrib:0.112.0@sha256:2203eea06554f892c765d6eff8069cdf64ae8d4516526d03cab4a70e82775495"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "otel/opentelemetry-collector-contrib:0.112.0@sha256:2203eea06554f892c765d6eff8069cdf64ae8d4516526d03cab4a70e82775495",
+                "registry": "docker.io",
+                "tag": "0.112.0"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "fail",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": false,
+              "runAsUser": 10001,
+              "runAsGroup": 10001,
+              "fsGroup": 10001,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "readOnlyRootFilesystem": true,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "256Mi"
+                },
+                "limits": {
+                  "cpu": "500m",
+                  "memory": "512Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "otel-collector",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {},
+            "namespace": "telemetry"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "privileged_container",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "restricted_container_security"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "docker.io",
+                "tag": "3.12-slim"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "fail",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "privilege_escalation",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "restricted_container_security"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "docker.io",
+                "tag": "3.12-slim"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "fail",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": true,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "missing_resources",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "container_resources"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "docker.io",
+                "tag": "3.12-slim"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "fail",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {}
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "missing_probes",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "health_probes"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "docker.io",
+                "tag": "3.12-slim"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "fail",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": false,
+                "liveness": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "pass",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {
+              "instrumentation.opentelemetry.io/inject-python": "telemetry/python-instrumentation"
+            },
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "missing_instrumentation",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "decision": "deny",
+      "failed_controls": [
+        "otel_instrumentation"
+      ],
+      "controls": [
+        {
+          "name": "owner_labels",
+          "status": "pass",
+          "reason": "Deployment has owner labels used by admission selection and audit evidence.",
+          "evidence": {
+            "labels": {
+              "app.kubernetes.io/name": "toy-ai-inference-api",
+              "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+            }
+          }
+        },
+        {
+          "name": "digest_pinned_images",
+          "status": "pass",
+          "reason": "Every container image is pinned by sha256 digest.",
+          "evidence": {
+            "images": [
+              "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+            ]
+          }
+        },
+        {
+          "name": "allowed_registry",
+          "status": "pass",
+          "reason": "Images come from allowed registries and avoid floating tags.",
+          "evidence": {
+            "images": [
+              {
+                "image": "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203",
+                "registry": "docker.io",
+                "tag": "3.12-slim"
+              }
+            ]
+          }
+        },
+        {
+          "name": "restricted_pod_security",
+          "status": "pass",
+          "reason": "Pod template requires non-root execution and RuntimeDefault seccomp.",
+          "evidence": {
+            "security_context": {
+              "runAsNonRoot": true,
+              "runAsUser": 1000,
+              "runAsGroup": 1000,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            }
+          }
+        },
+        {
+          "name": "restricted_container_security",
+          "status": "pass",
+          "reason": "Containers cannot be privileged, escalate privileges, or keep capabilities.",
+          "evidence": {
+            "security_contexts": [
+              {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "container_resources",
+          "status": "pass",
+          "reason": "Containers declare CPU and memory requests and limits.",
+          "evidence": {
+            "resources": [
+              {
+                "requests": {
+                  "cpu": "50m",
+                  "memory": "64Mi"
+                },
+                "limits": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "health_probes",
+          "status": "pass",
+          "reason": "Containers define readiness and liveness probes.",
+          "evidence": {
+            "probes": [
+              {
+                "container": "app",
+                "readiness": true,
+                "liveness": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "otel_instrumentation",
+          "status": "fail",
+          "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
+          "evidence": {
+            "annotations": {},
+            "namespace": "ai-observability-demo"
+          }
+        }
+      ]
+    }
+  ]
+}

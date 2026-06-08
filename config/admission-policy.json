@@ -1,0 +1,74 @@
+{
+  "description": "Policy for auditing Kubernetes ValidatingAdmissionPolicy coverage and simulated admission decisions for the GKE AI inference reliability lab.",
+  "target_manifests": [
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "policy_manifest": "policies/admission/gke-ai-inference-admission-policy.yaml",
+  "allowed_registries": [
+    "docker.io"
+  ],
+  "forbidden_tags": [
+    "latest",
+    "main",
+    "dev",
+    "snapshot"
+  ],
+  "required_part_of_label": "gke-ai-inference-reliability-lab",
+  "instrumented_namespaces": [
+    "ai-observability-demo"
+  ],
+  "instrumentation_annotation": "instrumentation.opentelemetry.io/inject-python",
+  "minimum_allowed_deployments": 2,
+  "minimum_denied_fixtures": 8,
+  "required_policy": {
+    "failure_policy": "Fail",
+    "validation_action": "Deny"
+  },
+  "required_controls": [
+    {
+      "name": "owner_labels",
+      "message_fragment": "owner labels"
+    },
+    {
+      "name": "digest_pinned_images",
+      "message_fragment": "digest-pinned"
+    },
+    {
+      "name": "allowed_registry",
+      "message_fragment": "approved demo registry"
+    },
+    {
+      "name": "restricted_pod_security",
+      "message_fragment": "non-root execution"
+    },
+    {
+      "name": "restricted_container_security",
+      "message_fragment": "not be privileged"
+    },
+    {
+      "name": "container_resources",
+      "message_fragment": "requests and limits"
+    },
+    {
+      "name": "health_probes",
+      "message_fragment": "readiness and liveness probes"
+    },
+    {
+      "name": "otel_instrumentation",
+      "message_fragment": "instrumentation injection"
+    }
+  ],
+  "fixture_mutations": [
+    "missing_owner_label",
+    "unpinned_image",
+    "latest_tag",
+    "disallowed_registry",
+    "root_pod",
+    "privileged_container",
+    "privilege_escalation",
+    "missing_resources",
+    "missing_probes",
+    "missing_instrumentation"
+  ]
+}
