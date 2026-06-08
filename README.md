@@ -14,6 +14,9 @@ HPA lag modeling, tenant blast-radius detection, and token/GPU cost guardrails.
 It also includes supply-chain, Kubernetes hardening, and admission-policy
 evidence so reviewers can see how deployment drift would be blocked before a
 bad manifest reaches a cluster.
+Namespace resource governance evidence checks that telemetry and workload
+namespaces have ResourceQuota and LimitRange controls that cover current
+requests and limits with headroom.
 Workload Identity evidence checks that GKE service account binding, service
 account token mounting, RBAC scope, static credential handling, and upstream
 exporter transport are explicit before the manifests are treated as deployment
@@ -81,6 +84,9 @@ not described as merged.
 - Kubernetes manifest hardening evidence for probes, resource budgets,
   restricted collector security context, disruption protection, and
   NetworkPolicy boundaries.
+- A namespace resource governance audit that verifies ResourceQuota,
+  LimitRange defaulting, quota headroom against current Deployments, and
+  namespace ownership labels.
 - A Workload Identity audit that verifies GKE service account annotation,
   service account token boundaries, read-only RBAC scope, static credential
   rejection, and TLS upstream exporter configuration.
@@ -273,6 +279,7 @@ script:
 - [Policy regression suite](docs/evidence/policy-regression-suite.md)
 - [Supply chain audit](docs/evidence/supply-chain-audit.md)
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
+- [Namespace resource audit](docs/evidence/namespace-resource-audit.md)
 - [Workload Identity audit](docs/evidence/workload-identity-audit.md)
 - [Admission policy audit](docs/evidence/admission-policy-audit.md)
 - [SLO alerting rules](docs/evidence/alerting-rules.md)
@@ -361,63 +368,65 @@ Before adapting this to a real GKE cluster:
 5. Keep collector RBAC read-only and scoped to required Kubernetes metadata.
 6. Keep collector health probes, resource budgets, security context,
    disruption budget, and NetworkPolicy aligned with the manifest audit.
-7. Keep Workload Identity bindings, service account token automount settings,
+7. Keep namespace ResourceQuota and LimitRange policy aligned with workload
+   replicas, requests, limits, PVC storage, and namespace ownership labels.
+8. Keep Workload Identity bindings, service account token automount settings,
    RBAC scope, static credential checks, and exporter transport aligned with
    the identity audit.
-8. Keep the admission policy audit aligned with digest pinning, restricted
+9. Keep the admission policy audit aligned with digest pinning, restricted
    security context, probes, resources, registry allowlists, and
    instrumentation requirements.
-9. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
+10. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
    alerting evidence before routing pages.
-10. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
-11. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
+11. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
+12. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
    alerting, dashboard, and release-readiness evidence.
-12. Run the observability drift audit after changing alert rules, Grafana
+13. Run the observability drift audit after changing alert rules, Grafana
    panels, OpenSLO links, runbooks, or scenario names.
-13. Audit trace payloads for prompt, response, secret, and direct-identifier
+14. Audit trace payloads for prompt, response, secret, and direct-identifier
    leakage before using inference telemetry as production evidence.
-14. Keep trace sampling and retention budgets explicit before routing all
+15. Keep trace sampling and retention budgets explicit before routing all
     inference telemetry into a paid backend.
-15. Keep the error-budget ledger aligned with the SLO target before treating a
+16. Keep the error-budget ledger aligned with the SLO target before treating a
    canary or dependency incident as release-safe.
-16. Run the rollback drill after changing release gates, runbooks, or SLO
+17. Run the rollback drill after changing release gates, runbooks, or SLO
     budget policy so owner and RTO assumptions stay explicit.
-17. Keep post-incident reviews tied to replayed evidence, rollback timelines,
+18. Keep post-incident reviews tied to replayed evidence, rollback timelines,
     and corrective actions instead of treating them as narrative-only notes.
-18. Run the incident response drill after changing alert severities, runbooks,
+19. Run the incident response drill after changing alert severities, runbooks,
     escalation policy, rollback timelines, or RCA requirements.
-19. Keep dependency contracts aligned with timeout/retry/fallback policy,
+20. Keep dependency contracts aligned with timeout/retry/fallback policy,
     trace attributes, runbook owners, alert severities, and release actions.
-20. Keep synthetic probes aligned with baseline health, dependency failure,
+21. Keep synthetic probes aligned with baseline health, dependency failure,
     canary version, telemetry delivery, alert routing, rollback, and
     error-budget actions.
-21. Keep model release policy aligned with pinned artifacts, offline eval
+22. Keep model release policy aligned with pinned artifacts, offline eval
     thresholds, schema compatibility, canary rollback, token/GPU cost deltas,
     rollback targets, and trace labels.
-22. Keep shadow traffic policy aligned with no-user-serving guarantees,
+23. Keep shadow traffic policy aligned with no-user-serving guarantees,
     disabled writes/side effects, redacted telemetry, rollout comparisons,
     cost review, probe signals, and rollback targets.
-23. Keep accelerator quota policy aligned with tenant tier reservations,
+24. Keep accelerator quota policy aligned with tenant tier reservations,
     GPU/token budgets, load-shedding actions, shadow candidates, and model
     release gates.
-24. Keep load-shedding policy aligned with capacity warnings, tenant tiers,
+25. Keep load-shedding policy aligned with capacity warnings, tenant tiers,
     fallback behavior, token/GPU cost review, preflight probes, runbook owners,
     and release actions.
-25. Keep regional failover policy aligned with DR RTO/RPO, standby capacity,
+26. Keep regional failover policy aligned with DR RTO/RPO, standby capacity,
     synthetic probes, load shedding, rollback paths, runbook owners, and
     Kubernetes control-plane hardening.
-26. Keep release waivers bounded by owner, approver, expiry, rollback drill,
+27. Keep release waivers bounded by owner, approver, expiry, rollback drill,
     post-incident review, linked evidence, and acknowledged error-budget
     impact.
-27. Verify disaster recovery after changing evidence, generated manifests,
+28. Verify disaster recovery after changing evidence, generated manifests,
     dashboards, SLO contracts, admission policies, or release control files.
-28. Regenerate evidence provenance after changing evidence scripts, generated
+29. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-29. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+30. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-30. For private GKE clusters, verify webhook/firewall access for any operators
+31. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-31. Treat telemetry as production evidence: validate it during staged rollout,
+32. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -450,7 +459,8 @@ Current wording before upstream merges:
 > auditing, shadow traffic replay auditing, load-shedding policy auditing,
 > accelerator quota fairness auditing, regional failover auditing,
 > telemetry redaction and cost audits,
-> supply-chain image checks, Workload Identity/IAM boundary checks,
+> supply-chain image checks, namespace quota/LimitRange governance,
+> Workload Identity/IAM boundary checks,
 > cross-namespace instrumentation, persistent telemetry queues, and Kubernetes
 > metadata.
 
@@ -468,7 +478,8 @@ After an upstream PR merges, update this to:
 > auditing, shadow traffic replay auditing, load-shedding policy auditing,
 > accelerator quota fairness auditing, regional failover auditing,
 > telemetry redaction and cost audits,
-> supply-chain image checks, Workload Identity/IAM boundary checks,
+> supply-chain image checks, namespace quota/LimitRange governance,
+> Workload Identity/IAM boundary checks,
 > generated runbooks, and related Google Cloud OSS recipe contributions.
 
 ## License

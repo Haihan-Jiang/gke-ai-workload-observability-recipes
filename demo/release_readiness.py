@@ -55,6 +55,8 @@ REQUIRED_EVIDENCE = [
     "supply-chain-audit.json",
     "k8s-hardening-audit.md",
     "k8s-hardening-audit.json",
+    "namespace-resource-audit.md",
+    "namespace-resource-audit.json",
     "workload-identity-audit.md",
     "workload-identity-audit.json",
     "admission-policy-audit.md",
@@ -124,6 +126,7 @@ def evaluate(
     policy_regression: dict[str, Any],
     supply_chain: dict[str, Any],
     k8s_hardening: dict[str, Any],
+    namespace_resource: dict[str, Any],
     workload_identity: dict[str, Any],
     admission_policy: dict[str, Any],
     alerting: dict[str, Any],
@@ -193,6 +196,14 @@ def evaluate(
             "ok": k8s_hardening.get("status") == "pass"
             and int(k8s_hardening.get("check_count", 0)) >= 11
             and int(k8s_hardening.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "namespace_resource_audit",
+            "ok": namespace_resource.get("status") == "pass"
+            and int(namespace_resource.get("namespace_count", 0)) >= 2
+            and int(namespace_resource.get("check_count", 0)) >= 8
+            and int(namespace_resource.get("detected_fixture_count", 0)) >= 8
+            and int(namespace_resource.get("failed_count", -1)) == 0,
         },
         {
             "name": "workload_identity_audit",
@@ -367,8 +378,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 84
-            and int(evidence_provenance.get("source_input_count", 0)) >= 65
+            and int(evidence_provenance.get("artifact_count", 0)) >= 86
+            and int(evidence_provenance.get("source_input_count", 0)) >= 67
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -395,8 +406,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
-        "manifest hardening, Workload Identity audit, admission policy",
-        "simulation, SLO alerting rules,",
+        "manifest hardening, namespace resource governance, Workload Identity",
+        "audit, admission policy simulation, SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
         "detection,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
@@ -443,6 +454,7 @@ def main() -> int:
     parser.add_argument("--policy-regression", default="out/policy-regression-suite/policy-regression-suite.json")
     parser.add_argument("--supply-chain", default="out/supply-chain-audit/supply-chain-audit.json")
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
+    parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
     parser.add_argument("--workload-identity", default="out/workload-identity-audit/workload-identity-audit.json")
     parser.add_argument("--admission-policy", default="out/admission-policy-audit/admission-policy-audit.json")
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
@@ -479,6 +491,7 @@ def main() -> int:
         policy_regression=load_json(Path(args.policy_regression)),
         supply_chain=load_json(Path(args.supply_chain)),
         k8s_hardening=load_json(Path(args.k8s_hardening)),
+        namespace_resource=load_json(Path(args.namespace_resource)),
         workload_identity=load_json(Path(args.workload_identity)),
         admission_policy=load_json(Path(args.admission_policy)),
         alerting=load_json(Path(args.alerting)),

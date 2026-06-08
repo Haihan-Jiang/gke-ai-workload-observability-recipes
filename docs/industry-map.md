@@ -145,6 +145,7 @@ inference incidents before a service reaches production.
 | C24 | Regional failover can restore artifacts but still route unsafe traffic | Failover decisions need DR RTO/RPO, standby capacity, probes, load shedding, rollback, runbook ownership, and Kubernetes controls to agree before traffic moves. | [Regional failover audit](evidence/regional-failover-audit.md) |
 | C25 | Accelerator quota overuse can starve high-priority inference tenants | GPU/accelerator quota needs tenant reservations, cost review, load shedding, shadow candidate checks, and release blocking to agree before traffic expands. | [Accelerator quota fairness audit](evidence/accelerator-quota-fairness-audit.md) |
 | C26 | GKE samples can accidentally normalize static keys or broad identity scope | Production recipes need Workload Identity binding, explicit service account token boundaries, least-privilege RBAC, static credential rejection, and TLS exporter transport. | [Workload Identity audit](evidence/workload-identity-audit.md) |
+| C27 | Namespaces can allow runaway AI workloads despite per-pod resource settings | GKE recipes need ResourceQuota and LimitRange controls that cover current workloads with headroom, default missing requests, and keep object counts bounded. | [Namespace resource audit](evidence/namespace-resource-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -242,6 +243,12 @@ inference incidents before a service reaches production.
     - Policy: [config/workload-identity-policy.json](../config/workload-identity-policy.json)
     - Inputs: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
     - Evidence: [Workload Identity audit](evidence/workload-identity-audit.md)
+
+17. **Namespace resource audit**
+    - Code: [demo/namespace_resource_audit.py](../demo/namespace_resource_audit.py)
+    - Policy: [config/namespace-resource-policy.json](../config/namespace-resource-policy.json)
+    - Inputs: GKE-shaped namespace, collector, and sample workload manifests under [k8s/gke](../k8s/gke)
+    - Evidence: [namespace resource audit](evidence/namespace-resource-audit.md)
 
 ## Boundary
 

@@ -7,9 +7,97 @@ metadata:
     observability.haihan.dev/role: telemetry
 ---
 apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: telemetry-resource-quota
+  namespace: telemetry
+  labels:
+    app.kubernetes.io/name: telemetry-resource-quota
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  hard:
+    pods: "10"
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+    persistentvolumeclaims: "2"
+    requests.storage: 10Gi
+    services: "4"
+    configmaps: "8"
+    secrets: "4"
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: telemetry-limit-range
+  namespace: telemetry
+  labels:
+    app.kubernetes.io/name: telemetry-limit-range
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  limits:
+    - type: Container
+      defaultRequest:
+        cpu: 100m
+        memory: 128Mi
+      default:
+        cpu: 500m
+        memory: 512Mi
+      max:
+        cpu: "1"
+        memory: 1Gi
+      min:
+        cpu: 25m
+        memory: 64Mi
+---
+apiVersion: v1
 kind: Namespace
 metadata:
   name: ai-observability-demo
   labels:
     app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
     observability.haihan.dev/role: workload
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: ai-workload-resource-quota
+  namespace: ai-observability-demo
+  labels:
+    app.kubernetes.io/name: ai-workload-resource-quota
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  hard:
+    pods: "12"
+    requests.cpu: "2"
+    requests.memory: 2Gi
+    limits.cpu: "4"
+    limits.memory: 4Gi
+    services: "4"
+    configmaps: "6"
+    secrets: "2"
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: ai-workload-limit-range
+  namespace: ai-observability-demo
+  labels:
+    app.kubernetes.io/name: ai-workload-limit-range
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  limits:
+    - type: Container
+      defaultRequest:
+        cpu: 50m
+        memory: 64Mi
+      default:
+        cpu: 250m
+        memory: 256Mi
+      max:
+        cpu: 500m
+        memory: 512Mi
+      min:
+        cpu: 25m
+        memory: 32Mi

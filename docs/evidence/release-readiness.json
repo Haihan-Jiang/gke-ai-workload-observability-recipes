@@ -42,6 +42,10 @@
       "ok": true
     },
     {
+      "name": "namespace_resource_audit",
+      "ok": true
+    },
+    {
       "name": "workload_identity_audit",
       "ok": true
     },
@@ -309,6 +313,14 @@
     },
     {
       "path": "k8s-hardening-audit.json",
+      "exists": true
+    },
+    {
+      "path": "namespace-resource-audit.md",
+      "exists": true
+    },
+    {
+      "path": "namespace-resource-audit.json",
       "exists": true
     },
     {

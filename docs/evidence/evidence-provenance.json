@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 84,
+  "artifact_count": 86,
   "generated_artifact_count": 4,
-  "source_input_count": 65,
+  "source_input_count": 67,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2546,
-      "sha256": "b74e51c9b420c01adc0b32e1def00e1cb0cc4996191496b86b3d837730f27fd5"
+      "bytes": 2604,
+      "sha256": "82aeaf390954471498fc37b6228ba0e399ca24be38553464f9aa68dc05848f90"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -308,6 +308,20 @@
       "exists": true,
       "bytes": 4673,
       "sha256": "40cad4f46752bda1f4149e05285b8ff719fdec53169168da5e8aecedbfd8c6c7"
+    },
+    {
+      "path": "docs/evidence/namespace-resource-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1510,
+      "sha256": "1e4d942333a71b491086d541910f8a989e50c1476cbf2066575e11ea84ff5a9e"
+    },
+    {
+      "path": "docs/evidence/namespace-resource-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 5673,
+      "sha256": "aad9de2fc002d69bf5a9a77e4350f64f1dd6fe1c41f785f53011835610745f2c"
     },
     {
       "path": "docs/evidence/workload-identity-audit.md",
@@ -600,8 +614,8 @@
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 21215,
-      "sha256": "916df2dc1a5298e1e2ba3d3c072b22239cfe6309e8a23dc28f56257baa3fc7df"
+      "bytes": 21217,
+      "sha256": "7e70cb2d65eda893dc3cb8efb0f2b6df8912e830772c1ee4b60406dd793417d5"
     }
   ],
   "generated_artifacts": [
@@ -639,15 +653,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 11985,
-      "sha256": "fd7f76cbfe72132d7711674556c6ad7e1314f1d17462705b3323b4886cae70d5"
+      "bytes": 12206,
+      "sha256": "2b99a9e222fc461e136b2cddf0415901d8e60cfc1ab5825d9d16a67045176582"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 21269,
-      "sha256": "9bc3d60aa988fee00a246129ffaa3520fd7af13ad6ae3e0f9e539850f08204b2"
+      "bytes": 21697,
+      "sha256": "28ffdbc285192d0e8a23a1752886199ad897175b6141ffefee01a5d1c062f240"
     },
     {
       "path": "demo/incident_replay.py",
@@ -718,6 +732,13 @@
       "exists": true,
       "bytes": 12826,
       "sha256": "ef5632050873a76b6669f3b8ca4378fa267e22276f23bf31969d614867a2fd29"
+    },
+    {
+      "path": "demo/namespace_resource_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 19024,
+      "sha256": "0a0581fe6630dc9441cc8bb57d9ff31b32459230a0119a3671d9d77a9b42d2bd"
     },
     {
       "path": "demo/workload_identity_audit.py",
@@ -870,8 +891,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 10342,
-      "sha256": "1b011fd0779174c373d0b7dc5ece1aa0c99ce06db3f542b14612af6fa04ec6d6"
+      "bytes": 10419,
+      "sha256": "3bcdd9414de7491adeb5d89ffb341f48bc797e96731275d0d79be96f674fd6da"
     },
     {
       "path": "config/reliability-slo.json",
@@ -914,6 +935,13 @@
       "exists": true,
       "bytes": 797,
       "sha256": "d95366692d264fc220a845e8f154695291d480eaeb4d61725fa3940650ffe8bf"
+    },
+    {
+      "path": "config/namespace-resource-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3518,
+      "sha256": "d654891f5e34019452749955a8df2b7f63d658d994a08aa48537cf5ca19df8da"
     },
     {
       "path": "config/workload-identity-policy.json",
@@ -1097,8 +1125,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 84,
-        "minimum": 84
+        "count": 86,
+        "minimum": 86
       }
     },
     {
@@ -1114,8 +1142,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 65,
-        "minimum": 65
+        "count": 67,
+        "minimum": 67
       }
     },
     {
