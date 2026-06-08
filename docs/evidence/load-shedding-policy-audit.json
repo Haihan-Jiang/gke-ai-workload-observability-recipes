@@ -1,0 +1,362 @@
+{
+  "status": "pass",
+  "action_count": 5,
+  "protective_action_count": 4,
+  "fixture_count": 5,
+  "detected_fixture_count": 5,
+  "failed_count": 0,
+  "actions": [
+    {
+      "name": "baseline_no_shed",
+      "scenario": "baseline",
+      "traffic_action": "no_action",
+      "owner": "SRE / platform",
+      "runbook_owner": "SRE / platform",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [],
+      "fallback": "keep the healthy baseline as the comparison group",
+      "capacity": {
+        "required_replicas": 1,
+        "max_replicas_budget": 12,
+        "warnings": [],
+        "bottleneck": "normal inference path"
+      },
+      "tenant": {
+        "tier": "standard",
+        "blast_radius": "contained",
+        "violations": []
+      },
+      "cost": {
+        "decision": "allow",
+        "violations": [],
+        "model_variant": "recommender-small"
+      },
+      "budget_decision": "within_budget",
+      "release_action": "eligible_for_release",
+      "probe": {
+        "name": "baseline_readiness_probe",
+        "signal_ok": true,
+        "release_action": "eligible_for_release",
+        "response_rollback_type": "baseline_control",
+        "rollback_drill_type": null
+      },
+      "expected": {
+        "budget_decision": "within_budget",
+        "release_action": "eligible_for_release",
+        "cost_decision": "allow",
+        "requires_preflight_probe": true,
+        "requires_cost_review": false
+      }
+    },
+    {
+      "name": "cache_retrieval_rate_limit",
+      "scenario": "cache_miss_storm",
+      "traffic_action": "rate_limit_retrieval",
+      "owner": "Inference platform / retrieval owner",
+      "runbook_owner": "Inference platform / retrieval owner",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ],
+      "fallback": "serve stale retrieval cache entries and reduce retrieval-heavy request concurrency",
+      "capacity": {
+        "required_replicas": 5,
+        "max_replicas_budget": 12,
+        "warnings": [],
+        "bottleneck": "vector cache and retrieval path"
+      },
+      "tenant": {
+        "tier": "standard",
+        "blast_radius": "contained",
+        "violations": []
+      },
+      "cost": {
+        "decision": "allow",
+        "violations": [],
+        "model_variant": "recommender-small"
+      },
+      "budget_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "probe": {
+        "name": "cache_dependency_probe",
+        "signal_ok": true,
+        "release_action": "require_sre_review_before_rollout",
+        "response_rollback_type": "manual_review",
+        "rollback_drill_type": "manual_review"
+      },
+      "expected": {
+        "budget_decision": "manual_review_required",
+        "release_action": "require_sre_review_before_rollout",
+        "cost_decision": "allow",
+        "requires_preflight_probe": true,
+        "requires_cost_review": false
+      }
+    },
+    {
+      "name": "feature_store_fail_closed",
+      "scenario": "dependency_timeout",
+      "traffic_action": "shed_best_effort",
+      "owner": "Feature platform / dependency owner",
+      "runbook_owner": "Feature platform / dependency owner",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ],
+      "fallback": "use fallback feature values, cap retries, and shed best-effort traffic",
+      "capacity": {
+        "required_replicas": 24,
+        "max_replicas_budget": 12,
+        "warnings": [
+          "do not scale traffic until user-visible errors are isolated",
+          "required replicas exceed the demo budget; treat as a dependency or design issue"
+        ],
+        "bottleneck": "feature-store dependency"
+      },
+      "tenant": {
+        "tier": "standard",
+        "blast_radius": "tenant_slo_breach",
+        "violations": [
+          "p95 1320ms exceeds 300ms",
+          "error rate 0.5 exceeds 0.05"
+        ]
+      },
+      "cost": {
+        "decision": "allow",
+        "violations": [],
+        "model_variant": "recommender-small"
+      },
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "probe": {
+        "name": "feature_store_timeout_probe",
+        "signal_ok": true,
+        "release_action": "block_release_or_rollback",
+        "response_rollback_type": "rollback_required",
+        "rollback_drill_type": "rollback_required"
+      },
+      "expected": {
+        "budget_decision": "budget_exhausted",
+        "release_action": "block_release_or_rollback",
+        "cost_decision": "allow",
+        "requires_preflight_probe": true,
+        "requires_cost_review": false
+      }
+    },
+    {
+      "name": "canary_rollback_and_model_fallback",
+      "scenario": "rollout_regression",
+      "traffic_action": "rollback_canary",
+      "owner": "Service owner / release engineer",
+      "runbook_owner": "Service owner / release engineer",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ],
+      "fallback": "shift traffic to the stable service version and fallback model runtime",
+      "capacity": {
+        "required_replicas": 8,
+        "max_replicas_budget": 12,
+        "warnings": [
+          "do not scale traffic until user-visible errors are isolated"
+        ],
+        "bottleneck": "service rollout and version skew"
+      },
+      "tenant": {
+        "tier": "premium",
+        "blast_radius": "tenant_slo_breach",
+        "violations": [
+          "p95 455ms exceeds 220ms",
+          "error rate 0.29 exceeds 0.02"
+        ]
+      },
+      "cost": {
+        "decision": "block_or_review",
+        "violations": [
+          "tokens 578 exceed 520",
+          "gpu_ms 210 exceeds 180"
+        ],
+        "model_variant": "recommender-v2"
+      },
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "probe": {
+        "name": "canary_version_probe",
+        "signal_ok": true,
+        "release_action": "block_release_or_rollback",
+        "response_rollback_type": "rollback_required",
+        "rollback_drill_type": "rollback_required"
+      },
+      "expected": {
+        "budget_decision": "budget_exhausted",
+        "release_action": "block_release_or_rollback",
+        "cost_decision": "block_or_review",
+        "requires_preflight_probe": true,
+        "requires_cost_review": true
+      }
+    },
+    {
+      "name": "telemetry_queue_protection",
+      "scenario": "collector_queue_pressure",
+      "traffic_action": "protect_telemetry",
+      "owner": "Observability platform",
+      "runbook_owner": "Observability platform",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ],
+      "fallback": "protect persistent collector queues and reduce exporter pressure before trusting dashboards",
+      "capacity": {
+        "required_replicas": 3,
+        "max_replicas_budget": 12,
+        "warnings": [
+          "fix collector delivery before trusting production dashboards"
+        ],
+        "bottleneck": "telemetry collector delivery path"
+      },
+      "tenant": {
+        "tier": "standard",
+        "blast_radius": "tenant_slo_breach",
+        "violations": [
+          "telemetry loss 0.42 exceeds 0.05"
+        ]
+      },
+      "cost": {
+        "decision": "allow",
+        "violations": [],
+        "model_variant": "recommender-small"
+      },
+      "budget_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "probe": {
+        "name": "telemetry_delivery_probe",
+        "signal_ok": true,
+        "release_action": "require_sre_review_before_rollout",
+        "response_rollback_type": "manual_review",
+        "rollback_drill_type": "manual_review"
+      },
+      "expected": {
+        "budget_decision": "manual_review_required",
+        "release_action": "require_sre_review_before_rollout",
+        "cost_decision": "allow",
+        "requires_preflight_probe": true,
+        "requires_cost_review": false
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_dependency_action",
+      "mutation": "remove_action",
+      "scenario": "dependency_timeout",
+      "expected_failed_check": "action_inventory",
+      "failed_checks": [
+        "action_inventory",
+        "capacity_guardrail"
+      ],
+      "detected": true
+    },
+    {
+      "name": "scale_only_dependency_timeout",
+      "mutation": "set_traffic_action",
+      "scenario": "dependency_timeout",
+      "expected_failed_check": "capacity_guardrail",
+      "failed_checks": [
+        "capacity_guardrail"
+      ],
+      "detected": true
+    },
+    {
+      "name": "shed_premium_canary",
+      "mutation": "add_shed_tier",
+      "scenario": "rollout_regression",
+      "expected_failed_check": "tenant_priority_contract",
+      "failed_checks": [
+        "tenant_priority_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_cost_review",
+      "mutation": "set_requires_cost_review",
+      "scenario": "rollout_regression",
+      "expected_failed_check": "cost_guardrail_linkage",
+      "failed_checks": [
+        "cost_guardrail_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_release_action",
+      "mutation": "set_expected_release_action",
+      "scenario": "dependency_timeout",
+      "expected_failed_check": "release_probe_runbook_linkage",
+      "failed_checks": [
+        "release_probe_runbook_linkage"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "action_inventory",
+      "ok": true,
+      "evidence": {
+        "action_count": 5,
+        "missing_actions": []
+      }
+    },
+    {
+      "name": "capacity_guardrail",
+      "ok": true,
+      "evidence": {
+        "protective_action_count": 4,
+        "gaps": []
+      }
+    },
+    {
+      "name": "tenant_priority_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "cost_guardrail_linkage",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "release_probe_runbook_linkage",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 5,
+        "detected_fixture_count": 5,
+        "undetected": []
+      }
+    }
+  ]
+}

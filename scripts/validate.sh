@@ -27,6 +27,7 @@ python3 -m py_compile \
   demo/incident_response_drill.py \
   demo/dependency_contract_audit.py \
   demo/synthetic_probe_audit.py \
+  demo/load_shedding_policy_audit.py \
   demo/release_waiver_governance.py \
   demo/disaster_recovery_drill.py \
   demo/evidence_provenance.py \
@@ -59,6 +60,7 @@ python3 -m json.tool config/post-incident-review-policy.json >/dev/null
 python3 -m json.tool config/incident-response-policy.json >/dev/null
 python3 -m json.tool config/dependency-contract-policy.json >/dev/null
 python3 -m json.tool config/synthetic-probe-policy.json >/dev/null
+python3 -m json.tool config/load-shedding-policy.json >/dev/null
 python3 -m json.tool config/release-waiver-policy.json >/dev/null
 python3 -m json.tool config/release-waivers.json >/dev/null
 python3 -m json.tool config/disaster-recovery-policy.json >/dev/null
@@ -193,6 +195,15 @@ python3 demo/synthetic_probe_audit.py \
   --rollback-drill out/rollback-drill-validate/rollback-drill.json \
   --error-budget out/error-budget-ledger-validate/error-budget-ledger.json \
   --output-dir out/synthetic-probe-audit-validate >/dev/null
+python3 demo/load_shedding_policy_audit.py \
+  --policy config/load-shedding-policy.json \
+  --capacity out/capacity-plan-validate/capacity-plan.json \
+  --tenant-blast-radius out/detailed-reliability-validate/tenant-blast-radius.json \
+  --token-cost out/detailed-reliability-validate/token-cost-guard.json \
+  --error-budget out/error-budget-ledger-validate/error-budget-ledger.json \
+  --synthetic-probe out/synthetic-probe-audit-validate/synthetic-probe-audit.json \
+  --runbooks out/incident-runbooks-validate/incident-runbooks.json \
+  --output-dir out/load-shedding-policy-audit-validate >/dev/null
 python3 demo/release_waiver_governance.py \
   --policy config/release-waiver-policy.json \
   --waivers config/release-waivers.json \
@@ -233,6 +244,7 @@ python3 demo/release_readiness.py \
   --incident-response-drill docs/evidence/incident-response-drill.json \
   --dependency-contract docs/evidence/dependency-contract-audit.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
@@ -273,6 +285,7 @@ python3 -m json.tool docs/evidence/post-incident-review.json >/dev/null
 python3 -m json.tool docs/evidence/incident-response-drill.json >/dev/null
 python3 -m json.tool docs/evidence/dependency-contract-audit.json >/dev/null
 python3 -m json.tool docs/evidence/synthetic-probe-audit.json >/dev/null
+python3 -m json.tool docs/evidence/load-shedding-policy-audit.json >/dev/null
 python3 -m json.tool docs/evidence/release-waiver-governance.json >/dev/null
 python3 -m json.tool docs/evidence/disaster-recovery-drill.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null

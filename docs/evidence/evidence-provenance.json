@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 72,
+  "artifact_count": 74,
   "generated_artifact_count": 4,
-  "source_input_count": 53,
+  "source_input_count": 55,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2172,
-      "sha256": "9e70d214ceac011c6091d0f4949891571b7830d5ed5e9012eb9a776602b9b1a8"
+      "bytes": 2234,
+      "sha256": "8a55644a113964bccad90fe142505fd9a09bd31d10376c51aa1425d9063bfaf5"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -492,6 +492,20 @@
       "sha256": "9741b0a24f8822bef145eaea639a91c337e1c56b196c43c0cb5c3d67ee692b86"
     },
     {
+      "path": "docs/evidence/load-shedding-policy-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1904,
+      "sha256": "a60b8c9c0b0caf91e41cdd4a86817b2b2d360f2d4644908cfe0fe6e9cf6d1fc4"
+    },
+    {
+      "path": "docs/evidence/load-shedding-policy-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 10561,
+      "sha256": "afd997ee5c22bccb10632487d50c4aa29726106ffd6e11e6b18ddabbb095086d"
+    },
+    {
       "path": "docs/evidence/release-waiver-governance.md",
       "group": "evidence",
       "exists": true,
@@ -517,7 +531,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21213,
-      "sha256": "ec42da1e1db63426ac250205e03d9eebffb23887b512b7c1ae6019ee5ff1d00f"
+      "sha256": "e9d796178ee23fd36604be2b035b75a425da69a664a57d7b8a564d2f7017e66d"
     }
   ],
   "generated_artifacts": [
@@ -555,15 +569,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 8854,
-      "sha256": "7ee3a26c5c81320520993c983f5efe957096ca87709a23fb8f52cdc18ac19a0e"
+      "bytes": 9397,
+      "sha256": "a6c159a598f0679255d507086e5586133ab1bed4db8b58535139c771eb9aa838"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 16246,
-      "sha256": "239dda934c9facb330f4f0fd82ae77bf310dcac06dfdb6a586bf64985ce7dae9"
+      "bytes": 17107,
+      "sha256": "01f4e9cb7ee52234953aa0f2a0b191744155aa6b0392f66965ea46097148f096"
     },
     {
       "path": "demo/incident_replay.py",
@@ -727,6 +741,13 @@
       "sha256": "02644d44d3b89adfa6d8dc062073499913b515568c0f5bb2eb47d41726a69a18"
     },
     {
+      "path": "demo/load_shedding_policy_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 19444,
+      "sha256": "8479c35826f68b2b7da74b87fe409350a46076ca69b5dc9ae8a4bf738d9ff9be"
+    },
+    {
       "path": "demo/release_waiver_governance.py",
       "group": "source-input",
       "exists": true,
@@ -744,8 +765,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9854,
-      "sha256": "0803b6b2682709b4e5f43f8d0f594f707feadb650b5b7099e9c974217773ed6a"
+      "bytes": 9935,
+      "sha256": "adbc31bce6a0479ececed8b30aac54216d94c5d80e1e49a13747bef2e114808e"
     },
     {
       "path": "config/reliability-slo.json",
@@ -881,6 +902,13 @@
       "sha256": "62ae4e032d3a2e2f4b567d58a16b82023ab368d54b3720324235f7d1d16b498b"
     },
     {
+      "path": "config/load-shedding-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 4581,
+      "sha256": "5adbd14113b20e39b09c6580babab96f6d56c1f20a80482927fe3548ce74322e"
+    },
+    {
       "path": "config/release-waiver-policy.json",
       "group": "source-input",
       "exists": true,
@@ -929,8 +957,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 72,
-        "minimum": 72
+        "count": 74,
+        "minimum": 74
       }
     },
     {
@@ -946,8 +974,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 53,
-        "minimum": 53
+        "count": 55,
+        "minimum": 55
       }
     },
     {

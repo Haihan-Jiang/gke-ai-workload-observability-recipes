@@ -94,6 +94,10 @@
       "ok": true
     },
     {
+      "name": "load_shedding_policy_audit",
+      "ok": true
+    },
+    {
       "name": "release_waiver_governance",
       "ok": true
     },
@@ -373,6 +377,14 @@
     },
     {
       "path": "synthetic-probe-audit.json",
+      "exists": true
+    },
+    {
+      "path": "load-shedding-policy-audit.md",
+      "exists": true
+    },
+    {
+      "path": "load-shedding-policy-audit.json",
       "exists": true
     },
     {

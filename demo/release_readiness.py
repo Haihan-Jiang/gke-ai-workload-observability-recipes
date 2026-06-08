@@ -77,6 +77,8 @@ REQUIRED_EVIDENCE = [
     "dependency-contract-audit.json",
     "synthetic-probe-audit.md",
     "synthetic-probe-audit.json",
+    "load-shedding-policy-audit.md",
+    "load-shedding-policy-audit.json",
     "release-waiver-governance.md",
     "release-waiver-governance.json",
     "disaster-recovery-drill.md",
@@ -125,6 +127,7 @@ def evaluate(
     incident_response_drill: dict[str, Any],
     dependency_contract: dict[str, Any],
     synthetic_probe: dict[str, Any],
+    load_shedding_policy: dict[str, Any],
     release_waiver_governance: dict[str, Any],
     disaster_recovery_drill: dict[str, Any],
     evidence_provenance: dict[str, Any],
@@ -276,6 +279,14 @@ def evaluate(
             and int(synthetic_probe.get("failed_count", -1)) == 0,
         },
         {
+            "name": "load_shedding_policy_audit",
+            "ok": load_shedding_policy.get("status") == "pass"
+            and int(load_shedding_policy.get("action_count", 0)) >= 5
+            and int(load_shedding_policy.get("protective_action_count", 0)) >= 4
+            and int(load_shedding_policy.get("detected_fixture_count", 0)) >= 5
+            and int(load_shedding_policy.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "release_waiver_governance",
             "ok": release_waiver_governance.get("status") == "pass"
             and int(release_waiver_governance.get("waiver_count", 0)) >= 4
@@ -332,9 +343,9 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
         "rollback drill coverage, post-incident review coverage, incident",
         "response drill coverage, dependency contract coverage, release",
-        "synthetic probe coverage, release waiver governance, disaster",
-        "recovery drill coverage, evidence provenance, and committed",
-        "evidence are present and internally",
+        "synthetic probe coverage, load-shedding policy coverage, release",
+        "waiver governance, disaster recovery drill coverage, evidence",
+        "provenance, and committed evidence are present and internally",
         "consistent.",
         "",
         "## Checks",
@@ -383,6 +394,7 @@ def main() -> int:
     parser.add_argument("--incident-response-drill", default="out/incident-response-drill/incident-response-drill.json")
     parser.add_argument("--dependency-contract", default="out/dependency-contract-audit/dependency-contract-audit.json")
     parser.add_argument("--synthetic-probe", default="out/synthetic-probe-audit/synthetic-probe-audit.json")
+    parser.add_argument("--load-shedding-policy", default="out/load-shedding-policy-audit/load-shedding-policy-audit.json")
     parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
     parser.add_argument("--disaster-recovery-drill", default="out/disaster-recovery-drill/disaster-recovery-drill.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
@@ -413,6 +425,7 @@ def main() -> int:
         incident_response_drill=load_json(Path(args.incident_response_drill)),
         dependency_contract=load_json(Path(args.dependency_contract)),
         synthetic_probe=load_json(Path(args.synthetic_probe)),
+        load_shedding_policy=load_json(Path(args.load_shedding_policy)),
         release_waiver_governance=load_json(Path(args.release_waiver_governance)),
         disaster_recovery_drill=load_json(Path(args.disaster_recovery_drill)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),
