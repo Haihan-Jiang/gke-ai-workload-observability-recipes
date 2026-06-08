@@ -59,6 +59,8 @@ REQUIRED_EVIDENCE = [
     "error-budget-ledger.json",
     "rollback-drill.md",
     "rollback-drill.json",
+    "post-incident-review.md",
+    "post-incident-review.json",
     "evidence-provenance.md",
     "evidence-provenance.json",
 ]
@@ -94,6 +96,7 @@ def evaluate(
     openslo: dict[str, Any],
     error_budget: dict[str, Any],
     rollback_drill: dict[str, Any],
+    post_incident_review: dict[str, Any],
     evidence_provenance: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
@@ -171,6 +174,13 @@ def evaluate(
             and int(rollback_drill.get("failed_count", -1)) == 0,
         },
         {
+            "name": "post_incident_review",
+            "ok": post_incident_review.get("status") == "pass"
+            and int(post_incident_review.get("review_count", 0)) >= 4
+            and int(post_incident_review.get("action_item_count", 0)) >= 8
+            and int(post_incident_review.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
             and int(evidence_provenance.get("artifact_count", 0)) >= 45
@@ -202,9 +212,9 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, Kubernetes manifest hardening,",
         "SLO alerting rules, Grafana dashboard coverage, OpenSLO contract,",
-        "error-budget accounting, rollback drill coverage, evidence",
-        "provenance, and committed evidence are present and internally",
-        "consistent.",
+        "error-budget accounting, rollback drill coverage, post-incident",
+        "review coverage, evidence provenance, and committed evidence are",
+        "present and internally consistent.",
         "",
         "## Checks",
         "",
@@ -243,6 +253,7 @@ def main() -> int:
     parser.add_argument("--openslo", default="out/openslo-contract/openslo-contract.json")
     parser.add_argument("--error-budget", default="out/error-budget-ledger/error-budget-ledger.json")
     parser.add_argument("--rollback-drill", default="out/rollback-drill/rollback-drill.json")
+    parser.add_argument("--post-incident-review", default="out/post-incident-review/post-incident-review.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
@@ -262,6 +273,7 @@ def main() -> int:
         openslo=load_json(Path(args.openslo)),
         error_budget=load_json(Path(args.error_budget)),
         rollback_drill=load_json(Path(args.rollback_drill)),
+        post_incident_review=load_json(Path(args.post_incident_review)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),
         evidence_dir=Path(args.evidence_dir),
     )

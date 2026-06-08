@@ -53,6 +53,8 @@ not described as merged.
   consumed budget, release actions, and rollback/manual-review decisions.
 - A rollback drill that turns the release gate, error budget, and runbooks into
   named-owner incident timelines with RTO/RPO checks.
+- A post-incident review packet that links impact, root cause, timeline,
+  corrective actions, and preventive controls back to generated evidence.
 - An evidence provenance manifest with SHA-256 checksums for generated
   evidence, Kubernetes/Grafana/OpenSLO artifacts, and source inputs.
 - A release-readiness report that checks committed evidence coverage.
@@ -192,6 +194,7 @@ script:
 - [OpenSLO contract evidence](docs/evidence/openslo-contract.md)
 - [Error budget ledger](docs/evidence/error-budget-ledger.md)
 - [Rollback drill](docs/evidence/rollback-drill.md)
+- [Post-incident review](docs/evidence/post-incident-review.md)
 - [Evidence provenance](docs/evidence/evidence-provenance.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
@@ -263,13 +266,15 @@ Before adapting this to a real GKE cluster:
    canary or dependency incident as release-safe.
 10. Run the rollback drill after changing release gates, runbooks, or SLO
     budget policy so owner and RTO assumptions stay explicit.
-11. Regenerate evidence provenance after changing evidence scripts, generated
+11. Keep post-incident reviews tied to replayed evidence, rollback timelines,
+    and corrective actions instead of treating them as narrative-only notes.
+12. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-12. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+13. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-13. For private GKE clusters, verify webhook/firewall access for any operators
+14. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-14. Treat telemetry as production evidence: validate it during staged rollout,
+15. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study

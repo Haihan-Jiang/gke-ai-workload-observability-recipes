@@ -1,0 +1,49 @@
+{
+  "description": "Policy for generating post-incident review packets from replay, rollback, and release evidence.",
+  "minimum_reviews": 4,
+  "minimum_action_items": 8,
+  "minimum_preventive_controls": 5,
+  "severity_by_response": {
+    "rollback_required": "SEV-1",
+    "manual_review": "SEV-2"
+  },
+  "owners": {
+    "cache_miss_storm": "Inference platform / retrieval owner",
+    "dependency_timeout": "Feature platform / dependency owner",
+    "rollout_regression": "Service owner / release engineer",
+    "collector_queue_pressure": "Observability platform"
+  },
+  "corrective_actions": {
+    "cache_miss_storm": [
+      "Add cache-warm validation before increasing traffic.",
+      "Track cache miss rate as a release blocker in the rollout checklist."
+    ],
+    "dependency_timeout": [
+      "Add bounded retry and fallback-feature behavior for feature-store timeouts.",
+      "Page the dependency owner when feature-store latency breaches the SLO envelope."
+    ],
+    "rollout_regression": [
+      "Require canary comparison against the stable service version before promotion.",
+      "Keep rollback instructions tied to service.version and image digest evidence."
+    ],
+    "collector_queue_pressure": [
+      "Validate persistent collector queue storage before declaring dashboards healthy.",
+      "Add telemetry-loss checks to release review so app health and evidence health are separated."
+    ]
+  },
+  "preventive_controls": [
+    "docs/evidence/alerting-rules.md",
+    "docs/evidence/grafana-dashboard.md",
+    "docs/evidence/openslo-contract.md",
+    "docs/evidence/error-budget-ledger.md",
+    "docs/evidence/rollback-drill.md",
+    "docs/evidence/evidence-provenance.md"
+  ],
+  "required_sections": [
+    "impact",
+    "root_cause",
+    "timeline",
+    "corrective_actions",
+    "preventive_controls"
+  ]
+}

@@ -29,6 +29,7 @@
 - [OpenSLO contract evidence](openslo-contract.md)
 - [Error budget ledger](error-budget-ledger.md)
 - [Rollback drill](rollback-drill.md)
+- [Post-incident review](post-incident-review.md)
 - [Evidence provenance](evidence-provenance.md)
 - [Release readiness report](release-readiness.md)
 - [Release readiness JSON](release-readiness.json)

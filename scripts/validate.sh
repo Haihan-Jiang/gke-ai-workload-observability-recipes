@@ -18,6 +18,7 @@ python3 -m py_compile \
   demo/openslo_contract.py \
   demo/error_budget_ledger.py \
   demo/rollback_drill.py \
+  demo/post_incident_review.py \
   demo/evidence_provenance.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
@@ -39,6 +40,7 @@ python3 -m json.tool config/dashboard-policy.json >/dev/null
 python3 -m json.tool config/openslo-policy.json >/dev/null
 python3 -m json.tool config/error-budget-policy.json >/dev/null
 python3 -m json.tool config/rollback-drill-policy.json >/dev/null
+python3 -m json.tool config/post-incident-review-policy.json >/dev/null
 python3 -m json.tool config/evidence-provenance-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
@@ -111,6 +113,14 @@ python3 demo/rollback_drill.py \
   --error-budget out/error-budget-ledger-validate/error-budget-ledger.json \
   --drill-policy config/rollback-drill-policy.json \
   --output-dir out/rollback-drill-validate >/dev/null
+python3 demo/post_incident_review.py \
+  --summary out/incident-replay-validate/summary.json \
+  --incident-correlation out/advanced-reliability-validate/incident-correlation.json \
+  --rollback-drill out/rollback-drill-validate/rollback-drill.json \
+  --error-budget out/error-budget-ledger-validate/error-budget-ledger.json \
+  --deployment-policy out/deployment-policy-validate/deployment-policy.json \
+  --policy config/post-incident-review-policy.json \
+  --output-dir out/post-incident-review-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/evidence_provenance.py \
   --policy config/evidence-provenance-policy.json \
@@ -130,6 +140,7 @@ python3 demo/release_readiness.py \
   --openslo docs/evidence/openslo-contract.json \
   --error-budget docs/evidence/error-budget-ledger.json \
   --rollback-drill docs/evidence/rollback-drill.json \
+  --post-incident-review docs/evidence/post-incident-review.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
@@ -158,6 +169,7 @@ python3 -m json.tool docs/evidence/grafana-dashboard.json >/dev/null
 python3 -m json.tool docs/evidence/openslo-contract.json >/dev/null
 python3 -m json.tool docs/evidence/error-budget-ledger.json >/dev/null
 python3 -m json.tool docs/evidence/rollback-drill.json >/dev/null
+python3 -m json.tool docs/evidence/post-incident-review.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null
 python3 -m unittest discover -s tests

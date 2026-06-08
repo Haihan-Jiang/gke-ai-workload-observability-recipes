@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `50`
+- Evidence artifacts: `52`
 - Generated artifacts: `4`
-- Source inputs: `27`
+- Source inputs: `29`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 1566 | `789a45e00f63b484...` |
+| `docs/evidence/README.md` | 1616 | `a6d2f949f55e6459...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -80,6 +80,8 @@ evidence easier to detect during review.
 | `docs/evidence/error-budget-ledger.json` | 5844 | `79f425445b01cc43...` |
 | `docs/evidence/rollback-drill.md` | 3125 | `ae27bc6572e849ec...` |
 | `docs/evidence/rollback-drill.json` | 7303 | `cc4aec75bddfde0d...` |
+| `docs/evidence/post-incident-review.md` | 4616 | `9b4bdec414410760...` |
+| `docs/evidence/post-incident-review.json` | 10972 | `ff1e12e67db2fd06...` |
 
 ## Generated Artifacts
 

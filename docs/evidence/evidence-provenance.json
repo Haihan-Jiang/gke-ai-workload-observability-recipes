@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 50,
+  "artifact_count": 52,
   "generated_artifact_count": 4,
-  "source_input_count": 27,
+  "source_input_count": 29,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1566,
-      "sha256": "789a45e00f63b484e13a5bbd5ea8f023de7011e72bcbf2e00db3ba395bf49c87"
+      "bytes": 1616,
+      "sha256": "a6d2f949f55e6459721573cfc18f5c3ddd0f134475bba09c94d554c95fd0e2e1"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -364,6 +364,20 @@
       "exists": true,
       "bytes": 7303,
       "sha256": "cc4aec75bddfde0df68e526efba6ecc4e091db83969460dc110a40282431c1cd"
+    },
+    {
+      "path": "docs/evidence/post-incident-review.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 4616,
+      "sha256": "9b4bdec4144107602976926b9200b1abb20aeeff6db774c2e9cfa79e96a0a839"
+    },
+    {
+      "path": "docs/evidence/post-incident-review.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 10972,
+      "sha256": "ff1e12e67db2fd0693d4612f50fe9f9e61bec362c3f4a38ca52b78468c9369f9"
     }
   ],
   "generated_artifacts": [
@@ -401,15 +415,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 4675,
-      "sha256": "a49ede9cca93df7b2ea838cfcc30760451a2e1f73d201e3ab12574ee8597e598"
+      "bytes": 5158,
+      "sha256": "7c7cbc33a44f45fd092c720d154d9448814ae106ca6c417609906e80a8f8ae42"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 9209,
-      "sha256": "d0a83fefcfc72d9e0200c33ea8272f53e946db4ce60a76ba2490ec3e7bd18620"
+      "bytes": 9972,
+      "sha256": "b0bdbb748c1af438edd24ea7a5976a83867f1c6c8ded89f7e91dee5d638e28e0"
     },
     {
       "path": "demo/incident_replay.py",
@@ -510,11 +524,18 @@
       "sha256": "b258cc2cc99b3afd0e31edf37eb7865351f6a79fd2e607a99206d8ea3ae8f0ff"
     },
     {
+      "path": "demo/post_incident_review.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 10635,
+      "sha256": "8e37dc8812b2dea6d8ea4b982af5e119d044e76b5372698a97bd6a26876b9f91"
+    },
+    {
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9039,
-      "sha256": "40964871d43da84b5a21e6edc3b6922742c27965ba99f861a9a75b3d952e7b14"
+      "bytes": 9108,
+      "sha256": "8f7f9f2ac5c9745c1bcc58c64b617ed9d8b534d730c62f048eb81012870ebe4e"
     },
     {
       "path": "config/reliability-slo.json",
@@ -585,6 +606,13 @@
       "exists": true,
       "bytes": 1851,
       "sha256": "b1668b0c2b6bf3855b5d8cdad0d65ed0610be0c7fde373dcd77137e6fe29792b"
+    },
+    {
+      "path": "config/post-incident-review-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1832,
+      "sha256": "d11cc2926bb46a1d174a5a5e311409d84e06c319382b7a51ac210de68b14b839"
     }
   ],
   "checks": [
@@ -593,7 +621,7 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 50,
+        "count": 52,
         "minimum": 45
       }
     },
@@ -610,7 +638,7 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 27,
+        "count": 29,
         "minimum": 18
       }
     },

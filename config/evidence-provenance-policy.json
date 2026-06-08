@@ -52,7 +52,9 @@
     "docs/evidence/error-budget-ledger.md",
     "docs/evidence/error-budget-ledger.json",
     "docs/evidence/rollback-drill.md",
-    "docs/evidence/rollback-drill.json"
+    "docs/evidence/rollback-drill.json",
+    "docs/evidence/post-incident-review.md",
+    "docs/evidence/post-incident-review.json"
   ],
   "generated_artifacts": [
     "k8s/gke/alerting-rules.yaml",
@@ -77,6 +79,7 @@
     "demo/openslo_contract.py",
     "demo/error_budget_ledger.py",
     "demo/rollback_drill.py",
+    "demo/post_incident_review.py",
     "demo/render_incident_evidence.py",
     "config/reliability-slo.json",
     "config/advanced-reliability.json",
@@ -87,7 +90,8 @@
     "config/dashboard-policy.json",
     "config/openslo-policy.json",
     "config/error-budget-policy.json",
-    "config/rollback-drill-policy.json"
+    "config/rollback-drill-policy.json",
+    "config/post-incident-review-policy.json"
   ],
   "validation_commands": [
     "./scripts/generate-evidence.sh",

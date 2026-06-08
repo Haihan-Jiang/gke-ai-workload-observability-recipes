@@ -58,6 +58,10 @@
       "ok": true
     },
     {
+      "name": "post_incident_review",
+      "ok": true
+    },
+    {
       "name": "evidence_provenance",
       "ok": true
     }
@@ -257,6 +261,14 @@
     },
     {
       "path": "rollback-drill.json",
+      "exists": true
+    },
+    {
+      "path": "post-incident-review.md",
+      "exists": true
+    },
+    {
+      "path": "post-incident-review.json",
       "exists": true
     },
     {

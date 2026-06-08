@@ -79,6 +79,14 @@ python3 demo/rollback_drill.py \
   --error-budget docs/evidence/error-budget-ledger.json \
   --drill-policy config/rollback-drill-policy.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/post_incident_review.py \
+  --summary "${source_dir}/summary.json" \
+  --incident-correlation docs/evidence/incident-correlation.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --deployment-policy docs/evidence/deployment-policy.json \
+  --policy config/post-incident-review-policy.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -100,6 +108,7 @@ python3 demo/release_readiness.py \
   --openslo docs/evidence/openslo-contract.json \
   --error-budget docs/evidence/error-budget-ledger.json \
   --rollback-drill docs/evidence/rollback-drill.json \
+  --post-incident-review docs/evidence/post-incident-review.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
