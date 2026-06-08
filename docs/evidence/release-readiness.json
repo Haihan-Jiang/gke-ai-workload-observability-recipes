@@ -90,6 +90,10 @@
       "ok": true
     },
     {
+      "name": "synthetic_probe_audit",
+      "ok": true
+    },
+    {
       "name": "release_waiver_governance",
       "ok": true
     },
@@ -361,6 +365,14 @@
     },
     {
       "path": "dependency-contract-audit.json",
+      "exists": true
+    },
+    {
+      "path": "synthetic-probe-audit.md",
+      "exists": true
+    },
+    {
+      "path": "synthetic-probe-audit.json",
       "exists": true
     },
     {

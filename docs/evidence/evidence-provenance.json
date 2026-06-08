@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 70,
+  "artifact_count": 72,
   "generated_artifact_count": 4,
-  "source_input_count": 51,
+  "source_input_count": 53,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2120,
-      "sha256": "c07825802c55b1ccdf6fa8f24187fcbbdbb444ae9970204d8eb6dea82730b5fb"
+      "bytes": 2172,
+      "sha256": "9e70d214ceac011c6091d0f4949891571b7830d5ed5e9012eb9a776602b9b1a8"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -478,6 +478,20 @@
       "sha256": "a1d5f1a029a8f5a35a44270109cb60402044b8eb42fd81606f9d09b47c047694"
     },
     {
+      "path": "docs/evidence/synthetic-probe-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1903,
+      "sha256": "663112afa13b48d573a1942da7408a9f87decfd458c050d5a6efe0675ef708ba"
+    },
+    {
+      "path": "docs/evidence/synthetic-probe-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 10757,
+      "sha256": "9741b0a24f8822bef145eaea639a91c337e1c56b196c43c0cb5c3d67ee692b86"
+    },
+    {
       "path": "docs/evidence/release-waiver-governance.md",
       "group": "evidence",
       "exists": true,
@@ -503,7 +517,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21213,
-      "sha256": "66c2b7b8623aee92fe63583cdafeed7bc7ae5b48810a36b8af9f67d519bdcf6b"
+      "sha256": "ec42da1e1db63426ac250205e03d9eebffb23887b512b7c1ae6019ee5ff1d00f"
     }
   ],
   "generated_artifacts": [
@@ -541,15 +555,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 8315,
-      "sha256": "ed8b2eafd1e831f1ff9fb21a41c13afb846647f09bf7d7ca96ae6274678f4dd1"
+      "bytes": 8854,
+      "sha256": "7ee3a26c5c81320520993c983f5efe957096ca87709a23fb8f52cdc18ac19a0e"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 15409,
-      "sha256": "7b1b8168ffc42d173fec5b9ecd0921127e7708363d9f0af0c0fd5dac2172d965"
+      "bytes": 16246,
+      "sha256": "239dda934c9facb330f4f0fd82ae77bf310dcac06dfdb6a586bf64985ce7dae9"
     },
     {
       "path": "demo/incident_replay.py",
@@ -706,6 +720,13 @@
       "sha256": "b30fe202ed4cf51304b922a7e84e74b0ff135f22377e414617b32d74b44e5730"
     },
     {
+      "path": "demo/synthetic_probe_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 22008,
+      "sha256": "02644d44d3b89adfa6d8dc062073499913b515568c0f5bb2eb47d41726a69a18"
+    },
+    {
       "path": "demo/release_waiver_governance.py",
       "group": "source-input",
       "exists": true,
@@ -723,8 +744,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9783,
-      "sha256": "7a0419d84789cfb631c5851f94f2ca8db4bd61288112c843949475daa56f0189"
+      "bytes": 9854,
+      "sha256": "0803b6b2682709b4e5f43f8d0f594f707feadb650b5b7099e9c974217773ed6a"
     },
     {
       "path": "config/reliability-slo.json",
@@ -853,6 +874,13 @@
       "sha256": "7959c64fb09e6604fd59f34f98e7a3fd4f722710da4e4d80663c964f7e1dd2ad"
     },
     {
+      "path": "config/synthetic-probe-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3574,
+      "sha256": "62ae4e032d3a2e2f4b567d58a16b82023ab368d54b3720324235f7d1d16b498b"
+    },
+    {
       "path": "config/release-waiver-policy.json",
       "group": "source-input",
       "exists": true,
@@ -901,8 +929,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 70,
-        "minimum": 70
+        "count": 72,
+        "minimum": 72
       }
     },
     {
@@ -918,8 +946,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 51,
-        "minimum": 51
+        "count": 53,
+        "minimum": 53
       }
     },
     {

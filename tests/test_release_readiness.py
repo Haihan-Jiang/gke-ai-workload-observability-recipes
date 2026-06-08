@@ -136,6 +136,14 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 5,
             "failed_count": 0,
         },
+        "synthetic_probe": {
+            "status": "pass",
+            "probe_count": 5,
+            "incident_probe_count": 4,
+            "preflight_block_count": 2,
+            "detected_fixture_count": 5,
+            "failed_count": 0,
+        },
         "release_waiver_governance": {
             "status": "pass",
             "waiver_count": 4,
@@ -334,6 +342,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["dependency_contract_audit"])
+
+    def test_requires_synthetic_probe_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["synthetic_probe"]["preflight_block_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["synthetic_probe_audit"])
 
     def test_requires_release_waiver_governance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

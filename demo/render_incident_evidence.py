@@ -169,6 +169,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Post-incident review](post-incident-review.md)",
                 "- [Incident response drill](incident-response-drill.md)",
                 "- [Dependency contract audit](dependency-contract-audit.md)",
+                "- [Synthetic probe audit](synthetic-probe-audit.md)",
                 "- [Release waiver governance](release-waiver-governance.md)",
                 "- [Disaster recovery drill](disaster-recovery-drill.md)",
                 "- [Evidence provenance](evidence-provenance.md)",

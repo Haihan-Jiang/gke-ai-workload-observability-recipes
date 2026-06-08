@@ -138,6 +138,7 @@ inference incidents before a service reaches production.
 | C17 | Observability artifacts can drift while each one still passes alone | Alert rules, dashboards, OpenSLO contracts, and runbooks need to describe the same scenario set, severities, links, and first-response contract. | [Observability drift audit](evidence/observability-drift-audit.md) |
 | C18 | Alerts can fire without an executable on-call response path | Production teams need page/ticket routing, acknowledgement SLAs, escalation, rollback evidence, and RCA evidence tied to each alert scenario. | [Incident response drill](evidence/incident-response-drill.md) |
 | C19 | Critical AI dependencies can fail without an explicit operating contract | Vector cache, feature store, model runtime, and telemetry exporter paths need owners, timeout/retry/fallback controls, alert routing, trace attributes, and release actions. | [Dependency contract audit](evidence/dependency-contract-audit.md) |
+| C20 | Rollouts can pass static checks without a black-box preflight signal | Teams need synthetic probes that exercise baseline health, dependency failures, canary regressions, and telemetry delivery before real users discover the issue. | [Synthetic probe audit](evidence/synthetic-probe-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -193,6 +194,12 @@ inference incidents before a service reaches production.
    - Policy: [config/dependency-contract-policy.json](../config/dependency-contract-policy.json)
    - Inputs: [critical-path attribution](evidence/critical-path-attribution.md), [alerting rules](evidence/alerting-rules.md), [incident runbooks](evidence/incident-runbooks.md), [error-budget ledger](evidence/error-budget-ledger.md), and [rollback drill](evidence/rollback-drill.md)
    - Evidence: [dependency contract audit](evidence/dependency-contract-audit.md)
+
+10. **Synthetic probe audit**
+    - Code: [demo/synthetic_probe_audit.py](../demo/synthetic_probe_audit.py)
+    - Policy: [config/synthetic-probe-policy.json](../config/synthetic-probe-policy.json)
+    - Inputs: [sample summary](evidence/sample-summary.json), [alerting rules](evidence/alerting-rules.md), [dependency contract audit](evidence/dependency-contract-audit.md), [incident response drill](evidence/incident-response-drill.md), [rollback drill](evidence/rollback-drill.md), and [error-budget ledger](evidence/error-budget-ledger.md)
+    - Evidence: [synthetic probe audit](evidence/synthetic-probe-audit.md)
 
 ## Boundary
 
