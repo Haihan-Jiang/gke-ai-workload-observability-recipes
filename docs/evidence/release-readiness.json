@@ -52,6 +52,10 @@
     {
       "name": "error_budget_ledger",
       "ok": true
+    },
+    {
+      "name": "rollback_drill",
+      "ok": true
     }
   ],
   "evidence": [
@@ -241,6 +245,14 @@
     },
     {
       "path": "error-budget-ledger.json",
+      "exists": true
+    },
+    {
+      "path": "rollback-drill.md",
+      "exists": true
+    },
+    {
+      "path": "rollback-drill.json",
       "exists": true
     }
   ],

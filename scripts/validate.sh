@@ -17,6 +17,7 @@ python3 -m py_compile \
   demo/grafana_dashboard.py \
   demo/openslo_contract.py \
   demo/error_budget_ledger.py \
+  demo/rollback_drill.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -36,6 +37,7 @@ python3 -m json.tool config/alerting-policy.json >/dev/null
 python3 -m json.tool config/dashboard-policy.json >/dev/null
 python3 -m json.tool config/openslo-policy.json >/dev/null
 python3 -m json.tool config/error-budget-policy.json >/dev/null
+python3 -m json.tool config/rollback-drill-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -100,6 +102,13 @@ python3 demo/error_budget_ledger.py \
   --openslo-policy config/openslo-policy.json \
   --error-budget-policy config/error-budget-policy.json \
   --output-dir out/error-budget-ledger-validate >/dev/null
+python3 demo/rollback_drill.py \
+  --summary out/incident-replay-validate/summary.json \
+  --runbooks out/incident-runbooks-validate/incident-runbooks.json \
+  --deployment-policy out/deployment-policy-validate/deployment-policy.json \
+  --error-budget out/error-budget-ledger-validate/error-budget-ledger.json \
+  --drill-policy config/rollback-drill-policy.json \
+  --output-dir out/rollback-drill-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
@@ -114,6 +123,7 @@ python3 demo/release_readiness.py \
   --dashboard docs/evidence/grafana-dashboard.json \
   --openslo docs/evidence/openslo-contract.json \
   --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
@@ -140,6 +150,7 @@ python3 -m json.tool docs/evidence/alerting-rules.json >/dev/null
 python3 -m json.tool docs/evidence/grafana-dashboard.json >/dev/null
 python3 -m json.tool docs/evidence/openslo-contract.json >/dev/null
 python3 -m json.tool docs/evidence/error-budget-ledger.json >/dev/null
+python3 -m json.tool docs/evidence/rollback-drill.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null
 python3 -m unittest discover -s tests
 

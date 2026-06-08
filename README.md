@@ -51,6 +51,8 @@ not described as merged.
   and runbooks.
 - An error-budget ledger that maps replayed incidents to allowed bad events,
   consumed budget, release actions, and rollback/manual-review decisions.
+- A rollback drill that turns the release gate, error budget, and runbooks into
+  named-owner incident timelines with RTO/RPO checks.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -187,6 +189,7 @@ script:
 - [Grafana dashboard evidence](docs/evidence/grafana-dashboard.md)
 - [OpenSLO contract evidence](docs/evidence/openslo-contract.md)
 - [Error budget ledger](docs/evidence/error-budget-ledger.md)
+- [Rollback drill](docs/evidence/rollback-drill.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -255,11 +258,13 @@ Before adapting this to a real GKE cluster:
    alerting, dashboard, and release-readiness evidence.
 9. Keep the error-budget ledger aligned with the SLO target before treating a
    canary or dependency incident as release-safe.
-10. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+10. Run the rollback drill after changing release gates, runbooks, or SLO
+    budget policy so owner and RTO assumptions stay explicit.
+11. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-11. For private GKE clusters, verify webhook/firewall access for any operators
+12. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-12. Treat telemetry as production evidence: validate it during staged rollout,
+13. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study

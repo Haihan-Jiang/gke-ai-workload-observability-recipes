@@ -1,0 +1,51 @@
+{
+  "description": "Policy for turning replayed incidents and release gates into an auditable rollback drill.",
+  "rto_minutes": 15,
+  "rpo_minutes": 5,
+  "minimum_drills": 4,
+  "minimum_rollback_required": 2,
+  "roles": {
+    "incident_commander": "SRE / platform",
+    "release_owner": "Service owner / release engineer",
+    "dependency_owner": "Feature platform / dependency owner",
+    "observability_owner": "Observability platform",
+    "retrieval_owner": "Inference platform / retrieval owner"
+  },
+  "scenario_steps": {
+    "cache_miss_storm": {
+      "owner_role": "retrieval_owner",
+      "ack_minutes": 3,
+      "mitigate_minutes": 6,
+      "verify_minutes": 3,
+      "primary_action": "hold rollout, warm the retrieval cache, and reduce cache churn before resuming traffic expansion"
+    },
+    "dependency_timeout": {
+      "owner_role": "dependency_owner",
+      "ack_minutes": 2,
+      "mitigate_minutes": 7,
+      "verify_minutes": 4,
+      "primary_action": "fail closed with fallback features, cap retries, and page the dependency owner before allowing production promotion"
+    },
+    "rollout_regression": {
+      "owner_role": "release_owner",
+      "ack_minutes": 2,
+      "mitigate_minutes": 5,
+      "verify_minutes": 4,
+      "primary_action": "rollback the candidate version or shift traffic back to the stable service version"
+    },
+    "collector_queue_pressure": {
+      "owner_role": "observability_owner",
+      "ack_minutes": 4,
+      "mitigate_minutes": 6,
+      "verify_minutes": 4,
+      "primary_action": "protect persistent collector queues, reduce exporter pressure, and verify telemetry delivery before trusting dashboards"
+    }
+  },
+  "required_evidence": [
+    "deployment-policy.json",
+    "error-budget-ledger.json",
+    "incident-runbooks.json",
+    "alerting-rules.md",
+    "grafana-dashboard.md"
+  ]
+}

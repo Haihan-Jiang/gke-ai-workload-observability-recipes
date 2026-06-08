@@ -75,6 +75,12 @@ def ready_inputs(evidence_dir: Path) -> dict:
                 "budget_exhausted": 2,
             },
         },
+        "rollback_drill": {
+            "status": "pass",
+            "drill_count": 4,
+            "rollback_required_count": 2,
+            "failed_count": 0,
+        },
         "evidence_dir": evidence_dir,
     }
 
@@ -149,6 +155,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["error_budget_ledger"])
+
+    def test_requires_rollback_drill(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["rollback_drill"]["rollback_required_count"] = 0
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["rollback_drill"])
 
 
 if __name__ == "__main__":

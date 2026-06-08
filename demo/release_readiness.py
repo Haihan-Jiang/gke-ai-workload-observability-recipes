@@ -57,6 +57,8 @@ REQUIRED_EVIDENCE = [
     "openslo-contract.json",
     "error-budget-ledger.md",
     "error-budget-ledger.json",
+    "rollback-drill.md",
+    "rollback-drill.json",
 ]
 
 REQUIRED_POLICY_REGRESSION_CONTROLS = {
@@ -89,6 +91,7 @@ def evaluate(
     dashboard: dict[str, Any],
     openslo: dict[str, Any],
     error_budget: dict[str, Any],
+    rollback_drill: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
     evidence = [
@@ -157,6 +160,13 @@ def evaluate(
             and int(error_budget.get("failed_count", -1)) == 0
             and error_budget.get("decision_counts", {}).get("within_budget") == 1,
         },
+        {
+            "name": "rollback_drill",
+            "ok": rollback_drill.get("status") == "pass"
+            and int(rollback_drill.get("drill_count", 0)) >= 4
+            and int(rollback_drill.get("rollback_required_count", 0)) >= 2
+            and int(rollback_drill.get("failed_count", -1)) == 0,
+        },
     ]
     return {
         "status": "pass" if all(item["ok"] for item in checks) else "fail",
@@ -182,8 +192,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, Kubernetes manifest hardening,",
         "SLO alerting rules, Grafana dashboard coverage, OpenSLO contract,",
-        "error-budget accounting, and committed evidence are present and",
-        "internally consistent.",
+        "error-budget accounting, rollback drill coverage, and committed",
+        "evidence are present and internally consistent.",
         "",
         "## Checks",
         "",
@@ -221,6 +231,7 @@ def main() -> int:
     parser.add_argument("--dashboard", default="out/grafana-dashboard/grafana-dashboard.json")
     parser.add_argument("--openslo", default="out/openslo-contract/openslo-contract.json")
     parser.add_argument("--error-budget", default="out/error-budget-ledger/error-budget-ledger.json")
+    parser.add_argument("--rollback-drill", default="out/rollback-drill/rollback-drill.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
     args = parser.parse_args()
@@ -238,6 +249,7 @@ def main() -> int:
         dashboard=load_json(Path(args.dashboard)),
         openslo=load_json(Path(args.openslo)),
         error_budget=load_json(Path(args.error_budget)),
+        rollback_drill=load_json(Path(args.rollback_drill)),
         evidence_dir=Path(args.evidence_dir),
     )
     output_dir = Path(args.output_dir)

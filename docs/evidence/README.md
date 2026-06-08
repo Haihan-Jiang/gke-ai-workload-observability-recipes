@@ -28,5 +28,6 @@
 - [Grafana dashboard evidence](grafana-dashboard.md)
 - [OpenSLO contract evidence](openslo-contract.md)
 - [Error budget ledger](error-budget-ledger.md)
+- [Rollback drill](rollback-drill.md)
 - [Release readiness report](release-readiness.md)
 - [Release readiness JSON](release-readiness.json)
