@@ -11,10 +11,11 @@ Grafana dashboard coverage, OpenSLO contract, observability drift
 detection,
 telemetry redaction, telemetry cost budget, error-budget accounting,
 rollback drill coverage, post-incident review coverage, incident
-response drill coverage, dependency contract coverage, release
-synthetic probe coverage, load-shedding policy coverage, release
-waiver governance, disaster recovery drill coverage, evidence
-provenance, and committed evidence are present and internally
+response drill coverage, dependency contract coverage, synthetic
+probe coverage, load-shedding policy coverage, regional failover
+coverage, waiver governance, disaster recovery
+drill coverage, evidence provenance, and committed evidence are
+present and internally
 consistent.
 
 ## Checks
@@ -45,6 +46,7 @@ consistent.
 | `dependency_contract_audit` | PASS |
 | `synthetic_probe_audit` | PASS |
 | `load_shedding_policy_audit` | PASS |
+| `regional_failover_audit` | PASS |
 | `release_waiver_governance` | PASS |
 | `disaster_recovery_drill` | PASS |
 | `evidence_provenance` | PASS |
@@ -122,6 +124,8 @@ consistent.
 | `synthetic-probe-audit.json` | yes |
 | `load-shedding-policy-audit.md` | yes |
 | `load-shedding-policy-audit.json` | yes |
+| `regional-failover-audit.md` | yes |
+| `regional-failover-audit.json` | yes |
 | `release-waiver-governance.md` | yes |
 | `release-waiver-governance.json` | yes |
 | `disaster-recovery-drill.md` | yes |

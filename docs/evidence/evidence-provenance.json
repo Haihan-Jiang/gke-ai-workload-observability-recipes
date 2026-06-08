@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 74,
+  "artifact_count": 76,
   "generated_artifact_count": 4,
-  "source_input_count": 55,
+  "source_input_count": 57,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2234,
-      "sha256": "8a55644a113964bccad90fe142505fd9a09bd31d10376c51aa1425d9063bfaf5"
+      "bytes": 2290,
+      "sha256": "b794bdac6b076b3d2c2f03311b93fa10cdb5ec5597aed83fe131e2bcbb3a34ad"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -506,6 +506,20 @@
       "sha256": "afd997ee5c22bccb10632487d50c4aa29726106ffd6e11e6b18ddabbb095086d"
     },
     {
+      "path": "docs/evidence/regional-failover-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1532,
+      "sha256": "1def87beed205a668b0c714a63909ffaed2b5ae69a2dbeaaa94c11a20e4a0847"
+    },
+    {
+      "path": "docs/evidence/regional-failover-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 12345,
+      "sha256": "5a002724bfc61e7de7d5876995a8139354f4f9a29a801b3e971dff359ef076ed"
+    },
+    {
       "path": "docs/evidence/release-waiver-governance.md",
       "group": "evidence",
       "exists": true,
@@ -530,8 +544,8 @@
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 21213,
-      "sha256": "e9d796178ee23fd36604be2b035b75a425da69a664a57d7b8a564d2f7017e66d"
+      "bytes": 21215,
+      "sha256": "17b008be64dfb3c48fc6d37a2fc016237b31892bdb59832014b8e191990f967e"
     }
   ],
   "generated_artifacts": [
@@ -569,15 +583,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 9397,
-      "sha256": "a6c159a598f0679255d507086e5586133ab1bed4db8b58535139c771eb9aa838"
+      "bytes": 10064,
+      "sha256": "3358d87fd8c14ce1fde381ee0e59dcb9dc455a4c5d4cd354f4ceed4480273b2c"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 17107,
-      "sha256": "01f4e9cb7ee52234953aa0f2a0b191744155aa6b0392f66965ea46097148f096"
+      "bytes": 18129,
+      "sha256": "ff69c6dd08b93e38d83004425bfe42e9fca6ba0287cdb7b600c936ac3b245269"
     },
     {
       "path": "demo/incident_replay.py",
@@ -748,6 +762,13 @@
       "sha256": "8479c35826f68b2b7da74b87fe409350a46076ca69b5dc9ae8a4bf738d9ff9be"
     },
     {
+      "path": "demo/regional_failover_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 21987,
+      "sha256": "79adf5f678235df3e8c0859848352046c3595dcb1d4a73341cfa5034f4e2bd64"
+    },
+    {
       "path": "demo/release_waiver_governance.py",
       "group": "source-input",
       "exists": true,
@@ -765,8 +786,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9935,
-      "sha256": "adbc31bce6a0479ececed8b30aac54216d94c5d80e1e49a13747bef2e114808e"
+      "bytes": 10010,
+      "sha256": "0874af3433f3520a71b9d747f96aa10951918941a6b19d2d8001fbcfb8cdf101"
     },
     {
       "path": "config/reliability-slo.json",
@@ -909,6 +930,13 @@
       "sha256": "5adbd14113b20e39b09c6580babab96f6d56c1f20a80482927fe3548ce74322e"
     },
     {
+      "path": "config/regional-failover-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 4500,
+      "sha256": "48f75c4493c747a6d7e0ff2b18d6a5e3cf9d3fb00a991b29f52dbb486ad3547d"
+    },
+    {
       "path": "config/release-waiver-policy.json",
       "group": "source-input",
       "exists": true,
@@ -957,8 +985,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 74,
-        "minimum": 74
+        "count": 76,
+        "minimum": 76
       }
     },
     {
@@ -974,8 +1002,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 55,
-        "minimum": 55
+        "count": 57,
+        "minimum": 57
       }
     },
     {

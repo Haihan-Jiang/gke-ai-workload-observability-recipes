@@ -79,6 +79,8 @@ REQUIRED_EVIDENCE = [
     "synthetic-probe-audit.json",
     "load-shedding-policy-audit.md",
     "load-shedding-policy-audit.json",
+    "regional-failover-audit.md",
+    "regional-failover-audit.json",
     "release-waiver-governance.md",
     "release-waiver-governance.json",
     "disaster-recovery-drill.md",
@@ -128,6 +130,7 @@ def evaluate(
     dependency_contract: dict[str, Any],
     synthetic_probe: dict[str, Any],
     load_shedding_policy: dict[str, Any],
+    regional_failover: dict[str, Any],
     release_waiver_governance: dict[str, Any],
     disaster_recovery_drill: dict[str, Any],
     evidence_provenance: dict[str, Any],
@@ -287,6 +290,14 @@ def evaluate(
             and int(load_shedding_policy.get("failed_count", -1)) == 0,
         },
         {
+            "name": "regional_failover_audit",
+            "ok": regional_failover.get("status") == "pass"
+            and int(regional_failover.get("event_count", 0)) >= 5
+            and int(regional_failover.get("standby_region_count", 0)) >= 2
+            and int(regional_failover.get("detected_fixture_count", 0)) >= 5
+            and int(regional_failover.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "release_waiver_governance",
             "ok": release_waiver_governance.get("status") == "pass"
             and int(release_waiver_governance.get("waiver_count", 0)) >= 4
@@ -309,8 +320,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 70
-            and int(evidence_provenance.get("source_input_count", 0)) >= 51
+            and int(evidence_provenance.get("artifact_count", 0)) >= 76
+            and int(evidence_provenance.get("source_input_count", 0)) >= 57
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -342,10 +353,11 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "detection,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
         "rollback drill coverage, post-incident review coverage, incident",
-        "response drill coverage, dependency contract coverage, release",
-        "synthetic probe coverage, load-shedding policy coverage, release",
-        "waiver governance, disaster recovery drill coverage, evidence",
-        "provenance, and committed evidence are present and internally",
+        "response drill coverage, dependency contract coverage, synthetic",
+        "probe coverage, load-shedding policy coverage, regional failover",
+        "coverage, waiver governance, disaster recovery",
+        "drill coverage, evidence provenance, and committed evidence are",
+        "present and internally",
         "consistent.",
         "",
         "## Checks",
@@ -395,6 +407,7 @@ def main() -> int:
     parser.add_argument("--dependency-contract", default="out/dependency-contract-audit/dependency-contract-audit.json")
     parser.add_argument("--synthetic-probe", default="out/synthetic-probe-audit/synthetic-probe-audit.json")
     parser.add_argument("--load-shedding-policy", default="out/load-shedding-policy-audit/load-shedding-policy-audit.json")
+    parser.add_argument("--regional-failover", default="out/regional-failover-audit/regional-failover-audit.json")
     parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
     parser.add_argument("--disaster-recovery-drill", default="out/disaster-recovery-drill/disaster-recovery-drill.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
@@ -426,6 +439,7 @@ def main() -> int:
         dependency_contract=load_json(Path(args.dependency_contract)),
         synthetic_probe=load_json(Path(args.synthetic_probe)),
         load_shedding_policy=load_json(Path(args.load_shedding_policy)),
+        regional_failover=load_json(Path(args.regional_failover)),
         release_waiver_governance=load_json(Path(args.release_waiver_governance)),
         disaster_recovery_drill=load_json(Path(args.disaster_recovery_drill)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),

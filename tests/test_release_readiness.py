@@ -151,6 +151,13 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 5,
             "failed_count": 0,
         },
+        "regional_failover": {
+            "status": "pass",
+            "event_count": 5,
+            "standby_region_count": 2,
+            "detected_fixture_count": 5,
+            "failed_count": 0,
+        },
         "release_waiver_governance": {
             "status": "pass",
             "waiver_count": 4,
@@ -172,8 +179,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 70,
-            "source_input_count": 51,
+            "artifact_count": 76,
+            "source_input_count": 57,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -371,6 +378,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["load_shedding_policy_audit"])
+
+    def test_requires_regional_failover_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["regional_failover"]["standby_region_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["regional_failover_audit"])
 
     def test_requires_release_waiver_governance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

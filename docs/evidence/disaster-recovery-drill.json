@@ -213,15 +213,15 @@
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
       "exists": true,
-      "bytes": 9397,
-      "sha256": "a6c159a598f0679255d507086e5586133ab1bed4db8b58535139c771eb9aa838"
+      "bytes": 10064,
+      "sha256": "3358d87fd8c14ce1fde381ee0e59dcb9dc455a4c5d4cd354f4ceed4480273b2c"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
       "exists": true,
-      "bytes": 17107,
-      "sha256": "01f4e9cb7ee52234953aa0f2a0b191744155aa6b0392f66965ea46097148f096"
+      "bytes": 18129,
+      "sha256": "ff69c6dd08b93e38d83004425bfe42e9fca6ba0287cdb7b600c936ac3b245269"
     }
   ],
   "restored_artifacts": [
@@ -480,20 +480,20 @@
     {
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
-      "expected_sha256": "a6c159a598f0679255d507086e5586133ab1bed4db8b58535139c771eb9aa838",
+      "expected_sha256": "3358d87fd8c14ce1fde381ee0e59dcb9dc455a4c5d4cd354f4ceed4480273b2c",
       "restored": true,
       "hash_match": true,
-      "bytes": 9397,
-      "sha256": "a6c159a598f0679255d507086e5586133ab1bed4db8b58535139c771eb9aa838"
+      "bytes": 10064,
+      "sha256": "3358d87fd8c14ce1fde381ee0e59dcb9dc455a4c5d4cd354f4ceed4480273b2c"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
-      "expected_sha256": "01f4e9cb7ee52234953aa0f2a0b191744155aa6b0392f66965ea46097148f096",
+      "expected_sha256": "ff69c6dd08b93e38d83004425bfe42e9fca6ba0287cdb7b600c936ac3b245269",
       "restored": true,
       "hash_match": true,
-      "bytes": 17107,
-      "sha256": "01f4e9cb7ee52234953aa0f2a0b191744155aa6b0392f66965ea46097148f096"
+      "bytes": 18129,
+      "sha256": "ff69c6dd08b93e38d83004425bfe42e9fca6ba0287cdb7b600c936ac3b245269"
     }
   ],
   "fixtures": [

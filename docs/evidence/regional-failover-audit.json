@@ -1,0 +1,430 @@
+{
+  "status": "pass",
+  "event_count": 5,
+  "standby_region_count": 2,
+  "fixture_count": 5,
+  "detected_fixture_count": 5,
+  "failed_count": 0,
+  "events": [
+    {
+      "name": "evidence_control_plane_restore",
+      "scenario": "baseline",
+      "event_type": "control_plane_restore",
+      "owner": "SRE / platform",
+      "runbook_owner": "SRE / platform",
+      "standby_region": "us-west1",
+      "standby_replicas": 2,
+      "required_controls": [
+        "collector_durable_queue",
+        "collector_pdb",
+        "collector_probes",
+        "sample_workload_probes",
+        "sample_workload_resources"
+      ],
+      "control_status": {
+        "collector_durable_queue": "pass",
+        "collector_pdb": "pass",
+        "collector_probes": "pass",
+        "sample_workload_probes": "pass",
+        "sample_workload_resources": "pass"
+      },
+      "capacity": {
+        "required_replicas": 1,
+        "max_replicas_budget": 12,
+        "warnings": [],
+        "target_rps": 100.0
+      },
+      "budget_decision": "within_budget",
+      "release_action": "eligible_for_release",
+      "rollback": {
+        "response_type": null,
+        "within_rto": null,
+        "completion_minutes": null
+      },
+      "probe": {
+        "name": "baseline_readiness_probe",
+        "signal_ok": true,
+        "release_action": "eligible_for_release"
+      },
+      "load_shedding": {
+        "traffic_action": "no_action",
+        "release_action": "eligible_for_release",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": []
+      },
+      "disaster_recovery": {
+        "status": "pass",
+        "estimated_restore_minutes": 7,
+        "rto_minutes": 15,
+        "rpo_minutes": 5,
+        "estimated_data_loss_minutes": 0,
+        "generated_artifact_count": 9
+      },
+      "expected": {
+        "budget_decision": "within_budget",
+        "release_action": "eligible_for_release",
+        "load_shedding_action": "no_action",
+        "probe": "baseline_readiness_probe",
+        "requires_dr": true,
+        "requires_rollback": false,
+        "requires_k8s_controls": true
+      }
+    },
+    {
+      "name": "retrieval_cache_region_failover",
+      "scenario": "cache_miss_storm",
+      "event_type": "retrieval_cache_failover",
+      "owner": "Inference platform / retrieval owner",
+      "runbook_owner": "Inference platform / retrieval owner",
+      "standby_region": "us-west1",
+      "standby_replicas": 6,
+      "required_controls": [],
+      "control_status": {},
+      "capacity": {
+        "required_replicas": 5,
+        "max_replicas_budget": 12,
+        "warnings": [],
+        "target_rps": 100.0
+      },
+      "budget_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "rollback": {
+        "response_type": "manual_review",
+        "within_rto": true,
+        "completion_minutes": 12
+      },
+      "probe": {
+        "name": "cache_dependency_probe",
+        "signal_ok": true,
+        "release_action": "require_sre_review_before_rollout"
+      },
+      "load_shedding": {
+        "traffic_action": "rate_limit_retrieval",
+        "release_action": "require_sre_review_before_rollout",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ]
+      },
+      "disaster_recovery": {
+        "status": "pass",
+        "estimated_restore_minutes": 7,
+        "rto_minutes": 15,
+        "rpo_minutes": 5,
+        "estimated_data_loss_minutes": 0,
+        "generated_artifact_count": 9
+      },
+      "expected": {
+        "budget_decision": "manual_review_required",
+        "release_action": "require_sre_review_before_rollout",
+        "load_shedding_action": "rate_limit_retrieval",
+        "probe": "cache_dependency_probe",
+        "requires_dr": false,
+        "requires_rollback": false,
+        "requires_k8s_controls": false
+      }
+    },
+    {
+      "name": "feature_store_region_failover",
+      "scenario": "dependency_timeout",
+      "event_type": "dependency_failover",
+      "owner": "Feature platform / dependency owner",
+      "runbook_owner": "Feature platform / dependency owner",
+      "standby_region": "us-east1",
+      "standby_replicas": 12,
+      "required_controls": [],
+      "control_status": {},
+      "capacity": {
+        "required_replicas": 24,
+        "max_replicas_budget": 12,
+        "warnings": [
+          "do not scale traffic until user-visible errors are isolated",
+          "required replicas exceed the demo budget; treat as a dependency or design issue"
+        ],
+        "target_rps": 100.0
+      },
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "rollback": {
+        "response_type": "rollback_required",
+        "within_rto": true,
+        "completion_minutes": 13
+      },
+      "probe": {
+        "name": "feature_store_timeout_probe",
+        "signal_ok": true,
+        "release_action": "block_release_or_rollback"
+      },
+      "load_shedding": {
+        "traffic_action": "shed_best_effort",
+        "release_action": "block_release_or_rollback",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ]
+      },
+      "disaster_recovery": {
+        "status": "pass",
+        "estimated_restore_minutes": 7,
+        "rto_minutes": 15,
+        "rpo_minutes": 5,
+        "estimated_data_loss_minutes": 0,
+        "generated_artifact_count": 9
+      },
+      "expected": {
+        "budget_decision": "budget_exhausted",
+        "release_action": "block_release_or_rollback",
+        "load_shedding_action": "shed_best_effort",
+        "probe": "feature_store_timeout_probe",
+        "requires_dr": false,
+        "requires_rollback": true,
+        "requires_k8s_controls": false
+      }
+    },
+    {
+      "name": "canary_region_rollback",
+      "scenario": "rollout_regression",
+      "event_type": "canary_failover",
+      "owner": "Service owner / release engineer",
+      "runbook_owner": "Service owner / release engineer",
+      "standby_region": "us-west1",
+      "standby_replicas": 8,
+      "required_controls": [],
+      "control_status": {},
+      "capacity": {
+        "required_replicas": 8,
+        "max_replicas_budget": 12,
+        "warnings": [
+          "do not scale traffic until user-visible errors are isolated"
+        ],
+        "target_rps": 100.0
+      },
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "rollback": {
+        "response_type": "rollback_required",
+        "within_rto": true,
+        "completion_minutes": 11
+      },
+      "probe": {
+        "name": "canary_version_probe",
+        "signal_ok": true,
+        "release_action": "block_release_or_rollback"
+      },
+      "load_shedding": {
+        "traffic_action": "rollback_canary",
+        "release_action": "block_release_or_rollback",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ]
+      },
+      "disaster_recovery": {
+        "status": "pass",
+        "estimated_restore_minutes": 7,
+        "rto_minutes": 15,
+        "rpo_minutes": 5,
+        "estimated_data_loss_minutes": 0,
+        "generated_artifact_count": 9
+      },
+      "expected": {
+        "budget_decision": "budget_exhausted",
+        "release_action": "block_release_or_rollback",
+        "load_shedding_action": "rollback_canary",
+        "probe": "canary_version_probe",
+        "requires_dr": false,
+        "requires_rollback": true,
+        "requires_k8s_controls": false
+      }
+    },
+    {
+      "name": "telemetry_region_failover",
+      "scenario": "collector_queue_pressure",
+      "event_type": "telemetry_failover",
+      "owner": "Observability platform",
+      "runbook_owner": "Observability platform",
+      "standby_region": "us-east1",
+      "standby_replicas": 4,
+      "required_controls": [
+        "collector_durable_queue",
+        "collector_pdb",
+        "collector_probes",
+        "sample_workload_probes",
+        "sample_workload_resources"
+      ],
+      "control_status": {
+        "collector_durable_queue": "pass",
+        "collector_pdb": "pass",
+        "collector_probes": "pass",
+        "sample_workload_probes": "pass",
+        "sample_workload_resources": "pass"
+      },
+      "capacity": {
+        "required_replicas": 3,
+        "max_replicas_budget": 12,
+        "warnings": [
+          "fix collector delivery before trusting production dashboards"
+        ],
+        "target_rps": 100.0
+      },
+      "budget_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "rollback": {
+        "response_type": "manual_review",
+        "within_rto": true,
+        "completion_minutes": 14
+      },
+      "probe": {
+        "name": "telemetry_delivery_probe",
+        "signal_ok": true,
+        "release_action": "require_sre_review_before_rollout"
+      },
+      "load_shedding": {
+        "traffic_action": "protect_telemetry",
+        "release_action": "require_sre_review_before_rollout",
+        "protected_tiers": [
+          "premium",
+          "standard"
+        ],
+        "shed_tiers": [
+          "best_effort"
+        ]
+      },
+      "disaster_recovery": {
+        "status": "pass",
+        "estimated_restore_minutes": 7,
+        "rto_minutes": 15,
+        "rpo_minutes": 5,
+        "estimated_data_loss_minutes": 0,
+        "generated_artifact_count": 9
+      },
+      "expected": {
+        "budget_decision": "manual_review_required",
+        "release_action": "require_sre_review_before_rollout",
+        "load_shedding_action": "protect_telemetry",
+        "probe": "telemetry_delivery_probe",
+        "requires_dr": true,
+        "requires_rollback": false,
+        "requires_k8s_controls": true
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_telemetry_failover",
+      "mutation": "remove_event",
+      "expected_failed_check": "failover_inventory",
+      "failed_checks": [
+        "failover_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "restore_exceeds_rto",
+      "mutation": "set_dr_restore_minutes",
+      "expected_failed_check": "dr_recovery_contract",
+      "failed_checks": [
+        "dr_recovery_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "standby_capacity_too_small",
+      "mutation": "set_standby_replicas",
+      "expected_failed_check": "capacity_failover_guard",
+      "failed_checks": [
+        "capacity_failover_guard"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_release_action",
+      "mutation": "set_expected_release_action",
+      "expected_failed_check": "traffic_safety_linkage",
+      "failed_checks": [
+        "traffic_safety_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_collector_queue_control",
+      "mutation": "fail_k8s_control",
+      "expected_failed_check": "rollback_observability_contract",
+      "failed_checks": [
+        "rollback_observability_contract"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "failover_inventory",
+      "ok": true,
+      "evidence": {
+        "event_count": 5,
+        "scenarios": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "standby_regions": [
+          "us-east1",
+          "us-west1"
+        ],
+        "missing_names": []
+      }
+    },
+    {
+      "name": "dr_recovery_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "capacity_failover_guard",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "traffic_safety_linkage",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "rollback_observability_contract",
+      "ok": true,
+      "evidence": {
+        "rollback_gaps": [],
+        "k8s_gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 5,
+        "detected_fixture_count": 5,
+        "undetected": []
+      }
+    }
+  ]
+}

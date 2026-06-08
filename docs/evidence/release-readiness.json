@@ -98,6 +98,10 @@
       "ok": true
     },
     {
+      "name": "regional_failover_audit",
+      "ok": true
+    },
+    {
       "name": "release_waiver_governance",
       "ok": true
     },
@@ -385,6 +389,14 @@
     },
     {
       "path": "load-shedding-policy-audit.json",
+      "exists": true
+    },
+    {
+      "path": "regional-failover-audit.md",
+      "exists": true
+    },
+    {
+      "path": "regional-failover-audit.json",
       "exists": true
     },
     {
