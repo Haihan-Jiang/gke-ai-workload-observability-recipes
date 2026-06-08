@@ -32,6 +32,19 @@ spec:
     spec:
       serviceAccountName: toy-ai-inference-api
       automountServiceAccountToken: false
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: toy-ai-inference-api
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: toy-ai-inference-api
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -85,3 +98,17 @@ spec:
     - name: http
       port: 80
       targetPort: http
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: toy-ai-inference-api
+  namespace: ai-observability-demo
+  labels:
+    app.kubernetes.io/name: toy-ai-inference-api
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: toy-ai-inference-api

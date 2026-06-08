@@ -1,0 +1,165 @@
+{
+  "status": "pass",
+  "workload_count": 2,
+  "pdb_count": 2,
+  "topology_spread_count": 2,
+  "guarded_singleton_count": 1,
+  "multi_replica_count": 1,
+  "check_count": 7,
+  "detected_fixture_count": 7,
+  "failed_count": 0,
+  "workloads": [
+    {
+      "workload": "telemetry/otel-collector",
+      "kind": "Deployment",
+      "availability_mode": "guarded_singleton",
+      "replicas": 1,
+      "pdb": "otel-collector",
+      "pdb_min_available": 1,
+      "topology_keys": []
+    },
+    {
+      "workload": "ai-observability-demo/toy-ai-inference-api",
+      "kind": "Deployment",
+      "availability_mode": "multi_replica",
+      "replicas": 2,
+      "pdb": "toy-ai-inference-api",
+      "pdb_min_available": 1,
+      "topology_keys": [
+        "topology.kubernetes.io/zone",
+        "kubernetes.io/hostname"
+      ]
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "collector_replicas_zero",
+      "mutation": "set_replicas",
+      "expected_failed_check": "replica_policy",
+      "failed_checks": [
+        "replica_policy",
+        "pdb_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_sample_pdb",
+      "mutation": "remove_pdb",
+      "expected_failed_check": "pdb_coverage",
+      "failed_checks": [
+        "pdb_coverage",
+        "availability_label_governance"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_pdb_min_equals_replicas",
+      "mutation": "set_pdb_min_available",
+      "expected_failed_check": "pdb_coverage",
+      "failed_checks": [
+        "pdb_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_sample_zone_spread",
+      "mutation": "remove_topology_key",
+      "expected_failed_check": "topology_spread_coverage",
+      "failed_checks": [
+        "topology_spread_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_sample_hostname_spread_key",
+      "mutation": "replace_topology_key",
+      "expected_failed_check": "topology_spread_coverage",
+      "failed_checks": [
+        "topology_spread_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_spread_selector_mismatch",
+      "mutation": "set_spread_selector_label",
+      "expected_failed_check": "spread_selector_matches_pod_labels",
+      "failed_checks": [
+        "spread_selector_matches_pod_labels"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_sample_pdb_owner_label",
+      "mutation": "remove_owner_label",
+      "expected_failed_check": "availability_label_governance",
+      "failed_checks": [
+        "availability_label_governance"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "workload_inventory",
+      "status": "pass",
+      "reason": "Policy covers the collector and sample inference workload availability boundaries.",
+      "evidence": {
+        "workload_count": 2,
+        "workloads": [
+          "telemetry/otel-collector",
+          "ai-observability-demo/toy-ai-inference-api"
+        ]
+      }
+    },
+    {
+      "name": "replica_policy",
+      "status": "pass",
+      "reason": "Each workload meets its configured replica floor.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "pdb_coverage",
+      "status": "pass",
+      "reason": "Each workload has a PDB whose selector matches pods and whose minAvailable matches its availability mode.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "topology_spread_coverage",
+      "status": "pass",
+      "reason": "Multi-replica inference workloads declare the required zone and node topology spread constraints.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "spread_selector_matches_pod_labels",
+      "status": "pass",
+      "reason": "Topology spread selectors match the pods they are meant to distribute.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "availability_label_governance",
+      "status": "pass",
+      "reason": "Workloads and PDBs carry owner labels used by review and policy tooling.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove replica, PDB, topology, selector, and label drift is detected.",
+      "evidence": {
+        "fixture_count": 7,
+        "detected_fixture_count": 7,
+        "undetected": []
+      }
+    }
+  ]
+}

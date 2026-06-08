@@ -146,6 +146,7 @@ inference incidents before a service reaches production.
 | C25 | Accelerator quota overuse can starve high-priority inference tenants | GPU/accelerator quota needs tenant reservations, cost review, load shedding, shadow candidate checks, and release blocking to agree before traffic expands. | [Accelerator quota fairness audit](evidence/accelerator-quota-fairness-audit.md) |
 | C26 | GKE samples can accidentally normalize static keys or broad identity scope | Production recipes need Workload Identity binding, explicit service account token boundaries, least-privilege RBAC, static credential rejection, and TLS exporter transport. | [Workload Identity audit](evidence/workload-identity-audit.md) |
 | C27 | Namespaces can allow runaway AI workloads despite per-pod resource settings | GKE recipes need ResourceQuota and LimitRange controls that cover current workloads with headroom, default missing requests, and keep object counts bounded. | [Namespace resource audit](evidence/namespace-resource-audit.md) |
+| C28 | Workloads can pass static checks but still fail node or zone maintenance | Production GKE recipes need explicit replica floors, PDB coverage, topology spread constraints, selector alignment, and owner labels before rollout evidence is trusted. | [Availability topology audit](evidence/availability-topology-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -249,6 +250,12 @@ inference incidents before a service reaches production.
     - Policy: [config/namespace-resource-policy.json](../config/namespace-resource-policy.json)
     - Inputs: GKE-shaped namespace, collector, and sample workload manifests under [k8s/gke](../k8s/gke)
     - Evidence: [namespace resource audit](evidence/namespace-resource-audit.md)
+
+18. **Availability topology audit**
+    - Code: [demo/availability_topology_audit.py](../demo/availability_topology_audit.py)
+    - Policy: [config/availability-topology-policy.json](../config/availability-topology-policy.json)
+    - Inputs: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
+    - Evidence: [availability topology audit](evidence/availability-topology-audit.md)
 
 ## Boundary
 

@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 86,
+  "artifact_count": 88,
   "generated_artifact_count": 4,
-  "source_input_count": 67,
+  "source_input_count": 69,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2604,
-      "sha256": "82aeaf390954471498fc37b6228ba0e399ca24be38553464f9aa68dc05848f90"
+      "bytes": 2668,
+      "sha256": "86c18b9e6d90157f66216c9206d8d682ff5556bbaf5632df22fa93aa2ca3f076"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -324,6 +324,20 @@
       "sha256": "aad9de2fc002d69bf5a9a77e4350f64f1dd6fe1c41f785f53011835610745f2c"
     },
     {
+      "path": "docs/evidence/availability-topology-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1459,
+      "sha256": "d3f92a8d786cfdbf934c30e6028353cea9f59326cfdc5d8005be21d1afa678f5"
+    },
+    {
+      "path": "docs/evidence/availability-topology-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 4425,
+      "sha256": "3589a979f8c94df3c0ef3c1ccbee7199b257dd7180fa9c48a953fd394553b02c"
+    },
+    {
       "path": "docs/evidence/workload-identity-audit.md",
       "group": "evidence",
       "exists": true,
@@ -615,7 +629,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21217,
-      "sha256": "7e70cb2d65eda893dc3cb8efb0f2b6df8912e830772c1ee4b60406dd793417d5"
+      "sha256": "cad0814f8f824ed8edab30712b05891a2a9b5ce3495d38203889377375e6d6e6"
     }
   ],
   "generated_artifacts": [
@@ -653,15 +667,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 12206,
-      "sha256": "2b99a9e222fc461e136b2cddf0415901d8e60cfc1ab5825d9d16a67045176582"
+      "bytes": 12439,
+      "sha256": "3796ac417879684676a4b04dcdb9ef81e37b425d3c17186b1574fee6eb036d57"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 21697,
-      "sha256": "28ffdbc285192d0e8a23a1752886199ad897175b6141ffefee01a5d1c062f240"
+      "bytes": 22149,
+      "sha256": "7f50c5e071b26e93bd4a3f13388c23e49d343e6b8583e2e2c00a3fdab33d2136"
     },
     {
       "path": "demo/incident_replay.py",
@@ -739,6 +753,13 @@
       "exists": true,
       "bytes": 19024,
       "sha256": "0a0581fe6630dc9441cc8bb57d9ff31b32459230a0119a3671d9d77a9b42d2bd"
+    },
+    {
+      "path": "demo/availability_topology_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 20270,
+      "sha256": "ffd914a10c198da8437d82a00728b00fcf70df562e00620875a2a36321522b79"
     },
     {
       "path": "demo/workload_identity_audit.py",
@@ -891,8 +912,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 10419,
-      "sha256": "3bcdd9414de7491adeb5d89ffb341f48bc797e96731275d0d79be96f674fd6da"
+      "bytes": 10502,
+      "sha256": "b7c2ead083cb73a81476732d7f87acf024bcfcc5efbd2344670f7a6c258aac23"
     },
     {
       "path": "config/reliability-slo.json",
@@ -942,6 +963,13 @@
       "exists": true,
       "bytes": 3518,
       "sha256": "d654891f5e34019452749955a8df2b7f63d658d994a08aa48537cf5ca19df8da"
+    },
+    {
+      "path": "config/availability-topology-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2926,
+      "sha256": "0dffc2dd6919282331a950e28aaed89b2f3e9fa500a63037661dfb7d7c437029"
     },
     {
       "path": "config/workload-identity-policy.json",
@@ -1115,8 +1143,8 @@
       "path": "k8s/gke/sample-app.yaml",
       "group": "source-input",
       "exists": true,
-      "bytes": 2413,
-      "sha256": "1d630d9225dc12fa9a36eace51e435d747fa9b63f429668acdf4c3b006a6be54"
+      "bytes": 3187,
+      "sha256": "4bdcdb0be9019b11680c4841720d2f084e684d6a076173bc9b154043baed90bb"
     }
   ],
   "checks": [
@@ -1125,8 +1153,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 86,
-        "minimum": 86
+        "count": 88,
+        "minimum": 88
       }
     },
     {
@@ -1142,8 +1170,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 67,
-        "minimum": 67
+        "count": 69,
+        "minimum": 69
       }
     },
     {

@@ -56,6 +56,10 @@ python3 demo/namespace_resource_audit.py \
   --policy config/namespace-resource-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/availability_topology_audit.py \
+  --policy config/availability-topology-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/workload_identity_audit.py \
   --policy config/workload-identity-policy.json \
   --repo-root . \
@@ -224,6 +228,7 @@ python3 demo/release_readiness.py \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --namespace-resource docs/evidence/namespace-resource-audit.json \
+  --availability-topology docs/evidence/availability-topology-audit.json \
   --workload-identity docs/evidence/workload-identity-audit.json \
   --admission-policy docs/evidence/admission-policy-audit.json \
   --alerting docs/evidence/alerting-rules.json \

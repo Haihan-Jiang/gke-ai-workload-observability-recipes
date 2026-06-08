@@ -57,6 +57,8 @@ REQUIRED_EVIDENCE = [
     "k8s-hardening-audit.json",
     "namespace-resource-audit.md",
     "namespace-resource-audit.json",
+    "availability-topology-audit.md",
+    "availability-topology-audit.json",
     "workload-identity-audit.md",
     "workload-identity-audit.json",
     "admission-policy-audit.md",
@@ -127,6 +129,7 @@ def evaluate(
     supply_chain: dict[str, Any],
     k8s_hardening: dict[str, Any],
     namespace_resource: dict[str, Any],
+    availability_topology: dict[str, Any],
     workload_identity: dict[str, Any],
     admission_policy: dict[str, Any],
     alerting: dict[str, Any],
@@ -204,6 +207,15 @@ def evaluate(
             and int(namespace_resource.get("check_count", 0)) >= 8
             and int(namespace_resource.get("detected_fixture_count", 0)) >= 8
             and int(namespace_resource.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "availability_topology_audit",
+            "ok": availability_topology.get("status") == "pass"
+            and int(availability_topology.get("workload_count", 0)) >= 2
+            and int(availability_topology.get("pdb_count", 0)) >= 2
+            and int(availability_topology.get("topology_spread_count", 0)) >= 2
+            and int(availability_topology.get("detected_fixture_count", 0)) >= 7
+            and int(availability_topology.get("failed_count", -1)) == 0,
         },
         {
             "name": "workload_identity_audit",
@@ -378,8 +390,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 86
-            and int(evidence_provenance.get("source_input_count", 0)) >= 67
+            and int(evidence_provenance.get("artifact_count", 0)) >= 88
+            and int(evidence_provenance.get("source_input_count", 0)) >= 69
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -406,8 +418,9 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
-        "manifest hardening, namespace resource governance, Workload Identity",
-        "audit, admission policy simulation, SLO alerting rules,",
+        "manifest hardening, namespace resource governance, availability",
+        "topology governance, Workload Identity audit, admission policy",
+        "simulation, SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
         "detection,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
@@ -455,6 +468,7 @@ def main() -> int:
     parser.add_argument("--supply-chain", default="out/supply-chain-audit/supply-chain-audit.json")
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
     parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
+    parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
     parser.add_argument("--workload-identity", default="out/workload-identity-audit/workload-identity-audit.json")
     parser.add_argument("--admission-policy", default="out/admission-policy-audit/admission-policy-audit.json")
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
@@ -492,6 +506,7 @@ def main() -> int:
         supply_chain=load_json(Path(args.supply_chain)),
         k8s_hardening=load_json(Path(args.k8s_hardening)),
         namespace_resource=load_json(Path(args.namespace_resource)),
+        availability_topology=load_json(Path(args.availability_topology)),
         workload_identity=load_json(Path(args.workload_identity)),
         admission_policy=load_json(Path(args.admission_policy)),
         alerting=load_json(Path(args.alerting)),

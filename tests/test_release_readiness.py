@@ -61,6 +61,14 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 8,
             "failed_count": 0,
         },
+        "availability_topology": {
+            "status": "pass",
+            "workload_count": 2,
+            "pdb_count": 2,
+            "topology_spread_count": 2,
+            "detected_fixture_count": 7,
+            "failed_count": 0,
+        },
         "workload_identity": {
             "status": "pass",
             "check_count": 8,
@@ -217,8 +225,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 86,
-            "source_input_count": 67,
+            "artifact_count": 88,
+            "source_input_count": 69,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -284,6 +292,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["namespace_resource_audit"])
+
+    def test_requires_availability_topology_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["availability_topology"]["topology_spread_count"] = 0
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["availability_topology_audit"])
 
     def test_requires_admission_policy_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

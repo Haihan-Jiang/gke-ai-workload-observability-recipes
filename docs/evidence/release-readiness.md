@@ -6,8 +6,9 @@ This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, supply-chain audit, Kubernetes
-manifest hardening, namespace resource governance, Workload Identity
-audit, admission policy simulation, SLO alerting rules,
+manifest hardening, namespace resource governance, availability
+topology governance, Workload Identity audit, admission policy
+simulation, SLO alerting rules,
 Grafana dashboard coverage, OpenSLO contract, observability drift
 detection,
 telemetry redaction, telemetry cost budget, error-budget accounting,
@@ -36,6 +37,7 @@ consistent.
 | `supply_chain_audit` | PASS |
 | `k8s_manifest_hardening` | PASS |
 | `namespace_resource_audit` | PASS |
+| `availability_topology_audit` | PASS |
 | `workload_identity_audit` | PASS |
 | `admission_policy_audit` | PASS |
 | `slo_alerting_rules` | PASS |
@@ -110,6 +112,8 @@ consistent.
 | `k8s-hardening-audit.json` | yes |
 | `namespace-resource-audit.md` | yes |
 | `namespace-resource-audit.json` | yes |
+| `availability-topology-audit.md` | yes |
+| `availability-topology-audit.json` | yes |
 | `workload-identity-audit.md` | yes |
 | `workload-identity-audit.json` | yes |
 | `admission-policy-audit.md` | yes |

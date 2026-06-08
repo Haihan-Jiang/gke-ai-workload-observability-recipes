@@ -46,6 +46,10 @@
       "ok": true
     },
     {
+      "name": "availability_topology_audit",
+      "ok": true
+    },
+    {
       "name": "workload_identity_audit",
       "ok": true
     },
@@ -321,6 +325,14 @@
     },
     {
       "path": "namespace-resource-audit.json",
+      "exists": true
+    },
+    {
+      "path": "availability-topology-audit.md",
+      "exists": true
+    },
+    {
+      "path": "availability-topology-audit.json",
       "exists": true
     },
     {

@@ -15,6 +15,7 @@ python3 -m py_compile \
   demo/supply_chain_audit.py \
   demo/k8s_hardening_audit.py \
   demo/namespace_resource_audit.py \
+  demo/availability_topology_audit.py \
   demo/workload_identity_audit.py \
   demo/admission_policy_audit.py \
   demo/alerting_rules.py \
@@ -54,6 +55,7 @@ python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
 python3 -m json.tool config/supply-chain-policy.json >/dev/null
 python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
 python3 -m json.tool config/namespace-resource-policy.json >/dev/null
+python3 -m json.tool config/availability-topology-policy.json >/dev/null
 python3 -m json.tool config/workload-identity-policy.json >/dev/null
 python3 -m json.tool config/admission-policy.json >/dev/null
 python3 -m json.tool config/alerting-policy.json >/dev/null
@@ -125,6 +127,10 @@ python3 demo/namespace_resource_audit.py \
   --policy config/namespace-resource-policy.json \
   --repo-root . \
   --output-dir out/namespace-resource-audit-validate >/dev/null
+python3 demo/availability_topology_audit.py \
+  --policy config/availability-topology-policy.json \
+  --repo-root . \
+  --output-dir out/availability-topology-audit-validate >/dev/null
 python3 demo/workload_identity_audit.py \
   --policy config/workload-identity-policy.json \
   --repo-root . \
@@ -291,6 +297,7 @@ python3 demo/release_readiness.py \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --namespace-resource docs/evidence/namespace-resource-audit.json \
+  --availability-topology docs/evidence/availability-topology-audit.json \
   --workload-identity docs/evidence/workload-identity-audit.json \
   --admission-policy docs/evidence/admission-policy-audit.json \
   --alerting docs/evidence/alerting-rules.json \
@@ -337,6 +344,7 @@ python3 -m json.tool docs/evidence/policy-regression-suite.json >/dev/null
 python3 -m json.tool docs/evidence/supply-chain-audit.json >/dev/null
 python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
 python3 -m json.tool docs/evidence/namespace-resource-audit.json >/dev/null
+python3 -m json.tool docs/evidence/availability-topology-audit.json >/dev/null
 python3 -m json.tool docs/evidence/workload-identity-audit.json >/dev/null
 python3 -m json.tool docs/evidence/admission-policy-audit.json >/dev/null
 python3 -m json.tool docs/evidence/alerting-rules.json >/dev/null
