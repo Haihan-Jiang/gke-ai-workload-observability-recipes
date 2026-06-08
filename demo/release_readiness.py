@@ -63,6 +63,8 @@ REQUIRED_EVIDENCE = [
     "grafana-dashboard.json",
     "openslo-contract.md",
     "openslo-contract.json",
+    "observability-drift-audit.md",
+    "observability-drift-audit.json",
     "error-budget-ledger.md",
     "error-budget-ledger.json",
     "rollback-drill.md",
@@ -108,6 +110,7 @@ def evaluate(
     alerting: dict[str, Any],
     dashboard: dict[str, Any],
     openslo: dict[str, Any],
+    observability_drift: dict[str, Any],
     telemetry_redaction: dict[str, Any],
     telemetry_cost: dict[str, Any],
     error_budget: dict[str, Any],
@@ -192,6 +195,14 @@ def evaluate(
             and int(openslo.get("failed_count", -1)) == 0,
         },
         {
+            "name": "observability_drift_audit",
+            "ok": observability_drift.get("status") == "pass"
+            and int(observability_drift.get("required_scenario_count", 0)) >= 5
+            and int(observability_drift.get("surface_count", 0)) >= 4
+            and int(observability_drift.get("detected_fixture_count", 0)) >= 5
+            and int(observability_drift.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "telemetry_redaction_audit",
             "ok": telemetry_redaction.get("status") == "pass"
             and int(telemetry_redaction.get("payload_count", 0)) >= 5
@@ -250,8 +261,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 45
-            and int(evidence_provenance.get("source_input_count", 0)) >= 18
+            and int(evidence_provenance.get("artifact_count", 0)) >= 62
+            and int(evidence_provenance.get("source_input_count", 0)) >= 30
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -279,7 +290,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
         "manifest hardening, admission policy simulation, SLO alerting rules,",
-        "Grafana dashboard coverage, OpenSLO contract,",
+        "Grafana dashboard coverage, OpenSLO contract, observability drift",
+        "detection,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
         "rollback drill coverage, post-incident review coverage, release",
         "waiver governance, disaster recovery drill coverage, evidence",
@@ -323,6 +335,7 @@ def main() -> int:
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
     parser.add_argument("--dashboard", default="out/grafana-dashboard/grafana-dashboard.json")
     parser.add_argument("--openslo", default="out/openslo-contract/openslo-contract.json")
+    parser.add_argument("--observability-drift", default="out/observability-drift-audit/observability-drift-audit.json")
     parser.add_argument("--telemetry-redaction", default="out/telemetry-redaction-audit/telemetry-redaction-audit.json")
     parser.add_argument("--telemetry-cost", default="out/telemetry-cost-budget/telemetry-cost-budget.json")
     parser.add_argument("--error-budget", default="out/error-budget-ledger/error-budget-ledger.json")
@@ -349,6 +362,7 @@ def main() -> int:
         alerting=load_json(Path(args.alerting)),
         dashboard=load_json(Path(args.dashboard)),
         openslo=load_json(Path(args.openslo)),
+        observability_drift=load_json(Path(args.observability_drift)),
         telemetry_redaction=load_json(Path(args.telemetry_redaction)),
         telemetry_cost=load_json(Path(args.telemetry_cost)),
         error_budget=load_json(Path(args.error_budget)),

@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `64`
+- Evidence artifacts: `66`
 - Generated artifacts: `4`
-- Source inputs: `45`
+- Source inputs: `47`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 1944 | `bacc372b8d717ac8...` |
+| `docs/evidence/README.md` | 2004 | `0c4fb6f403843590...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -80,6 +80,8 @@ evidence easier to detect during review.
 | `docs/evidence/grafana-dashboard.json` | 1926 | `68f5e1bb13fea33c...` |
 | `docs/evidence/openslo-contract.md` | 700 | `9b2366251ff6f451...` |
 | `docs/evidence/openslo-contract.json` | 3510 | `ddc38e70e54d1d34...` |
+| `docs/evidence/observability-drift-audit.md` | 1461 | `197099371f6f4219...` |
+| `docs/evidence/observability-drift-audit.json` | 4624 | `4b6cefee768fdf6c...` |
 | `docs/evidence/telemetry-redaction-audit.md` | 776 | `35efa6766be8fef1...` |
 | `docs/evidence/telemetry-redaction-audit.json` | 1939 | `1373496609126636...` |
 | `docs/evidence/telemetry-cost-budget.md` | 1044 | `2b8c54aba1ed3e2e...` |
@@ -93,7 +95,7 @@ evidence easier to detect during review.
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
 | `docs/evidence/disaster-recovery-drill.md` | 1031 | `81f0f1d0916ce338...` |
-| `docs/evidence/disaster-recovery-drill.json` | 21213 | `aabd27e4e5a6292c...` |
+| `docs/evidence/disaster-recovery-drill.json` | 21213 | `08dab859ec32b59a...` |
 
 ## Generated Artifacts
 

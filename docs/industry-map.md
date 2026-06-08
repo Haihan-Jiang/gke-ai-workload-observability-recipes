@@ -125,7 +125,7 @@ inference incidents before a service reaches production.
    - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
    - Evidence: [token cost guard](evidence/token-cost-guard.md)
 
-## Security, Policy, And Privacy Evidence Added By The Fourth Feature Set
+## Security, Policy, Privacy, And Evidence Governance Added By The Fourth Feature Set
 
 | ID | Problem | Why It Matters In Production | Lab Coverage |
 | --- | --- | --- | --- |
@@ -135,6 +135,7 @@ inference incidents before a service reaches production.
 | C14 | Manifest drift can bypass review after the first audit | Platform teams need admission controls that block unsafe deployment changes at create/update time instead of discovering the drift after rollout. | [Admission policy audit](evidence/admission-policy-audit.md) |
 | C15 | Manual release exceptions can bypass reliability gates | SRE teams need bounded waiver requests with owner, approver, expiry, rollback, RCA, evidence, and budget acknowledgement instead of informal approvals. | [Release waiver governance](evidence/release-waiver-governance.md) |
 | C16 | Release evidence can be lost or restored incorrectly | Incident response and release review need recoverable evidence and control-plane artifacts with checksum verification inside RTO/RPO targets. | [Disaster recovery drill](evidence/disaster-recovery-drill.md) |
+| C17 | Observability artifacts can drift while each one still passes alone | Alert rules, dashboards, OpenSLO contracts, and runbooks need to describe the same scenario set, severities, links, and first-response contract. | [Observability drift audit](evidence/observability-drift-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -172,6 +173,12 @@ inference incidents before a service reaches production.
    - Code: [demo/disaster_recovery_drill.py](../demo/disaster_recovery_drill.py)
    - Policy: [config/disaster-recovery-policy.json](../config/disaster-recovery-policy.json)
    - Evidence: [disaster recovery drill](evidence/disaster-recovery-drill.md)
+
+7. **Observability drift audit**
+   - Code: [demo/observability_drift_audit.py](../demo/observability_drift_audit.py)
+   - Policy: [config/observability-drift-policy.json](../config/observability-drift-policy.json)
+   - Inputs: [alerting rules](evidence/alerting-rules.md), [Grafana dashboard evidence](evidence/grafana-dashboard.md), [OpenSLO contract evidence](evidence/openslo-contract.md), and [incident runbooks](evidence/incident-runbooks.md)
+   - Evidence: [observability drift audit](evidence/observability-drift-audit.md)
 
 ## Boundary
 

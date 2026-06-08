@@ -18,6 +18,7 @@ python3 -m py_compile \
   demo/alerting_rules.py \
   demo/grafana_dashboard.py \
   demo/openslo_contract.py \
+  demo/observability_drift_audit.py \
   demo/telemetry_redaction_audit.py \
   demo/telemetry_cost_budget.py \
   demo/error_budget_ledger.py \
@@ -46,6 +47,7 @@ python3 -m json.tool config/admission-policy.json >/dev/null
 python3 -m json.tool config/alerting-policy.json >/dev/null
 python3 -m json.tool config/dashboard-policy.json >/dev/null
 python3 -m json.tool config/openslo-policy.json >/dev/null
+python3 -m json.tool config/observability-drift-policy.json >/dev/null
 python3 -m json.tool config/telemetry-redaction-policy.json >/dev/null
 python3 -m json.tool config/telemetry-cost-policy.json >/dev/null
 python3 -m json.tool config/error-budget-policy.json >/dev/null
@@ -113,7 +115,7 @@ python3 demo/grafana_dashboard.py \
   --alert-policy config/alerting-policy.json \
   --dashboard-policy config/dashboard-policy.json \
   --output-dir out/grafana-dashboard-validate \
-  --dashboard out/grafana-dashboard-validate/grafana-dashboard.json \
+  --dashboard out/grafana-dashboard-validate/rendered-grafana-dashboard.json \
   --config-map out/grafana-dashboard-validate/grafana-dashboard-configmap.yaml >/dev/null
 python3 demo/openslo_contract.py \
   --slo-config config/reliability-slo.json \
@@ -121,6 +123,13 @@ python3 demo/openslo_contract.py \
   --openslo-policy config/openslo-policy.json \
   --output-dir out/openslo-contract-validate \
   --contract out/openslo-contract-validate/gke-ai-inference-slo.yaml >/dev/null
+python3 demo/observability_drift_audit.py \
+  --policy config/observability-drift-policy.json \
+  --alerting out/alerting-rules-validate/alerting-rules.json \
+  --dashboard out/grafana-dashboard-validate/grafana-dashboard.json \
+  --openslo out/openslo-contract-validate/openslo-contract.json \
+  --runbooks out/incident-runbooks-validate/incident-runbooks.json \
+  --output-dir out/observability-drift-audit-validate >/dev/null
 python3 demo/telemetry_redaction_audit.py \
   --summary out/incident-replay-validate/summary.json \
   --payload-dir out/incident-replay-payloads-validate \
@@ -191,6 +200,7 @@ python3 demo/release_readiness.py \
   --post-incident-review docs/evidence/post-incident-review.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
+  --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
@@ -219,6 +229,7 @@ python3 -m json.tool docs/evidence/admission-policy-audit.json >/dev/null
 python3 -m json.tool docs/evidence/alerting-rules.json >/dev/null
 python3 -m json.tool docs/evidence/grafana-dashboard.json >/dev/null
 python3 -m json.tool docs/evidence/openslo-contract.json >/dev/null
+python3 -m json.tool docs/evidence/observability-drift-audit.json >/dev/null
 python3 -m json.tool docs/evidence/telemetry-redaction-audit.json >/dev/null
 python3 -m json.tool docs/evidence/telemetry-cost-budget.json >/dev/null
 python3 -m json.tool docs/evidence/error-budget-ledger.json >/dev/null

@@ -58,6 +58,10 @@
       "ok": true
     },
     {
+      "name": "observability_drift_audit",
+      "ok": true
+    },
+    {
       "name": "telemetry_redaction_audit",
       "ok": true
     },
@@ -301,6 +305,14 @@
     },
     {
       "path": "openslo-contract.json",
+      "exists": true
+    },
+    {
+      "path": "observability-drift-audit.md",
+      "exists": true
+    },
+    {
+      "path": "observability-drift-audit.json",
       "exists": true
     },
     {

@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 64,
+  "artifact_count": 66,
   "generated_artifact_count": 4,
-  "source_input_count": 45,
+  "source_input_count": 47,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1944,
-      "sha256": "bacc372b8d717ac899e0cafebdf71104dee7289f3d22ce8163670820835ae31c"
+      "bytes": 2004,
+      "sha256": "0c4fb6f40384359069f95a6c2e6259f8b3cd112ad7e5c88058fb636aea5fbf98"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -366,6 +366,20 @@
       "sha256": "ddc38e70e54d1d346dc43a6f1b8614754a7b1c615c86dc8687743933763cbfb5"
     },
     {
+      "path": "docs/evidence/observability-drift-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1461,
+      "sha256": "197099371f6f42195a49afc248fe7cd8404af09e9576b932105551399e22bdf6"
+    },
+    {
+      "path": "docs/evidence/observability-drift-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 4624,
+      "sha256": "4b6cefee768fdf6c064f0c1fbbdd8ce4f2a8c3336c3a4b977e2fe24d08b136a5"
+    },
+    {
       "path": "docs/evidence/telemetry-redaction-audit.md",
       "group": "evidence",
       "exists": true,
@@ -461,7 +475,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21213,
-      "sha256": "aabd27e4e5a6292c75c5cf410bcaad2f6bce00a907ec99e75cc915c6e68b2ce2"
+      "sha256": "08dab859ec32b59a40a614b4ce0a7b9d4cfde31843ba3d367ed1afeaff2e28d6"
     }
   ],
   "generated_artifacts": [
@@ -499,15 +513,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 6875,
-      "sha256": "aa77e74cb600e08d0fb486f90543728280eeb4a3b1a73a378e3b05caea839a68"
+      "bytes": 7286,
+      "sha256": "0cf68a1f62b1b2cbde538d377df5ab27e3814fa4cd8608ff65ad1148f4f7a59d"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 13094,
-      "sha256": "04f8bf8a808dfacef9463b7b30bf88c03c836383c88263894293abd3370269ba"
+      "bytes": 13789,
+      "sha256": "0e16764f2cddd07f64f6600c253d664e835b97da68a2fe45b7852c6a7d688ec8"
     },
     {
       "path": "demo/incident_replay.py",
@@ -608,6 +622,13 @@
       "sha256": "6e912710a23f9b64db298aa67e9abceb95907c12bc44f8542b1a73fcfb8a7f0d"
     },
     {
+      "path": "demo/observability_drift_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 16574,
+      "sha256": "7682dd9c93c974b70a3a6ca505454c04a10fe5a29097726410ac4626c4a338f8"
+    },
+    {
       "path": "demo/telemetry_redaction_audit.py",
       "group": "source-input",
       "exists": true,
@@ -660,8 +681,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9550,
-      "sha256": "b59e9e8de06f6876a98c80af1ba445056e6e40f4ab864c4bc79fa83271139a58"
+      "bytes": 9629,
+      "sha256": "a27a35c2143396a538d9f6d1cdbb4a01b6c7cd668a3a5a98bc5c33336144e2ab"
     },
     {
       "path": "config/reliability-slo.json",
@@ -732,6 +753,13 @@
       "exists": true,
       "bytes": 913,
       "sha256": "5b6d800731cfda5a0b6e8f959cc48befc5ef341dfc0154320dd98d776665a1f8"
+    },
+    {
+      "path": "config/observability-drift-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1948,
+      "sha256": "9076cbc3f15735aa215e1d54c8d77535e7c25fd50346bd579034a355c3afe3f9"
     },
     {
       "path": "config/telemetry-redaction-policy.json",
@@ -817,8 +845,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 64,
-        "minimum": 60
+        "count": 66,
+        "minimum": 62
       }
     },
     {
@@ -834,8 +862,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 45,
-        "minimum": 28
+        "count": 47,
+        "minimum": 30
       }
     },
     {

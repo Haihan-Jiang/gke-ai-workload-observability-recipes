@@ -74,6 +74,13 @@ python3 demo/openslo_contract.py \
   --openslo-policy config/openslo-policy.json \
   --output-dir docs/evidence \
   --contract slos/openslo/gke-ai-inference-slo.yaml >/dev/null
+python3 demo/observability_drift_audit.py \
+  --policy config/observability-drift-policy.json \
+  --alerting docs/evidence/alerting-rules.json \
+  --dashboard docs/evidence/grafana-dashboard.json \
+  --openslo docs/evidence/openslo-contract.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/telemetry_redaction_audit.py \
   --summary "${source_dir}/summary.json" \
   --payload-dir "${payload_dir}" \
@@ -146,6 +153,7 @@ python3 demo/release_readiness.py \
   --post-incident-review docs/evidence/post-incident-review.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
+  --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null

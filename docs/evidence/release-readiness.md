@@ -7,7 +7,8 @@ that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, supply-chain audit, Kubernetes
 manifest hardening, admission policy simulation, SLO alerting rules,
-Grafana dashboard coverage, OpenSLO contract,
+Grafana dashboard coverage, OpenSLO contract, observability drift
+detection,
 telemetry redaction, telemetry cost budget, error-budget accounting,
 rollback drill coverage, post-incident review coverage, release
 waiver governance, disaster recovery drill coverage, evidence
@@ -32,6 +33,7 @@ consistent.
 | `slo_alerting_rules` | PASS |
 | `grafana_dashboard` | PASS |
 | `openslo_contract` | PASS |
+| `observability_drift_audit` | PASS |
 | `telemetry_redaction_audit` | PASS |
 | `telemetry_cost_budget` | PASS |
 | `error_budget_ledger` | PASS |
@@ -98,6 +100,8 @@ consistent.
 | `grafana-dashboard.json` | yes |
 | `openslo-contract.md` | yes |
 | `openslo-contract.json` | yes |
+| `observability-drift-audit.md` | yes |
+| `observability-drift-audit.json` | yes |
 | `error-budget-ledger.md` | yes |
 | `error-budget-ledger.json` | yes |
 | `rollback-drill.md` | yes |

@@ -77,6 +77,13 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "scenario_count": 5,
             "failed_count": 0,
         },
+        "observability_drift": {
+            "status": "pass",
+            "required_scenario_count": 5,
+            "surface_count": 4,
+            "detected_fixture_count": 5,
+            "failed_count": 0,
+        },
         "telemetry_redaction": {
             "status": "pass",
             "payload_count": 5,
@@ -133,8 +140,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 50,
-            "source_input_count": 27,
+            "artifact_count": 66,
+            "source_input_count": 47,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -222,6 +229,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["openslo_contract"])
+
+    def test_requires_observability_drift_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["observability_drift"]["detected_fixture_count"] = 2
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["observability_drift_audit"])
 
     def test_requires_error_budget_ledger(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
