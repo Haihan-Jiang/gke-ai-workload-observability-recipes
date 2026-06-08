@@ -72,6 +72,10 @@ python3 demo/rollout_safety_audit.py \
   --policy config/rollout-safety-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/config_rollout_audit.py \
+  --policy config/config-rollout-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/network_boundary_audit.py \
   --policy config/network-boundary-policy.json \
   --repo-root . \
@@ -256,6 +260,7 @@ python3 demo/release_readiness.py \
   --autoscaling-policy docs/evidence/autoscaling-policy-audit.json \
   --scheduling-placement docs/evidence/scheduling-placement-audit.json \
   --rollout-safety docs/evidence/rollout-safety-audit.json \
+  --config-rollout docs/evidence/config-rollout-audit.json \
   --network-boundary docs/evidence/network-boundary-audit.json \
   --collector-self-observability docs/evidence/collector-self-observability-audit.json \
   --telemetry-sampling docs/evidence/telemetry-sampling-audit.json \

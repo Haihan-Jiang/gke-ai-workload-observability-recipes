@@ -96,6 +96,16 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 12,
             "failed_count": 0,
         },
+        "config_rollout": {
+            "status": "pass",
+            "config_map_count": 1,
+            "deployment_count": 1,
+            "checksum_annotation_count": 1,
+            "read_only_config_mount_count": 1,
+            "secret_marker_count": 0,
+            "detected_fixture_count": 10,
+            "failed_count": 0,
+        },
         "network_boundary": {
             "status": "pass",
             "network_policy_count": 2,
@@ -275,8 +285,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 100,
-            "source_input_count": 83,
+            "artifact_count": 102,
+            "source_input_count": 85,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -386,6 +396,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["rollout_safety_audit"])
+
+    def test_requires_config_rollout_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["config_rollout"]["checksum_annotation_count"] = 0
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["config_rollout_audit"])
 
     def test_requires_network_boundary_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

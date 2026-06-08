@@ -227,7 +227,9 @@
           "status": "pass",
           "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
           "evidence": {
-            "annotations": {},
+            "annotations": {
+              "checksum/otel-collector-config": "64d88167c358c61a25a3fd0076c1dd3e6b783a90a70d080cb9dfa5b0944458b6"
+            },
             "namespace": "telemetry"
           }
         }
@@ -957,7 +959,9 @@
           "status": "pass",
           "reason": "AI workload deployments keep OpenTelemetry instrumentation injection enabled.",
           "evidence": {
-            "annotations": {},
+            "annotations": {
+              "checksum/otel-collector-config": "64d88167c358c61a25a3fd0076c1dd3e6b783a90a70d080cb9dfa5b0944458b6"
+            },
             "namespace": "telemetry"
           }
         }

@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `100`
+- Evidence artifacts: `102`
 - Generated artifacts: `4`
-- Source inputs: `83`
+- Source inputs: `85`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 3028 | `9ef0369dc7288efa...` |
+| `docs/evidence/README.md` | 3078 | `95aa7f4f5f3a8861...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -82,6 +82,8 @@ evidence easier to detect during review.
 | `docs/evidence/scheduling-placement-audit.json` | 5229 | `abdfdfd5df618e99...` |
 | `docs/evidence/rollout-safety-audit.md` | 1709 | `e3538f8d50931ea3...` |
 | `docs/evidence/rollout-safety-audit.json` | 6016 | `7b03745c5d96debb...` |
+| `docs/evidence/config-rollout-audit.md` | 1293 | `08150e099fb0f071...` |
+| `docs/evidence/config-rollout-audit.json` | 4931 | `7ad0878d1cfc7246...` |
 | `docs/evidence/network-boundary-audit.md` | 1273 | `aa908214f556c20a...` |
 | `docs/evidence/network-boundary-audit.json` | 6741 | `73431d7117267ab4...` |
 | `docs/evidence/collector-self-observability-audit.md` | 1426 | `ab08850669a16880...` |
@@ -91,7 +93,7 @@ evidence easier to detect during review.
 | `docs/evidence/workload-identity-audit.md` | 1583 | `c56d5d98ef85c305...` |
 | `docs/evidence/workload-identity-audit.json` | 6216 | `20e81a45c13637a5...` |
 | `docs/evidence/admission-policy-audit.md` | 1859 | `f9af1e271477a16c...` |
-| `docs/evidence/admission-policy-audit.json` | 47340 | `1fd2253203c05806...` |
+| `docs/evidence/admission-policy-audit.json` | 47596 | `2c38c0f19819eaee...` |
 | `docs/evidence/alerting-rules.md` | 1034 | `dc833704511d7837...` |
 | `docs/evidence/alerting-rules.json` | 6615 | `8c9278ce2776866d...` |
 | `docs/evidence/grafana-dashboard.md` | 1103 | `5d0c98a3c0e701fb...` |
@@ -128,8 +130,8 @@ evidence easier to detect during review.
 | `docs/evidence/regional-failover-audit.json` | 12350 | `8adb0e813521be56...` |
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
-| `docs/evidence/disaster-recovery-drill.md` | 1032 | `f62eb2654b6d276d...` |
-| `docs/evidence/disaster-recovery-drill.json` | 21776 | `e574c20c791cf984...` |
+| `docs/evidence/disaster-recovery-drill.md` | 1032 | `8b834806a35384f9...` |
+| `docs/evidence/disaster-recovery-drill.json` | 22375 | `9947a07589f0820c...` |
 
 ## Generated Artifacts
 

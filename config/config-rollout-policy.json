@@ -1,0 +1,97 @@
+{
+  "description": "Policy for auditing collector ConfigMap rollout binding and config hygiene.",
+  "target_manifests": [
+    "k8s/gke/collector.yaml"
+  ],
+  "collector": {
+    "namespace": "telemetry",
+    "deployment": "otel-collector",
+    "config_map": "otel-collector-config",
+    "config_key": "config.yaml",
+    "checksum_annotation": "checksum/otel-collector-config",
+    "container": "otel-collector",
+    "config_mount_path": "/etc/otelcol",
+    "required_config_arg": "--config=/etc/otelcol/config.yaml",
+    "config_volume_name": "config",
+    "required_top_level_sections": [
+      "extensions",
+      "receivers",
+      "processors",
+      "exporters",
+      "service"
+    ],
+    "forbidden_secret_markers": [
+      "api_key",
+      "auth_token",
+      "client_secret",
+      "credentials",
+      "password",
+      "private_key",
+      "secret"
+    ]
+  },
+  "required_labels": [
+    "app.kubernetes.io/name",
+    "app.kubernetes.io/part-of"
+  ],
+  "minimum_detected_fixtures": 10,
+  "fixtures": [
+    {
+      "name": "missing_config_map",
+      "mutation": "remove_config_map",
+      "expected_failed_check": "config_map_schema"
+    },
+    {
+      "name": "missing_config_key",
+      "mutation": "remove_config_key",
+      "expected_failed_check": "config_map_schema"
+    },
+    {
+      "name": "missing_checksum_annotation",
+      "mutation": "remove_checksum_annotation",
+      "expected_failed_check": "checksum_rollout_binding"
+    },
+    {
+      "name": "stale_checksum_annotation",
+      "mutation": "set_checksum_annotation",
+      "value": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_failed_check": "checksum_rollout_binding"
+    },
+    {
+      "name": "config_changed_without_checksum",
+      "mutation": "append_config_comment",
+      "comment": "# config drift without rollout annotation update",
+      "expected_failed_check": "checksum_rollout_binding"
+    },
+    {
+      "name": "writable_config_mount",
+      "mutation": "set_config_mount_read_only",
+      "value": false,
+      "expected_failed_check": "config_volume_mount_safety"
+    },
+    {
+      "name": "wrong_config_arg",
+      "mutation": "set_config_arg",
+      "value": "--config=/tmp/collector.yaml",
+      "expected_failed_check": "config_path_alignment"
+    },
+    {
+      "name": "inline_secret_literal",
+      "mutation": "append_config_comment",
+      "comment": "# auth_token: should-not-ship",
+      "expected_failed_check": "config_secret_hygiene"
+    },
+    {
+      "name": "missing_config_map_owner_label",
+      "mutation": "remove_config_map_label",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "config_label_governance"
+    },
+    {
+      "name": "missing_deployment_owner_label",
+      "mutation": "remove_deployment_label",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "config_label_governance"
+    }
+  ]
+}

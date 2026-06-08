@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 100,
+  "artifact_count": 102,
   "generated_artifact_count": 4,
-  "source_input_count": 83,
+  "source_input_count": 85,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3028,
-      "sha256": "9ef0369dc7288efa45090c763178a58d0031ca41b9ac1b05eecc451239aaa866"
+      "bytes": 3078,
+      "sha256": "95aa7f4f5f3a886116fcb97626fb74d0fa1c0a0f19cf31b6def050d7ae0af38f"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -380,6 +380,20 @@
       "sha256": "7b03745c5d96debbe849ae8c270a6b8a5a053237dcf25b8d75464430eebd35e0"
     },
     {
+      "path": "docs/evidence/config-rollout-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1293,
+      "sha256": "08150e099fb0f071e01a2a49ee370ec516747cfe3cd7255a9d9a096ea7ac7fcb"
+    },
+    {
+      "path": "docs/evidence/config-rollout-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 4931,
+      "sha256": "7ad0878d1cfc7246663ec8d837cc87912f5e2eb9db59632510862ddc297ae1b7"
+    },
+    {
       "path": "docs/evidence/network-boundary-audit.md",
       "group": "evidence",
       "exists": true,
@@ -446,8 +460,8 @@
       "path": "docs/evidence/admission-policy-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 47340,
-      "sha256": "1fd2253203c05806d8da92bc2690d9889e75ece345aaef79cffdc2aae3669dc7"
+      "bytes": 47596,
+      "sha256": "2c38c0f19819eaeed26dd9faff42b67359fb14097b4218002662444c68a9e6c0"
     },
     {
       "path": "docs/evidence/alerting-rules.md",
@@ -706,14 +720,14 @@
       "group": "evidence",
       "exists": true,
       "bytes": 1032,
-      "sha256": "f62eb2654b6d276dd44fe9dd47046af4d46337e4ff6dbdc7a29942a3385207a4"
+      "sha256": "8b834806a35384f9dbbfcb8fafb0d92a114e1f1c47172018c44579389288e4ca"
     },
     {
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 21776,
-      "sha256": "e574c20c791cf9840633291035f02fa50b1ac10fdc1373d72d318c7de7545b94"
+      "bytes": 22375,
+      "sha256": "9947a07589f0820c75814eb0098c9a568f0dcdc890f1543f9a044c0aade769ad"
     }
   ],
   "generated_artifacts": [
@@ -751,15 +765,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 13782,
-      "sha256": "aad8b380c58084eb692c4d7b49797ac53bfa8ef9f799b7305175d39613f843cd"
+      "bytes": 13987,
+      "sha256": "05ac5e3e7bccd36c015f23ab0df48ee0efa5a7b1c5f517c19d3b017940b6124a"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 24751,
-      "sha256": "47abbf0e3cdd02a2049ecb81770a41dfb8ce61d3b39464f71f76365ac04c4c39"
+      "bytes": 25147,
+      "sha256": "f6ad7e4cf1b1c744c8cb4e118cb316a57223e8917e854a0bad05957e5d01d211"
     },
     {
       "path": "scripts/kind-smoke.sh",
@@ -872,6 +886,13 @@
       "exists": true,
       "bytes": 21454,
       "sha256": "663c8f7516b9e46c456fe555c296d065efce1f821d9e47caf6e32a8dc7001c83"
+    },
+    {
+      "path": "demo/config_rollout_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 17602,
+      "sha256": "aded8dd1a945a9cf9b1a701600621791862fd6f80572340a8170660748304daf"
     },
     {
       "path": "demo/network_boundary_audit.py",
@@ -1045,8 +1066,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 10976,
-      "sha256": "c9b60c632c594b5c0b7a522e0fad301e5b200ad725a18f6acab2efbce85ff2b8"
+      "bytes": 11045,
+      "sha256": "6a0d6a7ea36c531fe9e94f6535cde486fdc46dbbbbcea7178be9dab084a4b251"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1124,6 +1145,13 @@
       "exists": true,
       "bytes": 4116,
       "sha256": "1f0b20255521554f6b6cb043e25a12a90f6d39ffb41c988666bb07d8eae38532"
+    },
+    {
+      "path": "config/config-rollout-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2913,
+      "sha256": "1d47e53aa495fc8149b8ba1c05f61da38adb17f001e4ea5d738bb635b0bc39e8"
     },
     {
       "path": "config/network-boundary-policy.json",
@@ -1297,8 +1325,8 @@
       "path": "config/disaster-recovery-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 2695,
-      "sha256": "b95515672861caead845e6a291ec42283c5ba768e8b7454cbad2ab4d89ff5877"
+      "bytes": 2746,
+      "sha256": "dc7ec8ae6da19b128fbb96e82328a1f24bcb4040d4a2220c1245951313ba6330"
     },
     {
       "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
@@ -1318,8 +1346,8 @@
       "path": "k8s/gke/collector.yaml",
       "group": "source-input",
       "exists": true,
-      "bytes": 9129,
-      "sha256": "e70aef59ea54a7b118a7151fe9c01c625a2af034d078b8c50e983b301bddb1f7"
+      "bytes": 9253,
+      "sha256": "16686785fd0bdf9b4d99709d137f65adca292cc74ee8ad8b2f1a1b41b506f556"
     },
     {
       "path": "k8s/gke/sample-app.yaml",
@@ -1335,8 +1363,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 100,
-        "minimum": 100
+        "count": 102,
+        "minimum": 102
       }
     },
     {
@@ -1352,8 +1380,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 83,
-        "minimum": 83
+        "count": 85,
+        "minimum": 85
       }
     },
     {

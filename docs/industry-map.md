@@ -153,6 +153,7 @@ inference incidents before a service reaches production.
 | C32 | Collector failures can hide the telemetry pipeline's own outage | Production observability needs collector internal metrics scraped and exported through the same durable metrics path so queue, exporter, and receiver failures are visible before telemetry disappears. | [Collector self-observability audit](evidence/collector-self-observability-audit.md) |
 | C33 | AI and telemetry workloads can land on the wrong node pools | GKE recipes need non-preempting PriorityClasses, soft node-pool affinity, and bounded tolerations so scheduling intent is explicit without making local smoke tests unschedulable. | [Scheduling placement audit](evidence/scheduling-placement-audit.md) |
 | C34 | Deployment rollouts can drop capacity or wedge singleton PVC users | Production recipes need HA workloads to use surge-safe RollingUpdate settings while singleton queue-backed collectors use Recreate, bounded rollout timing, termination grace, and compatible PDBs. | [Rollout safety audit](evidence/rollout-safety-audit.md) |
+| C35 | ConfigMap changes can leave collector pods running stale config | Production recipes need pod-template checksum bindings, path/mount alignment, read-only config mounts, labels, and secret-marker checks so config evidence matches the running collector. | [Config rollout audit](evidence/config-rollout-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -298,6 +299,12 @@ inference incidents before a service reaches production.
     - Policy: [config/rollout-safety-policy.json](../config/rollout-safety-policy.json)
     - Inputs: collector and sample workload Deployments/PDBs in [collector.yaml](../k8s/gke/collector.yaml) and [sample-app.yaml](../k8s/gke/sample-app.yaml)
     - Evidence: [rollout safety audit](evidence/rollout-safety-audit.md)
+
+25. **Config rollout audit**
+    - Code: [demo/config_rollout_audit.py](../demo/config_rollout_audit.py)
+    - Policy: [config/config-rollout-policy.json](../config/config-rollout-policy.json)
+    - Inputs: collector ConfigMap, Deployment pod-template annotations, config volume, mount, and args in [collector.yaml](../k8s/gke/collector.yaml)
+    - Evidence: [config rollout audit](evidence/config-rollout-audit.md)
 
 ## Boundary
 

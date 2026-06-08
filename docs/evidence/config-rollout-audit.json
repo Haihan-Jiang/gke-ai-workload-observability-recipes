@@ -1,0 +1,176 @@
+{
+  "status": "pass",
+  "config_map_count": 1,
+  "deployment_count": 1,
+  "checksum_annotation_count": 1,
+  "read_only_config_mount_count": 1,
+  "secret_marker_count": 0,
+  "config_hash": "64d88167c358c61a25a3fd0076c1dd3e6b783a90a70d080cb9dfa5b0944458b6",
+  "observed_checksum": "64d88167c358c61a25a3fd0076c1dd3e6b783a90a70d080cb9dfa5b0944458b6",
+  "check_count": 7,
+  "detected_fixture_count": 10,
+  "failed_count": 0,
+  "fixture_results": [
+    {
+      "name": "missing_config_map",
+      "mutation": "remove_config_map",
+      "expected_failed_check": "config_map_schema",
+      "failed_checks": [
+        "config_map_schema",
+        "checksum_rollout_binding",
+        "config_label_governance"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_config_key",
+      "mutation": "remove_config_key",
+      "expected_failed_check": "config_map_schema",
+      "failed_checks": [
+        "config_map_schema",
+        "checksum_rollout_binding"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_checksum_annotation",
+      "mutation": "remove_checksum_annotation",
+      "expected_failed_check": "checksum_rollout_binding",
+      "failed_checks": [
+        "checksum_rollout_binding"
+      ],
+      "detected": true
+    },
+    {
+      "name": "stale_checksum_annotation",
+      "mutation": "set_checksum_annotation",
+      "expected_failed_check": "checksum_rollout_binding",
+      "failed_checks": [
+        "checksum_rollout_binding"
+      ],
+      "detected": true
+    },
+    {
+      "name": "config_changed_without_checksum",
+      "mutation": "append_config_comment",
+      "expected_failed_check": "checksum_rollout_binding",
+      "failed_checks": [
+        "checksum_rollout_binding"
+      ],
+      "detected": true
+    },
+    {
+      "name": "writable_config_mount",
+      "mutation": "set_config_mount_read_only",
+      "expected_failed_check": "config_volume_mount_safety",
+      "failed_checks": [
+        "config_volume_mount_safety"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_config_arg",
+      "mutation": "set_config_arg",
+      "expected_failed_check": "config_path_alignment",
+      "failed_checks": [
+        "config_path_alignment"
+      ],
+      "detected": true
+    },
+    {
+      "name": "inline_secret_literal",
+      "mutation": "append_config_comment",
+      "expected_failed_check": "config_secret_hygiene",
+      "failed_checks": [
+        "checksum_rollout_binding",
+        "config_secret_hygiene"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_config_map_owner_label",
+      "mutation": "remove_config_map_label",
+      "expected_failed_check": "config_label_governance",
+      "failed_checks": [
+        "config_label_governance"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_deployment_owner_label",
+      "mutation": "remove_deployment_label",
+      "expected_failed_check": "config_label_governance",
+      "failed_checks": [
+        "config_label_governance"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "config_map_schema",
+      "status": "pass",
+      "reason": "Collector ConfigMap exists, exposes config.yaml, and keeps required top-level collector sections.",
+      "evidence": {
+        "gaps": [],
+        "present_sections": [
+          "exporters",
+          "extensions",
+          "processors",
+          "receivers",
+          "service"
+        ]
+      }
+    },
+    {
+      "name": "checksum_rollout_binding",
+      "status": "pass",
+      "reason": "Deployment pod template checksum annotation matches the current collector ConfigMap content.",
+      "evidence": {
+        "gap": null
+      }
+    },
+    {
+      "name": "config_path_alignment",
+      "status": "pass",
+      "reason": "Collector container args, ConfigMap volume, and mount path point at the same config file.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "config_volume_mount_safety",
+      "status": "pass",
+      "reason": "Collector config is mounted read-only so runtime cannot mutate the reviewed config artifact.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "config_secret_hygiene",
+      "status": "pass",
+      "reason": "Collector config does not embed inline secret-like keys or credential markers.",
+      "evidence": {
+        "markers": []
+      }
+    },
+    {
+      "name": "config_label_governance",
+      "status": "pass",
+      "reason": "ConfigMap and Deployment carry owner labels used by review and policy tooling.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove checksum, config path, mount safety, secret hygiene, and label drift is detected.",
+      "evidence": {
+        "fixture_count": 10,
+        "detected_fixture_count": 10,
+        "undetected": []
+      }
+    }
+  ]
+}

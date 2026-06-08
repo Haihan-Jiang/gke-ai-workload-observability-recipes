@@ -8,7 +8,7 @@ reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, supply-chain audit, Kubernetes
 manifest hardening, namespace resource governance, availability
 topology governance, autoscaling policy governance, scheduling
-placement governance, rollout safety governance, network boundary governance, collector self-observability, telemetry sampling
+placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling
 governance, Workload Identity audit, admission policy simulation,
 SLO alerting rules,
 Grafana dashboard coverage, OpenSLO contract, observability drift
@@ -43,6 +43,7 @@ consistent.
 | `autoscaling_policy_audit` | PASS |
 | `scheduling_placement_audit` | PASS |
 | `rollout_safety_audit` | PASS |
+| `config_rollout_audit` | PASS |
 | `network_boundary_audit` | PASS |
 | `collector_self_observability_audit` | PASS |
 | `telemetry_sampling_audit` | PASS |
@@ -128,6 +129,8 @@ consistent.
 | `scheduling-placement-audit.json` | yes |
 | `rollout-safety-audit.md` | yes |
 | `rollout-safety-audit.json` | yes |
+| `config-rollout-audit.md` | yes |
+| `config-rollout-audit.json` | yes |
 | `network-boundary-audit.md` | yes |
 | `network-boundary-audit.json` | yes |
 | `collector-self-observability-audit.md` | yes |

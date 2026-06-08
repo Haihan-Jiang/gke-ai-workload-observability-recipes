@@ -162,6 +162,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Autoscaling policy audit](autoscaling-policy-audit.md)",
                 "- [Scheduling placement audit](scheduling-placement-audit.md)",
                 "- [Rollout safety audit](rollout-safety-audit.md)",
+                "- [Config rollout audit](config-rollout-audit.md)",
                 "- [Network boundary audit](network-boundary-audit.md)",
                 "- [Collector self-observability audit](collector-self-observability-audit.md)",
                 "- [Telemetry sampling audit](telemetry-sampling-audit.md)",

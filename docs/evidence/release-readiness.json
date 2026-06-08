@@ -62,6 +62,10 @@
       "ok": true
     },
     {
+      "name": "config_rollout_audit",
+      "ok": true
+    },
+    {
       "name": "network_boundary_audit",
       "ok": true
     },
@@ -381,6 +385,14 @@
     },
     {
       "path": "rollout-safety-audit.json",
+      "exists": true
+    },
+    {
+      "path": "config-rollout-audit.md",
+      "exists": true
+    },
+    {
+      "path": "config-rollout-audit.json",
       "exists": true
     },
     {

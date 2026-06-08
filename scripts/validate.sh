@@ -19,6 +19,7 @@ python3 -m py_compile \
   demo/autoscaling_policy_audit.py \
   demo/scheduling_placement_audit.py \
   demo/rollout_safety_audit.py \
+  demo/config_rollout_audit.py \
   demo/network_boundary_audit.py \
   demo/collector_self_observability_audit.py \
   demo/telemetry_sampling_audit.py \
@@ -65,6 +66,7 @@ python3 -m json.tool config/availability-topology-policy.json >/dev/null
 python3 -m json.tool config/autoscaling-policy.json >/dev/null
 python3 -m json.tool config/scheduling-placement-policy.json >/dev/null
 python3 -m json.tool config/rollout-safety-policy.json >/dev/null
+python3 -m json.tool config/config-rollout-policy.json >/dev/null
 python3 -m json.tool config/network-boundary-policy.json >/dev/null
 python3 -m json.tool config/collector-self-observability-policy.json >/dev/null
 python3 -m json.tool config/telemetry-sampling-policy.json >/dev/null
@@ -155,6 +157,10 @@ python3 demo/rollout_safety_audit.py \
   --policy config/rollout-safety-policy.json \
   --repo-root . \
   --output-dir out/rollout-safety-audit-validate >/dev/null
+python3 demo/config_rollout_audit.py \
+  --policy config/config-rollout-policy.json \
+  --repo-root . \
+  --output-dir out/config-rollout-audit-validate >/dev/null
 python3 demo/network_boundary_audit.py \
   --policy config/network-boundary-policy.json \
   --repo-root . \
@@ -337,6 +343,7 @@ python3 demo/release_readiness.py \
   --autoscaling-policy docs/evidence/autoscaling-policy-audit.json \
   --scheduling-placement docs/evidence/scheduling-placement-audit.json \
   --rollout-safety docs/evidence/rollout-safety-audit.json \
+  --config-rollout docs/evidence/config-rollout-audit.json \
   --network-boundary docs/evidence/network-boundary-audit.json \
   --collector-self-observability docs/evidence/collector-self-observability-audit.json \
   --telemetry-sampling docs/evidence/telemetry-sampling-audit.json \
@@ -390,6 +397,7 @@ python3 -m json.tool docs/evidence/availability-topology-audit.json >/dev/null
 python3 -m json.tool docs/evidence/autoscaling-policy-audit.json >/dev/null
 python3 -m json.tool docs/evidence/scheduling-placement-audit.json >/dev/null
 python3 -m json.tool docs/evidence/rollout-safety-audit.json >/dev/null
+python3 -m json.tool docs/evidence/config-rollout-audit.json >/dev/null
 python3 -m json.tool docs/evidence/network-boundary-audit.json >/dev/null
 python3 -m json.tool docs/evidence/collector-self-observability-audit.json >/dev/null
 python3 -m json.tool docs/evidence/telemetry-sampling-audit.json >/dev/null

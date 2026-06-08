@@ -65,6 +65,8 @@ REQUIRED_EVIDENCE = [
     "scheduling-placement-audit.json",
     "rollout-safety-audit.md",
     "rollout-safety-audit.json",
+    "config-rollout-audit.md",
+    "config-rollout-audit.json",
     "network-boundary-audit.md",
     "network-boundary-audit.json",
     "collector-self-observability-audit.md",
@@ -145,6 +147,7 @@ def evaluate(
     autoscaling_policy: dict[str, Any],
     scheduling_placement: dict[str, Any],
     rollout_safety: dict[str, Any],
+    config_rollout: dict[str, Any],
     network_boundary: dict[str, Any],
     collector_self_observability: dict[str, Any],
     telemetry_sampling: dict[str, Any],
@@ -264,6 +267,17 @@ def evaluate(
             and int(rollout_safety.get("termination_window_count", 0)) >= 2
             and int(rollout_safety.get("detected_fixture_count", 0)) >= 12
             and int(rollout_safety.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "config_rollout_audit",
+            "ok": config_rollout.get("status") == "pass"
+            and int(config_rollout.get("config_map_count", 0)) >= 1
+            and int(config_rollout.get("deployment_count", 0)) >= 1
+            and int(config_rollout.get("checksum_annotation_count", 0)) >= 1
+            and int(config_rollout.get("read_only_config_mount_count", 0)) >= 1
+            and int(config_rollout.get("secret_marker_count", -1)) == 0
+            and int(config_rollout.get("detected_fixture_count", 0)) >= 10
+            and int(config_rollout.get("failed_count", -1)) == 0,
         },
         {
             "name": "network_boundary_audit",
@@ -464,8 +478,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 100
-            and int(evidence_provenance.get("source_input_count", 0)) >= 83
+            and int(evidence_provenance.get("artifact_count", 0)) >= 102
+            and int(evidence_provenance.get("source_input_count", 0)) >= 85
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -494,7 +508,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
         "manifest hardening, namespace resource governance, availability",
         "topology governance, autoscaling policy governance, scheduling",
-        "placement governance, rollout safety governance, network boundary governance, collector self-observability, telemetry sampling",
+        "placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling",
         "governance, Workload Identity audit, admission policy simulation,",
         "SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
@@ -548,6 +562,7 @@ def main() -> int:
     parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
     parser.add_argument("--scheduling-placement", default="out/scheduling-placement-audit/scheduling-placement-audit.json")
     parser.add_argument("--rollout-safety", default="out/rollout-safety-audit/rollout-safety-audit.json")
+    parser.add_argument("--config-rollout", default="out/config-rollout-audit/config-rollout-audit.json")
     parser.add_argument("--network-boundary", default="out/network-boundary-audit/network-boundary-audit.json")
     parser.add_argument("--collector-self-observability", default="out/collector-self-observability-audit/collector-self-observability-audit.json")
     parser.add_argument("--telemetry-sampling", default="out/telemetry-sampling-audit/telemetry-sampling-audit.json")
@@ -592,6 +607,7 @@ def main() -> int:
         autoscaling_policy=load_json(Path(args.autoscaling_policy)),
         scheduling_placement=load_json(Path(args.scheduling_placement)),
         rollout_safety=load_json(Path(args.rollout_safety)),
+        config_rollout=load_json(Path(args.config_rollout)),
         network_boundary=load_json(Path(args.network_boundary)),
         collector_self_observability=load_json(Path(args.collector_self_observability)),
         telemetry_sampling=load_json(Path(args.telemetry_sampling)),

@@ -33,6 +33,7 @@
         "docs/evidence/error-budget-ledger.json",
         "docs/evidence/rollback-drill.json",
         "docs/evidence/post-incident-review.json",
+        "docs/evidence/config-rollout-audit.json",
         "docs/evidence/release-waiver-governance.json"
       ]
     },
