@@ -7,8 +7,9 @@ that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, supply-chain audit, Kubernetes
 manifest hardening, namespace resource governance, availability
-topology governance, autoscaling policy governance, Workload Identity
-audit, admission policy simulation, SLO alerting rules,
+topology governance, autoscaling policy governance, network boundary
+governance, Workload Identity audit, admission policy simulation,
+SLO alerting rules,
 Grafana dashboard coverage, OpenSLO contract, observability drift
 detection,
 telemetry redaction, telemetry cost budget, error-budget accounting,
@@ -39,6 +40,7 @@ consistent.
 | `namespace_resource_audit` | PASS |
 | `availability_topology_audit` | PASS |
 | `autoscaling_policy_audit` | PASS |
+| `network_boundary_audit` | PASS |
 | `workload_identity_audit` | PASS |
 | `admission_policy_audit` | PASS |
 | `slo_alerting_rules` | PASS |
@@ -117,6 +119,8 @@ consistent.
 | `availability-topology-audit.json` | yes |
 | `autoscaling-policy-audit.md` | yes |
 | `autoscaling-policy-audit.json` | yes |
+| `network-boundary-audit.md` | yes |
+| `network-boundary-audit.json` | yes |
 | `workload-identity-audit.md` | yes |
 | `workload-identity-audit.json` | yes |
 | `admission-policy-audit.md` | yes |

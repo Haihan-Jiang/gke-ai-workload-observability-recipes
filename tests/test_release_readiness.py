@@ -77,6 +77,13 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 9,
             "failed_count": 0,
         },
+        "network_boundary": {
+            "status": "pass",
+            "network_policy_count": 2,
+            "egress_rule_count": 2,
+            "detected_fixture_count": 10,
+            "failed_count": 0,
+        },
         "workload_identity": {
             "status": "pass",
             "check_count": 8,
@@ -233,8 +240,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 90,
-            "source_input_count": 71,
+            "artifact_count": 92,
+            "source_input_count": 73,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -322,6 +329,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["autoscaling_policy_audit"])
+
+    def test_requires_network_boundary_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["network_boundary"]["network_policy_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["network_boundary_audit"])
 
     def test_requires_admission_policy_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

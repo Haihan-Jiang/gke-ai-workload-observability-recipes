@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `90`
+- Evidence artifacts: `92`
 - Generated artifacts: `4`
-- Source inputs: `71`
+- Source inputs: `73`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 2726 | `0d45457667c5d384...` |
+| `docs/evidence/README.md` | 2780 | `7482b339726d479e...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -78,6 +78,8 @@ evidence easier to detect during review.
 | `docs/evidence/availability-topology-audit.json` | 4425 | `3589a979f8c94df3...` |
 | `docs/evidence/autoscaling-policy-audit.md` | 1361 | `cc89b2cc3110f5fb...` |
 | `docs/evidence/autoscaling-policy-audit.json` | 5757 | `b5f14218b1f929e9...` |
+| `docs/evidence/network-boundary-audit.md` | 1273 | `aa908214f556c20a...` |
+| `docs/evidence/network-boundary-audit.json` | 6741 | `73431d7117267ab4...` |
 | `docs/evidence/workload-identity-audit.md` | 1583 | `c56d5d98ef85c305...` |
 | `docs/evidence/workload-identity-audit.json` | 6216 | `20e81a45c13637a5...` |
 | `docs/evidence/admission-policy-audit.md` | 1859 | `f9af1e271477a16c...` |
@@ -119,7 +121,7 @@ evidence easier to detect during review.
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
 | `docs/evidence/disaster-recovery-drill.md` | 1031 | `81f0f1d0916ce338...` |
-| `docs/evidence/disaster-recovery-drill.json` | 21217 | `de6d2f26e9179423...` |
+| `docs/evidence/disaster-recovery-drill.json` | 21217 | `031fa49d4815695b...` |
 
 ## Generated Artifacts
 

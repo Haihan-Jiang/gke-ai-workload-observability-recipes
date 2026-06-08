@@ -61,6 +61,8 @@ REQUIRED_EVIDENCE = [
     "availability-topology-audit.json",
     "autoscaling-policy-audit.md",
     "autoscaling-policy-audit.json",
+    "network-boundary-audit.md",
+    "network-boundary-audit.json",
     "workload-identity-audit.md",
     "workload-identity-audit.json",
     "admission-policy-audit.md",
@@ -133,6 +135,7 @@ def evaluate(
     namespace_resource: dict[str, Any],
     availability_topology: dict[str, Any],
     autoscaling_policy: dict[str, Any],
+    network_boundary: dict[str, Any],
     workload_identity: dict[str, Any],
     admission_policy: dict[str, Any],
     alerting: dict[str, Any],
@@ -228,6 +231,14 @@ def evaluate(
             and int(autoscaling_policy.get("behavior_policy_count", 0)) >= 3
             and int(autoscaling_policy.get("detected_fixture_count", 0)) >= 9
             and int(autoscaling_policy.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "network_boundary_audit",
+            "ok": network_boundary.get("status") == "pass"
+            and int(network_boundary.get("network_policy_count", 0)) >= 2
+            and int(network_boundary.get("egress_rule_count", 0)) >= 2
+            and int(network_boundary.get("detected_fixture_count", 0)) >= 10
+            and int(network_boundary.get("failed_count", -1)) == 0,
         },
         {
             "name": "workload_identity_audit",
@@ -402,8 +413,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 90
-            and int(evidence_provenance.get("source_input_count", 0)) >= 71
+            and int(evidence_provenance.get("artifact_count", 0)) >= 92
+            and int(evidence_provenance.get("source_input_count", 0)) >= 73
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -431,8 +442,9 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
         "manifest hardening, namespace resource governance, availability",
-        "topology governance, autoscaling policy governance, Workload Identity",
-        "audit, admission policy simulation, SLO alerting rules,",
+        "topology governance, autoscaling policy governance, network boundary",
+        "governance, Workload Identity audit, admission policy simulation,",
+        "SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
         "detection,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
@@ -482,6 +494,7 @@ def main() -> int:
     parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
     parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
     parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
+    parser.add_argument("--network-boundary", default="out/network-boundary-audit/network-boundary-audit.json")
     parser.add_argument("--workload-identity", default="out/workload-identity-audit/workload-identity-audit.json")
     parser.add_argument("--admission-policy", default="out/admission-policy-audit/admission-policy-audit.json")
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
@@ -521,6 +534,7 @@ def main() -> int:
         namespace_resource=load_json(Path(args.namespace_resource)),
         availability_topology=load_json(Path(args.availability_topology)),
         autoscaling_policy=load_json(Path(args.autoscaling_policy)),
+        network_boundary=load_json(Path(args.network_boundary)),
         workload_identity=load_json(Path(args.workload_identity)),
         admission_policy=load_json(Path(args.admission_policy)),
         alerting=load_json(Path(args.alerting)),
