@@ -10,9 +10,9 @@
     "CI=true ./scripts/validate.sh",
     "python3 -m unittest discover -s tests"
   ],
-  "runtime": {
-    "python": "3.14.5",
-    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O"
+  "generator": {
+    "runtime": "python3",
+    "environment": "not recorded in committed provenance"
   },
   "artifacts": [
     {

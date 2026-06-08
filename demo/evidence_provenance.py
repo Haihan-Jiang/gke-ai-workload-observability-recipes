@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import platform
 from pathlib import Path
 from typing import Any
 
@@ -118,9 +117,9 @@ def build_provenance(repo_root: Path, policy: dict[str, Any]) -> dict[str, Any]:
         "generated_artifact_count": len(generated_artifacts),
         "source_input_count": len(source_inputs),
         "validation_commands": policy.get("validation_commands", []),
-        "runtime": {
-            "python": platform.python_version(),
-            "platform": platform.platform(),
+        "generator": {
+            "runtime": "python3",
+            "environment": "not recorded in committed provenance",
         },
         "artifacts": required_artifacts,
         "generated_artifacts": generated_artifacts,
@@ -149,7 +148,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         f"- Evidence artifacts: `{report['artifact_count']}`",
         f"- Generated artifacts: `{report['generated_artifact_count']}`",
         f"- Source inputs: `{report['source_input_count']}`",
-        f"- Python: `{report['runtime']['python']}`",
+        f"- Generator runtime: `{report['generator']['runtime']}`",
+        f"- Environment: `{report['generator']['environment']}`",
         "",
         "## Checks",
         "",

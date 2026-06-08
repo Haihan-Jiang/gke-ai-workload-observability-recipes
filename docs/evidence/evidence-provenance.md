@@ -12,7 +12,8 @@ evidence easier to detect during review.
 - Evidence artifacts: `50`
 - Generated artifacts: `4`
 - Source inputs: `27`
-- Python: `3.14.5`
+- Generator runtime: `python3`
+- Environment: `not recorded in committed provenance`
 
 ## Checks
 
