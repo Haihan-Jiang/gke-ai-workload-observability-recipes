@@ -33,6 +33,12 @@ else
   echo "OpenTelemetry Operator CRDs are not installed; skipping Instrumentation." >&2
 fi
 
+if kubectl api-resources --api-group=monitoring.coreos.com | grep -q '^prometheusrules'; then
+  kubectl apply -f "${repo_root}/k8s/gke/alerting-rules.yaml"
+else
+  echo "PrometheusRule CRDs are not installed; skipping alerting rules." >&2
+fi
+
 kubectl apply -f "${repo_root}/k8s/gke/sample-app.yaml"
 kubectl -n telemetry rollout status deploy/otel-collector --timeout=120s
 kubectl -n ai-observability-demo rollout status deploy/toy-ai-inference-api --timeout=120s

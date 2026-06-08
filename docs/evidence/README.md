@@ -24,5 +24,6 @@
 - [Deployment policy decision](deployment-policy.md)
 - [Policy regression suite](policy-regression-suite.md)
 - [Kubernetes manifest hardening audit](k8s-hardening-audit.md)
+- [SLO alerting rules](alerting-rules.md)
 - [Release readiness report](release-readiness.md)
 - [Release readiness JSON](release-readiness.json)

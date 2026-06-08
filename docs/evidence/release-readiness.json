@@ -36,6 +36,10 @@
     {
       "name": "k8s_manifest_hardening",
       "ok": true
+    },
+    {
+      "name": "slo_alerting_rules",
+      "ok": true
     }
   ],
   "evidence": [
@@ -193,6 +197,14 @@
     },
     {
       "path": "k8s-hardening-audit.json",
+      "exists": true
+    },
+    {
+      "path": "alerting-rules.md",
+      "exists": true
+    },
+    {
+      "path": "alerting-rules.json",
       "exists": true
     }
   ],

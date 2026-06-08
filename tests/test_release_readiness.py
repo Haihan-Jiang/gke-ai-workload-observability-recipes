@@ -48,6 +48,11 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "check_count": 11,
             "failed_count": 0,
         },
+        "alerting": {
+            "status": "pass",
+            "rule_count": 5,
+            "failed_count": 0,
+        },
         "evidence_dir": evidence_dir,
     }
 
@@ -78,6 +83,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["k8s_manifest_hardening"])
+
+    def test_requires_slo_alerting_rules(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["alerting"]["rule_count"] = 2
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["slo_alerting_rules"])
 
 
 if __name__ == "__main__":

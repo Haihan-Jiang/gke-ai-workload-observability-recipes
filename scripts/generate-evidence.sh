@@ -48,6 +48,11 @@ python3 demo/k8s_hardening_audit.py \
   --policy config/k8s-hardening-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/alerting_rules.py \
+  --slo-config config/reliability-slo.json \
+  --policy config/alerting-policy.json \
+  --output-dir docs/evidence \
+  --manifest k8s/gke/alerting-rules.yaml >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -60,6 +65,7 @@ python3 demo/release_readiness.py \
   --policy docs/evidence/deployment-policy.json \
   --policy-regression docs/evidence/policy-regression-suite.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
+  --alerting docs/evidence/alerting-rules.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 

@@ -49,6 +49,8 @@ REQUIRED_EVIDENCE = [
     "policy-regression-suite.json",
     "k8s-hardening-audit.md",
     "k8s-hardening-audit.json",
+    "alerting-rules.md",
+    "alerting-rules.json",
 ]
 
 REQUIRED_POLICY_REGRESSION_CONTROLS = {
@@ -77,6 +79,7 @@ def evaluate(
     policy: dict[str, Any],
     policy_regression: dict[str, Any],
     k8s_hardening: dict[str, Any],
+    alerting: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
     evidence = [
@@ -118,6 +121,12 @@ def evaluate(
             and int(k8s_hardening.get("check_count", 0)) >= 11
             and int(k8s_hardening.get("failed_count", -1)) == 0,
         },
+        {
+            "name": "slo_alerting_rules",
+            "ok": alerting.get("status") == "pass"
+            and int(alerting.get("rule_count", 0)) >= 5
+            and int(alerting.get("failed_count", -1)) == 0,
+        },
     ]
     return {
         "status": "pass" if all(item["ok"] for item in checks) else "fail",
@@ -142,7 +151,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, Kubernetes manifest hardening,",
-        "and committed evidence are present and internally consistent.",
+        "SLO alerting rules, and committed evidence are present and internally",
+        "consistent.",
         "",
         "## Checks",
         "",
@@ -176,6 +186,7 @@ def main() -> int:
     parser.add_argument("--policy", default="out/deployment-policy/deployment-policy.json")
     parser.add_argument("--policy-regression", default="out/policy-regression-suite/policy-regression-suite.json")
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
+    parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
     args = parser.parse_args()
@@ -189,6 +200,7 @@ def main() -> int:
         policy=load_json(Path(args.policy)),
         policy_regression=load_json(Path(args.policy_regression)),
         k8s_hardening=load_json(Path(args.k8s_hardening)),
+        alerting=load_json(Path(args.alerting)),
         evidence_dir=Path(args.evidence_dir),
     )
     output_dir = Path(args.output_dir)

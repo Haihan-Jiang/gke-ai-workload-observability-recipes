@@ -41,6 +41,9 @@ not described as merged.
 - Kubernetes manifest hardening evidence for probes, resource budgets,
   restricted collector security context, disruption protection, and
   NetworkPolicy boundaries.
+- Generated SLO alerting rules that connect latency, dependency, rollout,
+  cache, and telemetry-loss signals to severities, runbooks, and dashboard
+  hints.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -173,6 +176,7 @@ script:
 - [Deployment policy decision](docs/evidence/deployment-policy.md)
 - [Policy regression suite](docs/evidence/policy-regression-suite.md)
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
+- [SLO alerting rules](docs/evidence/alerting-rules.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -208,6 +212,9 @@ The Kubernetes manifests live under [k8s/gke](k8s/gke):
   Python auto-instrumentation reference.
 - [sample-app.yaml](k8s/gke/sample-app.yaml): small workload annotated to use
   instrumentation from the telemetry namespace.
+- [alerting-rules.yaml](k8s/gke/alerting-rules.yaml): optional
+  PrometheusRule alerts for the replayed SLO scenarios when Prometheus
+  Operator CRDs are installed.
 
 These manifests are intentionally small and reviewable. For real production
 use, replace the placeholder upstream OTLP endpoint in `collector.yaml` with a
@@ -226,11 +233,13 @@ Before adapting this to a real GKE cluster:
 4. Keep collector RBAC read-only and scoped to required Kubernetes metadata.
 5. Keep collector health probes, resource budgets, security context,
    disruption budget, and NetworkPolicy aligned with the manifest audit.
-6. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+6. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
+   alerting evidence before routing pages.
+7. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-7. For private GKE clusters, verify webhook/firewall access for any operators
+8. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-8. Treat telemetry as production evidence: validate it during staged rollout,
+9. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study

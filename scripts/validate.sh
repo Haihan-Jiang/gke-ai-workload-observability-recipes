@@ -13,6 +13,7 @@ python3 -m py_compile \
   demo/deployment_policy.py \
   demo/policy_regression_suite.py \
   demo/k8s_hardening_audit.py \
+  demo/alerting_rules.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -28,6 +29,7 @@ python3 -m json.tool config/advanced-reliability.json >/dev/null
 python3 -m json.tool config/detailed-reliability.json >/dev/null
 python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
 python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
+python3 -m json.tool config/alerting-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -68,6 +70,11 @@ python3 demo/k8s_hardening_audit.py \
   --policy config/k8s-hardening-policy.json \
   --repo-root . \
   --output-dir out/k8s-hardening-audit-validate >/dev/null
+python3 demo/alerting_rules.py \
+  --slo-config config/reliability-slo.json \
+  --policy config/alerting-policy.json \
+  --output-dir out/alerting-rules-validate \
+  --manifest out/alerting-rules-validate/alerting-rules.yaml >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
@@ -78,6 +85,7 @@ python3 demo/release_readiness.py \
   --policy docs/evidence/deployment-policy.json \
   --policy-regression docs/evidence/policy-regression-suite.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
+  --alerting docs/evidence/alerting-rules.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
@@ -100,10 +108,11 @@ python3 -m json.tool docs/evidence/detailed-problems.json >/dev/null
 python3 -m json.tool docs/evidence/deployment-policy.json >/dev/null
 python3 -m json.tool docs/evidence/policy-regression-suite.json >/dev/null
 python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
+python3 -m json.tool docs/evidence/alerting-rules.json >/dev/null
 python3 -m unittest discover -s tests
 
 if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then
-  git diff --exit-code -- docs/evidence
+  git diff --exit-code -- docs/evidence k8s/gke/alerting-rules.yaml
 fi
 
 if command -v ruby >/dev/null 2>&1; then

@@ -6,7 +6,8 @@ This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, Kubernetes manifest hardening,
-and committed evidence are present and internally consistent.
+SLO alerting rules, and committed evidence are present and internally
+consistent.
 
 ## Checks
 
@@ -21,6 +22,7 @@ and committed evidence are present and internally consistent.
 | `deployment_policy` | PASS |
 | `policy_regression_suite` | PASS |
 | `k8s_manifest_hardening` | PASS |
+| `slo_alerting_rules` | PASS |
 
 ## Evidence Files
 
@@ -65,6 +67,8 @@ and committed evidence are present and internally consistent.
 | `policy-regression-suite.json` | yes |
 | `k8s-hardening-audit.md` | yes |
 | `k8s-hardening-audit.json` | yes |
+| `alerting-rules.md` | yes |
+| `alerting-rules.json` | yes |
 
 ## Capacity Warnings
 
