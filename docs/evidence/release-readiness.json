@@ -28,6 +28,10 @@
     {
       "name": "deployment_policy",
       "ok": true
+    },
+    {
+      "name": "policy_regression_suite",
+      "ok": true
     }
   ],
   "evidence": [
@@ -169,6 +173,14 @@
     },
     {
       "path": "deployment-policy.json",
+      "exists": true
+    },
+    {
+      "path": "policy-regression-suite.md",
+      "exists": true
+    },
+    {
+      "path": "policy-regression-suite.json",
       "exists": true
     }
   ],

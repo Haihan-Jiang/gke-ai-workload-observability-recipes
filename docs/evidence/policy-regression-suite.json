@@ -1,0 +1,207 @@
+{
+  "status": "pass",
+  "fixture_count": 8,
+  "passed_count": 8,
+  "failed_count": 0,
+  "controls_under_test": [
+    "burn_rate",
+    "collector_resilience",
+    "hpa_lag",
+    "reliability_gate",
+    "rollout_guard",
+    "tenant_blast_radius",
+    "token_cost_guard",
+    "trace_quality"
+  ],
+  "fixtures": [
+    {
+      "name": "clean_release",
+      "description": "All production-promotion controls pass, so the candidate can be promoted without manual approval.",
+      "passed": true,
+      "checks": {
+        "decision": true,
+        "blocking_controls": true,
+        "review_controls": true
+      },
+      "expected_decision": "promote",
+      "actual_decision": "promote",
+      "expected_blocking_controls": [],
+      "actual_blocking_controls": [],
+      "expected_review_controls": [],
+      "actual_review_controls": [],
+      "human_approval_required": false,
+      "operator_actions": []
+    },
+    {
+      "name": "burn_rate_page",
+      "description": "A fast error-budget burn window pages, so production promotion must stop even if other controls pass.",
+      "passed": true,
+      "checks": {
+        "decision": true,
+        "blocking_controls": true,
+        "review_controls": true
+      },
+      "expected_decision": "block_production_promotion",
+      "actual_decision": "block_production_promotion",
+      "expected_blocking_controls": [
+        "burn_rate"
+      ],
+      "actual_blocking_controls": [
+        "burn_rate"
+      ],
+      "expected_review_controls": [],
+      "actual_review_controls": [],
+      "human_approval_required": true,
+      "operator_actions": [
+        "Freeze rollout until burn-rate paging windows return below threshold."
+      ]
+    },
+    {
+      "name": "slo_gate_failure",
+      "description": "The top-level reliability gate fails, so production promotion is blocked before rollout expansion.",
+      "passed": true,
+      "checks": {
+        "decision": true,
+        "blocking_controls": true,
+        "review_controls": true
+      },
+      "expected_decision": "block_production_promotion",
+      "actual_decision": "block_production_promotion",
+      "expected_blocking_controls": [
+        "reliability_gate"
+      ],
+      "actual_blocking_controls": [
+        "reliability_gate"
+      ],
+      "expected_review_controls": [],
+      "actual_review_controls": [],
+      "human_approval_required": true,
+      "operator_actions": [
+        "Resolve `reliability_gate` before production promotion."
+      ]
+    },
+    {
+      "name": "rollout_rollback",
+      "description": "The canary guard identifies a versioned rollout regression and blocks expansion.",
+      "passed": true,
+      "checks": {
+        "decision": true,
+        "blocking_controls": true,
+        "review_controls": true
+      },
+      "expected_decision": "block_production_promotion",
+      "actual_decision": "block_production_promotion",
+      "expected_blocking_controls": [
+        "rollout_guard"
+      ],
+      "actual_blocking_controls": [
+        "rollout_guard"
+      ],
+      "expected_review_controls": [],
+      "actual_review_controls": [],
+      "human_approval_required": true,
+      "operator_actions": [
+        "Rollback or hold the candidate version before expanding traffic."
+      ]
+    },
+    {
+      "name": "trace_quality_gap",
+      "description": "Missing trace attributes make incident evidence unsafe for production decisions.",
+      "passed": true,
+      "checks": {
+        "decision": true,
+        "blocking_controls": true,
+        "review_controls": true
+      },
+      "expected_decision": "block_production_promotion",
+      "actual_decision": "block_production_promotion",
+      "expected_blocking_controls": [
+        "trace_quality"
+      ],
+      "actual_blocking_controls": [
+        "trace_quality"
+      ],
+      "expected_review_controls": [],
+      "actual_review_controls": [],
+      "human_approval_required": true,
+      "operator_actions": [
+        "Fix trace resource/span attributes before relying on incident evidence."
+      ]
+    },
+    {
+      "name": "collector_data_loss",
+      "description": "Collector queue and storage modeling predicts span loss during outage recovery.",
+      "passed": true,
+      "checks": {
+        "decision": true,
+        "blocking_controls": true,
+        "review_controls": true
+      },
+      "expected_decision": "block_production_promotion",
+      "actual_decision": "block_production_promotion",
+      "expected_blocking_controls": [
+        "collector_resilience"
+      ],
+      "actual_blocking_controls": [
+        "collector_resilience"
+      ],
+      "expected_review_controls": [],
+      "actual_review_controls": [],
+      "human_approval_required": true,
+      "operator_actions": [
+        "Increase collector queue/storage or reduce outage exposure."
+      ]
+    },
+    {
+      "name": "tenant_slo_breach",
+      "description": "A premium tenant SLO breach blocks the release even when aggregate service health looks acceptable.",
+      "passed": true,
+      "checks": {
+        "decision": true,
+        "blocking_controls": true,
+        "review_controls": true
+      },
+      "expected_decision": "block_production_promotion",
+      "actual_decision": "block_production_promotion",
+      "expected_blocking_controls": [
+        "tenant_blast_radius"
+      ],
+      "actual_blocking_controls": [
+        "tenant_blast_radius"
+      ],
+      "expected_review_controls": [],
+      "actual_review_controls": [],
+      "human_approval_required": true,
+      "operator_actions": [
+        "Protect impacted tenant tier before aggregate service promotion."
+      ]
+    },
+    {
+      "name": "hpa_and_cost_review",
+      "description": "Autoscaling lag and token/GPU cost regressions require human review but do not force an automatic rollback.",
+      "passed": true,
+      "checks": {
+        "decision": true,
+        "blocking_controls": true,
+        "review_controls": true
+      },
+      "expected_decision": "manual_review_required",
+      "actual_decision": "manual_review_required",
+      "expected_blocking_controls": [],
+      "actual_blocking_controls": [],
+      "expected_review_controls": [
+        "hpa_lag",
+        "token_cost_guard"
+      ],
+      "actual_review_controls": [
+        "hpa_lag",
+        "token_cost_guard"
+      ],
+      "human_approval_required": true,
+      "operator_actions": [
+        "Separate dependency or rollout remediation from autoscaling changes.",
+        "Review token/GPU regression before approving the model variant."
+      ]
+    }
+  ]
+}

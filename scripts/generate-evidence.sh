@@ -41,6 +41,9 @@ python3 demo/deployment_policy.py \
   --tenant-blast-radius docs/evidence/tenant-blast-radius.json \
   --token-cost-guard docs/evidence/token-cost-guard.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/policy_regression_suite.py \
+  --fixtures config/deployment-policy-fixtures.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -51,6 +54,7 @@ python3 demo/release_readiness.py \
   --advanced docs/evidence/complex-problems.json \
   --detailed docs/evidence/detailed-problems.json \
   --policy docs/evidence/deployment-policy.json \
+  --policy-regression docs/evidence/policy-regression-suite.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 

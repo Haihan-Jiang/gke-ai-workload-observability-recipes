@@ -45,7 +45,20 @@ REQUIRED_EVIDENCE = [
     "detailed-problems.json",
     "deployment-policy.md",
     "deployment-policy.json",
+    "policy-regression-suite.md",
+    "policy-regression-suite.json",
 ]
+
+REQUIRED_POLICY_REGRESSION_CONTROLS = {
+    "burn_rate",
+    "collector_resilience",
+    "hpa_lag",
+    "reliability_gate",
+    "rollout_guard",
+    "tenant_blast_radius",
+    "token_cost_guard",
+    "trace_quality",
+}
 
 
 def load_json(path: Path) -> Any:
@@ -60,6 +73,7 @@ def evaluate(
     advanced: dict[str, Any],
     detailed: dict[str, Any],
     policy: dict[str, Any],
+    policy_regression: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
     evidence = [
@@ -73,6 +87,7 @@ def evaluate(
         for item in capacity.get("scenarios", [])
         for warning in item.get("warnings", [])
     ]
+    controls_under_test = set(policy_regression.get("controls_under_test", []))
     checks = [
         {"name": "reliability_gate", "ok": gate.get("status") == "pass"},
         {"name": "evidence_files", "ok": all(item["exists"] for item in evidence)},
@@ -86,6 +101,13 @@ def evaluate(
             and policy.get("decision")
             in {"promote", "manual_review_required", "block_production_promotion"}
             and int(policy.get("control_count", 0)) >= 8,
+        },
+        {
+            "name": "policy_regression_suite",
+            "ok": policy_regression.get("status") == "pass"
+            and int(policy_regression.get("fixture_count", 0)) >= 8
+            and int(policy_regression.get("failed_count", -1)) == 0
+            and controls_under_test >= REQUIRED_POLICY_REGRESSION_CONTROLS,
         },
     ]
     return {
@@ -110,7 +132,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "This report is the final local gate for the portfolio lab. It verifies",
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
-        "policy, and committed evidence are present and internally consistent.",
+        "policy, policy regression fixtures, and committed evidence are present",
+        "and internally consistent.",
         "",
         "## Checks",
         "",
@@ -142,6 +165,7 @@ def main() -> int:
     parser.add_argument("--advanced", default="out/advanced-reliability/complex-problems.json")
     parser.add_argument("--detailed", default="out/detailed-reliability/detailed-problems.json")
     parser.add_argument("--policy", default="out/deployment-policy/deployment-policy.json")
+    parser.add_argument("--policy-regression", default="out/policy-regression-suite/policy-regression-suite.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
     args = parser.parse_args()
@@ -153,6 +177,7 @@ def main() -> int:
         advanced=load_json(Path(args.advanced)),
         detailed=load_json(Path(args.detailed)),
         policy=load_json(Path(args.policy)),
+        policy_regression=load_json(Path(args.policy_regression)),
         evidence_dir=Path(args.evidence_dir),
     )
     output_dir = Path(args.output_dir)

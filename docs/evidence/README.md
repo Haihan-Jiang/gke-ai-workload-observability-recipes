@@ -22,5 +22,6 @@
 - [Token cost guard](token-cost-guard.md)
 - [Detailed problem coverage](detailed-problems.md)
 - [Deployment policy decision](deployment-policy.md)
+- [Policy regression suite](policy-regression-suite.md)
 - [Release readiness report](release-readiness.md)
 - [Release readiness JSON](release-readiness.json)

@@ -5,7 +5,8 @@ Overall status: **PASS**
 This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
-policy, and committed evidence are present and internally consistent.
+policy, policy regression fixtures, and committed evidence are present
+and internally consistent.
 
 ## Checks
 
@@ -18,6 +19,7 @@ policy, and committed evidence are present and internally consistent.
 | `advanced_problem_coverage` | PASS |
 | `detailed_problem_coverage` | PASS |
 | `deployment_policy` | PASS |
+| `policy_regression_suite` | PASS |
 
 ## Evidence Files
 
@@ -58,6 +60,8 @@ policy, and committed evidence are present and internally consistent.
 | `detailed-problems.json` | yes |
 | `deployment-policy.md` | yes |
 | `deployment-policy.json` | yes |
+| `policy-regression-suite.md` | yes |
+| `policy-regression-suite.json` | yes |
 
 ## Capacity Warnings
 

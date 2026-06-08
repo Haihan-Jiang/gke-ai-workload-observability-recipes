@@ -36,6 +36,8 @@ not described as merged.
 - A policy-as-code deployment decision that combines SLO, burn-rate, rollout,
   trace, collector, autoscaling, tenant, and cost signals into one promotion
   gate.
+- Policy regression fixtures that prove promote, block, and manual-review
+  decisions stay stable across release-risk scenarios.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -166,6 +168,7 @@ script:
 - [Token cost guard](docs/evidence/token-cost-guard.md)
 - [Detailed problem coverage](docs/evidence/detailed-problems.md)
 - [Deployment policy decision](docs/evidence/deployment-policy.md)
+- [Policy regression suite](docs/evidence/policy-regression-suite.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 

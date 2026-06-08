@@ -1,0 +1,132 @@
+{
+  "fixtures": [
+    {
+      "name": "clean_release",
+      "description": "All production-promotion controls pass, so the candidate can be promoted without manual approval.",
+      "expected_decision": "promote",
+      "expected_blocking_controls": [],
+      "expected_review_controls": [],
+      "overrides": {}
+    },
+    {
+      "name": "burn_rate_page",
+      "description": "A fast error-budget burn window pages, so production promotion must stop even if other controls pass.",
+      "expected_decision": "block_production_promotion",
+      "expected_blocking_controls": ["burn_rate"],
+      "expected_review_controls": [],
+      "overrides": {
+        "burn_rate": {
+          "windows": [
+            {
+              "window": "5m",
+              "burn_rate": 20.5,
+              "action": "page"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "slo_gate_failure",
+      "description": "The top-level reliability gate fails, so production promotion is blocked before rollout expansion.",
+      "expected_decision": "block_production_promotion",
+      "expected_blocking_controls": ["reliability_gate"],
+      "expected_review_controls": [],
+      "overrides": {
+        "gate": {
+          "status": "fail"
+        }
+      }
+    },
+    {
+      "name": "rollout_rollback",
+      "description": "The canary guard identifies a versioned rollout regression and blocks expansion.",
+      "expected_decision": "block_production_promotion",
+      "expected_blocking_controls": ["rollout_guard"],
+      "expected_review_controls": [],
+      "overrides": {
+        "rollout_guard": {
+          "decision": "rollback",
+          "candidate": "rollout_regression",
+          "candidate_version": "v2",
+          "violations": ["p95 ratio 5.2 exceeds 1.5"]
+        }
+      }
+    },
+    {
+      "name": "trace_quality_gap",
+      "description": "Missing trace attributes make incident evidence unsafe for production decisions.",
+      "expected_decision": "block_production_promotion",
+      "expected_blocking_controls": ["trace_quality"],
+      "expected_review_controls": [],
+      "overrides": {
+        "trace_quality": {
+          "status": "fail",
+          "payloads": 5,
+          "spans": 136,
+          "resource_missing": {
+            "service.namespace": 5
+          },
+          "root_missing": {
+            "service.version": 1
+          },
+          "child_span_missing": {}
+        }
+      }
+    },
+    {
+      "name": "collector_data_loss",
+      "description": "Collector queue and storage modeling predicts span loss during outage recovery.",
+      "expected_decision": "block_production_promotion",
+      "expected_blocking_controls": ["collector_resilience"],
+      "expected_review_controls": [],
+      "overrides": {
+        "collector_resilience": {
+          "risk": "data_loss",
+          "queue_utilization": 1.21,
+          "estimated_lost_spans": 240,
+          "required_storage_mib": 512,
+          "configured_storage_mib": 128
+        }
+      }
+    },
+    {
+      "name": "tenant_slo_breach",
+      "description": "A premium tenant SLO breach blocks the release even when aggregate service health looks acceptable.",
+      "expected_decision": "block_production_promotion",
+      "expected_blocking_controls": ["tenant_blast_radius"],
+      "expected_review_controls": [],
+      "overrides": {
+        "tenant_blast_radius": {
+          "breached_scenarios": ["rollout_regression"]
+        }
+      }
+    },
+    {
+      "name": "hpa_and_cost_review",
+      "description": "Autoscaling lag and token/GPU cost regressions require human review but do not force an automatic rollback.",
+      "expected_decision": "manual_review_required",
+      "expected_blocking_controls": [],
+      "expected_review_controls": ["hpa_lag", "token_cost_guard"],
+      "overrides": {
+        "hpa_lag": {
+          "scenarios": [
+            {
+              "scenario": "dependency_timeout",
+              "decision": "fix_dependency_or_rollout"
+            }
+          ]
+        },
+        "token_cost_guard": {
+          "scenarios": [
+            {
+              "scenario": "rollout_regression",
+              "decision": "block_or_review",
+              "violations": ["tokens 900 exceed 700"]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
