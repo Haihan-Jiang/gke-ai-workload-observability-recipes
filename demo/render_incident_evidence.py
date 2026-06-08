@@ -161,6 +161,7 @@ def write_index(output_dir: Path) -> None:
                 "- [OpenSLO contract evidence](openslo-contract.md)",
                 "- [Error budget ledger](error-budget-ledger.md)",
                 "- [Rollback drill](rollback-drill.md)",
+                "- [Evidence provenance](evidence-provenance.md)",
                 "- [Release readiness report](release-readiness.md)",
                 "- [Release readiness JSON](release-readiness.json)",
                 "",

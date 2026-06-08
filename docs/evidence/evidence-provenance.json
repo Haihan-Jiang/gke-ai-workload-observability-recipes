@@ -1,0 +1,645 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "artifact_count": 50,
+  "generated_artifact_count": 4,
+  "source_input_count": 27,
+  "validation_commands": [
+    "./scripts/generate-evidence.sh",
+    "./scripts/validate.sh",
+    "CI=true ./scripts/validate.sh",
+    "python3 -m unittest discover -s tests"
+  ],
+  "runtime": {
+    "python": "3.14.5",
+    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O"
+  },
+  "artifacts": [
+    {
+      "path": "docs/evidence/README.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1566,
+      "sha256": "789a45e00f63b484e13a5bbd5ea8f023de7011e72bcbf2e00db3ba395bf49c87"
+    },
+    {
+      "path": "docs/evidence/sample-incident-report.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1724,
+      "sha256": "59e9fed419453327a9c7489a5ceac3e83c239f0af94556a0c69f8fd767ca0fcf"
+    },
+    {
+      "path": "docs/evidence/sample-summary.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 3636,
+      "sha256": "a9c0fbbd61757a14bd8742e8316d5a8ec4fa878ebe8b11904f3501948bb3a367"
+    },
+    {
+      "path": "docs/evidence/incident-dashboard.svg",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 5392,
+      "sha256": "7a3bf4e6a6b905d56d9ec1c9863414f142479719004f32f09eb40289ec07fe49"
+    },
+    {
+      "path": "docs/evidence/reliability-gate.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 2269,
+      "sha256": "fdf4578c1e04d98783b457729fcae97921905405d75de61a8ba9ddfdd0238718"
+    },
+    {
+      "path": "docs/evidence/reliability-gate.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 3086,
+      "sha256": "8be3c76bddda1ff0d22fba7e55cab1493b076154aec55054ad24de85dce10215"
+    },
+    {
+      "path": "docs/evidence/capacity-plan.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1434,
+      "sha256": "38e6d8fe2069ded0efbc8e4a56e20ba0a3fda0fa900f4923f2a2e9bff3870992"
+    },
+    {
+      "path": "docs/evidence/capacity-plan.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 2180,
+      "sha256": "891adf904eb3d54cc2854467fbe4ea1aa987bb02f2be4f35499c1ddeece598e8"
+    },
+    {
+      "path": "docs/evidence/incident-runbooks.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 2953,
+      "sha256": "ed6688f70ce8315382894de98b1db36e67337de083b1f0d0c29250cb8ec6c921"
+    },
+    {
+      "path": "docs/evidence/incident-runbooks.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 4688,
+      "sha256": "9fb15720fa290d573077c700e665a9318aa6a9caa33765d855260e04b2ce0758"
+    },
+    {
+      "path": "docs/evidence/burn-rate-analysis.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 195,
+      "sha256": "0b7a6e04425b613f4cabec5b4d6f5fbb4d214979263d816aee01f18b189aeda2"
+    },
+    {
+      "path": "docs/evidence/burn-rate-analysis.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 2287,
+      "sha256": "3ed8c60b547b12916b81fb17ad2f0f81c7705dc012f24e5991558df57f9b39ff"
+    },
+    {
+      "path": "docs/evidence/rollout-guard.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 264,
+      "sha256": "d73b44c36dba71e47d8e9301c263f6924d1218ea5ddd76a9173c8ebe1c14385d"
+    },
+    {
+      "path": "docs/evidence/rollout-guard.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 387,
+      "sha256": "e502eea5eda3d254ebadb5dc123ce14e945adbc9af89dea9f87499e7c96f82b6"
+    },
+    {
+      "path": "docs/evidence/trace-quality-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 338,
+      "sha256": "73ec4010be1b9067e6eee9ff93bd9d9464f83c54cd5f7f3950c8794cd88c1af0"
+    },
+    {
+      "path": "docs/evidence/trace-quality-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1052,
+      "sha256": "b2e7e4afe7303dfc6075f7d078533e42f7d9da070adcecdcca44ce8eb4816689"
+    },
+    {
+      "path": "docs/evidence/collector-resilience.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 300,
+      "sha256": "8e1058cc736b780ca667dc6b7fc18d92e25fdd2c4a7d080d520d680233ad5a36"
+    },
+    {
+      "path": "docs/evidence/collector-resilience.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 320,
+      "sha256": "eceac35e826c9c82fa2effeb311171f15998f76cc1beea0b335ee4bab317922f"
+    },
+    {
+      "path": "docs/evidence/incident-correlation.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 645,
+      "sha256": "64dbe640d11030db6b86f0feed7eea5be0ec9b2b351a448e28737458df6b40b6"
+    },
+    {
+      "path": "docs/evidence/incident-correlation.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1328,
+      "sha256": "bc3798beed148dcb974aa9090f7f95733f57f1eb104e305e31e1b125ca5e877d"
+    },
+    {
+      "path": "docs/evidence/complex-problems.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 551,
+      "sha256": "220a2b276c1ad7330fb578851ba360a6321af413c99b5f74e7b9def801cf6290"
+    },
+    {
+      "path": "docs/evidence/complex-problems.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1253,
+      "sha256": "3326e7c23f26ef192f53e56aba4205806740177e8e0a1b1994116a0622954301"
+    },
+    {
+      "path": "docs/evidence/critical-path-attribution.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 413,
+      "sha256": "17b9f3a1eec81742397b605d102b6a5d712e1c4ef355e627a4f3daad3bd0584e"
+    },
+    {
+      "path": "docs/evidence/critical-path-attribution.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1556,
+      "sha256": "48943addc48dcfa4e6ed051f072736c2f6519e1cb4f25e6e828ca7e61e09d6c8"
+    },
+    {
+      "path": "docs/evidence/evidence-coverage.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 451,
+      "sha256": "61c8349c8961fb7db10e63c10ae738e6f30595e25be3be4d8db6b3228bdfe89e"
+    },
+    {
+      "path": "docs/evidence/evidence-coverage.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1173,
+      "sha256": "f77ce0c8db59026c7b514edfbe8fbb9996daf6736ddefd3a0d118ce955650f39"
+    },
+    {
+      "path": "docs/evidence/hpa-lag-analysis.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 415,
+      "sha256": "9c5f80bc3e9598772f3e1303d5ba500b07de96c1d8ed2d59d507ada6165b0696"
+    },
+    {
+      "path": "docs/evidence/hpa-lag-analysis.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1110,
+      "sha256": "d33cc63c4f31e332eb5aebe1d383bf34258ffbad802d7c608978606e510a23e2"
+    },
+    {
+      "path": "docs/evidence/tenant-blast-radius.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 542,
+      "sha256": "82bba5aa390dc75b11f5843e2b2278d2ea5881cb3bb276d055ec4648221f4cb4"
+    },
+    {
+      "path": "docs/evidence/tenant-blast-radius.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1110,
+      "sha256": "df0e132cc7d291e0f43d31208c5f7aed3b884b73658ec8405cb2913b75687d27"
+    },
+    {
+      "path": "docs/evidence/token-cost-guard.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 517,
+      "sha256": "c26e82448404c2616f9c6d4c6a00a1cd999413110f91f42ff1d29ef20d2584b7"
+    },
+    {
+      "path": "docs/evidence/token-cost-guard.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1327,
+      "sha256": "32c80c96004b36f2c80f151a7a66da25f097ed7c9ae2f02bf2c52de7b5291478"
+    },
+    {
+      "path": "docs/evidence/detailed-problems.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 539,
+      "sha256": "78ce6f820cfba3fece5854796dc29ae767e7d4a049f29054e93693022499eafb"
+    },
+    {
+      "path": "docs/evidence/detailed-problems.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1167,
+      "sha256": "50b12d7c922963d1a99d8c13f23a54223fe200cbcf0ac1a0973cb025f4b070c3"
+    },
+    {
+      "path": "docs/evidence/deployment-policy.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1415,
+      "sha256": "87d4b5d310290098a02c4a9c897c68b66ea9af779d5790b4e80d6222fb642af2"
+    },
+    {
+      "path": "docs/evidence/deployment-policy.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 3414,
+      "sha256": "2ae8bb2d23a197996276b4cf4ea31ffd10d4cc13ecb6bbb581002669a34cb193"
+    },
+    {
+      "path": "docs/evidence/policy-regression-suite.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1982,
+      "sha256": "0d9de009001bd47625b5bd80cc20c562f132335cd72e78285ad9f9b05e9ad18e"
+    },
+    {
+      "path": "docs/evidence/policy-regression-suite.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 6535,
+      "sha256": "7dd9e792da764830b404275a2612e256ecb7c88347630bf981b644431c9a7424"
+    },
+    {
+      "path": "docs/evidence/k8s-hardening-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1843,
+      "sha256": "04ff59b9155bc9d8b582abd4b4eb831d05e0ee70758def289fc97571843e936e"
+    },
+    {
+      "path": "docs/evidence/k8s-hardening-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 4673,
+      "sha256": "40cad4f46752bda1f4149e05285b8ff719fdec53169168da5e8aecedbfd8c6c7"
+    },
+    {
+      "path": "docs/evidence/alerting-rules.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1034,
+      "sha256": "dc833704511d7837a8b0cce075f63b81a7bcd433d164259c669a7953a6299838"
+    },
+    {
+      "path": "docs/evidence/alerting-rules.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 6615,
+      "sha256": "8c9278ce2776866df1231501b183d68272020a823f1efdb40f01642a4185bc61"
+    },
+    {
+      "path": "docs/evidence/grafana-dashboard.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1103,
+      "sha256": "5d0c98a3c0e701fbeb2b6c62581f8fdef42948eca939bfd984c68d950dec3b75"
+    },
+    {
+      "path": "docs/evidence/grafana-dashboard.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1926,
+      "sha256": "68f5e1bb13fea33c8271434897767c31868839afaed86e6e530a11747440ee09"
+    },
+    {
+      "path": "docs/evidence/openslo-contract.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 700,
+      "sha256": "9b2366251ff6f451659f9f99bc6d71aa0bcb50f1e1bfbe7a9773125bc3bc2c33"
+    },
+    {
+      "path": "docs/evidence/openslo-contract.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 3510,
+      "sha256": "ddc38e70e54d1d346dc43a6f1b8614754a7b1c615c86dc8687743933763cbfb5"
+    },
+    {
+      "path": "docs/evidence/error-budget-ledger.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1480,
+      "sha256": "2a8675408140b55c281ae679938678ac53e8c864ce005f8d8d9223003c7be47f"
+    },
+    {
+      "path": "docs/evidence/error-budget-ledger.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 5844,
+      "sha256": "79f425445b01cc4385a2e7baa30d53fdcc17e859fd1dea7330b56954fbdf089f"
+    },
+    {
+      "path": "docs/evidence/rollback-drill.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 3125,
+      "sha256": "ae27bc6572e849ecfa1813d55ca5ff21f9c91170059a8f00d740534fde9846af"
+    },
+    {
+      "path": "docs/evidence/rollback-drill.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 7303,
+      "sha256": "cc4aec75bddfde0df68e526efba6ecc4e091db83969460dc110a40282431c1cd"
+    }
+  ],
+  "generated_artifacts": [
+    {
+      "path": "k8s/gke/alerting-rules.yaml",
+      "group": "generated-artifact",
+      "exists": true,
+      "bytes": 5309,
+      "sha256": "54eff2985cc0abda2c80e3bac2aedc7675f0fc4ff958845d95bd28842a471a10"
+    },
+    {
+      "path": "k8s/gke/grafana-dashboard-configmap.yaml",
+      "group": "generated-artifact",
+      "exists": true,
+      "bytes": 12051,
+      "sha256": "d7369a9a8293c442f69be016089ad75566f9a8632592f3bbc7100e5d9f51e7f9"
+    },
+    {
+      "path": "dashboards/grafana/gke-ai-inference-reliability.json",
+      "group": "generated-artifact",
+      "exists": true,
+      "bytes": 10359,
+      "sha256": "23f2f89bd868a58d6d9097b8f22a9ab61cd314a8788f356224ab7f4cad9bc409"
+    },
+    {
+      "path": "slos/openslo/gke-ai-inference-slo.yaml",
+      "group": "generated-artifact",
+      "exists": true,
+      "bytes": 2806,
+      "sha256": "1b50b2762030a99e6ee7924a16135cf04e5fb2723701a53f6c448fde728dddf6"
+    }
+  ],
+  "source_inputs": [
+    {
+      "path": "scripts/generate-evidence.sh",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 4675,
+      "sha256": "a49ede9cca93df7b2ea838cfcc30760451a2e1f73d201e3ab12574ee8597e598"
+    },
+    {
+      "path": "scripts/validate.sh",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 9209,
+      "sha256": "d0a83fefcfc72d9e0200c33ea8272f53e946db4ce60a76ba2490ec3e7bd18620"
+    },
+    {
+      "path": "demo/incident_replay.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 16889,
+      "sha256": "54415ba443b667522488edcf463452fed46f55474af6e0042957b016708cf196"
+    },
+    {
+      "path": "demo/reliability_gate.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 9848,
+      "sha256": "b1f5c6fc14736967d081a9a93c63673f13cce5883bbe4463c1ca4d6083a2f0b6"
+    },
+    {
+      "path": "demo/capacity_planner.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 5055,
+      "sha256": "336348d193d2d20b05999ba8873d08b302a641fe2c1b90d45eb813025905e7e6"
+    },
+    {
+      "path": "demo/runbook_generator.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 5846,
+      "sha256": "92a31cc62658728e8fef84f09508f16fb936652723b99b5e3576afc64db6bec4"
+    },
+    {
+      "path": "demo/advanced_reliability.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 18353,
+      "sha256": "9973d1f02d2add3d4baed4b186ed01bcc39681af9d0e6426d5d61cbd28246b50"
+    },
+    {
+      "path": "demo/detailed_reliability.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 15394,
+      "sha256": "2f418a65e2736fb86948919771a5c03d8716321865a8d2e3b1ca08dcf723a1ee"
+    },
+    {
+      "path": "demo/deployment_policy.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 12873,
+      "sha256": "f45cd9ba487cf0a94120af375a3d163d57888b11cfd791d92062eaccd06f1312"
+    },
+    {
+      "path": "demo/policy_regression_suite.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 7327,
+      "sha256": "b01c1d0dc5e2455ff82e9ef1ad3d2316c40aa4e3989236ade589a998fb4270ff"
+    },
+    {
+      "path": "demo/k8s_hardening_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 12826,
+      "sha256": "ef5632050873a76b6669f3b8ca4378fa267e22276f23bf31969d614867a2fd29"
+    },
+    {
+      "path": "demo/alerting_rules.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 13292,
+      "sha256": "d7b904924fdaff76f39e2423422f150f2cb7ed8bccf06b38e03e76f6d20e164d"
+    },
+    {
+      "path": "demo/grafana_dashboard.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 15236,
+      "sha256": "5cc7a7f9b75d75e1b08f617e36ef7d02cb5c3d31f269ea706331c44da6064f7d"
+    },
+    {
+      "path": "demo/openslo_contract.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 12263,
+      "sha256": "6e912710a23f9b64db298aa67e9abceb95907c12bc44f8542b1a73fcfb8a7f0d"
+    },
+    {
+      "path": "demo/error_budget_ledger.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 10597,
+      "sha256": "0484275c16852b83da22ad01fe625ecd1f4b6b5b90b8d96d9cf3b2f36d2f197f"
+    },
+    {
+      "path": "demo/rollback_drill.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 10687,
+      "sha256": "b258cc2cc99b3afd0e31edf37eb7865351f6a79fd2e607a99206d8ea3ae8f0ff"
+    },
+    {
+      "path": "demo/render_incident_evidence.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 9039,
+      "sha256": "40964871d43da84b5a21e6edc3b6922742c27965ba99f861a9a75b3d952e7b14"
+    },
+    {
+      "path": "config/reliability-slo.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 973,
+      "sha256": "3e741ec7d1e7e95ad87983a1832093b786bc7c23516e20c09c6a6270bc30b68b"
+    },
+    {
+      "path": "config/advanced-reliability.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2410,
+      "sha256": "aeae4cc170e928d7d1d90beb0d28a57bb1be27510806ee9dfb2b04b31e9e6218"
+    },
+    {
+      "path": "config/detailed-reliability.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1364,
+      "sha256": "14ab6f1c939562b005d1521284cb47850eed99cd65628b0b24b062558c731b50"
+    },
+    {
+      "path": "config/deployment-policy-fixtures.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 4290,
+      "sha256": "db79c20607bcef5594543489858bba1de093c23517aea80e178082da5f7e0a76"
+    },
+    {
+      "path": "config/k8s-hardening-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 797,
+      "sha256": "d95366692d264fc220a845e8f154695291d480eaeb4d61725fa3940650ffe8bf"
+    },
+    {
+      "path": "config/alerting-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 781,
+      "sha256": "bc192194642b9b2a4ff8eb1444402201f6486ff1181a0b3256d659d0a9865a5b"
+    },
+    {
+      "path": "config/dashboard-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 883,
+      "sha256": "9ee5013e999757d0aedc20042ba29fe922c2b164d73e85f7980b7a557c017ddf"
+    },
+    {
+      "path": "config/openslo-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 913,
+      "sha256": "5b6d800731cfda5a0b6e8f959cc48befc5ef341dfc0154320dd98d776665a1f8"
+    },
+    {
+      "path": "config/error-budget-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 704,
+      "sha256": "4b92d0d03b35127de5a64bb5860a082e691ca8d221eff31a7f21bcb2f58cc9bb"
+    },
+    {
+      "path": "config/rollback-drill-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1851,
+      "sha256": "b1668b0c2b6bf3855b5d8cdad0d65ed0610be0c7fde373dcd77137e6fe29792b"
+    }
+  ],
+  "checks": [
+    {
+      "name": "required_evidence_present",
+      "ok": true,
+      "evidence": {
+        "missing": [],
+        "count": 50,
+        "minimum": 45
+      }
+    },
+    {
+      "name": "generated_artifacts_present",
+      "ok": true,
+      "evidence": {
+        "missing": [],
+        "count": 4
+      }
+    },
+    {
+      "name": "source_inputs_present",
+      "ok": true,
+      "evidence": {
+        "missing": [],
+        "count": 27,
+        "minimum": 18
+      }
+    },
+    {
+      "name": "checksum_coverage",
+      "ok": true,
+      "evidence": {
+        "missing_checksums": [],
+        "empty_files": []
+      }
+    },
+    {
+      "name": "no_release_readiness_cycle",
+      "ok": true,
+      "evidence": {
+        "excluded_configured": []
+      }
+    },
+    {
+      "name": "validation_commands_recorded",
+      "ok": true,
+      "evidence": {
+        "commands": [
+          "./scripts/generate-evidence.sh",
+          "./scripts/validate.sh",
+          "CI=true ./scripts/validate.sh",
+          "python3 -m unittest discover -s tests"
+        ]
+      }
+    }
+  ]
+}

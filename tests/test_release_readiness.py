@@ -81,6 +81,12 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "rollback_required_count": 2,
             "failed_count": 0,
         },
+        "evidence_provenance": {
+            "status": "pass",
+            "artifact_count": 50,
+            "source_input_count": 27,
+            "failed_count": 0,
+        },
         "evidence_dir": evidence_dir,
     }
 
@@ -166,6 +172,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["rollback_drill"])
+
+    def test_requires_evidence_provenance(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["evidence_provenance"]["artifact_count"] = 2
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["evidence_provenance"])
 
 
 if __name__ == "__main__":

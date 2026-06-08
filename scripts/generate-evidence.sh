@@ -82,6 +82,10 @@ python3 demo/rollback_drill.py \
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
+python3 demo/evidence_provenance.py \
+  --policy config/evidence-provenance-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
   --capacity docs/evidence/capacity-plan.json \
@@ -96,6 +100,7 @@ python3 demo/release_readiness.py \
   --openslo docs/evidence/openslo-contract.json \
   --error-budget docs/evidence/error-budget-ledger.json \
   --rollback-drill docs/evidence/rollback-drill.json \
+  --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 

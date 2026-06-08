@@ -56,6 +56,10 @@
     {
       "name": "rollback_drill",
       "ok": true
+    },
+    {
+      "name": "evidence_provenance",
+      "ok": true
     }
   ],
   "evidence": [
@@ -253,6 +257,14 @@
     },
     {
       "path": "rollback-drill.json",
+      "exists": true
+    },
+    {
+      "path": "evidence-provenance.md",
+      "exists": true
+    },
+    {
+      "path": "evidence-provenance.json",
       "exists": true
     }
   ],
