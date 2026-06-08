@@ -3,11 +3,17 @@ kind: ServiceAccount
 metadata:
   name: otel-collector
   namespace: telemetry
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: otel-collector-readonly
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 rules:
   - apiGroups: [""]
     resources: [events, namespaces, nodes, pods, services]
@@ -23,6 +29,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: otel-collector-readonly
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -37,6 +46,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: otel-collector-queue
   namespace: telemetry
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 spec:
   accessModes: [ReadWriteOnce]
   resources:
@@ -48,11 +60,16 @@ kind: ConfigMap
 metadata:
   name: otel-collector-config
   namespace: telemetry
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 data:
   config.yaml: |
     extensions:
       file_storage:
         directory: /var/lib/otelcol/queue
+      health_check:
+        endpoint: 0.0.0.0:13133
 
     receivers:
       otlp:
@@ -100,7 +117,7 @@ data:
           enabled: true
 
     service:
-      extensions: [file_storage]
+      extensions: [file_storage, health_check]
       pipelines:
         traces:
           receivers: [otlp]
@@ -116,6 +133,9 @@ kind: Deployment
 metadata:
   name: otel-collector
   namespace: telemetry
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 spec:
   replicas: 1
   selector:
@@ -125,8 +145,17 @@ spec:
     metadata:
       labels:
         app: otel-collector
+        app.kubernetes.io/name: otel-collector
+        app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
     spec:
       serviceAccountName: otel-collector
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: otel-collector
           image: otel/opentelemetry-collector-contrib:0.112.0
@@ -136,12 +165,40 @@ spec:
               containerPort: 4317
             - name: otlp-http
               containerPort: 4318
+            - name: healthz
+              containerPort: 13133
+          readinessProbe:
+            httpGet:
+              path: /
+              port: healthz
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: healthz
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
           volumeMounts:
             - name: config
               mountPath: /etc/otelcol
               readOnly: true
             - name: queue
               mountPath: /var/lib/otelcol/queue
+            - name: tmp
+              mountPath: /tmp
       volumes:
         - name: config
           configMap:
@@ -149,12 +206,17 @@ spec:
         - name: queue
           persistentVolumeClaim:
             claimName: otel-collector-queue
+        - name: tmp
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: otel-collector
   namespace: telemetry
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 spec:
   selector:
     app: otel-collector
@@ -165,4 +227,42 @@ spec:
     - name: otlp-http
       port: 4318
       targetPort: otlp-http
-
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: otel-collector
+  namespace: telemetry
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: otel-collector
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-otlp-from-ai-workloads
+  namespace: telemetry
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  podSelector:
+    matchLabels:
+      app: otel-collector
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              observability.haihan.dev/role: workload
+      ports:
+        - protocol: TCP
+          port: 4317
+        - protocol: TCP
+          port: 4318

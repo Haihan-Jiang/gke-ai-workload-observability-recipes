@@ -38,6 +38,9 @@ not described as merged.
   gate.
 - Policy regression fixtures that prove promote, block, and manual-review
   decisions stay stable across release-risk scenarios.
+- Kubernetes manifest hardening evidence for probes, resource budgets,
+  restricted collector security context, disruption protection, and
+  NetworkPolicy boundaries.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -169,6 +172,7 @@ script:
 - [Detailed problem coverage](docs/evidence/detailed-problems.md)
 - [Deployment policy decision](docs/evidence/deployment-policy.md)
 - [Policy regression suite](docs/evidence/policy-regression-suite.md)
+- [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -220,11 +224,13 @@ Before adapting this to a real GKE cluster:
 3. Mount persistent storage for collector queues before relying on telemetry
    during rollouts.
 4. Keep collector RBAC read-only and scoped to required Kubernetes metadata.
-5. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+5. Keep collector health probes, resource budgets, security context,
+   disruption budget, and NetworkPolicy aligned with the manifest audit.
+6. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-6. For private GKE clusters, verify webhook/firewall access for any operators
+7. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-7. Treat telemetry as production evidence: validate it during staged rollout,
+8. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study

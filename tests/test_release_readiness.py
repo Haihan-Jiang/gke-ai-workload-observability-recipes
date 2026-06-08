@@ -43,6 +43,11 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "failed_count": 0,
             "controls_under_test": sorted(release_readiness.REQUIRED_POLICY_REGRESSION_CONTROLS),
         },
+        "k8s_hardening": {
+            "status": "pass",
+            "check_count": 11,
+            "failed_count": 0,
+        },
         "evidence_dir": evidence_dir,
     }
 
@@ -62,6 +67,17 @@ class ReleaseReadinessTest(unittest.TestCase):
             checks = {item["name"]: item["ok"] for item in report["checks"]}
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["policy_regression_suite"])
+
+    def test_requires_k8s_manifest_hardening(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["k8s_hardening"]["failed_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["k8s_manifest_hardening"])
 
 
 if __name__ == "__main__":

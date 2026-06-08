@@ -1,0 +1,31 @@
+{
+  "target_manifests": [
+    "k8s/gke/namespace.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "collector": {
+    "namespace": "telemetry",
+    "deployment": "otel-collector",
+    "service_account": "otel-collector",
+    "config_map": "otel-collector-config",
+    "pvc": "otel-collector-queue",
+    "pdb": "otel-collector",
+    "network_policy": "allow-otlp-from-ai-workloads",
+    "required_otlp_ports": [4317, 4318],
+    "required_config_fragments": [
+      "file_storage",
+      "health_check",
+      "sending_queue",
+      "retry_on_failure"
+    ]
+  },
+  "workload": {
+    "namespace": "ai-observability-demo",
+    "deployment": "toy-ai-inference-api"
+  },
+  "required_namespace_labels": [
+    "app.kubernetes.io/part-of",
+    "observability.haihan.dev/role"
+  ]
+}

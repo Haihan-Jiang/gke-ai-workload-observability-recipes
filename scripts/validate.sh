@@ -12,6 +12,7 @@ python3 -m py_compile \
   demo/detailed_reliability.py \
   demo/deployment_policy.py \
   demo/policy_regression_suite.py \
+  demo/k8s_hardening_audit.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -26,6 +27,7 @@ python3 -m json.tool config/reliability-slo.json >/dev/null
 python3 -m json.tool config/advanced-reliability.json >/dev/null
 python3 -m json.tool config/detailed-reliability.json >/dev/null
 python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
+python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -62,6 +64,10 @@ python3 demo/deployment_policy.py \
 python3 demo/policy_regression_suite.py \
   --fixtures config/deployment-policy-fixtures.json \
   --output-dir out/policy-regression-suite-validate >/dev/null
+python3 demo/k8s_hardening_audit.py \
+  --policy config/k8s-hardening-policy.json \
+  --repo-root . \
+  --output-dir out/k8s-hardening-audit-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
@@ -71,6 +77,7 @@ python3 demo/release_readiness.py \
   --detailed docs/evidence/detailed-problems.json \
   --policy docs/evidence/deployment-policy.json \
   --policy-regression docs/evidence/policy-regression-suite.json \
+  --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
@@ -92,6 +99,7 @@ python3 -m json.tool docs/evidence/token-cost-guard.json >/dev/null
 python3 -m json.tool docs/evidence/detailed-problems.json >/dev/null
 python3 -m json.tool docs/evidence/deployment-policy.json >/dev/null
 python3 -m json.tool docs/evidence/policy-regression-suite.json >/dev/null
+python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
 python3 -m unittest discover -s tests
 
 if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then

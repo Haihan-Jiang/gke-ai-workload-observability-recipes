@@ -23,5 +23,6 @@
 - [Detailed problem coverage](detailed-problems.md)
 - [Deployment policy decision](deployment-policy.md)
 - [Policy regression suite](policy-regression-suite.md)
+- [Kubernetes manifest hardening audit](k8s-hardening-audit.md)
 - [Release readiness report](release-readiness.md)
 - [Release readiness JSON](release-readiness.json)

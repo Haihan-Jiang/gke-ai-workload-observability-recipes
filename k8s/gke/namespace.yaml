@@ -2,9 +2,14 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: telemetry
+  labels:
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+    observability.haihan.dev/role: telemetry
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: ai-observability-demo
-
+  labels:
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+    observability.haihan.dev/role: workload

@@ -5,8 +5,8 @@ Overall status: **PASS**
 This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
-policy, policy regression fixtures, and committed evidence are present
-and internally consistent.
+policy, policy regression fixtures, Kubernetes manifest hardening,
+and committed evidence are present and internally consistent.
 
 ## Checks
 
@@ -20,6 +20,7 @@ and internally consistent.
 | `detailed_problem_coverage` | PASS |
 | `deployment_policy` | PASS |
 | `policy_regression_suite` | PASS |
+| `k8s_manifest_hardening` | PASS |
 
 ## Evidence Files
 
@@ -62,6 +63,8 @@ and internally consistent.
 | `deployment-policy.json` | yes |
 | `policy-regression-suite.md` | yes |
 | `policy-regression-suite.json` | yes |
+| `k8s-hardening-audit.md` | yes |
+| `k8s-hardening-audit.json` | yes |
 
 ## Capacity Warnings
 

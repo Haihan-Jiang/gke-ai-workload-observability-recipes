@@ -44,6 +44,10 @@ python3 demo/deployment_policy.py \
 python3 demo/policy_regression_suite.py \
   --fixtures config/deployment-policy-fixtures.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/k8s_hardening_audit.py \
+  --policy config/k8s-hardening-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -55,6 +59,7 @@ python3 demo/release_readiness.py \
   --detailed docs/evidence/detailed-problems.json \
   --policy docs/evidence/deployment-policy.json \
   --policy-regression docs/evidence/policy-regression-suite.json \
+  --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 
