@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 106,
+  "artifact_count": 108,
   "generated_artifact_count": 4,
-  "source_input_count": 90,
+  "source_input_count": 96,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3192,
-      "sha256": "eeb70387f026e16f2c0b3bf3886bee030991bc15d60401adb3ca2d7315d37fd6"
+      "bytes": 3256,
+      "sha256": "009259e8c7ab528d4b4e03c5284f647c5d342b72f9cd07c40b1eb51cbf987c05"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -308,6 +308,20 @@
       "exists": true,
       "bytes": 6053,
       "sha256": "30c642e4c03fa7ec8d0267de13f5e6729ad7167f8b4e82f9701134185e887ac9"
+    },
+    {
+      "path": "docs/evidence/repository-governance-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1265,
+      "sha256": "b67f7136bc4077b27e80e6b859f858cdb8cb8ac868b84f20d666a94fd64f9d84"
+    },
+    {
+      "path": "docs/evidence/repository-governance-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 5233,
+      "sha256": "a8efb869df45a4fb34bd745de64b1a75bd40a0e03179f6d9b7a5735acf8b2d7f"
     },
     {
       "path": "docs/evidence/k8s-hardening-audit.md",
@@ -747,15 +761,15 @@
       "path": "docs/evidence/disaster-recovery-drill.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1032,
-      "sha256": "58f4755f9de8bb2f8b283d3c848a720b996c1b4d8d7b7cb031bc6524ed74b827"
+      "bytes": 1033,
+      "sha256": "d9d04574ad5f4d69614fbf0accd1b27d385bde4edd07146a2e068b7fdefa3a2a"
     },
     {
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 24731,
-      "sha256": "7af05d9e88b0bdaa758532e6b29120eb3351d98cbc42710fd0eb1dd580c8f02f"
+      "bytes": 28142,
+      "sha256": "d643cb14fd0251627eec5c657aa1f69e56bc8651e2c3a75ed4effc2fbd4a178d"
     }
   ],
   "generated_artifacts": [
@@ -793,15 +807,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 14425,
-      "sha256": "7d29cc0646a1d49ff224ef8553bc5648f8dce8efca96f36e5b256ec54d45af45"
+      "bytes": 14658,
+      "sha256": "bdb6faf3d5281260b4bc6b868090be5b2e6249c4f74a3f9d3d49b266897417f8"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 25995,
-      "sha256": "2d62ab5c70f6af40ce8cdb8c096e0519d1307e1c0dabf090719dbe21e7883973"
+      "bytes": 26447,
+      "sha256": "3e467527608f86409880be86cd22752b9e5730fa112f417f921629aec903968c"
     },
     {
       "path": "scripts/kind-smoke.sh",
@@ -879,6 +893,13 @@
       "exists": true,
       "bytes": 17851,
       "sha256": "66ef8c99d510ac03507250b7efb1810752fa06f4e06b2e57cd4e2cf3219b1a29"
+    },
+    {
+      "path": "demo/repository_governance_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 9459,
+      "sha256": "343d30b6837b7392aa1f4c2de650609c96b960d571e3e250e6e349ef9f486c49"
     },
     {
       "path": "demo/k8s_hardening_audit.py",
@@ -1108,8 +1129,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 11197,
-      "sha256": "c7202880682ada8d3c43bceca4ca2e1883dbb823f05d5f612e02a72553049d9f"
+      "bytes": 11280,
+      "sha256": "cedf85bda4756bdc44eddc31b0659b531f4b32d30b568f56a3dad792908e37fb"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1152,6 +1173,13 @@
       "exists": true,
       "bytes": 2581,
       "sha256": "5b65b82c29e4694563164252ed277f5009f3d834309357f3c56cc1ee26ab6aaf"
+    },
+    {
+      "path": "config/repository-governance-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3130,
+      "sha256": "d2e0e307515d4bfe2880cd7c478799709da5d34ca8f878a6c94cbbbdd991d3cc"
     },
     {
       "path": "config/k8s-hardening-policy.json",
@@ -1381,8 +1409,8 @@
       "path": "config/disaster-recovery-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 2935,
-      "sha256": "c87f90a326b18821018d28558021c5c13c09b4bcad3388a46343247c87d91c99"
+      "bytes": 3160,
+      "sha256": "3a7f81e99aab62aca9614733b461ce951ec4c842ec0f428fd8decdfd906b40a4"
     },
     {
       "path": ".github/workflows/ci.yml",
@@ -1390,6 +1418,34 @@
       "exists": true,
       "bytes": 443,
       "sha256": "caca369c2c2d35aa69db7edb8a15942f0e5c578de85fc534ce5d06ed209ca56a"
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 316,
+      "sha256": "74ecce74ca4b0081c9cb1f6fba89c8c9cbf8af84d05e83b0a70df0df22fd2a75"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1558,
+      "sha256": "8d6134be308b4b6c69cab1897770e7b89d9c65e786f6a82b2ac978f3fd6be310"
+    },
+    {
+      "path": "SECURITY.md",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1352,
+      "sha256": "0ba9ea122917d8f190a5b976daef80f886882737a39c0e800655bc2333062309"
+    },
+    {
+      "path": "docs/release-process.md",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1428,
+      "sha256": "a94c29ab56696339c74d1ee3a73040db937e000776be4345d9fd57189cd49e3c"
     },
     {
       "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
@@ -1426,8 +1482,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 106,
-        "minimum": 106
+        "count": 108,
+        "minimum": 108
       }
     },
     {
@@ -1443,8 +1499,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 90,
-        "minimum": 90
+        "count": 96,
+        "minimum": 96
       }
     },
     {

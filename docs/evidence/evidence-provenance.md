@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `106`
+- Evidence artifacts: `108`
 - Generated artifacts: `4`
-- Source inputs: `90`
+- Source inputs: `96`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 3192 | `eeb70387f026e16f...` |
+| `docs/evidence/README.md` | 3256 | `009259e8c7ab528d...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -72,6 +72,8 @@ evidence easier to detect during review.
 | `docs/evidence/supply-chain-audit.json` | 1667 | `7d881ef96bd2b874...` |
 | `docs/evidence/ci-governance-audit.md` | 1371 | `cd41c3e774a7995f...` |
 | `docs/evidence/ci-governance-audit.json` | 6053 | `30c642e4c03fa7ec...` |
+| `docs/evidence/repository-governance-audit.md` | 1265 | `b67f7136bc4077b2...` |
+| `docs/evidence/repository-governance-audit.json` | 5233 | `a8efb869df45a4fb...` |
 | `docs/evidence/k8s-hardening-audit.md` | 1843 | `04ff59b9155bc9d8...` |
 | `docs/evidence/k8s-hardening-audit.json` | 5421 | `2eede595c6cb24e9...` |
 | `docs/evidence/pod-security-admission-audit.md` | 1358 | `dae0be6f21bd2132...` |
@@ -134,8 +136,8 @@ evidence easier to detect during review.
 | `docs/evidence/regional-failover-audit.json` | 12350 | `8adb0e813521be56...` |
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
-| `docs/evidence/disaster-recovery-drill.md` | 1032 | `58f4755f9de8bb2f...` |
-| `docs/evidence/disaster-recovery-drill.json` | 24731 | `7af05d9e88b0bdaa...` |
+| `docs/evidence/disaster-recovery-drill.md` | 1033 | `d9d04574ad5f4d69...` |
+| `docs/evidence/disaster-recovery-drill.json` | 28142 | `d643cb14fd025162...` |
 
 ## Generated Artifacts
 

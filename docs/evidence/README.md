@@ -25,6 +25,7 @@
 - [Policy regression suite](policy-regression-suite.md)
 - [Supply chain audit](supply-chain-audit.md)
 - [CI governance audit](ci-governance-audit.md)
+- [Repository governance audit](repository-governance-audit.md)
 - [Kubernetes manifest hardening audit](k8s-hardening-audit.md)
 - [Pod Security Admission audit](pod-security-admission-audit.md)
 - [Namespace resource audit](namespace-resource-audit.md)

@@ -6,7 +6,7 @@ This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, supply-chain audit, CI
-governance, Kubernetes manifest hardening, Pod Security Admission governance, namespace resource governance, availability
+governance, repository governance, Kubernetes manifest hardening, Pod Security Admission governance, namespace resource governance, availability
 topology governance, autoscaling policy governance, scheduling
 placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling
 governance, Workload Identity audit, admission policy simulation,
@@ -38,6 +38,7 @@ consistent.
 | `policy_regression_suite` | PASS |
 | `supply_chain_audit` | PASS |
 | `ci_governance_audit` | PASS |
+| `repository_governance_audit` | PASS |
 | `k8s_manifest_hardening` | PASS |
 | `pod_security_admission_audit` | PASS |
 | `namespace_resource_audit` | PASS |
@@ -121,6 +122,8 @@ consistent.
 | `supply-chain-audit.json` | yes |
 | `ci-governance-audit.md` | yes |
 | `ci-governance-audit.json` | yes |
+| `repository-governance-audit.md` | yes |
+| `repository-governance-audit.json` | yes |
 | `k8s-hardening-audit.md` | yes |
 | `k8s-hardening-audit.json` | yes |
 | `pod-security-admission-audit.md` | yes |

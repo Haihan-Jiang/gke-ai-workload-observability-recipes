@@ -42,6 +42,10 @@
       "ok": true
     },
     {
+      "name": "repository_governance_audit",
+      "ok": true
+    },
+    {
       "name": "k8s_manifest_hardening",
       "ok": true
     },
@@ -353,6 +357,14 @@
     },
     {
       "path": "ci-governance-audit.json",
+      "exists": true
+    },
+    {
+      "path": "repository-governance-audit.md",
+      "exists": true
+    },
+    {
+      "path": "repository-governance-audit.json",
       "exists": true
     },
     {

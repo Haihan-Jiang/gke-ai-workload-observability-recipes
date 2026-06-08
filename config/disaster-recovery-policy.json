@@ -35,6 +35,7 @@
         "docs/evidence/post-incident-review.json",
         "docs/evidence/config-rollout-audit.json",
         "docs/evidence/ci-governance-audit.json",
+        "docs/evidence/repository-governance-audit.json",
         "docs/evidence/release-waiver-governance.json"
       ]
     },
@@ -76,8 +77,13 @@
       "artifacts": [
         "config/reliability-slo.json",
         "config/ci-governance-policy.json",
+        "config/repository-governance-policy.json",
         "config/disaster-recovery-policy.json",
         ".github/workflows/ci.yml",
+        ".github/CODEOWNERS",
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        "docs/release-process.md",
         "scripts/generate-evidence.sh",
         "scripts/validate.sh"
       ]

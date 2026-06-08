@@ -1,0 +1,110 @@
+{
+  "description": "Policy for auditing public repository governance before treating the lab as contributor-ready.",
+  "required_files": [
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    ".github/CODEOWNERS",
+    "docs/release-process.md"
+  ],
+  "required_contributing_terms": [
+    "./scripts/generate-evidence.sh",
+    "./scripts/validate.sh",
+    "CI=true ./scripts/validate.sh",
+    "negative fixtures",
+    "Regenerate committed evidence",
+    "Do not add paid cloud dependencies"
+  ],
+  "required_security_terms": [
+    "Do not open a public issue with exploit details",
+    "GitHub private vulnerability reporting",
+    "credentials",
+    "workflow permissions",
+    "Kubernetes manifests",
+    "generated evidence"
+  ],
+  "required_release_terms": [
+    "./scripts/generate-evidence.sh",
+    "./scripts/validate.sh",
+    "CI=true ./scripts/validate.sh",
+    "release-readiness.md",
+    "evidence-provenance.md",
+    "disaster-recovery-drill.md",
+    "repository-governance-audit.md",
+    "merge state is clean"
+  ],
+  "codeowners": {
+    "required_owner": "@Haihan-Jiang",
+    "required_patterns": [
+      "*",
+      "/.github/",
+      "/scripts/",
+      "/config/",
+      "/docs/evidence/",
+      "/demo/",
+      "/k8s/",
+      "/policies/",
+      "/slos/"
+    ]
+  },
+  "minimum_detected_fixtures": 8,
+  "fixtures": [
+    {
+      "name": "missing_contributing",
+      "mutation": "remove_file",
+      "path": "CONTRIBUTING.md",
+      "expected_failed_check": "required_files"
+    },
+    {
+      "name": "missing_security_private_channel",
+      "mutation": "remove_text",
+      "path": "SECURITY.md",
+      "text": "GitHub private vulnerability reporting",
+      "expected_failed_check": "security_reporting"
+    },
+    {
+      "name": "missing_ci_mode_validation",
+      "mutation": "remove_text",
+      "path": "CONTRIBUTING.md",
+      "text": "CI=true ./scripts/validate.sh",
+      "expected_failed_check": "contribution_workflow"
+    },
+    {
+      "name": "missing_release_evidence_review",
+      "mutation": "remove_text",
+      "path": "docs/release-process.md",
+      "text": "repository-governance-audit.md",
+      "expected_failed_check": "release_process"
+    },
+    {
+      "name": "missing_default_codeowner",
+      "mutation": "remove_line_containing",
+      "path": ".github/CODEOWNERS",
+      "text": "* @Haihan-Jiang",
+      "expected_failed_check": "codeowners_coverage"
+    },
+    {
+      "name": "wrong_codeowner",
+      "mutation": "replace_text",
+      "path": ".github/CODEOWNERS",
+      "from": "@Haihan-Jiang",
+      "to": "@someone-else",
+      "expected_failed_check": "codeowners_coverage"
+    },
+    {
+      "name": "missing_no_paid_dependency_boundary",
+      "mutation": "remove_text",
+      "path": "CONTRIBUTING.md",
+      "text": "Do not add paid cloud dependencies",
+      "expected_failed_check": "contribution_workflow"
+    },
+    {
+      "name": "missing_clean_merge_state_step",
+      "mutation": "remove_text",
+      "path": "docs/release-process.md",
+      "text": "merge state is clean",
+      "expected_failed_check": "release_process"
+    }
+  ]
+}

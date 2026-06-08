@@ -1,0 +1,14 @@
+# Default owner for the reliability lab.
+* @Haihan-Jiang
+
+# Release and governance surfaces.
+/.github/ @Haihan-Jiang
+/scripts/ @Haihan-Jiang
+/config/ @Haihan-Jiang
+/docs/evidence/ @Haihan-Jiang
+
+# Runtime and platform manifests.
+/demo/ @Haihan-Jiang
+/k8s/ @Haihan-Jiang
+/policies/ @Haihan-Jiang
+/slos/ @Haihan-Jiang

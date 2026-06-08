@@ -55,6 +55,8 @@ REQUIRED_EVIDENCE = [
     "supply-chain-audit.json",
     "ci-governance-audit.md",
     "ci-governance-audit.json",
+    "repository-governance-audit.md",
+    "repository-governance-audit.json",
     "k8s-hardening-audit.md",
     "k8s-hardening-audit.json",
     "pod-security-admission-audit.md",
@@ -146,6 +148,7 @@ def evaluate(
     policy_regression: dict[str, Any],
     supply_chain: dict[str, Any],
     ci_governance: dict[str, Any],
+    repository_governance: dict[str, Any],
     k8s_hardening: dict[str, Any],
     pod_security_admission: dict[str, Any],
     namespace_resource: dict[str, Any],
@@ -230,6 +233,14 @@ def evaluate(
             and int(ci_governance.get("hardened_action_count", 0)) >= 2
             and int(ci_governance.get("detected_fixture_count", 0)) >= 8
             and int(ci_governance.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "repository_governance_audit",
+            "ok": repository_governance.get("status") == "pass"
+            and int(repository_governance.get("present_file_count", 0)) >= 6
+            and int(repository_governance.get("owned_pattern_count", 0)) >= 9
+            and int(repository_governance.get("detected_fixture_count", 0)) >= 8
+            and int(repository_governance.get("failed_count", -1)) == 0,
         },
         {
             "name": "k8s_manifest_hardening",
@@ -532,7 +543,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, CI",
-        "governance, Kubernetes manifest hardening, Pod Security Admission governance, namespace resource governance, availability",
+        "governance, repository governance, Kubernetes manifest hardening, Pod Security Admission governance, namespace resource governance, availability",
         "topology governance, autoscaling policy governance, scheduling",
         "placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling",
         "governance, Workload Identity audit, admission policy simulation,",
@@ -583,6 +594,7 @@ def main() -> int:
     parser.add_argument("--policy-regression", default="out/policy-regression-suite/policy-regression-suite.json")
     parser.add_argument("--supply-chain", default="out/supply-chain-audit/supply-chain-audit.json")
     parser.add_argument("--ci-governance", default="out/ci-governance-audit/ci-governance-audit.json")
+    parser.add_argument("--repository-governance", default="out/repository-governance-audit/repository-governance-audit.json")
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
     parser.add_argument("--pod-security-admission", default="out/pod-security-admission-audit/pod-security-admission-audit.json")
     parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
@@ -630,6 +642,7 @@ def main() -> int:
         policy_regression=load_json(Path(args.policy_regression)),
         supply_chain=load_json(Path(args.supply_chain)),
         ci_governance=load_json(Path(args.ci_governance)),
+        repository_governance=load_json(Path(args.repository_governance)),
         k8s_hardening=load_json(Path(args.k8s_hardening)),
         pod_security_admission=load_json(Path(args.pod_security_admission)),
         namespace_resource=load_json(Path(args.namespace_resource)),
