@@ -5,6 +5,12 @@ metadata:
   labels:
     app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
     observability.haihan.dev/role: telemetry
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: latest
 ---
 apiVersion: v1
 kind: ResourceQuota
@@ -58,6 +64,12 @@ metadata:
   labels:
     app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
     observability.haihan.dev/role: workload
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: latest
 ---
 apiVersion: v1
 kind: ResourceQuota

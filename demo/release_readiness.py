@@ -55,6 +55,8 @@ REQUIRED_EVIDENCE = [
     "supply-chain-audit.json",
     "k8s-hardening-audit.md",
     "k8s-hardening-audit.json",
+    "pod-security-admission-audit.md",
+    "pod-security-admission-audit.json",
     "namespace-resource-audit.md",
     "namespace-resource-audit.json",
     "availability-topology-audit.md",
@@ -142,6 +144,7 @@ def evaluate(
     policy_regression: dict[str, Any],
     supply_chain: dict[str, Any],
     k8s_hardening: dict[str, Any],
+    pod_security_admission: dict[str, Any],
     namespace_resource: dict[str, Any],
     availability_topology: dict[str, Any],
     autoscaling_policy: dict[str, Any],
@@ -220,6 +223,16 @@ def evaluate(
             "ok": k8s_hardening.get("status") == "pass"
             and int(k8s_hardening.get("check_count", 0)) >= 11
             and int(k8s_hardening.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "pod_security_admission_audit",
+            "ok": pod_security_admission.get("status") == "pass"
+            and int(pod_security_admission.get("namespace_count", 0)) >= 2
+            and int(pod_security_admission.get("workload_count", 0)) >= 2
+            and int(pod_security_admission.get("restricted_namespace_count", 0)) >= 2
+            and int(pod_security_admission.get("restricted_workload_count", 0)) >= 2
+            and int(pod_security_admission.get("detected_fixture_count", 0)) >= 10
+            and int(pod_security_admission.get("failed_count", -1)) == 0,
         },
         {
             "name": "namespace_resource_audit",
@@ -478,8 +491,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 102
-            and int(evidence_provenance.get("source_input_count", 0)) >= 85
+            and int(evidence_provenance.get("artifact_count", 0)) >= 104
+            and int(evidence_provenance.get("source_input_count", 0)) >= 87
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -506,7 +519,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
-        "manifest hardening, namespace resource governance, availability",
+        "manifest hardening, Pod Security Admission governance, namespace resource governance, availability",
         "topology governance, autoscaling policy governance, scheduling",
         "placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling",
         "governance, Workload Identity audit, admission policy simulation,",
@@ -557,6 +570,7 @@ def main() -> int:
     parser.add_argument("--policy-regression", default="out/policy-regression-suite/policy-regression-suite.json")
     parser.add_argument("--supply-chain", default="out/supply-chain-audit/supply-chain-audit.json")
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
+    parser.add_argument("--pod-security-admission", default="out/pod-security-admission-audit/pod-security-admission-audit.json")
     parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
     parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
     parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
@@ -602,6 +616,7 @@ def main() -> int:
         policy_regression=load_json(Path(args.policy_regression)),
         supply_chain=load_json(Path(args.supply_chain)),
         k8s_hardening=load_json(Path(args.k8s_hardening)),
+        pod_security_admission=load_json(Path(args.pod_security_admission)),
         namespace_resource=load_json(Path(args.namespace_resource)),
         availability_topology=load_json(Path(args.availability_topology)),
         autoscaling_policy=load_json(Path(args.autoscaling_policy)),

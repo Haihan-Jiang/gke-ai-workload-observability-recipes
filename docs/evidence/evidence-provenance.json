@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 102,
+  "artifact_count": 104,
   "generated_artifact_count": 4,
-  "source_input_count": 85,
+  "source_input_count": 87,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3078,
-      "sha256": "95aa7f4f5f3a886116fcb97626fb74d0fa1c0a0f19cf31b6def050d7ae0af38f"
+      "bytes": 3144,
+      "sha256": "d1ca80e9d9b6b4c0f532e44a0b465fbf319ce0c8cc4c4ef5f74ad262b761ac21"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -306,8 +306,22 @@
       "path": "docs/evidence/k8s-hardening-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 4673,
-      "sha256": "40cad4f46752bda1f4149e05285b8ff719fdec53169168da5e8aecedbfd8c6c7"
+      "bytes": 5421,
+      "sha256": "2eede595c6cb24e9e767c6fdc6d93e1149d36b648d7d54515b8d7d5ac8ea2085"
+    },
+    {
+      "path": "docs/evidence/pod-security-admission-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1358,
+      "sha256": "dae0be6f21bd213251ccad32c53b48c043bdfdb0181c3dfb3864dfad53ca8db9"
+    },
+    {
+      "path": "docs/evidence/pod-security-admission-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 4749,
+      "sha256": "db8c8dd6bed7b940ca3fc479ec5bf3f25d969cdb4d1df0d53289ce99a318a244"
     },
     {
       "path": "docs/evidence/namespace-resource-audit.md",
@@ -720,14 +734,14 @@
       "group": "evidence",
       "exists": true,
       "bytes": 1032,
-      "sha256": "8b834806a35384f9dbbfcb8fafb0d92a114e1f1c47172018c44579389288e4ca"
+      "sha256": "af7c3200101dfec08eefe8f0454985380ff5d1cf7ebdc9bdb043a350f3574c6d"
     },
     {
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 22375,
-      "sha256": "9947a07589f0820c75814eb0098c9a568f0dcdc890f1543f9a044c0aade769ad"
+      "bytes": 22990,
+      "sha256": "f535e159b2000a0b4568fee3dbf004c8c91b8e2135748f8f52ee7f8d023b85bb"
     }
   ],
   "generated_artifacts": [
@@ -765,15 +779,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 13987,
-      "sha256": "05ac5e3e7bccd36c015f23ab0df48ee0efa5a7b1c5f517c19d3b017940b6124a"
+      "bytes": 14224,
+      "sha256": "a4d245cb900ce6c9fa4d4cc9d15abf9472b44e175ce993124497a976bcd5439b"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 25147,
-      "sha256": "f6ad7e4cf1b1c744c8cb4e118cb316a57223e8917e854a0bad05957e5d01d211"
+      "bytes": 25607,
+      "sha256": "22d769e8bba826451098d093d480f252b5612b70f514e357e07b8c816c8cf655"
     },
     {
       "path": "scripts/kind-smoke.sh",
@@ -851,6 +865,13 @@
       "exists": true,
       "bytes": 12826,
       "sha256": "ef5632050873a76b6669f3b8ca4378fa267e22276f23bf31969d614867a2fd29"
+    },
+    {
+      "path": "demo/pod_security_admission_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 17218,
+      "sha256": "ab0b2f5d81224a8be3443bcb7ed0efa21c739cd90276689fdeb32dce743f384d"
     },
     {
       "path": "demo/namespace_resource_audit.py",
@@ -1066,8 +1087,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 11045,
-      "sha256": "6a0d6a7ea36c531fe9e94f6535cde486fdc46dbbbbcea7178be9dab084a4b251"
+      "bytes": 11130,
+      "sha256": "198436a9ef36e9d6d8f52741fd607691b1ca400bbc3e2f3b572ba16a9aea4ef5"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1110,6 +1131,13 @@
       "exists": true,
       "bytes": 797,
       "sha256": "d95366692d264fc220a845e8f154695291d480eaeb4d61725fa3940650ffe8bf"
+    },
+    {
+      "path": "config/pod-security-admission-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3869,
+      "sha256": "7deac2b3fda804744c648320bda1065d3895b7981f33406ee6c2d95df1d8f184"
     },
     {
       "path": "config/namespace-resource-policy.json",
@@ -1325,8 +1353,8 @@
       "path": "config/disaster-recovery-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 2746,
-      "sha256": "dc7ec8ae6da19b128fbb96e82328a1f24bcb4040d4a2220c1245951313ba6330"
+      "bytes": 2805,
+      "sha256": "1ebd77f381308c21edd7b319d324a89908a9bcc35c43e7d2f227d3bcc55f45f9"
     },
     {
       "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
@@ -1363,8 +1391,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 102,
-        "minimum": 102
+        "count": 104,
+        "minimum": 104
       }
     },
     {
@@ -1380,8 +1408,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 85,
-        "minimum": 85
+        "count": 87,
+        "minimum": 87
       }
     },
     {

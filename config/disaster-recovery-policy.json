@@ -42,6 +42,7 @@
       "artifacts": [
         "docs/evidence/supply-chain-audit.json",
         "docs/evidence/k8s-hardening-audit.json",
+        "docs/evidence/pod-security-admission-audit.json",
         "docs/evidence/admission-policy-audit.json",
         "docs/evidence/telemetry-redaction-audit.json"
       ]

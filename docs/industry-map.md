@@ -154,6 +154,7 @@ inference incidents before a service reaches production.
 | C33 | AI and telemetry workloads can land on the wrong node pools | GKE recipes need non-preempting PriorityClasses, soft node-pool affinity, and bounded tolerations so scheduling intent is explicit without making local smoke tests unschedulable. | [Scheduling placement audit](evidence/scheduling-placement-audit.md) |
 | C34 | Deployment rollouts can drop capacity or wedge singleton PVC users | Production recipes need HA workloads to use surge-safe RollingUpdate settings while singleton queue-backed collectors use Recreate, bounded rollout timing, termination grace, and compatible PDBs. | [Rollout safety audit](evidence/rollout-safety-audit.md) |
 | C35 | ConfigMap changes can leave collector pods running stale config | Production recipes need pod-template checksum bindings, path/mount alignment, read-only config mounts, labels, and secret-marker checks so config evidence matches the running collector. | [Config rollout audit](evidence/config-rollout-audit.md) |
+| C36 | Namespaces can accept pods that bypass restricted security controls | Production GKE recipes need Pod Security Admission restricted enforcement plus workload compatibility checks before assuming container-level hardening is actually enforced. | [Pod Security Admission audit](evidence/pod-security-admission-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -305,6 +306,12 @@ inference incidents before a service reaches production.
     - Policy: [config/config-rollout-policy.json](../config/config-rollout-policy.json)
     - Inputs: collector ConfigMap, Deployment pod-template annotations, config volume, mount, and args in [collector.yaml](../k8s/gke/collector.yaml)
     - Evidence: [config rollout audit](evidence/config-rollout-audit.md)
+
+26. **Pod Security Admission audit**
+    - Code: [demo/pod_security_admission_audit.py](../demo/pod_security_admission_audit.py)
+    - Policy: [config/pod-security-admission-policy.json](../config/pod-security-admission-policy.json)
+    - Inputs: namespace PSA labels and collector/sample workload pod templates under [k8s/gke](../k8s/gke)
+    - Evidence: [Pod Security Admission audit](evidence/pod-security-admission-audit.md)
 
 ## Boundary
 

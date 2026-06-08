@@ -1,0 +1,119 @@
+{
+  "description": "Policy for auditing namespace-level Pod Security Admission and workload restricted-profile compatibility.",
+  "target_manifests": [
+    "k8s/gke/namespace.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "required_namespace_labels": {
+    "pod-security.kubernetes.io/enforce": "restricted",
+    "pod-security.kubernetes.io/enforce-version": "latest",
+    "pod-security.kubernetes.io/audit": "restricted",
+    "pod-security.kubernetes.io/audit-version": "latest",
+    "pod-security.kubernetes.io/warn": "restricted",
+    "pod-security.kubernetes.io/warn-version": "latest"
+  },
+  "required_owner_labels": [
+    "app.kubernetes.io/part-of",
+    "observability.haihan.dev/role"
+  ],
+  "workloads": [
+    {
+      "namespace": "telemetry",
+      "deployment": "otel-collector",
+      "container": "otel-collector"
+    },
+    {
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "container": "app"
+    }
+  ],
+  "minimum_detected_fixtures": 10,
+  "fixtures": [
+    {
+      "name": "telemetry_missing_enforce_label",
+      "mutation": "remove_namespace_label",
+      "namespace": "telemetry",
+      "label": "pod-security.kubernetes.io/enforce",
+      "expected_failed_check": "namespace_psa_labels"
+    },
+    {
+      "name": "workload_enforce_baseline",
+      "mutation": "set_namespace_label",
+      "namespace": "ai-observability-demo",
+      "label": "pod-security.kubernetes.io/enforce",
+      "value": "baseline",
+      "expected_failed_check": "namespace_psa_labels"
+    },
+    {
+      "name": "telemetry_missing_warn_version",
+      "mutation": "remove_namespace_label",
+      "namespace": "telemetry",
+      "label": "pod-security.kubernetes.io/warn-version",
+      "expected_failed_check": "namespace_psa_labels"
+    },
+    {
+      "name": "collector_privileged_container",
+      "mutation": "set_container_security_field",
+      "namespace": "telemetry",
+      "deployment": "otel-collector",
+      "container": "otel-collector",
+      "field": "privileged",
+      "value": true,
+      "expected_failed_check": "restricted_container_security"
+    },
+    {
+      "name": "sample_allows_privilege_escalation",
+      "mutation": "set_container_security_field",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "container": "app",
+      "field": "allowPrivilegeEscalation",
+      "value": true,
+      "expected_failed_check": "restricted_container_security"
+    },
+    {
+      "name": "collector_adds_net_raw",
+      "mutation": "add_container_capability",
+      "namespace": "telemetry",
+      "deployment": "otel-collector",
+      "container": "otel-collector",
+      "capability": "NET_RAW",
+      "expected_failed_check": "restricted_container_security"
+    },
+    {
+      "name": "sample_host_network",
+      "mutation": "set_pod_spec_field",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "field": "hostNetwork",
+      "value": true,
+      "expected_failed_check": "restricted_pod_security"
+    },
+    {
+      "name": "collector_host_path_volume",
+      "mutation": "add_host_path_volume",
+      "namespace": "telemetry",
+      "deployment": "otel-collector",
+      "expected_failed_check": "restricted_volume_types"
+    },
+    {
+      "name": "sample_missing_seccomp",
+      "mutation": "remove_pod_security_field",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "field": "seccompProfile",
+      "expected_failed_check": "restricted_pod_security"
+    },
+    {
+      "name": "collector_run_as_root",
+      "mutation": "set_pod_security_field",
+      "namespace": "telemetry",
+      "deployment": "otel-collector",
+      "field": "runAsNonRoot",
+      "value": false,
+      "expected_failed_check": "restricted_pod_security"
+    }
+  ]
+}

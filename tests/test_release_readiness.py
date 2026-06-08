@@ -54,6 +54,15 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "check_count": 11,
             "failed_count": 0,
         },
+        "pod_security_admission": {
+            "status": "pass",
+            "namespace_count": 2,
+            "workload_count": 2,
+            "restricted_namespace_count": 2,
+            "restricted_workload_count": 2,
+            "detected_fixture_count": 10,
+            "failed_count": 0,
+        },
         "namespace_resource": {
             "status": "pass",
             "namespace_count": 2,
@@ -285,8 +294,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 102,
-            "source_input_count": 85,
+            "artifact_count": 104,
+            "source_input_count": 87,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -319,6 +328,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["k8s_manifest_hardening"])
+
+    def test_requires_pod_security_admission_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["pod_security_admission"]["restricted_namespace_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["pod_security_admission_audit"])
 
     def test_requires_supply_chain_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

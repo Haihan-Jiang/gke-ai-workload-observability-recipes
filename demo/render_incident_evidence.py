@@ -157,6 +157,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Policy regression suite](policy-regression-suite.md)",
                 "- [Supply chain audit](supply-chain-audit.md)",
                 "- [Kubernetes manifest hardening audit](k8s-hardening-audit.md)",
+                "- [Pod Security Admission audit](pod-security-admission-audit.md)",
                 "- [Namespace resource audit](namespace-resource-audit.md)",
                 "- [Availability topology audit](availability-topology-audit.md)",
                 "- [Autoscaling policy audit](autoscaling-policy-audit.md)",

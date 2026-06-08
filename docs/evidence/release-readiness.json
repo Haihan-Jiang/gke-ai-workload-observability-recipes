@@ -42,6 +42,10 @@
       "ok": true
     },
     {
+      "name": "pod_security_admission_audit",
+      "ok": true
+    },
+    {
       "name": "namespace_resource_audit",
       "ok": true
     },
@@ -345,6 +349,14 @@
     },
     {
       "path": "k8s-hardening-audit.json",
+      "exists": true
+    },
+    {
+      "path": "pod-security-admission-audit.md",
+      "exists": true
+    },
+    {
+      "path": "pod-security-admission-audit.json",
       "exists": true
     },
     {
