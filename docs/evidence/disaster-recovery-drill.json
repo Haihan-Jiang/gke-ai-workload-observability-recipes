@@ -1,0 +1,614 @@
+{
+  "status": "pass",
+  "artifact_count": 30,
+  "restored_count": 30,
+  "hash_match_count": 30,
+  "generated_artifact_count": 9,
+  "group_count": 6,
+  "fixture_count": 4,
+  "detected_fixture_count": 4,
+  "estimated_restore_minutes": 7,
+  "rto_minutes": 15,
+  "rpo_minutes": 5,
+  "estimated_data_loss_minutes": 0,
+  "failed_count": 0,
+  "backup_manifest": [
+    {
+      "group": "incident_replay_evidence",
+      "path": "docs/evidence/sample-summary.json",
+      "exists": true,
+      "bytes": 3636,
+      "sha256": "a9c0fbbd61757a14bd8742e8316d5a8ec4fa878ebe8b11904f3501948bb3a367"
+    },
+    {
+      "group": "incident_replay_evidence",
+      "path": "docs/evidence/reliability-gate.json",
+      "exists": true,
+      "bytes": 3086,
+      "sha256": "8be3c76bddda1ff0d22fba7e55cab1493b076154aec55054ad24de85dce10215"
+    },
+    {
+      "group": "incident_replay_evidence",
+      "path": "docs/evidence/capacity-plan.json",
+      "exists": true,
+      "bytes": 2180,
+      "sha256": "891adf904eb3d54cc2854467fbe4ea1aa987bb02f2be4f35499c1ddeece598e8"
+    },
+    {
+      "group": "incident_replay_evidence",
+      "path": "docs/evidence/incident-runbooks.json",
+      "exists": true,
+      "bytes": 4688,
+      "sha256": "9fb15720fa290d573077c700e665a9318aa6a9caa33765d855260e04b2ce0758"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/deployment-policy.json",
+      "exists": true,
+      "bytes": 3414,
+      "sha256": "2ae8bb2d23a197996276b4cf4ea31ffd10d4cc13ecb6bbb581002669a34cb193"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/policy-regression-suite.json",
+      "exists": true,
+      "bytes": 6535,
+      "sha256": "7dd9e792da764830b404275a2612e256ecb7c88347630bf981b644431c9a7424"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/error-budget-ledger.json",
+      "exists": true,
+      "bytes": 5844,
+      "sha256": "79f425445b01cc4385a2e7baa30d53fdcc17e859fd1dea7330b56954fbdf089f"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/rollback-drill.json",
+      "exists": true,
+      "bytes": 7303,
+      "sha256": "cc4aec75bddfde0df68e526efba6ecc4e091db83969460dc110a40282431c1cd"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/post-incident-review.json",
+      "exists": true,
+      "bytes": 10972,
+      "sha256": "ff1e12e67db2fd0693d4612f50fe9f9e61bec362c3f4a38ca52b78468c9369f9"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/release-waiver-governance.json",
+      "exists": true,
+      "bytes": 39093,
+      "sha256": "61b4e70df2e3001a57490056a20b268cc775cc64bd8b26d08468489b26daa63c"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/supply-chain-audit.json",
+      "exists": true,
+      "bytes": 1667,
+      "sha256": "7d881ef96bd2b8748f2e424cf4349716ca63eaa95c59fba7a41aaaf034124a0c"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/k8s-hardening-audit.json",
+      "exists": true,
+      "bytes": 4673,
+      "sha256": "40cad4f46752bda1f4149e05285b8ff719fdec53169168da5e8aecedbfd8c6c7"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/admission-policy-audit.json",
+      "exists": true,
+      "bytes": 47340,
+      "sha256": "1fd2253203c05806d8da92bc2690d9889e75ece345aaef79cffdc2aae3669dc7"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/telemetry-redaction-audit.json",
+      "exists": true,
+      "bytes": 1939,
+      "sha256": "1373496609126636b7ac437774ab1cadfebf1bac63fc766a30d6b2883ba92e0a"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "docs/evidence/alerting-rules.json",
+      "exists": true,
+      "bytes": 6615,
+      "sha256": "8c9278ce2776866df1231501b183d68272020a823f1efdb40f01642a4185bc61"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "docs/evidence/grafana-dashboard.json",
+      "exists": true,
+      "bytes": 1926,
+      "sha256": "68f5e1bb13fea33c8271434897767c31868839afaed86e6e530a11747440ee09"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "docs/evidence/openslo-contract.json",
+      "exists": true,
+      "bytes": 3510,
+      "sha256": "ddc38e70e54d1d346dc43a6f1b8614754a7b1c615c86dc8687743933763cbfb5"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "k8s/gke/alerting-rules.yaml",
+      "exists": true,
+      "bytes": 5309,
+      "sha256": "54eff2985cc0abda2c80e3bac2aedc7675f0fc4ff958845d95bd28842a471a10"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "k8s/gke/grafana-dashboard-configmap.yaml",
+      "exists": true,
+      "bytes": 12051,
+      "sha256": "d7369a9a8293c442f69be016089ad75566f9a8632592f3bbc7100e5d9f51e7f9"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "dashboards/grafana/gke-ai-inference-reliability.json",
+      "exists": true,
+      "bytes": 10359,
+      "sha256": "23f2f89bd868a58d6d9097b8f22a9ab61cd314a8788f356224ab7f4cad9bc409"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "slos/openslo/gke-ai-inference-slo.yaml",
+      "exists": true,
+      "bytes": 2806,
+      "sha256": "1b50b2762030a99e6ee7924a16135cf04e5fb2723701a53f6c448fde728dddf6"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/namespace.yaml",
+      "exists": true,
+      "bytes": 371,
+      "sha256": "d50d9e98eb28468e9d5bea4b70372c5d238df63706719c696ac1c0421732a8f9"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/collector.yaml",
+      "exists": true,
+      "bytes": 6927,
+      "sha256": "61e17e4b3402799fdd0b3124927034a243a041f679e01d28540e5766c621defe"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/instrumentation.yaml",
+      "exists": true,
+      "bytes": 413,
+      "sha256": "4f9f9788a68b2f8d848d5261741c0d4837ceef24771c9b281a185f2dbb0aa018"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/sample-app.yaml",
+      "exists": true,
+      "bytes": 2051,
+      "sha256": "1ff25460619f1e6e52adc48b6745a1f4ffde7ba4d3c903e7bc851151b3538746"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
+      "exists": true,
+      "bytes": 3842,
+      "sha256": "ec154bd67ebafecb4c4c49d3f7a56413d05aea20cbc0324b52ca9ce4f2d25bae"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "config/reliability-slo.json",
+      "exists": true,
+      "bytes": 973,
+      "sha256": "3e741ec7d1e7e95ad87983a1832093b786bc7c23516e20c09c6a6270bc30b68b"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "config/disaster-recovery-policy.json",
+      "exists": true,
+      "bytes": 2660,
+      "sha256": "b1cb2e7af77fbcb6d6c3f9d5975a1154081363e7ad1b9cfae1f26b8d3d0b7528"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "scripts/generate-evidence.sh",
+      "exists": true,
+      "bytes": 6875,
+      "sha256": "aa77e74cb600e08d0fb486f90543728280eeb4a3b1a73a378e3b05caea839a68"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "scripts/validate.sh",
+      "exists": true,
+      "bytes": 13094,
+      "sha256": "04f8bf8a808dfacef9463b7b30bf88c03c836383c88263894293abd3370269ba"
+    }
+  ],
+  "restored_artifacts": [
+    {
+      "group": "incident_replay_evidence",
+      "path": "docs/evidence/sample-summary.json",
+      "expected_sha256": "a9c0fbbd61757a14bd8742e8316d5a8ec4fa878ebe8b11904f3501948bb3a367",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 3636,
+      "sha256": "a9c0fbbd61757a14bd8742e8316d5a8ec4fa878ebe8b11904f3501948bb3a367"
+    },
+    {
+      "group": "incident_replay_evidence",
+      "path": "docs/evidence/reliability-gate.json",
+      "expected_sha256": "8be3c76bddda1ff0d22fba7e55cab1493b076154aec55054ad24de85dce10215",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 3086,
+      "sha256": "8be3c76bddda1ff0d22fba7e55cab1493b076154aec55054ad24de85dce10215"
+    },
+    {
+      "group": "incident_replay_evidence",
+      "path": "docs/evidence/capacity-plan.json",
+      "expected_sha256": "891adf904eb3d54cc2854467fbe4ea1aa987bb02f2be4f35499c1ddeece598e8",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 2180,
+      "sha256": "891adf904eb3d54cc2854467fbe4ea1aa987bb02f2be4f35499c1ddeece598e8"
+    },
+    {
+      "group": "incident_replay_evidence",
+      "path": "docs/evidence/incident-runbooks.json",
+      "expected_sha256": "9fb15720fa290d573077c700e665a9318aa6a9caa33765d855260e04b2ce0758",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 4688,
+      "sha256": "9fb15720fa290d573077c700e665a9318aa6a9caa33765d855260e04b2ce0758"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/deployment-policy.json",
+      "expected_sha256": "2ae8bb2d23a197996276b4cf4ea31ffd10d4cc13ecb6bbb581002669a34cb193",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 3414,
+      "sha256": "2ae8bb2d23a197996276b4cf4ea31ffd10d4cc13ecb6bbb581002669a34cb193"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/policy-regression-suite.json",
+      "expected_sha256": "7dd9e792da764830b404275a2612e256ecb7c88347630bf981b644431c9a7424",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 6535,
+      "sha256": "7dd9e792da764830b404275a2612e256ecb7c88347630bf981b644431c9a7424"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/error-budget-ledger.json",
+      "expected_sha256": "79f425445b01cc4385a2e7baa30d53fdcc17e859fd1dea7330b56954fbdf089f",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 5844,
+      "sha256": "79f425445b01cc4385a2e7baa30d53fdcc17e859fd1dea7330b56954fbdf089f"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/rollback-drill.json",
+      "expected_sha256": "cc4aec75bddfde0df68e526efba6ecc4e091db83969460dc110a40282431c1cd",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 7303,
+      "sha256": "cc4aec75bddfde0df68e526efba6ecc4e091db83969460dc110a40282431c1cd"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/post-incident-review.json",
+      "expected_sha256": "ff1e12e67db2fd0693d4612f50fe9f9e61bec362c3f4a38ca52b78468c9369f9",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 10972,
+      "sha256": "ff1e12e67db2fd0693d4612f50fe9f9e61bec362c3f4a38ca52b78468c9369f9"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/release-waiver-governance.json",
+      "expected_sha256": "61b4e70df2e3001a57490056a20b268cc775cc64bd8b26d08468489b26daa63c",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 39093,
+      "sha256": "61b4e70df2e3001a57490056a20b268cc775cc64bd8b26d08468489b26daa63c"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/supply-chain-audit.json",
+      "expected_sha256": "7d881ef96bd2b8748f2e424cf4349716ca63eaa95c59fba7a41aaaf034124a0c",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1667,
+      "sha256": "7d881ef96bd2b8748f2e424cf4349716ca63eaa95c59fba7a41aaaf034124a0c"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/k8s-hardening-audit.json",
+      "expected_sha256": "40cad4f46752bda1f4149e05285b8ff719fdec53169168da5e8aecedbfd8c6c7",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 4673,
+      "sha256": "40cad4f46752bda1f4149e05285b8ff719fdec53169168da5e8aecedbfd8c6c7"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/admission-policy-audit.json",
+      "expected_sha256": "1fd2253203c05806d8da92bc2690d9889e75ece345aaef79cffdc2aae3669dc7",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 47340,
+      "sha256": "1fd2253203c05806d8da92bc2690d9889e75ece345aaef79cffdc2aae3669dc7"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/telemetry-redaction-audit.json",
+      "expected_sha256": "1373496609126636b7ac437774ab1cadfebf1bac63fc766a30d6b2883ba92e0a",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1939,
+      "sha256": "1373496609126636b7ac437774ab1cadfebf1bac63fc766a30d6b2883ba92e0a"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "docs/evidence/alerting-rules.json",
+      "expected_sha256": "8c9278ce2776866df1231501b183d68272020a823f1efdb40f01642a4185bc61",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 6615,
+      "sha256": "8c9278ce2776866df1231501b183d68272020a823f1efdb40f01642a4185bc61"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "docs/evidence/grafana-dashboard.json",
+      "expected_sha256": "68f5e1bb13fea33c8271434897767c31868839afaed86e6e530a11747440ee09",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1926,
+      "sha256": "68f5e1bb13fea33c8271434897767c31868839afaed86e6e530a11747440ee09"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "docs/evidence/openslo-contract.json",
+      "expected_sha256": "ddc38e70e54d1d346dc43a6f1b8614754a7b1c615c86dc8687743933763cbfb5",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 3510,
+      "sha256": "ddc38e70e54d1d346dc43a6f1b8614754a7b1c615c86dc8687743933763cbfb5"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "k8s/gke/alerting-rules.yaml",
+      "expected_sha256": "54eff2985cc0abda2c80e3bac2aedc7675f0fc4ff958845d95bd28842a471a10",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 5309,
+      "sha256": "54eff2985cc0abda2c80e3bac2aedc7675f0fc4ff958845d95bd28842a471a10"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "k8s/gke/grafana-dashboard-configmap.yaml",
+      "expected_sha256": "d7369a9a8293c442f69be016089ad75566f9a8632592f3bbc7100e5d9f51e7f9",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 12051,
+      "sha256": "d7369a9a8293c442f69be016089ad75566f9a8632592f3bbc7100e5d9f51e7f9"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "dashboards/grafana/gke-ai-inference-reliability.json",
+      "expected_sha256": "23f2f89bd868a58d6d9097b8f22a9ab61cd314a8788f356224ab7f4cad9bc409",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 10359,
+      "sha256": "23f2f89bd868a58d6d9097b8f22a9ab61cd314a8788f356224ab7f4cad9bc409"
+    },
+    {
+      "group": "observability_contracts",
+      "path": "slos/openslo/gke-ai-inference-slo.yaml",
+      "expected_sha256": "1b50b2762030a99e6ee7924a16135cf04e5fb2723701a53f6c448fde728dddf6",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 2806,
+      "sha256": "1b50b2762030a99e6ee7924a16135cf04e5fb2723701a53f6c448fde728dddf6"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/namespace.yaml",
+      "expected_sha256": "d50d9e98eb28468e9d5bea4b70372c5d238df63706719c696ac1c0421732a8f9",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 371,
+      "sha256": "d50d9e98eb28468e9d5bea4b70372c5d238df63706719c696ac1c0421732a8f9"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/collector.yaml",
+      "expected_sha256": "61e17e4b3402799fdd0b3124927034a243a041f679e01d28540e5766c621defe",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 6927,
+      "sha256": "61e17e4b3402799fdd0b3124927034a243a041f679e01d28540e5766c621defe"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/instrumentation.yaml",
+      "expected_sha256": "4f9f9788a68b2f8d848d5261741c0d4837ceef24771c9b281a185f2dbb0aa018",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 413,
+      "sha256": "4f9f9788a68b2f8d848d5261741c0d4837ceef24771c9b281a185f2dbb0aa018"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/sample-app.yaml",
+      "expected_sha256": "1ff25460619f1e6e52adc48b6745a1f4ffde7ba4d3c903e7bc851151b3538746",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 2051,
+      "sha256": "1ff25460619f1e6e52adc48b6745a1f4ffde7ba4d3c903e7bc851151b3538746"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
+      "expected_sha256": "ec154bd67ebafecb4c4c49d3f7a56413d05aea20cbc0324b52ca9ce4f2d25bae",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 3842,
+      "sha256": "ec154bd67ebafecb4c4c49d3f7a56413d05aea20cbc0324b52ca9ce4f2d25bae"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "config/reliability-slo.json",
+      "expected_sha256": "3e741ec7d1e7e95ad87983a1832093b786bc7c23516e20c09c6a6270bc30b68b",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 973,
+      "sha256": "3e741ec7d1e7e95ad87983a1832093b786bc7c23516e20c09c6a6270bc30b68b"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "config/disaster-recovery-policy.json",
+      "expected_sha256": "b1cb2e7af77fbcb6d6c3f9d5975a1154081363e7ad1b9cfae1f26b8d3d0b7528",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 2660,
+      "sha256": "b1cb2e7af77fbcb6d6c3f9d5975a1154081363e7ad1b9cfae1f26b8d3d0b7528"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "scripts/generate-evidence.sh",
+      "expected_sha256": "aa77e74cb600e08d0fb486f90543728280eeb4a3b1a73a378e3b05caea839a68",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 6875,
+      "sha256": "aa77e74cb600e08d0fb486f90543728280eeb4a3b1a73a378e3b05caea839a68"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "scripts/validate.sh",
+      "expected_sha256": "04f8bf8a808dfacef9463b7b30bf88c03c836383c88263894293abd3370269ba",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 13094,
+      "sha256": "04f8bf8a808dfacef9463b7b30bf88c03c836383c88263894293abd3370269ba"
+    }
+  ],
+  "fixtures": [
+    {
+      "fixture": "missing_artifact",
+      "detected": true,
+      "failed_check": "critical_artifacts_present"
+    },
+    {
+      "fixture": "corrupt_restore",
+      "detected": true,
+      "failed_check": "restore_hash_match"
+    },
+    {
+      "fixture": "rto_exceeded",
+      "detected": true,
+      "failed_check": "rto_budget"
+    },
+    {
+      "fixture": "rpo_exceeded",
+      "detected": true,
+      "failed_check": "rpo_budget"
+    }
+  ],
+  "checks": [
+    {
+      "name": "critical_artifacts_present",
+      "status": "pass",
+      "reason": "All configured recovery artifacts exist and the manifest has no duplicate paths.",
+      "evidence": {
+        "missing": [],
+        "duplicates": [],
+        "artifact_count": 30
+      }
+    },
+    {
+      "name": "restore_hash_match",
+      "status": "pass",
+      "reason": "Every restored artifact matches the source SHA-256 checksum.",
+      "evidence": {
+        "restored_count": 30,
+        "hash_match_count": 30,
+        "hash_mismatches": []
+      }
+    },
+    {
+      "name": "group_coverage",
+      "status": "pass",
+      "reason": "Recovery manifest covers release evidence, security evidence, observability contracts, manifests, and source policy.",
+      "evidence": {
+        "groups": {
+          "deployment_manifests": 5,
+          "incident_replay_evidence": 4,
+          "observability_contracts": 7,
+          "recovery_source_policy": 4,
+          "release_control_evidence": 6,
+          "security_policy_evidence": 4
+        }
+      }
+    },
+    {
+      "name": "generated_artifact_restore",
+      "status": "pass",
+      "reason": "Generated Kubernetes, Grafana, OpenSLO, and admission policy artifacts are restored with matching hashes.",
+      "evidence": {
+        "generated_artifact_count": 9
+      }
+    },
+    {
+      "name": "rto_budget",
+      "status": "pass",
+      "reason": "Estimated restore time fits inside the RTO.",
+      "evidence": {
+        "estimated_restore_minutes": 7,
+        "rto_minutes": 15
+      }
+    },
+    {
+      "name": "rpo_budget",
+      "status": "pass",
+      "reason": "Required latest-release evidence is in the backup set and estimated data loss fits inside the RPO.",
+      "evidence": {
+        "estimated_data_loss_minutes": 0,
+        "rpo_minutes": 5,
+        "missing_rpo_artifacts": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative recovery fixtures are mapped to checks that would fail.",
+      "evidence": {
+        "fixtures": [
+          {
+            "fixture": "missing_artifact",
+            "detected": true,
+            "failed_check": "critical_artifacts_present"
+          },
+          {
+            "fixture": "corrupt_restore",
+            "detected": true,
+            "failed_check": "restore_hash_match"
+          },
+          {
+            "fixture": "rto_exceeded",
+            "detected": true,
+            "failed_check": "rto_budget"
+          },
+          {
+            "fixture": "rpo_exceeded",
+            "detected": true,
+            "failed_check": "rpo_budget"
+          }
+        ]
+      }
+    }
+  ]
+}

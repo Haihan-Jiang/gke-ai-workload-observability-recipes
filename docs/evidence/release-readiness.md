@@ -10,7 +10,8 @@ manifest hardening, admission policy simulation, SLO alerting rules,
 Grafana dashboard coverage, OpenSLO contract,
 telemetry redaction, telemetry cost budget, error-budget accounting,
 rollback drill coverage, post-incident review coverage, release
-waiver governance, evidence provenance, and committed evidence are present and internally
+waiver governance, disaster recovery drill coverage, evidence
+provenance, and committed evidence are present and internally
 consistent.
 
 ## Checks
@@ -37,6 +38,7 @@ consistent.
 | `rollback_drill` | PASS |
 | `post_incident_review` | PASS |
 | `release_waiver_governance` | PASS |
+| `disaster_recovery_drill` | PASS |
 | `evidence_provenance` | PASS |
 
 ## Evidence Files
@@ -104,6 +106,8 @@ consistent.
 | `post-incident-review.json` | yes |
 | `release-waiver-governance.md` | yes |
 | `release-waiver-governance.json` | yes |
+| `disaster-recovery-drill.md` | yes |
+| `disaster-recovery-drill.json` | yes |
 | `evidence-provenance.md` | yes |
 | `evidence-provenance.json` | yes |
 

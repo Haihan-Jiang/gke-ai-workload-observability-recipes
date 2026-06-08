@@ -71,6 +71,8 @@ REQUIRED_EVIDENCE = [
     "post-incident-review.json",
     "release-waiver-governance.md",
     "release-waiver-governance.json",
+    "disaster-recovery-drill.md",
+    "disaster-recovery-drill.json",
     "evidence-provenance.md",
     "evidence-provenance.json",
 ]
@@ -112,6 +114,7 @@ def evaluate(
     rollback_drill: dict[str, Any],
     post_incident_review: dict[str, Any],
     release_waiver_governance: dict[str, Any],
+    disaster_recovery_drill: dict[str, Any],
     evidence_provenance: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
@@ -235,6 +238,16 @@ def evaluate(
             and int(release_waiver_governance.get("failed_count", -1)) == 0,
         },
         {
+            "name": "disaster_recovery_drill",
+            "ok": disaster_recovery_drill.get("status") == "pass"
+            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 24
+            and int(disaster_recovery_drill.get("restored_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
+            and int(disaster_recovery_drill.get("hash_match_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
+            and int(disaster_recovery_drill.get("detected_fixture_count", 0)) >= 4
+            and int(disaster_recovery_drill.get("estimated_restore_minutes", 999999)) <= int(disaster_recovery_drill.get("rto_minutes", 0))
+            and int(disaster_recovery_drill.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
             and int(evidence_provenance.get("artifact_count", 0)) >= 45
@@ -269,7 +282,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "Grafana dashboard coverage, OpenSLO contract,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
         "rollback drill coverage, post-incident review coverage, release",
-        "waiver governance, evidence provenance, and committed evidence are present and internally",
+        "waiver governance, disaster recovery drill coverage, evidence",
+        "provenance, and committed evidence are present and internally",
         "consistent.",
         "",
         "## Checks",
@@ -315,6 +329,7 @@ def main() -> int:
     parser.add_argument("--rollback-drill", default="out/rollback-drill/rollback-drill.json")
     parser.add_argument("--post-incident-review", default="out/post-incident-review/post-incident-review.json")
     parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
+    parser.add_argument("--disaster-recovery-drill", default="out/disaster-recovery-drill/disaster-recovery-drill.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
@@ -340,6 +355,7 @@ def main() -> int:
         rollback_drill=load_json(Path(args.rollback_drill)),
         post_incident_review=load_json(Path(args.post_incident_review)),
         release_waiver_governance=load_json(Path(args.release_waiver_governance)),
+        disaster_recovery_drill=load_json(Path(args.disaster_recovery_drill)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),
         evidence_dir=Path(args.evidence_dir),
     )

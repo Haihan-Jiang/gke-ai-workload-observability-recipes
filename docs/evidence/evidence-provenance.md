@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `62`
+- Evidence artifacts: `64`
 - Generated artifacts: `4`
-- Source inputs: `43`
+- Source inputs: `45`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 1888 | `1c3780dfaaa110ba...` |
+| `docs/evidence/README.md` | 1944 | `bacc372b8d717ac8...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -92,6 +92,8 @@ evidence easier to detect during review.
 | `docs/evidence/post-incident-review.json` | 10972 | `ff1e12e67db2fd06...` |
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
+| `docs/evidence/disaster-recovery-drill.md` | 1031 | `81f0f1d0916ce338...` |
+| `docs/evidence/disaster-recovery-drill.json` | 21213 | `aabd27e4e5a6292c...` |
 
 ## Generated Artifacts
 

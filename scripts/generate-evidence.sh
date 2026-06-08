@@ -113,6 +113,11 @@ python3 demo/release_waiver_governance.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/disaster_recovery_drill.py \
+  --repo-root . \
+  --policy config/disaster-recovery-policy.json \
+  --restore-dir out/disaster-recovery-restore \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -140,6 +145,7 @@ python3 demo/release_readiness.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
+  --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null

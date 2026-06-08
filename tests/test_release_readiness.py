@@ -121,6 +121,16 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "unsafe_approved_count": 0,
             "failed_count": 0,
         },
+        "disaster_recovery_drill": {
+            "status": "pass",
+            "artifact_count": 30,
+            "restored_count": 30,
+            "hash_match_count": 30,
+            "detected_fixture_count": 4,
+            "estimated_restore_minutes": 7,
+            "rto_minutes": 15,
+            "failed_count": 0,
+        },
         "evidence_provenance": {
             "status": "pass",
             "artifact_count": 50,
@@ -278,6 +288,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["release_waiver_governance"])
+
+    def test_requires_disaster_recovery_drill(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["disaster_recovery_drill"]["hash_match_count"] = 29
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["disaster_recovery_drill"])
 
     def test_requires_evidence_provenance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

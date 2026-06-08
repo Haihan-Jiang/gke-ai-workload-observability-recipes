@@ -1,0 +1,86 @@
+{
+  "description": "Policy for simulating disaster recovery of release evidence and platform control-plane artifacts.",
+  "rto_minutes": 15,
+  "rpo_minutes": 5,
+  "estimated_data_loss_minutes": 0,
+  "restore_throughput_mib_per_minute": 64,
+  "operator_step_minutes": 6,
+  "minimum_artifacts": 24,
+  "minimum_groups": 6,
+  "minimum_generated_artifacts": 4,
+  "required_rpo_artifacts": [
+    "docs/evidence/sample-summary.json",
+    "docs/evidence/deployment-policy.json",
+    "docs/evidence/error-budget-ledger.json",
+    "docs/evidence/rollback-drill.json",
+    "docs/evidence/release-waiver-governance.json"
+  ],
+  "artifact_groups": [
+    {
+      "name": "incident_replay_evidence",
+      "artifacts": [
+        "docs/evidence/sample-summary.json",
+        "docs/evidence/reliability-gate.json",
+        "docs/evidence/capacity-plan.json",
+        "docs/evidence/incident-runbooks.json"
+      ]
+    },
+    {
+      "name": "release_control_evidence",
+      "artifacts": [
+        "docs/evidence/deployment-policy.json",
+        "docs/evidence/policy-regression-suite.json",
+        "docs/evidence/error-budget-ledger.json",
+        "docs/evidence/rollback-drill.json",
+        "docs/evidence/post-incident-review.json",
+        "docs/evidence/release-waiver-governance.json"
+      ]
+    },
+    {
+      "name": "security_policy_evidence",
+      "artifacts": [
+        "docs/evidence/supply-chain-audit.json",
+        "docs/evidence/k8s-hardening-audit.json",
+        "docs/evidence/admission-policy-audit.json",
+        "docs/evidence/telemetry-redaction-audit.json"
+      ]
+    },
+    {
+      "name": "observability_contracts",
+      "artifacts": [
+        "docs/evidence/alerting-rules.json",
+        "docs/evidence/grafana-dashboard.json",
+        "docs/evidence/openslo-contract.json",
+        "k8s/gke/alerting-rules.yaml",
+        "k8s/gke/grafana-dashboard-configmap.yaml",
+        "dashboards/grafana/gke-ai-inference-reliability.json",
+        "slos/openslo/gke-ai-inference-slo.yaml"
+      ]
+    },
+    {
+      "name": "deployment_manifests",
+      "artifacts": [
+        "k8s/gke/namespace.yaml",
+        "k8s/gke/collector.yaml",
+        "k8s/gke/instrumentation.yaml",
+        "k8s/gke/sample-app.yaml",
+        "policies/admission/gke-ai-inference-admission-policy.yaml"
+      ]
+    },
+    {
+      "name": "recovery_source_policy",
+      "artifacts": [
+        "config/reliability-slo.json",
+        "config/disaster-recovery-policy.json",
+        "scripts/generate-evidence.sh",
+        "scripts/validate.sh"
+      ]
+    }
+  ],
+  "fixture_mutations": [
+    "missing_artifact",
+    "corrupt_restore",
+    "rto_exceeded",
+    "rpo_exceeded"
+  ]
+}

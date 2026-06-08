@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 62,
+  "artifact_count": 64,
   "generated_artifact_count": 4,
-  "source_input_count": 43,
+  "source_input_count": 45,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1888,
-      "sha256": "1c3780dfaaa110ba413b990f63a5dd128d56d5b30ff9057ba84be5734820960b"
+      "bytes": 1944,
+      "sha256": "bacc372b8d717ac899e0cafebdf71104dee7289f3d22ce8163670820835ae31c"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -448,6 +448,20 @@
       "exists": true,
       "bytes": 39093,
       "sha256": "61b4e70df2e3001a57490056a20b268cc775cc64bd8b26d08468489b26daa63c"
+    },
+    {
+      "path": "docs/evidence/disaster-recovery-drill.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1031,
+      "sha256": "81f0f1d0916ce33886ad6ecf97fdf8104d280f34dcd800ea0b9453d4f1eb649f"
+    },
+    {
+      "path": "docs/evidence/disaster-recovery-drill.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 21213,
+      "sha256": "aabd27e4e5a6292c75c5cf410bcaad2f6bce00a907ec99e75cc915c6e68b2ce2"
     }
   ],
   "generated_artifacts": [
@@ -485,15 +499,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 6604,
-      "sha256": "a87f65d797d59b58767e65fa9e67a5adeaf5c1a9ab2ec98574f50e5f4aee46bd"
+      "bytes": 6875,
+      "sha256": "aa77e74cb600e08d0fb486f90543728280eeb4a3b1a73a378e3b05caea839a68"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 12611,
-      "sha256": "ef49411b538128cf09c5e70ac6c650683b3f3d0e3b56a9a868527cd0084f0a41"
+      "bytes": 13094,
+      "sha256": "04f8bf8a808dfacef9463b7b30bf88c03c836383c88263894293abd3370269ba"
     },
     {
       "path": "demo/incident_replay.py",
@@ -636,11 +650,18 @@
       "sha256": "5429b2346be49daa7b57d388e8074deff77238efb69575e550676ebf210f34f2"
     },
     {
+      "path": "demo/disaster_recovery_drill.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 11795,
+      "sha256": "e7d724422e79b32c977c12b554ac159328f22a5e744b5afcd1792879bc4000a8"
+    },
+    {
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9475,
-      "sha256": "96ed058b86cc7fb1255d1d9380c97fae20ea6c0d48175048ba2407cad2b8d1ca"
+      "bytes": 9550,
+      "sha256": "b59e9e8de06f6876a98c80af1ba445056e6e40f4ab864c4bc79fa83271139a58"
     },
     {
       "path": "config/reliability-slo.json",
@@ -762,6 +783,13 @@
       "sha256": "7aeba4d4559ed59dbf695f41d15a7cc1a18e5a4292b4c5a5c6c40bf9d28eed11"
     },
     {
+      "path": "config/disaster-recovery-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2660,
+      "sha256": "b1cb2e7af77fbcb6d6c3f9d5975a1154081363e7ad1b9cfae1f26b8d3d0b7528"
+    },
+    {
       "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
       "group": "source-input",
       "exists": true,
@@ -789,8 +817,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 62,
-        "minimum": 55
+        "count": 64,
+        "minimum": 60
       }
     },
     {
@@ -806,8 +834,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 43,
-        "minimum": 25
+        "count": 45,
+        "minimum": 28
       }
     },
     {

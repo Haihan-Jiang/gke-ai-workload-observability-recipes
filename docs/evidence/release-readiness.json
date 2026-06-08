@@ -82,6 +82,10 @@
       "ok": true
     },
     {
+      "name": "disaster_recovery_drill",
+      "ok": true
+    },
+    {
       "name": "evidence_provenance",
       "ok": true
     }
@@ -329,6 +333,14 @@
     },
     {
       "path": "release-waiver-governance.json",
+      "exists": true
+    },
+    {
+      "path": "disaster-recovery-drill.md",
+      "exists": true
+    },
+    {
+      "path": "disaster-recovery-drill.json",
       "exists": true
     },
     {

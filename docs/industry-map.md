@@ -134,6 +134,7 @@ inference incidents before a service reaches production.
 | C13 | Sample manifests can hide floating image risk | Reviewers need to see that even demo deployment recipes avoid `latest` tags and pin runtime artifacts by digest before being adapted to production. | [Supply chain audit](evidence/supply-chain-audit.md) |
 | C14 | Manifest drift can bypass review after the first audit | Platform teams need admission controls that block unsafe deployment changes at create/update time instead of discovering the drift after rollout. | [Admission policy audit](evidence/admission-policy-audit.md) |
 | C15 | Manual release exceptions can bypass reliability gates | SRE teams need bounded waiver requests with owner, approver, expiry, rollback, RCA, evidence, and budget acknowledgement instead of informal approvals. | [Release waiver governance](evidence/release-waiver-governance.md) |
+| C16 | Release evidence can be lost or restored incorrectly | Incident response and release review need recoverable evidence and control-plane artifacts with checksum verification inside RTO/RPO targets. | [Disaster recovery drill](evidence/disaster-recovery-drill.md) |
 
 ## Fourth Feature Contribution
 
@@ -166,6 +167,11 @@ inference incidents before a service reaches production.
    - Policy: [config/release-waiver-policy.json](../config/release-waiver-policy.json)
    - Register: [config/release-waivers.json](../config/release-waivers.json)
    - Evidence: [release waiver governance](evidence/release-waiver-governance.md)
+
+6. **Disaster recovery drill**
+   - Code: [demo/disaster_recovery_drill.py](../demo/disaster_recovery_drill.py)
+   - Policy: [config/disaster-recovery-policy.json](../config/disaster-recovery-policy.json)
+   - Evidence: [disaster recovery drill](evidence/disaster-recovery-drill.md)
 
 ## Boundary
 

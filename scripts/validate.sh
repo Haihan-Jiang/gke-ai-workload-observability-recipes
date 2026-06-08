@@ -24,6 +24,7 @@ python3 -m py_compile \
   demo/rollback_drill.py \
   demo/post_incident_review.py \
   demo/release_waiver_governance.py \
+  demo/disaster_recovery_drill.py \
   demo/evidence_provenance.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
@@ -52,6 +53,7 @@ python3 -m json.tool config/rollback-drill-policy.json >/dev/null
 python3 -m json.tool config/post-incident-review-policy.json >/dev/null
 python3 -m json.tool config/release-waiver-policy.json >/dev/null
 python3 -m json.tool config/release-waivers.json >/dev/null
+python3 -m json.tool config/disaster-recovery-policy.json >/dev/null
 python3 -m json.tool config/evidence-provenance-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
@@ -158,6 +160,11 @@ python3 demo/release_waiver_governance.py \
   --rollback-drill out/rollback-drill-validate/rollback-drill.json \
   --post-incident-review out/post-incident-review-validate/post-incident-review.json \
   --output-dir out/release-waiver-governance-validate >/dev/null
+python3 demo/disaster_recovery_drill.py \
+  --repo-root . \
+  --policy config/disaster-recovery-policy.json \
+  --restore-dir out/disaster-recovery-restore-validate \
+  --output-dir out/disaster-recovery-drill-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/evidence_provenance.py \
   --policy config/evidence-provenance-policy.json \
@@ -183,6 +190,7 @@ python3 demo/release_readiness.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
+  --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
@@ -217,6 +225,7 @@ python3 -m json.tool docs/evidence/error-budget-ledger.json >/dev/null
 python3 -m json.tool docs/evidence/rollback-drill.json >/dev/null
 python3 -m json.tool docs/evidence/post-incident-review.json >/dev/null
 python3 -m json.tool docs/evidence/release-waiver-governance.json >/dev/null
+python3 -m json.tool docs/evidence/disaster-recovery-drill.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null
 python3 -m unittest discover -s tests
