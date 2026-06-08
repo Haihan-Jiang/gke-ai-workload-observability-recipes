@@ -147,6 +147,7 @@ inference incidents before a service reaches production.
 | C26 | GKE samples can accidentally normalize static keys or broad identity scope | Production recipes need Workload Identity binding, explicit service account token boundaries, least-privilege RBAC, static credential rejection, and TLS exporter transport. | [Workload Identity audit](evidence/workload-identity-audit.md) |
 | C27 | Namespaces can allow runaway AI workloads despite per-pod resource settings | GKE recipes need ResourceQuota and LimitRange controls that cover current workloads with headroom, default missing requests, and keep object counts bounded. | [Namespace resource audit](evidence/namespace-resource-audit.md) |
 | C28 | Workloads can pass static checks but still fail node or zone maintenance | Production GKE recipes need explicit replica floors, PDB coverage, topology spread constraints, selector alignment, and owner labels before rollout evidence is trusted. | [Availability topology audit](evidence/availability-topology-audit.md) |
+| C29 | HPA lag can be analyzed offline while manifests still lack a real scaling policy | Production GKE recipes need an actual HPA with bounded replicas, resource metrics, matching requests, and scale behavior before autoscaling claims are trusted. | [Autoscaling policy audit](evidence/autoscaling-policy-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -256,6 +257,12 @@ inference incidents before a service reaches production.
     - Policy: [config/availability-topology-policy.json](../config/availability-topology-policy.json)
     - Inputs: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
     - Evidence: [availability topology audit](evidence/availability-topology-audit.md)
+
+19. **Autoscaling policy audit**
+    - Code: [demo/autoscaling_policy_audit.py](../demo/autoscaling_policy_audit.py)
+    - Policy: [config/autoscaling-policy.json](../config/autoscaling-policy.json)
+    - Inputs: sample inference workload HPA and Deployment in [sample-app.yaml](../k8s/gke/sample-app.yaml)
+    - Evidence: [autoscaling policy audit](evidence/autoscaling-policy-audit.md)
 
 ## Boundary
 

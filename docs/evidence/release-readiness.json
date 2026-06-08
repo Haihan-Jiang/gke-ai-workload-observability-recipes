@@ -50,6 +50,10 @@
       "ok": true
     },
     {
+      "name": "autoscaling_policy_audit",
+      "ok": true
+    },
+    {
       "name": "workload_identity_audit",
       "ok": true
     },
@@ -333,6 +337,14 @@
     },
     {
       "path": "availability-topology-audit.json",
+      "exists": true
+    },
+    {
+      "path": "autoscaling-policy-audit.md",
+      "exists": true
+    },
+    {
+      "path": "autoscaling-policy-audit.json",
       "exists": true
     },
     {

@@ -20,6 +20,9 @@ requests and limits with headroom.
 Availability topology evidence checks that disruption budgets, replica floors,
 and topology spread constraints are explicit for the collector and sample
 inference workload.
+Autoscaling policy evidence checks that the sample inference workload has an
+actual HPA with bounded replicas, CPU/memory metrics, request alignment, and
+scale-up/scale-down behavior.
 Workload Identity evidence checks that GKE service account binding, service
 account token mounting, RBAC scope, static credential handling, and upstream
 exporter transport are explicit before the manifests are treated as deployment
@@ -92,6 +95,9 @@ not described as merged.
   namespace ownership labels.
 - An availability topology audit that verifies replica floors, PDB coverage,
   topology spread constraints, selector alignment, and owner labels.
+- An autoscaling policy audit that verifies the sample inference HPA target,
+  min/max bounds, CPU/memory metrics, metric requests, scale behavior, and
+  owner labels.
 - A Workload Identity audit that verifies GKE service account annotation,
   service account token boundaries, read-only RBAC scope, static credential
   rejection, and TLS upstream exporter configuration.
@@ -286,6 +292,7 @@ script:
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
 - [Namespace resource audit](docs/evidence/namespace-resource-audit.md)
 - [Availability topology audit](docs/evidence/availability-topology-audit.md)
+- [Autoscaling policy audit](docs/evidence/autoscaling-policy-audit.md)
 - [Workload Identity audit](docs/evidence/workload-identity-audit.md)
 - [Admission policy audit](docs/evidence/admission-policy-audit.md)
 - [SLO alerting rules](docs/evidence/alerting-rules.md)
@@ -376,8 +383,9 @@ Before adapting this to a real GKE cluster:
    disruption budget, and NetworkPolicy aligned with the manifest audit.
 7. Keep namespace ResourceQuota and LimitRange policy aligned with workload
    replicas, requests, limits, PVC storage, and namespace ownership labels.
-8. Keep availability topology policy aligned with replica floors, PDB
-   selectors, topology spread constraints, and workload owner labels.
+8. Keep availability topology and autoscaling policy aligned with replica
+   floors, PDB selectors, topology spread constraints, HPA targets, metric
+   requests, scale behavior, and workload owner labels.
 9. Keep Workload Identity bindings, service account token automount settings,
    RBAC scope, static credential checks, and exporter transport aligned with
    the identity audit.
@@ -468,7 +476,8 @@ Current wording before upstream merges:
 > accelerator quota fairness auditing, regional failover auditing,
 > telemetry redaction and cost audits,
 > supply-chain image checks, namespace quota/LimitRange governance,
-> availability topology/PDB checks, Workload Identity/IAM boundary checks,
+> availability topology/PDB checks, autoscaling policy/HPA checks,
+> Workload Identity/IAM boundary checks,
 > cross-namespace instrumentation, persistent telemetry queues, and Kubernetes
 > metadata.
 
@@ -487,7 +496,8 @@ After an upstream PR merges, update this to:
 > accelerator quota fairness auditing, regional failover auditing,
 > telemetry redaction and cost audits,
 > supply-chain image checks, namespace quota/LimitRange governance,
-> availability topology/PDB checks, Workload Identity/IAM boundary checks,
+> availability topology/PDB checks, autoscaling policy/HPA checks,
+> Workload Identity/IAM boundary checks,
 > generated runbooks, and related Google Cloud OSS recipe contributions.
 
 ## License

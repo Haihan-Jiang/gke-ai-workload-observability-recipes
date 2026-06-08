@@ -159,6 +159,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Kubernetes manifest hardening audit](k8s-hardening-audit.md)",
                 "- [Namespace resource audit](namespace-resource-audit.md)",
                 "- [Availability topology audit](availability-topology-audit.md)",
+                "- [Autoscaling policy audit](autoscaling-policy-audit.md)",
                 "- [Workload Identity audit](workload-identity-audit.md)",
                 "- [Admission policy audit](admission-policy-audit.md)",
                 "- [SLO alerting rules](alerting-rules.md)",

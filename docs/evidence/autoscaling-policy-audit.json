@@ -1,0 +1,226 @@
+{
+  "status": "pass",
+  "hpa_count": 1,
+  "metric_count": 2,
+  "behavior_policy_count": 3,
+  "check_count": 9,
+  "detected_fixture_count": 9,
+  "failed_count": 0,
+  "target": {
+    "namespace": "ai-observability-demo",
+    "deployment": "toy-ai-inference-api",
+    "hpa": "toy-ai-inference-api",
+    "min_replicas": 2,
+    "max_replicas": 8,
+    "metrics": [
+      "cpu",
+      "memory"
+    ]
+  },
+  "fixture_results": [
+    {
+      "name": "missing_hpa",
+      "mutation": "remove_hpa",
+      "expected_failed_check": "hpa_coverage",
+      "failed_checks": [
+        "hpa_coverage",
+        "hpa_target_ref",
+        "replica_bounds",
+        "metric_coverage",
+        "metric_targets",
+        "scale_behavior",
+        "autoscaling_label_governance"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_scale_target",
+      "mutation": "set_scale_target_name",
+      "expected_failed_check": "hpa_target_ref",
+      "failed_checks": [
+        "hpa_target_ref"
+      ],
+      "detected": true
+    },
+    {
+      "name": "min_replicas_below_policy",
+      "mutation": "set_min_replicas",
+      "expected_failed_check": "replica_bounds",
+      "failed_checks": [
+        "replica_bounds"
+      ],
+      "detected": true
+    },
+    {
+      "name": "max_replicas_below_burst_budget",
+      "mutation": "set_max_replicas",
+      "expected_failed_check": "replica_bounds",
+      "failed_checks": [
+        "replica_bounds"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_cpu_metric",
+      "mutation": "remove_metric",
+      "expected_failed_check": "metric_coverage",
+      "failed_checks": [
+        "metric_coverage",
+        "metric_targets"
+      ],
+      "detected": true
+    },
+    {
+      "name": "cpu_target_too_high",
+      "mutation": "set_metric_target",
+      "expected_failed_check": "metric_targets",
+      "failed_checks": [
+        "metric_targets"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_scale_down_stabilization",
+      "mutation": "remove_scale_down_behavior",
+      "expected_failed_check": "scale_behavior",
+      "failed_checks": [
+        "scale_behavior"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_cpu_request",
+      "mutation": "remove_container_request",
+      "expected_failed_check": "metric_request_alignment",
+      "failed_checks": [
+        "metric_request_alignment"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_hpa_owner_label",
+      "mutation": "remove_owner_label",
+      "expected_failed_check": "autoscaling_label_governance",
+      "failed_checks": [
+        "autoscaling_label_governance"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "hpa_coverage",
+      "status": "pass",
+      "reason": "The sample inference workload has a HorizontalPodAutoscaler.",
+      "evidence": {
+        "hpa": "toy-ai-inference-api"
+      }
+    },
+    {
+      "name": "hpa_target_ref",
+      "status": "pass",
+      "reason": "The HPA targets the intended Deployment.",
+      "evidence": {
+        "scale_target_ref": {
+          "apiVersion": "apps/v1",
+          "kind": "Deployment",
+          "name": "toy-ai-inference-api"
+        }
+      }
+    },
+    {
+      "name": "replica_bounds",
+      "status": "pass",
+      "reason": "HPA min/max replicas preserve baseline availability and leave room for burst recovery without exceeding namespace policy.",
+      "evidence": {
+        "min_replicas": 2,
+        "max_replicas": 8
+      }
+    },
+    {
+      "name": "metric_coverage",
+      "status": "pass",
+      "reason": "HPA covers CPU and memory pressure instead of relying on a single signal.",
+      "evidence": {
+        "required_metrics": [
+          "cpu",
+          "memory"
+        ],
+        "observed_metrics": [
+          "cpu",
+          "memory"
+        ]
+      }
+    },
+    {
+      "name": "metric_targets",
+      "status": "pass",
+      "reason": "HPA metric targets use utilization thresholds inside the policy band.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "metric_request_alignment",
+      "status": "pass",
+      "reason": "HPA resource metrics have matching container requests in the Deployment.",
+      "evidence": {
+        "gaps": [],
+        "requests": {
+          "cpu": "50m",
+          "memory": "64Mi"
+        }
+      }
+    },
+    {
+      "name": "scale_behavior",
+      "status": "pass",
+      "reason": "HPA behavior allows fast scale-up and dampened scale-down.",
+      "evidence": {
+        "scale_up_stabilization_seconds": 0,
+        "scale_down_stabilization_seconds": 300,
+        "scale_up_policies": [
+          {
+            "type": "Pods",
+            "value": 4,
+            "periodSeconds": 60
+          },
+          {
+            "type": "Percent",
+            "value": 100,
+            "periodSeconds": 60
+          }
+        ],
+        "scale_down_policies": [
+          {
+            "type": "Percent",
+            "value": 50,
+            "periodSeconds": 60
+          }
+        ]
+      }
+    },
+    {
+      "name": "autoscaling_label_governance",
+      "status": "pass",
+      "reason": "HPA carries owner labels used by review and policy tooling.",
+      "evidence": {
+        "missing_labels": [],
+        "labels": {
+          "app.kubernetes.io/name": "toy-ai-inference-api",
+          "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+        }
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove HPA coverage, target, bounds, metrics, behavior, requests, and labels are enforced.",
+      "evidence": {
+        "fixture_count": 9,
+        "detected_fixture_count": 9,
+        "undetected": []
+      }
+    }
+  ]
+}

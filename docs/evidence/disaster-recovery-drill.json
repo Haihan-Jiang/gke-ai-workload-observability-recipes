@@ -185,8 +185,8 @@
       "group": "deployment_manifests",
       "path": "k8s/gke/sample-app.yaml",
       "exists": true,
-      "bytes": 3187,
-      "sha256": "4bdcdb0be9019b11680c4841720d2f084e684d6a076173bc9b154043baed90bb"
+      "bytes": 4264,
+      "sha256": "d79d9cfacf89cd6167012d57b74b8406f27f06455e98b08538ff7183f0cbf8a4"
     },
     {
       "group": "deployment_manifests",
@@ -213,15 +213,15 @@
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
       "exists": true,
-      "bytes": 12439,
-      "sha256": "3796ac417879684676a4b04dcdb9ef81e37b425d3c17186b1574fee6eb036d57"
+      "bytes": 12653,
+      "sha256": "27127b3124db35b3c185c4bb381fc54955c43c480707f68c5d07cd99b319782c"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
       "exists": true,
-      "bytes": 22149,
-      "sha256": "7f50c5e071b26e93bd4a3f13388c23e49d343e6b8583e2e2c00a3fdab33d2136"
+      "bytes": 22563,
+      "sha256": "b6a90c9b15aa810270487ba2c07ede6de0c83e6b2f8d02d593c8971cf72dbabc"
     }
   ],
   "restored_artifacts": [
@@ -444,11 +444,11 @@
     {
       "group": "deployment_manifests",
       "path": "k8s/gke/sample-app.yaml",
-      "expected_sha256": "4bdcdb0be9019b11680c4841720d2f084e684d6a076173bc9b154043baed90bb",
+      "expected_sha256": "d79d9cfacf89cd6167012d57b74b8406f27f06455e98b08538ff7183f0cbf8a4",
       "restored": true,
       "hash_match": true,
-      "bytes": 3187,
-      "sha256": "4bdcdb0be9019b11680c4841720d2f084e684d6a076173bc9b154043baed90bb"
+      "bytes": 4264,
+      "sha256": "d79d9cfacf89cd6167012d57b74b8406f27f06455e98b08538ff7183f0cbf8a4"
     },
     {
       "group": "deployment_manifests",
@@ -480,20 +480,20 @@
     {
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
-      "expected_sha256": "3796ac417879684676a4b04dcdb9ef81e37b425d3c17186b1574fee6eb036d57",
+      "expected_sha256": "27127b3124db35b3c185c4bb381fc54955c43c480707f68c5d07cd99b319782c",
       "restored": true,
       "hash_match": true,
-      "bytes": 12439,
-      "sha256": "3796ac417879684676a4b04dcdb9ef81e37b425d3c17186b1574fee6eb036d57"
+      "bytes": 12653,
+      "sha256": "27127b3124db35b3c185c4bb381fc54955c43c480707f68c5d07cd99b319782c"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
-      "expected_sha256": "7f50c5e071b26e93bd4a3f13388c23e49d343e6b8583e2e2c00a3fdab33d2136",
+      "expected_sha256": "b6a90c9b15aa810270487ba2c07ede6de0c83e6b2f8d02d593c8971cf72dbabc",
       "restored": true,
       "hash_match": true,
-      "bytes": 22149,
-      "sha256": "7f50c5e071b26e93bd4a3f13388c23e49d343e6b8583e2e2c00a3fdab33d2136"
+      "bytes": 22563,
+      "sha256": "b6a90c9b15aa810270487ba2c07ede6de0c83e6b2f8d02d593c8971cf72dbabc"
     }
   ],
   "fixtures": [

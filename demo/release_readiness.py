@@ -59,6 +59,8 @@ REQUIRED_EVIDENCE = [
     "namespace-resource-audit.json",
     "availability-topology-audit.md",
     "availability-topology-audit.json",
+    "autoscaling-policy-audit.md",
+    "autoscaling-policy-audit.json",
     "workload-identity-audit.md",
     "workload-identity-audit.json",
     "admission-policy-audit.md",
@@ -130,6 +132,7 @@ def evaluate(
     k8s_hardening: dict[str, Any],
     namespace_resource: dict[str, Any],
     availability_topology: dict[str, Any],
+    autoscaling_policy: dict[str, Any],
     workload_identity: dict[str, Any],
     admission_policy: dict[str, Any],
     alerting: dict[str, Any],
@@ -216,6 +219,15 @@ def evaluate(
             and int(availability_topology.get("topology_spread_count", 0)) >= 2
             and int(availability_topology.get("detected_fixture_count", 0)) >= 7
             and int(availability_topology.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "autoscaling_policy_audit",
+            "ok": autoscaling_policy.get("status") == "pass"
+            and int(autoscaling_policy.get("hpa_count", 0)) >= 1
+            and int(autoscaling_policy.get("metric_count", 0)) >= 2
+            and int(autoscaling_policy.get("behavior_policy_count", 0)) >= 3
+            and int(autoscaling_policy.get("detected_fixture_count", 0)) >= 9
+            and int(autoscaling_policy.get("failed_count", -1)) == 0,
         },
         {
             "name": "workload_identity_audit",
@@ -390,8 +402,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 88
-            and int(evidence_provenance.get("source_input_count", 0)) >= 69
+            and int(evidence_provenance.get("artifact_count", 0)) >= 90
+            and int(evidence_provenance.get("source_input_count", 0)) >= 71
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -419,8 +431,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
         "manifest hardening, namespace resource governance, availability",
-        "topology governance, Workload Identity audit, admission policy",
-        "simulation, SLO alerting rules,",
+        "topology governance, autoscaling policy governance, Workload Identity",
+        "audit, admission policy simulation, SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
         "detection,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
@@ -469,6 +481,7 @@ def main() -> int:
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
     parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
     parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
+    parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
     parser.add_argument("--workload-identity", default="out/workload-identity-audit/workload-identity-audit.json")
     parser.add_argument("--admission-policy", default="out/admission-policy-audit/admission-policy-audit.json")
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
@@ -507,6 +520,7 @@ def main() -> int:
         k8s_hardening=load_json(Path(args.k8s_hardening)),
         namespace_resource=load_json(Path(args.namespace_resource)),
         availability_topology=load_json(Path(args.availability_topology)),
+        autoscaling_policy=load_json(Path(args.autoscaling_policy)),
         workload_identity=load_json(Path(args.workload_identity)),
         admission_policy=load_json(Path(args.admission_policy)),
         alerting=load_json(Path(args.alerting)),
