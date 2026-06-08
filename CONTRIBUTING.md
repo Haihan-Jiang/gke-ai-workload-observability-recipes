@@ -9,14 +9,13 @@ the same release packet locally.
 Before opening a pull request, run:
 
 ```bash
-./scripts/generate-evidence.sh
-./scripts/validate.sh
-CI=true ./scripts/validate.sh
+make evidence
+make validate
+make ci
 ```
 
-`./scripts/generate-evidence.sh` refreshes committed evidence under
-`docs/evidence`. `CI=true ./scripts/validate.sh` verifies that generated
-evidence is stable against the committed files.
+`make evidence` refreshes committed evidence under `docs/evidence`. `make ci`
+verifies that generated evidence is stable against the committed files.
 
 ## Pull Request Checklist
 

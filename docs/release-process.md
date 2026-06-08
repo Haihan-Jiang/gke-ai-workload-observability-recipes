@@ -9,19 +9,19 @@ policy checks are internally consistent at a Git revision.
 1. Regenerate committed evidence:
 
    ```bash
-   ./scripts/generate-evidence.sh
+   make evidence
    ```
 
 2. Run the full local validation gate:
 
    ```bash
-   ./scripts/validate.sh
+   make validate
    ```
 
 3. Run the CI-mode evidence stability gate:
 
    ```bash
-   CI=true ./scripts/validate.sh
+   make ci
    ```
 
 4. Review the generated release packet:
@@ -30,6 +30,7 @@ policy checks are internally consistent at a Git revision.
    - `docs/evidence/evidence-provenance.md`
    - `docs/evidence/disaster-recovery-drill.md`
    - `docs/evidence/repository-governance-audit.md`
+   - `docs/evidence/developer-runtime-audit.md`
 
 5. Confirm the pull request CI is green and the PR merge state is clean.
 

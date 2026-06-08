@@ -56,6 +56,10 @@ python3 demo/repository_governance_audit.py \
   --policy config/repository-governance-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/developer_runtime_audit.py \
+  --policy config/developer-runtime-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/k8s_hardening_audit.py \
   --policy config/k8s-hardening-policy.json \
   --repo-root . \
@@ -268,6 +272,7 @@ python3 demo/release_readiness.py \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --ci-governance docs/evidence/ci-governance-audit.json \
   --repository-governance docs/evidence/repository-governance-audit.json \
+  --developer-runtime docs/evidence/developer-runtime-audit.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --pod-security-admission docs/evidence/pod-security-admission-audit.json \
   --namespace-resource docs/evidence/namespace-resource-audit.json \

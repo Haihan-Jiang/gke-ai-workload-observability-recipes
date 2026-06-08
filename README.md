@@ -12,8 +12,9 @@ rollback decisions, OTLP trace-quality auditing, collector outage modeling,
 incident correlation, critical-path attribution, evidence coverage checks,
 HPA lag modeling, tenant blast-radius detection, and token/GPU cost guardrails.
 It also includes supply-chain, CI workflow governance, repository governance,
-Kubernetes hardening, and admission-policy evidence so reviewers can see how
-deployment drift would be blocked before a bad manifest reaches a cluster.
+developer runtime governance, Kubernetes hardening, and admission-policy
+evidence so reviewers can see how deployment drift would be blocked before a
+bad manifest reaches a cluster.
 Namespace resource governance evidence checks that telemetry and workload
 namespaces have ResourceQuota and LimitRange controls that cover current
 requests and limits with headroom.
@@ -104,6 +105,9 @@ not described as merged.
 - A repository governance audit that verifies contribution instructions,
   security reporting, CODEOWNERS coverage, release process evidence, and
   project boundaries.
+- A developer runtime audit that verifies Make targets, Python version
+  pinning, zero-dependency validation, optional tool documentation, and local
+  output boundaries.
 - Kubernetes manifest hardening evidence for probes, resource budgets,
   restricted collector security context, disruption protection, and
   NetworkPolicy boundaries.
@@ -213,7 +217,14 @@ not described as merged.
 Validate the repo:
 
 ```bash
-./scripts/validate.sh
+make validate
+```
+
+Regenerate evidence and run the CI-mode stability gate:
+
+```bash
+make evidence
+make ci
 ```
 
 Run the local demo:
@@ -328,6 +339,7 @@ script:
 - [Supply chain audit](docs/evidence/supply-chain-audit.md)
 - [CI governance audit](docs/evidence/ci-governance-audit.md)
 - [Repository governance audit](docs/evidence/repository-governance-audit.md)
+- [Developer runtime audit](docs/evidence/developer-runtime-audit.md)
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
 - [Pod Security Admission audit](docs/evidence/pod-security-admission-audit.md)
 - [Namespace resource audit](docs/evidence/namespace-resource-audit.md)
@@ -508,11 +520,14 @@ Before adapting this to a real GKE cluster:
 39. Keep repository governance aligned with contribution validation, security
    reporting, CODEOWNERS coverage, release process evidence, and project
    boundaries.
-40. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+40. Keep the developer runtime contract aligned with Make targets, Python
+   version pinning, Ruby/YAML validation, zero-dependency assumptions, and
+   local output boundaries.
+41. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-41. For private GKE clusters, verify webhook/firewall access for any operators
+42. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-42. Treat telemetry as production evidence: validate it during staged rollout,
+43. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study

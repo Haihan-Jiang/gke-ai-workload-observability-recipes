@@ -67,6 +67,15 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 8,
             "failed_count": 0,
         },
+        "developer_runtime": {
+            "status": "pass",
+            "required_file_count": 4,
+            "present_file_count": 4,
+            "make_target_count": 8,
+            "phony_target_count": 8,
+            "detected_fixture_count": 8,
+            "failed_count": 0,
+        },
         "k8s_hardening": {
             "status": "pass",
             "check_count": 11,
@@ -390,6 +399,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["repository_governance_audit"])
+
+    def test_requires_developer_runtime_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["developer_runtime"]["make_target_count"] = 3
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["developer_runtime_audit"])
 
     def test_requires_workload_identity_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

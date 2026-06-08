@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 108,
+  "artifact_count": 110,
   "generated_artifact_count": 4,
-  "source_input_count": 96,
+  "source_input_count": 101,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3256,
-      "sha256": "009259e8c7ab528d4b4e03c5284f647c5d342b72f9cd07c40b1eb51cbf987c05"
+      "bytes": 3312,
+      "sha256": "c0d609dd7a09ca9e0c7bd9214d1b2d6625f4ece0b98081aeffeedbcb400520a1"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -322,6 +322,20 @@
       "exists": true,
       "bytes": 5233,
       "sha256": "a8efb869df45a4fb34bd745de64b1a75bd40a0e03179f6d9b7a5735acf8b2d7f"
+    },
+    {
+      "path": "docs/evidence/developer-runtime-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1258,
+      "sha256": "1af5ff4cb943ad8fcd25fc304db058a5fa340b754260c2f7bb15f9c849f92ccb"
+    },
+    {
+      "path": "docs/evidence/developer-runtime-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 4602,
+      "sha256": "5d8936ba39d73d58b2a2f8c8219ba552b6546c5e3a8178e7d78cda9724884f3a"
     },
     {
       "path": "docs/evidence/k8s-hardening-audit.md",
@@ -761,15 +775,15 @@
       "path": "docs/evidence/disaster-recovery-drill.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1033,
-      "sha256": "d9d04574ad5f4d69614fbf0accd1b27d385bde4edd07146a2e068b7fdefa3a2a"
+      "bytes": 1034,
+      "sha256": "227224f920103627ab0b05dba3b6b6a37bda7ee86ee80ed35c7adb84bd6ac0c9"
     },
     {
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 28142,
-      "sha256": "d643cb14fd0251627eec5c657aa1f69e56bc8651e2c3a75ed4effc2fbd4a178d"
+      "bytes": 30976,
+      "sha256": "05c528000d07ce271900a8762f6945620add1359464ca54da590b02303c0b79d"
     }
   ],
   "generated_artifacts": [
@@ -807,15 +821,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 14658,
-      "sha256": "bdb6faf3d5281260b4bc6b868090be5b2e6249c4f74a3f9d3d49b266897417f8"
+      "bytes": 14875,
+      "sha256": "52775edee60c106deaac44ab4168653a23394453aa28b24da78493acf154e49e"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 26447,
-      "sha256": "3e467527608f86409880be86cd22752b9e5730fa112f417f921629aec903968c"
+      "bytes": 26867,
+      "sha256": "ff14a4cb08dc9d692d17d340b3c019d73ef68e52785c113b556c74b21e02521e"
     },
     {
       "path": "scripts/kind-smoke.sh",
@@ -900,6 +914,13 @@
       "exists": true,
       "bytes": 9459,
       "sha256": "343d30b6837b7392aa1f4c2de650609c96b960d571e3e250e6e349ef9f486c49"
+    },
+    {
+      "path": "demo/developer_runtime_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 10977,
+      "sha256": "68e05af57f283891139aca26dec6aecd8e0a0cfeee9efe736882b9f322cd38bb"
     },
     {
       "path": "demo/k8s_hardening_audit.py",
@@ -1129,8 +1150,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 11280,
-      "sha256": "cedf85bda4756bdc44eddc31b0659b531f4b32d30b568f56a3dad792908e37fb"
+      "bytes": 11355,
+      "sha256": "80ad4691d2827d322efef6bffa8d26ec0c11b3d3c6f1da4ddbb596af2c1e6754"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1178,8 +1199,15 @@
       "path": "config/repository-governance-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 3130,
-      "sha256": "d2e0e307515d4bfe2880cd7c478799709da5d34ca8f878a6c94cbbbdd991d3cc"
+      "bytes": 3048,
+      "sha256": "6c62d9efd4eb1c237bf22ee45d5c18ef6f264f9b8f56f247ca94d6133b48a620"
+    },
+    {
+      "path": "config/developer-runtime-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2819,
+      "sha256": "299a0111821ad892cf09e79259a06d709d2dbd33a5e2fac81a66ba0632b16602"
     },
     {
       "path": "config/k8s-hardening-policy.json",
@@ -1409,8 +1437,8 @@
       "path": "config/disaster-recovery-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 3160,
-      "sha256": "3a7f81e99aab62aca9614733b461ce951ec4c842ec0f428fd8decdfd906b40a4"
+      "bytes": 3346,
+      "sha256": "2618ec83910d6f57bdd6d80344576ec4b95f8e5514896eeebb91835191740a3e"
     },
     {
       "path": ".github/workflows/ci.yml",
@@ -1427,11 +1455,25 @@
       "sha256": "74ecce74ca4b0081c9cb1f6fba89c8c9cbf8af84d05e83b0a70df0df22fd2a75"
     },
     {
+      "path": "Makefile",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 801,
+      "sha256": "f1a53e9bc9da8697aa915f79020abd22c1e70cb8e64d5429870740bc8a554e3f"
+    },
+    {
+      "path": ".python-version",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 5,
+      "sha256": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d"
+    },
+    {
       "path": "CONTRIBUTING.md",
       "group": "source-input",
       "exists": true,
-      "bytes": 1558,
-      "sha256": "8d6134be308b4b6c69cab1897770e7b89d9c65e786f6a82b2ac978f3fd6be310"
+      "bytes": 1472,
+      "sha256": "b697dca1b2f2eca3d82feb92559a37aa8c9d7f103fd991b946bf206aa9900645"
     },
     {
       "path": "SECURITY.md",
@@ -1441,11 +1483,18 @@
       "sha256": "0ba9ea122917d8f190a5b976daef80f886882737a39c0e800655bc2333062309"
     },
     {
+      "path": "docs/developer-runtime.md",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1208,
+      "sha256": "b9e0582be631b35af9e0a29c427929a7f8b6fbc2c2685ea85ed77ce9fd6acc09"
+    },
+    {
       "path": "docs/release-process.md",
       "group": "source-input",
       "exists": true,
-      "bytes": 1428,
-      "sha256": "a94c29ab56696339c74d1ee3a73040db937e000776be4345d9fd57189cd49e3c"
+      "bytes": 1429,
+      "sha256": "512826ea1a6e553146fd74cdc95efb52ff57074e00ed4dc4a3ee134b9ad5f8ec"
     },
     {
       "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
@@ -1482,8 +1531,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 108,
-        "minimum": 108
+        "count": 110,
+        "minimum": 110
       }
     },
     {
@@ -1499,8 +1548,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 96,
-        "minimum": 96
+        "count": 101,
+        "minimum": 101
       }
     },
     {

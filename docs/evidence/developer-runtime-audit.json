@@ -1,0 +1,181 @@
+{
+  "status": "pass",
+  "required_file_count": 4,
+  "present_file_count": 4,
+  "make_target_count": 8,
+  "phony_target_count": 8,
+  "detected_fixture_count": 8,
+  "failed_count": 0,
+  "check_count": 7,
+  "checks": [
+    {
+      "name": "required_files",
+      "ok": true,
+      "evidence": {
+        "missing_files": [],
+        "required_files": [
+          "Makefile",
+          ".python-version",
+          "docs/developer-runtime.md",
+          ".gitignore"
+        ]
+      }
+    },
+    {
+      "name": "make_target_inventory",
+      "ok": true,
+      "evidence": {
+        "missing_targets": [],
+        "missing_phony_targets": [],
+        "targets": [
+          "ci",
+          "clean",
+          "demo",
+          "evidence",
+          "help",
+          "kind-smoke",
+          "test",
+          "validate"
+        ]
+      }
+    },
+    {
+      "name": "make_command_contract",
+      "ok": true,
+      "evidence": {
+        "command_gaps": []
+      }
+    },
+    {
+      "name": "python_runtime_contract",
+      "ok": true,
+      "evidence": {
+        "python_version": "3.12",
+        "required_python_version": "3.12",
+        "python_variable_present": true
+      }
+    },
+    {
+      "name": "developer_runtime_docs",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "output_boundary",
+      "ok": true,
+      "evidence": {
+        "missing_gitignore_entries": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 8,
+        "minimum_detected_fixtures": 8,
+        "fixtures": [
+          {
+            "name": "missing_makefile",
+            "mutation": "remove_file",
+            "expected_failed_check": "required_files",
+            "detected": true
+          },
+          {
+            "name": "wrong_python_version",
+            "mutation": "replace_text",
+            "expected_failed_check": "python_runtime_contract",
+            "detected": true
+          },
+          {
+            "name": "missing_ci_target",
+            "mutation": "remove_make_target",
+            "expected_failed_check": "make_target_inventory",
+            "detected": true
+          },
+          {
+            "name": "validation_command_bypass",
+            "mutation": "replace_text",
+            "expected_failed_check": "make_command_contract",
+            "detected": true
+          },
+          {
+            "name": "missing_python_variable",
+            "mutation": "remove_text",
+            "expected_failed_check": "python_runtime_contract",
+            "detected": true
+          },
+          {
+            "name": "missing_no_pip_boundary",
+            "mutation": "remove_text",
+            "expected_failed_check": "developer_runtime_docs",
+            "detected": true
+          },
+          {
+            "name": "missing_output_boundary",
+            "mutation": "remove_text",
+            "expected_failed_check": "output_boundary",
+            "detected": true
+          },
+          {
+            "name": "missing_kind_optional_docs",
+            "mutation": "remove_text",
+            "expected_failed_check": "developer_runtime_docs",
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_makefile",
+      "mutation": "remove_file",
+      "expected_failed_check": "required_files",
+      "detected": true
+    },
+    {
+      "name": "wrong_python_version",
+      "mutation": "replace_text",
+      "expected_failed_check": "python_runtime_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_ci_target",
+      "mutation": "remove_make_target",
+      "expected_failed_check": "make_target_inventory",
+      "detected": true
+    },
+    {
+      "name": "validation_command_bypass",
+      "mutation": "replace_text",
+      "expected_failed_check": "make_command_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_python_variable",
+      "mutation": "remove_text",
+      "expected_failed_check": "python_runtime_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_no_pip_boundary",
+      "mutation": "remove_text",
+      "expected_failed_check": "developer_runtime_docs",
+      "detected": true
+    },
+    {
+      "name": "missing_output_boundary",
+      "mutation": "remove_text",
+      "expected_failed_check": "output_boundary",
+      "detected": true
+    },
+    {
+      "name": "missing_kind_optional_docs",
+      "mutation": "remove_text",
+      "expected_failed_check": "developer_runtime_docs",
+      "detected": true
+    }
+  ]
+}

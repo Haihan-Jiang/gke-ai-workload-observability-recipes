@@ -9,9 +9,9 @@
     "docs/release-process.md"
   ],
   "required_contributing_terms": [
-    "./scripts/generate-evidence.sh",
-    "./scripts/validate.sh",
-    "CI=true ./scripts/validate.sh",
+    "make evidence",
+    "make validate",
+    "make ci",
     "negative fixtures",
     "Regenerate committed evidence",
     "Do not add paid cloud dependencies"
@@ -25,13 +25,14 @@
     "generated evidence"
   ],
   "required_release_terms": [
-    "./scripts/generate-evidence.sh",
-    "./scripts/validate.sh",
-    "CI=true ./scripts/validate.sh",
+    "make evidence",
+    "make validate",
+    "make ci",
     "release-readiness.md",
     "evidence-provenance.md",
     "disaster-recovery-drill.md",
     "repository-governance-audit.md",
+    "developer-runtime-audit.md",
     "merge state is clean"
   ],
   "codeowners": {
@@ -67,7 +68,7 @@
       "name": "missing_ci_mode_validation",
       "mutation": "remove_text",
       "path": "CONTRIBUTING.md",
-      "text": "CI=true ./scripts/validate.sh",
+      "text": "make ci",
       "expected_failed_check": "contribution_workflow"
     },
     {

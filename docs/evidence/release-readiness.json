@@ -46,6 +46,10 @@
       "ok": true
     },
     {
+      "name": "developer_runtime_audit",
+      "ok": true
+    },
+    {
       "name": "k8s_manifest_hardening",
       "ok": true
     },
@@ -365,6 +369,14 @@
     },
     {
       "path": "repository-governance-audit.json",
+      "exists": true
+    },
+    {
+      "path": "developer-runtime-audit.md",
+      "exists": true
+    },
+    {
+      "path": "developer-runtime-audit.json",
       "exists": true
     },
     {

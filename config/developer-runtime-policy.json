@@ -1,0 +1,110 @@
+{
+  "description": "Policy for auditing the contributor runtime contract and stable local command entrypoints.",
+  "required_files": [
+    "Makefile",
+    ".python-version",
+    "docs/developer-runtime.md",
+    ".gitignore"
+  ],
+  "required_python_version": "3.12",
+  "required_make_variable": "PYTHON ?= python3",
+  "required_make_targets": [
+    "help",
+    "evidence",
+    "validate",
+    "ci",
+    "test",
+    "demo",
+    "kind-smoke",
+    "clean"
+  ],
+  "target_command_fragments": {
+    "evidence": "./scripts/generate-evidence.sh",
+    "validate": "./scripts/validate.sh",
+    "ci": "CI=true ./scripts/validate.sh",
+    "test": "$(PYTHON) -m unittest discover -s tests",
+    "demo": "./scripts/run-local-demo.sh",
+    "kind-smoke": "./scripts/kind-smoke.sh",
+    "clean": "rm -rf out"
+  },
+  "required_docs_terms": [
+    "Python 3.12 or newer",
+    "Ruby",
+    "Git",
+    "Make",
+    "No pip dependencies",
+    "make evidence",
+    "make validate",
+    "make ci",
+    "make test",
+    "Docker",
+    "kind",
+    "kubectl",
+    "out/",
+    "docs/evidence/"
+  ],
+  "required_gitignore_entries": [
+    "out/",
+    "__pycache__/",
+    "*.py[cod]"
+  ],
+  "minimum_detected_fixtures": 8,
+  "fixtures": [
+    {
+      "name": "missing_makefile",
+      "mutation": "remove_file",
+      "path": "Makefile",
+      "expected_failed_check": "required_files"
+    },
+    {
+      "name": "wrong_python_version",
+      "mutation": "replace_text",
+      "path": ".python-version",
+      "from": "3.12",
+      "to": "3.10",
+      "expected_failed_check": "python_runtime_contract"
+    },
+    {
+      "name": "missing_ci_target",
+      "mutation": "remove_make_target",
+      "target": "ci",
+      "expected_failed_check": "make_target_inventory"
+    },
+    {
+      "name": "validation_command_bypass",
+      "mutation": "replace_text",
+      "path": "Makefile",
+      "from": "./scripts/validate.sh",
+      "to": "echo skipped validation",
+      "expected_failed_check": "make_command_contract"
+    },
+    {
+      "name": "missing_python_variable",
+      "mutation": "remove_text",
+      "path": "Makefile",
+      "text": "PYTHON ?= python3",
+      "expected_failed_check": "python_runtime_contract"
+    },
+    {
+      "name": "missing_no_pip_boundary",
+      "mutation": "remove_text",
+      "path": "docs/developer-runtime.md",
+      "text": "No pip dependencies",
+      "expected_failed_check": "developer_runtime_docs"
+    },
+    {
+      "name": "missing_output_boundary",
+      "mutation": "remove_text",
+      "path": ".gitignore",
+      "text": "out/",
+      "expected_failed_check": "output_boundary"
+    },
+    {
+      "name": "missing_kind_optional_docs",
+      "mutation": "remove_text",
+      "path": "docs/developer-runtime.md",
+      "text": "kind",
+      "expected_failed_check": "developer_runtime_docs"
+    }
+  ]
+}

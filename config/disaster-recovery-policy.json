@@ -36,6 +36,7 @@
         "docs/evidence/config-rollout-audit.json",
         "docs/evidence/ci-governance-audit.json",
         "docs/evidence/repository-governance-audit.json",
+        "docs/evidence/developer-runtime-audit.json",
         "docs/evidence/release-waiver-governance.json"
       ]
     },
@@ -78,11 +79,15 @@
         "config/reliability-slo.json",
         "config/ci-governance-policy.json",
         "config/repository-governance-policy.json",
+        "config/developer-runtime-policy.json",
         "config/disaster-recovery-policy.json",
         ".github/workflows/ci.yml",
         ".github/CODEOWNERS",
+        "Makefile",
+        ".python-version",
         "CONTRIBUTING.md",
         "SECURITY.md",
+        "docs/developer-runtime.md",
         "docs/release-process.md",
         "scripts/generate-evidence.sh",
         "scripts/validate.sh"

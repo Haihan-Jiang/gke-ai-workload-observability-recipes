@@ -15,6 +15,7 @@ python3 -m py_compile \
   demo/supply_chain_audit.py \
   demo/ci_governance_audit.py \
   demo/repository_governance_audit.py \
+  demo/developer_runtime_audit.py \
   demo/k8s_hardening_audit.py \
   demo/pod_security_admission_audit.py \
   demo/namespace_resource_audit.py \
@@ -65,6 +66,7 @@ python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
 python3 -m json.tool config/supply-chain-policy.json >/dev/null
 python3 -m json.tool config/ci-governance-policy.json >/dev/null
 python3 -m json.tool config/repository-governance-policy.json >/dev/null
+python3 -m json.tool config/developer-runtime-policy.json >/dev/null
 python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
 python3 -m json.tool config/pod-security-admission-policy.json >/dev/null
 python3 -m json.tool config/namespace-resource-policy.json >/dev/null
@@ -147,6 +149,10 @@ python3 demo/repository_governance_audit.py \
   --policy config/repository-governance-policy.json \
   --repo-root . \
   --output-dir out/repository-governance-audit-validate >/dev/null
+python3 demo/developer_runtime_audit.py \
+  --policy config/developer-runtime-policy.json \
+  --repo-root . \
+  --output-dir out/developer-runtime-audit-validate >/dev/null
 python3 demo/k8s_hardening_audit.py \
   --policy config/k8s-hardening-policy.json \
   --repo-root . \
@@ -357,6 +363,7 @@ python3 demo/release_readiness.py \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --ci-governance docs/evidence/ci-governance-audit.json \
   --repository-governance docs/evidence/repository-governance-audit.json \
+  --developer-runtime docs/evidence/developer-runtime-audit.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --pod-security-admission docs/evidence/pod-security-admission-audit.json \
   --namespace-resource docs/evidence/namespace-resource-audit.json \
@@ -414,6 +421,7 @@ python3 -m json.tool docs/evidence/policy-regression-suite.json >/dev/null
 python3 -m json.tool docs/evidence/supply-chain-audit.json >/dev/null
 python3 -m json.tool docs/evidence/ci-governance-audit.json >/dev/null
 python3 -m json.tool docs/evidence/repository-governance-audit.json >/dev/null
+python3 -m json.tool docs/evidence/developer-runtime-audit.json >/dev/null
 python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
 python3 -m json.tool docs/evidence/pod-security-admission-audit.json >/dev/null
 python3 -m json.tool docs/evidence/namespace-resource-audit.json >/dev/null

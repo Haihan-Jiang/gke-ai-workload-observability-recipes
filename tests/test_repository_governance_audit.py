@@ -64,7 +64,7 @@ class RepositoryGovernanceAuditTest(unittest.TestCase):
             self.copy_repo_inputs(root)
             path = root / "CONTRIBUTING.md"
             path.write_text(
-                path.read_text(encoding="utf-8").replace("CI=true ./scripts/validate.sh", ""),
+                path.read_text(encoding="utf-8").replace("make ci", ""),
                 encoding="utf-8",
             )
 

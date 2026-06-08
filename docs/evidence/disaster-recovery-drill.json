@@ -1,8 +1,8 @@
 {
   "status": "pass",
-  "artifact_count": 42,
-  "restored_count": 42,
-  "hash_match_count": 42,
+  "artifact_count": 47,
+  "restored_count": 47,
+  "hash_match_count": 47,
   "generated_artifact_count": 10,
   "group_count": 6,
   "fixture_count": 4,
@@ -96,6 +96,13 @@
       "exists": true,
       "bytes": 5233,
       "sha256": "a8efb869df45a4fb34bd745de64b1a75bd40a0e03179f6d9b7a5735acf8b2d7f"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/developer-runtime-audit.json",
+      "exists": true,
+      "bytes": 4602,
+      "sha256": "5d8936ba39d73d58b2a2f8c8219ba552b6546c5e3a8178e7d78cda9724884f3a"
     },
     {
       "group": "release_control_evidence",
@@ -248,15 +255,22 @@
       "group": "recovery_source_policy",
       "path": "config/repository-governance-policy.json",
       "exists": true,
-      "bytes": 3130,
-      "sha256": "d2e0e307515d4bfe2880cd7c478799709da5d34ca8f878a6c94cbbbdd991d3cc"
+      "bytes": 3048,
+      "sha256": "6c62d9efd4eb1c237bf22ee45d5c18ef6f264f9b8f56f247ca94d6133b48a620"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "config/developer-runtime-policy.json",
+      "exists": true,
+      "bytes": 2819,
+      "sha256": "299a0111821ad892cf09e79259a06d709d2dbd33a5e2fac81a66ba0632b16602"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/disaster-recovery-policy.json",
       "exists": true,
-      "bytes": 3160,
-      "sha256": "3a7f81e99aab62aca9614733b461ce951ec4c842ec0f428fd8decdfd906b40a4"
+      "bytes": 3346,
+      "sha256": "2618ec83910d6f57bdd6d80344576ec4b95f8e5514896eeebb91835191740a3e"
     },
     {
       "group": "recovery_source_policy",
@@ -274,10 +288,24 @@
     },
     {
       "group": "recovery_source_policy",
+      "path": "Makefile",
+      "exists": true,
+      "bytes": 801,
+      "sha256": "f1a53e9bc9da8697aa915f79020abd22c1e70cb8e64d5429870740bc8a554e3f"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": ".python-version",
+      "exists": true,
+      "bytes": 5,
+      "sha256": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d"
+    },
+    {
+      "group": "recovery_source_policy",
       "path": "CONTRIBUTING.md",
       "exists": true,
-      "bytes": 1558,
-      "sha256": "8d6134be308b4b6c69cab1897770e7b89d9c65e786f6a82b2ac978f3fd6be310"
+      "bytes": 1472,
+      "sha256": "b697dca1b2f2eca3d82feb92559a37aa8c9d7f103fd991b946bf206aa9900645"
     },
     {
       "group": "recovery_source_policy",
@@ -288,24 +316,31 @@
     },
     {
       "group": "recovery_source_policy",
+      "path": "docs/developer-runtime.md",
+      "exists": true,
+      "bytes": 1208,
+      "sha256": "b9e0582be631b35af9e0a29c427929a7f8b6fbc2c2685ea85ed77ce9fd6acc09"
+    },
+    {
+      "group": "recovery_source_policy",
       "path": "docs/release-process.md",
       "exists": true,
-      "bytes": 1428,
-      "sha256": "a94c29ab56696339c74d1ee3a73040db937e000776be4345d9fd57189cd49e3c"
+      "bytes": 1429,
+      "sha256": "512826ea1a6e553146fd74cdc95efb52ff57074e00ed4dc4a3ee134b9ad5f8ec"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
       "exists": true,
-      "bytes": 14658,
-      "sha256": "bdb6faf3d5281260b4bc6b868090be5b2e6249c4f74a3f9d3d49b266897417f8"
+      "bytes": 14875,
+      "sha256": "52775edee60c106deaac44ab4168653a23394453aa28b24da78493acf154e49e"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
       "exists": true,
-      "bytes": 26447,
-      "sha256": "3e467527608f86409880be86cd22752b9e5730fa112f417f921629aec903968c"
+      "bytes": 26867,
+      "sha256": "ff14a4cb08dc9d692d17d340b3c019d73ef68e52785c113b556c74b21e02521e"
     }
   ],
   "restored_artifacts": [
@@ -416,6 +451,15 @@
       "hash_match": true,
       "bytes": 5233,
       "sha256": "a8efb869df45a4fb34bd745de64b1a75bd40a0e03179f6d9b7a5735acf8b2d7f"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/developer-runtime-audit.json",
+      "expected_sha256": "5d8936ba39d73d58b2a2f8c8219ba552b6546c5e3a8178e7d78cda9724884f3a",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 4602,
+      "sha256": "5d8936ba39d73d58b2a2f8c8219ba552b6546c5e3a8178e7d78cda9724884f3a"
     },
     {
       "group": "release_control_evidence",
@@ -609,20 +653,29 @@
     {
       "group": "recovery_source_policy",
       "path": "config/repository-governance-policy.json",
-      "expected_sha256": "d2e0e307515d4bfe2880cd7c478799709da5d34ca8f878a6c94cbbbdd991d3cc",
+      "expected_sha256": "6c62d9efd4eb1c237bf22ee45d5c18ef6f264f9b8f56f247ca94d6133b48a620",
       "restored": true,
       "hash_match": true,
-      "bytes": 3130,
-      "sha256": "d2e0e307515d4bfe2880cd7c478799709da5d34ca8f878a6c94cbbbdd991d3cc"
+      "bytes": 3048,
+      "sha256": "6c62d9efd4eb1c237bf22ee45d5c18ef6f264f9b8f56f247ca94d6133b48a620"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "config/developer-runtime-policy.json",
+      "expected_sha256": "299a0111821ad892cf09e79259a06d709d2dbd33a5e2fac81a66ba0632b16602",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 2819,
+      "sha256": "299a0111821ad892cf09e79259a06d709d2dbd33a5e2fac81a66ba0632b16602"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/disaster-recovery-policy.json",
-      "expected_sha256": "3a7f81e99aab62aca9614733b461ce951ec4c842ec0f428fd8decdfd906b40a4",
+      "expected_sha256": "2618ec83910d6f57bdd6d80344576ec4b95f8e5514896eeebb91835191740a3e",
       "restored": true,
       "hash_match": true,
-      "bytes": 3160,
-      "sha256": "3a7f81e99aab62aca9614733b461ce951ec4c842ec0f428fd8decdfd906b40a4"
+      "bytes": 3346,
+      "sha256": "2618ec83910d6f57bdd6d80344576ec4b95f8e5514896eeebb91835191740a3e"
     },
     {
       "group": "recovery_source_policy",
@@ -644,12 +697,30 @@
     },
     {
       "group": "recovery_source_policy",
-      "path": "CONTRIBUTING.md",
-      "expected_sha256": "8d6134be308b4b6c69cab1897770e7b89d9c65e786f6a82b2ac978f3fd6be310",
+      "path": "Makefile",
+      "expected_sha256": "f1a53e9bc9da8697aa915f79020abd22c1e70cb8e64d5429870740bc8a554e3f",
       "restored": true,
       "hash_match": true,
-      "bytes": 1558,
-      "sha256": "8d6134be308b4b6c69cab1897770e7b89d9c65e786f6a82b2ac978f3fd6be310"
+      "bytes": 801,
+      "sha256": "f1a53e9bc9da8697aa915f79020abd22c1e70cb8e64d5429870740bc8a554e3f"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": ".python-version",
+      "expected_sha256": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 5,
+      "sha256": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "CONTRIBUTING.md",
+      "expected_sha256": "b697dca1b2f2eca3d82feb92559a37aa8c9d7f103fd991b946bf206aa9900645",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1472,
+      "sha256": "b697dca1b2f2eca3d82feb92559a37aa8c9d7f103fd991b946bf206aa9900645"
     },
     {
       "group": "recovery_source_policy",
@@ -662,30 +733,39 @@
     },
     {
       "group": "recovery_source_policy",
-      "path": "docs/release-process.md",
-      "expected_sha256": "a94c29ab56696339c74d1ee3a73040db937e000776be4345d9fd57189cd49e3c",
+      "path": "docs/developer-runtime.md",
+      "expected_sha256": "b9e0582be631b35af9e0a29c427929a7f8b6fbc2c2685ea85ed77ce9fd6acc09",
       "restored": true,
       "hash_match": true,
-      "bytes": 1428,
-      "sha256": "a94c29ab56696339c74d1ee3a73040db937e000776be4345d9fd57189cd49e3c"
+      "bytes": 1208,
+      "sha256": "b9e0582be631b35af9e0a29c427929a7f8b6fbc2c2685ea85ed77ce9fd6acc09"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/release-process.md",
+      "expected_sha256": "512826ea1a6e553146fd74cdc95efb52ff57074e00ed4dc4a3ee134b9ad5f8ec",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1429,
+      "sha256": "512826ea1a6e553146fd74cdc95efb52ff57074e00ed4dc4a3ee134b9ad5f8ec"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
-      "expected_sha256": "bdb6faf3d5281260b4bc6b868090be5b2e6249c4f74a3f9d3d49b266897417f8",
+      "expected_sha256": "52775edee60c106deaac44ab4168653a23394453aa28b24da78493acf154e49e",
       "restored": true,
       "hash_match": true,
-      "bytes": 14658,
-      "sha256": "bdb6faf3d5281260b4bc6b868090be5b2e6249c4f74a3f9d3d49b266897417f8"
+      "bytes": 14875,
+      "sha256": "52775edee60c106deaac44ab4168653a23394453aa28b24da78493acf154e49e"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
-      "expected_sha256": "3e467527608f86409880be86cd22752b9e5730fa112f417f921629aec903968c",
+      "expected_sha256": "ff14a4cb08dc9d692d17d340b3c019d73ef68e52785c113b556c74b21e02521e",
       "restored": true,
       "hash_match": true,
-      "bytes": 26447,
-      "sha256": "3e467527608f86409880be86cd22752b9e5730fa112f417f921629aec903968c"
+      "bytes": 26867,
+      "sha256": "ff14a4cb08dc9d692d17d340b3c019d73ef68e52785c113b556c74b21e02521e"
     }
   ],
   "fixtures": [
@@ -718,7 +798,7 @@
       "evidence": {
         "missing": [],
         "duplicates": [],
-        "artifact_count": 42
+        "artifact_count": 47
       }
     },
     {
@@ -726,8 +806,8 @@
       "status": "pass",
       "reason": "Every restored artifact matches the source SHA-256 checksum.",
       "evidence": {
-        "restored_count": 42,
-        "hash_match_count": 42,
+        "restored_count": 47,
+        "hash_match_count": 47,
         "hash_mismatches": []
       }
     },
@@ -740,8 +820,8 @@
           "deployment_manifests": 6,
           "incident_replay_evidence": 4,
           "observability_contracts": 7,
-          "recovery_source_policy": 11,
-          "release_control_evidence": 9,
+          "recovery_source_policy": 15,
+          "release_control_evidence": 10,
           "security_policy_evidence": 5
         }
       }
