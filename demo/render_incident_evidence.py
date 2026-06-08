@@ -153,6 +153,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Tenant blast radius](tenant-blast-radius.md)",
                 "- [Token cost guard](token-cost-guard.md)",
                 "- [Detailed problem coverage](detailed-problems.md)",
+                "- [Deployment policy decision](deployment-policy.md)",
                 "- [Release readiness report](release-readiness.md)",
                 "- [Release readiness JSON](release-readiness.json)",
                 "",

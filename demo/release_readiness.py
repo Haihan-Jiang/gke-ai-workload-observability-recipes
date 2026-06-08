@@ -43,6 +43,8 @@ REQUIRED_EVIDENCE = [
     "token-cost-guard.json",
     "detailed-problems.md",
     "detailed-problems.json",
+    "deployment-policy.md",
+    "deployment-policy.json",
 ]
 
 
@@ -57,6 +59,7 @@ def evaluate(
     runbooks: dict[str, Any],
     advanced: dict[str, Any],
     detailed: dict[str, Any],
+    policy: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
     evidence = [
@@ -77,6 +80,13 @@ def evaluate(
         {"name": "capacity_plan", "ok": len(capacity.get("scenarios", [])) >= 5},
         {"name": "advanced_problem_coverage", "ok": len(advanced.get("problems", [])) >= 5},
         {"name": "detailed_problem_coverage", "ok": len(detailed.get("problems", [])) >= 5},
+        {
+            "name": "deployment_policy",
+            "ok": policy.get("status") == "generated"
+            and policy.get("decision")
+            in {"promote", "manual_review_required", "block_production_promotion"}
+            and int(policy.get("control_count", 0)) >= 8,
+        },
     ]
     return {
         "status": "pass" if all(item["ok"] for item in checks) else "fail",
@@ -99,8 +109,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "",
         "This report is the final local gate for the portfolio lab. It verifies",
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
-        "reliability controls, detailed reliability controls, and committed",
-        "evidence are present and internally consistent.",
+        "reliability controls, detailed reliability controls, deployment",
+        "policy, and committed evidence are present and internally consistent.",
         "",
         "## Checks",
         "",
@@ -131,6 +141,7 @@ def main() -> int:
     parser.add_argument("--runbooks", default="out/incident-runbooks/incident-runbooks.json")
     parser.add_argument("--advanced", default="out/advanced-reliability/complex-problems.json")
     parser.add_argument("--detailed", default="out/detailed-reliability/detailed-problems.json")
+    parser.add_argument("--policy", default="out/deployment-policy/deployment-policy.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
     args = parser.parse_args()
@@ -141,6 +152,7 @@ def main() -> int:
         runbooks=load_json(Path(args.runbooks)),
         advanced=load_json(Path(args.advanced)),
         detailed=load_json(Path(args.detailed)),
+        policy=load_json(Path(args.policy)),
         evidence_dir=Path(args.evidence_dir),
     )
     output_dir = Path(args.output_dir)

@@ -33,6 +33,9 @@ not described as merged.
   quality, collector outage resilience, and alert deduplication.
 - Detailed inference controls for critical-path attribution, sampling evidence
   coverage, HPA lag, tenant blast radius, and token/GPU cost guardrails.
+- A policy-as-code deployment decision that combines SLO, burn-rate, rollout,
+  trace, collector, autoscaling, tenant, and cost signals into one promotion
+  gate.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -162,6 +165,7 @@ script:
 - [Tenant blast radius](docs/evidence/tenant-blast-radius.md)
 - [Token cost guard](docs/evidence/token-cost-guard.md)
 - [Detailed problem coverage](docs/evidence/detailed-problems.md)
+- [Deployment policy decision](docs/evidence/deployment-policy.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -254,8 +258,8 @@ After an upstream PR merges, update this to:
 > collector queues, incident replay scenarios, configurable SLO gates,
 > capacity/readiness evidence, burn-rate and canary decision controls, trace
 > quality audits, critical-path attribution, HPA lag analysis, tenant blast
-> radius checks, token/GPU guardrails, generated runbooks, and related Google
-> Cloud OSS recipe contributions.
+> radius checks, token/GPU guardrails, policy-as-code deployment gates,
+> generated runbooks, and related Google Cloud OSS recipe contributions.
 
 ## License
 

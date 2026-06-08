@@ -24,6 +24,10 @@
     {
       "name": "detailed_problem_coverage",
       "ok": true
+    },
+    {
+      "name": "deployment_policy",
+      "ok": true
     }
   ],
   "evidence": [
@@ -157,6 +161,14 @@
     },
     {
       "path": "detailed-problems.json",
+      "exists": true
+    },
+    {
+      "path": "deployment-policy.md",
+      "exists": true
+    },
+    {
+      "path": "deployment-policy.json",
       "exists": true
     }
   ],

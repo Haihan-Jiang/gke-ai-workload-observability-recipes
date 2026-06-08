@@ -4,8 +4,8 @@ Overall status: **PASS**
 
 This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
-reliability controls, detailed reliability controls, and committed
-evidence are present and internally consistent.
+reliability controls, detailed reliability controls, deployment
+policy, and committed evidence are present and internally consistent.
 
 ## Checks
 
@@ -17,6 +17,7 @@ evidence are present and internally consistent.
 | `capacity_plan` | PASS |
 | `advanced_problem_coverage` | PASS |
 | `detailed_problem_coverage` | PASS |
+| `deployment_policy` | PASS |
 
 ## Evidence Files
 
@@ -55,6 +56,8 @@ evidence are present and internally consistent.
 | `token-cost-guard.json` | yes |
 | `detailed-problems.md` | yes |
 | `detailed-problems.json` | yes |
+| `deployment-policy.md` | yes |
+| `deployment-policy.json` | yes |
 
 ## Capacity Warnings
 

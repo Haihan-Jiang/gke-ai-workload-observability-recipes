@@ -1,0 +1,130 @@
+{
+  "status": "generated",
+  "decision": "block_production_promotion",
+  "human_approval_required": true,
+  "control_count": 8,
+  "blocking_controls": [
+    "burn_rate",
+    "rollout_guard",
+    "tenant_blast_radius"
+  ],
+  "review_controls": [
+    "hpa_lag",
+    "token_cost_guard"
+  ],
+  "controls": [
+    {
+      "name": "reliability_gate",
+      "severity": "pass",
+      "reason": "SLO gate passed.",
+      "evidence": {
+        "status": "pass"
+      }
+    },
+    {
+      "name": "burn_rate",
+      "severity": "block",
+      "reason": "One or more burn-rate windows require paging.",
+      "evidence": {
+        "windows": [
+          {
+            "window": "5m",
+            "burn_rate": 34.74,
+            "action": "page"
+          },
+          {
+            "window": "30m",
+            "burn_rate": 20.29,
+            "action": "page"
+          }
+        ]
+      }
+    },
+    {
+      "name": "rollout_guard",
+      "severity": "block",
+      "reason": "Canary rollout guard recommends rollback.",
+      "evidence": {
+        "candidate": "rollout_regression",
+        "candidate_version": "v2",
+        "violations": [
+          "p95 ratio 9.48 exceeds 3.0",
+          "error delta 0.29 exceeds 0.05",
+          "cache miss delta 0.43 exceeds 0.25"
+        ]
+      }
+    },
+    {
+      "name": "trace_quality",
+      "severity": "pass",
+      "reason": "Trace evidence has required resource, root-span, and child-span fields.",
+      "evidence": {
+        "payloads": 5,
+        "spans": 136
+      }
+    },
+    {
+      "name": "collector_resilience",
+      "severity": "pass",
+      "reason": "Collector queue and persistent storage are inside modeled outage budget.",
+      "evidence": {
+        "queue_utilization": 0.96
+      }
+    },
+    {
+      "name": "hpa_lag",
+      "severity": "review",
+      "reason": "Some scenarios are not solved by autoscaling and need dependency or rollout remediation.",
+      "evidence": {
+        "scenarios": [
+          {
+            "scenario": "dependency_timeout",
+            "decision": "fix_dependency_or_rollout",
+            "violations": []
+          },
+          {
+            "scenario": "rollout_regression",
+            "decision": "fix_dependency_or_rollout",
+            "violations": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "tenant_blast_radius",
+      "severity": "block",
+      "reason": "Tenant SLO breach detected.",
+      "evidence": {
+        "breached_scenarios": [
+          "dependency_timeout",
+          "rollout_regression",
+          "collector_queue_pressure"
+        ]
+      }
+    },
+    {
+      "name": "token_cost_guard",
+      "severity": "review",
+      "reason": "Token/GPU cost policy requires review.",
+      "evidence": {
+        "scenarios": [
+          {
+            "scenario": "rollout_regression",
+            "decision": "block_or_review",
+            "violations": [
+              "tokens 578 exceed 520",
+              "gpu_ms 210 exceeds 180"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "operator_actions": [
+    "Freeze rollout until burn-rate paging windows return below threshold.",
+    "Rollback or hold the candidate version before expanding traffic.",
+    "Separate dependency or rollout remediation from autoscaling changes.",
+    "Protect impacted tenant tier before aggregate service promotion.",
+    "Review token/GPU regression before approving the model variant."
+  ]
+}

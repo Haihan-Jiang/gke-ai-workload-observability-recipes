@@ -31,6 +31,16 @@ python3 demo/detailed_reliability.py \
   --payload-dir "${payload_dir}" \
   --detailed-config config/detailed-reliability.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/deployment_policy.py \
+  --gate docs/evidence/reliability-gate.json \
+  --burn-rate docs/evidence/burn-rate-analysis.json \
+  --rollout-guard docs/evidence/rollout-guard.json \
+  --trace-quality docs/evidence/trace-quality-audit.json \
+  --collector-resilience docs/evidence/collector-resilience.json \
+  --hpa-lag docs/evidence/hpa-lag-analysis.json \
+  --tenant-blast-radius docs/evidence/tenant-blast-radius.json \
+  --token-cost-guard docs/evidence/token-cost-guard.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -40,6 +50,7 @@ python3 demo/release_readiness.py \
   --runbooks docs/evidence/incident-runbooks.json \
   --advanced docs/evidence/complex-problems.json \
   --detailed docs/evidence/detailed-problems.json \
+  --policy docs/evidence/deployment-policy.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 

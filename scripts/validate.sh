@@ -10,6 +10,7 @@ python3 -m py_compile \
   demo/incident_replay.py \
   demo/advanced_reliability.py \
   demo/detailed_reliability.py \
+  demo/deployment_policy.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -46,6 +47,16 @@ python3 demo/detailed_reliability.py \
   --payload-dir out/incident-replay-payloads-validate \
   --detailed-config config/detailed-reliability.json \
   --output-dir out/detailed-reliability-validate >/dev/null
+python3 demo/deployment_policy.py \
+  --gate out/reliability-gate-validate/reliability-gate.json \
+  --burn-rate out/advanced-reliability-validate/burn-rate-analysis.json \
+  --rollout-guard out/advanced-reliability-validate/rollout-guard.json \
+  --trace-quality out/advanced-reliability-validate/trace-quality-audit.json \
+  --collector-resilience out/advanced-reliability-validate/collector-resilience.json \
+  --hpa-lag out/detailed-reliability-validate/hpa-lag-analysis.json \
+  --tenant-blast-radius out/detailed-reliability-validate/tenant-blast-radius.json \
+  --token-cost-guard out/detailed-reliability-validate/token-cost-guard.json \
+  --output-dir out/deployment-policy-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
@@ -53,6 +64,7 @@ python3 demo/release_readiness.py \
   --runbooks docs/evidence/incident-runbooks.json \
   --advanced docs/evidence/complex-problems.json \
   --detailed docs/evidence/detailed-problems.json \
+  --policy docs/evidence/deployment-policy.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
@@ -72,6 +84,7 @@ python3 -m json.tool docs/evidence/hpa-lag-analysis.json >/dev/null
 python3 -m json.tool docs/evidence/tenant-blast-radius.json >/dev/null
 python3 -m json.tool docs/evidence/token-cost-guard.json >/dev/null
 python3 -m json.tool docs/evidence/detailed-problems.json >/dev/null
+python3 -m json.tool docs/evidence/deployment-policy.json >/dev/null
 python3 -m unittest discover -s tests
 
 if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then
