@@ -12,8 +12,8 @@ detection,
 telemetry redaction, telemetry cost budget, error-budget accounting,
 rollback drill coverage, post-incident review coverage, incident
 response drill coverage, dependency contract coverage, synthetic
-probe coverage, load-shedding policy coverage, regional failover
-coverage, waiver governance, disaster recovery
+probe coverage, model release safety coverage, load-shedding policy
+coverage, regional failover coverage, waiver governance, disaster recovery
 drill coverage, evidence provenance, and committed evidence are
 present and internally
 consistent.
@@ -45,6 +45,7 @@ consistent.
 | `incident_response_drill` | PASS |
 | `dependency_contract_audit` | PASS |
 | `synthetic_probe_audit` | PASS |
+| `model_release_safety_audit` | PASS |
 | `load_shedding_policy_audit` | PASS |
 | `regional_failover_audit` | PASS |
 | `release_waiver_governance` | PASS |
@@ -122,6 +123,8 @@ consistent.
 | `dependency-contract-audit.json` | yes |
 | `synthetic-probe-audit.md` | yes |
 | `synthetic-probe-audit.json` | yes |
+| `model-release-safety-audit.md` | yes |
+| `model-release-safety-audit.json` | yes |
 | `load-shedding-policy-audit.md` | yes |
 | `load-shedding-policy-audit.json` | yes |
 | `regional-failover-audit.md` | yes |

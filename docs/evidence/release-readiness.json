@@ -94,6 +94,10 @@
       "ok": true
     },
     {
+      "name": "model_release_safety_audit",
+      "ok": true
+    },
+    {
       "name": "load_shedding_policy_audit",
       "ok": true
     },
@@ -381,6 +385,14 @@
     },
     {
       "path": "synthetic-probe-audit.json",
+      "exists": true
+    },
+    {
+      "path": "model-release-safety-audit.md",
+      "exists": true
+    },
+    {
+      "path": "model-release-safety-audit.json",
       "exists": true
     },
     {

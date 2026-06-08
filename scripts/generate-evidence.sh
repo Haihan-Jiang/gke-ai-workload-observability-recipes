@@ -138,6 +138,15 @@ python3 demo/synthetic_probe_audit.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --error-budget docs/evidence/error-budget-ledger.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/model_release_safety_audit.py \
+  --policy config/model-release-policy.json \
+  --rollout-guard docs/evidence/rollout-guard.json \
+  --trace-quality docs/evidence/trace-quality-audit.json \
+  --token-cost docs/evidence/token-cost-guard.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/load_shedding_policy_audit.py \
   --policy config/load-shedding-policy.json \
   --capacity docs/evidence/capacity-plan.json \
@@ -200,6 +209,7 @@ python3 demo/release_readiness.py \
   --incident-response-drill docs/evidence/incident-response-drill.json \
   --dependency-contract docs/evidence/dependency-contract-audit.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --model-release-safety docs/evidence/model-release-safety-audit.json \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
   --regional-failover docs/evidence/regional-failover-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \

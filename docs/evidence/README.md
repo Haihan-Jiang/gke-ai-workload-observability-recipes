@@ -38,6 +38,7 @@
 - [Incident response drill](incident-response-drill.md)
 - [Dependency contract audit](dependency-contract-audit.md)
 - [Synthetic probe audit](synthetic-probe-audit.md)
+- [Model release safety audit](model-release-safety-audit.md)
 - [Load shedding policy audit](load-shedding-policy-audit.md)
 - [Regional failover audit](regional-failover-audit.md)
 - [Release waiver governance](release-waiver-governance.md)

@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 76,
+  "artifact_count": 78,
   "generated_artifact_count": 4,
-  "source_input_count": 57,
+  "source_input_count": 59,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2290,
-      "sha256": "b794bdac6b076b3d2c2f03311b93fa10cdb5ec5597aed83fe131e2bcbb3a34ad"
+      "bytes": 2352,
+      "sha256": "da9fdfd340b4a4811defe2980012bfaf4a949ed3d8b339f8571387c2716e94b5"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -492,6 +492,20 @@
       "sha256": "9741b0a24f8822bef145eaea639a91c337e1c56b196c43c0cb5c3d67ee692b86"
     },
     {
+      "path": "docs/evidence/model-release-safety-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1665,
+      "sha256": "f6bfdc13975a1e3d8ee8f81692d71180276b27c3c9aed1d0915319931689e631"
+    },
+    {
+      "path": "docs/evidence/model-release-safety-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 7331,
+      "sha256": "2eae285f4229b6052401afafdee6477b98b69f6beb9c2e30615ce164dc574141"
+    },
+    {
       "path": "docs/evidence/load-shedding-policy-audit.md",
       "group": "evidence",
       "exists": true,
@@ -545,7 +559,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21215,
-      "sha256": "26d3e5a92b6aade616dc7b3c122137afa871514324924f7d11034b98c7035394"
+      "sha256": "93e5df081d7688c4dd23b898cb13fd1be50b66ebec127e937de20c7e68795c8a"
     }
   ],
   "generated_artifacts": [
@@ -583,15 +597,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 10064,
-      "sha256": "3358d87fd8c14ce1fde381ee0e59dcb9dc455a4c5d4cd354f4ceed4480273b2c"
+      "bytes": 10609,
+      "sha256": "e006dcb169e530cd99cd428c63e95e2c10b15b63554719b0d656a9cc3185b2ec"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 18129,
-      "sha256": "4aa9270ebaa76e76803cd7ce1aeb557bd96cf5377fe143be15af6d06ff1ce6c9"
+      "bytes": 18996,
+      "sha256": "faeb7c40a4bcf1d08bbea8487951616f2c22ff823fc000793114dec7e3139297"
     },
     {
       "path": "demo/incident_replay.py",
@@ -755,6 +769,13 @@
       "sha256": "02644d44d3b89adfa6d8dc062073499913b515568c0f5bb2eb47d41726a69a18"
     },
     {
+      "path": "demo/model_release_safety_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 24293,
+      "sha256": "eedfb3c0d9cf1c1327216c990dc00ef28a6de1da24cacdce00fe7640ddabad1a"
+    },
+    {
       "path": "demo/load_shedding_policy_audit.py",
       "group": "source-input",
       "exists": true,
@@ -786,8 +807,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 10010,
-      "sha256": "0874af3433f3520a71b9d747f96aa10951918941a6b19d2d8001fbcfb8cdf101"
+      "bytes": 10091,
+      "sha256": "e7fdd99296d9f09e5548c756d02e1ad9ba471cb947ef2582fd9cf2672afed74e"
     },
     {
       "path": "config/reliability-slo.json",
@@ -923,6 +944,13 @@
       "sha256": "62ae4e032d3a2e2f4b567d58a16b82023ab368d54b3720324235f7d1d16b498b"
     },
     {
+      "path": "config/model-release-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3854,
+      "sha256": "fe481548b26ca2ed1a3274943e1dd502d5496cf97c4a3dee98b5f76b86453800"
+    },
+    {
       "path": "config/load-shedding-policy.json",
       "group": "source-input",
       "exists": true,
@@ -985,8 +1013,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 76,
-        "minimum": 76
+        "count": 78,
+        "minimum": 78
       }
     },
     {
@@ -1002,8 +1030,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 57,
-        "minimum": 57
+        "count": 59,
+        "minimum": 59
       }
     },
     {

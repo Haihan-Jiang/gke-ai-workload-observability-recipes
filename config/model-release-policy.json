@@ -1,0 +1,105 @@
+{
+  "description": "Policy for proving model release safety for AI inference workloads before production promotion.",
+  "minimum_release_count": 2,
+  "minimum_candidate_count": 1,
+  "minimum_detected_fixtures": 7,
+  "max_candidate_canary_percent": 10,
+  "releases": [
+    {
+      "name": "recommender-small-stable",
+      "role": "stable",
+      "scenario": "baseline",
+      "model_variant": "recommender-small",
+      "service_version": "v1",
+      "artifact_uri": "gs://model-registry/recommender-small@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "quality_score": 0.94,
+      "minimum_quality_score": 0.9,
+      "schema_compatible": true,
+      "safety_eval_passed": true,
+      "canary_percent": 0,
+      "expected_probe": "baseline_readiness_probe",
+      "expected_budget_decision": "within_budget",
+      "expected_release_action": "eligible_for_release",
+      "expected_cost_decision": "allow",
+      "expected_rollout_decision": "promote",
+      "requires_rollback": false,
+      "previous_release": null,
+      "rollback_target": null,
+      "max_cost_delta_percent": 0
+    },
+    {
+      "name": "recommender-v2-candidate",
+      "role": "candidate",
+      "scenario": "rollout_regression",
+      "model_variant": "recommender-v2",
+      "service_version": "v2",
+      "artifact_uri": "gs://model-registry/recommender-v2@sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "quality_score": 0.88,
+      "minimum_quality_score": 0.9,
+      "schema_compatible": true,
+      "safety_eval_passed": true,
+      "canary_percent": 10,
+      "expected_probe": "canary_version_probe",
+      "expected_budget_decision": "budget_exhausted",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_cost_decision": "block_or_review",
+      "expected_rollout_decision": "rollback",
+      "requires_rollback": true,
+      "previous_release": "recommender-small-stable",
+      "rollback_target": "recommender-small-stable",
+      "max_cost_delta_percent": 30
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_candidate_release",
+      "mutation": "remove_release",
+      "release": "recommender-v2-candidate",
+      "expected_failed_check": "artifact_inventory"
+    },
+    {
+      "name": "candidate_artifact_unpinned",
+      "mutation": "set_artifact_uri",
+      "release": "recommender-v2-candidate",
+      "artifact_uri": "gs://model-registry/recommender-v2:latest",
+      "expected_failed_check": "artifact_inventory"
+    },
+    {
+      "name": "stable_eval_below_threshold",
+      "mutation": "set_quality_score",
+      "release": "recommender-small-stable",
+      "quality_score": 0.7,
+      "expected_failed_check": "eval_schema_gate"
+    },
+    {
+      "name": "candidate_canary_too_large",
+      "mutation": "set_canary_percent",
+      "release": "recommender-v2-candidate",
+      "canary_percent": 50,
+      "expected_failed_check": "canary_rollout_gate"
+    },
+    {
+      "name": "wrong_cost_expectation",
+      "mutation": "set_expected_cost_decision",
+      "release": "recommender-v2-candidate",
+      "expected_cost_decision": "allow",
+      "expected_failed_check": "cost_budget_gate"
+    },
+    {
+      "name": "missing_rollback_target",
+      "mutation": "set_rollback_target",
+      "release": "recommender-v2-candidate",
+      "rollback_target": null,
+      "expected_failed_check": "rollback_contract"
+    },
+    {
+      "name": "wrong_candidate_probe",
+      "mutation": "set_expected_probe",
+      "release": "recommender-v2-candidate",
+      "expected_probe": "baseline_readiness_probe",
+      "expected_failed_check": "observability_contract"
+    }
+  ]
+}

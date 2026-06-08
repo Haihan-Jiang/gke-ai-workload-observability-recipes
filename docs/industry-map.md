@@ -139,8 +139,9 @@ inference incidents before a service reaches production.
 | C18 | Alerts can fire without an executable on-call response path | Production teams need page/ticket routing, acknowledgement SLAs, escalation, rollback evidence, and RCA evidence tied to each alert scenario. | [Incident response drill](evidence/incident-response-drill.md) |
 | C19 | Critical AI dependencies can fail without an explicit operating contract | Vector cache, feature store, model runtime, and telemetry exporter paths need owners, timeout/retry/fallback controls, alert routing, trace attributes, and release actions. | [Dependency contract audit](evidence/dependency-contract-audit.md) |
 | C20 | Rollouts can pass static checks without a black-box preflight signal | Teams need synthetic probes that exercise baseline health, dependency failures, canary regressions, and telemetry delivery before real users discover the issue. | [Synthetic probe audit](evidence/synthetic-probe-audit.md) |
-| C21 | Overload mitigation can punish the wrong traffic | AI inference systems need explicit load-shedding and fallback policies that protect higher-priority tenants, shed best-effort traffic first, and tie cost/capacity pressure back to release action. | [Load shedding policy audit](evidence/load-shedding-policy-audit.md) |
-| C22 | Regional failover can restore artifacts but still route unsafe traffic | Failover decisions need DR RTO/RPO, standby capacity, probes, load shedding, rollback, runbook ownership, and Kubernetes controls to agree before traffic moves. | [Regional failover audit](evidence/regional-failover-audit.md) |
+| C21 | Model releases can pass deployment checks while the model itself is unsafe | AI inference releases need pinned model artifacts, eval thresholds, schema compatibility, canary evidence, cost deltas, rollback targets, and trace labels before promotion. | [Model release safety audit](evidence/model-release-safety-audit.md) |
+| C22 | Overload mitigation can punish the wrong traffic | AI inference systems need explicit load-shedding and fallback policies that protect higher-priority tenants, shed best-effort traffic first, and tie cost/capacity pressure back to release action. | [Load shedding policy audit](evidence/load-shedding-policy-audit.md) |
+| C23 | Regional failover can restore artifacts but still route unsafe traffic | Failover decisions need DR RTO/RPO, standby capacity, probes, load shedding, rollback, runbook ownership, and Kubernetes controls to agree before traffic moves. | [Regional failover audit](evidence/regional-failover-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -203,13 +204,19 @@ inference incidents before a service reaches production.
     - Inputs: [sample summary](evidence/sample-summary.json), [alerting rules](evidence/alerting-rules.md), [dependency contract audit](evidence/dependency-contract-audit.md), [incident response drill](evidence/incident-response-drill.md), [rollback drill](evidence/rollback-drill.md), and [error-budget ledger](evidence/error-budget-ledger.md)
     - Evidence: [synthetic probe audit](evidence/synthetic-probe-audit.md)
 
-11. **Load shedding policy audit**
+11. **Model release safety audit**
+    - Code: [demo/model_release_safety_audit.py](../demo/model_release_safety_audit.py)
+    - Policy: [config/model-release-policy.json](../config/model-release-policy.json)
+    - Inputs: [rollout guard](evidence/rollout-guard.md), [trace quality audit](evidence/trace-quality-audit.md), [token cost guard](evidence/token-cost-guard.md), [error-budget ledger](evidence/error-budget-ledger.md), [rollback drill](evidence/rollback-drill.md), and [synthetic probe audit](evidence/synthetic-probe-audit.md)
+    - Evidence: [model release safety audit](evidence/model-release-safety-audit.md)
+
+12. **Load shedding policy audit**
     - Code: [demo/load_shedding_policy_audit.py](../demo/load_shedding_policy_audit.py)
     - Policy: [config/load-shedding-policy.json](../config/load-shedding-policy.json)
     - Inputs: [capacity plan](evidence/capacity-plan.md), [tenant blast radius](evidence/tenant-blast-radius.md), [token cost guard](evidence/token-cost-guard.md), [error-budget ledger](evidence/error-budget-ledger.md), [synthetic probe audit](evidence/synthetic-probe-audit.md), and [incident runbooks](evidence/incident-runbooks.md)
     - Evidence: [load shedding policy audit](evidence/load-shedding-policy-audit.md)
 
-12. **Regional failover audit**
+13. **Regional failover audit**
     - Code: [demo/regional_failover_audit.py](../demo/regional_failover_audit.py)
     - Policy: [config/regional-failover-policy.json](../config/regional-failover-policy.json)
     - Inputs: [capacity plan](evidence/capacity-plan.md), [error-budget ledger](evidence/error-budget-ledger.md), [rollback drill](evidence/rollback-drill.md), [disaster recovery drill](evidence/disaster-recovery-drill.md), [synthetic probe audit](evidence/synthetic-probe-audit.md), [load shedding policy audit](evidence/load-shedding-policy-audit.md), [incident runbooks](evidence/incident-runbooks.md), and [Kubernetes manifest hardening audit](evidence/k8s-hardening-audit.md)
