@@ -1,0 +1,228 @@
+{
+  "status": "pass",
+  "workflow_path": ".github/workflows/ci.yml",
+  "workflow_name": "ci",
+  "workflow_count": 1,
+  "job_count": 1,
+  "action_count": 2,
+  "hardened_action_count": 2,
+  "permission_count": 1,
+  "detected_fixture_count": 8,
+  "failed_count": 0,
+  "check_count": 8,
+  "checks": [
+    {
+      "name": "workflow_inventory",
+      "ok": true,
+      "evidence": {
+        "workflow_exists": true,
+        "workflow_name": "ci",
+        "required_job": "validate",
+        "job_names": [
+          "validate"
+        ]
+      }
+    },
+    {
+      "name": "trigger_surface",
+      "ok": true,
+      "evidence": {
+        "triggers": [
+          "pull_request",
+          "push"
+        ],
+        "required_trigger_gaps": [],
+        "forbidden_triggers": []
+      }
+    },
+    {
+      "name": "least_privilege_permissions",
+      "ok": true,
+      "evidence": {
+        "permissions": {
+          "contents": "read"
+        },
+        "required_permissions": {
+          "contents": "read"
+        },
+        "permission_gaps": [],
+        "write_permissions": []
+      }
+    },
+    {
+      "name": "concurrency_cancellation",
+      "ok": true,
+      "evidence": {
+        "concurrency": {
+          "group": "${{ github.workflow }}-${{ github.ref }}",
+          "cancel-in-progress": true
+        },
+        "missing_group_fragments": [],
+        "cancel_in_progress": true
+      }
+    },
+    {
+      "name": "action_runtime_hygiene",
+      "ok": true,
+      "evidence": {
+        "actions": [
+          {
+            "job": "validate",
+            "uses": "actions/checkout@v6",
+            "action": "actions/checkout",
+            "ref": "v6",
+            "major": 6,
+            "sha_pinned": false
+          },
+          {
+            "job": "validate",
+            "uses": "actions/setup-python@v6",
+            "action": "actions/setup-python",
+            "ref": "v6",
+            "major": 6,
+            "sha_pinned": false
+          }
+        ],
+        "required_actions": {
+          "actions/checkout": {
+            "minimum_major": 6
+          },
+          "actions/setup-python": {
+            "minimum_major": 6
+          }
+        },
+        "action_gaps": []
+      }
+    },
+    {
+      "name": "job_execution_bounds",
+      "ok": true,
+      "evidence": {
+        "runs_on": "ubuntu-latest",
+        "expected_runs_on": "ubuntu-latest",
+        "timeout_minutes": 15,
+        "timeout_minutes_max": 15,
+        "continue_on_error": false
+      }
+    },
+    {
+      "name": "validation_contract",
+      "ok": true,
+      "evidence": {
+        "python_version": "3.12",
+        "expected_python_version": "3.12",
+        "validation_command": "./scripts/validate.sh",
+        "validation_command_found": true,
+        "secrets_referenced": false
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 8,
+        "minimum_detected_fixtures": 8,
+        "fixtures": [
+          {
+            "name": "missing_top_level_permissions",
+            "mutation": "remove_permissions",
+            "expected_failed_check": "least_privilege_permissions",
+            "detected": true
+          },
+          {
+            "name": "write_all_permissions",
+            "mutation": "set_permissions_write_all",
+            "expected_failed_check": "least_privilege_permissions",
+            "detected": true
+          },
+          {
+            "name": "checkout_node20_runtime",
+            "mutation": "set_action_ref",
+            "expected_failed_check": "action_runtime_hygiene",
+            "detected": true
+          },
+          {
+            "name": "setup_python_floating_ref",
+            "mutation": "set_action_ref",
+            "expected_failed_check": "action_runtime_hygiene",
+            "detected": true
+          },
+          {
+            "name": "missing_concurrency",
+            "mutation": "remove_concurrency",
+            "expected_failed_check": "concurrency_cancellation",
+            "detected": true
+          },
+          {
+            "name": "missing_timeout",
+            "mutation": "remove_job_timeout",
+            "expected_failed_check": "job_execution_bounds",
+            "detected": true
+          },
+          {
+            "name": "validation_bypass",
+            "mutation": "set_run_command",
+            "expected_failed_check": "validation_contract",
+            "detected": true
+          },
+          {
+            "name": "unsafe_pr_target_trigger",
+            "mutation": "add_trigger",
+            "expected_failed_check": "trigger_surface",
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_top_level_permissions",
+      "mutation": "remove_permissions",
+      "expected_failed_check": "least_privilege_permissions",
+      "detected": true
+    },
+    {
+      "name": "write_all_permissions",
+      "mutation": "set_permissions_write_all",
+      "expected_failed_check": "least_privilege_permissions",
+      "detected": true
+    },
+    {
+      "name": "checkout_node20_runtime",
+      "mutation": "set_action_ref",
+      "expected_failed_check": "action_runtime_hygiene",
+      "detected": true
+    },
+    {
+      "name": "setup_python_floating_ref",
+      "mutation": "set_action_ref",
+      "expected_failed_check": "action_runtime_hygiene",
+      "detected": true
+    },
+    {
+      "name": "missing_concurrency",
+      "mutation": "remove_concurrency",
+      "expected_failed_check": "concurrency_cancellation",
+      "detected": true
+    },
+    {
+      "name": "missing_timeout",
+      "mutation": "remove_job_timeout",
+      "expected_failed_check": "job_execution_bounds",
+      "detected": true
+    },
+    {
+      "name": "validation_bypass",
+      "mutation": "set_run_command",
+      "expected_failed_check": "validation_contract",
+      "detected": true
+    },
+    {
+      "name": "unsafe_pr_target_trigger",
+      "mutation": "add_trigger",
+      "expected_failed_check": "trigger_surface",
+      "detected": true
+    }
+  ]
+}

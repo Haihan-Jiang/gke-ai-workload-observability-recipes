@@ -49,6 +49,15 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "digest_pinned_count": 2,
             "failed_count": 0,
         },
+        "ci_governance": {
+            "status": "pass",
+            "workflow_count": 1,
+            "job_count": 1,
+            "action_count": 2,
+            "hardened_action_count": 2,
+            "detected_fixture_count": 8,
+            "failed_count": 0,
+        },
         "k8s_hardening": {
             "status": "pass",
             "check_count": 11,
@@ -350,6 +359,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["supply_chain_audit"])
+
+    def test_requires_ci_governance_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["ci_governance"]["hardened_action_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["ci_governance_audit"])
 
     def test_requires_workload_identity_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

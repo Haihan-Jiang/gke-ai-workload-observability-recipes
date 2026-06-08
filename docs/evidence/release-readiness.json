@@ -38,6 +38,10 @@
       "ok": true
     },
     {
+      "name": "ci_governance_audit",
+      "ok": true
+    },
+    {
       "name": "k8s_manifest_hardening",
       "ok": true
     },
@@ -341,6 +345,14 @@
     },
     {
       "path": "supply-chain-audit.json",
+      "exists": true
+    },
+    {
+      "path": "ci-governance-audit.md",
+      "exists": true
+    },
+    {
+      "path": "ci-governance-audit.json",
       "exists": true
     },
     {

@@ -34,6 +34,7 @@
         "docs/evidence/rollback-drill.json",
         "docs/evidence/post-incident-review.json",
         "docs/evidence/config-rollout-audit.json",
+        "docs/evidence/ci-governance-audit.json",
         "docs/evidence/release-waiver-governance.json"
       ]
     },
@@ -74,7 +75,9 @@
       "name": "recovery_source_policy",
       "artifacts": [
         "config/reliability-slo.json",
+        "config/ci-governance-policy.json",
         "config/disaster-recovery-policy.json",
+        ".github/workflows/ci.yml",
         "scripts/generate-evidence.sh",
         "scripts/validate.sh"
       ]

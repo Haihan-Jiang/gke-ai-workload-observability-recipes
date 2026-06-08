@@ -11,9 +11,9 @@ only from prose: the repo now includes multi-window burn-rate analysis, canary
 rollback decisions, OTLP trace-quality auditing, collector outage modeling,
 incident correlation, critical-path attribution, evidence coverage checks,
 HPA lag modeling, tenant blast-radius detection, and token/GPU cost guardrails.
-It also includes supply-chain, Kubernetes hardening, and admission-policy
-evidence so reviewers can see how deployment drift would be blocked before a
-bad manifest reaches a cluster.
+It also includes supply-chain, CI workflow governance, Kubernetes hardening,
+and admission-policy evidence so reviewers can see how deployment drift would
+be blocked before a bad manifest reaches a cluster.
 Namespace resource governance evidence checks that telemetry and workload
 namespaces have ResourceQuota and LimitRange controls that cover current
 requests and limits with headroom.
@@ -98,6 +98,9 @@ not described as merged.
   decisions stay stable across release-risk scenarios.
 - A supply-chain audit that verifies Kubernetes image references are
   digest-pinned, non-floating, explicitly pulled, and owner-labeled.
+- A CI governance audit that verifies GitHub Actions use maintained action
+  runtime versions, least-privilege permissions, concurrency cancellation,
+  bounded execution, and the real validation command.
 - Kubernetes manifest hardening evidence for probes, resource budgets,
   restricted collector security context, disruption protection, and
   NetworkPolicy boundaries.
@@ -320,6 +323,7 @@ script:
 - [Deployment policy decision](docs/evidence/deployment-policy.md)
 - [Policy regression suite](docs/evidence/policy-regression-suite.md)
 - [Supply chain audit](docs/evidence/supply-chain-audit.md)
+- [CI governance audit](docs/evidence/ci-governance-audit.md)
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
 - [Pod Security Admission audit](docs/evidence/pod-security-admission-audit.md)
 - [Namespace resource audit](docs/evidence/namespace-resource-audit.md)
@@ -494,11 +498,14 @@ Before adapting this to a real GKE cluster:
    dashboards, SLO contracts, admission policies, or release control files.
 37. Regenerate evidence provenance after changing evidence scripts, generated
    manifests, or policy files so reviewers can detect stale artifacts.
-38. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+38. Keep CI governance aligned with maintained GitHub Actions versions,
+   least-privilege permissions, concurrency cancellation, job timeouts, and the
+   real validation command.
+39. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-39. For private GKE clusters, verify webhook/firewall access for any operators
+40. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-40. Treat telemetry as production evidence: validate it during staged rollout,
+41. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study

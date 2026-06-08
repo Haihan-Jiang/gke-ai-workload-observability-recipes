@@ -1,0 +1,102 @@
+{
+  "description": "Policy for auditing GitHub Actions workflow governance before trusting release-readiness evidence.",
+  "workflow_path": ".github/workflows/ci.yml",
+  "required_workflow_name": "ci",
+  "required_triggers": {
+    "pull_request": {},
+    "push": {
+      "branches": [
+        "main"
+      ]
+    }
+  },
+  "forbidden_triggers": [
+    "pull_request_target",
+    "workflow_run"
+  ],
+  "required_permissions": {
+    "contents": "read"
+  },
+  "forbidden_permission_values": [
+    "write-all",
+    "read-all"
+  ],
+  "required_concurrency_group_fragments": [
+    "github.workflow",
+    "github.ref"
+  ],
+  "require_cancel_in_progress": true,
+  "jobs": {
+    "validate": {
+      "runs_on": "ubuntu-latest",
+      "timeout_minutes_max": 15,
+      "python_version": "3.12",
+      "validation_command": "./scripts/validate.sh"
+    }
+  },
+  "required_actions": {
+    "actions/checkout": {
+      "minimum_major": 6
+    },
+    "actions/setup-python": {
+      "minimum_major": 6
+    }
+  },
+  "forbidden_action_refs": [
+    "main",
+    "master",
+    "latest"
+  ],
+  "minimum_detected_fixtures": 8,
+  "fixtures": [
+    {
+      "name": "missing_top_level_permissions",
+      "mutation": "remove_permissions",
+      "expected_failed_check": "least_privilege_permissions"
+    },
+    {
+      "name": "write_all_permissions",
+      "mutation": "set_permissions_write_all",
+      "expected_failed_check": "least_privilege_permissions"
+    },
+    {
+      "name": "checkout_node20_runtime",
+      "mutation": "set_action_ref",
+      "action": "actions/checkout",
+      "ref": "v4",
+      "expected_failed_check": "action_runtime_hygiene"
+    },
+    {
+      "name": "setup_python_floating_ref",
+      "mutation": "set_action_ref",
+      "action": "actions/setup-python",
+      "ref": "main",
+      "expected_failed_check": "action_runtime_hygiene"
+    },
+    {
+      "name": "missing_concurrency",
+      "mutation": "remove_concurrency",
+      "expected_failed_check": "concurrency_cancellation"
+    },
+    {
+      "name": "missing_timeout",
+      "mutation": "remove_job_timeout",
+      "job": "validate",
+      "expected_failed_check": "job_execution_bounds"
+    },
+    {
+      "name": "validation_bypass",
+      "mutation": "set_run_command",
+      "job": "validate",
+      "from": "./scripts/validate.sh",
+      "to": "echo skipped validation",
+      "expected_failed_check": "validation_contract"
+    },
+    {
+      "name": "unsafe_pr_target_trigger",
+      "mutation": "add_trigger",
+      "trigger": "pull_request_target",
+      "expected_failed_check": "trigger_surface"
+    }
+  ]
+}
