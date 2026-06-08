@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 52,
+  "artifact_count": 54,
   "generated_artifact_count": 4,
-  "source_input_count": 29,
+  "source_input_count": 31,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1616,
-      "sha256": "a6d2f949f55e6459721573cfc18f5c3ddd0f134475bba09c94d554c95fd0e2e1"
+      "bytes": 1676,
+      "sha256": "248cbaac2ec37c3bc7e6dcf52a5f1dcbc106dc7dc15a56fc33a1747f7fa41914"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -338,6 +338,20 @@
       "sha256": "ddc38e70e54d1d346dc43a6f1b8614754a7b1c615c86dc8687743933763cbfb5"
     },
     {
+      "path": "docs/evidence/telemetry-redaction-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 776,
+      "sha256": "35efa6766be8fef1f6275dcbf4025ddd8171dac509d59bffb5cf26b72c80ef9e"
+    },
+    {
+      "path": "docs/evidence/telemetry-redaction-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1939,
+      "sha256": "1373496609126636b7ac437774ab1cadfebf1bac63fc766a30d6b2883ba92e0a"
+    },
+    {
       "path": "docs/evidence/error-budget-ledger.md",
       "group": "evidence",
       "exists": true,
@@ -415,15 +429,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 5158,
-      "sha256": "7c7cbc33a44f45fd092c720d154d9448814ae106ca6c417609906e80a8f8ae42"
+      "bytes": 5443,
+      "sha256": "eb089be46f342fe205630c7c82ef3b8ce303a2c1ada99b2c6906e9cd1b6a4cad"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 9972,
-      "sha256": "b0bdbb748c1af438edd24ea7a5976a83867f1c6c8ded89f7e91dee5d638e28e0"
+      "bytes": 10502,
+      "sha256": "75d4a79c46fc23f76294a1a8235b542e3db3af2a2891d164d5a376dc69ed08cb"
     },
     {
       "path": "demo/incident_replay.py",
@@ -510,6 +524,13 @@
       "sha256": "6e912710a23f9b64db298aa67e9abceb95907c12bc44f8542b1a73fcfb8a7f0d"
     },
     {
+      "path": "demo/telemetry_redaction_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 11908,
+      "sha256": "ae0e823d2ce26962742b0d322f55be6cd439400a11d5b8ad0bc19ed7a9859e44"
+    },
+    {
       "path": "demo/error_budget_ledger.py",
       "group": "source-input",
       "exists": true,
@@ -534,8 +555,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9108,
-      "sha256": "8f7f9f2ac5c9745c1bcc58c64b617ed9d8b534d730c62f048eb81012870ebe4e"
+      "bytes": 9187,
+      "sha256": "23ace11984cb0b08469fd0a5bd85f8a167cba47f9cb691857244981bcdb62a2f"
     },
     {
       "path": "config/reliability-slo.json",
@@ -594,6 +615,13 @@
       "sha256": "5b6d800731cfda5a0b6e8f959cc48befc5ef341dfc0154320dd98d776665a1f8"
     },
     {
+      "path": "config/telemetry-redaction-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 1726,
+      "sha256": "0e0010a14f452cff7eb236d460e0500e918bcbf7c61405528c2f4fda49936a5f"
+    },
+    {
       "path": "config/error-budget-policy.json",
       "group": "source-input",
       "exists": true,
@@ -621,7 +649,7 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 52,
+        "count": 54,
         "minimum": 45
       }
     },
@@ -638,7 +666,7 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 29,
+        "count": 31,
         "minimum": 18
       }
     },

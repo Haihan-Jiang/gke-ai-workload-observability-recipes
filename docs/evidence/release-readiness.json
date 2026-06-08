@@ -50,6 +50,10 @@
       "ok": true
     },
     {
+      "name": "telemetry_redaction_audit",
+      "ok": true
+    },
+    {
       "name": "error_budget_ledger",
       "ok": true
     },
@@ -125,6 +129,14 @@
     },
     {
       "path": "trace-quality-audit.json",
+      "exists": true
+    },
+    {
+      "path": "telemetry-redaction-audit.md",
+      "exists": true
+    },
+    {
+      "path": "telemetry-redaction-audit.json",
       "exists": true
     },
     {

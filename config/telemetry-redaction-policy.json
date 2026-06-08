@@ -1,0 +1,59 @@
+{
+  "description": "Policy for auditing AI inference telemetry so traces keep operational metadata without exporting prompts, responses, secrets, or direct identifiers.",
+  "minimum_payloads": 5,
+  "max_string_value_length": 64,
+  "required_scenarios": [
+    "baseline",
+    "cache_miss_storm",
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "required_resource_attributes": [
+    "service.name",
+    "deployment.environment",
+    "cloud.provider",
+    "k8s.cluster.name",
+    "k8s.namespace.name",
+    "service.version",
+    "incident.scenario"
+  ],
+  "required_span_attributes": [
+    "http.route",
+    "http.status_code",
+    "ai.model",
+    "ai.model.variant",
+    "ai.inference.latency_ms",
+    "ai.prompt.tokens",
+    "ai.completion.tokens",
+    "ai.gpu.compute_ms",
+    "ai.queue.wait_ms",
+    "incident.scenario",
+    "service.version",
+    "tenant.tier",
+    "request.priority",
+    "sre.signal"
+  ],
+  "approved_ai_metadata_attributes": [
+    "ai.model",
+    "ai.model.variant",
+    "ai.inference.latency_ms",
+    "ai.prompt.tokens",
+    "ai.completion.tokens",
+    "ai.gpu.compute_ms",
+    "ai.queue.wait_ms"
+  ],
+  "forbidden_attribute_key_patterns": [
+    "(?i)(prompt|completion|request|response)\\.(text|body|content|raw)",
+    "(?i)(authorization|api[_-]?key|secret|password|credential|bearer)",
+    "(?i)(^|[._-])(token|jwt)([._-]?(value|text|raw|secret)|$)",
+    "(?i)(user\\.(email|name|id)|enduser\\.id|session\\.id)"
+  ],
+  "forbidden_attribute_value_patterns": [
+    "(?i)bearer\\s+[A-Za-z0-9._-]+",
+    "sk-[A-Za-z0-9]{8,}",
+    "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+    "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+    "-----BEGIN [A-Z ]+PRIVATE KEY-----"
+  ]
+}

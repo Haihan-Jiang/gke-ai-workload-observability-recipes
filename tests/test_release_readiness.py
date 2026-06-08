@@ -64,6 +64,12 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "scenario_count": 5,
             "failed_count": 0,
         },
+        "telemetry_redaction": {
+            "status": "pass",
+            "payload_count": 5,
+            "redaction_violation_count": 0,
+            "failed_count": 0,
+        },
         "error_budget": {
             "status": "pass",
             "scenario_count": 5,
@@ -167,6 +173,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["error_budget_ledger"])
+
+    def test_requires_telemetry_redaction_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["telemetry_redaction"]["redaction_violation_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["telemetry_redaction_audit"])
 
     def test_requires_rollback_drill(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

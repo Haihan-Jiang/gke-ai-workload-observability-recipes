@@ -16,6 +16,7 @@ python3 -m py_compile \
   demo/alerting_rules.py \
   demo/grafana_dashboard.py \
   demo/openslo_contract.py \
+  demo/telemetry_redaction_audit.py \
   demo/error_budget_ledger.py \
   demo/rollback_drill.py \
   demo/post_incident_review.py \
@@ -38,6 +39,7 @@ python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
 python3 -m json.tool config/alerting-policy.json >/dev/null
 python3 -m json.tool config/dashboard-policy.json >/dev/null
 python3 -m json.tool config/openslo-policy.json >/dev/null
+python3 -m json.tool config/telemetry-redaction-policy.json >/dev/null
 python3 -m json.tool config/error-budget-policy.json >/dev/null
 python3 -m json.tool config/rollback-drill-policy.json >/dev/null
 python3 -m json.tool config/post-incident-review-policy.json >/dev/null
@@ -100,6 +102,11 @@ python3 demo/openslo_contract.py \
   --openslo-policy config/openslo-policy.json \
   --output-dir out/openslo-contract-validate \
   --contract out/openslo-contract-validate/gke-ai-inference-slo.yaml >/dev/null
+python3 demo/telemetry_redaction_audit.py \
+  --summary out/incident-replay-validate/summary.json \
+  --payload-dir out/incident-replay-payloads-validate \
+  --policy config/telemetry-redaction-policy.json \
+  --output-dir out/telemetry-redaction-audit-validate >/dev/null
 python3 demo/error_budget_ledger.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -138,6 +145,7 @@ python3 demo/release_readiness.py \
   --alerting docs/evidence/alerting-rules.json \
   --dashboard docs/evidence/grafana-dashboard.json \
   --openslo docs/evidence/openslo-contract.json \
+  --telemetry-redaction docs/evidence/telemetry-redaction-audit.json \
   --error-budget docs/evidence/error-budget-ledger.json \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
@@ -167,6 +175,7 @@ python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
 python3 -m json.tool docs/evidence/alerting-rules.json >/dev/null
 python3 -m json.tool docs/evidence/grafana-dashboard.json >/dev/null
 python3 -m json.tool docs/evidence/openslo-contract.json >/dev/null
+python3 -m json.tool docs/evidence/telemetry-redaction-audit.json >/dev/null
 python3 -m json.tool docs/evidence/error-budget-ledger.json >/dev/null
 python3 -m json.tool docs/evidence/rollback-drill.json >/dev/null
 python3 -m json.tool docs/evidence/post-incident-review.json >/dev/null

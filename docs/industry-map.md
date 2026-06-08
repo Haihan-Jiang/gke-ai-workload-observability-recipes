@@ -125,6 +125,20 @@ inference incidents before a service reaches production.
    - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
    - Evidence: [token cost guard](evidence/token-cost-guard.md)
 
+## Security And Privacy Evidence Added By The Fourth Feature Set
+
+| ID | Problem | Why It Matters In Production | Lab Coverage |
+| --- | --- | --- | --- |
+| C11 | Inference traces can leak prompts, responses, secrets, or direct identifiers | AI observability needs enough metadata for SRE triage without exporting customer text or credentials into tracing backends. | [Telemetry redaction audit](evidence/telemetry-redaction-audit.md) |
+
+## Fourth Feature Contribution
+
+1. **Telemetry redaction audit**
+   - Code: [demo/telemetry_redaction_audit.py](../demo/telemetry_redaction_audit.py)
+   - Config: [config/telemetry-redaction-policy.json](../config/telemetry-redaction-policy.json)
+   - Input: per-scenario OTLP payloads emitted by [demo/incident_replay.py](../demo/incident_replay.py)
+   - Evidence: [telemetry redaction audit](evidence/telemetry-redaction-audit.md)
+
 ## Boundary
 
 The lab is production-oriented, not production-deployed. It gives a reviewer a

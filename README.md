@@ -49,6 +49,8 @@ not described as merged.
 - An OpenSLO-style SLO contract that ties the service objective to Prometheus
   SLI queries, telemetry-quality evidence, alerting, dashboard, release gate,
   and runbooks.
+- A telemetry redaction audit that proves trace payloads keep safe AI metadata
+  while blocking prompt text, response bodies, secrets, and direct identifiers.
 - An error-budget ledger that maps replayed incidents to allowed bad events,
   consumed budget, release actions, and rollback/manual-review decisions.
 - A rollback drill that turns the release gate, error budget, and runbooks into
@@ -192,6 +194,7 @@ script:
 - [SLO alerting rules](docs/evidence/alerting-rules.md)
 - [Grafana dashboard evidence](docs/evidence/grafana-dashboard.md)
 - [OpenSLO contract evidence](docs/evidence/openslo-contract.md)
+- [Telemetry redaction audit](docs/evidence/telemetry-redaction-audit.md)
 - [Error budget ledger](docs/evidence/error-budget-ledger.md)
 - [Rollback drill](docs/evidence/rollback-drill.md)
 - [Post-incident review](docs/evidence/post-incident-review.md)
@@ -262,19 +265,21 @@ Before adapting this to a real GKE cluster:
 7. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
 8. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
    alerting, dashboard, and release-readiness evidence.
-9. Keep the error-budget ledger aligned with the SLO target before treating a
+9. Audit trace payloads for prompt, response, secret, and direct-identifier
+   leakage before using inference telemetry as production evidence.
+10. Keep the error-budget ledger aligned with the SLO target before treating a
    canary or dependency incident as release-safe.
-10. Run the rollback drill after changing release gates, runbooks, or SLO
+11. Run the rollback drill after changing release gates, runbooks, or SLO
     budget policy so owner and RTO assumptions stay explicit.
-11. Keep post-incident reviews tied to replayed evidence, rollback timelines,
+12. Keep post-incident reviews tied to replayed evidence, rollback timelines,
     and corrective actions instead of treating them as narrative-only notes.
-12. Regenerate evidence provenance after changing evidence scripts, generated
+13. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-13. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+14. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-14. For private GKE clusters, verify webhook/firewall access for any operators
+15. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-15. Treat telemetry as production evidence: validate it during staged rollout,
+16. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -301,8 +306,8 @@ Current wording before upstream merges:
 > configurable SLO gates, burn-rate analysis, rollout rollback guards, trace
 > quality audits, collector resilience modeling, generated incident runbooks,
 > critical-path attribution, HPA lag analysis, tenant blast-radius checks,
-> token/GPU guardrails, cross-namespace instrumentation, persistent telemetry
-> queues, and Kubernetes metadata.
+> token/GPU guardrails, telemetry redaction audits, cross-namespace
+> instrumentation, persistent telemetry queues, and Kubernetes metadata.
 
 After an upstream PR merges, update this to:
 
@@ -312,7 +317,8 @@ After an upstream PR merges, update this to:
 > capacity/readiness evidence, burn-rate and canary decision controls, trace
 > quality audits, critical-path attribution, HPA lag analysis, tenant blast
 > radius checks, token/GPU guardrails, policy-as-code deployment gates,
-> generated runbooks, and related Google Cloud OSS recipe contributions.
+> telemetry redaction audits, generated runbooks, and related Google Cloud OSS
+> recipe contributions.
 
 ## License
 

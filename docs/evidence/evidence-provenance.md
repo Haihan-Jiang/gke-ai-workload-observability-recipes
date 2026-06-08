@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `52`
+- Evidence artifacts: `54`
 - Generated artifacts: `4`
-- Source inputs: `29`
+- Source inputs: `31`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 1616 | `a6d2f949f55e6459...` |
+| `docs/evidence/README.md` | 1676 | `248cbaac2ec37c3b...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -76,6 +76,8 @@ evidence easier to detect during review.
 | `docs/evidence/grafana-dashboard.json` | 1926 | `68f5e1bb13fea33c...` |
 | `docs/evidence/openslo-contract.md` | 700 | `9b2366251ff6f451...` |
 | `docs/evidence/openslo-contract.json` | 3510 | `ddc38e70e54d1d34...` |
+| `docs/evidence/telemetry-redaction-audit.md` | 776 | `35efa6766be8fef1...` |
+| `docs/evidence/telemetry-redaction-audit.json` | 1939 | `1373496609126636...` |
 | `docs/evidence/error-budget-ledger.md` | 1480 | `2a8675408140b55c...` |
 | `docs/evidence/error-budget-ledger.json` | 5844 | `79f425445b01cc43...` |
 | `docs/evidence/rollback-drill.md` | 3125 | `ae27bc6572e849ec...` |
