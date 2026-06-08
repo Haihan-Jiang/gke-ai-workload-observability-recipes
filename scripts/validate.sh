@@ -15,6 +15,7 @@ python3 -m py_compile \
   demo/k8s_hardening_audit.py \
   demo/alerting_rules.py \
   demo/grafana_dashboard.py \
+  demo/openslo_contract.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -32,6 +33,7 @@ python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
 python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
 python3 -m json.tool config/alerting-policy.json >/dev/null
 python3 -m json.tool config/dashboard-policy.json >/dev/null
+python3 -m json.tool config/openslo-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -84,6 +86,12 @@ python3 demo/grafana_dashboard.py \
   --output-dir out/grafana-dashboard-validate \
   --dashboard out/grafana-dashboard-validate/grafana-dashboard.json \
   --config-map out/grafana-dashboard-validate/grafana-dashboard-configmap.yaml >/dev/null
+python3 demo/openslo_contract.py \
+  --slo-config config/reliability-slo.json \
+  --alert-policy config/alerting-policy.json \
+  --openslo-policy config/openslo-policy.json \
+  --output-dir out/openslo-contract-validate \
+  --contract out/openslo-contract-validate/gke-ai-inference-slo.yaml >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
@@ -96,6 +104,7 @@ python3 demo/release_readiness.py \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --alerting docs/evidence/alerting-rules.json \
   --dashboard docs/evidence/grafana-dashboard.json \
+  --openslo docs/evidence/openslo-contract.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
@@ -120,15 +129,16 @@ python3 -m json.tool docs/evidence/policy-regression-suite.json >/dev/null
 python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
 python3 -m json.tool docs/evidence/alerting-rules.json >/dev/null
 python3 -m json.tool docs/evidence/grafana-dashboard.json >/dev/null
+python3 -m json.tool docs/evidence/openslo-contract.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null
 python3 -m unittest discover -s tests
 
 if [ "${CI:-}" = "true" ] && command -v git >/dev/null 2>&1; then
-  git diff --exit-code -- docs/evidence k8s/gke/alerting-rules.yaml k8s/gke/grafana-dashboard-configmap.yaml dashboards/grafana/gke-ai-inference-reliability.json
+  git diff --exit-code -- docs/evidence k8s/gke/alerting-rules.yaml k8s/gke/grafana-dashboard-configmap.yaml dashboards/grafana/gke-ai-inference-reliability.json slos/openslo/gke-ai-inference-slo.yaml
 fi
 
 if command -v ruby >/dev/null 2>&1; then
-  yaml_files="$(find .github collector k8s -type f \( -name '*.yaml' -o -name '*.yml' \) 2>/dev/null | sort)"
+  yaml_files="$(find .github collector k8s slos -type f \( -name '*.yaml' -o -name '*.yml' \) 2>/dev/null | sort)"
   if [ -f docker-compose.yaml ]; then
     yaml_files="${yaml_files}
 docker-compose.yaml"

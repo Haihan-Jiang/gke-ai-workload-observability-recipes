@@ -158,6 +158,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Kubernetes manifest hardening audit](k8s-hardening-audit.md)",
                 "- [SLO alerting rules](alerting-rules.md)",
                 "- [Grafana dashboard evidence](grafana-dashboard.md)",
+                "- [OpenSLO contract evidence](openslo-contract.md)",
                 "- [Release readiness report](release-readiness.md)",
                 "- [Release readiness JSON](release-readiness.json)",
                 "",

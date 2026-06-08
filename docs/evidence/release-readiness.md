@@ -6,8 +6,8 @@ This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, Kubernetes manifest hardening,
-SLO alerting rules, Grafana dashboard coverage, and committed
-evidence are present and internally consistent.
+SLO alerting rules, Grafana dashboard coverage, OpenSLO contract,
+and committed evidence are present and internally consistent.
 
 ## Checks
 
@@ -24,6 +24,7 @@ evidence are present and internally consistent.
 | `k8s_manifest_hardening` | PASS |
 | `slo_alerting_rules` | PASS |
 | `grafana_dashboard` | PASS |
+| `openslo_contract` | PASS |
 
 ## Evidence Files
 
@@ -72,6 +73,8 @@ evidence are present and internally consistent.
 | `alerting-rules.json` | yes |
 | `grafana-dashboard.md` | yes |
 | `grafana-dashboard.json` | yes |
+| `openslo-contract.md` | yes |
+| `openslo-contract.json` | yes |
 
 ## Capacity Warnings
 

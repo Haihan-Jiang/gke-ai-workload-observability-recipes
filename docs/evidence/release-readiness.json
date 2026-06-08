@@ -44,6 +44,10 @@
     {
       "name": "grafana_dashboard",
       "ok": true
+    },
+    {
+      "name": "openslo_contract",
+      "ok": true
     }
   ],
   "evidence": [
@@ -217,6 +221,14 @@
     },
     {
       "path": "grafana-dashboard.json",
+      "exists": true
+    },
+    {
+      "path": "openslo-contract.md",
+      "exists": true
+    },
+    {
+      "path": "openslo-contract.json",
       "exists": true
     }
   ],

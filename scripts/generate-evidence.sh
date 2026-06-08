@@ -60,6 +60,12 @@ python3 demo/grafana_dashboard.py \
   --output-dir docs/evidence \
   --dashboard dashboards/grafana/gke-ai-inference-reliability.json \
   --config-map k8s/gke/grafana-dashboard-configmap.yaml >/dev/null
+python3 demo/openslo_contract.py \
+  --slo-config config/reliability-slo.json \
+  --alert-policy config/alerting-policy.json \
+  --openslo-policy config/openslo-policy.json \
+  --output-dir docs/evidence \
+  --contract slos/openslo/gke-ai-inference-slo.yaml >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -74,6 +80,7 @@ python3 demo/release_readiness.py \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --alerting docs/evidence/alerting-rules.json \
   --dashboard docs/evidence/grafana-dashboard.json \
+  --openslo docs/evidence/openslo-contract.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 

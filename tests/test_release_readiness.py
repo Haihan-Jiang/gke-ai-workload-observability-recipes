@@ -58,6 +58,12 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "panel_count": 6,
             "failed_count": 0,
         },
+        "openslo": {
+            "status": "pass",
+            "objective_target": 99.5,
+            "scenario_count": 5,
+            "failed_count": 0,
+        },
         "evidence_dir": evidence_dir,
     }
 
@@ -110,6 +116,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["grafana_dashboard"])
+
+    def test_requires_openslo_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["openslo"]["scenario_count"] = 2
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["openslo_contract"])
 
 
 if __name__ == "__main__":
