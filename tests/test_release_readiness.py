@@ -152,6 +152,14 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 7,
             "failed_count": 0,
         },
+        "shadow_traffic_replay": {
+            "status": "pass",
+            "replay_count": 2,
+            "candidate_replay_count": 1,
+            "blocked_shadow_count": 1,
+            "detected_fixture_count": 7,
+            "failed_count": 0,
+        },
         "load_shedding_policy": {
             "status": "pass",
             "action_count": 5,
@@ -397,6 +405,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["model_release_safety_audit"])
+
+    def test_requires_shadow_traffic_replay_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["shadow_traffic_replay"]["blocked_shadow_count"] = 0
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["shadow_traffic_replay_audit"])
 
     def test_requires_regional_failover_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

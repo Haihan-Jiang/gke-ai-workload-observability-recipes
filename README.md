@@ -33,6 +33,9 @@ release promotion.
 Model release safety evidence checks that a model-version rollout is tied to
 artifact pinning, offline eval thresholds, schema compatibility, canary
 signals, token/GPU cost deltas, rollback evidence, and trace labels.
+Shadow traffic replay evidence checks that candidate inference traffic stays
+isolated from users, disables writes and side effects, avoids prompt/response
+storage, and is compared against rollout, cost, probe, and model-release gates.
 Load-shedding policy evidence checks that overload and incident paths protect
 high-priority tenants, shed best-effort traffic first, use fallback behavior,
 and link cost, capacity, runbook, probe, and release-action evidence.
@@ -107,6 +110,9 @@ not described as merged.
 - A model release safety audit that links model artifact pinning, offline eval
   thresholds, schema compatibility, canary rollback signals, token/GPU cost
   deltas, rollback target evidence, and trace labels before promotion.
+- A shadow traffic replay audit that checks isolated candidate traffic,
+  no-user-serving guarantees, disabled writes/side effects, privacy-safe
+  telemetry, rollout comparison, cost review, and rollback/probe linkage.
 - A load-shedding policy audit that ties capacity warnings, tenant blast
   radius, token/GPU cost review, graceful degradation, preflight probes,
   runbook ownership, and error-budget release actions into one gate.
@@ -268,6 +274,7 @@ script:
 - [Dependency contract audit](docs/evidence/dependency-contract-audit.md)
 - [Synthetic probe audit](docs/evidence/synthetic-probe-audit.md)
 - [Model release safety audit](docs/evidence/model-release-safety-audit.md)
+- [Shadow traffic replay audit](docs/evidence/shadow-traffic-replay-audit.md)
 - [Load shedding policy audit](docs/evidence/load-shedding-policy-audit.md)
 - [Regional failover audit](docs/evidence/regional-failover-audit.md)
 - [Release waiver governance](docs/evidence/release-waiver-governance.md)
@@ -369,24 +376,27 @@ Before adapting this to a real GKE cluster:
 20. Keep model release policy aligned with pinned artifacts, offline eval
     thresholds, schema compatibility, canary rollback, token/GPU cost deltas,
     rollback targets, and trace labels.
-21. Keep load-shedding policy aligned with capacity warnings, tenant tiers,
+21. Keep shadow traffic policy aligned with no-user-serving guarantees,
+    disabled writes/side effects, redacted telemetry, rollout comparisons,
+    cost review, probe signals, and rollback targets.
+22. Keep load-shedding policy aligned with capacity warnings, tenant tiers,
     fallback behavior, token/GPU cost review, preflight probes, runbook owners,
     and release actions.
-22. Keep regional failover policy aligned with DR RTO/RPO, standby capacity,
+23. Keep regional failover policy aligned with DR RTO/RPO, standby capacity,
     synthetic probes, load shedding, rollback paths, runbook owners, and
     Kubernetes control-plane hardening.
-23. Keep release waivers bounded by owner, approver, expiry, rollback drill,
+24. Keep release waivers bounded by owner, approver, expiry, rollback drill,
     post-incident review, linked evidence, and acknowledged error-budget
     impact.
-24. Verify disaster recovery after changing evidence, generated manifests,
+25. Verify disaster recovery after changing evidence, generated manifests,
     dashboards, SLO contracts, admission policies, or release control files.
-25. Regenerate evidence provenance after changing evidence scripts, generated
+26. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-26. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+27. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-27. For private GKE clusters, verify webhook/firewall access for any operators
+28. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-28. Treat telemetry as production evidence: validate it during staged rollout,
+29. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -416,8 +426,8 @@ Current wording before upstream merges:
 > token/GPU guardrails, release waiver governance, disaster recovery drills,
 > observability drift auditing, incident response drill validation,
 > dependency contract auditing, synthetic probe auditing, model release safety
-> auditing, load-shedding policy auditing, regional failover auditing,
-> telemetry redaction and cost audits,
+> auditing, shadow traffic replay auditing, load-shedding policy auditing,
+> regional failover auditing, telemetry redaction and cost audits,
 > supply-chain image checks,
 > cross-namespace instrumentation, persistent telemetry queues, and Kubernetes
 > metadata.
@@ -433,8 +443,8 @@ After an upstream PR merges, update this to:
 > admission-policy simulation, release waiver governance, disaster recovery
 > drills, observability drift auditing, incident response drill validation,
 > dependency contract auditing, synthetic probe auditing, model release safety
-> auditing, load-shedding policy auditing, regional failover auditing,
-> telemetry redaction and cost audits,
+> auditing, shadow traffic replay auditing, load-shedding policy auditing,
+> regional failover auditing, telemetry redaction and cost audits,
 > supply-chain image checks,
 > generated runbooks, and related Google Cloud OSS recipe contributions.
 

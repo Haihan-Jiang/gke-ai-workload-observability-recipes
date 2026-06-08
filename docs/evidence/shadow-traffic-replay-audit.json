@@ -1,0 +1,269 @@
+{
+  "status": "pass",
+  "replay_count": 2,
+  "candidate_replay_count": 1,
+  "blocked_shadow_count": 1,
+  "fixture_count": 7,
+  "detected_fixture_count": 7,
+  "failed_count": 0,
+  "replays": [
+    {
+      "name": "stable_baseline_shadow",
+      "scenario": "baseline",
+      "role": "stable",
+      "model_variant": "recommender-small",
+      "service_version": "v1",
+      "shadow_percent": 5,
+      "sample_requests": 1000,
+      "served_to_users": false,
+      "writes_disabled": true,
+      "side_effects_disabled": true,
+      "store_prompt": false,
+      "store_response": false,
+      "requires_redaction": true,
+      "observed": {
+        "requests": 8,
+        "errors": 0,
+        "p95_ms": 48,
+        "cache_miss_rate": 0.0,
+        "telemetry_loss_rate": 0.0,
+        "model_variant": "recommender-small",
+        "service_version": "v1"
+      },
+      "expected": {
+        "probe": "baseline_readiness_probe",
+        "release_action": "eligible_for_release",
+        "cost_decision": "allow",
+        "rollout_decision": "promote",
+        "requires_rollback": false
+      },
+      "cost": {
+        "decision": "allow",
+        "model_variant": "recommender-small",
+        "estimated_cost_per_1k_requests": 0.213,
+        "violations": []
+      },
+      "probe": {
+        "name": "baseline_readiness_probe",
+        "signal_ok": true,
+        "release_action": "eligible_for_release",
+        "model_variant": "recommender-small",
+        "service_version": "v1",
+        "rollback_within_rto": null
+      },
+      "rollout_guard": {
+        "candidate": "rollout_regression",
+        "candidate_version": "v2",
+        "decision": "rollback",
+        "violations": [
+          "p95 ratio 9.48 exceeds 3.0",
+          "error delta 0.29 exceeds 0.05",
+          "cache miss delta 0.43 exceeds 0.25"
+        ]
+      },
+      "telemetry_redaction": {
+        "status": "pass",
+        "payload_count": 5,
+        "redaction_violation_count": 0
+      },
+      "model_release_safety": {
+        "status": "pass",
+        "blocked_candidate_count": 1
+      }
+    },
+    {
+      "name": "candidate_v2_shadow",
+      "scenario": "rollout_regression",
+      "role": "candidate",
+      "model_variant": "recommender-v2",
+      "service_version": "v2",
+      "shadow_percent": 5,
+      "sample_requests": 1000,
+      "served_to_users": false,
+      "writes_disabled": true,
+      "side_effects_disabled": true,
+      "store_prompt": false,
+      "store_response": false,
+      "requires_redaction": true,
+      "observed": {
+        "requests": 7,
+        "errors": 2,
+        "p95_ms": 455,
+        "cache_miss_rate": 0.43,
+        "telemetry_loss_rate": 0.0,
+        "model_variant": "recommender-v2",
+        "service_version": "v2"
+      },
+      "expected": {
+        "probe": "canary_version_probe",
+        "release_action": "block_release_or_rollback",
+        "cost_decision": "block_or_review",
+        "rollout_decision": "rollback",
+        "requires_rollback": true
+      },
+      "cost": {
+        "decision": "block_or_review",
+        "model_variant": "recommender-v2",
+        "estimated_cost_per_1k_requests": 0.477,
+        "violations": [
+          "tokens 578 exceed 520",
+          "gpu_ms 210 exceeds 180"
+        ]
+      },
+      "probe": {
+        "name": "canary_version_probe",
+        "signal_ok": true,
+        "release_action": "block_release_or_rollback",
+        "model_variant": "recommender-v2",
+        "service_version": "v2",
+        "rollback_within_rto": true
+      },
+      "rollout_guard": {
+        "candidate": "rollout_regression",
+        "candidate_version": "v2",
+        "decision": "rollback",
+        "violations": [
+          "p95 ratio 9.48 exceeds 3.0",
+          "error delta 0.29 exceeds 0.05",
+          "cache miss delta 0.43 exceeds 0.25"
+        ]
+      },
+      "telemetry_redaction": {
+        "status": "pass",
+        "payload_count": 5,
+        "redaction_violation_count": 0
+      },
+      "model_release_safety": {
+        "status": "pass",
+        "blocked_candidate_count": 1
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_candidate_shadow",
+      "mutation": "remove_replay",
+      "replay": "candidate_v2_shadow",
+      "expected_failed_check": "shadow_inventory",
+      "failed_checks": [
+        "shadow_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "candidate_shadow_serves_users",
+      "mutation": "set_served_to_users",
+      "replay": "candidate_v2_shadow",
+      "expected_failed_check": "isolation_contract",
+      "failed_checks": [
+        "isolation_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "candidate_shadow_too_large",
+      "mutation": "set_shadow_percent",
+      "replay": "candidate_v2_shadow",
+      "expected_failed_check": "isolation_contract",
+      "failed_checks": [
+        "isolation_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "candidate_shadow_stores_prompt",
+      "mutation": "set_store_prompt",
+      "replay": "candidate_v2_shadow",
+      "expected_failed_check": "privacy_contract",
+      "failed_checks": [
+        "privacy_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_rollout_decision",
+      "mutation": "set_expected_rollout_decision",
+      "replay": "candidate_v2_shadow",
+      "expected_failed_check": "candidate_comparison_gate",
+      "failed_checks": [
+        "candidate_comparison_gate"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_cost_decision",
+      "mutation": "set_expected_cost_decision",
+      "replay": "candidate_v2_shadow",
+      "expected_failed_check": "cost_budget_gate",
+      "failed_checks": [
+        "cost_budget_gate"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_candidate_probe",
+      "mutation": "set_expected_probe",
+      "replay": "candidate_v2_shadow",
+      "expected_failed_check": "rollback_probe_linkage",
+      "failed_checks": [
+        "rollback_probe_linkage"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "shadow_inventory",
+      "ok": true,
+      "evidence": {
+        "replay_count": 2,
+        "candidate_replay_count": 1,
+        "gaps": []
+      }
+    },
+    {
+      "name": "isolation_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "privacy_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "candidate_comparison_gate",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "cost_budget_gate",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "rollback_probe_linkage",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 7,
+        "detected_fixture_count": 7,
+        "undetected": []
+      }
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 78,
+  "artifact_count": 80,
   "generated_artifact_count": 4,
-  "source_input_count": 59,
+  "source_input_count": 61,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2352,
-      "sha256": "da9fdfd340b4a4811defe2980012bfaf4a949ed3d8b339f8571387c2716e94b5"
+      "bytes": 2416,
+      "sha256": "141685a042455ac4aba19654ec0d8dc4e6477d6f716b688ca67b165c2fff1f30"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -506,6 +506,20 @@
       "sha256": "2eae285f4229b6052401afafdee6477b98b69f6beb9c2e30615ce164dc574141"
     },
     {
+      "path": "docs/evidence/shadow-traffic-replay-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1505,
+      "sha256": "fb6ea53bc370cfa5518744e5e1f555faf288cdb5eb0bbc8d8f2721892f3b9a2a"
+    },
+    {
+      "path": "docs/evidence/shadow-traffic-replay-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 6999,
+      "sha256": "7fbf1f8fc5a125540a078725e33c7f6ba65cb5e006e9e89e6e6355f3dcb4c855"
+    },
+    {
       "path": "docs/evidence/load-shedding-policy-audit.md",
       "group": "evidence",
       "exists": true,
@@ -559,7 +573,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21215,
-      "sha256": "93e5df081d7688c4dd23b898cb13fd1be50b66ebec127e937de20c7e68795c8a"
+      "sha256": "08609442d8efd36643335d23201ed2d2d9409d3a629c74232d0c5098820c53ad"
     }
   ],
   "generated_artifacts": [
@@ -597,15 +611,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 10609,
-      "sha256": "e006dcb169e530cd99cd428c63e95e2c10b15b63554719b0d656a9cc3185b2ec"
+      "bytes": 11178,
+      "sha256": "eb389d290c80c9d1be238404236d89fdc8b20abfa2cc5ffedc6d27581f42dd09"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 18996,
-      "sha256": "faeb7c40a4bcf1d08bbea8487951616f2c22ff823fc000793114dec7e3139297"
+      "bytes": 19897,
+      "sha256": "174b1eead2a189771cbb137c652b9ec9052d3f1d707d0827d2bd760f1c176ac2"
     },
     {
       "path": "demo/incident_replay.py",
@@ -776,6 +790,13 @@
       "sha256": "eedfb3c0d9cf1c1327216c990dc00ef28a6de1da24cacdce00fe7640ddabad1a"
     },
     {
+      "path": "demo/shadow_traffic_replay_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 21070,
+      "sha256": "31a793f248e7a822724b03ab808306b389b254290f9b137f5ae59c1088a56f54"
+    },
+    {
       "path": "demo/load_shedding_policy_audit.py",
       "group": "source-input",
       "exists": true,
@@ -807,8 +828,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 10091,
-      "sha256": "e7fdd99296d9f09e5548c756d02e1ad9ba471cb947ef2582fd9cf2672afed74e"
+      "bytes": 10174,
+      "sha256": "cd98041e6a70b111cff9da8f405d32f5155421a77586ec090726150c274a278f"
     },
     {
       "path": "config/reliability-slo.json",
@@ -951,6 +972,13 @@
       "sha256": "fe481548b26ca2ed1a3274943e1dd502d5496cf97c4a3dee98b5f76b86453800"
     },
     {
+      "path": "config/shadow-traffic-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3230,
+      "sha256": "3a7aa05c29de0703058b8e0d44c1dd5224046fcb37cc808b9ced392f87004ba7"
+    },
+    {
       "path": "config/load-shedding-policy.json",
       "group": "source-input",
       "exists": true,
@@ -1013,8 +1041,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 78,
-        "minimum": 78
+        "count": 80,
+        "minimum": 80
       }
     },
     {
@@ -1030,8 +1058,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 59,
-        "minimum": 59
+        "count": 61,
+        "minimum": 61
       }
     },
     {

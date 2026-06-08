@@ -147,6 +147,15 @@ python3 demo/model_release_safety_audit.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/shadow_traffic_replay_audit.py \
+  --policy config/shadow-traffic-policy.json \
+  --summary docs/evidence/sample-summary.json \
+  --telemetry-redaction docs/evidence/telemetry-redaction-audit.json \
+  --rollout-guard docs/evidence/rollout-guard.json \
+  --token-cost docs/evidence/token-cost-guard.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/load_shedding_policy_audit.py \
   --policy config/load-shedding-policy.json \
   --capacity docs/evidence/capacity-plan.json \
@@ -210,6 +219,7 @@ python3 demo/release_readiness.py \
   --dependency-contract docs/evidence/dependency-contract-audit.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --shadow-traffic-replay docs/evidence/shadow-traffic-replay-audit.json \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
   --regional-failover docs/evidence/regional-failover-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
