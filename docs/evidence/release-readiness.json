@@ -82,6 +82,10 @@
       "ok": true
     },
     {
+      "name": "incident_response_drill",
+      "ok": true
+    },
+    {
       "name": "release_waiver_governance",
       "ok": true
     },
@@ -337,6 +341,14 @@
     },
     {
       "path": "post-incident-review.json",
+      "exists": true
+    },
+    {
+      "path": "incident-response-drill.md",
+      "exists": true
+    },
+    {
+      "path": "incident-response-drill.json",
       "exists": true
     },
     {

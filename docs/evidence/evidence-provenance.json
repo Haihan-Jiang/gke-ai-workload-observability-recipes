@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 66,
+  "artifact_count": 68,
   "generated_artifact_count": 4,
-  "source_input_count": 47,
+  "source_input_count": 49,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2004,
-      "sha256": "0c4fb6f40384359069f95a6c2e6259f8b3cd112ad7e5c88058fb636aea5fbf98"
+      "bytes": 2060,
+      "sha256": "9ba8bcd4197bd11a40943deffe756b5827b995ed8ff2439870145f813781389d"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -450,6 +450,20 @@
       "sha256": "ff1e12e67db2fd0693d4612f50fe9f9e61bec362c3f4a38ca52b78468c9369f9"
     },
     {
+      "path": "docs/evidence/incident-response-drill.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1649,
+      "sha256": "662746212ef3046c0c38d377a312478cb5cfe52b60d7487dd13115c15f2c2318"
+    },
+    {
+      "path": "docs/evidence/incident-response-drill.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 15931,
+      "sha256": "64d702a73fbbf8a527f5ba3d5e18b7507be45be38591a479f5d63f8abef91566"
+    },
+    {
       "path": "docs/evidence/release-waiver-governance.md",
       "group": "evidence",
       "exists": true,
@@ -475,7 +489,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21213,
-      "sha256": "08dab859ec32b59a40a614b4ce0a7b9d4cfde31843ba3d367ed1afeaff2e28d6"
+      "sha256": "477bccaf3bde31658d16735002cd3e7806f27a346161e9d7462e67a1befb342c"
     }
   ],
   "generated_artifacts": [
@@ -513,15 +527,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 7286,
-      "sha256": "0cf68a1f62b1b2cbde538d377df5ab27e3814fa4cd8608ff65ad1148f4f7a59d"
+      "bytes": 7781,
+      "sha256": "05f267c368cb81f8735da02da4404fac0ecd4066465c8c9c3d195bda05e5ee35"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 13789,
-      "sha256": "0e16764f2cddd07f64f6600c253d664e835b97da68a2fe45b7852c6a7d688ec8"
+      "bytes": 14572,
+      "sha256": "52f9ef76709a3dbbb49948ce914e0fe334fbbcf213c0190b7dd4605224f31819"
     },
     {
       "path": "demo/incident_replay.py",
@@ -664,6 +678,13 @@
       "sha256": "8e37dc8812b2dea6d8ea4b982af5e119d044e76b5372698a97bd6a26876b9f91"
     },
     {
+      "path": "demo/incident_response_drill.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 19812,
+      "sha256": "9ca4f049c603bf83308f1342ba60fe58241f91112f37c8d013016ddfee283eac"
+    },
+    {
       "path": "demo/release_waiver_governance.py",
       "group": "source-input",
       "exists": true,
@@ -681,8 +702,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9629,
-      "sha256": "a27a35c2143396a538d9f6d1cdbb4a01b6c7cd668a3a5a98bc5c33336144e2ab"
+      "bytes": 9704,
+      "sha256": "214201c043780df9fc6ec03b58c12b55fbec104ab0e18c419215aedbba993fab"
     },
     {
       "path": "config/reliability-slo.json",
@@ -797,6 +818,13 @@
       "sha256": "d11cc2926bb46a1d174a5a5e311409d84e06c319382b7a51ac210de68b14b839"
     },
     {
+      "path": "config/incident-response-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 3862,
+      "sha256": "5c55b364b3ea33604e3aca5d198d296504ea05fa4733dfe2d1df09dc73767571"
+    },
+    {
       "path": "config/release-waiver-policy.json",
       "group": "source-input",
       "exists": true,
@@ -845,8 +873,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 66,
-        "minimum": 62
+        "count": 68,
+        "minimum": 68
       }
     },
     {
@@ -862,8 +890,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 47,
-        "minimum": 30
+        "count": 49,
+        "minimum": 49
       }
     },
     {

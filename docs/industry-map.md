@@ -136,6 +136,7 @@ inference incidents before a service reaches production.
 | C15 | Manual release exceptions can bypass reliability gates | SRE teams need bounded waiver requests with owner, approver, expiry, rollback, RCA, evidence, and budget acknowledgement instead of informal approvals. | [Release waiver governance](evidence/release-waiver-governance.md) |
 | C16 | Release evidence can be lost or restored incorrectly | Incident response and release review need recoverable evidence and control-plane artifacts with checksum verification inside RTO/RPO targets. | [Disaster recovery drill](evidence/disaster-recovery-drill.md) |
 | C17 | Observability artifacts can drift while each one still passes alone | Alert rules, dashboards, OpenSLO contracts, and runbooks need to describe the same scenario set, severities, links, and first-response contract. | [Observability drift audit](evidence/observability-drift-audit.md) |
+| C18 | Alerts can fire without an executable on-call response path | Production teams need page/ticket routing, acknowledgement SLAs, escalation, rollback evidence, and RCA evidence tied to each alert scenario. | [Incident response drill](evidence/incident-response-drill.md) |
 
 ## Fourth Feature Contribution
 
@@ -179,6 +180,12 @@ inference incidents before a service reaches production.
    - Policy: [config/observability-drift-policy.json](../config/observability-drift-policy.json)
    - Inputs: [alerting rules](evidence/alerting-rules.md), [Grafana dashboard evidence](evidence/grafana-dashboard.md), [OpenSLO contract evidence](evidence/openslo-contract.md), and [incident runbooks](evidence/incident-runbooks.md)
    - Evidence: [observability drift audit](evidence/observability-drift-audit.md)
+
+8. **Incident response drill**
+   - Code: [demo/incident_response_drill.py](../demo/incident_response_drill.py)
+   - Policy: [config/incident-response-policy.json](../config/incident-response-policy.json)
+   - Inputs: [alerting rules](evidence/alerting-rules.md), [incident runbooks](evidence/incident-runbooks.md), [incident correlation](evidence/incident-correlation.md), [rollback drill](evidence/rollback-drill.md), and [post-incident review](evidence/post-incident-review.md)
+   - Evidence: [incident response drill](evidence/incident-response-drill.md)
 
 ## Boundary
 

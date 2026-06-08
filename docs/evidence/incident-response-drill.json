@@ -1,0 +1,510 @@
+{
+  "status": "pass",
+  "response_count": 5,
+  "incident_response_count": 4,
+  "page_count": 4,
+  "ticket_count": 1,
+  "fixture_count": 5,
+  "detected_fixture_count": 5,
+  "failed_count": 0,
+  "responses": [
+    {
+      "scenario": "baseline",
+      "alert": "GKEAIInferenceBaselineLatencySLOViolation",
+      "severity": "page",
+      "route_known": true,
+      "runbook_owner": "SRE / platform",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#baseline",
+      "ack_minutes": 3,
+      "mitigation_minutes": 12,
+      "verification_minutes": 18,
+      "ack_sla_minutes": 5,
+      "mitigation_sla_minutes": 15,
+      "verification_sla_minutes": 30,
+      "escalation": [
+        {
+          "minute": 0,
+          "role": "primary_oncall",
+          "action": "acknowledge page and open incident channel"
+        },
+        {
+          "minute": 5,
+          "role": "incident_commander",
+          "action": "assign scenario owner and freeze rollout expansion"
+        },
+        {
+          "minute": 10,
+          "role": "owning_team_lead",
+          "action": "approve rollback, dependency fallback, or telemetry recovery path"
+        }
+      ],
+      "minimum_escalation_steps": 3,
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "baseline latency page fires from generated SLO alert evidence"
+        },
+        {
+          "minute": 3,
+          "phase": "acknowledge",
+          "action": "primary on-call confirms whether the baseline represents a service-wide regression"
+        },
+        {
+          "minute": 12,
+          "phase": "mitigate",
+          "action": "hold promotion and compare baseline telemetry against incident scenarios before changing traffic"
+        },
+        {
+          "minute": 18,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm baseline SLO, dashboards, and runbook links"
+        }
+      ],
+      "timeline_phases": [
+        "acknowledge",
+        "detect",
+        "mitigate",
+        "verify"
+      ],
+      "correlation_key": null,
+      "rollback_response_type": "baseline_control",
+      "post_incident_review_status": null,
+      "evidence_links": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/incident-runbooks.md",
+        "docs/evidence/openslo-contract.md"
+      ],
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "alert": "GKEAIInferenceCacheMissStorm",
+      "severity": "ticket",
+      "route_known": true,
+      "runbook_owner": "Inference platform / retrieval owner",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#cache_miss_storm",
+      "ack_minutes": 3,
+      "mitigation_minutes": 9,
+      "verification_minutes": 12,
+      "ack_sla_minutes": 30,
+      "mitigation_sla_minutes": 120,
+      "verification_sla_minutes": 240,
+      "escalation": [
+        {
+          "minute": 0,
+          "role": "triage_owner",
+          "action": "assign owner and link dashboard/runbook evidence"
+        },
+        {
+          "minute": 60,
+          "role": "platform_lead",
+          "action": "escalate if release remains blocked or budget continues burning"
+        }
+      ],
+      "minimum_escalation_steps": 2,
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 3,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 9,
+          "phase": "mitigate",
+          "action": "hold rollout, warm the retrieval cache, and reduce cache churn before resuming traffic expansion"
+        },
+        {
+          "minute": 12,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ],
+      "timeline_phases": [
+        "acknowledge",
+        "detect",
+        "mitigate",
+        "verify"
+      ],
+      "correlation_key": "cache_miss_storm:v1",
+      "rollback_response_type": "manual_review",
+      "post_incident_review_status": "review_ready",
+      "evidence_links": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/incident-runbooks.md",
+        "docs/evidence/openslo-contract.md",
+        "docs/evidence/incident-correlation.md",
+        "docs/evidence/rollback-drill.md",
+        "docs/evidence/post-incident-review.md",
+        "docs/evidence/error-budget-ledger.md"
+      ],
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true
+    },
+    {
+      "scenario": "dependency_timeout",
+      "alert": "GKEAIInferenceDependencyErrorBudgetBurn",
+      "severity": "page",
+      "route_known": true,
+      "runbook_owner": "Feature platform / dependency owner",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#dependency_timeout",
+      "ack_minutes": 2,
+      "mitigation_minutes": 9,
+      "verification_minutes": 13,
+      "ack_sla_minutes": 5,
+      "mitigation_sla_minutes": 15,
+      "verification_sla_minutes": 30,
+      "escalation": [
+        {
+          "minute": 0,
+          "role": "primary_oncall",
+          "action": "acknowledge page and open incident channel"
+        },
+        {
+          "minute": 5,
+          "role": "incident_commander",
+          "action": "assign scenario owner and freeze rollout expansion"
+        },
+        {
+          "minute": 10,
+          "role": "owning_team_lead",
+          "action": "approve rollback, dependency fallback, or telemetry recovery path"
+        }
+      ],
+      "minimum_escalation_steps": 3,
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 2,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 9,
+          "phase": "mitigate",
+          "action": "fail closed with fallback features, cap retries, and page the dependency owner before allowing production promotion"
+        },
+        {
+          "minute": 13,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ],
+      "timeline_phases": [
+        "acknowledge",
+        "detect",
+        "mitigate",
+        "verify"
+      ],
+      "correlation_key": "dependency_timeout:v1",
+      "rollback_response_type": "rollback_required",
+      "post_incident_review_status": "review_ready",
+      "evidence_links": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/incident-runbooks.md",
+        "docs/evidence/openslo-contract.md",
+        "docs/evidence/incident-correlation.md",
+        "docs/evidence/rollback-drill.md",
+        "docs/evidence/post-incident-review.md",
+        "docs/evidence/error-budget-ledger.md"
+      ],
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true
+    },
+    {
+      "scenario": "rollout_regression",
+      "alert": "GKEAIInferenceRolloutVersionRegression",
+      "severity": "page",
+      "route_known": true,
+      "runbook_owner": "Service owner / release engineer",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression",
+      "ack_minutes": 2,
+      "mitigation_minutes": 7,
+      "verification_minutes": 11,
+      "ack_sla_minutes": 5,
+      "mitigation_sla_minutes": 15,
+      "verification_sla_minutes": 30,
+      "escalation": [
+        {
+          "minute": 0,
+          "role": "primary_oncall",
+          "action": "acknowledge page and open incident channel"
+        },
+        {
+          "minute": 5,
+          "role": "incident_commander",
+          "action": "assign scenario owner and freeze rollout expansion"
+        },
+        {
+          "minute": 10,
+          "role": "owning_team_lead",
+          "action": "approve rollback, dependency fallback, or telemetry recovery path"
+        }
+      ],
+      "minimum_escalation_steps": 3,
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 2,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 7,
+          "phase": "mitigate",
+          "action": "rollback the candidate version or shift traffic back to the stable service version"
+        },
+        {
+          "minute": 11,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ],
+      "timeline_phases": [
+        "acknowledge",
+        "detect",
+        "mitigate",
+        "verify"
+      ],
+      "correlation_key": "rollout_regression:v2",
+      "rollback_response_type": "rollback_required",
+      "post_incident_review_status": "review_ready",
+      "evidence_links": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/incident-runbooks.md",
+        "docs/evidence/openslo-contract.md",
+        "docs/evidence/incident-correlation.md",
+        "docs/evidence/rollback-drill.md",
+        "docs/evidence/post-incident-review.md",
+        "docs/evidence/error-budget-ledger.md"
+      ],
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "alert": "GKEAICollectorTelemetryLoss",
+      "severity": "page",
+      "route_known": true,
+      "runbook_owner": "Observability platform",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#collector_queue_pressure",
+      "ack_minutes": 4,
+      "mitigation_minutes": 10,
+      "verification_minutes": 14,
+      "ack_sla_minutes": 5,
+      "mitigation_sla_minutes": 15,
+      "verification_sla_minutes": 30,
+      "escalation": [
+        {
+          "minute": 0,
+          "role": "primary_oncall",
+          "action": "acknowledge page and open incident channel"
+        },
+        {
+          "minute": 5,
+          "role": "incident_commander",
+          "action": "assign scenario owner and freeze rollout expansion"
+        },
+        {
+          "minute": 10,
+          "role": "owning_team_lead",
+          "action": "approve rollback, dependency fallback, or telemetry recovery path"
+        }
+      ],
+      "minimum_escalation_steps": 3,
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 4,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 10,
+          "phase": "mitigate",
+          "action": "protect persistent collector queues, reduce exporter pressure, and verify telemetry delivery before trusting dashboards"
+        },
+        {
+          "minute": 14,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ],
+      "timeline_phases": [
+        "acknowledge",
+        "detect",
+        "mitigate",
+        "verify"
+      ],
+      "correlation_key": "telemetry_delivery:v1",
+      "rollback_response_type": "manual_review",
+      "post_incident_review_status": "review_ready",
+      "evidence_links": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/incident-runbooks.md",
+        "docs/evidence/openslo-contract.md",
+        "docs/evidence/incident-correlation.md",
+        "docs/evidence/rollback-drill.md",
+        "docs/evidence/post-incident-review.md",
+        "docs/evidence/error-budget-ledger.md"
+      ],
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_runbook_owner",
+      "mutation": "remove_runbook_owner",
+      "scenario": "dependency_timeout",
+      "severity": null,
+      "expected_failed_check": "owner_coverage",
+      "failed_checks": [
+        "owner_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "slow_page_ack",
+      "mutation": "slow_acknowledgement",
+      "scenario": "rollout_regression",
+      "severity": null,
+      "expected_failed_check": "response_sla",
+      "failed_checks": [
+        "response_sla"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_escalation",
+      "mutation": "remove_escalation",
+      "scenario": null,
+      "severity": "page",
+      "expected_failed_check": "escalation_coverage",
+      "failed_checks": [
+        "escalation_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_post_incident_review",
+      "mutation": "remove_post_incident_review",
+      "scenario": "collector_queue_pressure",
+      "severity": null,
+      "expected_failed_check": "incident_evidence_linkage",
+      "failed_checks": [
+        "incident_evidence_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "unknown_alert_severity",
+      "mutation": "set_alert_severity",
+      "scenario": "dependency_timeout",
+      "severity": "critical",
+      "expected_failed_check": "response_sla",
+      "failed_checks": [
+        "response_sla",
+        "escalation_coverage"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "route_coverage",
+      "ok": true,
+      "evidence": {
+        "response_scenarios": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "missing_alerts": [],
+        "missing_runbooks": []
+      }
+    },
+    {
+      "name": "owner_coverage",
+      "ok": true,
+      "evidence": {
+        "missing_runbook_owners": []
+      }
+    },
+    {
+      "name": "timeline_phase_coverage",
+      "ok": true,
+      "evidence": {
+        "missing_phases": {}
+      }
+    },
+    {
+      "name": "response_sla",
+      "ok": true,
+      "evidence": {
+        "violations": []
+      }
+    },
+    {
+      "name": "escalation_coverage",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "incident_evidence_linkage",
+      "ok": true,
+      "evidence": {
+        "incident_scenarios": [
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "missing_correlation": [],
+        "missing_rollback_drill": [],
+        "missing_post_incident_review": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 5,
+        "detected_fixture_count": 5,
+        "undetected": []
+      }
+    }
+  ]
+}

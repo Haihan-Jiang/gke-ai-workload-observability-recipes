@@ -119,6 +119,15 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "action_item_count": 8,
             "failed_count": 0,
         },
+        "incident_response_drill": {
+            "status": "pass",
+            "response_count": 5,
+            "incident_response_count": 4,
+            "page_count": 4,
+            "ticket_count": 1,
+            "detected_fixture_count": 5,
+            "failed_count": 0,
+        },
         "release_waiver_governance": {
             "status": "pass",
             "waiver_count": 4,
@@ -140,8 +149,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 66,
-            "source_input_count": 47,
+            "artifact_count": 68,
+            "source_input_count": 49,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -295,6 +304,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["post_incident_review"])
+
+    def test_requires_incident_response_drill(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["incident_response_drill"]["detected_fixture_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["incident_response_drill"])
 
     def test_requires_release_waiver_governance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

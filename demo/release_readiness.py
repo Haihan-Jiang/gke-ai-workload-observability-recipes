@@ -71,6 +71,8 @@ REQUIRED_EVIDENCE = [
     "rollback-drill.json",
     "post-incident-review.md",
     "post-incident-review.json",
+    "incident-response-drill.md",
+    "incident-response-drill.json",
     "release-waiver-governance.md",
     "release-waiver-governance.json",
     "disaster-recovery-drill.md",
@@ -116,6 +118,7 @@ def evaluate(
     error_budget: dict[str, Any],
     rollback_drill: dict[str, Any],
     post_incident_review: dict[str, Any],
+    incident_response_drill: dict[str, Any],
     release_waiver_governance: dict[str, Any],
     disaster_recovery_drill: dict[str, Any],
     evidence_provenance: dict[str, Any],
@@ -239,6 +242,16 @@ def evaluate(
             and int(post_incident_review.get("failed_count", -1)) == 0,
         },
         {
+            "name": "incident_response_drill",
+            "ok": incident_response_drill.get("status") == "pass"
+            and int(incident_response_drill.get("response_count", 0)) >= 5
+            and int(incident_response_drill.get("incident_response_count", 0)) >= 4
+            and int(incident_response_drill.get("page_count", 0)) >= 4
+            and int(incident_response_drill.get("ticket_count", 0)) >= 1
+            and int(incident_response_drill.get("detected_fixture_count", 0)) >= 5
+            and int(incident_response_drill.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "release_waiver_governance",
             "ok": release_waiver_governance.get("status") == "pass"
             and int(release_waiver_governance.get("waiver_count", 0)) >= 4
@@ -261,8 +274,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 62
-            and int(evidence_provenance.get("source_input_count", 0)) >= 30
+            and int(evidence_provenance.get("artifact_count", 0)) >= 68
+            and int(evidence_provenance.get("source_input_count", 0)) >= 49
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -293,8 +306,9 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
         "detection,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
-        "rollback drill coverage, post-incident review coverage, release",
-        "waiver governance, disaster recovery drill coverage, evidence",
+        "rollback drill coverage, post-incident review coverage, incident",
+        "response drill coverage, release waiver governance, disaster",
+        "recovery drill coverage, evidence",
         "provenance, and committed evidence are present and internally",
         "consistent.",
         "",
@@ -341,6 +355,7 @@ def main() -> int:
     parser.add_argument("--error-budget", default="out/error-budget-ledger/error-budget-ledger.json")
     parser.add_argument("--rollback-drill", default="out/rollback-drill/rollback-drill.json")
     parser.add_argument("--post-incident-review", default="out/post-incident-review/post-incident-review.json")
+    parser.add_argument("--incident-response-drill", default="out/incident-response-drill/incident-response-drill.json")
     parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
     parser.add_argument("--disaster-recovery-drill", default="out/disaster-recovery-drill/disaster-recovery-drill.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
@@ -368,6 +383,7 @@ def main() -> int:
         error_budget=load_json(Path(args.error_budget)),
         rollback_drill=load_json(Path(args.rollback_drill)),
         post_incident_review=load_json(Path(args.post_incident_review)),
+        incident_response_drill=load_json(Path(args.incident_response_drill)),
         release_waiver_governance=load_json(Path(args.release_waiver_governance)),
         disaster_recovery_drill=load_json(Path(args.disaster_recovery_drill)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),
