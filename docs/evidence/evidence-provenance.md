@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `96`
+- Evidence artifacts: `98`
 - Generated artifacts: `4`
-- Source inputs: `77`
+- Source inputs: `81`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 2916 | `14489f81663facb4...` |
+| `docs/evidence/README.md` | 2978 | `77a0d245cf0264ca...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -78,6 +78,8 @@ evidence easier to detect during review.
 | `docs/evidence/availability-topology-audit.json` | 4425 | `3589a979f8c94df3...` |
 | `docs/evidence/autoscaling-policy-audit.md` | 1361 | `cc89b2cc3110f5fb...` |
 | `docs/evidence/autoscaling-policy-audit.json` | 5757 | `b5f14218b1f929e9...` |
+| `docs/evidence/scheduling-placement-audit.md` | 1710 | `e6552a4a63c58f47...` |
+| `docs/evidence/scheduling-placement-audit.json` | 5229 | `abdfdfd5df618e99...` |
 | `docs/evidence/network-boundary-audit.md` | 1273 | `aa908214f556c20a...` |
 | `docs/evidence/network-boundary-audit.json` | 6741 | `73431d7117267ab4...` |
 | `docs/evidence/collector-self-observability-audit.md` | 1426 | `ab08850669a16880...` |
@@ -121,11 +123,11 @@ evidence easier to detect during review.
 | `docs/evidence/load-shedding-policy-audit.md` | 1904 | `a60b8c9c0b0caf91...` |
 | `docs/evidence/load-shedding-policy-audit.json` | 10561 | `afd997ee5c22bccb...` |
 | `docs/evidence/regional-failover-audit.md` | 1532 | `1def87beed205a66...` |
-| `docs/evidence/regional-failover-audit.json` | 12345 | `5a002724bfc61e7d...` |
+| `docs/evidence/regional-failover-audit.json` | 12350 | `8adb0e813521be56...` |
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
-| `docs/evidence/disaster-recovery-drill.md` | 1031 | `81f0f1d0916ce338...` |
-| `docs/evidence/disaster-recovery-drill.json` | 21217 | `cc5249ea6700c87d...` |
+| `docs/evidence/disaster-recovery-drill.md` | 1032 | `f62eb2654b6d276d...` |
+| `docs/evidence/disaster-recovery-drill.json` | 21776 | `d7e6307cd7baa83d...` |
 
 ## Generated Artifacts
 

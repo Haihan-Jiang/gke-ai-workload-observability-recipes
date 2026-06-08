@@ -77,6 +77,15 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 9,
             "failed_count": 0,
         },
+        "scheduling_placement": {
+            "status": "pass",
+            "workload_count": 2,
+            "priority_class_count": 2,
+            "preferred_affinity_count": 4,
+            "toleration_count": 2,
+            "detected_fixture_count": 10,
+            "failed_count": 0,
+        },
         "network_boundary": {
             "status": "pass",
             "network_policy_count": 2,
@@ -256,8 +265,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 96,
-            "source_input_count": 77,
+            "artifact_count": 98,
+            "source_input_count": 81,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -345,6 +354,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["autoscaling_policy_audit"])
+
+    def test_requires_scheduling_placement_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["scheduling_placement"]["priority_class_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["scheduling_placement_audit"])
 
     def test_requires_network_boundary_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

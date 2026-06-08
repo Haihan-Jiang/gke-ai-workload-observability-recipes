@@ -54,6 +54,10 @@
       "ok": true
     },
     {
+      "name": "scheduling_placement_audit",
+      "ok": true
+    },
+    {
       "name": "network_boundary_audit",
       "ok": true
     },
@@ -357,6 +361,14 @@
     },
     {
       "path": "autoscaling-policy-audit.json",
+      "exists": true
+    },
+    {
+      "path": "scheduling-placement-audit.md",
+      "exists": true
+    },
+    {
+      "path": "scheduling-placement-audit.json",
       "exists": true
     },
     {

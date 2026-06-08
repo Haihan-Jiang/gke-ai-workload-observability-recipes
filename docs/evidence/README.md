@@ -28,6 +28,7 @@
 - [Namespace resource audit](namespace-resource-audit.md)
 - [Availability topology audit](availability-topology-audit.md)
 - [Autoscaling policy audit](autoscaling-policy-audit.md)
+- [Scheduling placement audit](scheduling-placement-audit.md)
 - [Network boundary audit](network-boundary-audit.md)
 - [Collector self-observability audit](collector-self-observability-audit.md)
 - [Telemetry sampling audit](telemetry-sampling-audit.md)

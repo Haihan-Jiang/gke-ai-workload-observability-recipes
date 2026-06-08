@@ -32,6 +32,27 @@ spec:
     spec:
       serviceAccountName: toy-ai-inference-api
       automountServiceAccountToken: false
+      priorityClassName: ai-inference-serving
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 80
+              preference:
+                matchExpressions:
+                  - key: cloud.google.com/gke-nodepool
+                    operator: In
+                    values: ["ai-inference-pool"]
+            - weight: 20
+              preference:
+                matchExpressions:
+                  - key: workload.haihan.dev/inference
+                    operator: In
+                    values: ["true"]
+      tolerations:
+        - key: workload.haihan.dev/inference
+          operator: Equal
+          value: "true"
+          effect: NoSchedule
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: topology.kubernetes.io/zone

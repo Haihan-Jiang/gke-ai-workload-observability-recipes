@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 96,
+  "artifact_count": 98,
   "generated_artifact_count": 4,
-  "source_input_count": 77,
+  "source_input_count": 81,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2916,
-      "sha256": "14489f81663facb49c79aaef56f101d289f9730ef7fc2dcee4c2041430397129"
+      "bytes": 2978,
+      "sha256": "77a0d245cf0264cac024dd1a85368fac747c036ca6d6671d069d6d2c6a9f7bfc"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -352,6 +352,20 @@
       "sha256": "b5f14218b1f929e9865453233bd4b5a487a3c031ee0bd3c283b3627ec09a2ce3"
     },
     {
+      "path": "docs/evidence/scheduling-placement-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1710,
+      "sha256": "e6552a4a63c58f4793ee9d881112578606b479bc12469bae7cf9e7182d6f0cb1"
+    },
+    {
+      "path": "docs/evidence/scheduling-placement-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 5229,
+      "sha256": "abdfdfd5df618e991b191891d85c29d10721af782b9473d614e9e596fbb1b9dc"
+    },
+    {
       "path": "docs/evidence/network-boundary-audit.md",
       "group": "evidence",
       "exists": true,
@@ -656,8 +670,8 @@
       "path": "docs/evidence/regional-failover-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 12345,
-      "sha256": "5a002724bfc61e7de7d5876995a8139354f4f9a29a801b3e971dff359ef076ed"
+      "bytes": 12350,
+      "sha256": "8adb0e813521be56fae2fc0fbca71c23795e154a53abbd96b20b5ad0cc4f169c"
     },
     {
       "path": "docs/evidence/release-waiver-governance.md",
@@ -677,15 +691,15 @@
       "path": "docs/evidence/disaster-recovery-drill.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1031,
-      "sha256": "81f0f1d0916ce33886ad6ecf97fdf8104d280f34dcd800ea0b9453d4f1eb649f"
+      "bytes": 1032,
+      "sha256": "f62eb2654b6d276dd44fe9dd47046af4d46337e4ff6dbdc7a29942a3385207a4"
     },
     {
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 21217,
-      "sha256": "cc5249ea6700c87d0897a92d07e684fee858e00b657748ba9b11ecd51c7920b4"
+      "bytes": 21776,
+      "sha256": "d7e6307cd7baa83db4a3b80d7285476f322d187a9a7fc1f45da2d6bbd3f501db"
     }
   ],
   "generated_artifacts": [
@@ -723,15 +737,22 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 13348,
-      "sha256": "4bfbdaeab48b2056e002e586c376049786efe1c3fc84ce5d502a198a8531baee"
+      "bytes": 13577,
+      "sha256": "09e7fd56e577afefe42aa4b4cd8c3df093d26cb2cb20c56a17641ce0c3b2c9a8"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 23911,
-      "sha256": "86ea1203eabbc13a7fa6041be673e1a54768110175db82829e4c13935ed8005d"
+      "bytes": 24355,
+      "sha256": "ec2ea379db7ed4662cc7f615344cf5e472160aa5abc88f5c9d9e9dc66f220953"
+    },
+    {
+      "path": "scripts/kind-smoke.sh",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2715,
+      "sha256": "8fd94955af93dbd3627828e0351d92cb25f30f754eb2d4c61844154211fc15d3"
     },
     {
       "path": "demo/incident_replay.py",
@@ -823,6 +844,13 @@
       "exists": true,
       "bytes": 16988,
       "sha256": "c6e9500ef48517296e29810c3cc9b9133290120ea3586ee9e931e970212434d3"
+    },
+    {
+      "path": "demo/scheduling_placement_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 19816,
+      "sha256": "b67affe8a9e6f27061d9821d12043ba02f57564ddf2d35663090f37e07d2c1fd"
     },
     {
       "path": "demo/network_boundary_audit.py",
@@ -996,8 +1024,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 10826,
-      "sha256": "18ce607e107d4489a45c179f430651c345435aa79dfa705ea4f00b4077dbf4c6"
+      "bytes": 10907,
+      "sha256": "648b63d1ab96c1a3028d832f9b5abc1e67928ee19f92234c26a399937aeb6d3c"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1061,6 +1089,13 @@
       "exists": true,
       "bytes": 2441,
       "sha256": "924abe7e53b1fc4b9b7728982968ad1f1ca13e5e52974cd42fd7adcd60e5c218"
+    },
+    {
+      "path": "config/scheduling-placement-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 4336,
+      "sha256": "557c15dbeb1dd72a55953d62fbb4bd59ecf9a5e0af63fefaea74fc671feb5c93"
     },
     {
       "path": "config/network-boundary-policy.json",
@@ -1234,8 +1269,8 @@
       "path": "config/disaster-recovery-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 2660,
-      "sha256": "b1cb2e7af77fbcb6d6c3f9d5975a1154081363e7ad1b9cfae1f26b8d3d0b7528"
+      "bytes": 2695,
+      "sha256": "b95515672861caead845e6a291ec42283c5ba768e8b7454cbad2ab4d89ff5877"
     },
     {
       "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
@@ -1245,18 +1280,25 @@
       "sha256": "ec154bd67ebafecb4c4c49d3f7a56413d05aea20cbc0324b52ca9ce4f2d25bae"
     },
     {
+      "path": "k8s/gke/scheduling.yaml",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 737,
+      "sha256": "dc2d76d891760f5609bf5b8ea88725e98e554d83f50e0e0814fc8d038632cf87"
+    },
+    {
       "path": "k8s/gke/collector.yaml",
       "group": "source-input",
       "exists": true,
-      "bytes": 8288,
-      "sha256": "373dd2962b75ad398f39618055a2cdeea60e978e64342fb2d0d2794edebd24db"
+      "bytes": 9005,
+      "sha256": "6183abaa778812fc921e9a20bec2c31d50f571e980cd9e7e609a821f8164eb6a"
     },
     {
       "path": "k8s/gke/sample-app.yaml",
       "group": "source-input",
       "exists": true,
-      "bytes": 5232,
-      "sha256": "57f721638b532b5ca8b8b8d46044b94af65b86a2ffabe54ba2a20e1da3968184"
+      "bytes": 5951,
+      "sha256": "593dc25469953da2ca04212bf43a91908fd077c36b290855e4daea44a835ad60"
     }
   ],
   "checks": [
@@ -1265,8 +1307,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 96,
-        "minimum": 96
+        "count": 98,
+        "minimum": 98
       }
     },
     {
@@ -1282,8 +1324,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 77,
-        "minimum": 77
+        "count": 81,
+        "minimum": 81
       }
     },
     {

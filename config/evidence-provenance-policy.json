@@ -1,7 +1,7 @@
 {
   "description": "Policy for producing a reproducible provenance manifest for generated lab evidence.",
-  "minimum_evidence_artifacts": 96,
-  "minimum_source_inputs": 77,
+  "minimum_evidence_artifacts": 98,
+  "minimum_source_inputs": 81,
   "required_artifacts": [
     "docs/evidence/README.md",
     "docs/evidence/sample-incident-report.md",
@@ -51,6 +51,8 @@
     "docs/evidence/availability-topology-audit.json",
     "docs/evidence/autoscaling-policy-audit.md",
     "docs/evidence/autoscaling-policy-audit.json",
+    "docs/evidence/scheduling-placement-audit.md",
+    "docs/evidence/scheduling-placement-audit.json",
     "docs/evidence/network-boundary-audit.md",
     "docs/evidence/network-boundary-audit.json",
     "docs/evidence/collector-self-observability-audit.md",
@@ -109,6 +111,7 @@
   "source_inputs": [
     "scripts/generate-evidence.sh",
     "scripts/validate.sh",
+    "scripts/kind-smoke.sh",
     "demo/incident_replay.py",
     "demo/reliability_gate.py",
     "demo/capacity_planner.py",
@@ -122,6 +125,7 @@
     "demo/namespace_resource_audit.py",
     "demo/availability_topology_audit.py",
     "demo/autoscaling_policy_audit.py",
+    "demo/scheduling_placement_audit.py",
     "demo/network_boundary_audit.py",
     "demo/collector_self_observability_audit.py",
     "demo/telemetry_sampling_audit.py",
@@ -156,6 +160,7 @@
     "config/namespace-resource-policy.json",
     "config/availability-topology-policy.json",
     "config/autoscaling-policy.json",
+    "config/scheduling-placement-policy.json",
     "config/network-boundary-policy.json",
     "config/collector-self-observability-policy.json",
     "config/telemetry-sampling-policy.json",
@@ -182,6 +187,7 @@
     "config/release-waivers.json",
     "config/disaster-recovery-policy.json",
     "policies/admission/gke-ai-inference-admission-policy.yaml",
+    "k8s/gke/scheduling.yaml",
     "k8s/gke/collector.yaml",
     "k8s/gke/sample-app.yaml"
   ],

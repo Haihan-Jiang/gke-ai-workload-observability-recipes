@@ -1,0 +1,148 @@
+{
+  "description": "Policy for auditing Kubernetes scheduling placement intent for AI inference and telemetry workloads.",
+  "target_manifests": [
+    "k8s/gke/scheduling.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "required_labels": [
+    "app.kubernetes.io/name",
+    "app.kubernetes.io/part-of"
+  ],
+  "allowed_toleration_effects": [
+    "NoSchedule"
+  ],
+  "workloads": [
+    {
+      "name": "otel-collector",
+      "namespace": "telemetry",
+      "kind": "Deployment",
+      "priority_class": "ai-telemetry-critical",
+      "minimum_priority_value": 900000,
+      "required_affinity": [
+        {
+          "key": "cloud.google.com/gke-nodepool",
+          "values": [
+            "telemetry-pool"
+          ]
+        },
+        {
+          "key": "workload.haihan.dev/telemetry",
+          "values": [
+            "true"
+          ]
+        }
+      ],
+      "required_tolerations": [
+        {
+          "key": "workload.haihan.dev/telemetry",
+          "operator": "Equal",
+          "value": "true",
+          "effect": "NoSchedule"
+        }
+      ]
+    },
+    {
+      "name": "toy-ai-inference-api",
+      "namespace": "ai-observability-demo",
+      "kind": "Deployment",
+      "priority_class": "ai-inference-serving",
+      "minimum_priority_value": 800000,
+      "required_affinity": [
+        {
+          "key": "cloud.google.com/gke-nodepool",
+          "values": [
+            "ai-inference-pool"
+          ]
+        },
+        {
+          "key": "workload.haihan.dev/inference",
+          "values": [
+            "true"
+          ]
+        }
+      ],
+      "required_tolerations": [
+        {
+          "key": "workload.haihan.dev/inference",
+          "operator": "Equal",
+          "value": "true",
+          "effect": "NoSchedule"
+        }
+      ]
+    }
+  ],
+  "minimum_detected_fixtures": 10,
+  "fixtures": [
+    {
+      "name": "missing_inference_priority_class",
+      "mutation": "remove_priority_class",
+      "priority_class": "ai-inference-serving",
+      "expected_failed_check": "priority_class_definitions"
+    },
+    {
+      "name": "low_telemetry_priority_value",
+      "mutation": "set_priority_value",
+      "priority_class": "ai-telemetry-critical",
+      "value": 100,
+      "expected_failed_check": "priority_class_definitions"
+    },
+    {
+      "name": "preempting_telemetry_priority",
+      "mutation": "set_preemption_policy",
+      "priority_class": "ai-telemetry-critical",
+      "preemption_policy": "PreemptLowerPriority",
+      "expected_failed_check": "priority_class_definitions"
+    },
+    {
+      "name": "sample_missing_priority_binding",
+      "mutation": "remove_workload_priority",
+      "workload": "toy-ai-inference-api",
+      "expected_failed_check": "workload_priority_binding"
+    },
+    {
+      "name": "collector_wrong_priority_binding",
+      "mutation": "set_workload_priority",
+      "workload": "otel-collector",
+      "priority_class": "ai-inference-serving",
+      "expected_failed_check": "workload_priority_binding"
+    },
+    {
+      "name": "sample_missing_nodepool_preference",
+      "mutation": "remove_affinity_expression",
+      "workload": "toy-ai-inference-api",
+      "key": "cloud.google.com/gke-nodepool",
+      "expected_failed_check": "preferred_node_affinity"
+    },
+    {
+      "name": "collector_hard_node_selector",
+      "mutation": "add_node_selector",
+      "workload": "otel-collector",
+      "key": "cloud.google.com/gke-nodepool",
+      "value": "telemetry-pool",
+      "expected_failed_check": "portable_scheduling_preferences"
+    },
+    {
+      "name": "sample_missing_toleration",
+      "mutation": "remove_toleration",
+      "workload": "toy-ai-inference-api",
+      "key": "workload.haihan.dev/inference",
+      "expected_failed_check": "bounded_tolerations"
+    },
+    {
+      "name": "collector_wildcard_toleration",
+      "mutation": "set_toleration_operator",
+      "workload": "otel-collector",
+      "key": "workload.haihan.dev/telemetry",
+      "operator": "Exists",
+      "expected_failed_check": "bounded_tolerations"
+    },
+    {
+      "name": "missing_priority_class_owner_label",
+      "mutation": "remove_priority_class_label",
+      "priority_class": "ai-inference-serving",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "scheduling_label_governance"
+    }
+  ]
+}

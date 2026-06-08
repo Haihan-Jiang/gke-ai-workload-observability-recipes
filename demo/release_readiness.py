@@ -61,6 +61,8 @@ REQUIRED_EVIDENCE = [
     "availability-topology-audit.json",
     "autoscaling-policy-audit.md",
     "autoscaling-policy-audit.json",
+    "scheduling-placement-audit.md",
+    "scheduling-placement-audit.json",
     "network-boundary-audit.md",
     "network-boundary-audit.json",
     "collector-self-observability-audit.md",
@@ -139,6 +141,7 @@ def evaluate(
     namespace_resource: dict[str, Any],
     availability_topology: dict[str, Any],
     autoscaling_policy: dict[str, Any],
+    scheduling_placement: dict[str, Any],
     network_boundary: dict[str, Any],
     collector_self_observability: dict[str, Any],
     telemetry_sampling: dict[str, Any],
@@ -237,6 +240,16 @@ def evaluate(
             and int(autoscaling_policy.get("behavior_policy_count", 0)) >= 3
             and int(autoscaling_policy.get("detected_fixture_count", 0)) >= 9
             and int(autoscaling_policy.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "scheduling_placement_audit",
+            "ok": scheduling_placement.get("status") == "pass"
+            and int(scheduling_placement.get("workload_count", 0)) >= 2
+            and int(scheduling_placement.get("priority_class_count", 0)) >= 2
+            and int(scheduling_placement.get("preferred_affinity_count", 0)) >= 4
+            and int(scheduling_placement.get("toleration_count", 0)) >= 2
+            and int(scheduling_placement.get("detected_fixture_count", 0)) >= 10
+            and int(scheduling_placement.get("failed_count", -1)) == 0,
         },
         {
             "name": "network_boundary_audit",
@@ -437,8 +450,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 96
-            and int(evidence_provenance.get("source_input_count", 0)) >= 77
+            and int(evidence_provenance.get("artifact_count", 0)) >= 98
+            and int(evidence_provenance.get("source_input_count", 0)) >= 81
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -466,8 +479,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
         "manifest hardening, namespace resource governance, availability",
-        "topology governance, autoscaling policy governance, network boundary",
-        "governance, collector self-observability, telemetry sampling",
+        "topology governance, autoscaling policy governance, scheduling",
+        "placement governance, network boundary governance, collector self-observability, telemetry sampling",
         "governance, Workload Identity audit, admission policy simulation,",
         "SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
@@ -519,6 +532,7 @@ def main() -> int:
     parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
     parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
     parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
+    parser.add_argument("--scheduling-placement", default="out/scheduling-placement-audit/scheduling-placement-audit.json")
     parser.add_argument("--network-boundary", default="out/network-boundary-audit/network-boundary-audit.json")
     parser.add_argument("--collector-self-observability", default="out/collector-self-observability-audit/collector-self-observability-audit.json")
     parser.add_argument("--telemetry-sampling", default="out/telemetry-sampling-audit/telemetry-sampling-audit.json")
@@ -561,6 +575,7 @@ def main() -> int:
         namespace_resource=load_json(Path(args.namespace_resource)),
         availability_topology=load_json(Path(args.availability_topology)),
         autoscaling_policy=load_json(Path(args.autoscaling_policy)),
+        scheduling_placement=load_json(Path(args.scheduling_placement)),
         network_boundary=load_json(Path(args.network_boundary)),
         collector_self_observability=load_json(Path(args.collector_self_observability)),
         telemetry_sampling=load_json(Path(args.telemetry_sampling)),

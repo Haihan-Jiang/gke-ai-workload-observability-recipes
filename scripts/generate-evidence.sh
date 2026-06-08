@@ -64,6 +64,10 @@ python3 demo/autoscaling_policy_audit.py \
   --policy config/autoscaling-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/scheduling_placement_audit.py \
+  --policy config/scheduling-placement-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/network_boundary_audit.py \
   --policy config/network-boundary-policy.json \
   --repo-root . \
@@ -246,6 +250,7 @@ python3 demo/release_readiness.py \
   --namespace-resource docs/evidence/namespace-resource-audit.json \
   --availability-topology docs/evidence/availability-topology-audit.json \
   --autoscaling-policy docs/evidence/autoscaling-policy-audit.json \
+  --scheduling-placement docs/evidence/scheduling-placement-audit.json \
   --network-boundary docs/evidence/network-boundary-audit.json \
   --collector-self-observability docs/evidence/collector-self-observability-audit.json \
   --telemetry-sampling docs/evidence/telemetry-sampling-audit.json \

@@ -61,6 +61,7 @@
       "name": "deployment_manifests",
       "artifacts": [
         "k8s/gke/namespace.yaml",
+        "k8s/gke/scheduling.yaml",
         "k8s/gke/collector.yaml",
         "k8s/gke/instrumentation.yaml",
         "k8s/gke/sample-app.yaml",

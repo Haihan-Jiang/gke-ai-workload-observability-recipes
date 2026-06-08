@@ -25,6 +25,7 @@ fi
 
 kubectl config use-context "kind-${cluster_name}" >/dev/null
 kubectl apply -f "${repo_root}/k8s/gke/namespace.yaml"
+kubectl apply -f "${repo_root}/k8s/gke/scheduling.yaml"
 kubectl apply -f "${repo_root}/k8s/gke/collector.yaml"
 
 if kubectl api-resources --api-group=opentelemetry.io | grep -q '^instrumentations'; then

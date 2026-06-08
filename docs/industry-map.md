@@ -151,6 +151,7 @@ inference incidents before a service reaches production.
 | C30 | Workload traffic can drift outside the intended telemetry path | Production GKE recipes need egress and ingress NetworkPolicy boundaries so sample workloads can reach telemetry and DNS without normalizing unrestricted namespace traffic. | [Network boundary audit](evidence/network-boundary-audit.md) |
 | C31 | Sampling can hide the traces needed for AI incident debugging | Production OpenTelemetry collectors need tail-sampling rules that retain errors, dependency timeouts, rollout regressions, and collector-pressure traces while keeping healthy baseline volume bounded. | [Telemetry sampling audit](evidence/telemetry-sampling-audit.md) |
 | C32 | Collector failures can hide the telemetry pipeline's own outage | Production observability needs collector internal metrics scraped and exported through the same durable metrics path so queue, exporter, and receiver failures are visible before telemetry disappears. | [Collector self-observability audit](evidence/collector-self-observability-audit.md) |
+| C33 | AI and telemetry workloads can land on the wrong node pools | GKE recipes need non-preempting PriorityClasses, soft node-pool affinity, and bounded tolerations so scheduling intent is explicit without making local smoke tests unschedulable. | [Scheduling placement audit](evidence/scheduling-placement-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -284,6 +285,12 @@ inference incidents before a service reaches production.
     - Policy: [config/collector-self-observability-policy.json](../config/collector-self-observability-policy.json)
     - Inputs: collector ConfigMap and metrics pipeline in [collector.yaml](../k8s/gke/collector.yaml)
     - Evidence: [collector self-observability audit](evidence/collector-self-observability-audit.md)
+
+23. **Scheduling placement audit**
+    - Code: [demo/scheduling_placement_audit.py](../demo/scheduling_placement_audit.py)
+    - Policy: [config/scheduling-placement-policy.json](../config/scheduling-placement-policy.json)
+    - Inputs: [scheduling.yaml](../k8s/gke/scheduling.yaml), [collector.yaml](../k8s/gke/collector.yaml), and [sample-app.yaml](../k8s/gke/sample-app.yaml)
+    - Evidence: [scheduling placement audit](evidence/scheduling-placement-audit.md)
 
 ## Boundary
 

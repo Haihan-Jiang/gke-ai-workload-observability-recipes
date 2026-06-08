@@ -1,9 +1,9 @@
 {
   "status": "pass",
-  "artifact_count": 30,
-  "restored_count": 30,
-  "hash_match_count": 30,
-  "generated_artifact_count": 9,
+  "artifact_count": 31,
+  "restored_count": 31,
+  "hash_match_count": 31,
+  "generated_artifact_count": 10,
   "group_count": 6,
   "fixture_count": 4,
   "detected_fixture_count": 4,
@@ -169,10 +169,17 @@
     },
     {
       "group": "deployment_manifests",
+      "path": "k8s/gke/scheduling.yaml",
+      "exists": true,
+      "bytes": 737,
+      "sha256": "dc2d76d891760f5609bf5b8ea88725e98e554d83f50e0e0814fc8d038632cf87"
+    },
+    {
+      "group": "deployment_manifests",
       "path": "k8s/gke/collector.yaml",
       "exists": true,
-      "bytes": 8288,
-      "sha256": "373dd2962b75ad398f39618055a2cdeea60e978e64342fb2d0d2794edebd24db"
+      "bytes": 9005,
+      "sha256": "6183abaa778812fc921e9a20bec2c31d50f571e980cd9e7e609a821f8164eb6a"
     },
     {
       "group": "deployment_manifests",
@@ -185,8 +192,8 @@
       "group": "deployment_manifests",
       "path": "k8s/gke/sample-app.yaml",
       "exists": true,
-      "bytes": 5232,
-      "sha256": "57f721638b532b5ca8b8b8d46044b94af65b86a2ffabe54ba2a20e1da3968184"
+      "bytes": 5951,
+      "sha256": "593dc25469953da2ca04212bf43a91908fd077c36b290855e4daea44a835ad60"
     },
     {
       "group": "deployment_manifests",
@@ -206,22 +213,22 @@
       "group": "recovery_source_policy",
       "path": "config/disaster-recovery-policy.json",
       "exists": true,
-      "bytes": 2660,
-      "sha256": "b1cb2e7af77fbcb6d6c3f9d5975a1154081363e7ad1b9cfae1f26b8d3d0b7528"
+      "bytes": 2695,
+      "sha256": "b95515672861caead845e6a291ec42283c5ba768e8b7454cbad2ab4d89ff5877"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
       "exists": true,
-      "bytes": 13348,
-      "sha256": "4bfbdaeab48b2056e002e586c376049786efe1c3fc84ce5d502a198a8531baee"
+      "bytes": 13577,
+      "sha256": "09e7fd56e577afefe42aa4b4cd8c3df093d26cb2cb20c56a17641ce0c3b2c9a8"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
       "exists": true,
-      "bytes": 23911,
-      "sha256": "86ea1203eabbc13a7fa6041be673e1a54768110175db82829e4c13935ed8005d"
+      "bytes": 24355,
+      "sha256": "ec2ea379db7ed4662cc7f615344cf5e472160aa5abc88f5c9d9e9dc66f220953"
     }
   ],
   "restored_artifacts": [
@@ -425,12 +432,21 @@
     },
     {
       "group": "deployment_manifests",
-      "path": "k8s/gke/collector.yaml",
-      "expected_sha256": "373dd2962b75ad398f39618055a2cdeea60e978e64342fb2d0d2794edebd24db",
+      "path": "k8s/gke/scheduling.yaml",
+      "expected_sha256": "dc2d76d891760f5609bf5b8ea88725e98e554d83f50e0e0814fc8d038632cf87",
       "restored": true,
       "hash_match": true,
-      "bytes": 8288,
-      "sha256": "373dd2962b75ad398f39618055a2cdeea60e978e64342fb2d0d2794edebd24db"
+      "bytes": 737,
+      "sha256": "dc2d76d891760f5609bf5b8ea88725e98e554d83f50e0e0814fc8d038632cf87"
+    },
+    {
+      "group": "deployment_manifests",
+      "path": "k8s/gke/collector.yaml",
+      "expected_sha256": "6183abaa778812fc921e9a20bec2c31d50f571e980cd9e7e609a821f8164eb6a",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 9005,
+      "sha256": "6183abaa778812fc921e9a20bec2c31d50f571e980cd9e7e609a821f8164eb6a"
     },
     {
       "group": "deployment_manifests",
@@ -444,11 +460,11 @@
     {
       "group": "deployment_manifests",
       "path": "k8s/gke/sample-app.yaml",
-      "expected_sha256": "57f721638b532b5ca8b8b8d46044b94af65b86a2ffabe54ba2a20e1da3968184",
+      "expected_sha256": "593dc25469953da2ca04212bf43a91908fd077c36b290855e4daea44a835ad60",
       "restored": true,
       "hash_match": true,
-      "bytes": 5232,
-      "sha256": "57f721638b532b5ca8b8b8d46044b94af65b86a2ffabe54ba2a20e1da3968184"
+      "bytes": 5951,
+      "sha256": "593dc25469953da2ca04212bf43a91908fd077c36b290855e4daea44a835ad60"
     },
     {
       "group": "deployment_manifests",
@@ -471,29 +487,29 @@
     {
       "group": "recovery_source_policy",
       "path": "config/disaster-recovery-policy.json",
-      "expected_sha256": "b1cb2e7af77fbcb6d6c3f9d5975a1154081363e7ad1b9cfae1f26b8d3d0b7528",
+      "expected_sha256": "b95515672861caead845e6a291ec42283c5ba768e8b7454cbad2ab4d89ff5877",
       "restored": true,
       "hash_match": true,
-      "bytes": 2660,
-      "sha256": "b1cb2e7af77fbcb6d6c3f9d5975a1154081363e7ad1b9cfae1f26b8d3d0b7528"
+      "bytes": 2695,
+      "sha256": "b95515672861caead845e6a291ec42283c5ba768e8b7454cbad2ab4d89ff5877"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
-      "expected_sha256": "4bfbdaeab48b2056e002e586c376049786efe1c3fc84ce5d502a198a8531baee",
+      "expected_sha256": "09e7fd56e577afefe42aa4b4cd8c3df093d26cb2cb20c56a17641ce0c3b2c9a8",
       "restored": true,
       "hash_match": true,
-      "bytes": 13348,
-      "sha256": "4bfbdaeab48b2056e002e586c376049786efe1c3fc84ce5d502a198a8531baee"
+      "bytes": 13577,
+      "sha256": "09e7fd56e577afefe42aa4b4cd8c3df093d26cb2cb20c56a17641ce0c3b2c9a8"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
-      "expected_sha256": "86ea1203eabbc13a7fa6041be673e1a54768110175db82829e4c13935ed8005d",
+      "expected_sha256": "ec2ea379db7ed4662cc7f615344cf5e472160aa5abc88f5c9d9e9dc66f220953",
       "restored": true,
       "hash_match": true,
-      "bytes": 23911,
-      "sha256": "86ea1203eabbc13a7fa6041be673e1a54768110175db82829e4c13935ed8005d"
+      "bytes": 24355,
+      "sha256": "ec2ea379db7ed4662cc7f615344cf5e472160aa5abc88f5c9d9e9dc66f220953"
     }
   ],
   "fixtures": [
@@ -526,7 +542,7 @@
       "evidence": {
         "missing": [],
         "duplicates": [],
-        "artifact_count": 30
+        "artifact_count": 31
       }
     },
     {
@@ -534,8 +550,8 @@
       "status": "pass",
       "reason": "Every restored artifact matches the source SHA-256 checksum.",
       "evidence": {
-        "restored_count": 30,
-        "hash_match_count": 30,
+        "restored_count": 31,
+        "hash_match_count": 31,
         "hash_mismatches": []
       }
     },
@@ -545,7 +561,7 @@
       "reason": "Recovery manifest covers release evidence, security evidence, observability contracts, manifests, and source policy.",
       "evidence": {
         "groups": {
-          "deployment_manifests": 5,
+          "deployment_manifests": 6,
           "incident_replay_evidence": 4,
           "observability_contracts": 7,
           "recovery_source_policy": 4,
@@ -559,7 +575,7 @@
       "status": "pass",
       "reason": "Generated Kubernetes, Grafana, OpenSLO, and admission policy artifacts are restored with matching hashes.",
       "evidence": {
-        "generated_artifact_count": 9
+        "generated_artifact_count": 10
       }
     },
     {

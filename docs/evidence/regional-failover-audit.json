@@ -61,7 +61,7 @@
         "rto_minutes": 15,
         "rpo_minutes": 5,
         "estimated_data_loss_minutes": 0,
-        "generated_artifact_count": 9
+        "generated_artifact_count": 10
       },
       "expected": {
         "budget_decision": "within_budget",
@@ -118,7 +118,7 @@
         "rto_minutes": 15,
         "rpo_minutes": 5,
         "estimated_data_loss_minutes": 0,
-        "generated_artifact_count": 9
+        "generated_artifact_count": 10
       },
       "expected": {
         "budget_decision": "manual_review_required",
@@ -178,7 +178,7 @@
         "rto_minutes": 15,
         "rpo_minutes": 5,
         "estimated_data_loss_minutes": 0,
-        "generated_artifact_count": 9
+        "generated_artifact_count": 10
       },
       "expected": {
         "budget_decision": "budget_exhausted",
@@ -237,7 +237,7 @@
         "rto_minutes": 15,
         "rpo_minutes": 5,
         "estimated_data_loss_minutes": 0,
-        "generated_artifact_count": 9
+        "generated_artifact_count": 10
       },
       "expected": {
         "budget_decision": "budget_exhausted",
@@ -308,7 +308,7 @@
         "rto_minutes": 15,
         "rpo_minutes": 5,
         "estimated_data_loss_minutes": 0,
-        "generated_artifact_count": 9
+        "generated_artifact_count": 10
       },
       "expected": {
         "budget_decision": "manual_review_required",

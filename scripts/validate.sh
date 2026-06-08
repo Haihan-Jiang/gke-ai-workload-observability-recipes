@@ -17,6 +17,7 @@ python3 -m py_compile \
   demo/namespace_resource_audit.py \
   demo/availability_topology_audit.py \
   demo/autoscaling_policy_audit.py \
+  demo/scheduling_placement_audit.py \
   demo/network_boundary_audit.py \
   demo/collector_self_observability_audit.py \
   demo/telemetry_sampling_audit.py \
@@ -61,6 +62,7 @@ python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
 python3 -m json.tool config/namespace-resource-policy.json >/dev/null
 python3 -m json.tool config/availability-topology-policy.json >/dev/null
 python3 -m json.tool config/autoscaling-policy.json >/dev/null
+python3 -m json.tool config/scheduling-placement-policy.json >/dev/null
 python3 -m json.tool config/network-boundary-policy.json >/dev/null
 python3 -m json.tool config/collector-self-observability-policy.json >/dev/null
 python3 -m json.tool config/telemetry-sampling-policy.json >/dev/null
@@ -143,6 +145,10 @@ python3 demo/autoscaling_policy_audit.py \
   --policy config/autoscaling-policy.json \
   --repo-root . \
   --output-dir out/autoscaling-policy-audit-validate >/dev/null
+python3 demo/scheduling_placement_audit.py \
+  --policy config/scheduling-placement-policy.json \
+  --repo-root . \
+  --output-dir out/scheduling-placement-audit-validate >/dev/null
 python3 demo/network_boundary_audit.py \
   --policy config/network-boundary-policy.json \
   --repo-root . \
@@ -323,6 +329,7 @@ python3 demo/release_readiness.py \
   --namespace-resource docs/evidence/namespace-resource-audit.json \
   --availability-topology docs/evidence/availability-topology-audit.json \
   --autoscaling-policy docs/evidence/autoscaling-policy-audit.json \
+  --scheduling-placement docs/evidence/scheduling-placement-audit.json \
   --network-boundary docs/evidence/network-boundary-audit.json \
   --collector-self-observability docs/evidence/collector-self-observability-audit.json \
   --telemetry-sampling docs/evidence/telemetry-sampling-audit.json \
@@ -374,6 +381,7 @@ python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
 python3 -m json.tool docs/evidence/namespace-resource-audit.json >/dev/null
 python3 -m json.tool docs/evidence/availability-topology-audit.json >/dev/null
 python3 -m json.tool docs/evidence/autoscaling-policy-audit.json >/dev/null
+python3 -m json.tool docs/evidence/scheduling-placement-audit.json >/dev/null
 python3 -m json.tool docs/evidence/network-boundary-audit.json >/dev/null
 python3 -m json.tool docs/evidence/collector-self-observability-audit.json >/dev/null
 python3 -m json.tool docs/evidence/telemetry-sampling-audit.json >/dev/null
