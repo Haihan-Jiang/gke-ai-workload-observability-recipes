@@ -58,6 +58,10 @@
       "ok": true
     },
     {
+      "name": "rollout_safety_audit",
+      "ok": true
+    },
+    {
       "name": "network_boundary_audit",
       "ok": true
     },
@@ -369,6 +373,14 @@
     },
     {
       "path": "scheduling-placement-audit.json",
+      "exists": true
+    },
+    {
+      "path": "rollout-safety-audit.md",
+      "exists": true
+    },
+    {
+      "path": "rollout-safety-audit.json",
       "exists": true
     },
     {

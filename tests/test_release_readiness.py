@@ -86,6 +86,16 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 10,
             "failed_count": 0,
         },
+        "rollout_safety": {
+            "status": "pass",
+            "workload_count": 2,
+            "rolling_update_count": 1,
+            "recreate_count": 1,
+            "timing_guard_count": 2,
+            "termination_window_count": 2,
+            "detected_fixture_count": 12,
+            "failed_count": 0,
+        },
         "network_boundary": {
             "status": "pass",
             "network_policy_count": 2,
@@ -265,8 +275,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 98,
-            "source_input_count": 81,
+            "artifact_count": 100,
+            "source_input_count": 83,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -365,6 +375,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["scheduling_placement_audit"])
+
+    def test_requires_rollout_safety_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["rollout_safety"]["detected_fixture_count"] = 3
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["rollout_safety_audit"])
 
     def test_requires_network_boundary_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

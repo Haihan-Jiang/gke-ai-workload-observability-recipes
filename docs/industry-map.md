@@ -152,6 +152,7 @@ inference incidents before a service reaches production.
 | C31 | Sampling can hide the traces needed for AI incident debugging | Production OpenTelemetry collectors need tail-sampling rules that retain errors, dependency timeouts, rollout regressions, and collector-pressure traces while keeping healthy baseline volume bounded. | [Telemetry sampling audit](evidence/telemetry-sampling-audit.md) |
 | C32 | Collector failures can hide the telemetry pipeline's own outage | Production observability needs collector internal metrics scraped and exported through the same durable metrics path so queue, exporter, and receiver failures are visible before telemetry disappears. | [Collector self-observability audit](evidence/collector-self-observability-audit.md) |
 | C33 | AI and telemetry workloads can land on the wrong node pools | GKE recipes need non-preempting PriorityClasses, soft node-pool affinity, and bounded tolerations so scheduling intent is explicit without making local smoke tests unschedulable. | [Scheduling placement audit](evidence/scheduling-placement-audit.md) |
+| C34 | Deployment rollouts can drop capacity or wedge singleton PVC users | Production recipes need HA workloads to use surge-safe RollingUpdate settings while singleton queue-backed collectors use Recreate, bounded rollout timing, termination grace, and compatible PDBs. | [Rollout safety audit](evidence/rollout-safety-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -291,6 +292,12 @@ inference incidents before a service reaches production.
     - Policy: [config/scheduling-placement-policy.json](../config/scheduling-placement-policy.json)
     - Inputs: [scheduling.yaml](../k8s/gke/scheduling.yaml), [collector.yaml](../k8s/gke/collector.yaml), and [sample-app.yaml](../k8s/gke/sample-app.yaml)
     - Evidence: [scheduling placement audit](evidence/scheduling-placement-audit.md)
+
+24. **Rollout safety audit**
+    - Code: [demo/rollout_safety_audit.py](../demo/rollout_safety_audit.py)
+    - Policy: [config/rollout-safety-policy.json](../config/rollout-safety-policy.json)
+    - Inputs: collector and sample workload Deployments/PDBs in [collector.yaml](../k8s/gke/collector.yaml) and [sample-app.yaml](../k8s/gke/sample-app.yaml)
+    - Evidence: [rollout safety audit](evidence/rollout-safety-audit.md)
 
 ## Boundary
 

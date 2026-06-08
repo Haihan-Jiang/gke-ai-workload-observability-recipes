@@ -18,6 +18,13 @@ metadata:
     app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 spec:
   replicas: 2
+  minReadySeconds: 10
+  progressDeadlineSeconds: 180
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   selector:
     matchLabels:
       app: toy-ai-inference-api
@@ -32,6 +39,7 @@ spec:
     spec:
       serviceAccountName: toy-ai-inference-api
       automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 30
       priorityClassName: ai-inference-serving
       affinity:
         nodeAffinity:

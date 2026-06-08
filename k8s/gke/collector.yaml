@@ -175,6 +175,10 @@ metadata:
     app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
 spec:
   replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 180
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: otel-collector
@@ -187,6 +191,7 @@ spec:
     spec:
       serviceAccountName: otel-collector
       automountServiceAccountToken: true
+      terminationGracePeriodSeconds: 60
       priorityClassName: ai-telemetry-critical
       affinity:
         nodeAffinity:
