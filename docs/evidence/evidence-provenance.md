@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `82`
+- Evidence artifacts: `84`
 - Generated artifacts: `4`
-- Source inputs: `63`
+- Source inputs: `65`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 2490 | `8f7e5deb4dd1b457...` |
+| `docs/evidence/README.md` | 2546 | `b74e51c9b420c01a...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -72,6 +72,8 @@ evidence easier to detect during review.
 | `docs/evidence/supply-chain-audit.json` | 1667 | `7d881ef96bd2b874...` |
 | `docs/evidence/k8s-hardening-audit.md` | 1843 | `04ff59b9155bc9d8...` |
 | `docs/evidence/k8s-hardening-audit.json` | 4673 | `40cad4f46752bda1...` |
+| `docs/evidence/workload-identity-audit.md` | 1583 | `c56d5d98ef85c305...` |
+| `docs/evidence/workload-identity-audit.json` | 6216 | `20e81a45c13637a5...` |
 | `docs/evidence/admission-policy-audit.md` | 1859 | `f9af1e271477a16c...` |
 | `docs/evidence/admission-policy-audit.json` | 47340 | `1fd2253203c05806...` |
 | `docs/evidence/alerting-rules.md` | 1034 | `dc833704511d7837...` |
@@ -111,7 +113,7 @@ evidence easier to detect during review.
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
 | `docs/evidence/disaster-recovery-drill.md` | 1031 | `81f0f1d0916ce338...` |
-| `docs/evidence/disaster-recovery-drill.json` | 21215 | `0fddfbb808830198...` |
+| `docs/evidence/disaster-recovery-drill.json` | 21215 | `916df2dc1a5298e1...` |
 
 ## Generated Artifacts
 

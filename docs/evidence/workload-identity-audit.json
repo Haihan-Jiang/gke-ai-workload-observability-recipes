@@ -1,0 +1,203 @@
+{
+  "status": "pass",
+  "check_count": 8,
+  "passed_count": 8,
+  "failed_count": 0,
+  "detected_fixture_count": 9,
+  "identity_boundary_count": 2,
+  "upstream_endpoint": "https://otel-gateway.example.com:4318",
+  "identity_boundaries": [
+    {
+      "workload": "otel-collector",
+      "namespace": "telemetry",
+      "kubernetes_service_account": "otel-collector",
+      "gcp_service_account": "otel-collector@gke-ai-inference-reliability.iam.gserviceaccount.com",
+      "automount_service_account_token": true
+    },
+    {
+      "workload": "toy-ai-inference-api",
+      "namespace": "ai-observability-demo",
+      "kubernetes_service_account": "toy-ai-inference-api",
+      "gcp_service_account": null,
+      "automount_service_account_token": false
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_workload_identity_annotation",
+      "mutation": "remove_service_account_annotation",
+      "expected_failed_check": "workload_identity_annotation",
+      "failed_checks": [
+        "workload_identity_annotation"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_gcp_service_account_binding",
+      "mutation": "set_service_account_annotation",
+      "expected_failed_check": "workload_identity_annotation",
+      "failed_checks": [
+        "workload_identity_annotation"
+      ],
+      "detected": true
+    },
+    {
+      "name": "workload_token_automount_enabled",
+      "mutation": "set_deployment_automount",
+      "expected_failed_check": "application_token_boundary",
+      "failed_checks": [
+        "application_token_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "static_gcp_secret_added",
+      "mutation": "add_secret",
+      "expected_failed_check": "static_credential_guard",
+      "failed_checks": [
+        "static_credential_guard"
+      ],
+      "detected": true
+    },
+    {
+      "name": "GOOGLE_APPLICATION_CREDENTIALS",
+      "mutation": "add_env",
+      "expected_failed_check": "static_credential_guard",
+      "failed_checks": [
+        "static_credential_guard"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_rbac_mutating_verb",
+      "mutation": "add_rbac_verb",
+      "expected_failed_check": "rbac_least_privilege",
+      "failed_checks": [
+        "rbac_least_privilege"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_rbac_wildcard_resource",
+      "mutation": "add_rbac_resource",
+      "expected_failed_check": "rbac_least_privilege",
+      "failed_checks": [
+        "rbac_least_privilege"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_binding_wrong_subject",
+      "mutation": "set_binding_subject",
+      "expected_failed_check": "rbac_binding_scope",
+      "failed_checks": [
+        "rbac_binding_scope"
+      ],
+      "detected": true
+    },
+    {
+      "name": "insecure_upstream_endpoint",
+      "mutation": "set_upstream_endpoint",
+      "expected_failed_check": "secure_exporter_boundary",
+      "failed_checks": [
+        "secure_exporter_boundary"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "workload_identity_annotation",
+      "status": "pass",
+      "reason": "Collector KSA is bound to the expected GCP service account through Workload Identity annotation.",
+      "evidence": {
+        "annotation": "iam.gke.io/gcp-service-account",
+        "observed_gcp_service_account": "otel-collector@gke-ai-inference-reliability.iam.gserviceaccount.com",
+        "expected_gcp_service_account": "otel-collector@gke-ai-inference-reliability.iam.gserviceaccount.com"
+      }
+    },
+    {
+      "name": "collector_token_boundary",
+      "status": "pass",
+      "reason": "Collector explicitly mounts only the service account token it needs for Kubernetes metadata and gateway identity.",
+      "evidence": {
+        "service_account_name": "otel-collector",
+        "automount_service_account_token": true
+      }
+    },
+    {
+      "name": "application_token_boundary",
+      "status": "pass",
+      "reason": "Sample inference workload uses a dedicated KSA and does not mount an API token by default.",
+      "evidence": {
+        "service_account_exists": true,
+        "service_account_automount": false,
+        "pod_service_account_name": "toy-ai-inference-api",
+        "pod_automount": false
+      }
+    },
+    {
+      "name": "rbac_least_privilege",
+      "status": "pass",
+      "reason": "Collector RBAC is read-only and avoids mutating verbs or wildcard API/resource scope.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "rbac_binding_scope",
+      "status": "pass",
+      "reason": "Collector ClusterRoleBinding is scoped to the collector service account only.",
+      "evidence": {
+        "role_ref": {
+          "apiGroup": "rbac.authorization.k8s.io",
+          "kind": "ClusterRole",
+          "name": "otel-collector-readonly"
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "name": "otel-collector",
+            "namespace": "telemetry"
+          }
+        ],
+        "expected_subject": {
+          "kind": "ServiceAccount",
+          "name": "otel-collector",
+          "namespace": "telemetry"
+        }
+      }
+    },
+    {
+      "name": "static_credential_guard",
+      "status": "pass",
+      "reason": "Manifests do not carry static GCP credential files, API keys, bearer tokens, or Secret resources.",
+      "evidence": {
+        "finding_count": 0,
+        "findings": []
+      }
+    },
+    {
+      "name": "secure_exporter_boundary",
+      "status": "pass",
+      "reason": "The upstream collector exporter endpoint uses TLS unless it targets an explicitly allowed local debug host.",
+      "evidence": {
+        "upstream_endpoint": "https://otel-gateway.example.com:4318",
+        "allowed_plaintext_hosts": [
+          "127.0.0.1",
+          "localhost"
+        ]
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove identity, static credential, RBAC, token boundary, and exporter TLS drift is detected.",
+      "evidence": {
+        "fixture_count": 9,
+        "detected_fixture_count": 9,
+        "undetected": []
+      }
+    }
+  ]
+}

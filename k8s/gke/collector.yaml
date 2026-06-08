@@ -3,6 +3,8 @@ kind: ServiceAccount
 metadata:
   name: otel-collector
   namespace: telemetry
+  annotations:
+    iam.gke.io/gcp-service-account: otel-collector@gke-ai-inference-reliability.iam.gserviceaccount.com
   labels:
     app.kubernetes.io/name: otel-collector
     app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
@@ -109,7 +111,7 @@ data:
       debug:
         verbosity: basic
       otlphttp/upstream:
-        endpoint: http://otel-gateway.example.com:4318
+        endpoint: https://otel-gateway.example.com:4318
         sending_queue:
           enabled: true
           storage: file_storage
@@ -149,6 +151,7 @@ spec:
         app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
     spec:
       serviceAccountName: otel-collector
+      automountServiceAccountToken: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 10001

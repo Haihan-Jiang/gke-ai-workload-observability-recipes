@@ -144,6 +144,7 @@ inference incidents before a service reaches production.
 | C23 | Overload mitigation can punish the wrong traffic | AI inference systems need explicit load-shedding and fallback policies that protect higher-priority tenants, shed best-effort traffic first, and tie cost/capacity pressure back to release action. | [Load shedding policy audit](evidence/load-shedding-policy-audit.md) |
 | C24 | Regional failover can restore artifacts but still route unsafe traffic | Failover decisions need DR RTO/RPO, standby capacity, probes, load shedding, rollback, runbook ownership, and Kubernetes controls to agree before traffic moves. | [Regional failover audit](evidence/regional-failover-audit.md) |
 | C25 | Accelerator quota overuse can starve high-priority inference tenants | GPU/accelerator quota needs tenant reservations, cost review, load shedding, shadow candidate checks, and release blocking to agree before traffic expands. | [Accelerator quota fairness audit](evidence/accelerator-quota-fairness-audit.md) |
+| C26 | GKE samples can accidentally normalize static keys or broad identity scope | Production recipes need Workload Identity binding, explicit service account token boundaries, least-privilege RBAC, static credential rejection, and TLS exporter transport. | [Workload Identity audit](evidence/workload-identity-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -235,6 +236,12 @@ inference incidents before a service reaches production.
     - Policy: [config/accelerator-quota-policy.json](../config/accelerator-quota-policy.json)
     - Inputs: [capacity plan](evidence/capacity-plan.md), [tenant blast radius](evidence/tenant-blast-radius.md), [token cost guard](evidence/token-cost-guard.md), [load shedding policy audit](evidence/load-shedding-policy-audit.md), [shadow traffic replay audit](evidence/shadow-traffic-replay-audit.md), and [model release safety audit](evidence/model-release-safety-audit.md)
     - Evidence: [accelerator quota fairness audit](evidence/accelerator-quota-fairness-audit.md)
+
+16. **Workload Identity audit**
+    - Code: [demo/workload_identity_audit.py](../demo/workload_identity_audit.py)
+    - Policy: [config/workload-identity-policy.json](../config/workload-identity-policy.json)
+    - Inputs: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
+    - Evidence: [Workload Identity audit](evidence/workload-identity-audit.md)
 
 ## Boundary
 

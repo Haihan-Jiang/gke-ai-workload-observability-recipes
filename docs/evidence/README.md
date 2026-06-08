@@ -25,6 +25,7 @@
 - [Policy regression suite](policy-regression-suite.md)
 - [Supply chain audit](supply-chain-audit.md)
 - [Kubernetes manifest hardening audit](k8s-hardening-audit.md)
+- [Workload Identity audit](workload-identity-audit.md)
 - [Admission policy audit](admission-policy-audit.md)
 - [SLO alerting rules](alerting-rules.md)
 - [Grafana dashboard evidence](grafana-dashboard.md)

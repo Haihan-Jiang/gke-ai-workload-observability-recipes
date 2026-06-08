@@ -54,6 +54,13 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "check_count": 11,
             "failed_count": 0,
         },
+        "workload_identity": {
+            "status": "pass",
+            "check_count": 8,
+            "identity_boundary_count": 2,
+            "detected_fixture_count": 9,
+            "failed_count": 0,
+        },
         "admission_policy": {
             "status": "pass",
             "policy_check_count": 12,
@@ -203,8 +210,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 82,
-            "source_input_count": 63,
+            "artifact_count": 84,
+            "source_input_count": 65,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -248,6 +255,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["supply_chain_audit"])
+
+    def test_requires_workload_identity_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["workload_identity"]["identity_boundary_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["workload_identity_audit"])
 
     def test_requires_admission_policy_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
