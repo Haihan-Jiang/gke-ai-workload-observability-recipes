@@ -64,6 +64,17 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "scenario_count": 5,
             "failed_count": 0,
         },
+        "error_budget": {
+            "status": "pass",
+            "scenario_count": 5,
+            "non_green_count": 4,
+            "failed_count": 0,
+            "decision_counts": {
+                "within_budget": 1,
+                "manual_review_required": 2,
+                "budget_exhausted": 2,
+            },
+        },
         "evidence_dir": evidence_dir,
     }
 
@@ -127,6 +138,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["openslo_contract"])
+
+    def test_requires_error_budget_ledger(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["error_budget"]["non_green_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["error_budget_ledger"])
 
 
 if __name__ == "__main__":

@@ -7,7 +7,8 @@ that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, Kubernetes manifest hardening,
 SLO alerting rules, Grafana dashboard coverage, OpenSLO contract,
-and committed evidence are present and internally consistent.
+error-budget accounting, and committed evidence are present and
+internally consistent.
 
 ## Checks
 
@@ -25,6 +26,7 @@ and committed evidence are present and internally consistent.
 | `slo_alerting_rules` | PASS |
 | `grafana_dashboard` | PASS |
 | `openslo_contract` | PASS |
+| `error_budget_ledger` | PASS |
 
 ## Evidence Files
 
@@ -75,6 +77,8 @@ and committed evidence are present and internally consistent.
 | `grafana-dashboard.json` | yes |
 | `openslo-contract.md` | yes |
 | `openslo-contract.json` | yes |
+| `error-budget-ledger.md` | yes |
+| `error-budget-ledger.json` | yes |
 
 ## Capacity Warnings
 

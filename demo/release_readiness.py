@@ -55,6 +55,8 @@ REQUIRED_EVIDENCE = [
     "grafana-dashboard.json",
     "openslo-contract.md",
     "openslo-contract.json",
+    "error-budget-ledger.md",
+    "error-budget-ledger.json",
 ]
 
 REQUIRED_POLICY_REGRESSION_CONTROLS = {
@@ -86,6 +88,7 @@ def evaluate(
     alerting: dict[str, Any],
     dashboard: dict[str, Any],
     openslo: dict[str, Any],
+    error_budget: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
     evidence = [
@@ -146,6 +149,14 @@ def evaluate(
             and int(openslo.get("scenario_count", 0)) >= 5
             and int(openslo.get("failed_count", -1)) == 0,
         },
+        {
+            "name": "error_budget_ledger",
+            "ok": error_budget.get("status") == "pass"
+            and int(error_budget.get("scenario_count", 0)) >= 5
+            and int(error_budget.get("non_green_count", 0)) >= 4
+            and int(error_budget.get("failed_count", -1)) == 0
+            and error_budget.get("decision_counts", {}).get("within_budget") == 1,
+        },
     ]
     return {
         "status": "pass" if all(item["ok"] for item in checks) else "fail",
@@ -171,7 +182,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, Kubernetes manifest hardening,",
         "SLO alerting rules, Grafana dashboard coverage, OpenSLO contract,",
-        "and committed evidence are present and internally consistent.",
+        "error-budget accounting, and committed evidence are present and",
+        "internally consistent.",
         "",
         "## Checks",
         "",
@@ -208,6 +220,7 @@ def main() -> int:
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
     parser.add_argument("--dashboard", default="out/grafana-dashboard/grafana-dashboard.json")
     parser.add_argument("--openslo", default="out/openslo-contract/openslo-contract.json")
+    parser.add_argument("--error-budget", default="out/error-budget-ledger/error-budget-ledger.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
     args = parser.parse_args()
@@ -224,6 +237,7 @@ def main() -> int:
         alerting=load_json(Path(args.alerting)),
         dashboard=load_json(Path(args.dashboard)),
         openslo=load_json(Path(args.openslo)),
+        error_budget=load_json(Path(args.error_budget)),
         evidence_dir=Path(args.evidence_dir),
     )
     output_dir = Path(args.output_dir)

@@ -1,0 +1,23 @@
+{
+  "description": "Policy for turning replayed inference incidents into an auditable SLO error-budget ledger.",
+  "baseline_scenario": "baseline",
+  "minimum_scenarios": 5,
+  "minimum_budget_events": 1,
+  "minimum_target_percent": 99.0,
+  "classification": {
+    "healthy_max_consumed_ratio": 1.0,
+    "review_max_consumed_ratio": 5.0
+  },
+  "release_actions": {
+    "within_budget": "eligible_for_release",
+    "manual_review_required": "require_sre_review_before_rollout",
+    "budget_exhausted": "block_release_or_rollback"
+  },
+  "required_evidence": [
+    "scenario_coverage",
+    "baseline_within_budget",
+    "incident_budget_pressure",
+    "release_action_mapping",
+    "math_consistency"
+  ]
+}

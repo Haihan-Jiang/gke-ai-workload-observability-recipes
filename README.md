@@ -49,6 +49,8 @@ not described as merged.
 - An OpenSLO-style SLO contract that ties the service objective to Prometheus
   SLI queries, telemetry-quality evidence, alerting, dashboard, release gate,
   and runbooks.
+- An error-budget ledger that maps replayed incidents to allowed bad events,
+  consumed budget, release actions, and rollback/manual-review decisions.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -184,6 +186,7 @@ script:
 - [SLO alerting rules](docs/evidence/alerting-rules.md)
 - [Grafana dashboard evidence](docs/evidence/grafana-dashboard.md)
 - [OpenSLO contract evidence](docs/evidence/openslo-contract.md)
+- [Error budget ledger](docs/evidence/error-budget-ledger.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -250,11 +253,13 @@ Before adapting this to a real GKE cluster:
 7. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
 8. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
    alerting, dashboard, and release-readiness evidence.
-9. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+9. Keep the error-budget ledger aligned with the SLO target before treating a
+   canary or dependency incident as release-safe.
+10. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-10. For private GKE clusters, verify webhook/firewall access for any operators
+11. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-11. Treat telemetry as production evidence: validate it during staged rollout,
+12. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study

@@ -48,6 +48,10 @@
     {
       "name": "openslo_contract",
       "ok": true
+    },
+    {
+      "name": "error_budget_ledger",
+      "ok": true
     }
   ],
   "evidence": [
@@ -229,6 +233,14 @@
     },
     {
       "path": "openslo-contract.json",
+      "exists": true
+    },
+    {
+      "path": "error-budget-ledger.md",
+      "exists": true
+    },
+    {
+      "path": "error-budget-ledger.json",
       "exists": true
     }
   ],

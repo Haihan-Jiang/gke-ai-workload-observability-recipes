@@ -66,6 +66,12 @@ python3 demo/openslo_contract.py \
   --openslo-policy config/openslo-policy.json \
   --output-dir docs/evidence \
   --contract slos/openslo/gke-ai-inference-slo.yaml >/dev/null
+python3 demo/error_budget_ledger.py \
+  --summary "${source_dir}/summary.json" \
+  --slo-config config/reliability-slo.json \
+  --openslo-policy config/openslo-policy.json \
+  --error-budget-policy config/error-budget-policy.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -81,6 +87,7 @@ python3 demo/release_readiness.py \
   --alerting docs/evidence/alerting-rules.json \
   --dashboard docs/evidence/grafana-dashboard.json \
   --openslo docs/evidence/openslo-contract.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 
