@@ -84,6 +84,14 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 10,
             "failed_count": 0,
         },
+        "collector_self_observability": {
+            "status": "pass",
+            "receiver_count": 3,
+            "self_metrics_target_count": 1,
+            "scrape_job_count": 1,
+            "detected_fixture_count": 10,
+            "failed_count": 0,
+        },
         "telemetry_sampling": {
             "status": "pass",
             "policy_count": 5,
@@ -248,8 +256,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 94,
-            "source_input_count": 75,
+            "artifact_count": 96,
+            "source_input_count": 77,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -348,6 +356,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["network_boundary_audit"])
+
+    def test_requires_collector_self_observability_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["collector_self_observability"]["self_metrics_target_count"] = 0
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["collector_self_observability_audit"])
 
     def test_requires_telemetry_sampling_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

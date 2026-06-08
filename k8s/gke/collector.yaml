@@ -82,6 +82,13 @@ data:
             endpoint: 0.0.0.0:4318
       k8s_cluster:
         auth_type: serviceAccount
+      prometheus/internal:
+        config:
+          scrape_configs:
+            - job_name: otel-collector-internal
+              scrape_interval: 30s
+              static_configs:
+                - targets: ["127.0.0.1:8888"]
 
     processors:
       memory_limiter:
@@ -154,7 +161,7 @@ data:
           processors: [memory_limiter, k8sattributes, resource/gke, tail_sampling, batch]
           exporters: [debug, otlphttp/upstream]
         metrics:
-          receivers: [otlp, k8s_cluster]
+          receivers: [otlp, k8s_cluster, prometheus/internal]
           processors: [memory_limiter, k8sattributes, resource/gke, batch]
           exporters: [debug, otlphttp/upstream]
 ---

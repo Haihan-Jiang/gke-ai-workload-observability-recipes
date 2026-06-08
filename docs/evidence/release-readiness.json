@@ -58,6 +58,10 @@
       "ok": true
     },
     {
+      "name": "collector_self_observability_audit",
+      "ok": true
+    },
+    {
       "name": "telemetry_sampling_audit",
       "ok": true
     },
@@ -361,6 +365,14 @@
     },
     {
       "path": "network-boundary-audit.json",
+      "exists": true
+    },
+    {
+      "path": "collector-self-observability-audit.md",
+      "exists": true
+    },
+    {
+      "path": "collector-self-observability-audit.json",
       "exists": true
     },
     {

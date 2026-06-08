@@ -1,0 +1,244 @@
+{
+  "status": "pass",
+  "receiver_count": 3,
+  "self_metrics_target_count": 1,
+  "scrape_job_count": 1,
+  "check_count": 12,
+  "detected_fixture_count": 10,
+  "failed_count": 0,
+  "fixture_results": [
+    {
+      "name": "missing_self_metrics_receiver",
+      "mutation": "remove_receiver",
+      "expected_failed_check": "self_metrics_receiver_defined",
+      "failed_checks": [
+        "self_metrics_receiver_defined",
+        "self_metrics_scrape_job",
+        "self_metrics_loopback_target",
+        "self_metrics_scrape_interval"
+      ],
+      "detected": true
+    },
+    {
+      "name": "self_metrics_removed_from_pipeline",
+      "mutation": "remove_pipeline_receiver",
+      "expected_failed_check": "metrics_pipeline_collects_self_metrics",
+      "failed_checks": [
+        "metrics_pipeline_collects_self_metrics"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_scrape_job_name",
+      "mutation": "set_scrape_job_name",
+      "expected_failed_check": "self_metrics_scrape_job",
+      "failed_checks": [
+        "self_metrics_scrape_job"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_scrape_target",
+      "mutation": "clear_scrape_targets",
+      "expected_failed_check": "self_metrics_loopback_target",
+      "failed_checks": [
+        "self_metrics_loopback_target"
+      ],
+      "detected": true
+    },
+    {
+      "name": "non_loopback_scrape_target",
+      "mutation": "set_scrape_target",
+      "expected_failed_check": "self_metrics_loopback_target",
+      "failed_checks": [
+        "self_metrics_loopback_target"
+      ],
+      "detected": true
+    },
+    {
+      "name": "slow_scrape_interval",
+      "mutation": "set_scrape_interval",
+      "expected_failed_check": "self_metrics_scrape_interval",
+      "failed_checks": [
+        "self_metrics_scrape_interval"
+      ],
+      "detected": true
+    },
+    {
+      "name": "tail_sampling_in_metrics_pipeline",
+      "mutation": "add_pipeline_processor",
+      "expected_failed_check": "metrics_pipeline_excludes_trace_sampling",
+      "failed_checks": [
+        "metrics_pipeline_processor_order",
+        "metrics_pipeline_excludes_trace_sampling"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_resource_enrichment",
+      "mutation": "remove_pipeline_processor",
+      "expected_failed_check": "metrics_pipeline_processor_order",
+      "failed_checks": [
+        "metrics_pipeline_processor_order"
+      ],
+      "detected": true
+    },
+    {
+      "name": "disabled_exporter_queue",
+      "mutation": "set_exporter_queue_enabled",
+      "expected_failed_check": "self_metrics_exporter_queue",
+      "failed_checks": [
+        "self_metrics_exporter_queue"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_collector_config_owner_label",
+      "mutation": "remove_config_map_label",
+      "expected_failed_check": "collector_config_label_governance",
+      "failed_checks": [
+        "collector_config_label_governance"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "collector_config_map",
+      "status": "pass",
+      "reason": "Collector ConfigMap exists and its embedded OpenTelemetry config is parseable.",
+      "evidence": {
+        "config_map": "otel-collector-config"
+      }
+    },
+    {
+      "name": "self_metrics_receiver_defined",
+      "status": "pass",
+      "reason": "Collector config defines a Prometheus receiver for collector internal metrics.",
+      "evidence": {
+        "receiver": "prometheus/internal",
+        "defined": true
+      }
+    },
+    {
+      "name": "self_metrics_scrape_job",
+      "status": "pass",
+      "reason": "Collector self-metrics scrape job has an explicit reviewable job name.",
+      "evidence": {
+        "required": "otel-collector-internal",
+        "observed": [
+          "otel-collector-internal"
+        ]
+      }
+    },
+    {
+      "name": "self_metrics_loopback_target",
+      "status": "pass",
+      "reason": "Collector self-metrics scrape target stays on loopback and is not exposed as a cross-pod service dependency.",
+      "evidence": {
+        "required": [
+          "127.0.0.1:8888"
+        ],
+        "observed": [
+          "127.0.0.1:8888"
+        ]
+      }
+    },
+    {
+      "name": "self_metrics_scrape_interval",
+      "status": "pass",
+      "reason": "Collector self-metrics scrape interval is short enough for queue/exporter incident response.",
+      "evidence": {
+        "interval_seconds": [
+          30.0
+        ],
+        "max": 60
+      }
+    },
+    {
+      "name": "metrics_pipeline_collects_self_metrics",
+      "status": "pass",
+      "reason": "Metrics pipeline includes collector self-metrics alongside OTLP and Kubernetes cluster metrics.",
+      "evidence": {
+        "required": [
+          "otlp",
+          "k8s_cluster",
+          "prometheus/internal"
+        ],
+        "observed": [
+          "otlp",
+          "k8s_cluster",
+          "prometheus/internal"
+        ]
+      }
+    },
+    {
+      "name": "metrics_pipeline_processor_order",
+      "status": "pass",
+      "reason": "Collector self-metrics are enriched and batched through the expected metrics processors.",
+      "evidence": {
+        "required": [
+          "memory_limiter",
+          "k8sattributes",
+          "resource/gke",
+          "batch"
+        ],
+        "observed": [
+          "memory_limiter",
+          "k8sattributes",
+          "resource/gke",
+          "batch"
+        ]
+      }
+    },
+    {
+      "name": "metrics_pipeline_excludes_trace_sampling",
+      "status": "pass",
+      "reason": "Trace-only sampling processors are not applied to collector self-metrics.",
+      "evidence": {
+        "forbidden": [
+          "tail_sampling"
+        ],
+        "observed": []
+      }
+    },
+    {
+      "name": "self_metrics_exporter_path",
+      "status": "pass",
+      "reason": "Collector self-metrics leave through the same upstream telemetry gateway exporter as other metrics.",
+      "evidence": {
+        "required": "otlphttp/upstream",
+        "observed": [
+          "debug",
+          "otlphttp/upstream"
+        ]
+      }
+    },
+    {
+      "name": "self_metrics_exporter_queue",
+      "status": "pass",
+      "reason": "Collector self-metrics keep the queued exporter and retry path enabled.",
+      "evidence": {
+        "exporter": "otlphttp/upstream"
+      }
+    },
+    {
+      "name": "collector_config_label_governance",
+      "status": "pass",
+      "reason": "Collector ConfigMap carries owner labels used by review and policy tooling.",
+      "evidence": {
+        "missing_labels": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove collector self-observability drift is detected before release readiness passes.",
+      "evidence": {
+        "fixture_count": 10,
+        "detected_fixture_count": 10,
+        "undetected": []
+      }
+    }
+  ]
+}

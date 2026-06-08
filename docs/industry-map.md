@@ -150,6 +150,7 @@ inference incidents before a service reaches production.
 | C29 | HPA lag can be analyzed offline while manifests still lack a real scaling policy | Production GKE recipes need an actual HPA with bounded replicas, resource metrics, matching requests, and scale behavior before autoscaling claims are trusted. | [Autoscaling policy audit](evidence/autoscaling-policy-audit.md) |
 | C30 | Workload traffic can drift outside the intended telemetry path | Production GKE recipes need egress and ingress NetworkPolicy boundaries so sample workloads can reach telemetry and DNS without normalizing unrestricted namespace traffic. | [Network boundary audit](evidence/network-boundary-audit.md) |
 | C31 | Sampling can hide the traces needed for AI incident debugging | Production OpenTelemetry collectors need tail-sampling rules that retain errors, dependency timeouts, rollout regressions, and collector-pressure traces while keeping healthy baseline volume bounded. | [Telemetry sampling audit](evidence/telemetry-sampling-audit.md) |
+| C32 | Collector failures can hide the telemetry pipeline's own outage | Production observability needs collector internal metrics scraped and exported through the same durable metrics path so queue, exporter, and receiver failures are visible before telemetry disappears. | [Collector self-observability audit](evidence/collector-self-observability-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -277,6 +278,12 @@ inference incidents before a service reaches production.
     - Policy: [config/telemetry-sampling-policy.json](../config/telemetry-sampling-policy.json)
     - Inputs: collector ConfigMap and trace pipeline in [collector.yaml](../k8s/gke/collector.yaml)
     - Evidence: [telemetry sampling audit](evidence/telemetry-sampling-audit.md)
+
+22. **Collector self-observability audit**
+    - Code: [demo/collector_self_observability_audit.py](../demo/collector_self_observability_audit.py)
+    - Policy: [config/collector-self-observability-policy.json](../config/collector-self-observability-policy.json)
+    - Inputs: collector ConfigMap and metrics pipeline in [collector.yaml](../k8s/gke/collector.yaml)
+    - Evidence: [collector self-observability audit](evidence/collector-self-observability-audit.md)
 
 ## Boundary
 

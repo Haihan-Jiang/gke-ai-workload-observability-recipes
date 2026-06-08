@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 94,
+  "artifact_count": 96,
   "generated_artifact_count": 4,
-  "source_input_count": 75,
+  "source_input_count": 77,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2838,
-      "sha256": "bc37085833a71a87be7ee9391f5d7cda33e3c456be722642af2750a5e480a286"
+      "bytes": 2916,
+      "sha256": "14489f81663facb49c79aaef56f101d289f9730ef7fc2dcee4c2041430397129"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -366,6 +366,20 @@
       "sha256": "73431d7117267ab45166cd7ae6b9ce855ed22b65df187693599a6d6dca05459c"
     },
     {
+      "path": "docs/evidence/collector-self-observability-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1426,
+      "sha256": "ab08850669a168809a7c4fb086ac1cc0c9ba768e34e391d14aa6942429c038c6"
+    },
+    {
+      "path": "docs/evidence/collector-self-observability-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 6915,
+      "sha256": "75d780e4eac706b9a254c937171bb78cf7555a40db2b4dd5adc725bc12dc0ecc"
+    },
+    {
       "path": "docs/evidence/telemetry-sampling-audit.md",
       "group": "evidence",
       "exists": true,
@@ -671,7 +685,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 21217,
-      "sha256": "a0b2bca9b7d683ef85b3bef6cf35062ab0d86de41a6ee74fc39051fbf2d5520e"
+      "sha256": "cc5249ea6700c87d0897a92d07e684fee858e00b657748ba9b11ecd51c7920b4"
     }
   ],
   "generated_artifacts": [
@@ -709,15 +723,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 13087,
-      "sha256": "53758d30b0d39e735a7c550e4356214c1ef3df5b9a16322e3c02e09db92c159f"
+      "bytes": 13348,
+      "sha256": "4bfbdaeab48b2056e002e586c376049786efe1c3fc84ce5d502a198a8531baee"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 23403,
-      "sha256": "cf7646505d48877b6d4a0975f9d83b7884509129a8611316e773337c12f2e3e5"
+      "bytes": 23911,
+      "sha256": "86ea1203eabbc13a7fa6041be673e1a54768110175db82829e4c13935ed8005d"
     },
     {
       "path": "demo/incident_replay.py",
@@ -816,6 +830,13 @@
       "exists": true,
       "bytes": 17271,
       "sha256": "b4bd24ee78bd15030b359c4e73b2a880076622818d3173b115fec666837c73f6"
+    },
+    {
+      "path": "demo/collector_self_observability_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 18697,
+      "sha256": "139eabcd2b99cabb9186be9e655c5141fd79c72feff8e459eeaf3255842caa56"
     },
     {
       "path": "demo/telemetry_sampling_audit.py",
@@ -975,8 +996,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 10729,
-      "sha256": "e980c9a6038b5b446dab81097bf28b19036803b017cd81aa64791b0181cfdce5"
+      "bytes": 10826,
+      "sha256": "18ce607e107d4489a45c179f430651c345435aa79dfa705ea4f00b4077dbf4c6"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1047,6 +1068,13 @@
       "exists": true,
       "bytes": 3315,
       "sha256": "f476659a31734f2338794550192749a63c3d1d7973dde5e44349a1533a78a1c0"
+    },
+    {
+      "path": "config/collector-self-observability-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2967,
+      "sha256": "1a865ef6301448564ab119f4260bf19a291a46eecb7c9548ff2ff7becd060a44"
     },
     {
       "path": "config/telemetry-sampling-policy.json",
@@ -1220,8 +1248,8 @@
       "path": "k8s/gke/collector.yaml",
       "group": "source-input",
       "exists": true,
-      "bytes": 8039,
-      "sha256": "17ab4ffaf70957b9cb16b1b7d95468c171d1f0c5d9e9d3efe2419d5ee0b8b51e"
+      "bytes": 8288,
+      "sha256": "373dd2962b75ad398f39618055a2cdeea60e978e64342fb2d0d2794edebd24db"
     },
     {
       "path": "k8s/gke/sample-app.yaml",
@@ -1237,8 +1265,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 94,
-        "minimum": 94
+        "count": 96,
+        "minimum": 96
       }
     },
     {
@@ -1254,8 +1282,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 75,
-        "minimum": 75
+        "count": 77,
+        "minimum": 77
       }
     },
     {

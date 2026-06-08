@@ -29,6 +29,7 @@
 - [Availability topology audit](availability-topology-audit.md)
 - [Autoscaling policy audit](autoscaling-policy-audit.md)
 - [Network boundary audit](network-boundary-audit.md)
+- [Collector self-observability audit](collector-self-observability-audit.md)
 - [Telemetry sampling audit](telemetry-sampling-audit.md)
 - [Workload Identity audit](workload-identity-audit.md)
 - [Admission policy audit](admission-policy-audit.md)

@@ -63,6 +63,8 @@ REQUIRED_EVIDENCE = [
     "autoscaling-policy-audit.json",
     "network-boundary-audit.md",
     "network-boundary-audit.json",
+    "collector-self-observability-audit.md",
+    "collector-self-observability-audit.json",
     "telemetry-sampling-audit.md",
     "telemetry-sampling-audit.json",
     "workload-identity-audit.md",
@@ -138,6 +140,7 @@ def evaluate(
     availability_topology: dict[str, Any],
     autoscaling_policy: dict[str, Any],
     network_boundary: dict[str, Any],
+    collector_self_observability: dict[str, Any],
     telemetry_sampling: dict[str, Any],
     workload_identity: dict[str, Any],
     admission_policy: dict[str, Any],
@@ -242,6 +245,15 @@ def evaluate(
             and int(network_boundary.get("egress_rule_count", 0)) >= 2
             and int(network_boundary.get("detected_fixture_count", 0)) >= 10
             and int(network_boundary.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "collector_self_observability_audit",
+            "ok": collector_self_observability.get("status") == "pass"
+            and int(collector_self_observability.get("receiver_count", 0)) >= 3
+            and int(collector_self_observability.get("self_metrics_target_count", 0)) >= 1
+            and int(collector_self_observability.get("scrape_job_count", 0)) >= 1
+            and int(collector_self_observability.get("detected_fixture_count", 0)) >= 10
+            and int(collector_self_observability.get("failed_count", -1)) == 0,
         },
         {
             "name": "telemetry_sampling_audit",
@@ -425,8 +437,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 94
-            and int(evidence_provenance.get("source_input_count", 0)) >= 75
+            and int(evidence_provenance.get("artifact_count", 0)) >= 96
+            and int(evidence_provenance.get("source_input_count", 0)) >= 77
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -455,8 +467,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "policy, policy regression fixtures, supply-chain audit, Kubernetes",
         "manifest hardening, namespace resource governance, availability",
         "topology governance, autoscaling policy governance, network boundary",
-        "governance, telemetry sampling governance, Workload Identity audit,",
-        "admission policy simulation,",
+        "governance, collector self-observability, telemetry sampling",
+        "governance, Workload Identity audit, admission policy simulation,",
         "SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
         "detection,",
@@ -508,6 +520,7 @@ def main() -> int:
     parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
     parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
     parser.add_argument("--network-boundary", default="out/network-boundary-audit/network-boundary-audit.json")
+    parser.add_argument("--collector-self-observability", default="out/collector-self-observability-audit/collector-self-observability-audit.json")
     parser.add_argument("--telemetry-sampling", default="out/telemetry-sampling-audit/telemetry-sampling-audit.json")
     parser.add_argument("--workload-identity", default="out/workload-identity-audit/workload-identity-audit.json")
     parser.add_argument("--admission-policy", default="out/admission-policy-audit/admission-policy-audit.json")
@@ -549,6 +562,7 @@ def main() -> int:
         availability_topology=load_json(Path(args.availability_topology)),
         autoscaling_policy=load_json(Path(args.autoscaling_policy)),
         network_boundary=load_json(Path(args.network_boundary)),
+        collector_self_observability=load_json(Path(args.collector_self_observability)),
         telemetry_sampling=load_json(Path(args.telemetry_sampling)),
         workload_identity=load_json(Path(args.workload_identity)),
         admission_policy=load_json(Path(args.admission_policy)),
