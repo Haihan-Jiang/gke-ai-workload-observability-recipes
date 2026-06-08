@@ -54,6 +54,10 @@
       "ok": true
     },
     {
+      "name": "telemetry_cost_budget",
+      "ok": true
+    },
+    {
       "name": "error_budget_ledger",
       "ok": true
     },
@@ -137,6 +141,14 @@
     },
     {
       "path": "telemetry-redaction-audit.json",
+      "exists": true
+    },
+    {
+      "path": "telemetry-cost-budget.md",
+      "exists": true
+    },
+    {
+      "path": "telemetry-cost-budget.json",
       "exists": true
     },
     {

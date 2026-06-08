@@ -71,6 +71,11 @@ python3 demo/telemetry_redaction_audit.py \
   --payload-dir "${payload_dir}" \
   --policy config/telemetry-redaction-policy.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/telemetry_cost_budget.py \
+  --summary "${source_dir}/summary.json" \
+  --payload-dir "${payload_dir}" \
+  --policy config/telemetry-cost-policy.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/error_budget_ledger.py \
   --summary "${source_dir}/summary.json" \
   --slo-config config/reliability-slo.json \
@@ -112,6 +117,7 @@ python3 demo/release_readiness.py \
   --dashboard docs/evidence/grafana-dashboard.json \
   --openslo docs/evidence/openslo-contract.json \
   --telemetry-redaction docs/evidence/telemetry-redaction-audit.json \
+  --telemetry-cost docs/evidence/telemetry-cost-budget.json \
   --error-budget docs/evidence/error-budget-ledger.json \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \

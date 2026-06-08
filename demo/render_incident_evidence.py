@@ -160,6 +160,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Grafana dashboard evidence](grafana-dashboard.md)",
                 "- [OpenSLO contract evidence](openslo-contract.md)",
                 "- [Telemetry redaction audit](telemetry-redaction-audit.md)",
+                "- [Telemetry cost budget](telemetry-cost-budget.md)",
                 "- [Error budget ledger](error-budget-ledger.md)",
                 "- [Rollback drill](rollback-drill.md)",
                 "- [Post-incident review](post-incident-review.md)",

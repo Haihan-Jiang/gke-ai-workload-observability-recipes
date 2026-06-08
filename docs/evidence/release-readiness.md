@@ -7,9 +7,10 @@ that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, Kubernetes manifest hardening,
 SLO alerting rules, Grafana dashboard coverage, OpenSLO contract,
-telemetry redaction, error-budget accounting, rollback drill
-coverage, post-incident review coverage, evidence provenance, and
-committed evidence are present and internally consistent.
+telemetry redaction, telemetry cost budget, error-budget accounting,
+rollback drill coverage, post-incident review coverage, evidence
+provenance, and committed evidence are present and internally
+consistent.
 
 ## Checks
 
@@ -28,6 +29,7 @@ committed evidence are present and internally consistent.
 | `grafana_dashboard` | PASS |
 | `openslo_contract` | PASS |
 | `telemetry_redaction_audit` | PASS |
+| `telemetry_cost_budget` | PASS |
 | `error_budget_ledger` | PASS |
 | `rollback_drill` | PASS |
 | `post_incident_review` | PASS |
@@ -54,6 +56,8 @@ committed evidence are present and internally consistent.
 | `trace-quality-audit.json` | yes |
 | `telemetry-redaction-audit.md` | yes |
 | `telemetry-redaction-audit.json` | yes |
+| `telemetry-cost-budget.md` | yes |
+| `telemetry-cost-budget.json` | yes |
 | `collector-resilience.md` | yes |
 | `collector-resilience.json` | yes |
 | `incident-correlation.md` | yes |

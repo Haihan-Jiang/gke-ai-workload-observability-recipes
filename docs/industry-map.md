@@ -130,6 +130,7 @@ inference incidents before a service reaches production.
 | ID | Problem | Why It Matters In Production | Lab Coverage |
 | --- | --- | --- | --- |
 | C11 | Inference traces can leak prompts, responses, secrets, or direct identifiers | AI observability needs enough metadata for SRE triage without exporting customer text or credentials into tracing backends. | [Telemetry redaction audit](evidence/telemetry-redaction-audit.md) |
+| C12 | Trace volume can overwhelm observability budgets | AI inference traces often include multiple child spans and expensive high-signal incidents; teams need sampling and retention budgets before exporting everything. | [Telemetry cost budget](evidence/telemetry-cost-budget.md) |
 
 ## Fourth Feature Contribution
 
@@ -138,6 +139,12 @@ inference incidents before a service reaches production.
    - Config: [config/telemetry-redaction-policy.json](../config/telemetry-redaction-policy.json)
    - Input: per-scenario OTLP payloads emitted by [demo/incident_replay.py](../demo/incident_replay.py)
    - Evidence: [telemetry redaction audit](evidence/telemetry-redaction-audit.md)
+
+2. **Telemetry cost budget**
+   - Code: [demo/telemetry_cost_budget.py](../demo/telemetry_cost_budget.py)
+   - Config: [config/telemetry-cost-policy.json](../config/telemetry-cost-policy.json)
+   - Input: per-scenario OTLP payload sizes and span counts emitted by [demo/incident_replay.py](../demo/incident_replay.py)
+   - Evidence: [telemetry cost budget](evidence/telemetry-cost-budget.md)
 
 ## Boundary
 

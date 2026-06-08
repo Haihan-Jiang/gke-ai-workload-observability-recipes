@@ -27,6 +27,8 @@ REQUIRED_EVIDENCE = [
     "trace-quality-audit.json",
     "telemetry-redaction-audit.md",
     "telemetry-redaction-audit.json",
+    "telemetry-cost-budget.md",
+    "telemetry-cost-budget.json",
     "collector-resilience.md",
     "collector-resilience.json",
     "incident-correlation.md",
@@ -97,6 +99,7 @@ def evaluate(
     dashboard: dict[str, Any],
     openslo: dict[str, Any],
     telemetry_redaction: dict[str, Any],
+    telemetry_cost: dict[str, Any],
     error_budget: dict[str, Any],
     rollback_drill: dict[str, Any],
     post_incident_review: dict[str, Any],
@@ -169,6 +172,13 @@ def evaluate(
             and int(telemetry_redaction.get("failed_count", -1)) == 0,
         },
         {
+            "name": "telemetry_cost_budget",
+            "ok": telemetry_cost.get("status") == "pass"
+            and int(telemetry_cost.get("scenario_count", 0)) >= 5
+            and float(telemetry_cost.get("daily_ingest_gib", 999999.0)) <= 25.0
+            and int(telemetry_cost.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "error_budget_ledger",
             "ok": error_budget.get("status") == "pass"
             and int(error_budget.get("scenario_count", 0)) >= 5
@@ -222,9 +232,10 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, Kubernetes manifest hardening,",
         "SLO alerting rules, Grafana dashboard coverage, OpenSLO contract,",
-        "telemetry redaction, error-budget accounting, rollback drill",
-        "coverage, post-incident review coverage, evidence provenance, and",
-        "committed evidence are present and internally consistent.",
+        "telemetry redaction, telemetry cost budget, error-budget accounting,",
+        "rollback drill coverage, post-incident review coverage, evidence",
+        "provenance, and committed evidence are present and internally",
+        "consistent.",
         "",
         "## Checks",
         "",
@@ -262,6 +273,7 @@ def main() -> int:
     parser.add_argument("--dashboard", default="out/grafana-dashboard/grafana-dashboard.json")
     parser.add_argument("--openslo", default="out/openslo-contract/openslo-contract.json")
     parser.add_argument("--telemetry-redaction", default="out/telemetry-redaction-audit/telemetry-redaction-audit.json")
+    parser.add_argument("--telemetry-cost", default="out/telemetry-cost-budget/telemetry-cost-budget.json")
     parser.add_argument("--error-budget", default="out/error-budget-ledger/error-budget-ledger.json")
     parser.add_argument("--rollback-drill", default="out/rollback-drill/rollback-drill.json")
     parser.add_argument("--post-incident-review", default="out/post-incident-review/post-incident-review.json")
@@ -283,6 +295,7 @@ def main() -> int:
         dashboard=load_json(Path(args.dashboard)),
         openslo=load_json(Path(args.openslo)),
         telemetry_redaction=load_json(Path(args.telemetry_redaction)),
+        telemetry_cost=load_json(Path(args.telemetry_cost)),
         error_budget=load_json(Path(args.error_budget)),
         rollback_drill=load_json(Path(args.rollback_drill)),
         post_incident_review=load_json(Path(args.post_incident_review)),

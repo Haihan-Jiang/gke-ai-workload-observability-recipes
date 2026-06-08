@@ -51,6 +51,8 @@ not described as merged.
   and runbooks.
 - A telemetry redaction audit that proves trace payloads keep safe AI metadata
   while blocking prompt text, response bodies, secrets, and direct identifiers.
+- A telemetry cost budget that estimates sampled trace ingest and retained
+  storage from generated OTLP payload size and span volume.
 - An error-budget ledger that maps replayed incidents to allowed bad events,
   consumed budget, release actions, and rollback/manual-review decisions.
 - A rollback drill that turns the release gate, error budget, and runbooks into
@@ -195,6 +197,7 @@ script:
 - [Grafana dashboard evidence](docs/evidence/grafana-dashboard.md)
 - [OpenSLO contract evidence](docs/evidence/openslo-contract.md)
 - [Telemetry redaction audit](docs/evidence/telemetry-redaction-audit.md)
+- [Telemetry cost budget](docs/evidence/telemetry-cost-budget.md)
 - [Error budget ledger](docs/evidence/error-budget-ledger.md)
 - [Rollback drill](docs/evidence/rollback-drill.md)
 - [Post-incident review](docs/evidence/post-incident-review.md)
@@ -267,19 +270,21 @@ Before adapting this to a real GKE cluster:
    alerting, dashboard, and release-readiness evidence.
 9. Audit trace payloads for prompt, response, secret, and direct-identifier
    leakage before using inference telemetry as production evidence.
-10. Keep the error-budget ledger aligned with the SLO target before treating a
+10. Keep trace sampling and retention budgets explicit before routing all
+    inference telemetry into a paid backend.
+11. Keep the error-budget ledger aligned with the SLO target before treating a
    canary or dependency incident as release-safe.
-11. Run the rollback drill after changing release gates, runbooks, or SLO
+12. Run the rollback drill after changing release gates, runbooks, or SLO
     budget policy so owner and RTO assumptions stay explicit.
-12. Keep post-incident reviews tied to replayed evidence, rollback timelines,
+13. Keep post-incident reviews tied to replayed evidence, rollback timelines,
     and corrective actions instead of treating them as narrative-only notes.
-13. Regenerate evidence provenance after changing evidence scripts, generated
+14. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-14. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+15. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-15. For private GKE clusters, verify webhook/firewall access for any operators
+16. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-16. Treat telemetry as production evidence: validate it during staged rollout,
+17. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -306,8 +311,9 @@ Current wording before upstream merges:
 > configurable SLO gates, burn-rate analysis, rollout rollback guards, trace
 > quality audits, collector resilience modeling, generated incident runbooks,
 > critical-path attribution, HPA lag analysis, tenant blast-radius checks,
-> token/GPU guardrails, telemetry redaction audits, cross-namespace
-> instrumentation, persistent telemetry queues, and Kubernetes metadata.
+> token/GPU guardrails, telemetry redaction and cost audits,
+> cross-namespace instrumentation, persistent telemetry queues, and Kubernetes
+> metadata.
 
 After an upstream PR merges, update this to:
 
@@ -317,8 +323,8 @@ After an upstream PR merges, update this to:
 > capacity/readiness evidence, burn-rate and canary decision controls, trace
 > quality audits, critical-path attribution, HPA lag analysis, tenant blast
 > radius checks, token/GPU guardrails, policy-as-code deployment gates,
-> telemetry redaction audits, generated runbooks, and related Google Cloud OSS
-> recipe contributions.
+> telemetry redaction and cost audits, generated runbooks, and related Google
+> Cloud OSS recipe contributions.
 
 ## License
 

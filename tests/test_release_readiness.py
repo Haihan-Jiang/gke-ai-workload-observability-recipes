@@ -70,6 +70,12 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "redaction_violation_count": 0,
             "failed_count": 0,
         },
+        "telemetry_cost": {
+            "status": "pass",
+            "scenario_count": 5,
+            "daily_ingest_gib": 11.0,
+            "failed_count": 0,
+        },
         "error_budget": {
             "status": "pass",
             "scenario_count": 5,
@@ -184,6 +190,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["telemetry_redaction_audit"])
+
+    def test_requires_telemetry_cost_budget(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["telemetry_cost"]["daily_ingest_gib"] = 99.0
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["telemetry_cost_budget"])
 
     def test_requires_rollback_drill(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

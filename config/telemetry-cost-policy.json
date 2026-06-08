@@ -1,0 +1,31 @@
+{
+  "description": "Policy for estimating trace ingest and retention cost from replayed AI inference OTLP payloads.",
+  "production_qps": 250,
+  "retention_days": 7,
+  "max_spans_per_request": 5,
+  "max_payload_bytes_per_request": 9000,
+  "max_daily_ingest_gib": 25,
+  "max_retained_gib": 180,
+  "max_baseline_sample_rate": 0.05,
+  "min_incident_sample_rate": 0.5,
+  "critical_scenarios": [
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "min_critical_sample_rate": 1.0,
+  "traffic_mix": {
+    "baseline": 0.92,
+    "cache_miss_storm": 0.03,
+    "dependency_timeout": 0.02,
+    "rollout_regression": 0.02,
+    "collector_queue_pressure": 0.01
+  },
+  "sampling_rates": {
+    "baseline": 0.02,
+    "cache_miss_storm": 0.5,
+    "dependency_timeout": 1.0,
+    "rollout_regression": 1.0,
+    "collector_queue_pressure": 1.0
+  }
+}
