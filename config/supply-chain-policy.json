@@ -1,0 +1,23 @@
+{
+  "description": "Policy for auditing Kubernetes image references and runtime artifact hygiene in the GKE AI inference reliability lab.",
+  "target_manifests": [
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "minimum_images": 2,
+  "allowed_registries": [
+    "docker.io"
+  ],
+  "required_image_pull_policy": "IfNotPresent",
+  "require_digest": true,
+  "forbidden_tags": [
+    "latest",
+    "main",
+    "dev",
+    "snapshot"
+  ],
+  "required_labels": [
+    "app.kubernetes.io/name",
+    "app.kubernetes.io/part-of"
+  ]
+}

@@ -131,6 +131,7 @@ inference incidents before a service reaches production.
 | --- | --- | --- | --- |
 | C11 | Inference traces can leak prompts, responses, secrets, or direct identifiers | AI observability needs enough metadata for SRE triage without exporting customer text or credentials into tracing backends. | [Telemetry redaction audit](evidence/telemetry-redaction-audit.md) |
 | C12 | Trace volume can overwhelm observability budgets | AI inference traces often include multiple child spans and expensive high-signal incidents; teams need sampling and retention budgets before exporting everything. | [Telemetry cost budget](evidence/telemetry-cost-budget.md) |
+| C13 | Sample manifests can hide floating image risk | Reviewers need to see that even demo deployment recipes avoid `latest` tags and pin runtime artifacts by digest before being adapted to production. | [Supply chain audit](evidence/supply-chain-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -145,6 +146,12 @@ inference incidents before a service reaches production.
    - Config: [config/telemetry-cost-policy.json](../config/telemetry-cost-policy.json)
    - Input: per-scenario OTLP payload sizes and span counts emitted by [demo/incident_replay.py](../demo/incident_replay.py)
    - Evidence: [telemetry cost budget](evidence/telemetry-cost-budget.md)
+
+3. **Supply-chain image audit**
+   - Code: [demo/supply_chain_audit.py](../demo/supply_chain_audit.py)
+   - Config: [config/supply-chain-policy.json](../config/supply-chain-policy.json)
+   - Input: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
+   - Evidence: [supply chain audit](evidence/supply-chain-audit.md)
 
 ## Boundary
 

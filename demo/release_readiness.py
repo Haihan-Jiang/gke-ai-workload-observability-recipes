@@ -51,6 +51,8 @@ REQUIRED_EVIDENCE = [
     "deployment-policy.json",
     "policy-regression-suite.md",
     "policy-regression-suite.json",
+    "supply-chain-audit.md",
+    "supply-chain-audit.json",
     "k8s-hardening-audit.md",
     "k8s-hardening-audit.json",
     "alerting-rules.md",
@@ -94,6 +96,7 @@ def evaluate(
     detailed: dict[str, Any],
     policy: dict[str, Any],
     policy_regression: dict[str, Any],
+    supply_chain: dict[str, Any],
     k8s_hardening: dict[str, Any],
     alerting: dict[str, Any],
     dashboard: dict[str, Any],
@@ -138,6 +141,13 @@ def evaluate(
             and int(policy_regression.get("fixture_count", 0)) >= 8
             and int(policy_regression.get("failed_count", -1)) == 0
             and controls_under_test >= REQUIRED_POLICY_REGRESSION_CONTROLS,
+        },
+        {
+            "name": "supply_chain_audit",
+            "ok": supply_chain.get("status") == "pass"
+            and int(supply_chain.get("image_count", 0)) >= 2
+            and int(supply_chain.get("digest_pinned_count", 0)) >= 2
+            and int(supply_chain.get("failed_count", -1)) == 0,
         },
         {
             "name": "k8s_manifest_hardening",
@@ -230,8 +240,9 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "This report is the final local gate for the portfolio lab. It verifies",
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
-        "policy, policy regression fixtures, Kubernetes manifest hardening,",
-        "SLO alerting rules, Grafana dashboard coverage, OpenSLO contract,",
+        "policy, policy regression fixtures, supply-chain audit, Kubernetes",
+        "manifest hardening, SLO alerting rules, Grafana dashboard coverage,",
+        "OpenSLO contract,",
         "telemetry redaction, telemetry cost budget, error-budget accounting,",
         "rollback drill coverage, post-incident review coverage, evidence",
         "provenance, and committed evidence are present and internally",
@@ -268,6 +279,7 @@ def main() -> int:
     parser.add_argument("--detailed", default="out/detailed-reliability/detailed-problems.json")
     parser.add_argument("--policy", default="out/deployment-policy/deployment-policy.json")
     parser.add_argument("--policy-regression", default="out/policy-regression-suite/policy-regression-suite.json")
+    parser.add_argument("--supply-chain", default="out/supply-chain-audit/supply-chain-audit.json")
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
     parser.add_argument("--alerting", default="out/alerting-rules/alerting-rules.json")
     parser.add_argument("--dashboard", default="out/grafana-dashboard/grafana-dashboard.json")
@@ -290,6 +302,7 @@ def main() -> int:
         detailed=load_json(Path(args.detailed)),
         policy=load_json(Path(args.policy)),
         policy_regression=load_json(Path(args.policy_regression)),
+        supply_chain=load_json(Path(args.supply_chain)),
         k8s_hardening=load_json(Path(args.k8s_hardening)),
         alerting=load_json(Path(args.alerting)),
         dashboard=load_json(Path(args.dashboard)),

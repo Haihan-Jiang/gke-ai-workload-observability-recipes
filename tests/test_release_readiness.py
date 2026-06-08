@@ -43,6 +43,12 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "failed_count": 0,
             "controls_under_test": sorted(release_readiness.REQUIRED_POLICY_REGRESSION_CONTROLS),
         },
+        "supply_chain": {
+            "status": "pass",
+            "image_count": 2,
+            "digest_pinned_count": 2,
+            "failed_count": 0,
+        },
         "k8s_hardening": {
             "status": "pass",
             "check_count": 11,
@@ -135,6 +141,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["k8s_manifest_hardening"])
+
+    def test_requires_supply_chain_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["supply_chain"]["digest_pinned_count"] = 0
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["supply_chain_audit"])
 
     def test_requires_slo_alerting_rules(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

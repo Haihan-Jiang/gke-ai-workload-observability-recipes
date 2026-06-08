@@ -155,6 +155,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Detailed problem coverage](detailed-problems.md)",
                 "- [Deployment policy decision](deployment-policy.md)",
                 "- [Policy regression suite](policy-regression-suite.md)",
+                "- [Supply chain audit](supply-chain-audit.md)",
                 "- [Kubernetes manifest hardening audit](k8s-hardening-audit.md)",
                 "- [SLO alerting rules](alerting-rules.md)",
                 "- [Grafana dashboard evidence](grafana-dashboard.md)",

@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 56,
+  "artifact_count": 58,
   "generated_artifact_count": 4,
-  "source_input_count": 33,
+  "source_input_count": 37,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 1728,
-      "sha256": "58ccea0387e6ce1bab85da314985080db222c34b7179be3a1baac4662f6666b2"
+      "bytes": 1774,
+      "sha256": "e96e36ed4c953f2f44626750e3bdaba3fcbedea8ca8bcf2cd0c98cbcac6f9124"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -282,6 +282,20 @@
       "sha256": "7dd9e792da764830b404275a2612e256ecb7c88347630bf981b644431c9a7424"
     },
     {
+      "path": "docs/evidence/supply-chain-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 942,
+      "sha256": "41257ce5665a058ee2e4c6d5cd73f7805c0fcd6fe83a42b91cc091a228038bdd"
+    },
+    {
+      "path": "docs/evidence/supply-chain-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1667,
+      "sha256": "7d881ef96bd2b8748f2e424cf4349716ca63eaa95c59fba7a41aaaf034124a0c"
+    },
+    {
       "path": "docs/evidence/k8s-hardening-audit.md",
       "group": "evidence",
       "exists": true,
@@ -443,15 +457,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 5710,
-      "sha256": "7c43fb81a3192e35489742536003bcce461c085384db62e49c508de2f55407c0"
+      "bytes": 5907,
+      "sha256": "d70b01be7191848e60ec89711025440641e50c53d4775d64c39c633b1c251118"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 10997,
-      "sha256": "a90affd18a6e793d762b6fd65a0d1f6b3de1bcef7eac89241e7767696c19e8a4"
+      "bytes": 11377,
+      "sha256": "797ad889f1dcd2301b3aa9c826ff62994d4a09112363c94af6751f2985eb6700"
     },
     {
       "path": "demo/incident_replay.py",
@@ -508,6 +522,13 @@
       "exists": true,
       "bytes": 7327,
       "sha256": "b01c1d0dc5e2455ff82e9ef1ad3d2316c40aa4e3989236ade589a998fb4270ff"
+    },
+    {
+      "path": "demo/supply_chain_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 7663,
+      "sha256": "00b73b252ef37e028800fcbc8fd0eba66baa9a89912e0ebe5d7659f15633565b"
     },
     {
       "path": "demo/k8s_hardening_audit.py",
@@ -576,8 +597,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 9258,
-      "sha256": "a25e8c08f690bb0b18793c87bd7358610bbce0695849d86feceea87439d96662"
+      "bytes": 9323,
+      "sha256": "2ef54d0d2d4d0ad0b409999eddba9f5979a0f80096945c761a54ed5e664b3d5a"
     },
     {
       "path": "config/reliability-slo.json",
@@ -606,6 +627,13 @@
       "exists": true,
       "bytes": 4290,
       "sha256": "db79c20607bcef5594543489858bba1de093c23517aea80e178082da5f7e0a76"
+    },
+    {
+      "path": "config/supply-chain-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 543,
+      "sha256": "b812c3f119eaf10a8ef0e30849f6614f007d943f1b6a8d852300ca55a5ec464a"
     },
     {
       "path": "config/k8s-hardening-policy.json",
@@ -669,6 +697,20 @@
       "exists": true,
       "bytes": 1832,
       "sha256": "d11cc2926bb46a1d174a5a5e311409d84e06c319382b7a51ac210de68b14b839"
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 6927,
+      "sha256": "61e17e4b3402799fdd0b3124927034a243a041f679e01d28540e5766c621defe"
+    },
+    {
+      "path": "k8s/gke/sample-app.yaml",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2051,
+      "sha256": "1ff25460619f1e6e52adc48b6745a1f4ffde7ba4d3c903e7bc851151b3538746"
     }
   ],
   "checks": [
@@ -677,7 +719,7 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 56,
+        "count": 58,
         "minimum": 45
       }
     },
@@ -694,7 +736,7 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 33,
+        "count": 37,
         "minimum": 18
       }
     },

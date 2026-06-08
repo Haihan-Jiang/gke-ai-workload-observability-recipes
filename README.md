@@ -38,6 +38,8 @@ not described as merged.
   gate.
 - Policy regression fixtures that prove promote, block, and manual-review
   decisions stay stable across release-risk scenarios.
+- A supply-chain audit that verifies Kubernetes image references are
+  digest-pinned, non-floating, explicitly pulled, and owner-labeled.
 - Kubernetes manifest hardening evidence for probes, resource budgets,
   restricted collector security context, disruption protection, and
   NetworkPolicy boundaries.
@@ -192,6 +194,7 @@ script:
 - [Detailed problem coverage](docs/evidence/detailed-problems.md)
 - [Deployment policy decision](docs/evidence/deployment-policy.md)
 - [Policy regression suite](docs/evidence/policy-regression-suite.md)
+- [Supply chain audit](docs/evidence/supply-chain-audit.md)
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
 - [SLO alerting rules](docs/evidence/alerting-rules.md)
 - [Grafana dashboard evidence](docs/evidence/grafana-dashboard.md)
@@ -260,31 +263,33 @@ Before adapting this to a real GKE cluster:
    namespaces.
 3. Mount persistent storage for collector queues before relying on telemetry
    during rollouts.
-4. Keep collector RBAC read-only and scoped to required Kubernetes metadata.
-5. Keep collector health probes, resource budgets, security context,
+4. Pin workload and collector images by digest before using the manifests as
+   production deployment evidence.
+5. Keep collector RBAC read-only and scoped to required Kubernetes metadata.
+6. Keep collector health probes, resource budgets, security context,
    disruption budget, and NetworkPolicy aligned with the manifest audit.
-6. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
+7. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
    alerting evidence before routing pages.
-7. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
-8. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
+8. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
+9. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
    alerting, dashboard, and release-readiness evidence.
-9. Audit trace payloads for prompt, response, secret, and direct-identifier
+10. Audit trace payloads for prompt, response, secret, and direct-identifier
    leakage before using inference telemetry as production evidence.
-10. Keep trace sampling and retention budgets explicit before routing all
+11. Keep trace sampling and retention budgets explicit before routing all
     inference telemetry into a paid backend.
-11. Keep the error-budget ledger aligned with the SLO target before treating a
+12. Keep the error-budget ledger aligned with the SLO target before treating a
    canary or dependency incident as release-safe.
-12. Run the rollback drill after changing release gates, runbooks, or SLO
+13. Run the rollback drill after changing release gates, runbooks, or SLO
     budget policy so owner and RTO assumptions stay explicit.
-13. Keep post-incident reviews tied to replayed evidence, rollback timelines,
+14. Keep post-incident reviews tied to replayed evidence, rollback timelines,
     and corrective actions instead of treating them as narrative-only notes.
-14. Regenerate evidence provenance after changing evidence scripts, generated
+15. Regenerate evidence provenance after changing evidence scripts, generated
     manifests, or policy files so reviewers can detect stale artifacts.
-15. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+16. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-16. For private GKE clusters, verify webhook/firewall access for any operators
+17. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-17. Treat telemetry as production evidence: validate it during staged rollout,
+18. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -312,8 +317,8 @@ Current wording before upstream merges:
 > quality audits, collector resilience modeling, generated incident runbooks,
 > critical-path attribution, HPA lag analysis, tenant blast-radius checks,
 > token/GPU guardrails, telemetry redaction and cost audits,
-> cross-namespace instrumentation, persistent telemetry queues, and Kubernetes
-> metadata.
+> supply-chain image checks, cross-namespace instrumentation, persistent
+> telemetry queues, and Kubernetes metadata.
 
 After an upstream PR merges, update this to:
 
@@ -323,8 +328,8 @@ After an upstream PR merges, update this to:
 > capacity/readiness evidence, burn-rate and canary decision controls, trace
 > quality audits, critical-path attribution, HPA lag analysis, tenant blast
 > radius checks, token/GPU guardrails, policy-as-code deployment gates,
-> telemetry redaction and cost audits, generated runbooks, and related Google
-> Cloud OSS recipe contributions.
+> telemetry redaction and cost audits, supply-chain image checks, generated
+> runbooks, and related Google Cloud OSS recipe contributions.
 
 ## License
 

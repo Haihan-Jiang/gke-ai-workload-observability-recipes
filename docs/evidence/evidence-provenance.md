@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `56`
+- Evidence artifacts: `58`
 - Generated artifacts: `4`
-- Source inputs: `33`
+- Source inputs: `37`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 1728 | `58ccea0387e6ce1b...` |
+| `docs/evidence/README.md` | 1774 | `e96e36ed4c953f2f...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -68,6 +68,8 @@ evidence easier to detect during review.
 | `docs/evidence/deployment-policy.json` | 3414 | `2ae8bb2d23a19799...` |
 | `docs/evidence/policy-regression-suite.md` | 1982 | `0d9de009001bd476...` |
 | `docs/evidence/policy-regression-suite.json` | 6535 | `7dd9e792da764830...` |
+| `docs/evidence/supply-chain-audit.md` | 942 | `41257ce5665a058e...` |
+| `docs/evidence/supply-chain-audit.json` | 1667 | `7d881ef96bd2b874...` |
 | `docs/evidence/k8s-hardening-audit.md` | 1843 | `04ff59b9155bc9d8...` |
 | `docs/evidence/k8s-hardening-audit.json` | 4673 | `40cad4f46752bda1...` |
 | `docs/evidence/alerting-rules.md` | 1034 | `dc833704511d7837...` |

@@ -41,6 +41,8 @@
     "docs/evidence/deployment-policy.json",
     "docs/evidence/policy-regression-suite.md",
     "docs/evidence/policy-regression-suite.json",
+    "docs/evidence/supply-chain-audit.md",
+    "docs/evidence/supply-chain-audit.json",
     "docs/evidence/k8s-hardening-audit.md",
     "docs/evidence/k8s-hardening-audit.json",
     "docs/evidence/alerting-rules.md",
@@ -77,6 +79,7 @@
     "demo/detailed_reliability.py",
     "demo/deployment_policy.py",
     "demo/policy_regression_suite.py",
+    "demo/supply_chain_audit.py",
     "demo/k8s_hardening_audit.py",
     "demo/alerting_rules.py",
     "demo/grafana_dashboard.py",
@@ -91,6 +94,7 @@
     "config/advanced-reliability.json",
     "config/detailed-reliability.json",
     "config/deployment-policy-fixtures.json",
+    "config/supply-chain-policy.json",
     "config/k8s-hardening-policy.json",
     "config/alerting-policy.json",
     "config/dashboard-policy.json",
@@ -99,7 +103,9 @@
     "config/telemetry-cost-policy.json",
     "config/error-budget-policy.json",
     "config/rollback-drill-policy.json",
-    "config/post-incident-review-policy.json"
+    "config/post-incident-review-policy.json",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
   ],
   "validation_commands": [
     "./scripts/generate-evidence.sh",

@@ -34,6 +34,10 @@
       "ok": true
     },
     {
+      "name": "supply_chain_audit",
+      "ok": true
+    },
+    {
       "name": "k8s_manifest_hardening",
       "ok": true
     },
@@ -237,6 +241,14 @@
     },
     {
       "path": "policy-regression-suite.json",
+      "exists": true
+    },
+    {
+      "path": "supply-chain-audit.md",
+      "exists": true
+    },
+    {
+      "path": "supply-chain-audit.json",
       "exists": true
     },
     {
