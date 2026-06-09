@@ -9,12 +9,12 @@ committed evidence, source code, policy/config inputs, and tests.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 50 |
-| Release checks | 55 |
-| Evidence files | 101 |
-| Source inputs | 52 |
-| Policy inputs | 51 |
-| Test files | 50 |
+| Controls | 51 |
+| Release checks | 56 |
+| Evidence files | 103 |
+| Source inputs | 54 |
+| Policy inputs | 52 |
+| Test files | 51 |
 | Detected fixtures | 6 |
 
 ## Checks
@@ -49,6 +49,7 @@ committed evidence, source code, policy/config inputs, and tests.
 | `k8s_manifest_hardening` | `k8s_manifest_hardening` | 2 |
 | `pod_security_admission_audit` | `pod_security_admission_audit` | 2 |
 | `kubernetes_api_compatibility_audit` | `kubernetes_api_compatibility_audit` | 2 |
+| `private_cluster_admission_boundary_audit` | `private_cluster_admission_boundary_audit` | 2 |
 | `namespace_resource_audit` | `namespace_resource_audit` | 2 |
 | `availability_topology_audit` | `availability_topology_audit` | 2 |
 | `autoscaling_policy_audit` | `autoscaling_policy_audit` | 2 |

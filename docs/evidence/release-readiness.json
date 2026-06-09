@@ -78,6 +78,10 @@
       "ok": true
     },
     {
+      "name": "private_cluster_admission_boundary_audit",
+      "ok": true
+    },
+    {
       "name": "namespace_resource_audit",
       "ok": true
     },
@@ -477,6 +481,14 @@
     },
     {
       "path": "kubernetes-api-compatibility-audit.json",
+      "exists": true
+    },
+    {
+      "path": "private-cluster-admission-boundary-audit.md",
+      "exists": true
+    },
+    {
+      "path": "private-cluster-admission-boundary-audit.json",
       "exists": true
     },
     {

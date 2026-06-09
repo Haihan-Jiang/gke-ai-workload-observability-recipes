@@ -57,6 +57,10 @@ evidence.
 Kubernetes API compatibility evidence checks stable API versions, optional CRD
 skip paths, kind smoke apply order, and admissionregistration.k8s.io/v1
 fail-closed behavior before release readiness is reported.
+Private-cluster admission boundary evidence checks that private GKE clusters
+use native admission policy controls without an admission webhook firewall
+dependency, while optional operator-backed CRDs stay behind explicit API
+resource probes and skip paths.
 Release waiver governance is included so manual exceptions stay bounded,
 approved, time-limited, and linked back to rollback and RCA evidence.
 Disaster recovery drill evidence verifies that critical release artifacts can
@@ -404,6 +408,7 @@ script:
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
 - [Pod Security Admission audit](docs/evidence/pod-security-admission-audit.md)
 - [Kubernetes API compatibility audit](docs/evidence/kubernetes-api-compatibility-audit.md)
+- [Private cluster admission boundary audit](docs/evidence/private-cluster-admission-boundary-audit.md)
 - [Namespace resource audit](docs/evidence/namespace-resource-audit.md)
 - [Availability topology audit](docs/evidence/availability-topology-audit.md)
 - [Autoscaling policy audit](docs/evidence/autoscaling-policy-audit.md)
@@ -608,8 +613,9 @@ Before adapting this to a real GKE cluster:
 47. Keep telemetry exporter authority explicit: debug/local can remain a
    companion path, but production evidence must identify the upstream gateway
    exporter and preserve queued retry delivery.
-48. For private GKE clusters, verify webhook/firewall access for any operators
-   or admission webhooks.
+48. Keep private-cluster admission boundaries aligned with native admission
+   policies, no external webhook firewall dependency, and optional operator
+   CRD skip paths.
 49. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 

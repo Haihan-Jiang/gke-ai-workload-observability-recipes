@@ -10,11 +10,11 @@ evidence path before the final release gate passes.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 55 |
-| Release checks | 55 |
-| Covered release checks | 55 |
-| Tier 0 controls | 32 |
-| Every-release controls | 43 |
+| Controls | 56 |
+| Release checks | 56 |
+| Covered release checks | 56 |
+| Tier 0 controls | 33 |
+| Every-release controls | 44 |
 | Owner groups | 5 |
 | Detected fixtures | 6 |
 
@@ -53,6 +53,7 @@ evidence path before the final release gate passes.
 | `k8s_manifest_hardening` | `platform` | `tier_0_release_blocker` | `every_release` | `docs/evidence/k8s-hardening-audit.json` |
 | `pod_security_admission_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/pod-security-admission-audit.json` |
 | `kubernetes_api_compatibility_audit` | `platform` | `tier_0_release_blocker` | `every_release` | `docs/evidence/kubernetes-api-compatibility-audit.json` |
+| `private_cluster_admission_boundary_audit` | `platform` | `tier_0_release_blocker` | `every_release` | `docs/evidence/private-cluster-admission-boundary-audit.json` |
 | `namespace_resource_audit` | `platform` | `tier_1_production_guard` | `every_release` | `docs/evidence/namespace-resource-audit.json` |
 | `availability_topology_audit` | `platform` | `tier_1_production_guard` | `every_release` | `docs/evidence/availability-topology-audit.json` |
 | `autoscaling_policy_audit` | `platform` | `tier_1_production_guard` | `every_release` | `docs/evidence/autoscaling-policy-audit.json` |

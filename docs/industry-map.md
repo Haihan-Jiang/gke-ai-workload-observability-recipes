@@ -168,6 +168,7 @@ inference incidents before a service reaches production.
 | C47 | Release controls can be owned only informally | Industrial review needs explicit owner groups, severity tiers, review cadence, escalation paths, rollback actions, and evidence paths for every release-readiness check. | [Release control ownership audit](evidence/release-control-ownership-audit.md) |
 | C48 | Kubernetes manifests can depend on removed API versions or uninstalled CRDs | Release review needs stable core API versions, optional CRD probes and skip paths, kind smoke apply-order checks, and admission v1 fail-closed behavior before manifests are trusted. | [Kubernetes API compatibility audit](evidence/kubernetes-api-compatibility-audit.md) |
 | C49 | Local debug telemetry can be mistaken for the production evidence path | Release review needs an explicit authoritative upstream exporter, bounded debug export, secure OTLP endpoint, queued retry delivery, and production replacement docs. | [Telemetry exporter authority audit](evidence/telemetry-exporter-authority-audit.md) |
+| C50 | Private GKE clusters can be blocked by unplanned admission webhook reachability | Release review needs proof that admission controls use native policy resources, avoid webhook/operator Service dependencies, and keep optional operator CRDs behind explicit skip paths. | [Private cluster admission boundary audit](evidence/private-cluster-admission-boundary-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -356,49 +357,55 @@ inference incidents before a service reaches production.
     - Inputs: GKE-shaped manifests under [k8s/gke](../k8s/gke), admission policy manifests, and [kind smoke script](../scripts/kind-smoke.sh)
     - Evidence: [Kubernetes API compatibility audit](evidence/kubernetes-api-compatibility-audit.md)
 
-32. **Evidence pipeline audit**
+32. **Private cluster admission boundary audit**
+    - Code: [demo/private_cluster_admission_boundary_audit.py](../demo/private_cluster_admission_boundary_audit.py)
+    - Policy: [config/private-cluster-admission-boundary-policy.json](../config/private-cluster-admission-boundary-policy.json)
+    - Inputs: GKE-shaped manifests under [k8s/gke](../k8s/gke), native admission policy manifests, [kind smoke script](../scripts/kind-smoke.sh), and private-cluster README guidance
+    - Evidence: [Private cluster admission boundary audit](evidence/private-cluster-admission-boundary-audit.md)
+
+33. **Evidence pipeline audit**
     - Code: [demo/evidence_pipeline_audit.py](../demo/evidence_pipeline_audit.py)
     - Policy: [config/evidence-pipeline-policy.json](../config/evidence-pipeline-policy.json)
     - Inputs: [evidence generation script](../scripts/generate-evidence.sh)
     - Evidence: [evidence pipeline audit](evidence/evidence-pipeline-audit.md)
 
-33. **OSS license audit**
+34. **OSS license audit**
     - Code: [demo/oss_license_audit.py](../demo/oss_license_audit.py)
     - Policy: [config/oss-license-policy.json](../config/oss-license-policy.json)
     - Inputs: [LICENSE](../LICENSE), [NOTICE](../NOTICE), [README](../README.md), GitHub Actions, and container image references
     - Evidence: [OSS license audit](evidence/oss-license-audit.md)
 
-34. **Secret hygiene audit**
+35. **Secret hygiene audit**
     - Code: [demo/secret_hygiene_audit.py](../demo/secret_hygiene_audit.py)
     - Policy: [config/secret-hygiene-policy.json](../config/secret-hygiene-policy.json)
     - Inputs: committed source, manifests, docs, root governance files, and generated evidence
     - Evidence: [secret hygiene audit](evidence/secret-hygiene-audit.md)
 
-35. **SBOM inventory audit**
+36. **SBOM inventory audit**
     - Code: [demo/sbom_inventory_audit.py](../demo/sbom_inventory_audit.py)
     - Policy: [config/sbom-inventory-policy.json](../config/sbom-inventory-policy.json)
     - Inputs: GitHub Actions, container image references, Python version pinning, and developer runtime docs
     - Evidence: [SBOM inventory audit](evidence/sbom-inventory-audit.md), [SBOM inventory JSON](evidence/sbom-inventory.json)
 
-36. **Security response audit**
+37. **Security response audit**
     - Code: [demo/security_response_audit.py](../demo/security_response_audit.py)
     - Policy: [config/security-response-policy.json](../config/security-response-policy.json)
     - Inputs: [SECURITY](../SECURITY.md), [release process](release-process.md), and [contributing guide](../CONTRIBUTING.md)
     - Evidence: [security response audit](evidence/security-response-audit.md)
 
-37. **Control traceability audit**
+38. **Control traceability audit**
     - Code: [demo/control_traceability_audit.py](../demo/control_traceability_audit.py)
     - Policy: [config/control-traceability-policy.json](../config/control-traceability-policy.json)
     - Inputs: [release readiness gate](../demo/release_readiness.py), committed evidence, policy/config files, and tests
     - Evidence: [control traceability audit](evidence/control-traceability-audit.md)
 
-38. **Release control ownership audit**
+39. **Release control ownership audit**
     - Code: [demo/release_control_ownership_audit.py](../demo/release_control_ownership_audit.py)
     - Policy: [config/release-control-ownership-policy.json](../config/release-control-ownership-policy.json)
     - Inputs: [release readiness gate](../demo/release_readiness.py)
     - Evidence: [release control ownership audit](evidence/release-control-ownership-audit.md)
 
-39. **Evidence schema audit**
+40. **Evidence schema audit**
     - Code: [demo/evidence_schema_audit.py](../demo/evidence_schema_audit.py)
     - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
     - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)

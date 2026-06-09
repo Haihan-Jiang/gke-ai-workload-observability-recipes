@@ -74,6 +74,8 @@ REQUIRED_EVIDENCE = [
     "pod-security-admission-audit.json",
     "kubernetes-api-compatibility-audit.md",
     "kubernetes-api-compatibility-audit.json",
+    "private-cluster-admission-boundary-audit.md",
+    "private-cluster-admission-boundary-audit.json",
     "namespace-resource-audit.md",
     "namespace-resource-audit.json",
     "availability-topology-audit.md",
@@ -180,6 +182,7 @@ def evaluate(
     k8s_hardening: dict[str, Any],
     pod_security_admission: dict[str, Any],
     kubernetes_api_compatibility: dict[str, Any],
+    private_cluster_admission_boundary: dict[str, Any],
     namespace_resource: dict[str, Any],
     availability_topology: dict[str, Any],
     autoscaling_policy: dict[str, Any],
@@ -351,6 +354,18 @@ def evaluate(
             and int(kubernetes_api_compatibility.get("core_apply_step_count", 0)) >= 5
             and int(kubernetes_api_compatibility.get("detected_fixture_count", 0)) >= 8
             and int(kubernetes_api_compatibility.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "private_cluster_admission_boundary_audit",
+            "ok": private_cluster_admission_boundary.get("status") == "pass"
+            and int(private_cluster_admission_boundary.get("document_count", 0)) >= 28
+            and int(private_cluster_admission_boundary.get("native_admission_resource_count", 0)) >= 2
+            and int(private_cluster_admission_boundary.get("webhook_configuration_count", -1)) == 0
+            and int(private_cluster_admission_boundary.get("webhook_service_count", -1)) == 0
+            and int(private_cluster_admission_boundary.get("optional_operator_boundary_count", 0)) >= 2
+            and int(private_cluster_admission_boundary.get("private_cluster_doc_count", 0)) >= 2
+            and int(private_cluster_admission_boundary.get("detected_fixture_count", 0)) >= 6
+            and int(private_cluster_admission_boundary.get("failed_count", -1)) == 0,
         },
         {
             "name": "namespace_resource_audit",
@@ -749,6 +764,7 @@ def main() -> int:
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
     parser.add_argument("--pod-security-admission", default="out/pod-security-admission-audit/pod-security-admission-audit.json")
     parser.add_argument("--kubernetes-api-compatibility", default="out/kubernetes-api-compatibility-audit/kubernetes-api-compatibility-audit.json")
+    parser.add_argument("--private-cluster-admission-boundary", default="out/private-cluster-admission-boundary-audit/private-cluster-admission-boundary-audit.json")
     parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
     parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
     parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
@@ -808,6 +824,7 @@ def main() -> int:
         k8s_hardening=load_json(Path(args.k8s_hardening)),
         pod_security_admission=load_json(Path(args.pod_security_admission)),
         kubernetes_api_compatibility=load_json(Path(args.kubernetes_api_compatibility)),
+        private_cluster_admission_boundary=load_json(Path(args.private_cluster_admission_boundary)),
         namespace_resource=load_json(Path(args.namespace_resource)),
         availability_topology=load_json(Path(args.availability_topology)),
         autoscaling_policy=load_json(Path(args.autoscaling_policy)),

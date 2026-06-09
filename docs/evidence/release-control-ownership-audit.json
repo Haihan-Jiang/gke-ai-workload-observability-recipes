@@ -3,20 +3,20 @@
   "failed_count": 0,
   "check_count": 7,
   "detected_fixture_count": 6,
-  "control_count": 55,
-  "release_check_count": 55,
-  "covered_release_check_count": 55,
-  "tier0_count": 32,
-  "every_release_count": 43,
+  "control_count": 56,
+  "release_check_count": 56,
+  "covered_release_check_count": 56,
+  "tier0_count": 33,
+  "every_release_count": 44,
   "owner_group_count": 5,
   "checks": [
     {
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 55,
-        "release_check_count": 55,
-        "minimum_control_count": 55,
+        "control_count": 56,
+        "release_check_count": 56,
+        "minimum_control_count": 56,
         "duplicate_controls": [],
         "missing_release_checks": [],
         "unknown_release_checks": []
@@ -35,12 +35,12 @@
       "ok": true,
       "evidence": {
         "tier_counts": {
-          "tier_0_release_blocker": 32,
+          "tier_0_release_blocker": 33,
           "tier_1_production_guard": 22,
           "tier_2_evidence_guard": 1
         },
         "tier_gaps": [],
-        "minimum_tier0_count": 32
+        "minimum_tier0_count": 33
       }
     },
     {
@@ -48,12 +48,12 @@
       "ok": true,
       "evidence": {
         "cadence_counts": {
-          "every_release": 43,
+          "every_release": 44,
           "monthly": 12,
           "quarterly": 0
         },
         "cadence_gaps": [],
-        "minimum_every_release_count": 43
+        "minimum_every_release_count": 44
       }
     },
     {
@@ -278,6 +278,13 @@
       "tier": "tier_0_release_blocker",
       "review_cadence": "every_release",
       "evidence_path": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "name": "private_cluster_admission_boundary_audit",
+      "owner": "platform",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/private-cluster-admission-boundary-audit.json"
     },
     {
       "name": "namespace_resource_audit",

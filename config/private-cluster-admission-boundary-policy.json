@@ -1,0 +1,99 @@
+{
+  "description": "Policy for auditing private GKE cluster admission boundaries without external webhook or operator firewall dependencies.",
+  "target_manifests": [
+    "k8s/gke/namespace.yaml",
+    "k8s/gke/scheduling.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/instrumentation.yaml",
+    "k8s/gke/alerting-rules.yaml",
+    "k8s/gke/grafana-dashboard-configmap.yaml",
+    "k8s/gke/sample-app.yaml",
+    "policies/admission/gke-ai-inference-admission-policy.yaml"
+  ],
+  "kind_smoke_script": "scripts/kind-smoke.sh",
+  "minimum_document_count": 28,
+  "minimum_native_admission_resource_count": 2,
+  "minimum_optional_operator_boundary_count": 2,
+  "minimum_private_cluster_doc_count": 2,
+  "minimum_detected_fixtures": 6,
+  "native_admission_kinds": [
+    "ValidatingAdmissionPolicy",
+    "ValidatingAdmissionPolicyBinding"
+  ],
+  "forbidden_webhook_kinds": [
+    "ValidatingWebhookConfiguration",
+    "MutatingWebhookConfiguration"
+  ],
+  "webhook_service_name_patterns": [
+    "admission",
+    "webhook",
+    "operator-webhook"
+  ],
+  "operator_workload_name_patterns": [
+    "admission-webhook",
+    "operator-webhook",
+    "webhook-server"
+  ],
+  "forbidden_webhook_ports": [
+    443,
+    8443,
+    9443
+  ],
+  "optional_operator_crds": [
+    {
+      "kind": "Instrumentation",
+      "api_group": "opentelemetry.io",
+      "skip_text": "OpenTelemetry Operator CRDs are not installed; skipping Instrumentation."
+    },
+    {
+      "kind": "PrometheusRule",
+      "api_group": "monitoring.coreos.com",
+      "skip_text": "PrometheusRule CRDs are not installed; skipping alerting rules."
+    }
+  ],
+  "private_cluster_doc_markers": [
+    {
+      "path": "README.md",
+      "text": "Private-cluster admission boundary evidence checks"
+    },
+    {
+      "path": "README.md",
+      "text": "without an admission webhook firewall"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "adds_validating_webhook_configuration",
+      "mutation": "add_validating_webhook_configuration",
+      "expected_failed_check": "native_admission_boundary"
+    },
+    {
+      "name": "adds_mutating_webhook_configuration",
+      "mutation": "add_mutating_webhook_configuration",
+      "expected_failed_check": "native_admission_boundary"
+    },
+    {
+      "name": "adds_admission_webhook_service",
+      "mutation": "add_webhook_service",
+      "expected_failed_check": "webhook_service_boundary"
+    },
+    {
+      "name": "adds_native_admission_client_config",
+      "mutation": "add_admission_client_config",
+      "expected_failed_check": "native_admission_boundary"
+    },
+    {
+      "name": "removes_otel_operator_skip",
+      "mutation": "remove_kind_smoke_text",
+      "text": "OpenTelemetry Operator CRDs are not installed; skipping Instrumentation.",
+      "expected_failed_check": "optional_operator_boundary"
+    },
+    {
+      "name": "removes_private_cluster_docs",
+      "mutation": "remove_doc_text",
+      "path": "README.md",
+      "text": "without an admission webhook firewall",
+      "expected_failed_check": "private_cluster_docs"
+    }
+  ]
+}

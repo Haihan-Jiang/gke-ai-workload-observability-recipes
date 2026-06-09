@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 57,
-  "minimum_dependency_count": 75,
+  "minimum_step_count": 58,
+  "minimum_dependency_count": 80,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -79,6 +79,10 @@
     {
       "name": "kubernetes_api_compatibility_audit",
       "script": "demo/kubernetes_api_compatibility_audit.py"
+    },
+    {
+      "name": "private_cluster_admission_boundary_audit",
+      "script": "demo/private_cluster_admission_boundary_audit.py"
     },
     {
       "name": "namespace_resource_audit",
@@ -385,6 +389,11 @@
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
     },
     {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
+    },
+    {
       "producer": "telemetry_exporter_authority_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
@@ -408,6 +417,11 @@
       "producer": "kubernetes_api_compatibility_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
     },
     {
       "producer": "telemetry_exporter_authority_audit",
@@ -463,6 +477,11 @@
       "producer": "kubernetes_api_compatibility_audit",
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
     },
     {
       "producer": "telemetry_exporter_authority_audit",
@@ -540,6 +559,11 @@
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
     },
     {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
+    },
+    {
       "producer": "telemetry_exporter_authority_audit",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
@@ -593,6 +617,11 @@
       "producer": "kubernetes_api_compatibility_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
     },
     {
       "producer": "telemetry_exporter_authority_audit",

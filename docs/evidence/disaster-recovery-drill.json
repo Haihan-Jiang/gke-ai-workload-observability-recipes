@@ -1,8 +1,8 @@
 {
   "status": "pass",
-  "artifact_count": 81,
-  "restored_count": 81,
-  "hash_match_count": 81,
+  "artifact_count": 85,
+  "restored_count": 85,
+  "hash_match_count": 85,
   "generated_artifact_count": 10,
   "group_count": 6,
   "fixture_count": 4,
@@ -115,29 +115,29 @@
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-pipeline-audit.md",
       "exists": true,
-      "bytes": 5681,
-      "sha256": "047a06ccfe44189e79d38ca3cc287f765306198b9c6d4e58b1cbe786c5b2fefd"
+      "bytes": 6077,
+      "sha256": "454d5796a0c35f868fb887762140e7c82d4024cc5563cbcb02cd5cb96ce6f04b"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-pipeline-audit.json",
       "exists": true,
-      "bytes": 28458,
-      "sha256": "7258ea38fa88a6f6d95970f04e4ef5438510ab578bfc11132ec71f313bffd2c7"
+      "bytes": 30001,
+      "sha256": "cb85a96798c784b9aa036b051edf0a7c0741c96d64fab20db1f3106c386ee3b6"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-schema-audit.md",
       "exists": true,
-      "bytes": 2693,
-      "sha256": "c5d1f79416067fd44b9d32897173fb8f8d84e20cb0fa7fb10a3b665f9095dd13"
+      "bytes": 2851,
+      "sha256": "1f823789b0162417c0f5d12eb81b97db0113792e32ef3fd50d084d7da4845820"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-schema-audit.json",
       "exists": true,
-      "bytes": 12574,
-      "sha256": "cff84f3aa3cb3ed223813705b724e3840a4189b2b4b68fda9695b36fbbe76090"
+      "bytes": 13502,
+      "sha256": "2020e42c698433a82f77151aa8d6d8dca665e845766038b0ae9ffd2ada1078b2"
     },
     {
       "group": "security_policy_evidence",
@@ -165,14 +165,14 @@
       "path": "docs/evidence/secret-hygiene-audit.md",
       "exists": true,
       "bytes": 1205,
-      "sha256": "62f96b4ab16d84f2854838352e3ff2d57d1f59e9b8b600459a6ba66db4e61dc3"
+      "sha256": "fa2736abff7a402b9917347a0380d75ee0f7717091a3111c5d0072eceecb48c7"
     },
     {
       "group": "security_policy_evidence",
       "path": "docs/evidence/secret-hygiene-audit.json",
       "exists": true,
       "bytes": 4888,
-      "sha256": "dfa2172a00c15ca595ccf32a12bb801cfa1553afd517aacdee321c0804b76f8f"
+      "sha256": "c10ee76084cdff0e2f543f0c49b490a9394d0766b0ea5377d03b4e63a9bef02d"
     },
     {
       "group": "security_policy_evidence",
@@ -236,6 +236,20 @@
       "exists": true,
       "bytes": 15391,
       "sha256": "ab7f58717107931062e59c62823d3da1650a91a41dece2c36ade10dcad98e8da"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/private-cluster-admission-boundary-audit.md",
+      "exists": true,
+      "bytes": 1788,
+      "sha256": "c39d38243faede5242cf3c2810c75ef6fd53051a8d9eeeae55dd2650fa4ebe95"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "exists": true,
+      "bytes": 7512,
+      "sha256": "cfafa012f4747a7e2560b68bc70113630a7b6a85ae5f5712b70ad6501fe0c548"
     },
     {
       "group": "security_policy_evidence",
@@ -421,6 +435,13 @@
     },
     {
       "group": "recovery_source_policy",
+      "path": "config/private-cluster-admission-boundary-policy.json",
+      "exists": true,
+      "bytes": 3052,
+      "sha256": "ccad4a43d577e2de1164efc83cf2a35a3b21c57432156c7b68333bdbaa68cbc0"
+    },
+    {
+      "group": "recovery_source_policy",
       "path": "config/telemetry-exporter-policy.json",
       "exists": true,
       "bytes": 3233,
@@ -430,22 +451,22 @@
       "group": "recovery_source_policy",
       "path": "config/evidence-pipeline-policy.json",
       "exists": true,
-      "bytes": 19219,
-      "sha256": "1967dcfe6a80767ae785c1187e47c7f92b894674017690e6f45cfe754cd0b207"
+      "bytes": 20348,
+      "sha256": "c2f3469232fa04122013ea78b2ee52e76c0ae81ca7faa0929436fae77a815308"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/evidence-schema-policy.json",
       "exists": true,
-      "bytes": 16931,
-      "sha256": "3367f4ac082424d57dd6d1e27e286cf8af01a2cdab15e43aa4c97c8a1b73a6cd"
+      "bytes": 18572,
+      "sha256": "c6420783e1023efec05a2ca33f583ca4cf091badd0516389c7af3fd13bfd0380"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/disaster-recovery-policy.json",
       "exists": true,
-      "bytes": 5387,
-      "sha256": "ef9c0462168eab1506e8320510d9dff6d6e023785cf8019302c755f5638b677c"
+      "bytes": 5719,
+      "sha256": "574d1e4ea83c7c65c9ae1eaedda44825f77b049f9800f80888ea2ff320b228e3"
     },
     {
       "group": "recovery_source_policy",
@@ -554,6 +575,13 @@
     },
     {
       "group": "recovery_source_policy",
+      "path": "demo/private_cluster_admission_boundary_audit.py",
+      "exists": true,
+      "bytes": 18868,
+      "sha256": "217849b51e30bf66f9682e639520bca0e8ecf54aed51aef05685d48556d77c6c"
+    },
+    {
+      "group": "recovery_source_policy",
       "path": "demo/telemetry_exporter_authority_audit.py",
       "exists": true,
       "bytes": 19012,
@@ -570,15 +598,15 @@
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
       "exists": true,
-      "bytes": 17267,
-      "sha256": "4e4c3510ae289694f858024bff67fc3f58f979a010e594f77719762f22c87f8f"
+      "bytes": 17552,
+      "sha256": "df2a31618e80bf669dd31f0c0639c52dc3a9940192644db3cc08fa45a35206f0"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
       "exists": true,
-      "bytes": 31421,
-      "sha256": "1a5dae21baf0f2b542d9a58f8bb12f7da76ceac59152a6db1540165003315ea2"
+      "bytes": 31977,
+      "sha256": "f5e918894cb7ea63eba0109d3f917e3649517e9960bf181774f56987a4f8f461"
     }
   ],
   "restored_artifacts": [
@@ -711,38 +739,38 @@
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-pipeline-audit.md",
-      "expected_sha256": "047a06ccfe44189e79d38ca3cc287f765306198b9c6d4e58b1cbe786c5b2fefd",
+      "expected_sha256": "454d5796a0c35f868fb887762140e7c82d4024cc5563cbcb02cd5cb96ce6f04b",
       "restored": true,
       "hash_match": true,
-      "bytes": 5681,
-      "sha256": "047a06ccfe44189e79d38ca3cc287f765306198b9c6d4e58b1cbe786c5b2fefd"
+      "bytes": 6077,
+      "sha256": "454d5796a0c35f868fb887762140e7c82d4024cc5563cbcb02cd5cb96ce6f04b"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-pipeline-audit.json",
-      "expected_sha256": "7258ea38fa88a6f6d95970f04e4ef5438510ab578bfc11132ec71f313bffd2c7",
+      "expected_sha256": "cb85a96798c784b9aa036b051edf0a7c0741c96d64fab20db1f3106c386ee3b6",
       "restored": true,
       "hash_match": true,
-      "bytes": 28458,
-      "sha256": "7258ea38fa88a6f6d95970f04e4ef5438510ab578bfc11132ec71f313bffd2c7"
+      "bytes": 30001,
+      "sha256": "cb85a96798c784b9aa036b051edf0a7c0741c96d64fab20db1f3106c386ee3b6"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-schema-audit.md",
-      "expected_sha256": "c5d1f79416067fd44b9d32897173fb8f8d84e20cb0fa7fb10a3b665f9095dd13",
+      "expected_sha256": "1f823789b0162417c0f5d12eb81b97db0113792e32ef3fd50d084d7da4845820",
       "restored": true,
       "hash_match": true,
-      "bytes": 2693,
-      "sha256": "c5d1f79416067fd44b9d32897173fb8f8d84e20cb0fa7fb10a3b665f9095dd13"
+      "bytes": 2851,
+      "sha256": "1f823789b0162417c0f5d12eb81b97db0113792e32ef3fd50d084d7da4845820"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-schema-audit.json",
-      "expected_sha256": "cff84f3aa3cb3ed223813705b724e3840a4189b2b4b68fda9695b36fbbe76090",
+      "expected_sha256": "2020e42c698433a82f77151aa8d6d8dca665e845766038b0ae9ffd2ada1078b2",
       "restored": true,
       "hash_match": true,
-      "bytes": 12574,
-      "sha256": "cff84f3aa3cb3ed223813705b724e3840a4189b2b4b68fda9695b36fbbe76090"
+      "bytes": 13502,
+      "sha256": "2020e42c698433a82f77151aa8d6d8dca665e845766038b0ae9ffd2ada1078b2"
     },
     {
       "group": "security_policy_evidence",
@@ -774,20 +802,20 @@
     {
       "group": "security_policy_evidence",
       "path": "docs/evidence/secret-hygiene-audit.md",
-      "expected_sha256": "62f96b4ab16d84f2854838352e3ff2d57d1f59e9b8b600459a6ba66db4e61dc3",
+      "expected_sha256": "fa2736abff7a402b9917347a0380d75ee0f7717091a3111c5d0072eceecb48c7",
       "restored": true,
       "hash_match": true,
       "bytes": 1205,
-      "sha256": "62f96b4ab16d84f2854838352e3ff2d57d1f59e9b8b600459a6ba66db4e61dc3"
+      "sha256": "fa2736abff7a402b9917347a0380d75ee0f7717091a3111c5d0072eceecb48c7"
     },
     {
       "group": "security_policy_evidence",
       "path": "docs/evidence/secret-hygiene-audit.json",
-      "expected_sha256": "dfa2172a00c15ca595ccf32a12bb801cfa1553afd517aacdee321c0804b76f8f",
+      "expected_sha256": "c10ee76084cdff0e2f543f0c49b490a9394d0766b0ea5377d03b4e63a9bef02d",
       "restored": true,
       "hash_match": true,
       "bytes": 4888,
-      "sha256": "dfa2172a00c15ca595ccf32a12bb801cfa1553afd517aacdee321c0804b76f8f"
+      "sha256": "c10ee76084cdff0e2f543f0c49b490a9394d0766b0ea5377d03b4e63a9bef02d"
     },
     {
       "group": "security_policy_evidence",
@@ -869,6 +897,24 @@
       "hash_match": true,
       "bytes": 15391,
       "sha256": "ab7f58717107931062e59c62823d3da1650a91a41dece2c36ade10dcad98e8da"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/private-cluster-admission-boundary-audit.md",
+      "expected_sha256": "c39d38243faede5242cf3c2810c75ef6fd53051a8d9eeeae55dd2650fa4ebe95",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1788,
+      "sha256": "c39d38243faede5242cf3c2810c75ef6fd53051a8d9eeeae55dd2650fa4ebe95"
+    },
+    {
+      "group": "security_policy_evidence",
+      "path": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "expected_sha256": "cfafa012f4747a7e2560b68bc70113630a7b6a85ae5f5712b70ad6501fe0c548",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 7512,
+      "sha256": "cfafa012f4747a7e2560b68bc70113630a7b6a85ae5f5712b70ad6501fe0c548"
     },
     {
       "group": "security_policy_evidence",
@@ -1106,6 +1152,15 @@
     },
     {
       "group": "recovery_source_policy",
+      "path": "config/private-cluster-admission-boundary-policy.json",
+      "expected_sha256": "ccad4a43d577e2de1164efc83cf2a35a3b21c57432156c7b68333bdbaa68cbc0",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 3052,
+      "sha256": "ccad4a43d577e2de1164efc83cf2a35a3b21c57432156c7b68333bdbaa68cbc0"
+    },
+    {
+      "group": "recovery_source_policy",
       "path": "config/telemetry-exporter-policy.json",
       "expected_sha256": "95568c7b0aa18b3f2bf54ade416f5ba9f8c432ea7866a4630290f5ea3a7c5b16",
       "restored": true,
@@ -1116,29 +1171,29 @@
     {
       "group": "recovery_source_policy",
       "path": "config/evidence-pipeline-policy.json",
-      "expected_sha256": "1967dcfe6a80767ae785c1187e47c7f92b894674017690e6f45cfe754cd0b207",
+      "expected_sha256": "c2f3469232fa04122013ea78b2ee52e76c0ae81ca7faa0929436fae77a815308",
       "restored": true,
       "hash_match": true,
-      "bytes": 19219,
-      "sha256": "1967dcfe6a80767ae785c1187e47c7f92b894674017690e6f45cfe754cd0b207"
+      "bytes": 20348,
+      "sha256": "c2f3469232fa04122013ea78b2ee52e76c0ae81ca7faa0929436fae77a815308"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/evidence-schema-policy.json",
-      "expected_sha256": "3367f4ac082424d57dd6d1e27e286cf8af01a2cdab15e43aa4c97c8a1b73a6cd",
+      "expected_sha256": "c6420783e1023efec05a2ca33f583ca4cf091badd0516389c7af3fd13bfd0380",
       "restored": true,
       "hash_match": true,
-      "bytes": 16931,
-      "sha256": "3367f4ac082424d57dd6d1e27e286cf8af01a2cdab15e43aa4c97c8a1b73a6cd"
+      "bytes": 18572,
+      "sha256": "c6420783e1023efec05a2ca33f583ca4cf091badd0516389c7af3fd13bfd0380"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/disaster-recovery-policy.json",
-      "expected_sha256": "ef9c0462168eab1506e8320510d9dff6d6e023785cf8019302c755f5638b677c",
+      "expected_sha256": "574d1e4ea83c7c65c9ae1eaedda44825f77b049f9800f80888ea2ff320b228e3",
       "restored": true,
       "hash_match": true,
-      "bytes": 5387,
-      "sha256": "ef9c0462168eab1506e8320510d9dff6d6e023785cf8019302c755f5638b677c"
+      "bytes": 5719,
+      "sha256": "574d1e4ea83c7c65c9ae1eaedda44825f77b049f9800f80888ea2ff320b228e3"
     },
     {
       "group": "recovery_source_policy",
@@ -1277,6 +1332,15 @@
     },
     {
       "group": "recovery_source_policy",
+      "path": "demo/private_cluster_admission_boundary_audit.py",
+      "expected_sha256": "217849b51e30bf66f9682e639520bca0e8ecf54aed51aef05685d48556d77c6c",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 18868,
+      "sha256": "217849b51e30bf66f9682e639520bca0e8ecf54aed51aef05685d48556d77c6c"
+    },
+    {
+      "group": "recovery_source_policy",
       "path": "demo/telemetry_exporter_authority_audit.py",
       "expected_sha256": "3723f9d3a6b46924f60b5902bd3963d80d5e4c6c1140692bbac8d2fed38dff94",
       "restored": true,
@@ -1296,20 +1360,20 @@
     {
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
-      "expected_sha256": "4e4c3510ae289694f858024bff67fc3f58f979a010e594f77719762f22c87f8f",
+      "expected_sha256": "df2a31618e80bf669dd31f0c0639c52dc3a9940192644db3cc08fa45a35206f0",
       "restored": true,
       "hash_match": true,
-      "bytes": 17267,
-      "sha256": "4e4c3510ae289694f858024bff67fc3f58f979a010e594f77719762f22c87f8f"
+      "bytes": 17552,
+      "sha256": "df2a31618e80bf669dd31f0c0639c52dc3a9940192644db3cc08fa45a35206f0"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
-      "expected_sha256": "1a5dae21baf0f2b542d9a58f8bb12f7da76ceac59152a6db1540165003315ea2",
+      "expected_sha256": "f5e918894cb7ea63eba0109d3f917e3649517e9960bf181774f56987a4f8f461",
       "restored": true,
       "hash_match": true,
-      "bytes": 31421,
-      "sha256": "1a5dae21baf0f2b542d9a58f8bb12f7da76ceac59152a6db1540165003315ea2"
+      "bytes": 31977,
+      "sha256": "f5e918894cb7ea63eba0109d3f917e3649517e9960bf181774f56987a4f8f461"
     }
   ],
   "fixtures": [
@@ -1342,7 +1406,7 @@
       "evidence": {
         "missing": [],
         "duplicates": [],
-        "artifact_count": 81
+        "artifact_count": 85
       }
     },
     {
@@ -1350,8 +1414,8 @@
       "status": "pass",
       "reason": "Every restored artifact matches the source SHA-256 checksum.",
       "evidence": {
-        "restored_count": 81,
-        "hash_match_count": 81,
+        "restored_count": 85,
+        "hash_match_count": 85,
         "hash_mismatches": []
       }
     },
@@ -1364,9 +1428,9 @@
           "deployment_manifests": 6,
           "incident_replay_evidence": 4,
           "observability_contracts": 7,
-          "recovery_source_policy": 32,
+          "recovery_source_policy": 34,
           "release_control_evidence": 14,
-          "security_policy_evidence": 18
+          "security_policy_evidence": 20
         }
       }
     },

@@ -137,6 +137,17 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 8,
             "failed_count": 0,
         },
+        "private_cluster_admission_boundary": {
+            "status": "pass",
+            "document_count": 28,
+            "native_admission_resource_count": 2,
+            "webhook_configuration_count": 0,
+            "webhook_service_count": 0,
+            "optional_operator_boundary_count": 2,
+            "private_cluster_doc_count": 2,
+            "detected_fixture_count": 6,
+            "failed_count": 0,
+        },
         "namespace_resource": {
             "status": "pass",
             "namespace_count": 2,
@@ -471,6 +482,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["kubernetes_api_compatibility_audit"])
+
+    def test_requires_private_cluster_admission_boundary_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["private_cluster_admission_boundary"]["webhook_service_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["private_cluster_admission_boundary_audit"])
 
     def test_requires_supply_chain_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

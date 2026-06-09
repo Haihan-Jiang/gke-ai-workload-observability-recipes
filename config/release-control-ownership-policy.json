@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing ownership, severity, cadence, escalation, rollback, and evidence paths for release-readiness checks.",
-  "minimum_control_count": 55,
-  "minimum_tier0_count": 32,
-  "minimum_every_release_count": 43,
+  "minimum_control_count": 56,
+  "minimum_tier0_count": 33,
+  "minimum_every_release_count": 44,
   "minimum_owner_group_count": 5,
   "minimum_detected_fixtures": 6,
   "allowed_tiers": [
@@ -62,6 +62,7 @@
     {"name": "k8s_manifest_hardening", "owner": "platform", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/k8s-hardening-audit.json"},
     {"name": "pod_security_admission_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/pod-security-admission-audit.json"},
     {"name": "kubernetes_api_compatibility_audit", "owner": "platform", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/kubernetes-api-compatibility-audit.json"},
+    {"name": "private_cluster_admission_boundary_audit", "owner": "platform", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/private-cluster-admission-boundary-audit.json"},
     {"name": "namespace_resource_audit", "owner": "platform", "tier": "tier_1_production_guard", "review_cadence": "every_release", "evidence_path": "docs/evidence/namespace-resource-audit.json"},
     {"name": "availability_topology_audit", "owner": "platform", "tier": "tier_1_production_guard", "review_cadence": "every_release", "evidence_path": "docs/evidence/availability-topology-audit.json"},
     {"name": "autoscaling_policy_audit", "owner": "platform", "tier": "tier_1_production_guard", "review_cadence": "every_release", "evidence_path": "docs/evidence/autoscaling-policy-audit.json"},

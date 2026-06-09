@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 13,
-  "minimum_detected_fixtures": 13,
+  "minimum_artifact_count": 14,
+  "minimum_detected_fixtures": 14,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 45,
-        "required_step_count": 45,
-        "dependency_count": 35,
-        "artifact_dependency_count": 35,
+        "step_count": 58,
+        "required_step_count": 58,
+        "dependency_count": 80,
+        "artifact_dependency_count": 80,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 45,
-        "dependencies": 35,
+        "steps": 58,
+        "dependencies": 80,
         "fixtures": 4
       }
     },
@@ -261,6 +261,54 @@
         "checks": 6,
         "resources": 28,
         "fixture_results": 8
+      }
+    },
+    {
+      "path": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "document_count",
+        "native_admission_resource_count",
+        "webhook_configuration_count",
+        "webhook_service_count",
+        "optional_operator_boundary_count",
+        "private_cluster_doc_count",
+        "detected_fixture_count",
+        "checks",
+        "optional_boundaries",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "document_inventory",
+        "native_admission_boundary",
+        "webhook_service_boundary",
+        "optional_operator_boundary",
+        "private_cluster_docs",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "document_count": 28,
+        "native_admission_resource_count": 2,
+        "optional_operator_boundary_count": 2,
+        "private_cluster_doc_count": 2,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0,
+        "webhook_configuration_count": 0,
+        "webhook_service_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "optional_boundaries": 2,
+        "fixture_results": 6
       }
     },
     {
@@ -587,6 +635,13 @@
       "mutation": "remove_check",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
       "check": "exporter_authority_annotations",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_private_cluster_webhook_boundary_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "check": "webhook_service_boundary",
       "expected_failed_check": "check_inventory"
     },
     {

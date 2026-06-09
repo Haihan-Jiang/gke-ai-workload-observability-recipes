@@ -35,6 +35,7 @@
 - [Kubernetes manifest hardening audit](k8s-hardening-audit.md)
 - [Pod Security Admission audit](pod-security-admission-audit.md)
 - [Kubernetes API compatibility audit](kubernetes-api-compatibility-audit.md)
+- [Private cluster admission boundary audit](private-cluster-admission-boundary-audit.md)
 - [Namespace resource audit](namespace-resource-audit.md)
 - [Availability topology audit](availability-topology-audit.md)
 - [Autoscaling policy audit](autoscaling-policy-audit.md)

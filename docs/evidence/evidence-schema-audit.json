@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 13,
-  "policy_artifact_count": 13,
-  "required_field_count": 126,
-  "required_check_count": 85,
-  "metric_contract_count": 72,
-  "array_contract_count": 32,
-  "observed_check_count": 85,
-  "detected_fixture_count": 13,
+  "artifact_count": 14,
+  "policy_artifact_count": 14,
+  "required_field_count": 139,
+  "required_check_count": 91,
+  "metric_contract_count": 81,
+  "array_contract_count": 35,
+  "observed_check_count": 91,
+  "detected_fixture_count": 14,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 13,
-        "policy_artifact_count": 13,
-        "minimum_artifact_count": 13
+        "artifact_count": 14,
+        "policy_artifact_count": 14,
+        "minimum_artifact_count": 14
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 13,
-        "minimum_detected_fixtures": 13,
+        "detected_fixture_count": 14,
+        "minimum_detected_fixtures": 14,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -135,6 +135,17 @@
           {
             "name": "missing_exporter_authority_annotation_check",
             "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_private_cluster_webhook_boundary_check",
+            "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
             "mutation": "remove_check",
             "expected_failed_check": "check_inventory",
             "failed_checks": [
@@ -289,6 +300,17 @@
       "detected": true
     },
     {
+      "name": "missing_private_cluster_webhook_boundary_check",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
       "name": "low_developer_runtime_make_target_count",
       "artifact": "docs/evidence/developer-runtime-audit.json",
       "mutation": "set_field",
@@ -396,6 +418,12 @@
     },
     {
       "path": "docs/evidence/kubernetes-api-compatibility-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/private-cluster-admission-boundary-audit.json",
       "present": true,
       "status": "pass",
       "check_count": 6
