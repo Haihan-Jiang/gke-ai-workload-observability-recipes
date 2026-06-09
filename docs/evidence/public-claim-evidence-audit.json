@@ -1,0 +1,182 @@
+{
+  "status": "pass",
+  "check_count": 6,
+  "failed_count": 0,
+  "detected_fixture_count": 6,
+  "claim_count": 12,
+  "evidence_claim_count": 12,
+  "release_check_count": 12,
+  "boundary_statement_count": 3,
+  "forbidden_phrase_count": 0,
+  "missing_claim_count": 0,
+  "missing_evidence_count": 0,
+  "missing_doc_count": 0,
+  "metric_gap_count": 0,
+  "release_gap_count": 0,
+  "surface_count": 2,
+  "checks": [
+    {
+      "name": "claim_text_contract",
+      "ok": true,
+      "evidence": {
+        "claim_count": 12,
+        "minimum_claim_count": 12,
+        "missing_claims": []
+      }
+    },
+    {
+      "name": "evidence_status_contract",
+      "ok": true,
+      "evidence": {
+        "evidence_claim_count": 12,
+        "missing_evidence": [],
+        "bad_status": [],
+        "missing_docs": []
+      }
+    },
+    {
+      "name": "evidence_metric_contract",
+      "ok": true,
+      "evidence": {
+        "metric_gaps": []
+      }
+    },
+    {
+      "name": "release_check_contract",
+      "ok": true,
+      "evidence": {
+        "release_check_count": 12,
+        "release_gaps": []
+      }
+    },
+    {
+      "name": "boundary_language_contract",
+      "ok": true,
+      "evidence": {
+        "boundary_statement_count": 3,
+        "missing_boundaries": [],
+        "forbidden_present": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 6,
+        "minimum_detected_fixtures": 6,
+        "fixtures": [
+          {
+            "name": "missing_readme_claim",
+            "mutation": "remove_claim_text",
+            "expected_failed_check": "claim_text_contract",
+            "failed_checks": [
+              "claim_text_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "failed_evidence_status",
+            "mutation": "set_evidence_status",
+            "expected_failed_check": "evidence_status_contract",
+            "failed_checks": [
+              "evidence_status_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_evidence_metric",
+            "mutation": "set_evidence_metric",
+            "expected_failed_check": "evidence_metric_contract",
+            "failed_checks": [
+              "evidence_metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_release_check",
+            "mutation": "remove_release_check",
+            "expected_failed_check": "release_check_contract",
+            "failed_checks": [
+              "release_check_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_boundary_statement",
+            "mutation": "remove_boundary_statement",
+            "expected_failed_check": "boundary_language_contract",
+            "failed_checks": [
+              "boundary_language_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "forbidden_public_claim",
+            "mutation": "append_forbidden_phrase",
+            "expected_failed_check": "boundary_language_contract",
+            "failed_checks": [
+              "boundary_language_contract"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_readme_claim",
+      "mutation": "remove_claim_text",
+      "expected_failed_check": "claim_text_contract",
+      "failed_checks": [
+        "claim_text_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "failed_evidence_status",
+      "mutation": "set_evidence_status",
+      "expected_failed_check": "evidence_status_contract",
+      "failed_checks": [
+        "evidence_status_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_evidence_metric",
+      "mutation": "set_evidence_metric",
+      "expected_failed_check": "evidence_metric_contract",
+      "failed_checks": [
+        "evidence_metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_release_check",
+      "mutation": "remove_release_check",
+      "expected_failed_check": "release_check_contract",
+      "failed_checks": [
+        "release_check_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_boundary_statement",
+      "mutation": "remove_boundary_statement",
+      "expected_failed_check": "boundary_language_contract",
+      "failed_checks": [
+        "boundary_language_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "forbidden_public_claim",
+      "mutation": "append_forbidden_phrase",
+      "expected_failed_check": "boundary_language_contract",
+      "failed_checks": [
+        "boundary_language_contract"
+      ],
+      "detected": true
+    }
+  ]
+}

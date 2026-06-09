@@ -258,10 +258,6 @@ python3 demo/validation_contract_audit.py \
   --validate-script scripts/validate.sh \
   --release-readiness-source demo/release_readiness.py \
   --output-dir docs/evidence >/dev/null
-python3 demo/evidence_schema_audit.py \
-  --policy config/evidence-schema-policy.json \
-  --repo-root . \
-  --output-dir docs/evidence >/dev/null
 python3 demo/shadow_traffic_replay_audit.py \
   --policy config/shadow-traffic-policy.json \
   --summary docs/evidence/sample-summary.json \
@@ -297,11 +293,20 @@ python3 demo/release_waiver_governance.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/public_claim_evidence_audit.py \
+  --policy config/public-claim-evidence-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
 python3 demo/documentation_link_integrity_audit.py \
   --policy config/documentation-link-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/evidence_schema_audit.py \
+  --policy config/evidence-schema-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
 python3 demo/disaster_recovery_drill.py \
@@ -394,6 +399,7 @@ python3 demo/release_readiness.py \
   --replay-source-contract docs/evidence/replay-source-contract-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
+  --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
   --evidence-schema docs/evidence/evidence-schema-audit.json \

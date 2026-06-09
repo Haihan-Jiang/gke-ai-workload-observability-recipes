@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 16,
-  "minimum_detected_fixtures": 16,
+  "minimum_artifact_count": 17,
+  "minimum_detected_fixtures": 17,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 63,
-        "required_step_count": 63,
-        "dependency_count": 118,
-        "artifact_dependency_count": 118,
+        "step_count": 64,
+        "required_step_count": 64,
+        "dependency_count": 135,
+        "artifact_dependency_count": 135,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 63,
-        "dependencies": 118,
+        "steps": 64,
+        "dependencies": 135,
         "fixtures": 4
       }
     },
@@ -79,12 +79,12 @@
       ],
       "minimum_metrics": {
         "check_count": 7,
-        "py_compile_script_count": 65,
-        "generation_script_count": 63,
-        "direct_validation_script_count": 62,
-        "policy_json_count": 58,
-        "committed_json_count": 73,
-        "release_argument_count": 62,
+        "py_compile_script_count": 66,
+        "generation_script_count": 64,
+        "direct_validation_script_count": 63,
+        "policy_json_count": 59,
+        "committed_json_count": 74,
+        "release_argument_count": 63,
         "detected_fixture_count": 6
       },
       "maximum_metrics": {
@@ -687,6 +687,50 @@
         "fixture_results": 9,
         "identity_boundaries": 2
       }
+    },
+    {
+      "path": "docs/evidence/public-claim-evidence-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "claim_count",
+        "evidence_claim_count",
+        "release_check_count",
+        "boundary_statement_count",
+        "forbidden_phrase_count",
+        "detected_fixture_count",
+        "checks",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "claim_text_contract",
+        "evidence_status_contract",
+        "evidence_metric_contract",
+        "release_check_contract",
+        "boundary_language_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "claim_count": 12,
+        "evidence_claim_count": 12,
+        "release_check_count": 12,
+        "boundary_statement_count": 2,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0,
+        "forbidden_phrase_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "fixture_results": 6
+      }
     }
   ],
   "fixtures": [
@@ -806,6 +850,14 @@
       "artifact": "docs/evidence/validation-contract-audit.json",
       "check": "committed_json_contract",
       "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "low_public_claim_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json",
+      "field": "claim_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
     }
   ]
 }

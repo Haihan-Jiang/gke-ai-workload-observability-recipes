@@ -31,12 +31,12 @@ class ValidationContractAuditTest(unittest.TestCase):
         )
 
         self.assertEqual("pass", report["status"])
-        self.assertGreaterEqual(report["py_compile_script_count"], 65)
-        self.assertGreaterEqual(report["generation_script_count"], 63)
-        self.assertGreaterEqual(report["direct_validation_script_count"], 62)
-        self.assertGreaterEqual(report["policy_json_count"], 58)
-        self.assertGreaterEqual(report["committed_json_count"], 73)
-        self.assertGreaterEqual(report["release_argument_count"], 62)
+        self.assertGreaterEqual(report["py_compile_script_count"], 66)
+        self.assertGreaterEqual(report["generation_script_count"], 64)
+        self.assertGreaterEqual(report["direct_validation_script_count"], 63)
+        self.assertGreaterEqual(report["policy_json_count"], 59)
+        self.assertGreaterEqual(report["committed_json_count"], 74)
+        self.assertGreaterEqual(report["release_argument_count"], 63)
         self.assertEqual(6, report["detected_fixture_count"])
 
     def test_fixtures_detect_expected_contract_breaks(self) -> None:

@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 63 |
-| Required steps | 63 |
-| Dependencies | 118 |
-| Artifact dependencies | 118 |
+| Steps | 64 |
+| Required steps | 64 |
+| Dependencies | 135 |
+| Artifact dependencies | 135 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -148,6 +148,23 @@ accidentally read stale committed artifacts.
 | `disaster_recovery_drill` | `release_readiness` | yes |
 | `evidence_schema_audit` | `release_readiness` | yes |
 | `validation_contract_audit` | `release_readiness` | yes |
+| `replay_source_contract_audit` | `public_claim_evidence_audit` | yes |
+| `telemetry_redaction_audit` | `public_claim_evidence_audit` | yes |
+| `synthetic_probe_audit` | `public_claim_evidence_audit` | yes |
+| `model_release_safety_audit` | `public_claim_evidence_audit` | yes |
+| `staged_telemetry_validation_audit` | `public_claim_evidence_audit` | yes |
+| `shadow_traffic_replay_audit` | `public_claim_evidence_audit` | yes |
+| `accelerator_quota_fairness_audit` | `public_claim_evidence_audit` | yes |
+| `load_shedding_policy_audit` | `public_claim_evidence_audit` | yes |
+| `release_waiver_governance` | `public_claim_evidence_audit` | yes |
+| `evidence_pipeline_audit` | `public_claim_evidence_audit` | yes |
+| `validation_contract_audit` | `public_claim_evidence_audit` | yes |
+| `public_claim_evidence_audit` | `disaster_recovery_drill` | yes |
+| `public_claim_evidence_audit` | `evidence_provenance` | yes |
+| `public_claim_evidence_audit` | `control_traceability_audit` | yes |
+| `public_claim_evidence_audit` | `release_readiness` | yes |
+| `public_claim_evidence_audit` | `evidence_schema_audit` | yes |
+| `public_claim_evidence_audit` | `documentation_link_integrity_audit` | yes |
 
 ## Negative Fixtures
 

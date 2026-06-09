@@ -1,0 +1,240 @@
+{
+  "description": "Policy for auditing that public README and industry-map claims are backed by committed evidence and release-readiness source checks.",
+  "minimum_claim_count": 12,
+  "minimum_evidence_claim_count": 12,
+  "minimum_release_check_count": 12,
+  "minimum_boundary_statement_count": 2,
+  "minimum_detected_fixtures": 6,
+  "boundary_statements": [
+    {
+      "surface": "README.md",
+      "text": "This repository is a personal reference project."
+    },
+    {
+      "surface": "README.md",
+      "text": "not described as merged"
+    },
+    {
+      "surface": "docs/industry-map.md",
+      "text": "The lab is production-oriented, not production-deployed."
+    }
+  ],
+  "forbidden_phrases": [
+    {
+      "surface": "README.md",
+      "text": "production-deployed reliability lab"
+    },
+    {
+      "surface": "README.md",
+      "text": "merged Google Cloud OSS PRs"
+    }
+  ],
+  "claims": [
+    {
+      "id": "replay_source_contract",
+      "surface": "README.md",
+      "required_text": "Replay source contract evidence checks",
+      "evidence_json": "docs/evidence/replay-source-contract-audit.json",
+      "evidence_doc": "docs/evidence/replay-source-contract-audit.md",
+      "release_check": "replay_source_contract_audit",
+      "minimum_metrics": {
+        "scenario_count": 5,
+        "payload_count": 5,
+        "detected_fixture_count": 7
+      }
+    },
+    {
+      "id": "validation_contract",
+      "surface": "README.md",
+      "required_text": "Validation contract evidence checks",
+      "evidence_json": "docs/evidence/validation-contract-audit.json",
+      "evidence_doc": "docs/evidence/validation-contract-audit.md",
+      "release_check": "validation_contract_audit",
+      "minimum_metrics": {
+        "py_compile_script_count": 66,
+        "committed_json_count": 74,
+        "detected_fixture_count": 6
+      }
+    },
+    {
+      "id": "evidence_pipeline",
+      "surface": "README.md",
+      "required_text": "Evidence pipeline audit evidence checks",
+      "evidence_json": "docs/evidence/evidence-pipeline-audit.json",
+      "evidence_doc": "docs/evidence/evidence-pipeline-audit.md",
+      "release_check": "evidence_pipeline_audit",
+      "minimum_metrics": {
+        "step_count": 64,
+        "dependency_count": 135
+      }
+    },
+    {
+      "id": "telemetry_redaction",
+      "surface": "README.md",
+      "required_text": "A telemetry redaction audit that proves trace payloads keep safe AI metadata",
+      "evidence_json": "docs/evidence/telemetry-redaction-audit.json",
+      "evidence_doc": "docs/evidence/telemetry-redaction-audit.md",
+      "release_check": "telemetry_redaction_audit",
+      "minimum_metrics": {
+        "payload_count": 5,
+        "scenario_count": 5,
+        "attribute_count": 900
+      },
+      "maximum_metrics": {
+        "redaction_violation_count": 0
+      }
+    },
+    {
+      "id": "synthetic_probe",
+      "surface": "README.md",
+      "required_text": "Synthetic probe evidence checks that preflight probes cover healthy baseline",
+      "evidence_json": "docs/evidence/synthetic-probe-audit.json",
+      "evidence_doc": "docs/evidence/synthetic-probe-audit.md",
+      "release_check": "synthetic_probe_audit",
+      "minimum_metrics": {
+        "probe_count": 5,
+        "incident_probe_count": 4,
+        "preflight_block_count": 2,
+        "detected_fixture_count": 5
+      }
+    },
+    {
+      "id": "model_release_safety",
+      "surface": "README.md",
+      "required_text": "Model release safety evidence checks that a model-version rollout is tied to",
+      "evidence_json": "docs/evidence/model-release-safety-audit.json",
+      "evidence_doc": "docs/evidence/model-release-safety-audit.md",
+      "release_check": "model_release_safety_audit",
+      "minimum_metrics": {
+        "release_count": 2,
+        "candidate_count": 1,
+        "blocked_candidate_count": 1,
+        "detected_fixture_count": 7
+      }
+    },
+    {
+      "id": "staged_telemetry_validation",
+      "surface": "README.md",
+      "required_text": "Staged telemetry validation evidence checks",
+      "evidence_json": "docs/evidence/staged-telemetry-validation-audit.json",
+      "evidence_doc": "docs/evidence/staged-telemetry-validation-audit.md",
+      "release_check": "staged_telemetry_validation_audit",
+      "minimum_metrics": {
+        "artifact_count": 7,
+        "scenario_count": 5,
+        "validated_surface_count": 4,
+        "detected_fixture_count": 6
+      }
+    },
+    {
+      "id": "shadow_traffic_replay",
+      "surface": "README.md",
+      "required_text": "Shadow traffic replay evidence checks that candidate inference traffic stays",
+      "evidence_json": "docs/evidence/shadow-traffic-replay-audit.json",
+      "evidence_doc": "docs/evidence/shadow-traffic-replay-audit.md",
+      "release_check": "shadow_traffic_replay_audit",
+      "minimum_metrics": {
+        "replay_count": 2,
+        "candidate_replay_count": 1,
+        "blocked_shadow_count": 1,
+        "detected_fixture_count": 7
+      }
+    },
+    {
+      "id": "accelerator_quota",
+      "surface": "README.md",
+      "required_text": "Accelerator quota fairness evidence checks that GPU/accelerator use stays",
+      "evidence_json": "docs/evidence/accelerator-quota-fairness-audit.json",
+      "evidence_doc": "docs/evidence/accelerator-quota-fairness-audit.md",
+      "release_check": "accelerator_quota_fairness_audit",
+      "minimum_metrics": {
+        "quota_count": 5,
+        "candidate_quota_count": 1,
+        "protected_tier_count": 2,
+        "detected_fixture_count": 7
+      }
+    },
+    {
+      "id": "load_shedding_policy",
+      "surface": "README.md",
+      "required_text": "Load-shedding policy evidence checks that overload and incident paths protect",
+      "evidence_json": "docs/evidence/load-shedding-policy-audit.json",
+      "evidence_doc": "docs/evidence/load-shedding-policy-audit.md",
+      "release_check": "load_shedding_policy_audit",
+      "minimum_metrics": {
+        "action_count": 5,
+        "protective_action_count": 4,
+        "detected_fixture_count": 5
+      }
+    },
+    {
+      "id": "release_waiver_governance",
+      "surface": "README.md",
+      "required_text": "Release waiver governance is included so manual exceptions stay bounded",
+      "evidence_json": "docs/evidence/release-waiver-governance.json",
+      "evidence_doc": "docs/evidence/release-waiver-governance.md",
+      "release_check": "release_waiver_governance",
+      "minimum_metrics": {
+        "waiver_count": 4,
+        "conditional_approval_count": 2,
+        "denied_override_count": 2
+      },
+      "maximum_metrics": {
+        "unsafe_approved_count": 0,
+        "invalid_waiver_count": 0
+      }
+    },
+    {
+      "id": "industry_map_validation_contract",
+      "surface": "docs/industry-map.md",
+      "required_text": "Validation contract audit",
+      "evidence_json": "docs/evidence/validation-contract-audit.json",
+      "evidence_doc": "docs/evidence/validation-contract-audit.md",
+      "release_check": "validation_contract_audit",
+      "minimum_metrics": {
+        "check_count": 7
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_readme_claim",
+      "mutation": "remove_claim_text",
+      "claim": "validation_contract",
+      "expected_failed_check": "claim_text_contract"
+    },
+    {
+      "name": "failed_evidence_status",
+      "mutation": "set_evidence_status",
+      "claim": "replay_source_contract",
+      "status": "fail",
+      "expected_failed_check": "evidence_status_contract"
+    },
+    {
+      "name": "low_evidence_metric",
+      "mutation": "set_evidence_metric",
+      "claim": "evidence_pipeline",
+      "field": "step_count",
+      "value": 3,
+      "expected_failed_check": "evidence_metric_contract"
+    },
+    {
+      "name": "missing_release_check",
+      "mutation": "remove_release_check",
+      "claim": "evidence_pipeline",
+      "expected_failed_check": "release_check_contract"
+    },
+    {
+      "name": "missing_boundary_statement",
+      "mutation": "remove_boundary_statement",
+      "index": 0,
+      "expected_failed_check": "boundary_language_contract"
+    },
+    {
+      "name": "forbidden_public_claim",
+      "mutation": "append_forbidden_phrase",
+      "index": 0,
+      "expected_failed_check": "boundary_language_contract"
+    }
+  ]
+}

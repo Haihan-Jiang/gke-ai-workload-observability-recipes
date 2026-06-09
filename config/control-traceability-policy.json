@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 56,
-  "minimum_release_check_count": 61,
-  "minimum_policy_input_count": 57,
+  "minimum_control_count": 57,
+  "minimum_release_check_count": 62,
+  "minimum_policy_input_count": 58,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -892,6 +892,23 @@
       ],
       "tests": [
         "tests/test_disaster_recovery_drill.py"
+      ]
+    },
+    {
+      "name": "public_claim_evidence_audit",
+      "release_readiness_check": "public_claim_evidence_audit",
+      "evidence": [
+        "docs/evidence/public-claim-evidence-audit.json",
+        "docs/evidence/public-claim-evidence-audit.md"
+      ],
+      "source_inputs": [
+        "demo/public_claim_evidence_audit.py"
+      ],
+      "policy_inputs": [
+        "config/public-claim-evidence-policy.json"
+      ],
+      "tests": [
+        "tests/test_public_claim_evidence_audit.py"
       ]
     },
     {

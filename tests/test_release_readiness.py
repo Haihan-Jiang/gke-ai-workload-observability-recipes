@@ -390,22 +390,22 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "release_control_ownership": {
             "status": "pass",
-            "control_count": 61,
-            "release_check_count": 61,
-            "covered_release_check_count": 61,
-            "tier0_count": 38,
-            "every_release_count": 49,
+            "control_count": 62,
+            "release_check_count": 62,
+            "covered_release_check_count": 62,
+            "tier0_count": 39,
+            "every_release_count": 50,
             "owner_group_count": 5,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "control_traceability": {
             "status": "pass",
-            "control_count": 56,
-            "evidence_file_count": 113,
-            "source_input_count": 59,
-            "policy_input_count": 57,
-            "test_file_count": 56,
+            "control_count": 57,
+            "evidence_file_count": 115,
+            "source_input_count": 60,
+            "policy_input_count": 58,
+            "test_file_count": 57,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
@@ -421,36 +421,36 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 63,
-            "dependency_count": 118,
-            "artifact_dependency_count": 118,
+            "step_count": 64,
+            "dependency_count": 135,
+            "artifact_dependency_count": 135,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
         "evidence_schema": {
             "status": "pass",
-            "artifact_count": 16,
-            "required_field_count": 165,
-            "required_check_count": 105,
-            "detected_fixture_count": 16,
+            "artifact_count": 17,
+            "required_field_count": 176,
+            "required_check_count": 111,
+            "detected_fixture_count": 17,
             "failed_count": 0,
         },
         "validation_contract": {
             "status": "pass",
-            "py_compile_script_count": 65,
-            "generation_script_count": 63,
-            "direct_validation_script_count": 62,
-            "policy_json_count": 58,
-            "committed_json_count": 73,
-            "release_argument_count": 62,
+            "py_compile_script_count": 66,
+            "generation_script_count": 64,
+            "direct_validation_script_count": 63,
+            "policy_json_count": 59,
+            "committed_json_count": 74,
+            "release_argument_count": 63,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "disaster_recovery_drill": {
             "status": "pass",
-            "artifact_count": 101,
-            "restored_count": 101,
-            "hash_match_count": 101,
+            "artifact_count": 105,
+            "restored_count": 105,
+            "hash_match_count": 105,
             "detected_fixture_count": 4,
             "estimated_restore_minutes": 7,
             "rto_minutes": 15,
@@ -468,19 +468,29 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
+        "public_claim_evidence": {
+            "status": "pass",
+            "claim_count": 12,
+            "evidence_claim_count": 12,
+            "release_check_count": 12,
+            "boundary_statement_count": 3,
+            "forbidden_phrase_count": 0,
+            "detected_fixture_count": 6,
+            "failed_count": 0,
+        },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 139,
-            "source_input_count": 135,
+            "artifact_count": 141,
+            "source_input_count": 137,
             "failed_count": 0,
         },
         "proof_packet_integrity": {
             "status": "pass",
-            "manifest_entry_count": 278,
-            "evidence_artifact_count": 139,
+            "manifest_entry_count": 282,
+            "evidence_artifact_count": 141,
             "generated_artifact_count": 4,
-            "source_input_count": 135,
-            "matched_digest_count": 278,
+            "source_input_count": 137,
+            "matched_digest_count": 282,
             "missing_path_count": 0,
             "mismatched_digest_count": 0,
             "circular_artifact_count": 0,
@@ -1012,6 +1022,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["documentation_link_integrity_audit"])
+
+    def test_requires_public_claim_evidence_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["public_claim_evidence"]["forbidden_phrase_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["public_claim_evidence_audit"])
 
     def test_requires_release_control_ownership_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -238,6 +238,10 @@
       "ok": true
     },
     {
+      "name": "public_claim_evidence_audit",
+      "ok": true
+    },
+    {
       "name": "evidence_provenance",
       "ok": true
     },
@@ -805,6 +809,14 @@
     },
     {
       "path": "documentation-link-integrity-audit.json",
+      "exists": true
+    },
+    {
+      "path": "public-claim-evidence-audit.md",
+      "exists": true
+    },
+    {
+      "path": "public-claim-evidence-audit.json",
       "exists": true
     },
     {

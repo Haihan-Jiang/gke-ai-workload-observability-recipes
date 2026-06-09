@@ -445,6 +445,12 @@ inference incidents before a service reaches production.
     - Inputs: [evidence generation script](../scripts/generate-evidence.sh), [validation script](../scripts/validate.sh), release-readiness source, config JSON, and committed evidence JSON
     - Evidence: [validation contract audit](evidence/validation-contract-audit.md)
 
+46. **Public claim evidence audit**
+    - Code: [demo/public_claim_evidence_audit.py](../demo/public_claim_evidence_audit.py)
+    - Policy: [config/public-claim-evidence-policy.json](../config/public-claim-evidence-policy.json)
+    - Inputs: [README](../README.md), this industry map, committed evidence JSON/Markdown, and [release readiness gate](../demo/release_readiness.py)
+    - Evidence: [public claim evidence audit](evidence/public-claim-evidence-audit.md)
+
 ## Boundary
 
 The lab is production-oriented, not production-deployed. It gives a reviewer a

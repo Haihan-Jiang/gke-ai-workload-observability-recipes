@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 63,
-  "minimum_dependency_count": 118,
+  "minimum_step_count": 64,
+  "minimum_dependency_count": 135,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -219,6 +219,10 @@
     {
       "name": "release_waiver_governance",
       "script": "demo/release_waiver_governance.py"
+    },
+    {
+      "name": "public_claim_evidence_audit",
+      "script": "demo/public_claim_evidence_audit.py"
     },
     {
       "name": "disaster_recovery_drill",
@@ -847,6 +851,91 @@
       "producer": "validation_contract_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "telemetry_redaction_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/telemetry-redaction-audit.json"
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json"
+    },
+    {
+      "producer": "model_release_safety_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "shadow_traffic_replay_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/shadow-traffic-replay-audit.json"
+    },
+    {
+      "producer": "accelerator_quota_fairness_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/accelerator-quota-fairness-audit.json"
+    },
+    {
+      "producer": "load_shedding_policy_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/load-shedding-policy-audit.json"
+    },
+    {
+      "producer": "release_waiver_governance",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/release-waiver-governance.json"
+    },
+    {
+      "producer": "evidence_pipeline_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/public-claim-evidence-audit.md"
     }
   ],
   "fixtures": [

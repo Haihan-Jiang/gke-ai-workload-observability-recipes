@@ -118,6 +118,9 @@ arguments before a proof packet is trusted.
 Documentation link integrity evidence checks README, contributor docs, release
 docs, and committed evidence indexes for local path, anchor, image, and scheme
 drift before public review links are trusted.
+Public claim evidence audit checks that README and industry-map claims stay
+backed by committed JSON/Markdown evidence, release-readiness checks, and
+explicit boundary language before public review text is trusted.
 Proof packet integrity evidence re-checks the provenance manifest against the
 current repository tree so stale evidence, source drift, missing artifacts, and
 circular release-proof inputs block release readiness.
@@ -284,6 +287,9 @@ not described as merged.
 - A documentation link integrity audit that verifies README, docs, evidence
   indexes, anchors, images, and allowed schemes before public review links are
   trusted.
+- A public claim evidence audit that verifies README and industry-map claims
+  stay backed by committed evidence, release-readiness checks, and explicit
+  project boundary language.
 - An evidence provenance manifest with SHA-256 checksums for generated
   evidence, Kubernetes/Grafana/OpenSLO artifacts, and source inputs.
 - A proof packet integrity audit that re-checks provenance checksums against
@@ -478,6 +484,7 @@ script:
 - [Validation contract audit](docs/evidence/validation-contract-audit.md)
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
 - [Documentation link integrity audit](docs/evidence/documentation-link-integrity-audit.md)
+- [Public claim evidence audit](docs/evidence/public-claim-evidence-audit.md)
 - [Evidence provenance](docs/evidence/evidence-provenance.md)
 - [Proof packet integrity audit](docs/evidence/proof-packet-integrity-audit.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
@@ -668,6 +675,9 @@ Before adapting this to a real GKE cluster:
 53. Keep documentation link integrity aligned with README, contributor docs,
    release docs, evidence indexes, anchors, images, and allowed link schemes
    before treating public review links as trustworthy.
+54. Keep public claim evidence aligned with README and industry-map claims,
+   committed evidence JSON/Markdown, release-readiness checks, forbidden public
+   phrases, and explicit project boundary language.
 
 ## Case Study
 

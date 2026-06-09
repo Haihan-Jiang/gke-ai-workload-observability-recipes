@@ -10,11 +10,11 @@ evidence path before the final release gate passes.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 61 |
-| Release checks | 61 |
-| Covered release checks | 61 |
-| Tier 0 controls | 38 |
-| Every-release controls | 49 |
+| Controls | 62 |
+| Release checks | 62 |
+| Covered release checks | 62 |
+| Tier 0 controls | 39 |
+| Every-release controls | 50 |
 | Owner groups | 5 |
 | Detected fixtures | 6 |
 
@@ -93,5 +93,6 @@ evidence path before the final release gate passes.
 | `validation_contract_audit` | `evidence` | `tier_0_release_blocker` | `every_release` | `docs/evidence/validation-contract-audit.json` |
 | `disaster_recovery_drill` | `sre` | `tier_0_release_blocker` | `every_release` | `docs/evidence/disaster-recovery-drill.json` |
 | `documentation_link_integrity_audit` | `evidence` | `tier_0_release_blocker` | `every_release` | `docs/evidence/documentation-link-integrity-audit.json` |
+| `public_claim_evidence_audit` | `evidence` | `tier_0_release_blocker` | `every_release` | `docs/evidence/public-claim-evidence-audit.json` |
 | `evidence_provenance` | `evidence` | `tier_0_release_blocker` | `every_release` | `docs/evidence/evidence-provenance.json` |
 | `proof_packet_integrity_audit` | `evidence` | `tier_0_release_blocker` | `every_release` | `docs/evidence/proof-packet-integrity-audit.json` |

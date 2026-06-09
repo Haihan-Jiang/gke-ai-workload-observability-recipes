@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 16,
-  "policy_artifact_count": 16,
-  "required_field_count": 165,
-  "required_check_count": 105,
-  "metric_contract_count": 99,
-  "array_contract_count": 40,
-  "observed_check_count": 105,
-  "detected_fixture_count": 16,
+  "artifact_count": 17,
+  "policy_artifact_count": 17,
+  "required_field_count": 176,
+  "required_check_count": 111,
+  "metric_contract_count": 107,
+  "array_contract_count": 42,
+  "observed_check_count": 111,
+  "detected_fixture_count": 17,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 16,
-        "policy_artifact_count": 16,
-        "minimum_artifact_count": 16
+        "artifact_count": 17,
+        "policy_artifact_count": 17,
+        "minimum_artifact_count": 17
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 16,
-        "minimum_detected_fixtures": 16,
+        "detected_fixture_count": 17,
+        "minimum_detected_fixtures": 17,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -247,6 +247,16 @@
             "failed_checks": [
               "check_inventory",
               "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_public_claim_count",
+            "artifact": "docs/evidence/public-claim-evidence-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
             ],
             "detected": true
           }
@@ -427,6 +437,16 @@
         "array_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "low_public_claim_count",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
@@ -525,6 +545,12 @@
       "present": true,
       "status": "pass",
       "check_count": 8
+    },
+    {
+      "path": "docs/evidence/public-claim-evidence-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 56,
-  "release_check_count": 61,
-  "evidence_file_count": 113,
-  "source_input_count": 59,
-  "policy_input_count": 57,
-  "test_file_count": 56,
+  "control_count": 57,
+  "release_check_count": 62,
+  "evidence_file_count": 115,
+  "source_input_count": 60,
+  "policy_input_count": 58,
+  "test_file_count": 57,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 56,
-        "minimum_control_count": 56,
+        "control_count": 57,
+        "minimum_control_count": 57,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 61,
-        "minimum_release_check_count": 61,
+        "release_check_count": 62,
+        "minimum_release_check_count": 62,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 57,
-        "minimum_policy_input_count": 57,
+        "policy_input_count": 58,
+        "minimum_policy_input_count": 58,
         "policy_gaps": []
       }
     },
@@ -1019,6 +1019,23 @@
       ],
       "tests": [
         "tests/test_disaster_recovery_drill.py"
+      ]
+    },
+    {
+      "name": "public_claim_evidence_audit",
+      "release_readiness_check": "public_claim_evidence_audit",
+      "evidence": [
+        "docs/evidence/public-claim-evidence-audit.json",
+        "docs/evidence/public-claim-evidence-audit.md"
+      ],
+      "source_inputs": [
+        "demo/public_claim_evidence_audit.py"
+      ],
+      "policy_inputs": [
+        "config/public-claim-evidence-policy.json"
+      ],
+      "tests": [
+        "tests/test_public_claim_evidence_audit.py"
       ]
     },
     {
