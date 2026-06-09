@@ -9,12 +9,12 @@ committed evidence, source code, policy/config inputs, and tests.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 51 |
-| Release checks | 56 |
-| Evidence files | 103 |
-| Source inputs | 54 |
-| Policy inputs | 52 |
-| Test files | 51 |
+| Controls | 52 |
+| Release checks | 57 |
+| Evidence files | 105 |
+| Source inputs | 55 |
+| Policy inputs | 53 |
+| Test files | 52 |
 | Detected fixtures | 6 |
 
 ## Checks
@@ -75,6 +75,7 @@ committed evidence, source code, policy/config inputs, and tests.
 | `dependency_contract_audit` | `dependency_contract_audit` | 2 |
 | `synthetic_probe_audit` | `synthetic_probe_audit` | 2 |
 | `model_release_safety_audit` | `model_release_safety_audit` | 2 |
+| `staged_telemetry_validation_audit` | `staged_telemetry_validation_audit` | 2 |
 | `shadow_traffic_replay_audit` | `shadow_traffic_replay_audit` | 2 |
 | `accelerator_quota_fairness_audit` | `accelerator_quota_fairness_audit` | 2 |
 | `load_shedding_policy_audit` | `load_shedding_policy_audit` | 2 |

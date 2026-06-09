@@ -338,6 +338,17 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 7,
             "failed_count": 0,
         },
+        "staged_telemetry_validation": {
+            "status": "pass",
+            "artifact_count": 7,
+            "scenario_count": 5,
+            "validated_surface_count": 4,
+            "authoritative_pipeline_count": 2,
+            "preflight_block_count": 2,
+            "blocked_candidate_count": 1,
+            "detected_fixture_count": 6,
+            "failed_count": 0,
+        },
         "shadow_traffic_replay": {
             "status": "pass",
             "replay_count": 2,
@@ -379,46 +390,46 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "release_control_ownership": {
             "status": "pass",
-            "control_count": 55,
-            "release_check_count": 55,
-            "covered_release_check_count": 55,
-            "tier0_count": 32,
-            "every_release_count": 43,
+            "control_count": 57,
+            "release_check_count": 57,
+            "covered_release_check_count": 57,
+            "tier0_count": 34,
+            "every_release_count": 45,
             "owner_group_count": 5,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "control_traceability": {
             "status": "pass",
-            "control_count": 50,
-            "evidence_file_count": 101,
-            "source_input_count": 52,
-            "policy_input_count": 51,
-            "test_file_count": 50,
+            "control_count": 52,
+            "evidence_file_count": 105,
+            "source_input_count": 55,
+            "policy_input_count": 53,
+            "test_file_count": 52,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 57,
-            "dependency_count": 75,
-            "artifact_dependency_count": 75,
+            "step_count": 59,
+            "dependency_count": 92,
+            "artifact_dependency_count": 92,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
         "evidence_schema": {
             "status": "pass",
-            "artifact_count": 13,
-            "required_field_count": 126,
-            "required_check_count": 85,
-            "detected_fixture_count": 13,
+            "artifact_count": 15,
+            "required_field_count": 153,
+            "required_check_count": 98,
+            "detected_fixture_count": 15,
             "failed_count": 0,
         },
         "disaster_recovery_drill": {
             "status": "pass",
-            "artifact_count": 81,
-            "restored_count": 81,
-            "hash_match_count": 81,
+            "artifact_count": 89,
+            "restored_count": 89,
+            "hash_match_count": 89,
             "detected_fixture_count": 4,
             "estimated_restore_minutes": 7,
             "rto_minutes": 15,
@@ -867,6 +878,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["model_release_safety_audit"])
+
+    def test_requires_staged_telemetry_validation_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["staged_telemetry_validation"]["blocked_candidate_count"] = 0
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["staged_telemetry_validation_audit"])
 
     def test_requires_shadow_traffic_replay_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

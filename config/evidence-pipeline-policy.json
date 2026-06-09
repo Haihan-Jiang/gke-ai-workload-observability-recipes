@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 58,
-  "minimum_dependency_count": 80,
+  "minimum_step_count": 59,
+  "minimum_dependency_count": 92,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -185,6 +185,10 @@
       "script": "demo/model_release_safety_audit.py"
     },
     {
+      "name": "staged_telemetry_validation_audit",
+      "script": "demo/staged_telemetry_validation_audit.py"
+    },
+    {
       "name": "evidence_pipeline_audit",
       "script": "demo/evidence_pipeline_audit.py"
     },
@@ -359,9 +363,44 @@
       "artifact": "docs/evidence/synthetic-probe-audit.json"
     },
     {
+      "producer": "advanced_reliability",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/rollout-guard.json"
+    },
+    {
+      "producer": "advanced_reliability",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/trace-quality-audit.json"
+    },
+    {
+      "producer": "telemetry_redaction_audit",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/telemetry-redaction-audit.json"
+    },
+    {
+      "producer": "telemetry_cost_budget",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/telemetry-cost-budget.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json"
+    },
+    {
       "producer": "model_release_safety_audit",
-      "consumer": "evidence_pipeline_audit",
+      "consumer": "staged_telemetry_validation_audit",
       "artifact": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "evidence_pipeline_audit",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
     },
     {
       "producer": "oss_license_audit",
@@ -397,6 +436,11 @@
       "producer": "telemetry_exporter_authority_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
     },
     {
       "producer": "evidence_pipeline_audit",
@@ -437,6 +481,11 @@
       "producer": "model_release_safety_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
     },
     {
       "producer": "telemetry_redaction_audit",
@@ -487,6 +536,11 @@
       "producer": "telemetry_exporter_authority_audit",
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
     },
     {
       "producer": "evidence_schema_audit",
@@ -569,6 +623,11 @@
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
     },
     {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
       "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md"
@@ -627,6 +686,11 @@
       "producer": "telemetry_exporter_authority_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
     },
     {
       "producer": "disaster_recovery_drill",

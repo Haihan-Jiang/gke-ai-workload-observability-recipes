@@ -5,7 +5,7 @@
   "estimated_data_loss_minutes": 0,
   "restore_throughput_mib_per_minute": 64,
   "operator_step_minutes": 6,
-  "minimum_artifacts": 85,
+  "minimum_artifacts": 89,
   "minimum_groups": 6,
   "minimum_generated_artifacts": 4,
   "required_rpo_artifacts": [
@@ -21,6 +21,7 @@
     "docs/evidence/kubernetes-api-compatibility-audit.json",
     "docs/evidence/private-cluster-admission-boundary-audit.json",
     "docs/evidence/telemetry-exporter-authority-audit.json",
+    "docs/evidence/staged-telemetry-validation-audit.json",
     "docs/evidence/evidence-pipeline-audit.json",
     "docs/evidence/evidence-schema-audit.json"
   ],
@@ -74,6 +75,8 @@
         "docs/evidence/private-cluster-admission-boundary-audit.json",
         "docs/evidence/telemetry-exporter-authority-audit.md",
         "docs/evidence/telemetry-exporter-authority-audit.json",
+        "docs/evidence/staged-telemetry-validation-audit.md",
+        "docs/evidence/staged-telemetry-validation-audit.json",
         "docs/evidence/admission-policy-audit.json",
         "docs/evidence/telemetry-redaction-audit.json"
       ]
@@ -115,6 +118,7 @@
         "config/kubernetes-api-compatibility-policy.json",
         "config/private-cluster-admission-boundary-policy.json",
         "config/telemetry-exporter-policy.json",
+        "config/staged-telemetry-validation-policy.json",
         "config/evidence-pipeline-policy.json",
         "config/evidence-schema-policy.json",
         "config/disaster-recovery-policy.json",
@@ -135,6 +139,7 @@
         "demo/kubernetes_api_compatibility_audit.py",
         "demo/private_cluster_admission_boundary_audit.py",
         "demo/telemetry_exporter_authority_audit.py",
+        "demo/staged_telemetry_validation_audit.py",
         "demo/evidence_pipeline_audit.py",
         "scripts/generate-evidence.sh",
         "scripts/validate.sh"

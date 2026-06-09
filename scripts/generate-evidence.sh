@@ -231,6 +231,16 @@ python3 demo/model_release_safety_audit.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/staged_telemetry_validation_audit.py \
+  --policy config/staged-telemetry-validation-policy.json \
+  --rollout-guard docs/evidence/rollout-guard.json \
+  --trace-quality docs/evidence/trace-quality-audit.json \
+  --telemetry-redaction docs/evidence/telemetry-redaction-audit.json \
+  --telemetry-cost docs/evidence/telemetry-cost-budget.json \
+  --telemetry-exporter-authority docs/evidence/telemetry-exporter-authority-audit.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --output-dir docs/evidence >/dev/null
 python3 demo/evidence_pipeline_audit.py \
   --policy config/evidence-pipeline-policy.json \
   --script scripts/generate-evidence.sh \
@@ -352,6 +362,7 @@ python3 demo/release_readiness.py \
   --dependency-contract docs/evidence/dependency-contract-audit.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --staged-telemetry-validation docs/evidence/staged-telemetry-validation-audit.json \
   --shadow-traffic-replay docs/evidence/shadow-traffic-replay-audit.json \
   --accelerator-quota docs/evidence/accelerator-quota-fairness-audit.json \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \

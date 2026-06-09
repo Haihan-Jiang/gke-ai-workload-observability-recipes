@@ -11,13 +11,13 @@ values, and negative drift fixtures.
 
 | Metric | Value |
 | --- | ---: |
-| Artifacts | 14 |
-| Required fields | 139 |
-| Required checks | 91 |
-| Metric contracts | 81 |
-| Array contracts | 35 |
-| Observed checks | 91 |
-| Detected fixtures | 14 |
+| Artifacts | 15 |
+| Required fields | 153 |
+| Required checks | 98 |
+| Metric contracts | 90 |
+| Array contracts | 38 |
+| Observed checks | 98 |
+| Detected fixtures | 15 |
 
 ## Checks
 
@@ -47,6 +47,7 @@ values, and negative drift fixtures.
 | `docs/evidence/telemetry-exporter-authority-audit.json` | `pass` | 8 |
 | `docs/evidence/synthetic-probe-audit.json` | `pass` | 6 |
 | `docs/evidence/model-release-safety-audit.json` | `pass` | 8 |
+| `docs/evidence/staged-telemetry-validation-audit.json` | `pass` | 7 |
 | `docs/evidence/deployment-policy.json` | `generated` | n/a |
 | `docs/evidence/supply-chain-audit.json` | `pass` | 6 |
 | `docs/evidence/k8s-hardening-audit.json` | `pass` | 11 |
@@ -63,6 +64,7 @@ values, and negative drift fixtures.
 | `missing_kubernetes_api_stable_core_check` | `check_inventory` | yes |
 | `missing_exporter_authority_annotation_check` | `check_inventory` | yes |
 | `missing_private_cluster_webhook_boundary_check` | `check_inventory` | yes |
+| `missing_staged_telemetry_preflight_check` | `check_inventory` | yes |
 | `low_developer_runtime_make_target_count` | `metric_contract` | yes |
 | `deployment_policy_without_decision` | `required_fields` | yes |
 | `model_release_without_blocked_candidate` | `metric_contract` | yes |

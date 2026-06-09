@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 51,
-  "release_check_count": 56,
-  "evidence_file_count": 103,
-  "source_input_count": 54,
-  "policy_input_count": 52,
-  "test_file_count": 51,
+  "control_count": 52,
+  "release_check_count": 57,
+  "evidence_file_count": 105,
+  "source_input_count": 55,
+  "policy_input_count": 53,
+  "test_file_count": 52,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 51,
-        "minimum_control_count": 51,
+        "control_count": 52,
+        "minimum_control_count": 52,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 56,
-        "minimum_release_check_count": 56,
+        "release_check_count": 57,
+        "minimum_release_check_count": 57,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 52,
-        "minimum_policy_input_count": 52,
+        "policy_input_count": 53,
+        "minimum_policy_input_count": 53,
         "policy_gaps": []
       }
     },
@@ -831,6 +831,23 @@
       ],
       "tests": [
         "tests/test_model_release_safety_audit.py"
+      ]
+    },
+    {
+      "name": "staged_telemetry_validation_audit",
+      "release_readiness_check": "staged_telemetry_validation_audit",
+      "evidence": [
+        "docs/evidence/staged-telemetry-validation-audit.json",
+        "docs/evidence/staged-telemetry-validation-audit.md"
+      ],
+      "source_inputs": [
+        "demo/staged_telemetry_validation_audit.py"
+      ],
+      "policy_inputs": [
+        "config/staged-telemetry-validation-policy.json"
+      ],
+      "tests": [
+        "tests/test_staged_telemetry_validation_audit.py"
       ]
     },
     {

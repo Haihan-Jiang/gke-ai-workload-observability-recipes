@@ -61,6 +61,7 @@
 - [Dependency contract audit](dependency-contract-audit.md)
 - [Synthetic probe audit](synthetic-probe-audit.md)
 - [Model release safety audit](model-release-safety-audit.md)
+- [Staged telemetry validation audit](staged-telemetry-validation-audit.md)
 - [Shadow traffic replay audit](shadow-traffic-replay-audit.md)
 - [Accelerator quota fairness audit](accelerator-quota-fairness-audit.md)
 - [Load shedding policy audit](load-shedding-policy-audit.md)

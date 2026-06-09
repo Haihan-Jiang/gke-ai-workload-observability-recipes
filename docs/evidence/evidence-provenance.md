@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `133`
+- Evidence artifacts: `135`
 - Generated artifacts: `4`
-- Source inputs: `125`
+- Source inputs: `127`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 4045 | `fbd805e3076a30f6...` |
+| `docs/evidence/README.md` | 4121 | `0920fe5158de9caf...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -72,8 +72,8 @@ evidence easier to detect during review.
 | `docs/evidence/supply-chain-audit.json` | 1667 | `7d881ef96bd2b874...` |
 | `docs/evidence/oss-license-audit.md` | 1125 | `9515c7741cc985ab...` |
 | `docs/evidence/oss-license-audit.json` | 5120 | `45a9919e4f7e6d3f...` |
-| `docs/evidence/secret-hygiene-audit.md` | 1205 | `fa2736abff7a402b...` |
-| `docs/evidence/secret-hygiene-audit.json` | 4888 | `c10ee76084cdff0e...` |
+| `docs/evidence/secret-hygiene-audit.md` | 1205 | `6387f812cdf3000a...` |
+| `docs/evidence/secret-hygiene-audit.json` | 4888 | `9540e6144aaea85e...` |
 | `docs/evidence/sbom-inventory-audit.md` | 1112 | `b31e98a5b7b34416...` |
 | `docs/evidence/sbom-inventory-audit.json` | 5560 | `e21ba88f2e847652...` |
 | `docs/evidence/sbom-inventory.json` | 4382 | `62863c85d1d3c561...` |
@@ -143,6 +143,8 @@ evidence easier to detect during review.
 | `docs/evidence/synthetic-probe-audit.json` | 10757 | `9741b0a24f8822be...` |
 | `docs/evidence/model-release-safety-audit.md` | 1665 | `f6bfdc13975a1e3d...` |
 | `docs/evidence/model-release-safety-audit.json` | 7331 | `2eae285f4229b605...` |
+| `docs/evidence/staged-telemetry-validation-audit.md` | 1964 | `533232e4bab94bbe...` |
+| `docs/evidence/staged-telemetry-validation-audit.json` | 16011 | `5368a98a1878da0c...` |
 | `docs/evidence/shadow-traffic-replay-audit.md` | 1505 | `fb6ea53bc370cfa5...` |
 | `docs/evidence/shadow-traffic-replay-audit.json` | 6999 | `7fbf1f8fc5a12554...` |
 | `docs/evidence/accelerator-quota-fairness-audit.md` | 1635 | `d666b7e9efab3af0...` |
@@ -153,16 +155,16 @@ evidence easier to detect during review.
 | `docs/evidence/regional-failover-audit.json` | 12350 | `8adb0e813521be56...` |
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
-| `docs/evidence/release-control-ownership-audit.md` | 8224 | `27de4ebc8f5d5db4...` |
-| `docs/evidence/release-control-ownership-audit.json` | 17811 | `a188e9e744c745e9...` |
-| `docs/evidence/control-traceability-audit.md` | 4399 | `141270232ed270f2...` |
-| `docs/evidence/control-traceability-audit.json` | 29248 | `e27d71ca94c10fb5...` |
-| `docs/evidence/evidence-pipeline-audit.md` | 6077 | `454d5796a0c35f86...` |
-| `docs/evidence/evidence-pipeline-audit.json` | 30001 | `cb85a96798c784b9...` |
-| `docs/evidence/evidence-schema-audit.md` | 2851 | `1f823789b0162417...` |
-| `docs/evidence/evidence-schema-audit.json` | 13502 | `2020e42c698433a8...` |
-| `docs/evidence/disaster-recovery-drill.md` | 1035 | `bc4513f87eb051bc...` |
-| `docs/evidence/disaster-recovery-drill.json` | 53615 | `8bc997ea0315890e...` |
+| `docs/evidence/release-control-ownership-audit.md` | 8374 | `e75eade356a086d0...` |
+| `docs/evidence/release-control-ownership-audit.json` | 18056 | `dd512b61e4fe2b74...` |
+| `docs/evidence/control-traceability-audit.md` | 4481 | `574bf91a3b298c71...` |
+| `docs/evidence/control-traceability-audit.json` | 29796 | `7abed156d0d6869b...` |
+| `docs/evidence/evidence-pipeline-audit.md` | 6969 | `c8fb535494a07239...` |
+| `docs/evidence/evidence-pipeline-audit.json` | 33261 | `a69bd1c7fa14e655...` |
+| `docs/evidence/evidence-schema-audit.md` | 2996 | `1a3b36a189ceb0d5...` |
+| `docs/evidence/evidence-schema-audit.json` | 14397 | `e7b9296188d98909...` |
+| `docs/evidence/disaster-recovery-drill.md` | 1035 | `659aab0d6d6b74d1...` |
+| `docs/evidence/disaster-recovery-drill.json` | 56073 | `298e2ea9f40e9cfe...` |
 
 ## Generated Artifacts
 

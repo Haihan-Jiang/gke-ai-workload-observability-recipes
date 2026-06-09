@@ -3,20 +3,20 @@
   "failed_count": 0,
   "check_count": 7,
   "detected_fixture_count": 6,
-  "control_count": 56,
-  "release_check_count": 56,
-  "covered_release_check_count": 56,
-  "tier0_count": 33,
-  "every_release_count": 44,
+  "control_count": 57,
+  "release_check_count": 57,
+  "covered_release_check_count": 57,
+  "tier0_count": 34,
+  "every_release_count": 45,
   "owner_group_count": 5,
   "checks": [
     {
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 56,
-        "release_check_count": 56,
-        "minimum_control_count": 56,
+        "control_count": 57,
+        "release_check_count": 57,
+        "minimum_control_count": 57,
         "duplicate_controls": [],
         "missing_release_checks": [],
         "unknown_release_checks": []
@@ -35,12 +35,12 @@
       "ok": true,
       "evidence": {
         "tier_counts": {
-          "tier_0_release_blocker": 33,
+          "tier_0_release_blocker": 34,
           "tier_1_production_guard": 22,
           "tier_2_evidence_guard": 1
         },
         "tier_gaps": [],
-        "minimum_tier0_count": 33
+        "minimum_tier0_count": 34
       }
     },
     {
@@ -48,12 +48,12 @@
       "ok": true,
       "evidence": {
         "cadence_counts": {
-          "every_release": 44,
+          "every_release": 45,
           "monthly": 12,
           "quarterly": 0
         },
         "cadence_gaps": [],
-        "minimum_every_release_count": 44
+        "minimum_every_release_count": 45
       }
     },
     {
@@ -460,6 +460,13 @@
       "tier": "tier_0_release_blocker",
       "review_cadence": "every_release",
       "evidence_path": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "name": "staged_telemetry_validation_audit",
+      "owner": "sre",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/staged-telemetry-validation-audit.json"
     },
     {
       "name": "shadow_traffic_replay_audit",

@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 14,
-  "minimum_detected_fixtures": 14,
+  "minimum_artifact_count": 15,
+  "minimum_detected_fixtures": 15,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 58,
-        "required_step_count": 58,
-        "dependency_count": 80,
-        "artifact_dependency_count": 80,
+        "step_count": 59,
+        "required_step_count": 59,
+        "dependency_count": 92,
+        "artifact_dependency_count": 92,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 58,
-        "dependencies": 80,
+        "steps": 59,
+        "dependencies": 92,
         "fixtures": 4
       }
     },
@@ -446,6 +446,56 @@
       }
     },
     {
+      "path": "docs/evidence/staged-telemetry-validation-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "artifact_count",
+        "scenario_count",
+        "validated_surface_count",
+        "authoritative_pipeline_count",
+        "preflight_block_count",
+        "blocked_candidate_count",
+        "detected_fixture_count",
+        "artifact_statuses",
+        "surfaces",
+        "checks",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "evidence_status_contract",
+        "staged_rollout_guard",
+        "pre_promotion_telemetry_contract",
+        "synthetic_preflight_contract",
+        "model_promotion_block",
+        "scenario_surface_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "artifact_count": 7,
+        "scenario_count": 5,
+        "validated_surface_count": 4,
+        "authoritative_pipeline_count": 2,
+        "preflight_block_count": 2,
+        "blocked_candidate_count": 1,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "artifact_statuses": 7,
+        "fixture_results": 6
+      }
+    },
+    {
       "path": "docs/evidence/deployment-policy.json",
       "allowed_statuses": [
         "generated"
@@ -642,6 +692,13 @@
       "mutation": "remove_check",
       "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
       "check": "webhook_service_boundary",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_staged_telemetry_preflight_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
+      "check": "synthetic_preflight_contract",
       "expected_failed_check": "check_inventory"
     },
     {

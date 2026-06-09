@@ -10,11 +10,11 @@ evidence path before the final release gate passes.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 56 |
-| Release checks | 56 |
-| Covered release checks | 56 |
-| Tier 0 controls | 33 |
-| Every-release controls | 44 |
+| Controls | 57 |
+| Release checks | 57 |
+| Covered release checks | 57 |
+| Tier 0 controls | 34 |
+| Every-release controls | 45 |
 | Owner groups | 5 |
 | Detected fixtures | 6 |
 
@@ -79,6 +79,7 @@ evidence path before the final release gate passes.
 | `dependency_contract_audit` | `mlops` | `tier_1_production_guard` | `monthly` | `docs/evidence/dependency-contract-audit.json` |
 | `synthetic_probe_audit` | `mlops` | `tier_1_production_guard` | `every_release` | `docs/evidence/synthetic-probe-audit.json` |
 | `model_release_safety_audit` | `mlops` | `tier_0_release_blocker` | `every_release` | `docs/evidence/model-release-safety-audit.json` |
+| `staged_telemetry_validation_audit` | `sre` | `tier_0_release_blocker` | `every_release` | `docs/evidence/staged-telemetry-validation-audit.json` |
 | `shadow_traffic_replay_audit` | `mlops` | `tier_0_release_blocker` | `every_release` | `docs/evidence/shadow-traffic-replay-audit.json` |
 | `accelerator_quota_fairness_audit` | `mlops` | `tier_1_production_guard` | `every_release` | `docs/evidence/accelerator-quota-fairness-audit.json` |
 | `load_shedding_policy_audit` | `sre` | `tier_1_production_guard` | `every_release` | `docs/evidence/load-shedding-policy-audit.json` |

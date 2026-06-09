@@ -1,0 +1,499 @@
+{
+  "status": "pass",
+  "artifact_count": 7,
+  "scenario_count": 5,
+  "validated_surface_count": 4,
+  "authoritative_pipeline_count": 2,
+  "preflight_block_count": 2,
+  "blocked_candidate_count": 1,
+  "detected_fixture_count": 6,
+  "failed_count": 0,
+  "check_count": 7,
+  "artifact_statuses": [
+    {
+      "artifact": "rollout_guard",
+      "status": "rollback",
+      "ok": true
+    },
+    {
+      "artifact": "trace_quality",
+      "status": "pass",
+      "failed_count": 0,
+      "ok": true
+    },
+    {
+      "artifact": "telemetry_redaction",
+      "status": "pass",
+      "failed_count": 0,
+      "ok": true
+    },
+    {
+      "artifact": "telemetry_cost",
+      "status": "pass",
+      "failed_count": 0,
+      "ok": true
+    },
+    {
+      "artifact": "telemetry_exporter_authority",
+      "status": "pass",
+      "failed_count": 0,
+      "ok": true
+    },
+    {
+      "artifact": "synthetic_probe",
+      "status": "pass",
+      "failed_count": 0,
+      "ok": true
+    },
+    {
+      "artifact": "model_release_safety",
+      "status": "pass",
+      "failed_count": 0,
+      "ok": true
+    }
+  ],
+  "surfaces": {
+    "trace_quality": [
+      "baseline",
+      "cache_miss_storm",
+      "collector_queue_pressure",
+      "dependency_timeout",
+      "rollout_regression"
+    ],
+    "telemetry_redaction": [
+      "baseline",
+      "cache_miss_storm",
+      "collector_queue_pressure",
+      "dependency_timeout",
+      "rollout_regression"
+    ],
+    "telemetry_cost": [
+      "baseline",
+      "cache_miss_storm",
+      "collector_queue_pressure",
+      "dependency_timeout",
+      "rollout_regression"
+    ],
+    "synthetic_probe": [
+      "baseline",
+      "cache_miss_storm",
+      "collector_queue_pressure",
+      "dependency_timeout",
+      "rollout_regression"
+    ]
+  },
+  "checks": [
+    {
+      "name": "evidence_status_contract",
+      "status": "pass",
+      "reason": "All staged rollout telemetry inputs are successful before promotion evidence is trusted.",
+      "evidence": {
+        "artifact_statuses": [
+          {
+            "artifact": "rollout_guard",
+            "status": "rollback",
+            "ok": true
+          },
+          {
+            "artifact": "trace_quality",
+            "status": "pass",
+            "failed_count": 0,
+            "ok": true
+          },
+          {
+            "artifact": "telemetry_redaction",
+            "status": "pass",
+            "failed_count": 0,
+            "ok": true
+          },
+          {
+            "artifact": "telemetry_cost",
+            "status": "pass",
+            "failed_count": 0,
+            "ok": true
+          },
+          {
+            "artifact": "telemetry_exporter_authority",
+            "status": "pass",
+            "failed_count": 0,
+            "ok": true
+          },
+          {
+            "artifact": "synthetic_probe",
+            "status": "pass",
+            "failed_count": 0,
+            "ok": true
+          },
+          {
+            "artifact": "model_release_safety",
+            "status": "pass",
+            "failed_count": 0,
+            "ok": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "staged_rollout_guard",
+      "status": "pass",
+      "reason": "The staged rollout candidate is evaluated as a rollback/block before expansion.",
+      "evidence": {
+        "observed": {
+          "problem_id": "C02",
+          "baseline": "baseline",
+          "candidate": "rollout_regression",
+          "candidate_version": "v2",
+          "p95_ratio": 9.48,
+          "error_rate_delta": 0.29,
+          "cache_miss_delta": 0.43,
+          "telemetry_loss_delta": 0.0,
+          "violations": [
+            "p95 ratio 9.48 exceeds 3.0",
+            "error delta 0.29 exceeds 0.05",
+            "cache miss delta 0.43 exceeds 0.25"
+          ],
+          "decision": "rollback"
+        },
+        "expected": {
+          "candidate": "rollout_regression",
+          "candidate_version": "v2",
+          "decision": "rollback"
+        }
+      }
+    },
+    {
+      "name": "pre_promotion_telemetry_contract",
+      "status": "pass",
+      "reason": "Trace quality, redaction, cost, exporter authority, queue, and retry evidence pass before promotion.",
+      "evidence": {
+        "trace_attribute_gaps": [],
+        "redaction_violation_count": 0,
+        "telemetry_cost_scenario_count": 5,
+        "authoritative_pipeline_count": 2,
+        "queued_exporter_count": 1,
+        "retry_enabled_count": 1
+      }
+    },
+    {
+      "name": "synthetic_preflight_contract",
+      "status": "pass",
+      "reason": "Synthetic probes include readiness, canary, and telemetry-delivery preflight gates with blocking release actions.",
+      "evidence": {
+        "probe_types": [
+          "canary",
+          "dependency",
+          "readiness",
+          "telemetry"
+        ],
+        "probe_type_gaps": [],
+        "preflight_block_count": 2,
+        "canary_probe": {
+          "name": "canary_version_probe",
+          "scenario": "rollout_regression",
+          "probe_type": "canary",
+          "dependency": "model_runtime",
+          "observed": {
+            "p95_ms": 455,
+            "errors": 2,
+            "cache_miss_rate": 0.43,
+            "telemetry_loss_rate": 0.0,
+            "collector_queue_pressure": "normal",
+            "service_version": "v2",
+            "model_variant": "recommender-v2"
+          },
+          "expected": {
+            "alert_severity": "page",
+            "release_action": "block_release_or_rollback",
+            "rollback_response": "rollback_required",
+            "requires_rollback": true
+          },
+          "signal_ok": true,
+          "signal_failures": [],
+          "alert": "GKEAIInferenceRolloutVersionRegression",
+          "alert_severity": "page",
+          "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression",
+          "response_route_known": true,
+          "response_owner": "Service owner / release engineer",
+          "within_ack_sla": true,
+          "within_mitigation_sla": true,
+          "within_verification_sla": true,
+          "response_rollback_type": "rollback_required",
+          "rollback_drill_type": "rollback_required",
+          "rollback_within_rto": true,
+          "budget_decision": "budget_exhausted",
+          "release_action": "block_release_or_rollback",
+          "dependency_contract": {
+            "name": "model_runtime",
+            "scenario": "rollout_regression",
+            "owner": "Service owner / release engineer",
+            "alert_severity": "page",
+            "release_action": "block_release_or_rollback",
+            "rollback_response": "rollback_required"
+          }
+        },
+        "telemetry_probe": {
+          "name": "telemetry_delivery_probe",
+          "scenario": "collector_queue_pressure",
+          "probe_type": "telemetry",
+          "dependency": "telemetry_exporter",
+          "observed": {
+            "p95_ms": 126,
+            "errors": 0,
+            "cache_miss_rate": 0.0,
+            "telemetry_loss_rate": 0.42,
+            "collector_queue_pressure": "high",
+            "service_version": "v1",
+            "model_variant": "recommender-small"
+          },
+          "expected": {
+            "alert_severity": "page",
+            "release_action": "require_sre_review_before_rollout",
+            "rollback_response": "manual_review",
+            "requires_rollback": false
+          },
+          "signal_ok": true,
+          "signal_failures": [],
+          "alert": "GKEAICollectorTelemetryLoss",
+          "alert_severity": "page",
+          "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#collector_queue_pressure",
+          "response_route_known": true,
+          "response_owner": "Observability platform",
+          "within_ack_sla": true,
+          "within_mitigation_sla": true,
+          "within_verification_sla": true,
+          "response_rollback_type": "manual_review",
+          "rollback_drill_type": "manual_review",
+          "rollback_within_rto": true,
+          "budget_decision": "manual_review_required",
+          "release_action": "require_sre_review_before_rollout",
+          "dependency_contract": {
+            "name": "telemetry_exporter",
+            "scenario": "collector_queue_pressure",
+            "owner": "Observability platform",
+            "alert_severity": "page",
+            "release_action": "require_sre_review_before_rollout",
+            "rollback_response": "manual_review"
+          }
+        }
+      }
+    },
+    {
+      "name": "model_promotion_block",
+      "status": "pass",
+      "reason": "Unsafe model rollout candidates are blocked by staged telemetry and rollback evidence.",
+      "evidence": {
+        "blocked_candidate_count": 1,
+        "blocked_candidates": [
+          {
+            "name": "recommender-v2-candidate",
+            "role": "candidate",
+            "scenario": "rollout_regression",
+            "model_variant": "recommender-v2",
+            "service_version": "v2",
+            "artifact_uri": "gs://model-registry/recommender-v2@sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "artifact_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "artifact_pinned": true,
+            "quality_score": 0.88,
+            "minimum_quality_score": 0.9,
+            "schema_compatible": true,
+            "safety_eval_passed": true,
+            "canary_percent": 10,
+            "previous_release": "recommender-small-stable",
+            "rollback_target": "recommender-small-stable",
+            "max_cost_delta_percent": 30,
+            "expected": {
+              "probe": "canary_version_probe",
+              "budget_decision": "budget_exhausted",
+              "release_action": "block_release_or_rollback",
+              "cost_decision": "block_or_review",
+              "rollout_decision": "rollback",
+              "requires_rollback": true
+            },
+            "cost": {
+              "decision": "block_or_review",
+              "model_variant": "recommender-v2",
+              "estimated_cost_per_1k_requests": 0.477,
+              "violations": [
+                "tokens 578 exceed 520",
+                "gpu_ms 210 exceeds 180"
+              ],
+              "delta_percent_vs_stable": 123.94
+            },
+            "budget_decision": "budget_exhausted",
+            "release_action": "block_release_or_rollback",
+            "rollback": {
+              "response_type": "rollback_required",
+              "within_rto": true,
+              "completion_minutes": 11
+            },
+            "probe": {
+              "name": "canary_version_probe",
+              "signal_ok": true,
+              "release_action": "block_release_or_rollback",
+              "model_variant": "recommender-v2",
+              "service_version": "v2"
+            },
+            "rollout_guard": {
+              "candidate": "rollout_regression",
+              "candidate_version": "v2",
+              "decision": "rollback",
+              "violations": [
+                "p95 ratio 9.48 exceeds 3.0",
+                "error delta 0.29 exceeds 0.05",
+                "cache miss delta 0.43 exceeds 0.25"
+              ]
+            },
+            "trace_quality_status": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "name": "scenario_surface_contract",
+      "status": "pass",
+      "reason": "Baseline, dependency, rollout, and telemetry-delivery scenarios appear across telemetry evidence surfaces.",
+      "evidence": {
+        "expected_scenarios": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "missing_by_surface": {
+          "trace_quality": [],
+          "telemetry_redaction": [],
+          "telemetry_cost": [],
+          "synthetic_probe": []
+        }
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove rollout promotion, telemetry quality, probe, model-block, and scenario-surface drift are detected.",
+      "evidence": {
+        "detected_fixture_count": 6,
+        "minimum_detected_fixtures": 6,
+        "fixtures": [
+          {
+            "name": "rollout_promoted_without_telemetry_block",
+            "mutation": "set_rollout_decision",
+            "expected_failed_check": "staged_rollout_guard",
+            "failed_checks": [
+              "evidence_status_contract",
+              "staged_rollout_guard"
+            ],
+            "detected": true
+          },
+          {
+            "name": "trace_quality_failed_before_promotion",
+            "mutation": "set_artifact_status",
+            "expected_failed_check": "evidence_status_contract",
+            "failed_checks": [
+              "evidence_status_contract",
+              "pre_promotion_telemetry_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "redaction_violation_during_stage",
+            "mutation": "set_field",
+            "expected_failed_check": "pre_promotion_telemetry_contract",
+            "failed_checks": [
+              "pre_promotion_telemetry_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_canary_probe",
+            "mutation": "remove_probe",
+            "expected_failed_check": "synthetic_preflight_contract",
+            "failed_checks": [
+              "synthetic_preflight_contract",
+              "scenario_surface_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "candidate_not_blocked",
+            "mutation": "set_field",
+            "expected_failed_check": "model_promotion_block",
+            "failed_checks": [
+              "model_promotion_block"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_rollout_cost_surface",
+            "mutation": "remove_cost_scenario",
+            "expected_failed_check": "scenario_surface_contract",
+            "failed_checks": [
+              "scenario_surface_contract"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "rollout_promoted_without_telemetry_block",
+      "mutation": "set_rollout_decision",
+      "expected_failed_check": "staged_rollout_guard",
+      "failed_checks": [
+        "evidence_status_contract",
+        "staged_rollout_guard"
+      ],
+      "detected": true
+    },
+    {
+      "name": "trace_quality_failed_before_promotion",
+      "mutation": "set_artifact_status",
+      "expected_failed_check": "evidence_status_contract",
+      "failed_checks": [
+        "evidence_status_contract",
+        "pre_promotion_telemetry_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "redaction_violation_during_stage",
+      "mutation": "set_field",
+      "expected_failed_check": "pre_promotion_telemetry_contract",
+      "failed_checks": [
+        "pre_promotion_telemetry_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_canary_probe",
+      "mutation": "remove_probe",
+      "expected_failed_check": "synthetic_preflight_contract",
+      "failed_checks": [
+        "synthetic_preflight_contract",
+        "scenario_surface_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "candidate_not_blocked",
+      "mutation": "set_field",
+      "expected_failed_check": "model_promotion_block",
+      "failed_checks": [
+        "model_promotion_block"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_rollout_cost_surface",
+      "mutation": "remove_cost_scenario",
+      "expected_failed_check": "scenario_surface_contract",
+      "failed_checks": [
+        "scenario_surface_contract"
+      ],
+      "detected": true
+    }
+  ]
+}

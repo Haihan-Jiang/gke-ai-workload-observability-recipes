@@ -80,6 +80,9 @@ release promotion.
 Model release safety evidence checks that a model-version rollout is tied to
 artifact pinning, offline eval thresholds, schema compatibility, canary
 signals, token/GPU cost deltas, rollback evidence, and trace labels.
+Staged telemetry validation evidence checks that rollout, trace quality,
+redaction, cost, exporter authority, synthetic probes, and model-release
+blocking are all validated before a staged rollout can expand.
 Shadow traffic replay evidence checks that candidate inference traffic stays
 isolated from users, disables writes and side effects, avoids prompt/response
 storage, and is compared against rollout, cost, probe, and model-release gates.
@@ -434,6 +437,7 @@ script:
 - [Dependency contract audit](docs/evidence/dependency-contract-audit.md)
 - [Synthetic probe audit](docs/evidence/synthetic-probe-audit.md)
 - [Model release safety audit](docs/evidence/model-release-safety-audit.md)
+- [Staged telemetry validation audit](docs/evidence/staged-telemetry-validation-audit.md)
 - [Shadow traffic replay audit](docs/evidence/shadow-traffic-replay-audit.md)
 - [Accelerator quota fairness audit](docs/evidence/accelerator-quota-fairness-audit.md)
 - [Load shedding policy audit](docs/evidence/load-shedding-policy-audit.md)
@@ -616,8 +620,9 @@ Before adapting this to a real GKE cluster:
 48. Keep private-cluster admission boundaries aligned with native admission
    policies, no external webhook firewall dependency, and optional operator
    CRD skip paths.
-49. Treat telemetry as production evidence: validate it during staged rollout,
-   not after an incident.
+49. Keep staged telemetry validation aligned with rollout guard, trace quality,
+   redaction, cost budget, exporter authority, synthetic probes, and
+   model-release blocking before rollout expansion.
 
 ## Case Study
 

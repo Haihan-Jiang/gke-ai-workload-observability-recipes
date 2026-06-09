@@ -122,6 +122,8 @@ REQUIRED_EVIDENCE = [
     "synthetic-probe-audit.json",
     "model-release-safety-audit.md",
     "model-release-safety-audit.json",
+    "staged-telemetry-validation-audit.md",
+    "staged-telemetry-validation-audit.json",
     "shadow-traffic-replay-audit.md",
     "shadow-traffic-replay-audit.json",
     "accelerator-quota-fairness-audit.md",
@@ -208,6 +210,7 @@ def evaluate(
     dependency_contract: dict[str, Any],
     synthetic_probe: dict[str, Any],
     model_release_safety: dict[str, Any],
+    staged_telemetry_validation: dict[str, Any],
     shadow_traffic_replay: dict[str, Any],
     accelerator_quota: dict[str, Any],
     load_shedding_policy: dict[str, Any],
@@ -579,6 +582,18 @@ def evaluate(
             and int(model_release_safety.get("failed_count", -1)) == 0,
         },
         {
+            "name": "staged_telemetry_validation_audit",
+            "ok": staged_telemetry_validation.get("status") == "pass"
+            and int(staged_telemetry_validation.get("artifact_count", 0)) >= 7
+            and int(staged_telemetry_validation.get("scenario_count", 0)) >= 5
+            and int(staged_telemetry_validation.get("validated_surface_count", 0)) >= 4
+            and int(staged_telemetry_validation.get("authoritative_pipeline_count", 0)) >= 2
+            and int(staged_telemetry_validation.get("preflight_block_count", 0)) >= 2
+            and int(staged_telemetry_validation.get("blocked_candidate_count", 0)) >= 1
+            and int(staged_telemetry_validation.get("detected_fixture_count", 0)) >= 6
+            and int(staged_telemetry_validation.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "shadow_traffic_replay_audit",
             "ok": shadow_traffic_replay.get("status") == "pass"
             and int(shadow_traffic_replay.get("replay_count", 0)) >= 2
@@ -625,11 +640,11 @@ def evaluate(
         {
             "name": "release_control_ownership_audit",
             "ok": release_control_ownership.get("status") == "pass"
-            and int(release_control_ownership.get("control_count", 0)) >= 54
+            and int(release_control_ownership.get("control_count", 0)) >= 57
             and int(release_control_ownership.get("covered_release_check_count", 0))
             == int(release_control_ownership.get("release_check_count", -1))
-            and int(release_control_ownership.get("tier0_count", 0)) >= 31
-            and int(release_control_ownership.get("every_release_count", 0)) >= 42
+            and int(release_control_ownership.get("tier0_count", 0)) >= 34
+            and int(release_control_ownership.get("every_release_count", 0)) >= 45
             and int(release_control_ownership.get("owner_group_count", 0)) >= 5
             and int(release_control_ownership.get("detected_fixture_count", 0)) >= 6
             and int(release_control_ownership.get("failed_count", -1)) == 0,
@@ -637,36 +652,36 @@ def evaluate(
         {
             "name": "control_traceability_audit",
             "ok": control_traceability.get("status") == "pass"
-            and int(control_traceability.get("control_count", 0)) >= 49
-            and int(control_traceability.get("evidence_file_count", 0)) >= 99
-            and int(control_traceability.get("source_input_count", 0)) >= 50
-            and int(control_traceability.get("policy_input_count", 0)) >= 50
-            and int(control_traceability.get("test_file_count", 0)) >= 49
+            and int(control_traceability.get("control_count", 0)) >= 52
+            and int(control_traceability.get("evidence_file_count", 0)) >= 105
+            and int(control_traceability.get("source_input_count", 0)) >= 55
+            and int(control_traceability.get("policy_input_count", 0)) >= 53
+            and int(control_traceability.get("test_file_count", 0)) >= 52
             and int(control_traceability.get("detected_fixture_count", 0)) >= 6
             and int(control_traceability.get("failed_count", -1)) == 0,
         },
         {
             "name": "evidence_pipeline_audit",
             "ok": evidence_pipeline.get("status") == "pass"
-            and int(evidence_pipeline.get("step_count", 0)) >= 56
-            and int(evidence_pipeline.get("dependency_count", 0)) >= 70
-            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 70
+            and int(evidence_pipeline.get("step_count", 0)) >= 59
+            and int(evidence_pipeline.get("dependency_count", 0)) >= 92
+            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 92
             and int(evidence_pipeline.get("detected_fixture_count", 0)) >= 4
             and int(evidence_pipeline.get("failed_count", -1)) == 0,
         },
         {
             "name": "evidence_schema_audit",
             "ok": evidence_schema.get("status") == "pass"
-            and int(evidence_schema.get("artifact_count", 0)) >= 12
-            and int(evidence_schema.get("required_field_count", 0)) >= 103
-            and int(evidence_schema.get("required_check_count", 0)) >= 76
-            and int(evidence_schema.get("detected_fixture_count", 0)) >= 12
+            and int(evidence_schema.get("artifact_count", 0)) >= 15
+            and int(evidence_schema.get("required_field_count", 0)) >= 153
+            and int(evidence_schema.get("required_check_count", 0)) >= 98
+            and int(evidence_schema.get("detected_fixture_count", 0)) >= 15
             and int(evidence_schema.get("failed_count", -1)) == 0,
         },
         {
             "name": "disaster_recovery_drill",
             "ok": disaster_recovery_drill.get("status") == "pass"
-            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 77
+            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 89
             and int(disaster_recovery_drill.get("restored_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("hash_match_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("detected_fixture_count", 0)) >= 4
@@ -790,6 +805,7 @@ def main() -> int:
     parser.add_argument("--dependency-contract", default="out/dependency-contract-audit/dependency-contract-audit.json")
     parser.add_argument("--synthetic-probe", default="out/synthetic-probe-audit/synthetic-probe-audit.json")
     parser.add_argument("--model-release-safety", default="out/model-release-safety-audit/model-release-safety-audit.json")
+    parser.add_argument("--staged-telemetry-validation", default="out/staged-telemetry-validation-audit/staged-telemetry-validation-audit.json")
     parser.add_argument("--shadow-traffic-replay", default="out/shadow-traffic-replay-audit/shadow-traffic-replay-audit.json")
     parser.add_argument("--accelerator-quota", default="out/accelerator-quota-fairness-audit/accelerator-quota-fairness-audit.json")
     parser.add_argument("--load-shedding-policy", default="out/load-shedding-policy-audit/load-shedding-policy-audit.json")
@@ -850,6 +866,7 @@ def main() -> int:
         dependency_contract=load_json(Path(args.dependency_contract)),
         synthetic_probe=load_json(Path(args.synthetic_probe)),
         model_release_safety=load_json(Path(args.model_release_safety)),
+        staged_telemetry_validation=load_json(Path(args.staged_telemetry_validation)),
         shadow_traffic_replay=load_json(Path(args.shadow_traffic_replay)),
         accelerator_quota=load_json(Path(args.accelerator_quota)),
         load_shedding_policy=load_json(Path(args.load_shedding_policy)),

@@ -182,6 +182,10 @@
       "ok": true
     },
     {
+      "name": "staged_telemetry_validation_audit",
+      "ok": true
+    },
+    {
       "name": "shadow_traffic_replay_audit",
       "ok": true
     },
@@ -673,6 +677,14 @@
     },
     {
       "path": "model-release-safety-audit.json",
+      "exists": true
+    },
+    {
+      "path": "staged-telemetry-validation-audit.md",
+      "exists": true
+    },
+    {
+      "path": "staged-telemetry-validation-audit.json",
       "exists": true
     },
     {

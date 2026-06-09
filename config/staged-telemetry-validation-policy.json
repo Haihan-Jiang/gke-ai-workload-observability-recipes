@@ -1,0 +1,75 @@
+{
+  "description": "Policy for auditing that telemetry is validated during staged rollout before production promotion.",
+  "expected_scenarios": [
+    "baseline",
+    "cache_miss_storm",
+    "collector_queue_pressure",
+    "dependency_timeout",
+    "rollout_regression"
+  ],
+  "required_trace_attributes": [
+    "service.version",
+    "incident.scenario",
+    "sre.signal"
+  ],
+  "required_probe_types": [
+    "readiness",
+    "canary",
+    "telemetry"
+  ],
+  "minimum_scenario_count": 5,
+  "minimum_authoritative_pipeline_count": 2,
+  "minimum_preflight_block_count": 2,
+  "minimum_blocked_candidate_count": 1,
+  "minimum_detected_fixtures": 6,
+  "rollout_candidate": "rollout_regression",
+  "rollout_candidate_version": "v2",
+  "rollout_decision": "rollback",
+  "canary_probe": "canary_version_probe",
+  "telemetry_probe": "telemetry_delivery_probe",
+  "blocked_release_action": "block_release_or_rollback",
+  "review_release_action": "require_sre_review_before_rollout",
+  "fixtures": [
+    {
+      "name": "rollout_promoted_without_telemetry_block",
+      "mutation": "set_rollout_decision",
+      "value": "promote",
+      "expected_failed_check": "staged_rollout_guard"
+    },
+    {
+      "name": "trace_quality_failed_before_promotion",
+      "mutation": "set_artifact_status",
+      "artifact": "trace_quality",
+      "value": "fail",
+      "expected_failed_check": "evidence_status_contract"
+    },
+    {
+      "name": "redaction_violation_during_stage",
+      "mutation": "set_field",
+      "artifact": "telemetry_redaction",
+      "field": "redaction_violation_count",
+      "value": 2,
+      "expected_failed_check": "pre_promotion_telemetry_contract"
+    },
+    {
+      "name": "missing_canary_probe",
+      "mutation": "remove_probe",
+      "probe": "canary_version_probe",
+      "expected_failed_check": "synthetic_preflight_contract"
+    },
+    {
+      "name": "candidate_not_blocked",
+      "mutation": "set_field",
+      "artifact": "model_release_safety",
+      "field": "blocked_candidate_count",
+      "value": 0,
+      "expected_failed_check": "model_promotion_block"
+    },
+    {
+      "name": "missing_rollout_cost_surface",
+      "mutation": "remove_cost_scenario",
+      "scenario": "rollout_regression",
+      "expected_failed_check": "scenario_surface_contract"
+    }
+  ]
+}

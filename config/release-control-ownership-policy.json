@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing ownership, severity, cadence, escalation, rollback, and evidence paths for release-readiness checks.",
-  "minimum_control_count": 56,
-  "minimum_tier0_count": 33,
-  "minimum_every_release_count": 44,
+  "minimum_control_count": 57,
+  "minimum_tier0_count": 34,
+  "minimum_every_release_count": 45,
   "minimum_owner_group_count": 5,
   "minimum_detected_fixtures": 6,
   "allowed_tiers": [
@@ -88,6 +88,7 @@
     {"name": "dependency_contract_audit", "owner": "mlops", "tier": "tier_1_production_guard", "review_cadence": "monthly", "evidence_path": "docs/evidence/dependency-contract-audit.json"},
     {"name": "synthetic_probe_audit", "owner": "mlops", "tier": "tier_1_production_guard", "review_cadence": "every_release", "evidence_path": "docs/evidence/synthetic-probe-audit.json"},
     {"name": "model_release_safety_audit", "owner": "mlops", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/model-release-safety-audit.json"},
+    {"name": "staged_telemetry_validation_audit", "owner": "sre", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/staged-telemetry-validation-audit.json"},
     {"name": "shadow_traffic_replay_audit", "owner": "mlops", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/shadow-traffic-replay-audit.json"},
     {"name": "accelerator_quota_fairness_audit", "owner": "mlops", "tier": "tier_1_production_guard", "review_cadence": "every_release", "evidence_path": "docs/evidence/accelerator-quota-fairness-audit.json"},
     {"name": "load_shedding_policy_audit", "owner": "sre", "tier": "tier_1_production_guard", "review_cadence": "every_release", "evidence_path": "docs/evidence/load-shedding-policy-audit.json"},

@@ -49,6 +49,7 @@ python3 -m py_compile \
   demo/dependency_contract_audit.py \
   demo/synthetic_probe_audit.py \
   demo/model_release_safety_audit.py \
+  demo/staged_telemetry_validation_audit.py \
   demo/shadow_traffic_replay_audit.py \
   demo/load_shedding_policy_audit.py \
   demo/accelerator_quota_fairness_audit.py \
@@ -111,6 +112,7 @@ python3 -m json.tool config/incident-response-policy.json >/dev/null
 python3 -m json.tool config/dependency-contract-policy.json >/dev/null
 python3 -m json.tool config/synthetic-probe-policy.json >/dev/null
 python3 -m json.tool config/model-release-policy.json >/dev/null
+python3 -m json.tool config/staged-telemetry-validation-policy.json >/dev/null
 python3 -m json.tool config/shadow-traffic-policy.json >/dev/null
 python3 -m json.tool config/load-shedding-policy.json >/dev/null
 python3 -m json.tool config/accelerator-quota-policy.json >/dev/null
@@ -346,6 +348,16 @@ python3 demo/model_release_safety_audit.py \
   --rollback-drill out/rollback-drill-validate/rollback-drill.json \
   --synthetic-probe out/synthetic-probe-audit-validate/synthetic-probe-audit.json \
   --output-dir out/model-release-safety-audit-validate >/dev/null
+python3 demo/staged_telemetry_validation_audit.py \
+  --policy config/staged-telemetry-validation-policy.json \
+  --rollout-guard out/advanced-reliability-validate/rollout-guard.json \
+  --trace-quality out/advanced-reliability-validate/trace-quality-audit.json \
+  --telemetry-redaction out/telemetry-redaction-audit-validate/telemetry-redaction-audit.json \
+  --telemetry-cost out/telemetry-cost-budget-validate/telemetry-cost-budget.json \
+  --telemetry-exporter-authority out/telemetry-exporter-authority-audit-validate/telemetry-exporter-authority-audit.json \
+  --synthetic-probe out/synthetic-probe-audit-validate/synthetic-probe-audit.json \
+  --model-release-safety out/model-release-safety-audit-validate/model-release-safety-audit.json \
+  --output-dir out/staged-telemetry-validation-audit-validate >/dev/null
 python3 demo/evidence_pipeline_audit.py \
   --policy config/evidence-pipeline-policy.json \
   --script scripts/generate-evidence.sh \
@@ -465,6 +477,7 @@ python3 demo/release_readiness.py \
   --dependency-contract docs/evidence/dependency-contract-audit.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --staged-telemetry-validation docs/evidence/staged-telemetry-validation-audit.json \
   --shadow-traffic-replay docs/evidence/shadow-traffic-replay-audit.json \
   --accelerator-quota docs/evidence/accelerator-quota-fairness-audit.json \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
@@ -536,6 +549,7 @@ python3 -m json.tool docs/evidence/incident-response-drill.json >/dev/null
 python3 -m json.tool docs/evidence/dependency-contract-audit.json >/dev/null
 python3 -m json.tool docs/evidence/synthetic-probe-audit.json >/dev/null
 python3 -m json.tool docs/evidence/model-release-safety-audit.json >/dev/null
+python3 -m json.tool docs/evidence/staged-telemetry-validation-audit.json >/dev/null
 python3 -m json.tool docs/evidence/shadow-traffic-replay-audit.json >/dev/null
 python3 -m json.tool docs/evidence/load-shedding-policy-audit.json >/dev/null
 python3 -m json.tool docs/evidence/accelerator-quota-fairness-audit.json >/dev/null

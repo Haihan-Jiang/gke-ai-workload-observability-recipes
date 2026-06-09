@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 14,
-  "policy_artifact_count": 14,
-  "required_field_count": 139,
-  "required_check_count": 91,
-  "metric_contract_count": 81,
-  "array_contract_count": 35,
-  "observed_check_count": 91,
-  "detected_fixture_count": 14,
+  "artifact_count": 15,
+  "policy_artifact_count": 15,
+  "required_field_count": 153,
+  "required_check_count": 98,
+  "metric_contract_count": 90,
+  "array_contract_count": 38,
+  "observed_check_count": 98,
+  "detected_fixture_count": 15,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 14,
-        "policy_artifact_count": 14,
-        "minimum_artifact_count": 14
+        "artifact_count": 15,
+        "policy_artifact_count": 15,
+        "minimum_artifact_count": 15
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 14,
-        "minimum_detected_fixtures": 14,
+        "detected_fixture_count": 15,
+        "minimum_detected_fixtures": 15,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -146,6 +146,17 @@
           {
             "name": "missing_private_cluster_webhook_boundary_check",
             "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_staged_telemetry_preflight_check",
+            "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
             "mutation": "remove_check",
             "expected_failed_check": "check_inventory",
             "failed_checks": [
@@ -311,6 +322,17 @@
       "detected": true
     },
     {
+      "name": "missing_staged_telemetry_preflight_check",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
       "name": "low_developer_runtime_make_target_count",
       "artifact": "docs/evidence/developer-runtime-audit.json",
       "mutation": "set_field",
@@ -445,6 +467,12 @@
       "present": true,
       "status": "pass",
       "check_count": 8
+    },
+    {
+      "path": "docs/evidence/staged-telemetry-validation-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 7
     },
     {
       "path": "docs/evidence/deployment-policy.json",

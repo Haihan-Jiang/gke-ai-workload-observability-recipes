@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 58 |
-| Required steps | 58 |
-| Dependencies | 80 |
-| Artifact dependencies | 80 |
+| Steps | 59 |
+| Required steps | 59 |
+| Dependencies | 92 |
+| Artifact dependencies | 92 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -54,7 +54,14 @@ accidentally read stale committed artifacts.
 | `dependency_contract_audit` | `synthetic_probe_audit` | yes |
 | `incident_response_drill` | `synthetic_probe_audit` | yes |
 | `synthetic_probe_audit` | `model_release_safety_audit` | yes |
-| `model_release_safety_audit` | `evidence_pipeline_audit` | yes |
+| `advanced_reliability` | `staged_telemetry_validation_audit` | yes |
+| `advanced_reliability` | `staged_telemetry_validation_audit` | yes |
+| `telemetry_redaction_audit` | `staged_telemetry_validation_audit` | yes |
+| `telemetry_cost_budget` | `staged_telemetry_validation_audit` | yes |
+| `telemetry_exporter_authority_audit` | `staged_telemetry_validation_audit` | yes |
+| `synthetic_probe_audit` | `staged_telemetry_validation_audit` | yes |
+| `model_release_safety_audit` | `staged_telemetry_validation_audit` | yes |
+| `staged_telemetry_validation_audit` | `evidence_pipeline_audit` | yes |
 | `oss_license_audit` | `control_traceability_audit` | yes |
 | `secret_hygiene_audit` | `control_traceability_audit` | yes |
 | `sbom_inventory_audit` | `control_traceability_audit` | yes |
@@ -62,6 +69,7 @@ accidentally read stale committed artifacts.
 | `kubernetes_api_compatibility_audit` | `control_traceability_audit` | yes |
 | `private_cluster_admission_boundary_audit` | `control_traceability_audit` | yes |
 | `telemetry_exporter_authority_audit` | `control_traceability_audit` | yes |
+| `staged_telemetry_validation_audit` | `control_traceability_audit` | yes |
 | `evidence_pipeline_audit` | `evidence_schema_audit` | yes |
 | `developer_runtime_audit` | `evidence_schema_audit` | yes |
 | `pod_security_admission_audit` | `evidence_schema_audit` | yes |
@@ -70,6 +78,7 @@ accidentally read stale committed artifacts.
 | `telemetry_exporter_authority_audit` | `evidence_schema_audit` | yes |
 | `synthetic_probe_audit` | `evidence_schema_audit` | yes |
 | `model_release_safety_audit` | `evidence_schema_audit` | yes |
+| `staged_telemetry_validation_audit` | `evidence_schema_audit` | yes |
 | `telemetry_redaction_audit` | `shadow_traffic_replay_audit` | yes |
 | `model_release_safety_audit` | `shadow_traffic_replay_audit` | yes |
 | `synthetic_probe_audit` | `load_shedding_policy_audit` | yes |
@@ -80,6 +89,7 @@ accidentally read stale committed artifacts.
 | `kubernetes_api_compatibility_audit` | `disaster_recovery_drill` | yes |
 | `private_cluster_admission_boundary_audit` | `disaster_recovery_drill` | yes |
 | `telemetry_exporter_authority_audit` | `disaster_recovery_drill` | yes |
+| `staged_telemetry_validation_audit` | `disaster_recovery_drill` | yes |
 | `evidence_schema_audit` | `disaster_recovery_drill` | yes |
 | `disaster_recovery_drill` | `regional_failover_audit` | yes |
 | `load_shedding_policy_audit` | `regional_failover_audit` | yes |
@@ -96,6 +106,7 @@ accidentally read stale committed artifacts.
 | `kubernetes_api_compatibility_audit` | `evidence_provenance` | yes |
 | `private_cluster_admission_boundary_audit` | `evidence_provenance` | yes |
 | `telemetry_exporter_authority_audit` | `evidence_provenance` | yes |
+| `staged_telemetry_validation_audit` | `evidence_provenance` | yes |
 | `render_incident_evidence` | `evidence_provenance` | yes |
 | `evidence_provenance` | `release_readiness` | yes |
 | `regional_failover_audit` | `release_readiness` | yes |
@@ -108,6 +119,7 @@ accidentally read stale committed artifacts.
 | `kubernetes_api_compatibility_audit` | `release_readiness` | yes |
 | `private_cluster_admission_boundary_audit` | `release_readiness` | yes |
 | `telemetry_exporter_authority_audit` | `release_readiness` | yes |
+| `staged_telemetry_validation_audit` | `release_readiness` | yes |
 | `disaster_recovery_drill` | `release_readiness` | yes |
 | `evidence_schema_audit` | `release_readiness` | yes |
 
