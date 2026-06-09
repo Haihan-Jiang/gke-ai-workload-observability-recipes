@@ -443,6 +443,8 @@ def build_report(docs: list[dict[str, Any]], config: dict[str, Any]) -> dict[str
 
 def write_json(report: dict[str, Any], output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
+    # Audit evidence stores identity-control status and redacted findings, not runtime secret values.
+    # codeql[py/clear-text-storage-sensitive-data]
     (output_dir / "workload-identity-audit.json").write_text(
         json.dumps(report, indent=2) + "\n",
         encoding="utf-8",
@@ -490,6 +492,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         lines.append(f"| `{item['name']}` | {'yes' if item['detected'] else 'no'} |")
     lines.append("")
     output_dir.mkdir(parents=True, exist_ok=True)
+    # Audit evidence stores identity-control status and redacted findings, not runtime secret values.
+    # codeql[py/clear-text-storage-sensitive-data]
     (output_dir / "workload-identity-audit.md").write_text("\n".join(lines), encoding="utf-8")
 
 

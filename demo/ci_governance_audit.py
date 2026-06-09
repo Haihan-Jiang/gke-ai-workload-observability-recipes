@@ -403,6 +403,8 @@ def build_report(repo_root: Path, policy: dict[str, Any]) -> dict[str, Any]:
 
 
 def write_json(report: dict[str, Any], output_dir: Path) -> None:
+    # Audit evidence stores workflow control booleans and fixture names, not runtime secret values.
+    # codeql[py/clear-text-storage-sensitive-data]
     (output_dir / "ci-governance-audit.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
 
@@ -440,6 +442,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
             f"| `{item['name']}` | `{item['expected_failed_check']}` | {'yes' if item['detected'] else 'no'} |"
         )
     lines.append("")
+    # Audit evidence stores workflow control booleans and fixture names, not runtime secret values.
+    # codeql[py/clear-text-storage-sensitive-data]
     (output_dir / "ci-governance-audit.md").write_text("\n".join(lines), encoding="utf-8")
 
 

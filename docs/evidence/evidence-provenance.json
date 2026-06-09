@@ -1269,8 +1269,8 @@
       "path": "demo/ci_governance_audit.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 17851,
-      "sha256": "66ef8c99d510ac03507250b7efb1810752fa06f4e06b2e57cd4e2cf3219b1a29"
+      "bytes": 18153,
+      "sha256": "48095754a7b5760461cc388b46faa26c590d3b2f0485247a466f3eb2e6e2e402"
     },
     {
       "path": "demo/repository_governance_audit.py",
@@ -1318,8 +1318,8 @@
       "path": "demo/namespace_resource_audit.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 19024,
-      "sha256": "0a0581fe6630dc9441cc8bb57d9ff31b32459230a0119a3671d9d77a9b42d2bd"
+      "bytes": 19322,
+      "sha256": "5c18ea5dffae97677f384ba4c09f1f3d04f2f1b8317019682065aba97b90557f"
     },
     {
       "path": "demo/availability_topology_audit.py",
@@ -1353,8 +1353,8 @@
       "path": "demo/config_rollout_audit.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 17602,
-      "sha256": "aded8dd1a945a9cf9b1a701600621791862fd6f80572340a8170660748304daf"
+      "bytes": 17898,
+      "sha256": "1d0b0ff9c4337217510cf910692f4e4515cd6c48c955ee1b7f22f1065b3fbdc7"
     },
     {
       "path": "demo/network_boundary_audit.py",
@@ -1388,8 +1388,8 @@
       "path": "demo/workload_identity_audit.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 22548,
-      "sha256": "487f5afff57c007a259420bbdc6a366014358fd31d589dd1cc71082ad4a893d4"
+      "bytes": 22854,
+      "sha256": "5956864bfa494654e74c48be59459f35ed3d13cf89989f5a08c06533d5636800"
     },
     {
       "path": "demo/admission_policy_audit.py",
