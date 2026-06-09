@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 61,
-        "required_step_count": 61,
-        "dependency_count": 100,
-        "artifact_dependency_count": 100,
+        "step_count": 62,
+        "required_step_count": 62,
+        "dependency_count": 110,
+        "artifact_dependency_count": 110,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 61,
-        "dependencies": 100,
+        "steps": 62,
+        "dependencies": 110,
         "fixtures": 4
       }
     },

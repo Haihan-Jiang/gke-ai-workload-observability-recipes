@@ -172,6 +172,7 @@ inference incidents before a service reaches production.
 | C51 | Telemetry can be reviewed only after rollout damage has already happened | Release review needs staged rollout telemetry evidence that ties rollback decisions, trace quality, redaction, cost, exporter authority, synthetic probes, and model-release blocking together before promotion. | [Staged telemetry validation audit](evidence/staged-telemetry-validation-audit.md) |
 | C52 | A release can cite a stale proof packet after source or evidence changes | Release review needs a proof-packet integrity gate that re-checks provenance checksums against current evidence, generated artifacts, and source inputs before readiness is trusted. | [Proof packet integrity audit](evidence/proof-packet-integrity-audit.md) |
 | C53 | Public review links can drift after evidence is regenerated | Release review needs local Markdown link, anchor, image, and scheme checks so README, contributor docs, release docs, and evidence indexes stay navigable. | [Documentation link integrity audit](evidence/documentation-link-integrity-audit.md) |
+| C54 | Downstream gates can trust replay output after source schema drift | Release review needs a source contract for replay summaries and OTLP payloads so scenario coverage, span shape, attributes, and incident signals stay stable before downstream evidence consumes them. | [Replay source contract audit](evidence/replay-source-contract-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -431,6 +432,12 @@ inference incidents before a service reaches production.
     - Policy: [config/documentation-link-policy.json](../config/documentation-link-policy.json)
     - Inputs: README, contributor docs, release docs, and committed evidence indexes
     - Evidence: [documentation link integrity audit](evidence/documentation-link-integrity-audit.md)
+
+44. **Replay source contract audit**
+    - Code: [demo/replay_source_contract_audit.py](../demo/replay_source_contract_audit.py)
+    - Policy: [config/replay-source-contract-policy.json](../config/replay-source-contract-policy.json)
+    - Inputs: generated incident replay summary and per-scenario OTLP payloads
+    - Evidence: [replay source contract audit](evidence/replay-source-contract-audit.md)
 
 ## Boundary
 

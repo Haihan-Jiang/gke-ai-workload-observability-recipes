@@ -1,0 +1,147 @@
+{
+  "description": "Policy for auditing the incident replay source contract before downstream release evidence consumes it.",
+  "expected_scenarios": [
+    "baseline",
+    "cache_miss_storm",
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "minimum_scenario_count": 5,
+  "minimum_payload_count": 5,
+  "minimum_root_span_count": 34,
+  "minimum_total_span_count": 136,
+  "minimum_attribute_key_count": 19,
+  "minimum_detected_fixtures": 7,
+  "required_summary_fields": [
+    "scenario",
+    "description",
+    "requests",
+    "errors",
+    "error_rate",
+    "p50_ms",
+    "p95_ms",
+    "cache_miss_rate",
+    "service_version",
+    "telemetry_loss_rate",
+    "collector_queue_pressure",
+    "vector_cache_ms",
+    "dependency_ms",
+    "model_ms",
+    "queue_ms",
+    "gpu_ms",
+    "input_tokens",
+    "output_tokens",
+    "tenant_tier",
+    "request_priority",
+    "model_variant",
+    "triage"
+  ],
+  "required_root_attributes": [
+    "http.route",
+    "http.status_code",
+    "ai.model",
+    "ai.model.variant",
+    "ai.inference.latency_ms",
+    "ai.prompt.tokens",
+    "ai.completion.tokens",
+    "ai.gpu.compute_ms",
+    "ai.queue.wait_ms",
+    "cache.result",
+    "incident.scenario",
+    "service.version",
+    "tenant.tier",
+    "request.priority",
+    "sre.signal"
+  ],
+  "required_child_spans": [
+    "vector-cache lookup",
+    "feature-store lookup",
+    "model inference"
+  ],
+  "forbidden_attribute_keys": [
+    "ai.prompt.text",
+    "ai.response.text",
+    "llm.prompt",
+    "llm.response",
+    "api.key"
+  ],
+  "expected_traits": {
+    "baseline": {
+      "max_error_rate": 0.0,
+      "max_cache_miss_rate": 0.0,
+      "service_version": "v1"
+    },
+    "cache_miss_storm": {
+      "min_cache_miss_rate": 1.0,
+      "service_version": "v1"
+    },
+    "dependency_timeout": {
+      "min_error_rate": 0.5,
+      "required_error_status": true,
+      "service_version": "v1"
+    },
+    "rollout_regression": {
+      "min_error_rate": 0.2,
+      "service_version": "v2",
+      "tenant_tier": "premium",
+      "request_priority": "high"
+    },
+    "collector_queue_pressure": {
+      "min_telemetry_loss_rate": 0.4,
+      "collector_queue_pressure": "high",
+      "service_version": "v1"
+    }
+  },
+  "fixtures": [
+    {
+      "name": "missing_summary_scenario",
+      "mutation": "remove_summary_scenario",
+      "scenario": "baseline",
+      "expected_failed_check": "scenario_inventory"
+    },
+    {
+      "name": "missing_summary_field",
+      "mutation": "remove_summary_field",
+      "scenario": "rollout_regression",
+      "field": "model_variant",
+      "expected_failed_check": "summary_contract"
+    },
+    {
+      "name": "missing_payload",
+      "mutation": "remove_payload",
+      "scenario": "collector_queue_pressure",
+      "expected_failed_check": "payload_inventory"
+    },
+    {
+      "name": "missing_root_attribute",
+      "mutation": "remove_root_attribute",
+      "scenario": "baseline",
+      "attribute": "ai.model.variant",
+      "expected_failed_check": "attribute_contract"
+    },
+    {
+      "name": "missing_child_span",
+      "mutation": "remove_child_span",
+      "scenario": "dependency_timeout",
+      "span": "feature-store lookup",
+      "expected_failed_check": "trace_shape_contract"
+    },
+    {
+      "name": "wrong_scenario_attribute",
+      "mutation": "set_root_attribute",
+      "scenario": "rollout_regression",
+      "attribute": "incident.scenario",
+      "value": "baseline",
+      "expected_failed_check": "scenario_consistency"
+    },
+    {
+      "name": "raw_prompt_attribute",
+      "mutation": "append_forbidden_attribute",
+      "scenario": "baseline",
+      "attribute": "ai.prompt.text",
+      "value": "summarize customer account",
+      "expected_failed_check": "payload_privacy_boundary"
+    }
+  ]
+}

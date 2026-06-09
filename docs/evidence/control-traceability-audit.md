@@ -9,12 +9,12 @@ committed evidence, source code, policy/config inputs, and tests.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 54 |
-| Release checks | 59 |
-| Evidence files | 109 |
-| Source inputs | 57 |
-| Policy inputs | 55 |
-| Test files | 54 |
+| Controls | 55 |
+| Release checks | 60 |
+| Evidence files | 111 |
+| Source inputs | 58 |
+| Policy inputs | 56 |
+| Test files | 55 |
 | Detected fixtures | 6 |
 
 ## Checks
@@ -87,6 +87,7 @@ committed evidence, source code, policy/config inputs, and tests.
 | `disaster_recovery_drill` | `disaster_recovery_drill` | 2 |
 | `evidence_provenance` | `evidence_provenance` | 2 |
 | `documentation_link_integrity_audit` | `documentation_link_integrity_audit` | 2 |
+| `replay_source_contract_audit` | `replay_source_contract_audit` | 2 |
 | `proof_packet_integrity_audit` | `proof_packet_integrity_audit` | 2 |
 
 ## Negative Fixtures

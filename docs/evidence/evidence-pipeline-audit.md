@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 61 |
-| Required steps | 61 |
-| Dependencies | 100 |
-| Artifact dependencies | 100 |
+| Steps | 62 |
+| Required steps | 62 |
+| Dependencies | 110 |
+| Artifact dependencies | 110 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -30,6 +30,16 @@ accidentally read stale committed artifacts.
 
 | Producer | Consumer | Ordered |
 | --- | --- | --- |
+| `incident_replay` | `replay_source_contract_audit` | yes |
+| `incident_replay` | `replay_source_contract_audit` | yes |
+| `replay_source_contract_audit` | `reliability_gate` | yes |
+| `replay_source_contract_audit` | `advanced_reliability` | yes |
+| `replay_source_contract_audit` | `detailed_reliability` | yes |
+| `replay_source_contract_audit` | `telemetry_redaction_audit` | yes |
+| `replay_source_contract_audit` | `telemetry_cost_budget` | yes |
+| `replay_source_contract_audit` | `evidence_provenance` | yes |
+| `replay_source_contract_audit` | `control_traceability_audit` | yes |
+| `replay_source_contract_audit` | `release_readiness` | yes |
 | `incident_replay` | `reliability_gate` | yes |
 | `incident_replay` | `capacity_planner` | yes |
 | `reliability_gate` | `runbook_generator` | yes |

@@ -8,6 +8,11 @@ source_dir="out/evidence-source"
 payload_dir="${source_dir}/payloads"
 
 python3 demo/incident_replay.py --no-send --output-dir "${source_dir}" --payload-dir "${payload_dir}" >/dev/null
+python3 demo/replay_source_contract_audit.py \
+  --policy config/replay-source-contract-policy.json \
+  --summary "${source_dir}/summary.json" \
+  --payload-dir "${payload_dir}" \
+  --output-dir docs/evidence >/dev/null
 python3 demo/reliability_gate.py \
   --summary "${source_dir}/summary.json" \
   --slo-config config/reliability-slo.json \
@@ -379,6 +384,7 @@ python3 demo/release_readiness.py \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --release-control-ownership docs/evidence/release-control-ownership-audit.json \
   --control-traceability docs/evidence/control-traceability-audit.json \
+  --replay-source-contract docs/evidence/replay-source-contract-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
   --observability-drift docs/evidence/observability-drift-audit.json \

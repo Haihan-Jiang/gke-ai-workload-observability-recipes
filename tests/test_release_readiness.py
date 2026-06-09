@@ -390,30 +390,40 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "release_control_ownership": {
             "status": "pass",
-            "control_count": 59,
-            "release_check_count": 59,
-            "covered_release_check_count": 59,
-            "tier0_count": 36,
-            "every_release_count": 47,
+            "control_count": 60,
+            "release_check_count": 60,
+            "covered_release_check_count": 60,
+            "tier0_count": 37,
+            "every_release_count": 48,
             "owner_group_count": 5,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "control_traceability": {
             "status": "pass",
-            "control_count": 54,
-            "evidence_file_count": 109,
-            "source_input_count": 57,
-            "policy_input_count": 55,
-            "test_file_count": 54,
+            "control_count": 55,
+            "evidence_file_count": 111,
+            "source_input_count": 58,
+            "policy_input_count": 56,
+            "test_file_count": 55,
             "detected_fixture_count": 6,
+            "failed_count": 0,
+        },
+        "replay_source_contract": {
+            "status": "pass",
+            "scenario_count": 5,
+            "payload_count": 5,
+            "root_span_count": 34,
+            "total_span_count": 136,
+            "attribute_key_count": 19,
+            "detected_fixture_count": 7,
             "failed_count": 0,
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 61,
-            "dependency_count": 100,
-            "artifact_dependency_count": 100,
+            "step_count": 62,
+            "dependency_count": 110,
+            "artifact_dependency_count": 110,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
@@ -427,9 +437,9 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "disaster_recovery_drill": {
             "status": "pass",
-            "artifact_count": 93,
-            "restored_count": 93,
-            "hash_match_count": 93,
+            "artifact_count": 97,
+            "restored_count": 97,
+            "hash_match_count": 97,
             "detected_fixture_count": 4,
             "estimated_restore_minutes": 7,
             "rto_minutes": 15,
@@ -449,17 +459,17 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 135,
-            "source_input_count": 131,
+            "artifact_count": 137,
+            "source_input_count": 133,
             "failed_count": 0,
         },
         "proof_packet_integrity": {
             "status": "pass",
-            "manifest_entry_count": 270,
-            "evidence_artifact_count": 135,
+            "manifest_entry_count": 274,
+            "evidence_artifact_count": 137,
             "generated_artifact_count": 4,
-            "source_input_count": 131,
-            "matched_digest_count": 270,
+            "source_input_count": 133,
+            "matched_digest_count": 274,
             "missing_path_count": 0,
             "mismatched_digest_count": 0,
             "circular_artifact_count": 0,
@@ -1013,6 +1023,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["control_traceability_audit"])
+
+    def test_requires_replay_source_contract_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["replay_source_contract"]["payload_count"] = 3
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["replay_source_contract_audit"])
 
     def test_requires_evidence_pipeline_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

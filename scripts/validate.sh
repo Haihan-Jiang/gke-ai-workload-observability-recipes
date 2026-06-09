@@ -8,6 +8,7 @@ python3 -m py_compile \
   demo/send_otlp_trace.py \
   demo/otlp_debug_receiver.py \
   demo/incident_replay.py \
+  demo/replay_source_contract_audit.py \
   demo/advanced_reliability.py \
   demo/detailed_reliability.py \
   demo/deployment_policy.py \
@@ -73,7 +74,13 @@ python3 demo/incident_replay.py \
   --no-send \
   --output-dir out/incident-replay-validate \
   --payload-dir out/incident-replay-payloads-validate >/dev/null
+python3 demo/replay_source_contract_audit.py \
+  --policy config/replay-source-contract-policy.json \
+  --summary out/incident-replay-validate/summary.json \
+  --payload-dir out/incident-replay-payloads-validate \
+  --output-dir out/replay-source-contract-audit-validate >/dev/null
 python3 -m json.tool config/reliability-slo.json >/dev/null
+python3 -m json.tool config/replay-source-contract-policy.json >/dev/null
 python3 -m json.tool config/advanced-reliability.json >/dev/null
 python3 -m json.tool config/detailed-reliability.json >/dev/null
 python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
@@ -498,6 +505,7 @@ python3 demo/release_readiness.py \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --release-control-ownership docs/evidence/release-control-ownership-audit.json \
   --control-traceability docs/evidence/control-traceability-audit.json \
+  --replay-source-contract docs/evidence/replay-source-contract-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
@@ -508,6 +516,7 @@ python3 demo/release_readiness.py \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
 python3 -m json.tool docs/evidence/sample-summary.json >/dev/null
+python3 -m json.tool docs/evidence/replay-source-contract-audit.json >/dev/null
 python3 -m json.tool docs/evidence/reliability-gate.json >/dev/null
 python3 -m json.tool docs/evidence/capacity-plan.json >/dev/null
 python3 -m json.tool docs/evidence/incident-runbooks.json >/dev/null

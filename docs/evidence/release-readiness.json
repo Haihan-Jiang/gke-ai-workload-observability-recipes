@@ -214,6 +214,10 @@
       "ok": true
     },
     {
+      "name": "replay_source_contract_audit",
+      "ok": true
+    },
+    {
       "name": "evidence_pipeline_audit",
       "ok": true
     },
@@ -249,6 +253,14 @@
     },
     {
       "path": "incident-dashboard.svg",
+      "exists": true
+    },
+    {
+      "path": "replay-source-contract-audit.md",
+      "exists": true
+    },
+    {
+      "path": "replay-source-contract-audit.json",
       "exists": true
     },
     {

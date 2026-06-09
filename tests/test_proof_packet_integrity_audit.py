@@ -28,9 +28,9 @@ class ProofPacketIntegrityAuditTest(unittest.TestCase):
         )
 
         self.assertEqual("pass", report["status"])
-        self.assertGreaterEqual(report["manifest_entry_count"], 270)
-        self.assertGreaterEqual(report["evidence_artifact_count"], 135)
-        self.assertGreaterEqual(report["source_input_count"], 131)
+        self.assertGreaterEqual(report["manifest_entry_count"], 274)
+        self.assertGreaterEqual(report["evidence_artifact_count"], 137)
+        self.assertGreaterEqual(report["source_input_count"], 133)
         self.assertEqual(report["manifest_entry_count"], report["matched_digest_count"])
         self.assertEqual(6, report["detected_fixture_count"])
 

@@ -101,6 +101,10 @@ and evidence path.
 Control traceability evidence checks that each configured release-readiness
 control links back to committed evidence, source code, policy/config inputs,
 and tests.
+Replay source contract evidence checks that generated incident summaries and
+OTLP payloads preserve the expected scenarios, span shape, root attributes,
+model/tenant/version metadata, and incident signals before downstream gates
+consume them.
 Evidence pipeline audit evidence checks that generated artifacts are produced
 before downstream consumers read them, preventing stale committed evidence from
 silently satisfying later release gates.
@@ -124,6 +128,9 @@ not described as merged.
 ## What This Demonstrates
 
 - A zero-cost local incident replay with no Python dependencies.
+- A replay source contract audit that verifies the replay summary and OTLP
+  payloads keep scenario coverage, span shape, root attributes, and incident
+  metadata intact before downstream gates consume them.
 - AI inference scenarios for baseline traffic, cache-miss latency, dependency
   timeout, rollout regression, and collector queue pressure.
 - Configurable SLO-style reliability gates that verify the healthy baseline
@@ -457,6 +464,7 @@ script:
 - [Release waiver governance](docs/evidence/release-waiver-governance.md)
 - [Release control ownership audit](docs/evidence/release-control-ownership-audit.md)
 - [Control traceability audit](docs/evidence/control-traceability-audit.md)
+- [Replay source contract audit](docs/evidence/replay-source-contract-audit.md)
 - [Evidence pipeline audit](docs/evidence/evidence-pipeline-audit.md)
 - [Evidence schema audit](docs/evidence/evidence-schema-audit.md)
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
@@ -636,10 +644,14 @@ Before adapting this to a real GKE cluster:
 49. Keep staged telemetry validation aligned with rollout guard, trace quality,
    redaction, cost budget, exporter authority, synthetic probes, and
    model-release blocking before rollout expansion.
-50. Keep proof packet integrity aligned with evidence provenance checksums,
+50. Keep replay source contracts aligned with scenario coverage, summary
+   fields, OTLP payload files, root span attributes, child span shape,
+   model/tenant/version metadata, and incident signal traits before downstream
+   evidence gates consume replay output.
+51. Keep proof packet integrity aligned with evidence provenance checksums,
    current source inputs, generated artifacts, and non-circular release
    readiness inputs before claiming committed evidence is fresh.
-51. Keep documentation link integrity aligned with README, contributor docs,
+52. Keep documentation link integrity aligned with README, contributor docs,
    release docs, evidence indexes, anchors, images, and allowed link schemes
    before treating public review links as trustworthy.
 
@@ -674,6 +686,7 @@ Current wording before upstream merges:
 > accelerator quota fairness auditing, regional failover auditing,
 > release control ownership auditing,
 > control traceability auditing,
+> replay source contract auditing,
 > documentation link integrity auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
 > audits, telemetry exporter authority checks,
@@ -705,6 +718,7 @@ After an upstream PR merges, update this to:
 > accelerator quota fairness auditing, regional failover auditing,
 > release control ownership auditing,
 > control traceability auditing,
+> replay source contract auditing,
 > documentation link integrity auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
 > audits, telemetry exporter authority checks,

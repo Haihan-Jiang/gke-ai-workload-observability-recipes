@@ -13,6 +13,8 @@ REQUIRED_EVIDENCE = [
     "sample-incident-report.md",
     "sample-summary.json",
     "incident-dashboard.svg",
+    "replay-source-contract-audit.md",
+    "replay-source-contract-audit.json",
     "reliability-gate.md",
     "reliability-gate.json",
     "capacity-plan.md",
@@ -222,6 +224,7 @@ def evaluate(
     release_waiver_governance: dict[str, Any],
     release_control_ownership: dict[str, Any],
     control_traceability: dict[str, Any],
+    replay_source_contract: dict[str, Any],
     evidence_pipeline: dict[str, Any],
     evidence_schema: dict[str, Any],
     disaster_recovery_drill: dict[str, Any],
@@ -646,11 +649,11 @@ def evaluate(
         {
             "name": "release_control_ownership_audit",
             "ok": release_control_ownership.get("status") == "pass"
-            and int(release_control_ownership.get("control_count", 0)) >= 59
+            and int(release_control_ownership.get("control_count", 0)) >= 60
             and int(release_control_ownership.get("covered_release_check_count", 0))
             == int(release_control_ownership.get("release_check_count", -1))
-            and int(release_control_ownership.get("tier0_count", 0)) >= 36
-            and int(release_control_ownership.get("every_release_count", 0)) >= 47
+            and int(release_control_ownership.get("tier0_count", 0)) >= 37
+            and int(release_control_ownership.get("every_release_count", 0)) >= 48
             and int(release_control_ownership.get("owner_group_count", 0)) >= 5
             and int(release_control_ownership.get("detected_fixture_count", 0)) >= 6
             and int(release_control_ownership.get("failed_count", -1)) == 0,
@@ -658,20 +661,31 @@ def evaluate(
         {
             "name": "control_traceability_audit",
             "ok": control_traceability.get("status") == "pass"
-            and int(control_traceability.get("control_count", 0)) >= 54
-            and int(control_traceability.get("evidence_file_count", 0)) >= 109
-            and int(control_traceability.get("source_input_count", 0)) >= 57
-            and int(control_traceability.get("policy_input_count", 0)) >= 55
-            and int(control_traceability.get("test_file_count", 0)) >= 54
+            and int(control_traceability.get("control_count", 0)) >= 55
+            and int(control_traceability.get("evidence_file_count", 0)) >= 111
+            and int(control_traceability.get("source_input_count", 0)) >= 58
+            and int(control_traceability.get("policy_input_count", 0)) >= 56
+            and int(control_traceability.get("test_file_count", 0)) >= 55
             and int(control_traceability.get("detected_fixture_count", 0)) >= 6
             and int(control_traceability.get("failed_count", -1)) == 0,
         },
         {
+            "name": "replay_source_contract_audit",
+            "ok": replay_source_contract.get("status") == "pass"
+            and int(replay_source_contract.get("scenario_count", 0)) >= 5
+            and int(replay_source_contract.get("payload_count", 0)) >= 5
+            and int(replay_source_contract.get("root_span_count", 0)) >= 34
+            and int(replay_source_contract.get("total_span_count", 0)) >= 136
+            and int(replay_source_contract.get("attribute_key_count", 0)) >= 19
+            and int(replay_source_contract.get("detected_fixture_count", 0)) >= 7
+            and int(replay_source_contract.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "evidence_pipeline_audit",
             "ok": evidence_pipeline.get("status") == "pass"
-            and int(evidence_pipeline.get("step_count", 0)) >= 61
-            and int(evidence_pipeline.get("dependency_count", 0)) >= 100
-            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 100
+            and int(evidence_pipeline.get("step_count", 0)) >= 62
+            and int(evidence_pipeline.get("dependency_count", 0)) >= 110
+            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 110
             and int(evidence_pipeline.get("detected_fixture_count", 0)) >= 4
             and int(evidence_pipeline.get("failed_count", -1)) == 0,
         },
@@ -687,7 +701,7 @@ def evaluate(
         {
             "name": "disaster_recovery_drill",
             "ok": disaster_recovery_drill.get("status") == "pass"
-            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 93
+            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 97
             and int(disaster_recovery_drill.get("restored_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("hash_match_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("detected_fixture_count", 0)) >= 4
@@ -710,17 +724,17 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 135
-            and int(evidence_provenance.get("source_input_count", 0)) >= 131
+            and int(evidence_provenance.get("artifact_count", 0)) >= 137
+            and int(evidence_provenance.get("source_input_count", 0)) >= 133
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
         {
             "name": "proof_packet_integrity_audit",
             "ok": proof_packet_integrity.get("status") == "pass"
-            and int(proof_packet_integrity.get("manifest_entry_count", 0)) >= 270
-            and int(proof_packet_integrity.get("evidence_artifact_count", 0)) >= 135
+            and int(proof_packet_integrity.get("manifest_entry_count", 0)) >= 274
+            and int(proof_packet_integrity.get("evidence_artifact_count", 0)) >= 137
             and int(proof_packet_integrity.get("generated_artifact_count", 0)) >= 4
-            and int(proof_packet_integrity.get("source_input_count", 0)) >= 131
+            and int(proof_packet_integrity.get("source_input_count", 0)) >= 133
             and int(proof_packet_integrity.get("matched_digest_count", 0))
             == int(proof_packet_integrity.get("manifest_entry_count", -1))
             and int(proof_packet_integrity.get("missing_path_count", -1)) == 0
@@ -766,7 +780,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "probe coverage, model release safety coverage, shadow traffic replay",
         "coverage, accelerator quota fairness coverage, load-shedding policy",
         "coverage, regional failover coverage,",
-        "waiver governance, release control ownership, control traceability, evidence pipeline ordering, evidence schema contracts, disaster recovery",
+        "waiver governance, release control ownership, control traceability, replay source contract, evidence pipeline ordering, evidence schema contracts, disaster recovery",
         "drill coverage, documentation link integrity, evidence provenance, proof-packet integrity, and committed evidence are",
         "present and internally",
         "consistent.",
@@ -847,6 +861,7 @@ def main() -> int:
     parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
     parser.add_argument("--release-control-ownership", default="out/release-control-ownership-audit/release-control-ownership-audit.json")
     parser.add_argument("--control-traceability", default="out/control-traceability-audit/control-traceability-audit.json")
+    parser.add_argument("--replay-source-contract", default="out/replay-source-contract-audit/replay-source-contract-audit.json")
     parser.add_argument("--evidence-pipeline", default="out/evidence-pipeline-audit/evidence-pipeline-audit.json")
     parser.add_argument("--evidence-schema", default="out/evidence-schema-audit/evidence-schema-audit.json")
     parser.add_argument("--disaster-recovery-drill", default="out/disaster-recovery-drill/disaster-recovery-drill.json")
@@ -910,6 +925,7 @@ def main() -> int:
         release_waiver_governance=load_json(Path(args.release_waiver_governance)),
         release_control_ownership=load_json(Path(args.release_control_ownership)),
         control_traceability=load_json(Path(args.control_traceability)),
+        replay_source_contract=load_json(Path(args.replay_source_contract)),
         evidence_pipeline=load_json(Path(args.evidence_pipeline)),
         evidence_schema=load_json(Path(args.evidence_schema)),
         disaster_recovery_drill=load_json(Path(args.disaster_recovery_drill)),

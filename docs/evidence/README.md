@@ -69,6 +69,7 @@
 - [Release waiver governance](release-waiver-governance.md)
 - [Release control ownership audit](release-control-ownership-audit.md)
 - [Control traceability audit](control-traceability-audit.md)
+- [Replay source contract audit](replay-source-contract-audit.md)
 - [Evidence pipeline audit](evidence-pipeline-audit.md)
 - [Evidence schema audit](evidence-schema-audit.md)
 - [Disaster recovery drill](disaster-recovery-drill.md)

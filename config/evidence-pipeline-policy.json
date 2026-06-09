@@ -1,12 +1,16 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 61,
-  "minimum_dependency_count": 100,
+  "minimum_step_count": 62,
+  "minimum_dependency_count": 110,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
       "name": "incident_replay",
       "script": "demo/incident_replay.py"
+    },
+    {
+      "name": "replay_source_contract_audit",
+      "script": "demo/replay_source_contract_audit.py"
     },
     {
       "name": "reliability_gate",
@@ -250,6 +254,56 @@
     }
   ],
   "dependencies": [
+    {
+      "producer": "incident_replay",
+      "consumer": "replay_source_contract_audit",
+      "artifact": "out/evidence-source/summary.json"
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "replay_source_contract_audit",
+      "artifact": "out/evidence-source/payloads/baseline.otlp.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "reliability_gate",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "advanced_reliability",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "detailed_reliability",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "telemetry_redaction_audit",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "telemetry_cost_budget",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
     {
       "producer": "incident_replay",
       "consumer": "reliability_gate",

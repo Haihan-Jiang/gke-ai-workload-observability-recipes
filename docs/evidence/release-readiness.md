@@ -19,7 +19,7 @@ response drill coverage, dependency contract coverage, synthetic
 probe coverage, model release safety coverage, shadow traffic replay
 coverage, accelerator quota fairness coverage, load-shedding policy
 coverage, regional failover coverage,
-waiver governance, release control ownership, control traceability, evidence pipeline ordering, evidence schema contracts, disaster recovery
+waiver governance, release control ownership, control traceability, replay source contract, evidence pipeline ordering, evidence schema contracts, disaster recovery
 drill coverage, documentation link integrity, evidence provenance, proof-packet integrity, and committed evidence are
 present and internally
 consistent.
@@ -81,6 +81,7 @@ consistent.
 | `release_waiver_governance` | PASS |
 | `release_control_ownership_audit` | PASS |
 | `control_traceability_audit` | PASS |
+| `replay_source_contract_audit` | PASS |
 | `evidence_pipeline_audit` | PASS |
 | `evidence_schema_audit` | PASS |
 | `disaster_recovery_drill` | PASS |
@@ -95,6 +96,8 @@ consistent.
 | `sample-incident-report.md` | yes |
 | `sample-summary.json` | yes |
 | `incident-dashboard.svg` | yes |
+| `replay-source-contract-audit.md` | yes |
+| `replay-source-contract-audit.json` | yes |
 | `reliability-gate.md` | yes |
 | `reliability-gate.json` | yes |
 | `capacity-plan.md` | yes |

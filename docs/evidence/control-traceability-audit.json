@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 54,
-  "release_check_count": 59,
-  "evidence_file_count": 109,
-  "source_input_count": 57,
-  "policy_input_count": 55,
-  "test_file_count": 54,
+  "control_count": 55,
+  "release_check_count": 60,
+  "evidence_file_count": 111,
+  "source_input_count": 58,
+  "policy_input_count": 56,
+  "test_file_count": 55,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 54,
-        "minimum_control_count": 54,
+        "control_count": 55,
+        "minimum_control_count": 55,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 59,
-        "minimum_release_check_count": 59,
+        "release_check_count": 60,
+        "minimum_release_check_count": 60,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 55,
-        "minimum_policy_input_count": 55,
+        "policy_input_count": 56,
+        "minimum_policy_input_count": 56,
         "policy_gaps": []
       }
     },
@@ -1036,6 +1036,23 @@
       ],
       "tests": [
         "tests/test_documentation_link_integrity_audit.py"
+      ]
+    },
+    {
+      "name": "replay_source_contract_audit",
+      "release_readiness_check": "replay_source_contract_audit",
+      "evidence": [
+        "docs/evidence/replay-source-contract-audit.json",
+        "docs/evidence/replay-source-contract-audit.md"
+      ],
+      "source_inputs": [
+        "demo/replay_source_contract_audit.py"
+      ],
+      "policy_inputs": [
+        "config/replay-source-contract-policy.json"
+      ],
+      "tests": [
+        "tests/test_replay_source_contract_audit.py"
       ]
     },
     {
