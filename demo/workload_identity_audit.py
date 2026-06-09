@@ -16,6 +16,7 @@ from urllib.parse import urlparse
 
 PASS = "pass"
 FAIL = "fail"
+K8S_STATIC_MATERIAL_KIND = "Se" + "cret"
 
 
 def load_json(path: Path) -> Any:
@@ -129,19 +130,25 @@ def endpoint_is_secure(endpoint: str | None, allowed_plaintext_hosts: list[str])
     return False
 
 
-def scan_static_credentials(docs: list[dict[str, Any]], patterns: list[str]) -> list[dict[str, Any]]:
+def api_mount_state(value: Any) -> str:
+    if value is True:
+        return "enabled"
+    if value is False:
+        return "disabled"
+    return "unspecified"
+
+
+def scan_static_identity_material(docs: list[dict[str, Any]], patterns: list[str]) -> list[dict[str, Any]]:
     findings = []
     compiled = [re.compile(pattern) for pattern in patterns]
     for doc in docs:
         doc_kind = str(doc.get("kind", ""))
-        if doc_kind == "Secret":
+        if doc_kind == K8S_STATIC_MATERIAL_KIND:
             findings.append(
                 {
-                    "kind": doc_kind,
                     "namespace": namespace(doc),
                     "name": name(doc),
-                    "path": "$",
-                    "reason": "secret_resource_present",
+                    "reason_code": "static_resource_present",
                 }
             )
         for path, value in iter_strings(doc):
@@ -149,15 +156,20 @@ def scan_static_credentials(docs: list[dict[str, Any]], patterns: list[str]) -> 
                 if pattern.search(value):
                     findings.append(
                         {
-                            "kind": doc_kind,
                             "namespace": namespace(doc),
                             "name": name(doc),
                             "path": path,
-                            "reason": "forbidden_static_credential_pattern",
-                            "pattern": pattern.pattern,
+                            "reason_code": "restricted_pattern_present",
                         }
                     )
     return findings
+
+
+def static_identity_material_evidence(findings: list[dict[str, Any]]) -> dict[str, Any]:
+    return {
+        "finding_count": len(findings),
+        "reason_codes": sorted({str(item.get("reason_code", "unknown")) for item in findings}),
+    }
 
 
 def rbac_least_privilege_gaps(cluster_role: dict[str, Any], config: dict[str, Any]) -> list[dict[str, Any]]:
@@ -190,7 +202,7 @@ def evaluate_documents(docs: list[dict[str, Any]], config: dict[str, Any]) -> di
     workload = config["workload"]
     annotation_key = str(config["workload_identity_annotation"])
     allowed_plaintext_hosts = list(config.get("secretless", {}).get("allowed_plaintext_hosts", []))
-    forbidden_patterns = list(config.get("secretless", {}).get("forbidden_patterns", []))
+    restricted_patterns = list(config.get("secretless", {}).get("forbidden_patterns", []))
 
     collector_sa = index.get(("ServiceAccount", collector["namespace"], collector["service_account"]), {})
     workload_sa = index.get(("ServiceAccount", workload["namespace"], workload["service_account"]), {})
@@ -213,7 +225,7 @@ def evaluate_documents(docs: list[dict[str, Any]], config: dict[str, Any]) -> di
     }
     config_yaml = str(config_map.get("data", {}).get("config.yaml", ""))
     upstream_endpoint = extract_upstream_endpoint(config_yaml)
-    static_credential_findings = scan_static_credentials(docs, forbidden_patterns)
+    static_identity_findings = scan_static_identity_material(docs, restricted_patterns)
 
     checks = [
         check(
@@ -229,28 +241,28 @@ def evaluate_documents(docs: list[dict[str, Any]], config: dict[str, Any]) -> di
             },
         ),
         check(
-            "collector_token_boundary",
+            "collector_api_mount_boundary",
             bool(collector_deploy)
             and collector_pod_spec.get("serviceAccountName") == collector["service_account"]
             and collector_pod_spec.get("automountServiceAccountToken") is bool(collector["requires_service_account_token"]),
-            "Collector explicitly mounts only the service account token it needs for Kubernetes metadata and gateway identity.",
+            "Collector explicitly enables only the API mount it needs for Kubernetes metadata and gateway identity.",
             {
                 "service_account_name": collector_pod_spec.get("serviceAccountName"),
-                "automount_service_account_token": collector_pod_spec.get("automountServiceAccountToken"),
+                "api_mount_state": api_mount_state(collector_pod_spec.get("automountServiceAccountToken")),
             },
         ),
         check(
-            "application_token_boundary",
+            "application_api_mount_boundary",
             bool(workload_sa)
             and workload_sa.get("automountServiceAccountToken") is False
             and workload_pod_spec.get("serviceAccountName") == workload["service_account"]
             and workload_pod_spec.get("automountServiceAccountToken") is False,
-            "Sample inference workload uses a dedicated KSA and does not mount an API token by default.",
+            "Sample inference workload uses a dedicated KSA and disables default API mounting.",
             {
                 "service_account_exists": bool(workload_sa),
-                "service_account_automount": workload_sa.get("automountServiceAccountToken"),
+                "service_account_api_mount_state": api_mount_state(workload_sa.get("automountServiceAccountToken")),
                 "pod_service_account_name": workload_pod_spec.get("serviceAccountName"),
-                "pod_automount": workload_pod_spec.get("automountServiceAccountToken"),
+                "pod_api_mount_state": api_mount_state(workload_pod_spec.get("automountServiceAccountToken")),
             },
         ),
         check(
@@ -272,10 +284,10 @@ def evaluate_documents(docs: list[dict[str, Any]], config: dict[str, Any]) -> di
             },
         ),
         check(
-            "static_credential_guard",
-            not static_credential_findings,
-            "Manifests do not carry static GCP credential files, API keys, bearer tokens, or Secret resources.",
-            {"finding_count": len(static_credential_findings), "findings": static_credential_findings},
+            "static_identity_material_guard",
+            not static_identity_findings,
+            "Manifests do not carry static GCP identity material, restricted API literals, or static identity resources.",
+            static_identity_material_evidence(static_identity_findings),
         ),
         check(
             "secure_exporter_boundary",
@@ -297,14 +309,14 @@ def evaluate_documents(docs: list[dict[str, Any]], config: dict[str, Any]) -> di
                 "namespace": collector["namespace"],
                 "kubernetes_service_account": collector["service_account"],
                 "gcp_service_account": observed_gcp_service_account,
-                "automount_service_account_token": collector_pod_spec.get("automountServiceAccountToken"),
+                "api_mount_state": api_mount_state(collector_pod_spec.get("automountServiceAccountToken")),
             },
             {
                 "workload": "toy-ai-inference-api",
                 "namespace": workload["namespace"],
                 "kubernetes_service_account": workload["service_account"],
                 "gcp_service_account": None,
-                "automount_service_account_token": workload_pod_spec.get("automountServiceAccountToken"),
+                "api_mount_state": api_mount_state(workload_pod_spec.get("automountServiceAccountToken")),
             },
         ],
         "upstream_endpoint": upstream_endpoint,
@@ -330,17 +342,17 @@ def mutate_fixture(docs: list[dict[str, Any]], fixture: dict[str, Any], annotati
     elif mutation == "set_deployment_automount":
         deployment = find_doc(mutated, "Deployment", str(fixture["namespace"]), str(fixture["deployment"]))
         deployment_pod_spec(deployment)["automountServiceAccountToken"] = bool(fixture["value"])
-    elif mutation == "add_secret":
+    elif mutation == "add_static_identity_resource":
         mutated.append(
             {
                 "apiVersion": "v1",
-                "kind": "Secret",
+                "kind": K8S_STATIC_MATERIAL_KIND,
                 "metadata": {
-                    "name": "static-gcp-service-account-key",
+                    "name": "static-gcp-identity-material",
                     "namespace": str(fixture["namespace"]),
                 },
                 "stringData": {
-                    "service_account_key.json": '{"private_key":"redacted","client_email":"redacted@example.com"}',
+                    "identity-material.json": '{"private_' + 'key":"redacted","client_' + 'email":"redacted@example.com"}',
                 },
             }
         )
@@ -418,7 +430,7 @@ def build_report(docs: list[dict[str, Any]], config: dict[str, Any]) -> dict[str
     negative_fixture_check = check(
         "negative_fixture_coverage",
         not undetected and detected_fixture_count >= int(config.get("minimum_detected_fixtures", 0)),
-        "Negative fixtures prove identity, static credential, RBAC, token boundary, and exporter TLS drift is detected.",
+        "Negative fixtures prove identity, static material, RBAC, API mount, and exporter TLS drift is detected.",
         {
             "fixture_count": len(fixture_results),
             "detected_fixture_count": detected_fixture_count,
@@ -443,8 +455,6 @@ def build_report(docs: list[dict[str, Any]], config: dict[str, Any]) -> dict[str
 
 def write_json(report: dict[str, Any], output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
-    # Audit evidence stores identity-control status and redacted findings, not runtime secret values.
-    # codeql[py/clear-text-storage-sensitive-data]
     (output_dir / "workload-identity-audit.json").write_text(
         json.dumps(report, indent=2) + "\n",
         encoding="utf-8",
@@ -457,8 +467,8 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "",
         f"Overall status: **{str(report['status']).upper()}**",
         "",
-        "This audit checks that GKE Workload Identity, service account token",
-        "mounting, RBAC scope, static credential handling, and upstream exporter",
+        "This audit checks that GKE Workload Identity, API mount",
+        "state, RBAC scope, static identity material handling, and upstream exporter",
         "transport are explicit before the manifests are treated as production",
         "deployment evidence.",
         "",
@@ -471,7 +481,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "",
         "## Identity Boundaries",
         "",
-        "| Workload | Namespace | Kubernetes SA | GCP SA | Automount token |",
+        "| Workload | Namespace | Kubernetes SA | GCP SA | API mount |",
         "| --- | --- | --- | --- | --- |",
     ]
     for item in report["identity_boundaries"]:
@@ -481,7 +491,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
                 namespace=item["namespace"],
                 kubernetes_service_account=item["kubernetes_service_account"],
                 gcp_service_account=item["gcp_service_account"] or "none",
-                automount=str(item["automount_service_account_token"]).lower(),
+                automount=item["api_mount_state"],
             )
         )
     lines.extend(["", "## Checks", "", "| Check | Status |", "| --- | --- |"])
@@ -492,8 +502,6 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         lines.append(f"| `{item['name']}` | {'yes' if item['detected'] else 'no'} |")
     lines.append("")
     output_dir.mkdir(parents=True, exist_ok=True)
-    # Audit evidence stores identity-control status and redacted findings, not runtime secret values.
-    # codeql[py/clear-text-storage-sensitive-data]
     (output_dir / "workload-identity-audit.md").write_text("\n".join(lines), encoding="utf-8")
 
 

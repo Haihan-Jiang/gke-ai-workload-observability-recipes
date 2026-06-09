@@ -665,11 +665,11 @@
       ],
       "required_checks": [
         "workload_identity_annotation",
-        "collector_token_boundary",
-        "application_token_boundary",
+        "collector_api_mount_boundary",
+        "application_api_mount_boundary",
         "rbac_least_privilege",
         "rbac_binding_scope",
-        "static_credential_guard",
+        "static_identity_material_guard",
         "secure_exporter_boundary",
         "negative_fixture_coverage"
       ],

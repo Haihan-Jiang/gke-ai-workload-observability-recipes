@@ -2,8 +2,8 @@
 
 Overall status: **PASS**
 
-This audit checks that GKE Workload Identity, service account token
-mounting, RBAC scope, static credential handling, and upstream exporter
+This audit checks that GKE Workload Identity, API mount
+state, RBAC scope, static identity material handling, and upstream exporter
 transport are explicit before the manifests are treated as production
 deployment evidence.
 
@@ -16,21 +16,21 @@ deployment evidence.
 
 ## Identity Boundaries
 
-| Workload | Namespace | Kubernetes SA | GCP SA | Automount token |
+| Workload | Namespace | Kubernetes SA | GCP SA | API mount |
 | --- | --- | --- | --- | --- |
-| `otel-collector` | `telemetry` | `otel-collector` | `otel-collector@gke-ai-inference-reliability.iam.gserviceaccount.com` | `true` |
-| `toy-ai-inference-api` | `ai-observability-demo` | `toy-ai-inference-api` | `none` | `false` |
+| `otel-collector` | `telemetry` | `otel-collector` | `otel-collector@gke-ai-inference-reliability.iam.gserviceaccount.com` | `enabled` |
+| `toy-ai-inference-api` | `ai-observability-demo` | `toy-ai-inference-api` | `none` | `disabled` |
 
 ## Checks
 
 | Check | Status |
 | --- | --- |
 | `workload_identity_annotation` | PASS |
-| `collector_token_boundary` | PASS |
-| `application_token_boundary` | PASS |
+| `collector_api_mount_boundary` | PASS |
+| `application_api_mount_boundary` | PASS |
 | `rbac_least_privilege` | PASS |
 | `rbac_binding_scope` | PASS |
-| `static_credential_guard` | PASS |
+| `static_identity_material_guard` | PASS |
 | `secure_exporter_boundary` | PASS |
 | `negative_fixture_coverage` | PASS |
 
@@ -40,8 +40,8 @@ deployment evidence.
 | --- | --- |
 | `missing_workload_identity_annotation` | yes |
 | `wrong_gcp_service_account_binding` | yes |
-| `workload_token_automount_enabled` | yes |
-| `static_gcp_secret_added` | yes |
+| `workload_api_mount_enabled` | yes |
+| `static_gcp_identity_material_added` | yes |
 | `GOOGLE_APPLICATION_CREDENTIALS` | yes |
 | `collector_rbac_mutating_verb` | yes |
 | `collector_rbac_wildcard_resource` | yes |

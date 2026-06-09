@@ -4,7 +4,7 @@
   "deployment_count": 1,
   "checksum_annotation_count": 1,
   "read_only_config_mount_count": 1,
-  "secret_marker_count": 0,
+  "inline_marker_count": 0,
   "config_hash": "64d88167c358c61a25a3fd0076c1dd3e6b783a90a70d080cb9dfa5b0944458b6",
   "observed_checksum": "64d88167c358c61a25a3fd0076c1dd3e6b783a90a70d080cb9dfa5b0944458b6",
   "check_count": 7,
@@ -78,12 +78,12 @@
       "detected": true
     },
     {
-      "name": "inline_secret_literal",
+      "name": "inline_restricted_literal",
       "mutation": "append_config_comment",
-      "expected_failed_check": "config_secret_hygiene",
+      "expected_failed_check": "config_inline_value_hygiene",
       "failed_checks": [
         "checksum_rollout_binding",
-        "config_secret_hygiene"
+        "config_inline_value_hygiene"
       ],
       "detected": true
     },
@@ -147,11 +147,11 @@
       }
     },
     {
-      "name": "config_secret_hygiene",
+      "name": "config_inline_value_hygiene",
       "status": "pass",
-      "reason": "Collector config does not embed inline secret-like keys or credential markers.",
+      "reason": "Collector config does not embed restricted inline literals.",
       "evidence": {
-        "markers": []
+        "marker_count": 0
       }
     },
     {
@@ -165,7 +165,7 @@
     {
       "name": "negative_fixture_coverage",
       "status": "pass",
-      "reason": "Negative fixtures prove checksum, config path, mount safety, secret hygiene, and label drift is detected.",
+      "reason": "Negative fixtures prove checksum, config path, mount safety, inline value hygiene, and label drift is detected.",
       "evidence": {
         "fixture_count": 10,
         "detected_fixture_count": 10,

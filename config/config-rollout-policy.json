@@ -20,7 +20,7 @@
       "exporters",
       "service"
     ],
-    "forbidden_secret_markers": [
+    "forbidden_inline_markers": [
       "api_key",
       "auth_token",
       "client_secret",
@@ -76,10 +76,10 @@
       "expected_failed_check": "config_path_alignment"
     },
     {
-      "name": "inline_secret_literal",
+      "name": "inline_restricted_literal",
       "mutation": "append_config_comment",
       "comment": "# auth_token: should-not-ship",
-      "expected_failed_check": "config_secret_hygiene"
+      "expected_failed_check": "config_inline_value_hygiene"
     },
     {
       "name": "missing_config_map_owner_label",

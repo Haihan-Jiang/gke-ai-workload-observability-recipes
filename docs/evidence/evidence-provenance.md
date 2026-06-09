@@ -82,7 +82,7 @@ evidence easier to detect during review.
 | `docs/evidence/security-response-audit.md` | 1302 | `d95c48505a32e480...` |
 | `docs/evidence/security-response-audit.json` | 5549 | `c06cb0000710d7d0...` |
 | `docs/evidence/ci-governance-audit.md` | 1371 | `cd41c3e774a7995f...` |
-| `docs/evidence/ci-governance-audit.json` | 6053 | `30c642e4c03fa7ec...` |
+| `docs/evidence/ci-governance-audit.json` | 6069 | `264e330481e4b978...` |
 | `docs/evidence/repository-governance-audit.md` | 1265 | `b67f7136bc4077b2...` |
 | `docs/evidence/repository-governance-audit.json` | 5233 | `a8efb869df45a4fb...` |
 | `docs/evidence/developer-runtime-audit.md` | 1258 | `1af5ff4cb943ad8f...` |
@@ -96,7 +96,7 @@ evidence easier to detect during review.
 | `docs/evidence/private-cluster-admission-boundary-audit.md` | 1788 | `c39d38243faede52...` |
 | `docs/evidence/private-cluster-admission-boundary-audit.json` | 7512 | `cfafa012f4747a7e...` |
 | `docs/evidence/namespace-resource-audit.md` | 1510 | `1e4d942333a71b49...` |
-| `docs/evidence/namespace-resource-audit.json` | 5673 | `aad9de2fc002d69b...` |
+| `docs/evidence/namespace-resource-audit.json` | 5581 | `1ea7e881d44a97b0...` |
 | `docs/evidence/availability-topology-audit.md` | 1459 | `d3f92a8d786cfdbf...` |
 | `docs/evidence/availability-topology-audit.json` | 4425 | `3589a979f8c94df3...` |
 | `docs/evidence/autoscaling-policy-audit.md` | 1361 | `cc89b2cc3110f5fb...` |
@@ -105,8 +105,8 @@ evidence easier to detect during review.
 | `docs/evidence/scheduling-placement-audit.json` | 5229 | `abdfdfd5df618e99...` |
 | `docs/evidence/rollout-safety-audit.md` | 1709 | `e3538f8d50931ea3...` |
 | `docs/evidence/rollout-safety-audit.json` | 6016 | `7b03745c5d96debb...` |
-| `docs/evidence/config-rollout-audit.md` | 1293 | `08150e099fb0f071...` |
-| `docs/evidence/config-rollout-audit.json` | 4931 | `7ad0878d1cfc7246...` |
+| `docs/evidence/config-rollout-audit.md` | 1301 | `ce3d6aa459d3efea...` |
+| `docs/evidence/config-rollout-audit.json` | 4944 | `6c052ee0d4a02064...` |
 | `docs/evidence/network-boundary-audit.md` | 1273 | `aa908214f556c20a...` |
 | `docs/evidence/network-boundary-audit.json` | 6741 | `73431d7117267ab4...` |
 | `docs/evidence/collector-self-observability-audit.md` | 1426 | `ab08850669a16880...` |
@@ -115,8 +115,8 @@ evidence easier to detect during review.
 | `docs/evidence/telemetry-exporter-authority-audit.json` | 7570 | `9c9c46bc21645b33...` |
 | `docs/evidence/telemetry-sampling-audit.md` | 1349 | `a16bccdc9621eb84...` |
 | `docs/evidence/telemetry-sampling-audit.json` | 6602 | `a2d8e3d174788774...` |
-| `docs/evidence/workload-identity-audit.md` | 1583 | `c56d5d98ef85c305...` |
-| `docs/evidence/workload-identity-audit.json` | 6216 | `20e81a45c13637a5...` |
+| `docs/evidence/workload-identity-audit.md` | 1595 | `0443fb61d6775467...` |
+| `docs/evidence/workload-identity-audit.json` | 6266 | `03873ccf75651a3a...` |
 | `docs/evidence/admission-policy-audit.md` | 1859 | `f9af1e271477a16c...` |
 | `docs/evidence/admission-policy-audit.json` | 47596 | `2c38c0f19819eaee...` |
 | `docs/evidence/alerting-rules.md` | 1034 | `dc833704511d7837...` |
@@ -166,7 +166,7 @@ evidence easier to detect during review.
 | `docs/evidence/validation-contract-audit.md` | 1211 | `a933ace62de8b488...` |
 | `docs/evidence/validation-contract-audit.json` | 5576 | `64832bc76128d9d9...` |
 | `docs/evidence/disaster-recovery-drill.md` | 1038 | `c8a73fbc72b386f5...` |
-| `docs/evidence/disaster-recovery-drill.json` | 94089 | `66f8808b7f893bd4...` |
+| `docs/evidence/disaster-recovery-drill.json` | 94089 | `d6a3728d97466ff9...` |
 | `docs/evidence/documentation-link-integrity-audit.md` | 1046 | `151d478cfd949910...` |
 | `docs/evidence/documentation-link-integrity-audit.json` | 252402 | `6d1538ede482232d...` |
 | `docs/evidence/maintainer-intake-audit.md` | 1321 | `97a1653872f133a4...` |

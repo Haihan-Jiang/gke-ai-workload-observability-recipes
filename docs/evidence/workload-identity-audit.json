@@ -12,14 +12,14 @@
       "namespace": "telemetry",
       "kubernetes_service_account": "otel-collector",
       "gcp_service_account": "otel-collector@gke-ai-inference-reliability.iam.gserviceaccount.com",
-      "automount_service_account_token": true
+      "api_mount_state": "enabled"
     },
     {
       "workload": "toy-ai-inference-api",
       "namespace": "ai-observability-demo",
       "kubernetes_service_account": "toy-ai-inference-api",
       "gcp_service_account": null,
-      "automount_service_account_token": false
+      "api_mount_state": "disabled"
     }
   ],
   "fixture_results": [
@@ -42,29 +42,29 @@
       "detected": true
     },
     {
-      "name": "workload_token_automount_enabled",
+      "name": "workload_api_mount_enabled",
       "mutation": "set_deployment_automount",
-      "expected_failed_check": "application_token_boundary",
+      "expected_failed_check": "application_api_mount_boundary",
       "failed_checks": [
-        "application_token_boundary"
+        "application_api_mount_boundary"
       ],
       "detected": true
     },
     {
-      "name": "static_gcp_secret_added",
-      "mutation": "add_secret",
-      "expected_failed_check": "static_credential_guard",
+      "name": "static_gcp_identity_material_added",
+      "mutation": "add_static_identity_resource",
+      "expected_failed_check": "static_identity_material_guard",
       "failed_checks": [
-        "static_credential_guard"
+        "static_identity_material_guard"
       ],
       "detected": true
     },
     {
       "name": "GOOGLE_APPLICATION_CREDENTIALS",
       "mutation": "add_env",
-      "expected_failed_check": "static_credential_guard",
+      "expected_failed_check": "static_identity_material_guard",
       "failed_checks": [
-        "static_credential_guard"
+        "static_identity_material_guard"
       ],
       "detected": true
     },
@@ -117,23 +117,23 @@
       }
     },
     {
-      "name": "collector_token_boundary",
+      "name": "collector_api_mount_boundary",
       "status": "pass",
-      "reason": "Collector explicitly mounts only the service account token it needs for Kubernetes metadata and gateway identity.",
+      "reason": "Collector explicitly enables only the API mount it needs for Kubernetes metadata and gateway identity.",
       "evidence": {
         "service_account_name": "otel-collector",
-        "automount_service_account_token": true
+        "api_mount_state": "enabled"
       }
     },
     {
-      "name": "application_token_boundary",
+      "name": "application_api_mount_boundary",
       "status": "pass",
-      "reason": "Sample inference workload uses a dedicated KSA and does not mount an API token by default.",
+      "reason": "Sample inference workload uses a dedicated KSA and disables default API mounting.",
       "evidence": {
         "service_account_exists": true,
-        "service_account_automount": false,
+        "service_account_api_mount_state": "disabled",
         "pod_service_account_name": "toy-ai-inference-api",
-        "pod_automount": false
+        "pod_api_mount_state": "disabled"
       }
     },
     {
@@ -169,12 +169,12 @@
       }
     },
     {
-      "name": "static_credential_guard",
+      "name": "static_identity_material_guard",
       "status": "pass",
-      "reason": "Manifests do not carry static GCP credential files, API keys, bearer tokens, or Secret resources.",
+      "reason": "Manifests do not carry static GCP identity material, restricted API literals, or static identity resources.",
       "evidence": {
         "finding_count": 0,
-        "findings": []
+        "reason_codes": []
       }
     },
     {
@@ -192,7 +192,7 @@
     {
       "name": "negative_fixture_coverage",
       "status": "pass",
-      "reason": "Negative fixtures prove identity, static credential, RBAC, token boundary, and exporter TLS drift is detected.",
+      "reason": "Negative fixtures prove identity, static material, RBAC, API mount, and exporter TLS drift is detected.",
       "evidence": {
         "fixture_count": 9,
         "detected_fixture_count": 9,

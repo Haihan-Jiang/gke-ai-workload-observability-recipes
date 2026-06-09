@@ -113,7 +113,7 @@
         "expected_python_version": "3.12",
         "validation_command": "./scripts/validate.sh",
         "validation_command_found": true,
-        "secrets_referenced": false
+        "restricted_context_reference_found": false
       }
     },
     {

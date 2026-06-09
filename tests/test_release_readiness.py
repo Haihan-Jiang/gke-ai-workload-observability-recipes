@@ -196,7 +196,7 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "deployment_count": 1,
             "checksum_annotation_count": 1,
             "read_only_config_mount_count": 1,
-            "secret_marker_count": 0,
+            "inline_marker_count": 0,
             "detected_fixture_count": 10,
             "failed_count": 0,
         },

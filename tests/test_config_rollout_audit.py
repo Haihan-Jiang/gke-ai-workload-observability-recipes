@@ -35,7 +35,7 @@ class ConfigRolloutAuditTest(unittest.TestCase):
         self.assertEqual(1, report["deployment_count"])
         self.assertEqual(1, report["checksum_annotation_count"])
         self.assertEqual(1, report["read_only_config_mount_count"])
-        self.assertEqual(0, report["secret_marker_count"])
+        self.assertEqual(0, report["inline_marker_count"])
         self.assertEqual(10, report["detected_fixture_count"])
 
     def test_detects_missing_config_map(self) -> None:
@@ -87,12 +87,12 @@ class ConfigRolloutAuditTest(unittest.TestCase):
         self.assertEqual("fail", report["status"])
         self.assertEqual("fail", checks["config_path_alignment"])
 
-    def test_detects_inline_secret_literal(self) -> None:
-        report = self.mutated_report("inline_secret_literal")
+    def test_detects_inline_restricted_literal(self) -> None:
+        report = self.mutated_report("inline_restricted_literal")
         checks = {item["name"]: item["status"] for item in report["checks"]}
 
         self.assertEqual("fail", report["status"])
-        self.assertEqual("fail", checks["config_secret_hygiene"])
+        self.assertEqual("fail", checks["config_inline_value_hygiene"])
 
     def test_detects_missing_config_map_owner_label(self) -> None:
         report = self.mutated_report("missing_config_map_owner_label")

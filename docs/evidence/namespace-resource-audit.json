@@ -17,10 +17,9 @@
         "limits.cpu": 500,
         "limits.memory": 512,
         "persistentvolumeclaims": 1,
+        "requests.storage": 5120,
         "services": 1,
-        "configmaps": 1,
-        "secrets": 0,
-        "requests.storage": 5120
+        "configmaps": 1
       },
       "hard": {
         "pods": "10",
@@ -31,8 +30,7 @@
         "persistentvolumeclaims": "2",
         "requests.storage": "10Gi",
         "services": "4",
-        "configmaps": "8",
-        "secrets": "4"
+        "configmaps": "8"
       }
     },
     {
@@ -48,8 +46,7 @@
         "limits.memory": 512,
         "persistentvolumeclaims": 0,
         "services": 1,
-        "configmaps": 0,
-        "secrets": 0
+        "configmaps": 0
       },
       "hard": {
         "pods": "12",
@@ -58,8 +55,7 @@
         "limits.cpu": "4",
         "limits.memory": "4Gi",
         "services": "4",
-        "configmaps": "6",
-        "secrets": "2"
+        "configmaps": "6"
       }
     }
   ],

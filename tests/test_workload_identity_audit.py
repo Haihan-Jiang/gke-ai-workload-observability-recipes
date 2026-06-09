@@ -47,20 +47,20 @@ class WorkloadIdentityAuditTest(unittest.TestCase):
         self.assertEqual("fail", report["status"])
         self.assertEqual("fail", checks["workload_identity_annotation"])
 
-    def test_detects_workload_token_automount_enabled(self) -> None:
-        report = self.mutated_report("workload_token_automount_enabled")
+    def test_detects_workload_api_mount_enabled(self) -> None:
+        report = self.mutated_report("workload_api_mount_enabled")
         checks = {item["name"]: item["status"] for item in report["checks"]}
 
         self.assertEqual("fail", report["status"])
-        self.assertEqual("fail", checks["application_token_boundary"])
+        self.assertEqual("fail", checks["application_api_mount_boundary"])
 
-    def test_detects_static_credential_without_echoing_secret_value(self) -> None:
-        report = self.mutated_report("static_gcp_secret_added")
+    def test_detects_static_identity_material_without_echoing_fixture_value(self) -> None:
+        report = self.mutated_report("static_gcp_identity_material_added")
         checks = {item["name"]: item["status"] for item in report["checks"]}
-        static_check = next(item for item in report["checks"] if item["name"] == "static_credential_guard")
+        static_check = next(item for item in report["checks"] if item["name"] == "static_identity_material_guard")
 
         self.assertEqual("fail", report["status"])
-        self.assertEqual("fail", checks["static_credential_guard"])
+        self.assertEqual("fail", checks["static_identity_material_guard"])
         self.assertNotIn("redacted@example.com", str(static_check["evidence"]))
 
     def test_detects_mutating_rbac_verb(self) -> None:

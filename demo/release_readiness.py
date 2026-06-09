@@ -463,7 +463,7 @@ def evaluate(
             and int(config_rollout.get("deployment_count", 0)) >= 1
             and int(config_rollout.get("checksum_annotation_count", 0)) >= 1
             and int(config_rollout.get("read_only_config_mount_count", 0)) >= 1
-            and int(config_rollout.get("secret_marker_count", -1)) == 0
+            and int(config_rollout.get("inline_marker_count", -1)) == 0
             and int(config_rollout.get("detected_fixture_count", 0)) >= 10
             and int(config_rollout.get("failed_count", -1)) == 0,
         },

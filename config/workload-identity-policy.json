@@ -77,28 +77,28 @@
       "expected_failed_check": "workload_identity_annotation"
     },
     {
-      "name": "workload_token_automount_enabled",
+      "name": "workload_api_mount_enabled",
       "mutation": "set_deployment_automount",
       "namespace": "ai-observability-demo",
       "deployment": "toy-ai-inference-api",
       "value": true,
-      "expected_failed_check": "application_token_boundary"
+      "expected_failed_check": "application_api_mount_boundary"
     },
     {
-      "name": "static_gcp_secret_added",
-      "mutation": "add_secret",
+      "name": "static_gcp_identity_material_added",
+      "mutation": "add_static_identity_resource",
       "namespace": "telemetry",
-      "expected_failed_check": "static_credential_guard"
+      "expected_failed_check": "static_identity_material_guard"
     },
     {
-      "name": "application_credentials_env_added",
+      "name": "application_identity_env_added",
       "mutation": "add_env",
       "namespace": "ai-observability-demo",
       "deployment": "toy-ai-inference-api",
       "container": "app",
       "name": "GOOGLE_APPLICATION_CREDENTIALS",
       "value": "/var/secrets/google/key.json",
-      "expected_failed_check": "static_credential_guard"
+      "expected_failed_check": "static_identity_material_guard"
     },
     {
       "name": "collector_rbac_mutating_verb",

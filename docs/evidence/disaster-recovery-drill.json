@@ -80,15 +80,15 @@
       "group": "release_control_evidence",
       "path": "docs/evidence/config-rollout-audit.json",
       "exists": true,
-      "bytes": 4931,
-      "sha256": "7ad0878d1cfc7246663ec8d837cc87912f5e2eb9db59632510862ddc297ae1b7"
+      "bytes": 4944,
+      "sha256": "6c052ee0d4a02064a84c1a406910474571fe6198cabc975891ff6d806cb29f76"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/ci-governance-audit.json",
       "exists": true,
-      "bytes": 6053,
-      "sha256": "30c642e4c03fa7ec8d0267de13f5e6729ad7167f8b4e82f9701134185e887ac9"
+      "bytes": 6069,
+      "sha256": "264e330481e4b9783e60d0330a73be1a15503003fa48da6e40cc86a333c542ad"
     },
     {
       "group": "release_control_evidence",
@@ -654,8 +654,8 @@
       "group": "recovery_source_policy",
       "path": "config/evidence-schema-policy.json",
       "exists": true,
-      "bytes": 35856,
-      "sha256": "400757bcb82f8bbf8fc170bd4b99f014023b1b4bdefee4813517e4017c1da84d"
+      "bytes": 35871,
+      "sha256": "6b1c450f9731cbbf411123cd4369f8fbb4c7f301c842c63e1ae3e8d700d58638"
     },
     {
       "group": "recovery_source_policy",
@@ -1170,20 +1170,20 @@
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/config-rollout-audit.json",
-      "expected_sha256": "7ad0878d1cfc7246663ec8d837cc87912f5e2eb9db59632510862ddc297ae1b7",
+      "expected_sha256": "6c052ee0d4a02064a84c1a406910474571fe6198cabc975891ff6d806cb29f76",
       "restored": true,
       "hash_match": true,
-      "bytes": 4931,
-      "sha256": "7ad0878d1cfc7246663ec8d837cc87912f5e2eb9db59632510862ddc297ae1b7"
+      "bytes": 4944,
+      "sha256": "6c052ee0d4a02064a84c1a406910474571fe6198cabc975891ff6d806cb29f76"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/ci-governance-audit.json",
-      "expected_sha256": "30c642e4c03fa7ec8d0267de13f5e6729ad7167f8b4e82f9701134185e887ac9",
+      "expected_sha256": "264e330481e4b9783e60d0330a73be1a15503003fa48da6e40cc86a333c542ad",
       "restored": true,
       "hash_match": true,
-      "bytes": 6053,
-      "sha256": "30c642e4c03fa7ec8d0267de13f5e6729ad7167f8b4e82f9701134185e887ac9"
+      "bytes": 6069,
+      "sha256": "264e330481e4b9783e60d0330a73be1a15503003fa48da6e40cc86a333c542ad"
     },
     {
       "group": "release_control_evidence",
@@ -1908,11 +1908,11 @@
     {
       "group": "recovery_source_policy",
       "path": "config/evidence-schema-policy.json",
-      "expected_sha256": "400757bcb82f8bbf8fc170bd4b99f014023b1b4bdefee4813517e4017c1da84d",
+      "expected_sha256": "6b1c450f9731cbbf411123cd4369f8fbb4c7f301c842c63e1ae3e8d700d58638",
       "restored": true,
       "hash_match": true,
-      "bytes": 35856,
-      "sha256": "400757bcb82f8bbf8fc170bd4b99f014023b1b4bdefee4813517e4017c1da84d"
+      "bytes": 35871,
+      "sha256": "6b1c450f9731cbbf411123cd4369f8fbb4c7f301c842c63e1ae3e8d700d58638"
     },
     {
       "group": "recovery_source_policy",

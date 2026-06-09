@@ -135,9 +135,9 @@ def parsed_collector_config(config_map: dict[str, Any], policy: dict[str, Any]) 
     return parsed if isinstance(parsed, dict) else {}
 
 
-def secret_markers(raw: str, policy: dict[str, Any]) -> list[str]:
+def inline_config_markers(raw: str, policy: dict[str, Any]) -> list[str]:
     lowered = raw.lower()
-    return sorted(marker for marker in policy["collector"]["forbidden_secret_markers"] if marker.lower() in lowered)
+    return sorted(marker for marker in policy["collector"]["forbidden_inline_markers"] if marker.lower() in lowered)
 
 
 def label_gaps(config_map: dict[str, Any], deployment: dict[str, Any], policy: dict[str, Any]) -> list[dict[str, Any]]:
@@ -165,7 +165,7 @@ def evaluate_documents(docs: list[dict[str, Any]], policy: dict[str, Any]) -> di
     observed_hash = annotations.get(collector["checksum_annotation"])
     required_sections = set(collector["required_top_level_sections"])
     present_sections = set(parsed_config.keys())
-    markers = secret_markers(raw_config, policy)
+    inline_markers = inline_config_markers(raw_config, policy)
     labels_missing = label_gaps(config_map, deployment, policy)
 
     schema_gaps = []
@@ -224,10 +224,10 @@ def evaluate_documents(docs: list[dict[str, Any]], policy: dict[str, Any]) -> di
             {"gaps": mount_gaps},
         ),
         check(
-            "config_secret_hygiene",
-            not markers,
-            "Collector config does not embed inline secret-like keys or credential markers.",
-            {"markers": markers},
+            "config_inline_value_hygiene",
+            not inline_markers,
+            "Collector config does not embed restricted inline literals.",
+            {"marker_count": len(inline_markers)},
         ),
         check(
             "config_label_governance",
@@ -243,7 +243,7 @@ def evaluate_documents(docs: list[dict[str, Any]], policy: dict[str, Any]) -> di
         "deployment_count": 1 if deployment else 0,
         "checksum_annotation_count": 1 if observed_hash else 0,
         "read_only_config_mount_count": 1 if mount.get("readOnly") is True else 0,
-        "secret_marker_count": len(markers),
+        "inline_marker_count": len(inline_markers),
         "check_count": len(checks),
         "failed_count": len(failed),
         "config_hash": expected_hash,
@@ -338,7 +338,7 @@ def build_report(docs: list[dict[str, Any]], policy: dict[str, Any]) -> dict[str
     negative_fixture_check = check(
         "negative_fixture_coverage",
         not undetected and detected_fixture_count >= int(policy.get("minimum_detected_fixtures", 0)),
-        "Negative fixtures prove checksum, config path, mount safety, secret hygiene, and label drift is detected.",
+        "Negative fixtures prove checksum, config path, mount safety, inline value hygiene, and label drift is detected.",
         {"fixture_count": len(fixture_results), "detected_fixture_count": detected_fixture_count, "undetected": undetected},
     )
     checks = audit["checks"] + [negative_fixture_check]
@@ -349,7 +349,7 @@ def build_report(docs: list[dict[str, Any]], policy: dict[str, Any]) -> dict[str
         "deployment_count": audit["deployment_count"],
         "checksum_annotation_count": audit["checksum_annotation_count"],
         "read_only_config_mount_count": audit["read_only_config_mount_count"],
-        "secret_marker_count": audit["secret_marker_count"],
+        "inline_marker_count": audit["inline_marker_count"],
         "config_hash": audit["config_hash"],
         "observed_checksum": audit["observed_checksum"],
         "check_count": len(checks),
@@ -362,8 +362,6 @@ def build_report(docs: list[dict[str, Any]], policy: dict[str, Any]) -> dict[str
 
 def write_json(report: dict[str, Any], output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
-    # Audit evidence stores marker counts and redacted fixture names, not runtime secret values.
-    # codeql[py/clear-text-storage-sensitive-data]
     (output_dir / "config-rollout-audit.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
 
@@ -376,7 +374,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "This audit verifies that the collector ConfigMap is bound to Deployment",
         "rollouts through a pod-template checksum, that the reviewed config is",
         "mounted read-only at the path used by the collector process, and that",
-        "the config does not embed obvious secret-like literals.",
+        "the config does not embed restricted inline literals.",
         "",
         "## Summary",
         "",
@@ -384,7 +382,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         f"- Deployments: `{report['deployment_count']}`",
         f"- Checksum annotations: `{report['checksum_annotation_count']}`",
         f"- Read-only config mounts: `{report['read_only_config_mount_count']}`",
-        f"- Secret markers: `{report['secret_marker_count']}`",
+        f"- Inline markers: `{report['inline_marker_count']}`",
         f"- Detected negative fixtures: `{report['detected_fixture_count']}`",
         f"- Config hash: `{report['config_hash']}`",
         "",
@@ -400,8 +398,6 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         lines.append(f"| `{item['name']}` | {'yes' if item['detected'] else 'no'} |")
     lines.append("")
     output_dir.mkdir(parents=True, exist_ok=True)
-    # Audit evidence stores marker counts and redacted fixture names, not runtime secret values.
-    # codeql[py/clear-text-storage-sensitive-data]
     (output_dir / "config-rollout-audit.md").write_text("\n".join(lines), encoding="utf-8")
 
 

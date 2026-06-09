@@ -5,7 +5,7 @@ Overall status: **PASS**
 This audit verifies that the collector ConfigMap is bound to Deployment
 rollouts through a pod-template checksum, that the reviewed config is
 mounted read-only at the path used by the collector process, and that
-the config does not embed obvious secret-like literals.
+the config does not embed restricted inline literals.
 
 ## Summary
 
@@ -13,7 +13,7 @@ the config does not embed obvious secret-like literals.
 - Deployments: `1`
 - Checksum annotations: `1`
 - Read-only config mounts: `1`
-- Secret markers: `0`
+- Inline markers: `0`
 - Detected negative fixtures: `10`
 - Config hash: `64d88167c358c61a25a3fd0076c1dd3e6b783a90a70d080cb9dfa5b0944458b6`
 
@@ -25,7 +25,7 @@ the config does not embed obvious secret-like literals.
 | `checksum_rollout_binding` | PASS |
 | `config_path_alignment` | PASS |
 | `config_volume_mount_safety` | PASS |
-| `config_secret_hygiene` | PASS |
+| `config_inline_value_hygiene` | PASS |
 | `config_label_governance` | PASS |
 | `negative_fixture_coverage` | PASS |
 
@@ -40,6 +40,6 @@ the config does not embed obvious secret-like literals.
 | `config_changed_without_checksum` | yes |
 | `writable_config_mount` | yes |
 | `wrong_config_arg` | yes |
-| `inline_secret_literal` | yes |
+| `inline_restricted_literal` | yes |
 | `missing_config_map_owner_label` | yes |
 | `missing_deployment_owner_label` | yes |
