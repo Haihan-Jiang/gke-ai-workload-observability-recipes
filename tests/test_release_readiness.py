@@ -390,30 +390,30 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "release_control_ownership": {
             "status": "pass",
-            "control_count": 58,
-            "release_check_count": 58,
-            "covered_release_check_count": 58,
-            "tier0_count": 35,
-            "every_release_count": 46,
+            "control_count": 59,
+            "release_check_count": 59,
+            "covered_release_check_count": 59,
+            "tier0_count": 36,
+            "every_release_count": 47,
             "owner_group_count": 5,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "control_traceability": {
             "status": "pass",
-            "control_count": 53,
-            "evidence_file_count": 107,
-            "source_input_count": 56,
-            "policy_input_count": 54,
-            "test_file_count": 53,
+            "control_count": 54,
+            "evidence_file_count": 109,
+            "source_input_count": 57,
+            "policy_input_count": 55,
+            "test_file_count": 54,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 60,
-            "dependency_count": 95,
-            "artifact_dependency_count": 95,
+            "step_count": 61,
+            "dependency_count": 100,
+            "artifact_dependency_count": 100,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
@@ -427,27 +427,39 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "disaster_recovery_drill": {
             "status": "pass",
-            "artifact_count": 89,
-            "restored_count": 89,
-            "hash_match_count": 89,
+            "artifact_count": 93,
+            "restored_count": 93,
+            "hash_match_count": 93,
             "detected_fixture_count": 4,
             "estimated_restore_minutes": 7,
             "rto_minutes": 15,
             "failed_count": 0,
         },
+        "documentation_link_integrity": {
+            "status": "pass",
+            "markdown_file_count": 80,
+            "local_link_count": 525,
+            "external_link_count": 14,
+            "image_link_count": 3,
+            "missing_target_count": 0,
+            "bad_anchor_count": 0,
+            "bad_scheme_count": 0,
+            "detected_fixture_count": 6,
+            "failed_count": 0,
+        },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 133,
-            "source_input_count": 129,
+            "artifact_count": 135,
+            "source_input_count": 131,
             "failed_count": 0,
         },
         "proof_packet_integrity": {
             "status": "pass",
-            "manifest_entry_count": 266,
-            "evidence_artifact_count": 133,
+            "manifest_entry_count": 270,
+            "evidence_artifact_count": 135,
             "generated_artifact_count": 4,
-            "source_input_count": 129,
-            "matched_digest_count": 266,
+            "source_input_count": 131,
+            "matched_digest_count": 270,
             "missing_path_count": 0,
             "mismatched_digest_count": 0,
             "circular_artifact_count": 0,
@@ -968,6 +980,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["disaster_recovery_drill"])
+
+    def test_requires_documentation_link_integrity_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["documentation_link_integrity"]["missing_target_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["documentation_link_integrity_audit"])
 
     def test_requires_release_control_ownership_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

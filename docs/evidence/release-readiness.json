@@ -226,6 +226,10 @@
       "ok": true
     },
     {
+      "name": "documentation_link_integrity_audit",
+      "ok": true
+    },
+    {
       "name": "evidence_provenance",
       "ok": true
     },
@@ -769,6 +773,14 @@
     },
     {
       "path": "disaster-recovery-drill.json",
+      "exists": true
+    },
+    {
+      "path": "documentation-link-integrity-audit.md",
+      "exists": true
+    },
+    {
+      "path": "documentation-link-integrity-audit.json",
       "exists": true
     },
     {

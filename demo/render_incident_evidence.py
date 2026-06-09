@@ -204,6 +204,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Evidence pipeline audit](evidence-pipeline-audit.md)",
                 "- [Evidence schema audit](evidence-schema-audit.md)",
                 "- [Disaster recovery drill](disaster-recovery-drill.md)",
+                "- [Documentation link integrity audit](documentation-link-integrity-audit.md)",
                 "- [Evidence provenance](evidence-provenance.md)",
                 "- [Proof packet integrity audit](proof-packet-integrity-audit.md)",
                 "- [Release readiness report](release-readiness.md)",

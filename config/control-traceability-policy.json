@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 53,
-  "minimum_release_check_count": 58,
-  "minimum_policy_input_count": 54,
+  "minimum_control_count": 54,
+  "minimum_release_check_count": 59,
+  "minimum_policy_input_count": 55,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -892,6 +892,23 @@
       ],
       "tests": [
         "tests/test_evidence_provenance.py"
+      ]
+    },
+    {
+      "name": "documentation_link_integrity_audit",
+      "release_readiness_check": "documentation_link_integrity_audit",
+      "evidence": [
+        "docs/evidence/documentation-link-integrity-audit.json",
+        "docs/evidence/documentation-link-integrity-audit.md"
+      ],
+      "source_inputs": [
+        "demo/documentation_link_integrity_audit.py"
+      ],
+      "policy_inputs": [
+        "config/documentation-link-policy.json"
+      ],
+      "tests": [
+        "tests/test_documentation_link_integrity_audit.py"
       ]
     },
     {

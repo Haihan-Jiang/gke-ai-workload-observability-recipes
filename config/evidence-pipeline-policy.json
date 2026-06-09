@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 60,
-  "minimum_dependency_count": 95,
+  "minimum_step_count": 61,
+  "minimum_dependency_count": 100,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -231,6 +231,10 @@
     {
       "name": "render_incident_evidence",
       "script": "demo/render_incident_evidence.py"
+    },
+    {
+      "name": "documentation_link_integrity_audit",
+      "script": "demo/documentation_link_integrity_audit.py"
     },
     {
       "name": "evidence_provenance",
@@ -628,6 +632,26 @@
     },
     {
       "producer": "render_incident_evidence",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/README.md"
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json"
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json"
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json"
+    },
+    {
+      "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md"
     },
@@ -660,6 +684,11 @@
       "producer": "regional_failover_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/regional-failover-audit.json"
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json"
     },
     {
       "producer": "control_traceability_audit",

@@ -285,6 +285,13 @@ python3 demo/release_waiver_governance.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/render_incident_evidence.py \
+  --input "${source_dir}/summary.json" \
+  --output-dir docs/evidence
+python3 demo/documentation_link_integrity_audit.py \
+  --policy config/documentation-link-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/disaster_recovery_drill.py \
   --repo-root . \
   --policy config/disaster-recovery-policy.json \
@@ -306,9 +313,6 @@ python3 demo/release_control_ownership_audit.py \
   --release-readiness-source demo/release_readiness.py \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
-python3 demo/render_incident_evidence.py \
-  --input "${source_dir}/summary.json" \
-  --output-dir docs/evidence
 python3 demo/evidence_provenance.py \
   --policy config/evidence-provenance-policy.json \
   --repo-root . \
@@ -376,6 +380,7 @@ python3 demo/release_readiness.py \
   --release-control-ownership docs/evidence/release-control-ownership-audit.json \
   --control-traceability docs/evidence/control-traceability-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
+  --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
   --evidence-schema docs/evidence/evidence-schema-audit.json \

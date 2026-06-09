@@ -107,6 +107,9 @@ silently satisfying later release gates.
 Evidence schema audit evidence checks that critical generated JSON reports keep
 stable status fields, required fields, required checks, metric contracts, array
 shapes, and negative drift fixtures before release readiness is reported.
+Documentation link integrity evidence checks README, contributor docs, release
+docs, and committed evidence indexes for local path, anchor, image, and scheme
+drift before public review links are trusted.
 Proof packet integrity evidence re-checks the provenance manifest against the
 current repository tree so stale evidence, source drift, missing artifacts, and
 circular release-proof inputs block release readiness.
@@ -263,6 +266,9 @@ not described as merged.
 - An evidence schema audit that verifies generated JSON reports keep required
   fields, check shapes, metric contracts, allowed values, and negative drift
   fixtures stable.
+- A documentation link integrity audit that verifies README, docs, evidence
+  indexes, anchors, images, and allowed schemes before public review links are
+  trusted.
 - An evidence provenance manifest with SHA-256 checksums for generated
   evidence, Kubernetes/Grafana/OpenSLO artifacts, and source inputs.
 - A proof packet integrity audit that re-checks provenance checksums against
@@ -454,6 +460,7 @@ script:
 - [Evidence pipeline audit](docs/evidence/evidence-pipeline-audit.md)
 - [Evidence schema audit](docs/evidence/evidence-schema-audit.md)
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
+- [Documentation link integrity audit](docs/evidence/documentation-link-integrity-audit.md)
 - [Evidence provenance](docs/evidence/evidence-provenance.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
@@ -632,6 +639,9 @@ Before adapting this to a real GKE cluster:
 50. Keep proof packet integrity aligned with evidence provenance checksums,
    current source inputs, generated artifacts, and non-circular release
    readiness inputs before claiming committed evidence is fresh.
+51. Keep documentation link integrity aligned with README, contributor docs,
+   release docs, evidence indexes, anchors, images, and allowed link schemes
+   before treating public review links as trustworthy.
 
 ## Case Study
 
@@ -664,6 +674,7 @@ Current wording before upstream merges:
 > accelerator quota fairness auditing, regional failover auditing,
 > release control ownership auditing,
 > control traceability auditing,
+> documentation link integrity auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
 > audits, telemetry exporter authority checks,
 > supply-chain image checks, OSS license auditing, secret hygiene auditing,
@@ -694,6 +705,7 @@ After an upstream PR merges, update this to:
 > accelerator quota fairness auditing, regional failover auditing,
 > release control ownership auditing,
 > control traceability auditing,
+> documentation link integrity auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
 > audits, telemetry exporter authority checks,
 > supply-chain image checks, OSS license auditing, secret hygiene auditing,

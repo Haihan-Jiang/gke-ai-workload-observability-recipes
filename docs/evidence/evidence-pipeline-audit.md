@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 60 |
-| Required steps | 60 |
-| Dependencies | 95 |
-| Artifact dependencies | 95 |
+| Steps | 61 |
+| Required steps | 61 |
+| Dependencies | 100 |
+| Artifact dependencies | 100 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -106,6 +106,10 @@ accidentally read stale committed artifacts.
 | `private_cluster_admission_boundary_audit` | `evidence_provenance` | yes |
 | `telemetry_exporter_authority_audit` | `evidence_provenance` | yes |
 | `staged_telemetry_validation_audit` | `evidence_provenance` | yes |
+| `render_incident_evidence` | `documentation_link_integrity_audit` | yes |
+| `documentation_link_integrity_audit` | `disaster_recovery_drill` | yes |
+| `documentation_link_integrity_audit` | `evidence_provenance` | yes |
+| `documentation_link_integrity_audit` | `control_traceability_audit` | yes |
 | `render_incident_evidence` | `evidence_provenance` | yes |
 | `evidence_provenance` | `proof_packet_integrity_audit` | yes |
 | `evidence_provenance` | `control_traceability_audit` | yes |
@@ -113,6 +117,7 @@ accidentally read stale committed artifacts.
 | `proof_packet_integrity_audit` | `release_readiness` | yes |
 | `evidence_provenance` | `release_readiness` | yes |
 | `regional_failover_audit` | `release_readiness` | yes |
+| `documentation_link_integrity_audit` | `release_readiness` | yes |
 | `control_traceability_audit` | `release_readiness` | yes |
 | `release_control_ownership_audit` | `release_readiness` | yes |
 | `oss_license_audit` | `release_readiness` | yes |

@@ -171,6 +171,7 @@ inference incidents before a service reaches production.
 | C50 | Private GKE clusters can be blocked by unplanned admission webhook reachability | Release review needs proof that admission controls use native policy resources, avoid webhook/operator Service dependencies, and keep optional operator CRDs behind explicit skip paths. | [Private cluster admission boundary audit](evidence/private-cluster-admission-boundary-audit.md) |
 | C51 | Telemetry can be reviewed only after rollout damage has already happened | Release review needs staged rollout telemetry evidence that ties rollback decisions, trace quality, redaction, cost, exporter authority, synthetic probes, and model-release blocking together before promotion. | [Staged telemetry validation audit](evidence/staged-telemetry-validation-audit.md) |
 | C52 | A release can cite a stale proof packet after source or evidence changes | Release review needs a proof-packet integrity gate that re-checks provenance checksums against current evidence, generated artifacts, and source inputs before readiness is trusted. | [Proof packet integrity audit](evidence/proof-packet-integrity-audit.md) |
+| C53 | Public review links can drift after evidence is regenerated | Release review needs local Markdown link, anchor, image, and scheme checks so README, contributor docs, release docs, and evidence indexes stay navigable. | [Documentation link integrity audit](evidence/documentation-link-integrity-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -424,6 +425,12 @@ inference incidents before a service reaches production.
     - Policy: [config/proof-packet-integrity-policy.json](../config/proof-packet-integrity-policy.json)
     - Inputs: [evidence provenance manifest](evidence/evidence-provenance.md), committed evidence, generated artifacts, and source inputs
     - Evidence: [proof packet integrity audit](evidence/proof-packet-integrity-audit.md)
+
+43. **Documentation link integrity audit**
+    - Code: [demo/documentation_link_integrity_audit.py](../demo/documentation_link_integrity_audit.py)
+    - Policy: [config/documentation-link-policy.json](../config/documentation-link-policy.json)
+    - Inputs: README, contributor docs, release docs, and committed evidence indexes
+    - Evidence: [documentation link integrity audit](evidence/documentation-link-integrity-audit.md)
 
 ## Boundary
 

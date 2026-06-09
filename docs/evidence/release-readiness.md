@@ -20,7 +20,7 @@ probe coverage, model release safety coverage, shadow traffic replay
 coverage, accelerator quota fairness coverage, load-shedding policy
 coverage, regional failover coverage,
 waiver governance, release control ownership, control traceability, evidence pipeline ordering, evidence schema contracts, disaster recovery
-drill coverage, evidence provenance, proof-packet integrity, and committed evidence are
+drill coverage, documentation link integrity, evidence provenance, proof-packet integrity, and committed evidence are
 present and internally
 consistent.
 
@@ -84,6 +84,7 @@ consistent.
 | `evidence_pipeline_audit` | PASS |
 | `evidence_schema_audit` | PASS |
 | `disaster_recovery_drill` | PASS |
+| `documentation_link_integrity_audit` | PASS |
 | `evidence_provenance` | PASS |
 | `proof_packet_integrity_audit` | PASS |
 
@@ -225,6 +226,8 @@ consistent.
 | `evidence-schema-audit.json` | yes |
 | `disaster-recovery-drill.md` | yes |
 | `disaster-recovery-drill.json` | yes |
+| `documentation-link-integrity-audit.md` | yes |
+| `documentation-link-integrity-audit.json` | yes |
 | `evidence-provenance.md` | yes |
 | `evidence-provenance.json` | yes |
 | `proof-packet-integrity-audit.md` | yes |

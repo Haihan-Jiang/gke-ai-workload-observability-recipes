@@ -62,6 +62,7 @@ python3 -m py_compile \
   demo/disaster_recovery_drill.py \
   demo/evidence_provenance.py \
   demo/proof_packet_integrity_audit.py \
+  demo/documentation_link_integrity_audit.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -127,6 +128,7 @@ python3 -m json.tool config/evidence-schema-policy.json >/dev/null
 python3 -m json.tool config/disaster-recovery-policy.json >/dev/null
 python3 -m json.tool config/evidence-provenance-policy.json >/dev/null
 python3 -m json.tool config/proof-packet-integrity-policy.json >/dev/null
+python3 -m json.tool config/documentation-link-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -435,6 +437,10 @@ python3 demo/proof_packet_integrity_audit.py \
   --provenance out/evidence-provenance-validate/evidence-provenance.json \
   --repo-root . \
   --output-dir out/proof-packet-integrity-audit-validate >/dev/null
+python3 demo/documentation_link_integrity_audit.py \
+  --policy config/documentation-link-policy.json \
+  --repo-root . \
+  --output-dir out/documentation-link-integrity-audit-validate >/dev/null
 python3 demo/control_traceability_audit.py \
   --policy config/control-traceability-policy.json \
   --release-readiness-source demo/release_readiness.py \
@@ -493,6 +499,7 @@ python3 demo/release_readiness.py \
   --release-control-ownership docs/evidence/release-control-ownership-audit.json \
   --control-traceability docs/evidence/control-traceability-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
+  --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
   --evidence-schema docs/evidence/evidence-schema-audit.json \
@@ -570,6 +577,7 @@ python3 -m json.tool docs/evidence/evidence-schema-audit.json >/dev/null
 python3 -m json.tool docs/evidence/disaster-recovery-drill.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null
 python3 -m json.tool docs/evidence/proof-packet-integrity-audit.json >/dev/null
+python3 -m json.tool docs/evidence/documentation-link-integrity-audit.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null
 python3 -m unittest discover -s tests
 

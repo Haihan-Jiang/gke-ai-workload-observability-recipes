@@ -1,0 +1,79 @@
+{
+  "description": "Policy for auditing committed Markdown documentation links without network access.",
+  "required_files": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "docs/architecture/incident-replay.md",
+    "docs/case-study.md",
+    "docs/developer-runtime.md",
+    "docs/evidence/README.md",
+    "docs/google-oss-upstream.md",
+    "docs/industry-map.md",
+    "docs/kind-e2e.md",
+    "docs/release-process.md"
+  ],
+  "include_markdown_roots": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "docs"
+  ],
+  "exclude_markdown_paths": [
+    "docs/evidence/documentation-link-integrity-audit.md"
+  ],
+  "minimum_markdown_file_count": 80,
+  "minimum_required_file_count": 11,
+  "minimum_local_link_count": 520,
+  "minimum_external_link_count": 10,
+  "minimum_image_link_count": 2,
+  "minimum_detected_fixtures": 6,
+  "allowed_external_schemes": [
+    "http",
+    "https",
+    "mailto"
+  ],
+  "fixtures": [
+    {
+      "name": "missing_required_file",
+      "mutation": "remove_file",
+      "path": "docs/case-study.md",
+      "expected_failed_check": "required_file_inventory"
+    },
+    {
+      "name": "broken_local_link",
+      "mutation": "append_link",
+      "path": "README.md",
+      "link": "[missing evidence](docs/evidence/not-real.md)",
+      "expected_failed_check": "local_link_targets"
+    },
+    {
+      "name": "unsafe_parent_path",
+      "mutation": "append_link",
+      "path": "docs/case-study.md",
+      "link": "[outside](../../outside.md)",
+      "expected_failed_check": "path_safety"
+    },
+    {
+      "name": "file_uri_link",
+      "mutation": "append_link",
+      "path": "README.md",
+      "link": "[local file](file:///tmp/secret.txt)",
+      "expected_failed_check": "scheme_contract"
+    },
+    {
+      "name": "unsupported_external_scheme",
+      "mutation": "append_link",
+      "path": "README.md",
+      "link": "[ftp endpoint](ftp://example.com/file.txt)",
+      "expected_failed_check": "scheme_contract"
+    },
+    {
+      "name": "missing_anchor",
+      "mutation": "append_link",
+      "path": "docs/case-study.md",
+      "link": "[bad anchor](case-study.md#not-a-real-section)",
+      "expected_failed_check": "anchor_targets"
+    }
+  ]
+}
