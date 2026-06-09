@@ -11,13 +11,13 @@ values, and negative drift fixtures.
 
 | Metric | Value |
 | --- | ---: |
-| Artifacts | 17 |
-| Required fields | 176 |
-| Required checks | 111 |
-| Metric contracts | 107 |
-| Array contracts | 42 |
-| Observed checks | 111 |
-| Detected fixtures | 17 |
+| Artifacts | 18 |
+| Required fields | 189 |
+| Required checks | 118 |
+| Metric contracts | 117 |
+| Array contracts | 44 |
+| Observed checks | 118 |
+| Detected fixtures | 18 |
 
 ## Checks
 
@@ -54,6 +54,7 @@ values, and negative drift fixtures.
 | `docs/evidence/k8s-hardening-audit.json` | `pass` | 11 |
 | `docs/evidence/workload-identity-audit.json` | `pass` | 8 |
 | `docs/evidence/public-claim-evidence-audit.json` | `pass` | 6 |
+| `docs/evidence/release-notes-contract-audit.json` | `pass` | 7 |
 
 ## Negative Fixtures
 
@@ -76,3 +77,4 @@ values, and negative drift fixtures.
 | `low_pipeline_dependency_count` | `metric_contract` | yes |
 | `missing_validation_committed_json_check` | `check_inventory` | yes |
 | `low_public_claim_count` | `metric_contract` | yes |
+| `low_release_note_field_count` | `metric_contract` | yes |

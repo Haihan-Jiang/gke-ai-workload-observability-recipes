@@ -28,11 +28,14 @@ policy checks are internally consistent at a Git revision.
 
    - `docs/evidence/release-readiness.md`
    - `docs/evidence/evidence-provenance.md`
+   - `docs/evidence/proof-packet-integrity-audit.md`
    - `docs/evidence/disaster-recovery-drill.md`
    - `docs/evidence/repository-governance-audit.md`
    - `docs/evidence/developer-runtime-audit.md`
    - `docs/evidence/security-response-audit.md`
    - `docs/evidence/security-response-audit.json`
+   - `docs/evidence/public-claim-evidence-audit.md`
+   - `docs/evidence/release-notes-contract-audit.md`
 
 5. Confirm the pull request CI is green and the PR merge state is clean.
 
@@ -51,6 +54,15 @@ Release notes should state:
 - changed evidence artifacts
 - validation commands that passed
 - known deployment boundaries or assumptions
+
+Use the concrete validation command names where applicable:
+
+- `make evidence`
+- `make validate`
+- `make ci`
+- `./scripts/generate-evidence.sh`
+- `./scripts/validate.sh`
+- `CI=true ./scripts/validate.sh`
 
 ## Rollback
 

@@ -1,7 +1,7 @@
 {
   "description": "Policy for producing a reproducible provenance manifest for generated lab evidence.",
-  "minimum_evidence_artifacts": 141,
-  "minimum_source_inputs": 137,
+  "minimum_evidence_artifacts": 143,
+  "minimum_source_inputs": 139,
   "required_artifacts": [
     "docs/evidence/README.md",
     "docs/evidence/sample-incident-report.md",
@@ -143,7 +143,9 @@
     "docs/evidence/documentation-link-integrity-audit.md",
     "docs/evidence/documentation-link-integrity-audit.json",
     "docs/evidence/public-claim-evidence-audit.md",
-    "docs/evidence/public-claim-evidence-audit.json"
+    "docs/evidence/public-claim-evidence-audit.json",
+    "docs/evidence/release-notes-contract-audit.md",
+    "docs/evidence/release-notes-contract-audit.json"
   ],
   "generated_artifacts": [
     "k8s/gke/alerting-rules.yaml",
@@ -216,6 +218,7 @@
     "demo/render_incident_evidence.py",
     "demo/documentation_link_integrity_audit.py",
     "demo/public_claim_evidence_audit.py",
+    "demo/release_notes_contract_audit.py",
     "demo/proof_packet_integrity_audit.py",
     "config/reliability-slo.json",
     "config/replay-source-contract-policy.json",
@@ -274,6 +277,7 @@
     "config/disaster-recovery-policy.json",
     "config/documentation-link-policy.json",
     "config/public-claim-evidence-policy.json",
+    "config/release-notes-contract-policy.json",
     "config/proof-packet-integrity-policy.json",
     ".github/workflows/ci.yml",
     ".github/CODEOWNERS",

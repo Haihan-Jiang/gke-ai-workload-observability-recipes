@@ -1,11 +1,11 @@
 {
   "description": "Policy for auditing that local and CI validation cover every committed evidence generator, policy JSON, release-readiness input, and committed evidence JSON artifact.",
-  "minimum_py_compile_script_count": 66,
-  "minimum_generation_script_count": 64,
-  "minimum_direct_validation_script_count": 63,
-  "minimum_policy_json_count": 59,
-  "minimum_committed_json_count": 74,
-  "minimum_release_readiness_argument_count": 63,
+  "minimum_py_compile_script_count": 67,
+  "minimum_generation_script_count": 65,
+  "minimum_direct_validation_script_count": 64,
+  "minimum_policy_json_count": 60,
+  "minimum_committed_json_count": 75,
+  "minimum_release_readiness_argument_count": 64,
   "minimum_required_command_count": 3,
   "minimum_detected_fixtures": 6,
   "excluded_demo_scripts": [

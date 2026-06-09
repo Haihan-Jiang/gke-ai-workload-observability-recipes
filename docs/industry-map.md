@@ -173,6 +173,7 @@ inference incidents before a service reaches production.
 | C52 | A release can cite a stale proof packet after source or evidence changes | Release review needs a proof-packet integrity gate that re-checks provenance checksums against current evidence, generated artifacts, and source inputs before readiness is trusted. | [Proof packet integrity audit](evidence/proof-packet-integrity-audit.md) |
 | C53 | Public review links can drift after evidence is regenerated | Release review needs local Markdown link, anchor, image, and scheme checks so README, contributor docs, release docs, and evidence indexes stay navigable. | [Documentation link integrity audit](evidence/documentation-link-integrity-audit.md) |
 | C54 | Downstream gates can trust replay output after source schema drift | Release review needs a source contract for replay summaries and OTLP payloads so scenario coverage, span shape, attributes, and incident signals stay stable before downstream evidence consumes them. | [Replay source contract audit](evidence/replay-source-contract-audit.md) |
+| C55 | Release notes can omit changed evidence or validation boundaries | Reviewers need release notes to name the changed capability, evidence artifacts, validation commands, and deployment assumptions before trusting a release packet. | [Release notes contract audit](evidence/release-notes-contract-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -450,6 +451,12 @@ inference incidents before a service reaches production.
     - Policy: [config/public-claim-evidence-policy.json](../config/public-claim-evidence-policy.json)
     - Inputs: [README](../README.md), this industry map, committed evidence JSON/Markdown, and [release readiness gate](../demo/release_readiness.py)
     - Evidence: [public claim evidence audit](evidence/public-claim-evidence-audit.md)
+
+47. **Release notes contract audit**
+    - Code: [demo/release_notes_contract_audit.py](../demo/release_notes_contract_audit.py)
+    - Policy: [config/release-notes-contract-policy.json](../config/release-notes-contract-policy.json)
+    - Inputs: [release process](release-process.md), [contributing guide](../CONTRIBUTING.md), [README](../README.md), and this industry map
+    - Evidence: [release notes contract audit](evidence/release-notes-contract-audit.md)
 
 ## Boundary
 

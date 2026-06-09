@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 17,
-  "policy_artifact_count": 17,
-  "required_field_count": 176,
-  "required_check_count": 111,
-  "metric_contract_count": 107,
-  "array_contract_count": 42,
-  "observed_check_count": 111,
-  "detected_fixture_count": 17,
+  "artifact_count": 18,
+  "policy_artifact_count": 18,
+  "required_field_count": 189,
+  "required_check_count": 118,
+  "metric_contract_count": 117,
+  "array_contract_count": 44,
+  "observed_check_count": 118,
+  "detected_fixture_count": 18,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 17,
-        "policy_artifact_count": 17,
-        "minimum_artifact_count": 17
+        "artifact_count": 18,
+        "policy_artifact_count": 18,
+        "minimum_artifact_count": 18
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 17,
-        "minimum_detected_fixtures": 17,
+        "detected_fixture_count": 18,
+        "minimum_detected_fixtures": 18,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -253,6 +253,16 @@
           {
             "name": "low_public_claim_count",
             "artifact": "docs/evidence/public-claim-evidence-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_release_note_field_count",
+            "artifact": "docs/evidence/release-notes-contract-audit.json",
             "mutation": "set_field",
             "expected_failed_check": "metric_contract",
             "failed_checks": [
@@ -447,6 +457,16 @@
         "metric_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "low_release_note_field_count",
+      "artifact": "docs/evidence/release-notes-contract-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
@@ -551,6 +571,12 @@
       "present": true,
       "status": "pass",
       "check_count": 6
+    },
+    {
+      "path": "docs/evidence/release-notes-contract-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 7
     }
   ]
 }

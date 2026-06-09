@@ -121,6 +121,9 @@ drift before public review links are trusted.
 Public claim evidence audit checks that README and industry-map claims stay
 backed by committed JSON/Markdown evidence, release-readiness checks, and
 explicit boundary language before public review text is trusted.
+Release notes contract evidence checks that release notes and contribution
+guidance name the changed capability, evidence artifacts, validation commands,
+and deployment boundaries before a release packet is trusted.
 Proof packet integrity evidence re-checks the provenance manifest against the
 current repository tree so stale evidence, source drift, missing artifacts, and
 circular release-proof inputs block release readiness.
@@ -290,6 +293,9 @@ not described as merged.
 - A public claim evidence audit that verifies README and industry-map claims
   stay backed by committed evidence, release-readiness checks, and explicit
   project boundary language.
+- A release notes contract audit that verifies release-note fields, release
+  packet evidence references, validation command names, deployment boundaries,
+  and contribution summary requirements before release readiness passes.
 - An evidence provenance manifest with SHA-256 checksums for generated
   evidence, Kubernetes/Grafana/OpenSLO artifacts, and source inputs.
 - A proof packet integrity audit that re-checks provenance checksums against
@@ -485,6 +491,7 @@ script:
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
 - [Documentation link integrity audit](docs/evidence/documentation-link-integrity-audit.md)
 - [Public claim evidence audit](docs/evidence/public-claim-evidence-audit.md)
+- [Release notes contract audit](docs/evidence/release-notes-contract-audit.md)
 - [Evidence provenance](docs/evidence/evidence-provenance.md)
 - [Proof packet integrity audit](docs/evidence/proof-packet-integrity-audit.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
@@ -678,6 +685,9 @@ Before adapting this to a real GKE cluster:
 54. Keep public claim evidence aligned with README and industry-map claims,
    committed evidence JSON/Markdown, release-readiness checks, forbidden public
    phrases, and explicit project boundary language.
+55. Keep release notes aligned with changed capability, evidence artifacts,
+   validation commands, deployment boundaries, and contribution summary
+   requirements before a release packet is trusted.
 
 ## Case Study
 

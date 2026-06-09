@@ -1,0 +1,99 @@
+{
+  "description": "Policy for auditing release-note and change-management documentation before a release packet is trusted.",
+  "required_files": [
+    "docs/release-process.md",
+    "CONTRIBUTING.md",
+    "README.md",
+    "docs/industry-map.md"
+  ],
+  "minimum_release_note_field_count": 4,
+  "minimum_evidence_reference_count": 8,
+  "minimum_validation_command_count": 6,
+  "minimum_boundary_statement_count": 3,
+  "minimum_detected_fixtures": 6,
+  "required_release_note_fields": [
+    "the main reliability or governance capability added",
+    "changed evidence artifacts",
+    "validation commands that passed",
+    "known deployment boundaries or assumptions"
+  ],
+  "required_evidence_references": [
+    "release-readiness.md",
+    "evidence-provenance.md",
+    "proof-packet-integrity-audit.md",
+    "public-claim-evidence-audit.md",
+    "release-notes-contract-audit.md",
+    "security-response-audit.md",
+    "repository-governance-audit.md",
+    "disaster-recovery-drill.md"
+  ],
+  "required_validation_commands": [
+    "make evidence",
+    "make validate",
+    "make ci",
+    "./scripts/generate-evidence.sh",
+    "./scripts/validate.sh",
+    "CI=true ./scripts/validate.sh"
+  ],
+  "boundary_statements": [
+    {
+      "path": "docs/release-process.md",
+      "text": "does not deploy a production service"
+    },
+    {
+      "path": "docs/industry-map.md",
+      "text": "production-oriented, not production-deployed"
+    },
+    {
+      "path": "README.md",
+      "text": "This repository is a personal reference project."
+    }
+  ],
+  "required_contribution_terms": [
+    "Summarize which evidence changed",
+    "which validation commands were run"
+  ],
+  "fixtures": [
+    {
+      "name": "missing_release_process",
+      "mutation": "remove_file",
+      "path": "docs/release-process.md",
+      "expected_failed_check": "required_files"
+    },
+    {
+      "name": "missing_release_note_capability_field",
+      "mutation": "remove_text",
+      "path": "docs/release-process.md",
+      "text": "the main reliability or governance capability added",
+      "expected_failed_check": "release_notes_template"
+    },
+    {
+      "name": "missing_proof_packet_reference",
+      "mutation": "remove_text",
+      "path": "docs/release-process.md",
+      "text": "proof-packet-integrity-audit.md",
+      "expected_failed_check": "evidence_reference_contract"
+    },
+    {
+      "name": "missing_ci_validation_command",
+      "mutation": "remove_text",
+      "path": "docs/release-process.md",
+      "text": "CI=true ./scripts/validate.sh",
+      "expected_failed_check": "validation_command_contract"
+    },
+    {
+      "name": "missing_release_boundary",
+      "mutation": "remove_text",
+      "path": "docs/release-process.md",
+      "text": "does not deploy a production service",
+      "expected_failed_check": "boundary_language_contract"
+    },
+    {
+      "name": "missing_contribution_summary",
+      "mutation": "remove_text",
+      "path": "CONTRIBUTING.md",
+      "text": "Summarize which evidence changed",
+      "expected_failed_check": "contribution_change_summary"
+    }
+  ]
+}

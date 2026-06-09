@@ -46,10 +46,10 @@ class ReleaseControlOwnershipAuditTest(unittest.TestCase):
         )
 
         self.assertEqual("pass", report["status"])
-        self.assertEqual(62, report["control_count"])
+        self.assertEqual(63, report["control_count"])
         self.assertEqual(report["release_check_count"], report["covered_release_check_count"])
-        self.assertGreaterEqual(report["tier0_count"], 39)
-        self.assertGreaterEqual(report["every_release_count"], 50)
+        self.assertGreaterEqual(report["tier0_count"], 40)
+        self.assertGreaterEqual(report["every_release_count"], 51)
         self.assertEqual(6, report["detected_fixture_count"])
 
     def test_detects_missing_release_check_owner(self) -> None:

@@ -242,6 +242,10 @@
       "ok": true
     },
     {
+      "name": "release_notes_contract_audit",
+      "ok": true
+    },
+    {
       "name": "evidence_provenance",
       "ok": true
     },
@@ -817,6 +821,14 @@
     },
     {
       "path": "public-claim-evidence-audit.json",
+      "exists": true
+    },
+    {
+      "path": "release-notes-contract-audit.md",
+      "exists": true
+    },
+    {
+      "path": "release-notes-contract-audit.json",
       "exists": true
     },
     {

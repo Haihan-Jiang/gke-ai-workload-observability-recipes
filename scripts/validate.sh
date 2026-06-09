@@ -66,6 +66,7 @@ python3 -m py_compile \
   demo/proof_packet_integrity_audit.py \
   demo/documentation_link_integrity_audit.py \
   demo/public_claim_evidence_audit.py \
+  demo/release_notes_contract_audit.py \
   demo/capacity_planner.py \
   demo/runbook_generator.py \
   demo/release_readiness.py \
@@ -140,6 +141,7 @@ python3 -m json.tool config/evidence-provenance-policy.json >/dev/null
 python3 -m json.tool config/proof-packet-integrity-policy.json >/dev/null
 python3 -m json.tool config/documentation-link-policy.json >/dev/null
 python3 -m json.tool config/public-claim-evidence-policy.json >/dev/null
+python3 -m json.tool config/release-notes-contract-policy.json >/dev/null
 python3 demo/reliability_gate.py \
   --summary out/incident-replay-validate/summary.json \
   --slo-config config/reliability-slo.json \
@@ -456,6 +458,10 @@ python3 demo/public_claim_evidence_audit.py \
   --repo-root . \
   --release-readiness-source demo/release_readiness.py \
   --output-dir out/public-claim-evidence-audit-validate >/dev/null
+python3 demo/release_notes_contract_audit.py \
+  --policy config/release-notes-contract-policy.json \
+  --repo-root . \
+  --output-dir out/release-notes-contract-audit-validate >/dev/null
 python3 demo/documentation_link_integrity_audit.py \
   --policy config/documentation-link-policy.json \
   --repo-root . \
@@ -525,6 +531,7 @@ python3 demo/release_readiness.py \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
   --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
+  --release-notes-contract docs/evidence/release-notes-contract-audit.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
   --evidence-schema docs/evidence/evidence-schema-audit.json \
@@ -607,6 +614,7 @@ python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null
 python3 -m json.tool docs/evidence/proof-packet-integrity-audit.json >/dev/null
 python3 -m json.tool docs/evidence/documentation-link-integrity-audit.json >/dev/null
 python3 -m json.tool docs/evidence/public-claim-evidence-audit.json >/dev/null
+python3 -m json.tool docs/evidence/release-notes-contract-audit.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null
 python3 -m unittest discover -s tests
 

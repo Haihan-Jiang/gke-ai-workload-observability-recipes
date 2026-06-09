@@ -1,9 +1,9 @@
 {
   "description": "Policy for validating that the release proof packet still matches the checksum manifest produced for the current repository state.",
-  "minimum_evidence_artifacts": 141,
+  "minimum_evidence_artifacts": 143,
   "minimum_generated_artifacts": 4,
-  "minimum_source_inputs": 137,
-  "minimum_manifest_entries": 282,
+  "minimum_source_inputs": 139,
+  "minimum_manifest_entries": 286,
   "minimum_detected_fixtures": 6,
   "required_validation_commands": [
     "./scripts/generate-evidence.sh",
