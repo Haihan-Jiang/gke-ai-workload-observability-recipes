@@ -126,6 +126,17 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 10,
             "failed_count": 0,
         },
+        "kubernetes_api_compatibility": {
+            "status": "pass",
+            "document_count": 28,
+            "stable_resource_count": 26,
+            "optional_crd_count": 2,
+            "admission_policy_count": 1,
+            "admission_binding_count": 1,
+            "core_apply_step_count": 5,
+            "detected_fixture_count": 8,
+            "failed_count": 0,
+        },
         "namespace_resource": {
             "status": "pass",
             "namespace_count": 2,
@@ -347,46 +358,46 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "release_control_ownership": {
             "status": "pass",
-            "control_count": 53,
-            "release_check_count": 53,
-            "covered_release_check_count": 53,
-            "tier0_count": 30,
-            "every_release_count": 41,
+            "control_count": 54,
+            "release_check_count": 54,
+            "covered_release_check_count": 54,
+            "tier0_count": 31,
+            "every_release_count": 42,
             "owner_group_count": 5,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "control_traceability": {
             "status": "pass",
-            "control_count": 48,
-            "evidence_file_count": 97,
-            "source_input_count": 48,
-            "policy_input_count": 49,
-            "test_file_count": 48,
+            "control_count": 49,
+            "evidence_file_count": 99,
+            "source_input_count": 50,
+            "policy_input_count": 50,
+            "test_file_count": 49,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 55,
-            "dependency_count": 65,
-            "artifact_dependency_count": 65,
+            "step_count": 56,
+            "dependency_count": 70,
+            "artifact_dependency_count": 70,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
         "evidence_schema": {
             "status": "pass",
-            "artifact_count": 11,
-            "required_field_count": 90,
-            "required_check_count": 70,
-            "detected_fixture_count": 11,
+            "artifact_count": 12,
+            "required_field_count": 103,
+            "required_check_count": 76,
+            "detected_fixture_count": 12,
             "failed_count": 0,
         },
         "disaster_recovery_drill": {
             "status": "pass",
-            "artifact_count": 73,
-            "restored_count": 73,
-            "hash_match_count": 73,
+            "artifact_count": 77,
+            "restored_count": 77,
+            "hash_match_count": 77,
             "detected_fixture_count": 4,
             "estimated_restore_minutes": 7,
             "rto_minutes": 15,
@@ -394,8 +405,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 127,
-            "source_input_count": 119,
+            "artifact_count": 129,
+            "source_input_count": 121,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -439,6 +450,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["pod_security_admission_audit"])
+
+    def test_requires_kubernetes_api_compatibility_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["kubernetes_api_compatibility"]["stable_resource_count"] = 20
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["kubernetes_api_compatibility_audit"])
 
     def test_requires_supply_chain_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

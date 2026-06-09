@@ -11,13 +11,13 @@ values, and negative drift fixtures.
 
 | Metric | Value |
 | --- | ---: |
-| Artifacts | 11 |
-| Required fields | 100 |
-| Required checks | 71 |
-| Metric contracts | 55 |
-| Array contracts | 27 |
-| Observed checks | 71 |
-| Detected fixtures | 11 |
+| Artifacts | 12 |
+| Required fields | 113 |
+| Required checks | 77 |
+| Metric contracts | 64 |
+| Array contracts | 30 |
+| Observed checks | 77 |
+| Detected fixtures | 12 |
 
 ## Checks
 
@@ -42,6 +42,7 @@ values, and negative drift fixtures.
 | `docs/evidence/repository-governance-audit.json` | `pass` | 6 |
 | `docs/evidence/ci-governance-audit.json` | `pass` | 8 |
 | `docs/evidence/pod-security-admission-audit.json` | `pass` | 6 |
+| `docs/evidence/kubernetes-api-compatibility-audit.json` | `pass` | 6 |
 | `docs/evidence/synthetic-probe-audit.json` | `pass` | 6 |
 | `docs/evidence/model-release-safety-audit.json` | `pass` | 8 |
 | `docs/evidence/deployment-policy.json` | `generated` | n/a |
@@ -57,6 +58,7 @@ values, and negative drift fixtures.
 | `invalid_ci_status` | `status_contract` | yes |
 | `malformed_synthetic_probe_checks` | `check_shape` | yes |
 | `missing_pod_security_namespace_check` | `check_inventory` | yes |
+| `missing_kubernetes_api_stable_core_check` | `check_inventory` | yes |
 | `low_developer_runtime_make_target_count` | `metric_contract` | yes |
 | `deployment_policy_without_decision` | `required_fields` | yes |
 | `model_release_without_blocked_candidate` | `metric_contract` | yes |

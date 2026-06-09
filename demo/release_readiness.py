@@ -72,6 +72,8 @@ REQUIRED_EVIDENCE = [
     "k8s-hardening-audit.json",
     "pod-security-admission-audit.md",
     "pod-security-admission-audit.json",
+    "kubernetes-api-compatibility-audit.md",
+    "kubernetes-api-compatibility-audit.json",
     "namespace-resource-audit.md",
     "namespace-resource-audit.json",
     "availability-topology-audit.md",
@@ -175,6 +177,7 @@ def evaluate(
     developer_runtime: dict[str, Any],
     k8s_hardening: dict[str, Any],
     pod_security_admission: dict[str, Any],
+    kubernetes_api_compatibility: dict[str, Any],
     namespace_resource: dict[str, Any],
     availability_topology: dict[str, Any],
     autoscaling_policy: dict[str, Any],
@@ -333,6 +336,18 @@ def evaluate(
             and int(pod_security_admission.get("restricted_workload_count", 0)) >= 2
             and int(pod_security_admission.get("detected_fixture_count", 0)) >= 10
             and int(pod_security_admission.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "kubernetes_api_compatibility_audit",
+            "ok": kubernetes_api_compatibility.get("status") == "pass"
+            and int(kubernetes_api_compatibility.get("document_count", 0)) >= 28
+            and int(kubernetes_api_compatibility.get("stable_resource_count", 0)) >= 26
+            and int(kubernetes_api_compatibility.get("optional_crd_count", 0)) >= 2
+            and int(kubernetes_api_compatibility.get("admission_policy_count", 0)) >= 1
+            and int(kubernetes_api_compatibility.get("admission_binding_count", 0)) >= 1
+            and int(kubernetes_api_compatibility.get("core_apply_step_count", 0)) >= 5
+            and int(kubernetes_api_compatibility.get("detected_fixture_count", 0)) >= 8
+            and int(kubernetes_api_compatibility.get("failed_count", -1)) == 0,
         },
         {
             "name": "namespace_resource_audit",
@@ -581,11 +596,11 @@ def evaluate(
         {
             "name": "release_control_ownership_audit",
             "ok": release_control_ownership.get("status") == "pass"
-            and int(release_control_ownership.get("control_count", 0)) >= 53
+            and int(release_control_ownership.get("control_count", 0)) >= 54
             and int(release_control_ownership.get("covered_release_check_count", 0))
             == int(release_control_ownership.get("release_check_count", -1))
-            and int(release_control_ownership.get("tier0_count", 0)) >= 30
-            and int(release_control_ownership.get("every_release_count", 0)) >= 41
+            and int(release_control_ownership.get("tier0_count", 0)) >= 31
+            and int(release_control_ownership.get("every_release_count", 0)) >= 42
             and int(release_control_ownership.get("owner_group_count", 0)) >= 5
             and int(release_control_ownership.get("detected_fixture_count", 0)) >= 6
             and int(release_control_ownership.get("failed_count", -1)) == 0,
@@ -593,36 +608,36 @@ def evaluate(
         {
             "name": "control_traceability_audit",
             "ok": control_traceability.get("status") == "pass"
-            and int(control_traceability.get("control_count", 0)) >= 48
-            and int(control_traceability.get("evidence_file_count", 0)) >= 97
-            and int(control_traceability.get("source_input_count", 0)) >= 48
-            and int(control_traceability.get("policy_input_count", 0)) >= 49
-            and int(control_traceability.get("test_file_count", 0)) >= 48
+            and int(control_traceability.get("control_count", 0)) >= 49
+            and int(control_traceability.get("evidence_file_count", 0)) >= 99
+            and int(control_traceability.get("source_input_count", 0)) >= 50
+            and int(control_traceability.get("policy_input_count", 0)) >= 50
+            and int(control_traceability.get("test_file_count", 0)) >= 49
             and int(control_traceability.get("detected_fixture_count", 0)) >= 6
             and int(control_traceability.get("failed_count", -1)) == 0,
         },
         {
             "name": "evidence_pipeline_audit",
             "ok": evidence_pipeline.get("status") == "pass"
-            and int(evidence_pipeline.get("step_count", 0)) >= 55
-            and int(evidence_pipeline.get("dependency_count", 0)) >= 65
-            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 65
+            and int(evidence_pipeline.get("step_count", 0)) >= 56
+            and int(evidence_pipeline.get("dependency_count", 0)) >= 70
+            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 70
             and int(evidence_pipeline.get("detected_fixture_count", 0)) >= 4
             and int(evidence_pipeline.get("failed_count", -1)) == 0,
         },
         {
             "name": "evidence_schema_audit",
             "ok": evidence_schema.get("status") == "pass"
-            and int(evidence_schema.get("artifact_count", 0)) >= 11
-            and int(evidence_schema.get("required_field_count", 0)) >= 90
-            and int(evidence_schema.get("required_check_count", 0)) >= 70
-            and int(evidence_schema.get("detected_fixture_count", 0)) >= 11
+            and int(evidence_schema.get("artifact_count", 0)) >= 12
+            and int(evidence_schema.get("required_field_count", 0)) >= 103
+            and int(evidence_schema.get("required_check_count", 0)) >= 76
+            and int(evidence_schema.get("detected_fixture_count", 0)) >= 12
             and int(evidence_schema.get("failed_count", -1)) == 0,
         },
         {
             "name": "disaster_recovery_drill",
             "ok": disaster_recovery_drill.get("status") == "pass"
-            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 73
+            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 77
             and int(disaster_recovery_drill.get("restored_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("hash_match_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("detected_fixture_count", 0)) >= 4
@@ -632,8 +647,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 127
-            and int(evidence_provenance.get("source_input_count", 0)) >= 119
+            and int(evidence_provenance.get("artifact_count", 0)) >= 129
+            and int(evidence_provenance.get("source_input_count", 0)) >= 121
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -660,7 +675,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
         "policy, policy regression fixtures, supply-chain audit, OSS license compliance, secret hygiene, SBOM inventory, security response, CI",
-        "governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, namespace resource governance, availability",
+        "governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, Kubernetes API compatibility, namespace resource governance, availability",
         "topology governance, autoscaling policy governance, scheduling",
         "placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling",
         "governance, Workload Identity audit, admission policy simulation,",
@@ -719,6 +734,7 @@ def main() -> int:
     parser.add_argument("--developer-runtime", default="out/developer-runtime-audit/developer-runtime-audit.json")
     parser.add_argument("--k8s-hardening", default="out/k8s-hardening-audit/k8s-hardening-audit.json")
     parser.add_argument("--pod-security-admission", default="out/pod-security-admission-audit/pod-security-admission-audit.json")
+    parser.add_argument("--kubernetes-api-compatibility", default="out/kubernetes-api-compatibility-audit/kubernetes-api-compatibility-audit.json")
     parser.add_argument("--namespace-resource", default="out/namespace-resource-audit/namespace-resource-audit.json")
     parser.add_argument("--availability-topology", default="out/availability-topology-audit/availability-topology-audit.json")
     parser.add_argument("--autoscaling-policy", default="out/autoscaling-policy-audit/autoscaling-policy-audit.json")
@@ -776,6 +792,7 @@ def main() -> int:
         developer_runtime=load_json(Path(args.developer_runtime)),
         k8s_hardening=load_json(Path(args.k8s_hardening)),
         pod_security_admission=load_json(Path(args.pod_security_admission)),
+        kubernetes_api_compatibility=load_json(Path(args.kubernetes_api_compatibility)),
         namespace_resource=load_json(Path(args.namespace_resource)),
         availability_topology=load_json(Path(args.availability_topology)),
         autoscaling_policy=load_json(Path(args.autoscaling_policy)),

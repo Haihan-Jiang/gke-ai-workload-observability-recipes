@@ -12,9 +12,9 @@ rollback decisions, OTLP trace-quality auditing, collector outage modeling,
 incident correlation, critical-path attribution, evidence coverage checks,
 HPA lag modeling, tenant blast-radius detection, and token/GPU cost guardrails.
 It also includes supply-chain, CI workflow governance, repository governance,
-developer runtime governance, Kubernetes hardening, and admission-policy
-evidence so reviewers can see how deployment drift would be blocked before a
-bad manifest reaches a cluster.
+developer runtime governance, Kubernetes hardening, Kubernetes API
+compatibility, and admission-policy evidence so reviewers can see how
+deployment drift would be blocked before a bad manifest reaches a cluster.
 OSS license evidence checks Apache-2.0, NOTICE coverage, README license links,
 approved GitHub Actions, approved container images, and third-party reference
 inventory before the repo is treated as publicly reusable.
@@ -51,6 +51,9 @@ Workload Identity evidence checks that GKE service account binding, service
 account token mounting, RBAC scope, static credential handling, and upstream
 exporter transport are explicit before the manifests are treated as deployment
 evidence.
+Kubernetes API compatibility evidence checks stable API versions, optional CRD
+skip paths, kind smoke apply order, and admissionregistration.k8s.io/v1
+fail-closed behavior before release readiness is reported.
 Release waiver governance is included so manual exceptions stay bounded,
 approved, time-limited, and linked back to rollback and RCA evidence.
 Disaster recovery drill evidence verifies that critical release artifacts can
@@ -147,6 +150,10 @@ not described as merged.
 - A Pod Security Admission audit that verifies both namespaces enforce the
   restricted profile and that workloads remain compatible with restricted pod,
   container, and volume rules.
+- A Kubernetes API compatibility audit that verifies core manifests use stable
+  API versions, optional OpenTelemetry and Prometheus CRDs stay behind kind
+  smoke probes and skip paths, and admission policy stays on the v1 fail-closed
+  API surface.
 - A namespace resource governance audit that verifies ResourceQuota,
   LimitRange defaulting, quota headroom against current Deployments, and
   namespace ownership labels.
@@ -390,6 +397,7 @@ script:
 - [Developer runtime audit](docs/evidence/developer-runtime-audit.md)
 - [Kubernetes manifest hardening audit](docs/evidence/k8s-hardening-audit.md)
 - [Pod Security Admission audit](docs/evidence/pod-security-admission-audit.md)
+- [Kubernetes API compatibility audit](docs/evidence/kubernetes-api-compatibility-audit.md)
 - [Namespace resource audit](docs/evidence/namespace-resource-audit.md)
 - [Availability topology audit](docs/evidence/availability-topology-audit.md)
 - [Autoscaling policy audit](docs/evidence/autoscaling-policy-audit.md)
@@ -493,8 +501,9 @@ Before adapting this to a real GKE cluster:
 5. Keep collector RBAC read-only and scoped to required Kubernetes metadata.
 6. Keep collector health probes, resource budgets, security context,
    disruption budget, and NetworkPolicy aligned with the manifest audit.
-7. Keep Pod Security Admission labels aligned with restricted-profile workload
-   compatibility before tightening namespace enforcement.
+7. Keep Pod Security Admission labels and Kubernetes API compatibility aligned
+   with restricted-profile workload compatibility, stable API versions,
+   optional CRD skip paths, and kind smoke apply order.
 8. Keep namespace ResourceQuota and LimitRange policy aligned with workload
    replicas, requests, limits, PVC storage, and namespace ownership labels.
 9. Keep availability topology and autoscaling policy aligned with replica
@@ -633,6 +642,7 @@ Current wording before upstream merges:
 > SBOM inventory auditing,
 > namespace quota/LimitRange governance,
 > Pod Security Admission/restricted-profile checks,
+> Kubernetes API compatibility checks,
 > availability topology/PDB checks, autoscaling policy/HPA checks,
 > scheduling placement checks,
 > rollout safety/Deployment strategy checks,
@@ -662,6 +672,7 @@ After an upstream PR merges, update this to:
 > SBOM inventory auditing,
 > namespace quota/LimitRange governance,
 > Pod Security Admission/restricted-profile checks,
+> Kubernetes API compatibility checks,
 > availability topology/PDB checks, autoscaling policy/HPA checks,
 > scheduling placement checks,
 > rollout safety/Deployment strategy checks,

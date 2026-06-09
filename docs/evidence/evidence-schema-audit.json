@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 11,
-  "policy_artifact_count": 11,
-  "required_field_count": 100,
-  "required_check_count": 71,
-  "metric_contract_count": 55,
-  "array_contract_count": 27,
-  "observed_check_count": 71,
-  "detected_fixture_count": 11,
+  "artifact_count": 12,
+  "policy_artifact_count": 12,
+  "required_field_count": 113,
+  "required_check_count": 77,
+  "metric_contract_count": 64,
+  "array_contract_count": 30,
+  "observed_check_count": 77,
+  "detected_fixture_count": 12,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 11,
-        "policy_artifact_count": 11,
-        "minimum_artifact_count": 11
+        "artifact_count": 12,
+        "policy_artifact_count": 12,
+        "minimum_artifact_count": 12
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 11,
-        "minimum_detected_fixtures": 11,
+        "detected_fixture_count": 12,
+        "minimum_detected_fixtures": 12,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -113,6 +113,17 @@
           {
             "name": "missing_pod_security_namespace_check",
             "artifact": "docs/evidence/pod-security-admission-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_kubernetes_api_stable_core_check",
+            "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
             "mutation": "remove_check",
             "expected_failed_check": "check_inventory",
             "failed_checks": [
@@ -245,6 +256,17 @@
       "detected": true
     },
     {
+      "name": "missing_kubernetes_api_stable_core_check",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
       "name": "low_developer_runtime_make_target_count",
       "artifact": "docs/evidence/developer-runtime-audit.json",
       "mutation": "set_field",
@@ -346,6 +368,12 @@
     },
     {
       "path": "docs/evidence/pod-security-admission-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/kubernetes-api-compatibility-audit.json",
       "present": true,
       "status": "pass",
       "check_count": 6

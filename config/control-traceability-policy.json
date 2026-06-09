@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 48,
-  "minimum_release_check_count": 53,
-  "minimum_policy_input_count": 49,
+  "minimum_control_count": 49,
+  "minimum_release_check_count": 54,
+  "minimum_policy_input_count": 50,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -242,6 +242,24 @@
       ],
       "tests": [
         "tests/test_pod_security_admission_audit.py"
+      ]
+    },
+    {
+      "name": "kubernetes_api_compatibility_audit",
+      "release_readiness_check": "kubernetes_api_compatibility_audit",
+      "evidence": [
+        "docs/evidence/kubernetes-api-compatibility-audit.json",
+        "docs/evidence/kubernetes-api-compatibility-audit.md"
+      ],
+      "source_inputs": [
+        "demo/kubernetes_api_compatibility_audit.py",
+        "scripts/kind-smoke.sh"
+      ],
+      "policy_inputs": [
+        "config/kubernetes-api-compatibility-policy.json"
+      ],
+      "tests": [
+        "tests/test_kubernetes_api_compatibility_audit.py"
       ]
     },
     {

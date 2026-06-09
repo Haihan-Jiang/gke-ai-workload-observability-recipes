@@ -74,6 +74,10 @@
       "ok": true
     },
     {
+      "name": "kubernetes_api_compatibility_audit",
+      "ok": true
+    },
+    {
       "name": "namespace_resource_audit",
       "ok": true
     },
@@ -461,6 +465,14 @@
     },
     {
       "path": "pod-security-admission-audit.json",
+      "exists": true
+    },
+    {
+      "path": "kubernetes-api-compatibility-audit.md",
+      "exists": true
+    },
+    {
+      "path": "kubernetes-api-compatibility-audit.json",
       "exists": true
     },
     {

@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 11,
-  "minimum_detected_fixtures": 11,
+  "minimum_artifact_count": 12,
+  "minimum_detected_fixtures": 12,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -213,6 +213,54 @@
         "checks": 6,
         "fixture_results": 10,
         "workloads": 2
+      }
+    },
+    {
+      "path": "docs/evidence/kubernetes-api-compatibility-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "document_count",
+        "stable_resource_count",
+        "optional_crd_count",
+        "admission_policy_count",
+        "admission_binding_count",
+        "core_apply_step_count",
+        "detected_fixture_count",
+        "checks",
+        "resources",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "document_inventory",
+        "stable_core_api_versions",
+        "optional_crd_boundary",
+        "admission_policy_api",
+        "kind_smoke_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "document_count": 28,
+        "stable_resource_count": 26,
+        "optional_crd_count": 2,
+        "admission_policy_count": 1,
+        "admission_binding_count": 1,
+        "core_apply_step_count": 5,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "resources": 28,
+        "fixture_results": 8
       }
     },
     {
@@ -477,6 +525,13 @@
       "mutation": "remove_check",
       "artifact": "docs/evidence/pod-security-admission-audit.json",
       "check": "namespace_psa_labels",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_kubernetes_api_stable_core_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
+      "check": "stable_core_api_versions",
       "expected_failed_check": "check_inventory"
     },
     {

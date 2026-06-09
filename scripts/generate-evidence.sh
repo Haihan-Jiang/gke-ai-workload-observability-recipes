@@ -84,6 +84,10 @@ python3 demo/pod_security_admission_audit.py \
   --policy config/pod-security-admission-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/kubernetes_api_compatibility_audit.py \
+  --policy config/kubernetes-api-compatibility-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/namespace_resource_audit.py \
   --policy config/namespace-resource-policy.json \
   --repo-root . \
@@ -314,6 +318,7 @@ python3 demo/release_readiness.py \
   --developer-runtime docs/evidence/developer-runtime-audit.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --pod-security-admission docs/evidence/pod-security-admission-audit.json \
+  --kubernetes-api-compatibility docs/evidence/kubernetes-api-compatibility-audit.json \
   --namespace-resource docs/evidence/namespace-resource-audit.json \
   --availability-topology docs/evidence/availability-topology-audit.json \
   --autoscaling-policy docs/evidence/autoscaling-policy-audit.json \

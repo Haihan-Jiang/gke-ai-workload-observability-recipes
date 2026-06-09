@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 55,
-  "minimum_dependency_count": 65,
+  "minimum_step_count": 56,
+  "minimum_dependency_count": 70,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -75,6 +75,10 @@
     {
       "name": "pod_security_admission_audit",
       "script": "demo/pod_security_admission_audit.py"
+    },
+    {
+      "name": "kubernetes_api_compatibility_audit",
+      "script": "demo/kubernetes_api_compatibility_audit.py"
     },
     {
       "name": "namespace_resource_audit",
@@ -372,6 +376,11 @@
       "artifact": "docs/evidence/security-response-audit.json"
     },
     {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
       "producer": "evidence_pipeline_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/evidence-pipeline-audit.json"
@@ -385,6 +394,11 @@
       "producer": "pod_security_admission_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/pod-security-admission-audit.json"
+    },
+    {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
     },
     {
       "producer": "synthetic_probe_audit",
@@ -430,6 +444,11 @@
       "producer": "security_response_audit",
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/security-response-audit.json"
+    },
+    {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
     },
     {
       "producer": "evidence_schema_audit",
@@ -497,6 +516,11 @@
       "artifact": "docs/evidence/security-response-audit.json"
     },
     {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
       "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md"
@@ -540,6 +564,11 @@
       "producer": "security_response_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/security-response-audit.json"
+    },
+    {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
     },
     {
       "producer": "disaster_recovery_drill",

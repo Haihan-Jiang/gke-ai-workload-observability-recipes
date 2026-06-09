@@ -22,6 +22,7 @@ python3 -m py_compile \
   demo/developer_runtime_audit.py \
   demo/k8s_hardening_audit.py \
   demo/pod_security_admission_audit.py \
+  demo/kubernetes_api_compatibility_audit.py \
   demo/namespace_resource_audit.py \
   demo/availability_topology_audit.py \
   demo/autoscaling_policy_audit.py \
@@ -81,6 +82,7 @@ python3 -m json.tool config/repository-governance-policy.json >/dev/null
 python3 -m json.tool config/developer-runtime-policy.json >/dev/null
 python3 -m json.tool config/k8s-hardening-policy.json >/dev/null
 python3 -m json.tool config/pod-security-admission-policy.json >/dev/null
+python3 -m json.tool config/kubernetes-api-compatibility-policy.json >/dev/null
 python3 -m json.tool config/namespace-resource-policy.json >/dev/null
 python3 -m json.tool config/availability-topology-policy.json >/dev/null
 python3 -m json.tool config/autoscaling-policy.json >/dev/null
@@ -193,6 +195,10 @@ python3 demo/pod_security_admission_audit.py \
   --policy config/pod-security-admission-policy.json \
   --repo-root . \
   --output-dir out/pod-security-admission-audit-validate >/dev/null
+python3 demo/kubernetes_api_compatibility_audit.py \
+  --policy config/kubernetes-api-compatibility-policy.json \
+  --repo-root . \
+  --output-dir out/kubernetes-api-compatibility-audit-validate >/dev/null
 python3 demo/namespace_resource_audit.py \
   --policy config/namespace-resource-policy.json \
   --repo-root . \
@@ -421,6 +427,7 @@ python3 demo/release_readiness.py \
   --developer-runtime docs/evidence/developer-runtime-audit.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --pod-security-admission docs/evidence/pod-security-admission-audit.json \
+  --kubernetes-api-compatibility docs/evidence/kubernetes-api-compatibility-audit.json \
   --namespace-resource docs/evidence/namespace-resource-audit.json \
   --availability-topology docs/evidence/availability-topology-audit.json \
   --autoscaling-policy docs/evidence/autoscaling-policy-audit.json \
@@ -488,6 +495,7 @@ python3 -m json.tool docs/evidence/repository-governance-audit.json >/dev/null
 python3 -m json.tool docs/evidence/developer-runtime-audit.json >/dev/null
 python3 -m json.tool docs/evidence/k8s-hardening-audit.json >/dev/null
 python3 -m json.tool docs/evidence/pod-security-admission-audit.json >/dev/null
+python3 -m json.tool docs/evidence/kubernetes-api-compatibility-audit.json >/dev/null
 python3 -m json.tool docs/evidence/namespace-resource-audit.json >/dev/null
 python3 -m json.tool docs/evidence/availability-topology-audit.json >/dev/null
 python3 -m json.tool docs/evidence/autoscaling-policy-audit.json >/dev/null

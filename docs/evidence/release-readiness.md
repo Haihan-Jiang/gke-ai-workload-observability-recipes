@@ -6,7 +6,7 @@ This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, supply-chain audit, OSS license compliance, secret hygiene, SBOM inventory, security response, CI
-governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, namespace resource governance, availability
+governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, Kubernetes API compatibility, namespace resource governance, availability
 topology governance, autoscaling policy governance, scheduling
 placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling
 governance, Workload Identity audit, admission policy simulation,
@@ -46,6 +46,7 @@ consistent.
 | `developer_runtime_audit` | PASS |
 | `k8s_manifest_hardening` | PASS |
 | `pod_security_admission_audit` | PASS |
+| `kubernetes_api_compatibility_audit` | PASS |
 | `namespace_resource_audit` | PASS |
 | `availability_topology_audit` | PASS |
 | `autoscaling_policy_audit` | PASS |
@@ -148,6 +149,8 @@ consistent.
 | `k8s-hardening-audit.json` | yes |
 | `pod-security-admission-audit.md` | yes |
 | `pod-security-admission-audit.json` | yes |
+| `kubernetes-api-compatibility-audit.md` | yes |
+| `kubernetes-api-compatibility-audit.json` | yes |
 | `namespace-resource-audit.md` | yes |
 | `namespace-resource-audit.json` | yes |
 | `availability-topology-audit.md` | yes |
