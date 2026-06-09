@@ -1,0 +1,113 @@
+{
+  "description": "Policy for auditing NetworkPolicy boundaries between the sample AI workload, DNS, and the telemetry collector.",
+  "target_manifests": [
+    "k8s/gke/namespace.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "minimum_detected_fixtures": 10,
+  "required_labels": [
+    "app.kubernetes.io/name",
+    "app.kubernetes.io/part-of"
+  ],
+  "workload": {
+    "namespace": "ai-observability-demo",
+    "deployment": "toy-ai-inference-api",
+    "network_policy": "allow-ai-workload-egress",
+    "pod_selector": {
+      "app": "toy-ai-inference-api"
+    },
+    "telemetry_namespace_selector": {
+      "observability.haihan.dev/role": "telemetry"
+    },
+    "telemetry_pod_selector": {
+      "app": "otel-collector"
+    },
+    "telemetry_ports": [4317, 4318],
+    "dns_namespace_selector": {
+      "kubernetes.io/metadata.name": "kube-system"
+    },
+    "dns_pod_selector": {
+      "k8s-app": "kube-dns"
+    },
+    "dns_ports": [53]
+  },
+  "collector": {
+    "namespace": "telemetry",
+    "network_policy": "allow-otlp-from-ai-workloads",
+    "pod_selector": {
+      "app": "otel-collector"
+    },
+    "workload_namespace_selector": {
+      "observability.haihan.dev/role": "workload"
+    },
+    "otlp_ports": [4317, 4318]
+  },
+  "fixtures": [
+    {
+      "name": "missing_workload_egress_policy",
+      "mutation": "remove_workload_policy",
+      "expected_failed_check": "workload_egress_policy"
+    },
+    {
+      "name": "workload_policy_wrong_selector",
+      "mutation": "set_workload_pod_selector",
+      "label": "app",
+      "value": "wrong-app",
+      "expected_failed_check": "workload_policy_selector"
+    },
+    {
+      "name": "missing_egress_policy_type",
+      "mutation": "remove_policy_type",
+      "policy": "workload",
+      "value": "Egress",
+      "expected_failed_check": "workload_egress_policy_type"
+    },
+    {
+      "name": "missing_telemetry_egress",
+      "mutation": "remove_egress_kind",
+      "kind": "telemetry",
+      "expected_failed_check": "telemetry_egress"
+    },
+    {
+      "name": "wrong_telemetry_namespace_selector",
+      "mutation": "set_egress_namespace_selector",
+      "kind": "telemetry",
+      "label": "observability.haihan.dev/role",
+      "value": "wrong-role",
+      "expected_failed_check": "telemetry_egress"
+    },
+    {
+      "name": "missing_otlp_http_port",
+      "mutation": "remove_egress_port",
+      "kind": "telemetry",
+      "port": 4318,
+      "expected_failed_check": "telemetry_ports"
+    },
+    {
+      "name": "missing_dns_egress",
+      "mutation": "remove_egress_kind",
+      "kind": "dns",
+      "expected_failed_check": "dns_egress"
+    },
+    {
+      "name": "allow_all_egress",
+      "mutation": "add_allow_all_egress",
+      "expected_failed_check": "deny_unbounded_egress"
+    },
+    {
+      "name": "collector_ingress_wrong_namespace_selector",
+      "mutation": "set_collector_ingress_namespace_selector",
+      "label": "observability.haihan.dev/role",
+      "value": "wrong-role",
+      "expected_failed_check": "collector_ingress_boundary"
+    },
+    {
+      "name": "missing_workload_policy_owner_label",
+      "mutation": "remove_owner_label",
+      "policy": "workload",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "network_policy_label_governance"
+    }
+  ]
+}

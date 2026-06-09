@@ -1,0 +1,123 @@
+{
+  "description": "Policy for auditing vulnerability reporting, severity SLAs, fix evidence, and disclosure handling before release readiness.",
+  "required_files": [
+    "SECURITY.md",
+    "docs/release-process.md",
+    "CONTRIBUTING.md"
+  ],
+  "minimum_severity_tiers": 4,
+  "max_critical_triage_hours": 24,
+  "minimum_detected_fixtures": 8,
+  "required_security_terms": [
+    "Do not open a public issue with exploit details",
+    "GitHub private vulnerability reporting",
+    "credentials, tokens, private data",
+    "working abuse path",
+    "Critical and High reports block release promotion"
+  ],
+  "required_fix_terms": [
+    "regression test or audit fixture",
+    "regenerate the evidence",
+    "security-response-audit"
+  ],
+  "required_disclosure_terms": [
+    "Do not publish exploit details until a fix is available",
+    "coordinated disclosure update",
+    "affected surface",
+    "validation commands run"
+  ],
+  "required_release_terms": [
+    "security-response-audit.md",
+    "security-response-audit.json",
+    "If a release candidate contains a security fix"
+  ],
+  "required_contributing_terms": [
+    "Security-sensitive changes must follow SECURITY.md",
+    "security-response-audit",
+    "negative fixtures"
+  ],
+  "severity_tiers": [
+    {
+      "name": "critical",
+      "label": "Critical",
+      "triage_hours": 24,
+      "target_action": "block release and prepare a fix or rollback within 72 hours"
+    },
+    {
+      "name": "high",
+      "label": "High",
+      "triage_hours": 48,
+      "target_action": "block affected release path until fixed or waived"
+    },
+    {
+      "name": "medium",
+      "label": "Medium",
+      "triage_hours": 120,
+      "target_action": "require fix or explicit release waiver before tag"
+    },
+    {
+      "name": "low",
+      "label": "Low",
+      "triage_hours": 240,
+      "target_action": "track in the next routine governance pass"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_private_reporting",
+      "mutation": "remove_text",
+      "path": "SECURITY.md",
+      "text": "GitHub private vulnerability reporting",
+      "expected_failed_check": "private_reporting"
+    },
+    {
+      "name": "missing_no_public_exploit_rule",
+      "mutation": "remove_text",
+      "path": "SECURITY.md",
+      "text": "Do not open a public issue with exploit details",
+      "expected_failed_check": "private_reporting"
+    },
+    {
+      "name": "missing_critical_tier",
+      "mutation": "remove_tier",
+      "tier": "critical",
+      "expected_failed_check": "severity_sla"
+    },
+    {
+      "name": "critical_triage_too_slow",
+      "mutation": "set_tier_field",
+      "tier": "critical",
+      "field": "triage_hours",
+      "value": 48,
+      "expected_failed_check": "severity_sla"
+    },
+    {
+      "name": "missing_regression_fixture_expectation",
+      "mutation": "remove_text",
+      "path": "SECURITY.md",
+      "text": "regression test or audit fixture",
+      "expected_failed_check": "fix_and_evidence"
+    },
+    {
+      "name": "missing_security_release_review",
+      "mutation": "remove_text",
+      "path": "docs/release-process.md",
+      "text": "security-response-audit.md",
+      "expected_failed_check": "release_process"
+    },
+    {
+      "name": "missing_disclosure_update",
+      "mutation": "remove_text",
+      "path": "SECURITY.md",
+      "text": "coordinated disclosure update",
+      "expected_failed_check": "disclosure_flow"
+    },
+    {
+      "name": "missing_contribution_boundary",
+      "mutation": "remove_text",
+      "path": "CONTRIBUTING.md",
+      "text": "Security-sensitive changes must follow SECURITY.md",
+      "expected_failed_check": "contribution_boundary"
+    }
+  ]
+}

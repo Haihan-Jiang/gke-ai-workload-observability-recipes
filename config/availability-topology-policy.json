@@ -1,0 +1,99 @@
+{
+  "description": "Policy for auditing availability topology and disruption-budget controls for the collector and sample inference workload.",
+  "target_manifests": [
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "minimum_workload_count": 2,
+  "minimum_detected_fixtures": 7,
+  "required_labels": [
+    "app.kubernetes.io/part-of"
+  ],
+  "required_topology_keys": [
+    "topology.kubernetes.io/zone",
+    "kubernetes.io/hostname"
+  ],
+  "allowed_when_unsatisfiable": [
+    "DoNotSchedule",
+    "ScheduleAnyway"
+  ],
+  "workloads": [
+    {
+      "name": "otel-collector",
+      "namespace": "telemetry",
+      "kind": "Deployment",
+      "availability_mode": "guarded_singleton",
+      "min_replicas": 1,
+      "pdb": "otel-collector",
+      "selector": {
+        "app": "otel-collector"
+      },
+      "requires_topology_spread": false
+    },
+    {
+      "name": "toy-ai-inference-api",
+      "namespace": "ai-observability-demo",
+      "kind": "Deployment",
+      "availability_mode": "multi_replica",
+      "min_replicas": 2,
+      "pdb": "toy-ai-inference-api",
+      "selector": {
+        "app": "toy-ai-inference-api"
+      },
+      "requires_topology_spread": true
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "collector_replicas_zero",
+      "mutation": "set_replicas",
+      "workload": "otel-collector",
+      "value": 0,
+      "expected_failed_check": "replica_policy"
+    },
+    {
+      "name": "missing_sample_pdb",
+      "mutation": "remove_pdb",
+      "workload": "toy-ai-inference-api",
+      "expected_failed_check": "pdb_coverage"
+    },
+    {
+      "name": "sample_pdb_min_equals_replicas",
+      "mutation": "set_pdb_min_available",
+      "workload": "toy-ai-inference-api",
+      "value": 2,
+      "expected_failed_check": "pdb_coverage"
+    },
+    {
+      "name": "missing_sample_zone_spread",
+      "mutation": "remove_topology_key",
+      "workload": "toy-ai-inference-api",
+      "topology_key": "topology.kubernetes.io/zone",
+      "expected_failed_check": "topology_spread_coverage"
+    },
+    {
+      "name": "wrong_sample_hostname_spread_key",
+      "mutation": "replace_topology_key",
+      "workload": "toy-ai-inference-api",
+      "old_topology_key": "kubernetes.io/hostname",
+      "new_topology_key": "failure-domain.beta.kubernetes.io/zone",
+      "expected_failed_check": "topology_spread_coverage"
+    },
+    {
+      "name": "sample_spread_selector_mismatch",
+      "mutation": "set_spread_selector_label",
+      "workload": "toy-ai-inference-api",
+      "label": "app",
+      "value": "wrong-app",
+      "expected_failed_check": "spread_selector_matches_pod_labels"
+    },
+    {
+      "name": "missing_sample_pdb_owner_label",
+      "mutation": "remove_owner_label",
+      "workload": "toy-ai-inference-api",
+      "kind": "PodDisruptionBudget",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "availability_label_governance"
+    }
+  ]
+}

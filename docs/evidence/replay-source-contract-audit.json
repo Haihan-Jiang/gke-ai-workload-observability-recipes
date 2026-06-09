@@ -1,0 +1,242 @@
+{
+  "status": "pass",
+  "check_count": 9,
+  "failed_count": 0,
+  "detected_fixture_count": 7,
+  "checks": [
+    {
+      "name": "scenario_inventory",
+      "ok": true,
+      "evidence": {
+        "observed": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "expected": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      }
+    },
+    {
+      "name": "summary_contract",
+      "ok": true,
+      "evidence": {
+        "summary_gaps": [],
+        "metric_gaps": []
+      }
+    },
+    {
+      "name": "payload_inventory",
+      "ok": true,
+      "evidence": {
+        "payload_count": 5,
+        "missing_payloads": []
+      }
+    },
+    {
+      "name": "trace_shape_contract",
+      "ok": true,
+      "evidence": {
+        "root_span_count": 34,
+        "total_span_count": 136,
+        "trace_shape_gaps": []
+      }
+    },
+    {
+      "name": "attribute_contract",
+      "ok": true,
+      "evidence": {
+        "attribute_key_count": 19,
+        "root_attribute_gaps": []
+      }
+    },
+    {
+      "name": "scenario_consistency",
+      "ok": true,
+      "evidence": {
+        "consistency_gaps": []
+      }
+    },
+    {
+      "name": "incident_signal_contract",
+      "ok": true,
+      "evidence": {
+        "trait_gaps": []
+      }
+    },
+    {
+      "name": "payload_privacy_boundary",
+      "ok": true,
+      "evidence": {
+        "forbidden_attribute_gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 7,
+        "minimum_detected_fixtures": 7,
+        "fixtures": [
+          {
+            "name": "missing_summary_scenario",
+            "mutation": "remove_summary_scenario",
+            "expected_failed_check": "scenario_inventory",
+            "failed_checks": [
+              "scenario_inventory",
+              "trace_shape_contract",
+              "scenario_consistency"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_summary_field",
+            "mutation": "remove_summary_field",
+            "expected_failed_check": "summary_contract",
+            "failed_checks": [
+              "summary_contract",
+              "scenario_consistency"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_payload",
+            "mutation": "remove_payload",
+            "expected_failed_check": "payload_inventory",
+            "failed_checks": [
+              "payload_inventory",
+              "trace_shape_contract",
+              "attribute_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_root_attribute",
+            "mutation": "remove_root_attribute",
+            "expected_failed_check": "attribute_contract",
+            "failed_checks": [
+              "attribute_contract",
+              "scenario_consistency"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_child_span",
+            "mutation": "remove_child_span",
+            "expected_failed_check": "trace_shape_contract",
+            "failed_checks": [
+              "trace_shape_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "wrong_scenario_attribute",
+            "mutation": "set_root_attribute",
+            "expected_failed_check": "scenario_consistency",
+            "failed_checks": [
+              "scenario_consistency"
+            ],
+            "detected": true
+          },
+          {
+            "name": "raw_prompt_attribute",
+            "mutation": "append_forbidden_attribute",
+            "expected_failed_check": "payload_privacy_boundary",
+            "failed_checks": [
+              "payload_privacy_boundary"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_summary_scenario",
+      "mutation": "remove_summary_scenario",
+      "expected_failed_check": "scenario_inventory",
+      "failed_checks": [
+        "scenario_inventory",
+        "trace_shape_contract",
+        "scenario_consistency"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_summary_field",
+      "mutation": "remove_summary_field",
+      "expected_failed_check": "summary_contract",
+      "failed_checks": [
+        "summary_contract",
+        "scenario_consistency"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_payload",
+      "mutation": "remove_payload",
+      "expected_failed_check": "payload_inventory",
+      "failed_checks": [
+        "payload_inventory",
+        "trace_shape_contract",
+        "attribute_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_root_attribute",
+      "mutation": "remove_root_attribute",
+      "expected_failed_check": "attribute_contract",
+      "failed_checks": [
+        "attribute_contract",
+        "scenario_consistency"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_child_span",
+      "mutation": "remove_child_span",
+      "expected_failed_check": "trace_shape_contract",
+      "failed_checks": [
+        "trace_shape_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_scenario_attribute",
+      "mutation": "set_root_attribute",
+      "expected_failed_check": "scenario_consistency",
+      "failed_checks": [
+        "scenario_consistency"
+      ],
+      "detected": true
+    },
+    {
+      "name": "raw_prompt_attribute",
+      "mutation": "append_forbidden_attribute",
+      "expected_failed_check": "payload_privacy_boundary",
+      "failed_checks": [
+        "payload_privacy_boundary"
+      ],
+      "detected": true
+    }
+  ],
+  "scenario_count": 5,
+  "payload_count": 5,
+  "root_span_count": 34,
+  "total_span_count": 136,
+  "summary_field_count": 22,
+  "attribute_key_count": 19,
+  "total_request_count": 34
+}

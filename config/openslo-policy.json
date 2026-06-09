@@ -1,0 +1,32 @@
+{
+  "service": {
+    "name": "toy-ai-inference-api",
+    "namespace": "ai-observability-demo",
+    "team": "sre-platform",
+    "owner": "platform-sre"
+  },
+  "openslo": {
+    "api_version": "openslo/v1",
+    "kind": "SLO",
+    "name": "gke-ai-inference-availability",
+    "display_name": "GKE AI inference availability and latency",
+    "description": "Machine-readable SLO contract for the GKE AI Inference Reliability Lab.",
+    "time_window": "30d",
+    "target": 99.5,
+    "budgeting_method": "Occurrences",
+    "objective_display": "99.5% of inference requests should remain available and inside the configured p95 latency envelope."
+  },
+  "required_scenarios": [
+    "baseline",
+    "cache_miss_storm",
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "required_links": [
+    "alerting_rules",
+    "grafana_dashboard",
+    "release_readiness",
+    "runbooks"
+  ]
+}

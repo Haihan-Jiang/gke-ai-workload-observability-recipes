@@ -1,0 +1,137 @@
+{
+  "description": "Policy for proving graceful degradation and load-shedding decisions before AI inference traffic is promoted.",
+  "minimum_action_count": 5,
+  "minimum_protective_action_count": 4,
+  "minimum_detected_fixtures": 5,
+  "actions": [
+    {
+      "name": "baseline_no_shed",
+      "scenario": "baseline",
+      "traffic_action": "no_action",
+      "owner": "SRE / platform",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [],
+      "fallback": "keep the healthy baseline as the comparison group",
+      "expected_budget_decision": "within_budget",
+      "expected_release_action": "eligible_for_release",
+      "expected_cost_decision": "allow",
+      "requires_preflight_probe": true,
+      "requires_cost_review": false
+    },
+    {
+      "name": "cache_retrieval_rate_limit",
+      "scenario": "cache_miss_storm",
+      "traffic_action": "rate_limit_retrieval",
+      "owner": "Inference platform / retrieval owner",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ],
+      "fallback": "serve stale retrieval cache entries and reduce retrieval-heavy request concurrency",
+      "expected_budget_decision": "manual_review_required",
+      "expected_release_action": "require_sre_review_before_rollout",
+      "expected_cost_decision": "allow",
+      "requires_preflight_probe": true,
+      "requires_cost_review": false
+    },
+    {
+      "name": "feature_store_fail_closed",
+      "scenario": "dependency_timeout",
+      "traffic_action": "shed_best_effort",
+      "owner": "Feature platform / dependency owner",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ],
+      "fallback": "use fallback feature values, cap retries, and shed best-effort traffic",
+      "expected_budget_decision": "budget_exhausted",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_cost_decision": "allow",
+      "requires_preflight_probe": true,
+      "requires_cost_review": false
+    },
+    {
+      "name": "canary_rollback_and_model_fallback",
+      "scenario": "rollout_regression",
+      "traffic_action": "rollback_canary",
+      "owner": "Service owner / release engineer",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ],
+      "fallback": "shift traffic to the stable service version and fallback model runtime",
+      "expected_budget_decision": "budget_exhausted",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_cost_decision": "block_or_review",
+      "requires_preflight_probe": true,
+      "requires_cost_review": true
+    },
+    {
+      "name": "telemetry_queue_protection",
+      "scenario": "collector_queue_pressure",
+      "traffic_action": "protect_telemetry",
+      "owner": "Observability platform",
+      "protected_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ],
+      "fallback": "protect persistent collector queues and reduce exporter pressure before trusting dashboards",
+      "expected_budget_decision": "manual_review_required",
+      "expected_release_action": "require_sre_review_before_rollout",
+      "expected_cost_decision": "allow",
+      "requires_preflight_probe": true,
+      "requires_cost_review": false
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_dependency_action",
+      "mutation": "remove_action",
+      "scenario": "dependency_timeout",
+      "expected_failed_check": "action_inventory"
+    },
+    {
+      "name": "scale_only_dependency_timeout",
+      "mutation": "set_traffic_action",
+      "scenario": "dependency_timeout",
+      "traffic_action": "scale_only",
+      "expected_failed_check": "capacity_guardrail"
+    },
+    {
+      "name": "shed_premium_canary",
+      "mutation": "add_shed_tier",
+      "scenario": "rollout_regression",
+      "tier": "premium",
+      "expected_failed_check": "tenant_priority_contract"
+    },
+    {
+      "name": "missing_cost_review",
+      "mutation": "set_requires_cost_review",
+      "scenario": "rollout_regression",
+      "requires_cost_review": false,
+      "expected_failed_check": "cost_guardrail_linkage"
+    },
+    {
+      "name": "wrong_release_action",
+      "mutation": "set_expected_release_action",
+      "scenario": "dependency_timeout",
+      "expected_release_action": "eligible_for_release",
+      "expected_failed_check": "release_probe_runbook_linkage"
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 8,
+  "detected_fixture_count": 7,
+  "required_file_count": 6,
+  "present_file_count": 6,
+  "data_class_count": 6,
+  "handling_term_count": 54,
+  "retention_term_count": 6,
+  "owner_count": 6,
+  "evidence_link_count": 18,
+  "existing_evidence_link_count": 18,
+  "release_control_count": 18,
+  "checks": [
+    {
+      "name": "required_files",
+      "ok": true,
+      "evidence": {
+        "missing_files": [],
+        "required_files": [
+          "README.md",
+          "docs/data-handling.md",
+          "docs/threat-model.md",
+          "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+          "docs/release-process.md",
+          "SECURITY.md"
+        ]
+      }
+    },
+    {
+      "name": "data_class_contract",
+      "ok": true,
+      "evidence": {
+        "missing_sections": [],
+        "data_class_count": 6,
+        "missing_data_classes": []
+      }
+    },
+    {
+      "name": "handling_contract",
+      "ok": true,
+      "evidence": {
+        "handling_term_count": 54,
+        "handling_gaps": []
+      }
+    },
+    {
+      "name": "retention_contract",
+      "ok": true,
+      "evidence": {
+        "retention_term_count": 6,
+        "retention_gaps": []
+      }
+    },
+    {
+      "name": "owner_contract",
+      "ok": true,
+      "evidence": {
+        "owner_count": 6,
+        "owner_gaps": []
+      }
+    },
+    {
+      "name": "evidence_linkage",
+      "ok": true,
+      "evidence": {
+        "evidence_link_count": 18,
+        "existing_evidence_link_count": 18,
+        "evidence_gaps": []
+      }
+    },
+    {
+      "name": "release_control_linkage",
+      "ok": true,
+      "evidence": {
+        "release_control_count": 18,
+        "release_control_gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 7,
+        "minimum_detected_fixtures": 7,
+        "fixtures": [
+          {
+            "name": "missing_data_handling_document",
+            "mutation": "remove_file",
+            "expected_failed_check": "required_files",
+            "failed_checks": [
+              "required_files",
+              "data_class_contract",
+              "handling_contract",
+              "retention_contract",
+              "owner_contract",
+              "evidence_linkage",
+              "release_control_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_model_label_class",
+            "mutation": "remove_text",
+            "expected_failed_check": "data_class_contract",
+            "failed_checks": [
+              "data_class_contract",
+              "retention_contract",
+              "owner_contract",
+              "evidence_linkage",
+              "release_control_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_prompt_forbidden_term",
+            "mutation": "remove_text",
+            "expected_failed_check": "handling_contract",
+            "failed_checks": [
+              "handling_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_retention_budget",
+            "mutation": "remove_text",
+            "expected_failed_check": "retention_contract",
+            "failed_checks": [
+              "handling_contract",
+              "retention_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_redaction_evidence_link",
+            "mutation": "remove_text",
+            "expected_failed_check": "evidence_linkage",
+            "failed_checks": [
+              "evidence_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_exporter_release_control",
+            "mutation": "remove_text",
+            "expected_failed_check": "release_control_linkage",
+            "failed_checks": [
+              "release_control_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_security_owner",
+            "mutation": "remove_text",
+            "expected_failed_check": "owner_contract",
+            "failed_checks": [
+              "owner_contract"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_data_handling_document",
+      "mutation": "remove_file",
+      "expected_failed_check": "required_files",
+      "failed_checks": [
+        "required_files",
+        "data_class_contract",
+        "handling_contract",
+        "retention_contract",
+        "owner_contract",
+        "evidence_linkage",
+        "release_control_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_model_label_class",
+      "mutation": "remove_text",
+      "expected_failed_check": "data_class_contract",
+      "failed_checks": [
+        "data_class_contract",
+        "retention_contract",
+        "owner_contract",
+        "evidence_linkage",
+        "release_control_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_prompt_forbidden_term",
+      "mutation": "remove_text",
+      "expected_failed_check": "handling_contract",
+      "failed_checks": [
+        "handling_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_retention_budget",
+      "mutation": "remove_text",
+      "expected_failed_check": "retention_contract",
+      "failed_checks": [
+        "handling_contract",
+        "retention_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_redaction_evidence_link",
+      "mutation": "remove_text",
+      "expected_failed_check": "evidence_linkage",
+      "failed_checks": [
+        "evidence_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_exporter_release_control",
+      "mutation": "remove_text",
+      "expected_failed_check": "release_control_linkage",
+      "failed_checks": [
+        "release_control_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_security_owner",
+      "mutation": "remove_text",
+      "expected_failed_check": "owner_contract",
+      "failed_checks": [
+        "owner_contract"
+      ],
+      "detected": true
+    }
+  ]
+}

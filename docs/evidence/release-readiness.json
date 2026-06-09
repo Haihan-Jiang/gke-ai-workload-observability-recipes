@@ -24,6 +24,262 @@
     {
       "name": "detailed_problem_coverage",
       "ok": true
+    },
+    {
+      "name": "deployment_policy",
+      "ok": true
+    },
+    {
+      "name": "policy_regression_suite",
+      "ok": true
+    },
+    {
+      "name": "supply_chain_audit",
+      "ok": true
+    },
+    {
+      "name": "oss_license_audit",
+      "ok": true
+    },
+    {
+      "name": "secret_hygiene_audit",
+      "ok": true
+    },
+    {
+      "name": "sbom_inventory_audit",
+      "ok": true
+    },
+    {
+      "name": "security_response_audit",
+      "ok": true
+    },
+    {
+      "name": "ci_governance_audit",
+      "ok": true
+    },
+    {
+      "name": "repository_governance_audit",
+      "ok": true
+    },
+    {
+      "name": "developer_runtime_audit",
+      "ok": true
+    },
+    {
+      "name": "k8s_manifest_hardening",
+      "ok": true
+    },
+    {
+      "name": "pod_security_admission_audit",
+      "ok": true
+    },
+    {
+      "name": "kubernetes_api_compatibility_audit",
+      "ok": true
+    },
+    {
+      "name": "private_cluster_admission_boundary_audit",
+      "ok": true
+    },
+    {
+      "name": "namespace_resource_audit",
+      "ok": true
+    },
+    {
+      "name": "availability_topology_audit",
+      "ok": true
+    },
+    {
+      "name": "autoscaling_policy_audit",
+      "ok": true
+    },
+    {
+      "name": "scheduling_placement_audit",
+      "ok": true
+    },
+    {
+      "name": "rollout_safety_audit",
+      "ok": true
+    },
+    {
+      "name": "config_rollout_audit",
+      "ok": true
+    },
+    {
+      "name": "network_boundary_audit",
+      "ok": true
+    },
+    {
+      "name": "collector_self_observability_audit",
+      "ok": true
+    },
+    {
+      "name": "telemetry_exporter_authority_audit",
+      "ok": true
+    },
+    {
+      "name": "telemetry_sampling_audit",
+      "ok": true
+    },
+    {
+      "name": "workload_identity_audit",
+      "ok": true
+    },
+    {
+      "name": "admission_policy_audit",
+      "ok": true
+    },
+    {
+      "name": "slo_alerting_rules",
+      "ok": true
+    },
+    {
+      "name": "grafana_dashboard",
+      "ok": true
+    },
+    {
+      "name": "openslo_contract",
+      "ok": true
+    },
+    {
+      "name": "observability_drift_audit",
+      "ok": true
+    },
+    {
+      "name": "telemetry_redaction_audit",
+      "ok": true
+    },
+    {
+      "name": "telemetry_cost_budget",
+      "ok": true
+    },
+    {
+      "name": "error_budget_ledger",
+      "ok": true
+    },
+    {
+      "name": "rollback_drill",
+      "ok": true
+    },
+    {
+      "name": "post_incident_review",
+      "ok": true
+    },
+    {
+      "name": "incident_response_drill",
+      "ok": true
+    },
+    {
+      "name": "dependency_contract_audit",
+      "ok": true
+    },
+    {
+      "name": "synthetic_probe_audit",
+      "ok": true
+    },
+    {
+      "name": "model_release_safety_audit",
+      "ok": true
+    },
+    {
+      "name": "staged_telemetry_validation_audit",
+      "ok": true
+    },
+    {
+      "name": "shadow_traffic_replay_audit",
+      "ok": true
+    },
+    {
+      "name": "accelerator_quota_fairness_audit",
+      "ok": true
+    },
+    {
+      "name": "load_shedding_policy_audit",
+      "ok": true
+    },
+    {
+      "name": "regional_failover_audit",
+      "ok": true
+    },
+    {
+      "name": "release_waiver_governance",
+      "ok": true
+    },
+    {
+      "name": "release_control_ownership_audit",
+      "ok": true
+    },
+    {
+      "name": "control_traceability_audit",
+      "ok": true
+    },
+    {
+      "name": "replay_source_contract_audit",
+      "ok": true
+    },
+    {
+      "name": "evidence_pipeline_audit",
+      "ok": true
+    },
+    {
+      "name": "evidence_schema_audit",
+      "ok": true
+    },
+    {
+      "name": "validation_contract_audit",
+      "ok": true
+    },
+    {
+      "name": "disaster_recovery_drill",
+      "ok": true
+    },
+    {
+      "name": "documentation_link_integrity_audit",
+      "ok": true
+    },
+    {
+      "name": "architecture_decision_audit",
+      "ok": true
+    },
+    {
+      "name": "reviewer_reproducibility_audit",
+      "ok": true
+    },
+    {
+      "name": "threat_model_audit",
+      "ok": true
+    },
+    {
+      "name": "data_handling_audit",
+      "ok": true
+    },
+    {
+      "name": "dependency_update_audit",
+      "ok": true
+    },
+    {
+      "name": "security_scanning_audit",
+      "ok": true
+    },
+    {
+      "name": "public_claim_evidence_audit",
+      "ok": true
+    },
+    {
+      "name": "maintainer_intake_audit",
+      "ok": true
+    },
+    {
+      "name": "release_notes_contract_audit",
+      "ok": true
+    },
+    {
+      "name": "evidence_provenance",
+      "ok": true
+    },
+    {
+      "name": "proof_packet_integrity_audit",
+      "ok": true
     }
   ],
   "evidence": [
@@ -37,6 +293,14 @@
     },
     {
       "path": "incident-dashboard.svg",
+      "exists": true
+    },
+    {
+      "path": "replay-source-contract-audit.md",
+      "exists": true
+    },
+    {
+      "path": "replay-source-contract-audit.json",
       "exists": true
     },
     {
@@ -85,6 +349,22 @@
     },
     {
       "path": "trace-quality-audit.json",
+      "exists": true
+    },
+    {
+      "path": "telemetry-redaction-audit.md",
+      "exists": true
+    },
+    {
+      "path": "telemetry-redaction-audit.json",
+      "exists": true
+    },
+    {
+      "path": "telemetry-cost-budget.md",
+      "exists": true
+    },
+    {
+      "path": "telemetry-cost-budget.json",
       "exists": true
     },
     {
@@ -157,6 +437,498 @@
     },
     {
       "path": "detailed-problems.json",
+      "exists": true
+    },
+    {
+      "path": "deployment-policy.md",
+      "exists": true
+    },
+    {
+      "path": "deployment-policy.json",
+      "exists": true
+    },
+    {
+      "path": "policy-regression-suite.md",
+      "exists": true
+    },
+    {
+      "path": "policy-regression-suite.json",
+      "exists": true
+    },
+    {
+      "path": "supply-chain-audit.md",
+      "exists": true
+    },
+    {
+      "path": "supply-chain-audit.json",
+      "exists": true
+    },
+    {
+      "path": "oss-license-audit.md",
+      "exists": true
+    },
+    {
+      "path": "oss-license-audit.json",
+      "exists": true
+    },
+    {
+      "path": "secret-hygiene-audit.md",
+      "exists": true
+    },
+    {
+      "path": "secret-hygiene-audit.json",
+      "exists": true
+    },
+    {
+      "path": "sbom-inventory-audit.md",
+      "exists": true
+    },
+    {
+      "path": "sbom-inventory-audit.json",
+      "exists": true
+    },
+    {
+      "path": "sbom-inventory.json",
+      "exists": true
+    },
+    {
+      "path": "security-response-audit.md",
+      "exists": true
+    },
+    {
+      "path": "security-response-audit.json",
+      "exists": true
+    },
+    {
+      "path": "ci-governance-audit.md",
+      "exists": true
+    },
+    {
+      "path": "ci-governance-audit.json",
+      "exists": true
+    },
+    {
+      "path": "repository-governance-audit.md",
+      "exists": true
+    },
+    {
+      "path": "repository-governance-audit.json",
+      "exists": true
+    },
+    {
+      "path": "developer-runtime-audit.md",
+      "exists": true
+    },
+    {
+      "path": "developer-runtime-audit.json",
+      "exists": true
+    },
+    {
+      "path": "k8s-hardening-audit.md",
+      "exists": true
+    },
+    {
+      "path": "k8s-hardening-audit.json",
+      "exists": true
+    },
+    {
+      "path": "pod-security-admission-audit.md",
+      "exists": true
+    },
+    {
+      "path": "pod-security-admission-audit.json",
+      "exists": true
+    },
+    {
+      "path": "kubernetes-api-compatibility-audit.md",
+      "exists": true
+    },
+    {
+      "path": "kubernetes-api-compatibility-audit.json",
+      "exists": true
+    },
+    {
+      "path": "private-cluster-admission-boundary-audit.md",
+      "exists": true
+    },
+    {
+      "path": "private-cluster-admission-boundary-audit.json",
+      "exists": true
+    },
+    {
+      "path": "namespace-resource-audit.md",
+      "exists": true
+    },
+    {
+      "path": "namespace-resource-audit.json",
+      "exists": true
+    },
+    {
+      "path": "availability-topology-audit.md",
+      "exists": true
+    },
+    {
+      "path": "availability-topology-audit.json",
+      "exists": true
+    },
+    {
+      "path": "autoscaling-policy-audit.md",
+      "exists": true
+    },
+    {
+      "path": "autoscaling-policy-audit.json",
+      "exists": true
+    },
+    {
+      "path": "scheduling-placement-audit.md",
+      "exists": true
+    },
+    {
+      "path": "scheduling-placement-audit.json",
+      "exists": true
+    },
+    {
+      "path": "rollout-safety-audit.md",
+      "exists": true
+    },
+    {
+      "path": "rollout-safety-audit.json",
+      "exists": true
+    },
+    {
+      "path": "config-rollout-audit.md",
+      "exists": true
+    },
+    {
+      "path": "config-rollout-audit.json",
+      "exists": true
+    },
+    {
+      "path": "network-boundary-audit.md",
+      "exists": true
+    },
+    {
+      "path": "network-boundary-audit.json",
+      "exists": true
+    },
+    {
+      "path": "collector-self-observability-audit.md",
+      "exists": true
+    },
+    {
+      "path": "collector-self-observability-audit.json",
+      "exists": true
+    },
+    {
+      "path": "telemetry-exporter-authority-audit.md",
+      "exists": true
+    },
+    {
+      "path": "telemetry-exporter-authority-audit.json",
+      "exists": true
+    },
+    {
+      "path": "telemetry-sampling-audit.md",
+      "exists": true
+    },
+    {
+      "path": "telemetry-sampling-audit.json",
+      "exists": true
+    },
+    {
+      "path": "workload-identity-audit.md",
+      "exists": true
+    },
+    {
+      "path": "workload-identity-audit.json",
+      "exists": true
+    },
+    {
+      "path": "admission-policy-audit.md",
+      "exists": true
+    },
+    {
+      "path": "admission-policy-audit.json",
+      "exists": true
+    },
+    {
+      "path": "alerting-rules.md",
+      "exists": true
+    },
+    {
+      "path": "alerting-rules.json",
+      "exists": true
+    },
+    {
+      "path": "grafana-dashboard.md",
+      "exists": true
+    },
+    {
+      "path": "grafana-dashboard.json",
+      "exists": true
+    },
+    {
+      "path": "openslo-contract.md",
+      "exists": true
+    },
+    {
+      "path": "openslo-contract.json",
+      "exists": true
+    },
+    {
+      "path": "observability-drift-audit.md",
+      "exists": true
+    },
+    {
+      "path": "observability-drift-audit.json",
+      "exists": true
+    },
+    {
+      "path": "error-budget-ledger.md",
+      "exists": true
+    },
+    {
+      "path": "error-budget-ledger.json",
+      "exists": true
+    },
+    {
+      "path": "rollback-drill.md",
+      "exists": true
+    },
+    {
+      "path": "rollback-drill.json",
+      "exists": true
+    },
+    {
+      "path": "post-incident-review.md",
+      "exists": true
+    },
+    {
+      "path": "post-incident-review.json",
+      "exists": true
+    },
+    {
+      "path": "incident-response-drill.md",
+      "exists": true
+    },
+    {
+      "path": "incident-response-drill.json",
+      "exists": true
+    },
+    {
+      "path": "dependency-contract-audit.md",
+      "exists": true
+    },
+    {
+      "path": "dependency-contract-audit.json",
+      "exists": true
+    },
+    {
+      "path": "synthetic-probe-audit.md",
+      "exists": true
+    },
+    {
+      "path": "synthetic-probe-audit.json",
+      "exists": true
+    },
+    {
+      "path": "model-release-safety-audit.md",
+      "exists": true
+    },
+    {
+      "path": "model-release-safety-audit.json",
+      "exists": true
+    },
+    {
+      "path": "staged-telemetry-validation-audit.md",
+      "exists": true
+    },
+    {
+      "path": "staged-telemetry-validation-audit.json",
+      "exists": true
+    },
+    {
+      "path": "shadow-traffic-replay-audit.md",
+      "exists": true
+    },
+    {
+      "path": "shadow-traffic-replay-audit.json",
+      "exists": true
+    },
+    {
+      "path": "accelerator-quota-fairness-audit.md",
+      "exists": true
+    },
+    {
+      "path": "accelerator-quota-fairness-audit.json",
+      "exists": true
+    },
+    {
+      "path": "load-shedding-policy-audit.md",
+      "exists": true
+    },
+    {
+      "path": "load-shedding-policy-audit.json",
+      "exists": true
+    },
+    {
+      "path": "regional-failover-audit.md",
+      "exists": true
+    },
+    {
+      "path": "regional-failover-audit.json",
+      "exists": true
+    },
+    {
+      "path": "release-waiver-governance.md",
+      "exists": true
+    },
+    {
+      "path": "release-waiver-governance.json",
+      "exists": true
+    },
+    {
+      "path": "release-control-ownership-audit.md",
+      "exists": true
+    },
+    {
+      "path": "release-control-ownership-audit.json",
+      "exists": true
+    },
+    {
+      "path": "control-traceability-audit.md",
+      "exists": true
+    },
+    {
+      "path": "control-traceability-audit.json",
+      "exists": true
+    },
+    {
+      "path": "evidence-pipeline-audit.md",
+      "exists": true
+    },
+    {
+      "path": "evidence-pipeline-audit.json",
+      "exists": true
+    },
+    {
+      "path": "evidence-schema-audit.md",
+      "exists": true
+    },
+    {
+      "path": "evidence-schema-audit.json",
+      "exists": true
+    },
+    {
+      "path": "validation-contract-audit.md",
+      "exists": true
+    },
+    {
+      "path": "validation-contract-audit.json",
+      "exists": true
+    },
+    {
+      "path": "disaster-recovery-drill.md",
+      "exists": true
+    },
+    {
+      "path": "disaster-recovery-drill.json",
+      "exists": true
+    },
+    {
+      "path": "documentation-link-integrity-audit.md",
+      "exists": true
+    },
+    {
+      "path": "documentation-link-integrity-audit.json",
+      "exists": true
+    },
+    {
+      "path": "architecture-decision-audit.md",
+      "exists": true
+    },
+    {
+      "path": "architecture-decision-audit.json",
+      "exists": true
+    },
+    {
+      "path": "reviewer-reproducibility-audit.md",
+      "exists": true
+    },
+    {
+      "path": "reviewer-reproducibility-audit.json",
+      "exists": true
+    },
+    {
+      "path": "threat-model-audit.md",
+      "exists": true
+    },
+    {
+      "path": "threat-model-audit.json",
+      "exists": true
+    },
+    {
+      "path": "data-handling-audit.md",
+      "exists": true
+    },
+    {
+      "path": "data-handling-audit.json",
+      "exists": true
+    },
+    {
+      "path": "dependency-update-audit.md",
+      "exists": true
+    },
+    {
+      "path": "dependency-update-audit.json",
+      "exists": true
+    },
+    {
+      "path": "security-scanning-audit.md",
+      "exists": true
+    },
+    {
+      "path": "security-scanning-audit.json",
+      "exists": true
+    },
+    {
+      "path": "maintainer-intake-audit.md",
+      "exists": true
+    },
+    {
+      "path": "maintainer-intake-audit.json",
+      "exists": true
+    },
+    {
+      "path": "public-claim-evidence-audit.md",
+      "exists": true
+    },
+    {
+      "path": "public-claim-evidence-audit.json",
+      "exists": true
+    },
+    {
+      "path": "release-notes-contract-audit.md",
+      "exists": true
+    },
+    {
+      "path": "release-notes-contract-audit.json",
+      "exists": true
+    },
+    {
+      "path": "evidence-provenance.md",
+      "exists": true
+    },
+    {
+      "path": "evidence-provenance.json",
+      "exists": true
+    },
+    {
+      "path": "proof-packet-integrity-audit.md",
+      "exists": true
+    },
+    {
+      "path": "proof-packet-integrity-audit.json",
       "exists": true
     }
   ],

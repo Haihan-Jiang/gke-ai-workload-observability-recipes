@@ -1,0 +1,231 @@
+{
+  "status": "pass",
+  "policy_count": 5,
+  "critical_policy_count": 4,
+  "baseline_sampling_percentage": 2,
+  "check_count": 11,
+  "detected_fixture_count": 10,
+  "failed_count": 0,
+  "fixture_results": [
+    {
+      "name": "missing_tail_sampling_processor",
+      "mutation": "remove_sampling_processor",
+      "expected_failed_check": "sampling_processor_defined",
+      "failed_checks": [
+        "sampling_processor_defined",
+        "sampling_decision_window",
+        "sampling_buffer",
+        "critical_trace_policy_coverage",
+        "baseline_sampling_budget"
+      ],
+      "detected": true
+    },
+    {
+      "name": "tail_sampling_removed_from_traces",
+      "mutation": "remove_pipeline_processor",
+      "expected_failed_check": "trace_pipeline_sampling_order",
+      "failed_checks": [
+        "trace_pipeline_sampling_order"
+      ],
+      "detected": true
+    },
+    {
+      "name": "tail_sampling_after_batch",
+      "mutation": "move_processor_after",
+      "expected_failed_check": "trace_pipeline_sampling_order",
+      "failed_checks": [
+        "trace_pipeline_sampling_order"
+      ],
+      "detected": true
+    },
+    {
+      "name": "metrics_pipeline_tail_sampling",
+      "mutation": "add_pipeline_processor",
+      "expected_failed_check": "metrics_pipeline_excludes_tail_sampling",
+      "failed_checks": [
+        "metrics_pipeline_excludes_tail_sampling"
+      ],
+      "detected": true
+    },
+    {
+      "name": "unbounded_decision_wait",
+      "mutation": "set_sampling_field",
+      "expected_failed_check": "sampling_decision_window",
+      "failed_checks": [
+        "sampling_decision_window"
+      ],
+      "detected": true
+    },
+    {
+      "name": "undersized_trace_buffer",
+      "mutation": "set_sampling_field",
+      "expected_failed_check": "sampling_buffer",
+      "failed_checks": [
+        "sampling_buffer"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_error_policy",
+      "mutation": "remove_policy",
+      "expected_failed_check": "critical_trace_policy_coverage",
+      "failed_checks": [
+        "critical_trace_policy_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_dependency_attribute",
+      "mutation": "set_policy_attribute_key",
+      "expected_failed_check": "critical_trace_policy_coverage",
+      "failed_checks": [
+        "critical_trace_policy_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "excessive_baseline_sampling",
+      "mutation": "set_policy_sampling_percentage",
+      "expected_failed_check": "baseline_sampling_budget",
+      "failed_checks": [
+        "baseline_sampling_budget"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_collector_config_owner_label",
+      "mutation": "remove_config_map_label",
+      "expected_failed_check": "collector_config_label_governance",
+      "failed_checks": [
+        "collector_config_label_governance"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "collector_config_map",
+      "status": "pass",
+      "reason": "Collector ConfigMap exists and its embedded OpenTelemetry config is parseable.",
+      "evidence": {
+        "config_map": "otel-collector-config"
+      }
+    },
+    {
+      "name": "sampling_processor_defined",
+      "status": "pass",
+      "reason": "The collector defines a tail_sampling processor for trace retention control.",
+      "evidence": {
+        "processor": "tail_sampling",
+        "defined": true
+      }
+    },
+    {
+      "name": "trace_pipeline_sampling_order",
+      "status": "pass",
+      "reason": "Trace processors keep resource enrichment before tail sampling and batch export after sampling.",
+      "evidence": {
+        "expected": [
+          "memory_limiter",
+          "k8sattributes",
+          "resource/gke",
+          "tail_sampling",
+          "batch"
+        ],
+        "observed": [
+          "memory_limiter",
+          "k8sattributes",
+          "resource/gke",
+          "tail_sampling",
+          "batch"
+        ]
+      }
+    },
+    {
+      "name": "metrics_pipeline_excludes_tail_sampling",
+      "status": "pass",
+      "reason": "Tail sampling is only applied to traces, not metrics.",
+      "evidence": {
+        "metrics_processors": [
+          "memory_limiter",
+          "k8sattributes",
+          "resource/gke",
+          "batch"
+        ]
+      }
+    },
+    {
+      "name": "sampling_decision_window",
+      "status": "pass",
+      "reason": "Tail sampling waits long enough for child spans but is bounded for incident latency.",
+      "evidence": {
+        "decision_wait_seconds": 10.0,
+        "max": 30
+      }
+    },
+    {
+      "name": "sampling_buffer",
+      "status": "pass",
+      "reason": "The sampler has enough trace buffer and expected throughput for replayed AI inference bursts.",
+      "evidence": {
+        "num_traces": 50000,
+        "expected_new_traces_per_sec": 120
+      }
+    },
+    {
+      "name": "critical_trace_policy_coverage",
+      "status": "pass",
+      "reason": "Critical error, dependency-timeout, rollout-regression, and collector-pressure traces are kept.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "baseline_sampling_budget",
+      "status": "pass",
+      "reason": "Healthy baseline traffic uses bounded probabilistic sampling instead of full retention.",
+      "evidence": {
+        "expected": {
+          "name": "baseline-probabilistic-sample",
+          "type": "probabilistic",
+          "body": "probabilistic",
+          "min_sampling_percentage": 1,
+          "max_sampling_percentage": 5
+        },
+        "observed": {
+          "name": "baseline-probabilistic-sample",
+          "type": "probabilistic",
+          "probabilistic": {
+            "sampling_percentage": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "exporter_queue_preserved",
+      "status": "pass",
+      "reason": "Tail sampling keeps the durable queued exporter and retry path enabled.",
+      "evidence": {
+        "exporter": "otlphttp/upstream"
+      }
+    },
+    {
+      "name": "collector_config_label_governance",
+      "status": "pass",
+      "reason": "Collector ConfigMap carries owner labels used by review and policy tooling.",
+      "evidence": {
+        "missing_labels": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove tail-sampling drift is detected before release readiness passes.",
+      "evidence": {
+        "fixture_count": 10,
+        "detected_fixture_count": 10,
+        "undetected": []
+      }
+    }
+  ]
+}

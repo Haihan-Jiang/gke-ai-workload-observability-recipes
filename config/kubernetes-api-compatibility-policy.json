@@ -1,0 +1,124 @@
+{
+  "description": "Policy for auditing Kubernetes API versions, optional CRD boundaries, and kind smoke compatibility for the GKE AI inference reliability lab.",
+  "target_manifests": [
+    "k8s/gke/namespace.yaml",
+    "k8s/gke/scheduling.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/instrumentation.yaml",
+    "k8s/gke/alerting-rules.yaml",
+    "k8s/gke/grafana-dashboard-configmap.yaml",
+    "k8s/gke/sample-app.yaml",
+    "policies/admission/gke-ai-inference-admission-policy.yaml"
+  ],
+  "kind_smoke_script": "scripts/kind-smoke.sh",
+  "minimum_document_count": 28,
+  "minimum_stable_resource_count": 26,
+  "minimum_optional_crd_count": 2,
+  "minimum_detected_fixtures": 8,
+  "forbidden_api_versions": [
+    "extensions/v1beta1",
+    "apps/v1beta1",
+    "policy/v1beta1",
+    "networking.k8s.io/v1beta1",
+    "admissionregistration.k8s.io/v1beta1"
+  ],
+  "required_api_versions": {
+    "Namespace": "v1",
+    "ResourceQuota": "v1",
+    "LimitRange": "v1",
+    "ServiceAccount": "v1",
+    "PersistentVolumeClaim": "v1",
+    "ConfigMap": "v1",
+    "Service": "v1",
+    "Deployment": "apps/v1",
+    "ClusterRole": "rbac.authorization.k8s.io/v1",
+    "ClusterRoleBinding": "rbac.authorization.k8s.io/v1",
+    "PodDisruptionBudget": "policy/v1",
+    "NetworkPolicy": "networking.k8s.io/v1",
+    "HorizontalPodAutoscaler": "autoscaling/v2",
+    "PriorityClass": "scheduling.k8s.io/v1",
+    "ValidatingAdmissionPolicy": "admissionregistration.k8s.io/v1",
+    "ValidatingAdmissionPolicyBinding": "admissionregistration.k8s.io/v1"
+  },
+  "optional_crds": [
+    {
+      "kind": "Instrumentation",
+      "api_version": "opentelemetry.io/v1alpha1",
+      "api_group": "opentelemetry.io",
+      "skip_text": "OpenTelemetry Operator CRDs are not installed; skipping Instrumentation."
+    },
+    {
+      "kind": "PrometheusRule",
+      "api_version": "monitoring.coreos.com/v1",
+      "api_group": "monitoring.coreos.com",
+      "skip_text": "PrometheusRule CRDs are not installed; skipping alerting rules."
+    }
+  ],
+  "required_core_apply_order": [
+    "k8s/gke/namespace.yaml",
+    "k8s/gke/scheduling.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/grafana-dashboard-configmap.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "fixtures": [
+    {
+      "name": "deployment_uses_extensions_beta",
+      "mutation": "set_api_version",
+      "kind": "Deployment",
+      "resource_name": "toy-ai-inference-api",
+      "value": "extensions/v1beta1",
+      "expected_failed_check": "stable_core_api_versions"
+    },
+    {
+      "name": "pdb_uses_policy_beta",
+      "mutation": "set_api_version",
+      "kind": "PodDisruptionBudget",
+      "resource_name": "otel-collector",
+      "value": "policy/v1beta1",
+      "expected_failed_check": "stable_core_api_versions"
+    },
+    {
+      "name": "hpa_uses_legacy_version",
+      "mutation": "set_api_version",
+      "kind": "HorizontalPodAutoscaler",
+      "resource_name": "toy-ai-inference-api",
+      "value": "autoscaling/v1",
+      "expected_failed_check": "stable_core_api_versions"
+    },
+    {
+      "name": "admission_policy_uses_beta",
+      "mutation": "set_api_version",
+      "kind": "ValidatingAdmissionPolicy",
+      "resource_name": "gke-ai-inference-reliability-deployments",
+      "value": "admissionregistration.k8s.io/v1beta1",
+      "expected_failed_check": "admission_policy_api"
+    },
+    {
+      "name": "admission_binding_warns_only",
+      "mutation": "set_binding_validation_action",
+      "value": "Warn",
+      "expected_failed_check": "admission_policy_api"
+    },
+    {
+      "name": "missing_otel_crd_skip",
+      "mutation": "remove_text",
+      "path": "scripts/kind-smoke.sh",
+      "text": "OpenTelemetry Operator CRDs are not installed; skipping Instrumentation.",
+      "expected_failed_check": "optional_crd_boundary"
+    },
+    {
+      "name": "missing_prometheus_crd_skip",
+      "mutation": "remove_text",
+      "path": "scripts/kind-smoke.sh",
+      "text": "PrometheusRule CRDs are not installed; skipping alerting rules.",
+      "expected_failed_check": "optional_crd_boundary"
+    },
+    {
+      "name": "missing_collector_apply_step",
+      "mutation": "remove_apply",
+      "path": "k8s/gke/collector.yaml",
+      "expected_failed_check": "kind_smoke_contract"
+    }
+  ]
+}

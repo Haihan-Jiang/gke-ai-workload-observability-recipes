@@ -1,0 +1,253 @@
+{
+  "status": "pass",
+  "exporter_count": 2,
+  "authoritative_pipeline_count": 2,
+  "local_debug_pipeline_count": 2,
+  "queued_exporter_count": 1,
+  "retry_enabled_count": 1,
+  "detected_fixture_count": 8,
+  "failed_count": 0,
+  "check_count": 8,
+  "authoritative_endpoint": "https://otel-gateway.example.com:4318",
+  "pipelines": {
+    "traces": [
+      "debug",
+      "otlphttp/upstream"
+    ],
+    "metrics": [
+      "debug",
+      "otlphttp/upstream"
+    ]
+  },
+  "checks": [
+    {
+      "name": "collector_config_map",
+      "status": "pass",
+      "reason": "Collector ConfigMap exists and its embedded collector config is parseable.",
+      "evidence": {
+        "config_map": "otel-collector-config"
+      }
+    },
+    {
+      "name": "exporter_authority_annotations",
+      "status": "pass",
+      "reason": "Collector ConfigMap explicitly declares the authoritative upstream exporter and the local debug exporter.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "authoritative_pipeline_path",
+      "status": "pass",
+      "reason": "Every required telemetry pipeline exports to the authoritative upstream gateway.",
+      "evidence": {
+        "gaps": [],
+        "pipelines": {
+          "traces": [
+            "debug",
+            "otlphttp/upstream"
+          ],
+          "metrics": [
+            "debug",
+            "otlphttp/upstream"
+          ]
+        }
+      }
+    },
+    {
+      "name": "local_debug_boundary",
+      "status": "pass",
+      "reason": "Debug export remains a local companion path and is never the only exporter for a release pipeline.",
+      "evidence": {
+        "debug_only": [],
+        "missing_local": []
+      }
+    },
+    {
+      "name": "secure_upstream_endpoint",
+      "status": "pass",
+      "reason": "The authoritative upstream endpoint uses the expected secure OTLP/HTTP gateway boundary.",
+      "evidence": {
+        "endpoint": "https://otel-gateway.example.com:4318",
+        "gap": null
+      }
+    },
+    {
+      "name": "queued_delivery_boundary",
+      "status": "pass",
+      "reason": "The authoritative exporter uses file-backed queueing and retry so telemetry survives gateway outages.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "production_replacement_docs",
+      "status": "pass",
+      "reason": "README documents that the placeholder endpoint must be replaced by a production telemetry backend.",
+      "evidence": {
+        "missing_text": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove exporter authority, endpoint, queue, and documentation drift are detected.",
+      "evidence": {
+        "detected_fixture_count": 8,
+        "minimum_detected_fixtures": 8,
+        "fixtures": [
+          {
+            "name": "missing_authoritative_exporter_annotation",
+            "mutation": "remove_config_map_annotation",
+            "expected_failed_check": "exporter_authority_annotations",
+            "failed_checks": [
+              "exporter_authority_annotations"
+            ],
+            "detected": true
+          },
+          {
+            "name": "debug_declared_authoritative",
+            "mutation": "set_config_map_annotation",
+            "expected_failed_check": "exporter_authority_annotations",
+            "failed_checks": [
+              "exporter_authority_annotations"
+            ],
+            "detected": true
+          },
+          {
+            "name": "traces_missing_authoritative_exporter",
+            "mutation": "remove_pipeline_exporter",
+            "expected_failed_check": "authoritative_pipeline_path",
+            "failed_checks": [
+              "authoritative_pipeline_path",
+              "local_debug_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "metrics_debug_only",
+            "mutation": "set_pipeline_exporters",
+            "expected_failed_check": "local_debug_boundary",
+            "failed_checks": [
+              "authoritative_pipeline_path",
+              "local_debug_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "insecure_http_upstream",
+            "mutation": "set_exporter_endpoint",
+            "expected_failed_check": "secure_upstream_endpoint",
+            "failed_checks": [
+              "secure_upstream_endpoint"
+            ],
+            "detected": true
+          },
+          {
+            "name": "localhost_upstream",
+            "mutation": "set_exporter_endpoint",
+            "expected_failed_check": "secure_upstream_endpoint",
+            "failed_checks": [
+              "secure_upstream_endpoint"
+            ],
+            "detected": true
+          },
+          {
+            "name": "disabled_upstream_queue",
+            "mutation": "set_exporter_queue_enabled",
+            "expected_failed_check": "queued_delivery_boundary",
+            "failed_checks": [
+              "queued_delivery_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_replacement_docs",
+            "mutation": "remove_documentation_text",
+            "expected_failed_check": "production_replacement_docs",
+            "failed_checks": [
+              "production_replacement_docs"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_authoritative_exporter_annotation",
+      "mutation": "remove_config_map_annotation",
+      "expected_failed_check": "exporter_authority_annotations",
+      "failed_checks": [
+        "exporter_authority_annotations"
+      ],
+      "detected": true
+    },
+    {
+      "name": "debug_declared_authoritative",
+      "mutation": "set_config_map_annotation",
+      "expected_failed_check": "exporter_authority_annotations",
+      "failed_checks": [
+        "exporter_authority_annotations"
+      ],
+      "detected": true
+    },
+    {
+      "name": "traces_missing_authoritative_exporter",
+      "mutation": "remove_pipeline_exporter",
+      "expected_failed_check": "authoritative_pipeline_path",
+      "failed_checks": [
+        "authoritative_pipeline_path",
+        "local_debug_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "metrics_debug_only",
+      "mutation": "set_pipeline_exporters",
+      "expected_failed_check": "local_debug_boundary",
+      "failed_checks": [
+        "authoritative_pipeline_path",
+        "local_debug_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "insecure_http_upstream",
+      "mutation": "set_exporter_endpoint",
+      "expected_failed_check": "secure_upstream_endpoint",
+      "failed_checks": [
+        "secure_upstream_endpoint"
+      ],
+      "detected": true
+    },
+    {
+      "name": "localhost_upstream",
+      "mutation": "set_exporter_endpoint",
+      "expected_failed_check": "secure_upstream_endpoint",
+      "failed_checks": [
+        "secure_upstream_endpoint"
+      ],
+      "detected": true
+    },
+    {
+      "name": "disabled_upstream_queue",
+      "mutation": "set_exporter_queue_enabled",
+      "expected_failed_check": "queued_delivery_boundary",
+      "failed_checks": [
+        "queued_delivery_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_replacement_docs",
+      "mutation": "remove_documentation_text",
+      "expected_failed_check": "production_replacement_docs",
+      "failed_checks": [
+        "production_replacement_docs"
+      ],
+      "detected": true
+    }
+  ]
+}

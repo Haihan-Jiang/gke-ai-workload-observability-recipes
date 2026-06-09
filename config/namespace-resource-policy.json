@@ -1,0 +1,127 @@
+{
+  "description": "Policy for auditing namespace-level ResourceQuota and LimitRange controls for GKE AI inference workloads.",
+  "target_manifests": [
+    "k8s/gke/namespace.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "minimum_namespace_count": 2,
+  "minimum_detected_fixtures": 8,
+  "required_labels": [
+    "app.kubernetes.io/part-of"
+  ],
+  "quota_headroom_ratio": 1.2,
+  "namespaces": {
+    "telemetry": {
+      "role": "telemetry",
+      "resource_quota": "telemetry-resource-quota",
+      "limit_range": "telemetry-limit-range",
+      "required_quota_keys": [
+        "pods",
+        "requests.cpu",
+        "requests.memory",
+        "limits.cpu",
+        "limits.memory",
+        "persistentvolumeclaims",
+        "requests.storage",
+        "services",
+        "configmaps",
+        "secrets"
+      ],
+      "required_limit_fields": [
+        "defaultRequest.cpu",
+        "defaultRequest.memory",
+        "default.cpu",
+        "default.memory",
+        "max.cpu",
+        "max.memory",
+        "min.cpu",
+        "min.memory"
+      ]
+    },
+    "ai-observability-demo": {
+      "role": "workload",
+      "resource_quota": "ai-workload-resource-quota",
+      "limit_range": "ai-workload-limit-range",
+      "required_quota_keys": [
+        "pods",
+        "requests.cpu",
+        "requests.memory",
+        "limits.cpu",
+        "limits.memory",
+        "services",
+        "configmaps",
+        "secrets"
+      ],
+      "required_limit_fields": [
+        "defaultRequest.cpu",
+        "defaultRequest.memory",
+        "default.cpu",
+        "default.memory",
+        "max.cpu",
+        "max.memory",
+        "min.cpu",
+        "min.memory"
+      ]
+    }
+  },
+  "fixtures": [
+    {
+      "name": "missing_telemetry_quota",
+      "mutation": "remove_resource_quota",
+      "namespace": "telemetry",
+      "expected_failed_check": "namespace_resource_quota"
+    },
+    {
+      "name": "missing_workload_limit_range",
+      "mutation": "remove_limit_range",
+      "namespace": "ai-observability-demo",
+      "expected_failed_check": "namespace_limit_range"
+    },
+    {
+      "name": "telemetry_cpu_quota_too_low",
+      "mutation": "set_quota",
+      "namespace": "telemetry",
+      "key": "requests.cpu",
+      "value": "100m",
+      "expected_failed_check": "quota_covers_workloads"
+    },
+    {
+      "name": "workload_memory_quota_too_low",
+      "mutation": "set_quota",
+      "namespace": "ai-observability-demo",
+      "key": "limits.memory",
+      "value": "256Mi",
+      "expected_failed_check": "quota_covers_workloads"
+    },
+    {
+      "name": "missing_quota_services_key",
+      "mutation": "remove_quota_key",
+      "namespace": "ai-observability-demo",
+      "key": "services",
+      "expected_failed_check": "namespace_resource_quota"
+    },
+    {
+      "name": "missing_container_default_request",
+      "mutation": "remove_limit_field",
+      "namespace": "telemetry",
+      "field": "defaultRequest.cpu",
+      "expected_failed_check": "container_defaulting"
+    },
+    {
+      "name": "limit_range_max_below_default",
+      "mutation": "set_limit_field",
+      "namespace": "ai-observability-demo",
+      "field": "max.cpu",
+      "value": "100m",
+      "expected_failed_check": "limit_range_sane_bounds"
+    },
+    {
+      "name": "namespace_missing_owner_label",
+      "mutation": "remove_namespace_label",
+      "namespace": "telemetry",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "namespace_governance_labels"
+    }
+  ]
+}

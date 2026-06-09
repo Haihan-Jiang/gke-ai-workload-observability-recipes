@@ -1,0 +1,122 @@
+{
+  "description": "Policy for auditing CodeQL security scanning workflow governance before trusting security-scan readiness claims.",
+  "workflow_path": ".github/workflows/codeql.yml",
+  "required_workflow_name": "codeql",
+  "required_triggers": {
+    "pull_request": {},
+    "push": {
+      "branches": [
+        "main"
+      ]
+    },
+    "schedule": {}
+  },
+  "forbidden_triggers": [
+    "pull_request_target",
+    "workflow_run"
+  ],
+  "required_permissions": {
+    "actions": "read",
+    "contents": "read",
+    "security-events": "write"
+  },
+  "allowed_write_permissions": [
+    "security-events"
+  ],
+  "required_concurrency_group_fragments": [
+    "github.workflow",
+    "github.ref"
+  ],
+  "require_cancel_in_progress": true,
+  "job": {
+    "name": "analyze",
+    "runs_on": "ubuntu-latest",
+    "timeout_minutes_max": 20,
+    "matrix_language": "python",
+    "require_fail_fast_false": true
+  },
+  "required_actions": {
+    "actions/checkout": {
+      "minimum_major": 6
+    },
+    "github/codeql-action/init": {
+      "minimum_major": 4
+    },
+    "github/codeql-action/analyze": {
+      "minimum_major": 4
+    }
+  },
+  "required_query_suites": [
+    "security-extended",
+    "security-and-quality"
+  ],
+  "forbidden_action_refs": [
+    "main",
+    "master",
+    "latest"
+  ],
+  "minimum_workflow_count": 1,
+  "minimum_job_count": 1,
+  "minimum_language_count": 1,
+  "minimum_codeql_action_count": 2,
+  "minimum_query_suite_count": 2,
+  "minimum_release_control_count": 6,
+  "required_release_controls": [
+    "security_scanning_audit",
+    "ci_governance_audit",
+    "dependency_update_audit",
+    "validation_contract_audit",
+    "public_claim_evidence_audit",
+    "proof_packet_integrity_audit"
+  ],
+  "minimum_detected_fixtures": 8,
+  "fixtures": [
+    {
+      "name": "missing_workflow",
+      "mutation": "remove_workflow",
+      "expected_failed_check": "workflow_inventory"
+    },
+    {
+      "name": "missing_schedule",
+      "mutation": "remove_trigger",
+      "trigger": "schedule",
+      "expected_failed_check": "trigger_contract"
+    },
+    {
+      "name": "unsafe_pull_request_target",
+      "mutation": "add_trigger",
+      "trigger": "pull_request_target",
+      "expected_failed_check": "trigger_contract"
+    },
+    {
+      "name": "missing_security_events_permission",
+      "mutation": "remove_permission",
+      "permission": "security-events",
+      "expected_failed_check": "permission_contract"
+    },
+    {
+      "name": "missing_concurrency",
+      "mutation": "remove_concurrency",
+      "expected_failed_check": "concurrency_contract"
+    },
+    {
+      "name": "javascript_only_scan",
+      "mutation": "set_matrix_language",
+      "value": "javascript-typescript",
+      "expected_failed_check": "job_contract"
+    },
+    {
+      "name": "floating_codeql_init",
+      "mutation": "set_action_ref",
+      "action": "github/codeql-action/init",
+      "ref": "main",
+      "expected_failed_check": "codeql_action_contract"
+    },
+    {
+      "name": "missing_security_extended_query",
+      "mutation": "remove_query_suite",
+      "query": "security-extended",
+      "expected_failed_check": "query_suite_contract"
+    }
+  ]
+}

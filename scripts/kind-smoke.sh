@@ -25,6 +25,7 @@ fi
 
 kubectl config use-context "kind-${cluster_name}" >/dev/null
 kubectl apply -f "${repo_root}/k8s/gke/namespace.yaml"
+kubectl apply -f "${repo_root}/k8s/gke/scheduling.yaml"
 kubectl apply -f "${repo_root}/k8s/gke/collector.yaml"
 
 if kubectl api-resources --api-group=opentelemetry.io | grep -q '^instrumentations'; then
@@ -32,6 +33,14 @@ if kubectl api-resources --api-group=opentelemetry.io | grep -q '^instrumentatio
 else
   echo "OpenTelemetry Operator CRDs are not installed; skipping Instrumentation." >&2
 fi
+
+if kubectl api-resources --api-group=monitoring.coreos.com | grep -q '^prometheusrules'; then
+  kubectl apply -f "${repo_root}/k8s/gke/alerting-rules.yaml"
+else
+  echo "PrometheusRule CRDs are not installed; skipping alerting rules." >&2
+fi
+
+kubectl apply -f "${repo_root}/k8s/gke/grafana-dashboard-configmap.yaml"
 
 kubectl apply -f "${repo_root}/k8s/gke/sample-app.yaml"
 kubectl -n telemetry rollout status deploy/otel-collector --timeout=120s

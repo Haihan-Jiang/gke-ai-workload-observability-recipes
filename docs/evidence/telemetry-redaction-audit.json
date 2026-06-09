@@ -1,0 +1,90 @@
+{
+  "status": "pass",
+  "payload_count": 5,
+  "attribute_count": 957,
+  "scenario_count": 5,
+  "redaction_violation_count": 0,
+  "failed_count": 0,
+  "checks": [
+    {
+      "name": "payload_coverage",
+      "ok": true,
+      "evidence": {
+        "payloads": [
+          "baseline.otlp.json",
+          "cache_miss_storm.otlp.json",
+          "collector_queue_pressure.otlp.json",
+          "dependency_timeout.otlp.json",
+          "rollout_regression.otlp.json"
+        ],
+        "expected_scenarios": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "observed_scenarios": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ]
+      }
+    },
+    {
+      "name": "resource_context",
+      "ok": true,
+      "evidence": {
+        "missing": {}
+      }
+    },
+    {
+      "name": "span_context",
+      "ok": true,
+      "evidence": {
+        "missing": {}
+      }
+    },
+    {
+      "name": "approved_ai_metadata",
+      "ok": true,
+      "evidence": {
+        "observed_ai_attributes": [
+          "ai.completion.tokens",
+          "ai.gpu.compute_ms",
+          "ai.inference.latency_ms",
+          "ai.model",
+          "ai.model.variant",
+          "ai.prompt.tokens",
+          "ai.queue.wait_ms"
+        ],
+        "unapproved_ai_attributes": []
+      }
+    },
+    {
+      "name": "forbidden_attribute_keys",
+      "ok": true,
+      "evidence": {
+        "violations": []
+      }
+    },
+    {
+      "name": "forbidden_attribute_values",
+      "ok": true,
+      "evidence": {
+        "violations": []
+      }
+    },
+    {
+      "name": "string_value_budget",
+      "ok": true,
+      "evidence": {
+        "max_allowed": 64,
+        "max_observed": 24,
+        "violations": []
+      }
+    }
+  ]
+}

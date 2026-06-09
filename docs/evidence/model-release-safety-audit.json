@@ -1,0 +1,263 @@
+{
+  "status": "pass",
+  "release_count": 2,
+  "candidate_count": 1,
+  "blocked_candidate_count": 1,
+  "fixture_count": 7,
+  "detected_fixture_count": 7,
+  "failed_count": 0,
+  "releases": [
+    {
+      "name": "recommender-small-stable",
+      "role": "stable",
+      "scenario": "baseline",
+      "model_variant": "recommender-small",
+      "service_version": "v1",
+      "artifact_uri": "gs://model-registry/recommender-small@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "artifact_pinned": true,
+      "quality_score": 0.94,
+      "minimum_quality_score": 0.9,
+      "schema_compatible": true,
+      "safety_eval_passed": true,
+      "canary_percent": 0,
+      "previous_release": null,
+      "rollback_target": null,
+      "max_cost_delta_percent": 0,
+      "expected": {
+        "probe": "baseline_readiness_probe",
+        "budget_decision": "within_budget",
+        "release_action": "eligible_for_release",
+        "cost_decision": "allow",
+        "rollout_decision": "promote",
+        "requires_rollback": false
+      },
+      "cost": {
+        "decision": "allow",
+        "model_variant": "recommender-small",
+        "estimated_cost_per_1k_requests": 0.213,
+        "violations": []
+      },
+      "budget_decision": "within_budget",
+      "release_action": "eligible_for_release",
+      "rollback": {
+        "response_type": null,
+        "within_rto": null,
+        "completion_minutes": null
+      },
+      "probe": {
+        "name": "baseline_readiness_probe",
+        "signal_ok": true,
+        "release_action": "eligible_for_release",
+        "model_variant": "recommender-small",
+        "service_version": "v1"
+      },
+      "rollout_guard": {
+        "candidate": "rollout_regression",
+        "candidate_version": "v2",
+        "decision": "rollback",
+        "violations": [
+          "p95 ratio 9.48 exceeds 3.0",
+          "error delta 0.29 exceeds 0.05",
+          "cache miss delta 0.43 exceeds 0.25"
+        ]
+      },
+      "trace_quality_status": "pass"
+    },
+    {
+      "name": "recommender-v2-candidate",
+      "role": "candidate",
+      "scenario": "rollout_regression",
+      "model_variant": "recommender-v2",
+      "service_version": "v2",
+      "artifact_uri": "gs://model-registry/recommender-v2@sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifact_pinned": true,
+      "quality_score": 0.88,
+      "minimum_quality_score": 0.9,
+      "schema_compatible": true,
+      "safety_eval_passed": true,
+      "canary_percent": 10,
+      "previous_release": "recommender-small-stable",
+      "rollback_target": "recommender-small-stable",
+      "max_cost_delta_percent": 30,
+      "expected": {
+        "probe": "canary_version_probe",
+        "budget_decision": "budget_exhausted",
+        "release_action": "block_release_or_rollback",
+        "cost_decision": "block_or_review",
+        "rollout_decision": "rollback",
+        "requires_rollback": true
+      },
+      "cost": {
+        "decision": "block_or_review",
+        "model_variant": "recommender-v2",
+        "estimated_cost_per_1k_requests": 0.477,
+        "violations": [
+          "tokens 578 exceed 520",
+          "gpu_ms 210 exceeds 180"
+        ],
+        "delta_percent_vs_stable": 123.94
+      },
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "rollback": {
+        "response_type": "rollback_required",
+        "within_rto": true,
+        "completion_minutes": 11
+      },
+      "probe": {
+        "name": "canary_version_probe",
+        "signal_ok": true,
+        "release_action": "block_release_or_rollback",
+        "model_variant": "recommender-v2",
+        "service_version": "v2"
+      },
+      "rollout_guard": {
+        "candidate": "rollout_regression",
+        "candidate_version": "v2",
+        "decision": "rollback",
+        "violations": [
+          "p95 ratio 9.48 exceeds 3.0",
+          "error delta 0.29 exceeds 0.05",
+          "cache miss delta 0.43 exceeds 0.25"
+        ]
+      },
+      "trace_quality_status": "pass"
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_candidate_release",
+      "mutation": "remove_release",
+      "release": "recommender-v2-candidate",
+      "expected_failed_check": "artifact_inventory",
+      "failed_checks": [
+        "artifact_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "candidate_artifact_unpinned",
+      "mutation": "set_artifact_uri",
+      "release": "recommender-v2-candidate",
+      "expected_failed_check": "artifact_inventory",
+      "failed_checks": [
+        "artifact_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "stable_eval_below_threshold",
+      "mutation": "set_quality_score",
+      "release": "recommender-small-stable",
+      "expected_failed_check": "eval_schema_gate",
+      "failed_checks": [
+        "eval_schema_gate"
+      ],
+      "detected": true
+    },
+    {
+      "name": "candidate_canary_too_large",
+      "mutation": "set_canary_percent",
+      "release": "recommender-v2-candidate",
+      "expected_failed_check": "canary_rollout_gate",
+      "failed_checks": [
+        "canary_rollout_gate"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_cost_expectation",
+      "mutation": "set_expected_cost_decision",
+      "release": "recommender-v2-candidate",
+      "expected_failed_check": "cost_budget_gate",
+      "failed_checks": [
+        "cost_budget_gate"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_rollback_target",
+      "mutation": "set_rollback_target",
+      "release": "recommender-v2-candidate",
+      "expected_failed_check": "rollback_contract",
+      "failed_checks": [
+        "rollback_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_candidate_probe",
+      "mutation": "set_expected_probe",
+      "release": "recommender-v2-candidate",
+      "expected_failed_check": "observability_contract",
+      "failed_checks": [
+        "observability_contract"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "artifact_inventory",
+      "ok": true,
+      "evidence": {
+        "release_count": 2,
+        "candidate_count": 1,
+        "gaps": []
+      }
+    },
+    {
+      "name": "eval_schema_gate",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "canary_rollout_gate",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "cost_budget_gate",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "release_budget_linkage",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "rollback_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "observability_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 7,
+        "detected_fixture_count": 7,
+        "undetected": []
+      }
+    }
+  ]
+}

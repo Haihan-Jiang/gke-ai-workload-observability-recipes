@@ -1,0 +1,107 @@
+{
+  "description": "Policy for proving that preflight synthetic probes cover healthy, dependency, rollout, and telemetry-delivery paths before promotion.",
+  "minimum_probe_count": 5,
+  "minimum_incident_probe_count": 4,
+  "minimum_preflight_block_count": 2,
+  "minimum_detected_fixtures": 5,
+  "probes": [
+    {
+      "name": "baseline_readiness_probe",
+      "scenario": "baseline",
+      "probe_type": "readiness",
+      "expected_alert_severity": "page",
+      "expected_release_action": "eligible_for_release",
+      "max_p95_ms": 100,
+      "max_errors": 0,
+      "max_telemetry_loss_rate": 0.0,
+      "expected_service_version": "v1"
+    },
+    {
+      "name": "cache_dependency_probe",
+      "scenario": "cache_miss_storm",
+      "probe_type": "dependency",
+      "dependency": "vector_cache",
+      "expected_alert_severity": "ticket",
+      "expected_release_action": "require_sre_review_before_rollout",
+      "expected_rollback_response": "manual_review",
+      "min_p95_ms": 200,
+      "min_cache_miss_rate": 0.75,
+      "expected_service_version": "v1"
+    },
+    {
+      "name": "feature_store_timeout_probe",
+      "scenario": "dependency_timeout",
+      "probe_type": "dependency",
+      "dependency": "feature_store",
+      "expected_alert_severity": "page",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_rollback_response": "rollback_required",
+      "min_p95_ms": 500,
+      "min_errors": 1,
+      "expected_service_version": "v1",
+      "requires_rollback": true
+    },
+    {
+      "name": "canary_version_probe",
+      "scenario": "rollout_regression",
+      "probe_type": "canary",
+      "dependency": "model_runtime",
+      "expected_alert_severity": "page",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_rollback_response": "rollback_required",
+      "min_p95_ms": 300,
+      "min_errors": 1,
+      "expected_service_version": "v2",
+      "expected_model_variant": "recommender-v2",
+      "requires_rollback": true
+    },
+    {
+      "name": "telemetry_delivery_probe",
+      "scenario": "collector_queue_pressure",
+      "probe_type": "telemetry",
+      "dependency": "telemetry_exporter",
+      "expected_alert_severity": "page",
+      "expected_release_action": "require_sre_review_before_rollout",
+      "expected_rollback_response": "manual_review",
+      "min_telemetry_loss_rate": 0.25,
+      "required_queue_pressure": "high",
+      "expected_service_version": "v1"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_baseline_probe",
+      "mutation": "remove_probe",
+      "probe": "baseline_readiness_probe",
+      "expected_failed_check": "probe_inventory"
+    },
+    {
+      "name": "unhealthy_baseline_probe",
+      "mutation": "set_summary_value",
+      "probe": "baseline_readiness_probe",
+      "field": "p95_ms",
+      "value": 180,
+      "expected_failed_check": "signal_contract"
+    },
+    {
+      "name": "missing_dependency_link",
+      "mutation": "clear_probe_dependency",
+      "probe": "feature_store_timeout_probe",
+      "expected_failed_check": "dependency_contract_linkage"
+    },
+    {
+      "name": "wrong_canary_alert_severity",
+      "mutation": "set_alert_severity",
+      "probe": "canary_version_probe",
+      "severity": "ticket",
+      "expected_failed_check": "alert_response_contract"
+    },
+    {
+      "name": "missing_canary_rollback_response",
+      "mutation": "set_rollback_response",
+      "probe": "canary_version_probe",
+      "response_type": "manual_review",
+      "expected_failed_check": "rollout_preflight_guard"
+    }
+  ]
+}

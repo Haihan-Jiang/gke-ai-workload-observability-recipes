@@ -1,0 +1,87 @@
+{
+  "description": "Policy for auditing HorizontalPodAutoscaler configuration for the sample AI inference workload.",
+  "target_manifests": [
+    "k8s/gke/sample-app.yaml"
+  ],
+  "minimum_detected_fixtures": 9,
+  "required_labels": [
+    "app.kubernetes.io/name",
+    "app.kubernetes.io/part-of"
+  ],
+  "target": {
+    "namespace": "ai-observability-demo",
+    "hpa": "toy-ai-inference-api",
+    "deployment": "toy-ai-inference-api",
+    "container": "app",
+    "api_version": "apps/v1",
+    "kind": "Deployment",
+    "min_replicas": 2,
+    "minimum_burst_replicas": 6,
+    "max_allowed_replicas": 10,
+    "required_resource_metrics": [
+      "cpu",
+      "memory"
+    ],
+    "min_target_utilization": 50,
+    "max_target_utilization": 85,
+    "max_scale_up_stabilization_seconds": 60,
+    "min_scale_up_pods_per_minute": 2,
+    "min_scale_up_percent_per_minute": 100,
+    "min_scale_down_stabilization_seconds": 300
+  },
+  "fixtures": [
+    {
+      "name": "missing_hpa",
+      "mutation": "remove_hpa",
+      "expected_failed_check": "hpa_coverage"
+    },
+    {
+      "name": "wrong_scale_target",
+      "mutation": "set_scale_target_name",
+      "value": "wrong-deployment",
+      "expected_failed_check": "hpa_target_ref"
+    },
+    {
+      "name": "min_replicas_below_policy",
+      "mutation": "set_min_replicas",
+      "value": 1,
+      "expected_failed_check": "replica_bounds"
+    },
+    {
+      "name": "max_replicas_below_burst_budget",
+      "mutation": "set_max_replicas",
+      "value": 3,
+      "expected_failed_check": "replica_bounds"
+    },
+    {
+      "name": "missing_cpu_metric",
+      "mutation": "remove_metric",
+      "resource": "cpu",
+      "expected_failed_check": "metric_coverage"
+    },
+    {
+      "name": "cpu_target_too_high",
+      "mutation": "set_metric_target",
+      "resource": "cpu",
+      "value": 95,
+      "expected_failed_check": "metric_targets"
+    },
+    {
+      "name": "missing_scale_down_stabilization",
+      "mutation": "remove_scale_down_behavior",
+      "expected_failed_check": "scale_behavior"
+    },
+    {
+      "name": "missing_cpu_request",
+      "mutation": "remove_container_request",
+      "resource": "cpu",
+      "expected_failed_check": "metric_request_alignment"
+    },
+    {
+      "name": "missing_hpa_owner_label",
+      "mutation": "remove_owner_label",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "autoscaling_label_governance"
+    }
+  ]
+}

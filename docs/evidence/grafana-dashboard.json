@@ -1,0 +1,97 @@
+{
+  "status": "pass",
+  "panel_count": 6,
+  "failed_count": 0,
+  "scenarios": [
+    "baseline",
+    "cache_miss_storm",
+    "collector_queue_pressure",
+    "dependency_timeout",
+    "rollout_regression"
+  ],
+  "panel_types": [
+    "stat",
+    "table",
+    "timeseries"
+  ],
+  "checks": [
+    {
+      "name": "dashboard_uid",
+      "ok": true,
+      "evidence": {
+        "uid": "gke-ai-inference-reliability"
+      }
+    },
+    {
+      "name": "panel_count",
+      "ok": true,
+      "evidence": {
+        "panel_count": 6
+      }
+    },
+    {
+      "name": "scenario_coverage",
+      "ok": true,
+      "evidence": {
+        "observed": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "required": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ]
+      }
+    },
+    {
+      "name": "panel_type_coverage",
+      "ok": true,
+      "evidence": {
+        "observed": [
+          "stat",
+          "table",
+          "timeseries"
+        ],
+        "required": [
+          "stat",
+          "table",
+          "timeseries"
+        ]
+      }
+    },
+    {
+      "name": "prometheus_datasource",
+      "ok": true,
+      "evidence": {
+        "missing_datasource_panels": []
+      }
+    },
+    {
+      "name": "runbook_links",
+      "ok": true,
+      "evidence": {
+        "linked_scenarios": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ]
+      }
+    },
+    {
+      "name": "config_map_manifest",
+      "ok": true,
+      "evidence": {
+        "config_map": "gke-ai-inference-grafana-dashboard",
+        "dashboard_key": "gke-ai-inference-reliability.json"
+      }
+    }
+  ]
+}

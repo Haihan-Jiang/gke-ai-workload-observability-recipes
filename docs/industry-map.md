@@ -125,6 +125,388 @@ inference incidents before a service reaches production.
    - Code: [demo/detailed_reliability.py](../demo/detailed_reliability.py)
    - Evidence: [token cost guard](evidence/token-cost-guard.md)
 
+## Security, Policy, Privacy, And Evidence Governance Added By The Fourth Feature Set
+
+| ID | Problem | Why It Matters In Production | Lab Coverage |
+| --- | --- | --- | --- |
+| C11 | Inference traces can leak prompts, responses, secrets, or direct identifiers | AI observability needs enough metadata for SRE triage without exporting customer text or credentials into tracing backends. | [Telemetry redaction audit](evidence/telemetry-redaction-audit.md) |
+| C12 | Trace volume can overwhelm observability budgets | AI inference traces often include multiple child spans and expensive high-signal incidents; teams need sampling and retention budgets before exporting everything. | [Telemetry cost budget](evidence/telemetry-cost-budget.md) |
+| C13 | Sample manifests can hide floating image risk | Reviewers need to see that even demo deployment recipes avoid `latest` tags and pin runtime artifacts by digest before being adapted to production. | [Supply chain audit](evidence/supply-chain-audit.md) |
+| C14 | Manifest drift can bypass review after the first audit | Platform teams need admission controls that block unsafe deployment changes at create/update time instead of discovering the drift after rollout. | [Admission policy audit](evidence/admission-policy-audit.md) |
+| C15 | Manual release exceptions can bypass reliability gates | SRE teams need bounded waiver requests with owner, approver, expiry, rollback, RCA, evidence, and budget acknowledgement instead of informal approvals. | [Release waiver governance](evidence/release-waiver-governance.md) |
+| C16 | Release evidence can be lost or restored incorrectly | Incident response and release review need recoverable evidence and control-plane artifacts with checksum verification inside RTO/RPO targets. | [Disaster recovery drill](evidence/disaster-recovery-drill.md) |
+| C17 | Observability artifacts can drift while each one still passes alone | Alert rules, dashboards, OpenSLO contracts, and runbooks need to describe the same scenario set, severities, links, and first-response contract. | [Observability drift audit](evidence/observability-drift-audit.md) |
+| C18 | Alerts can fire without an executable on-call response path | Production teams need page/ticket routing, acknowledgement SLAs, escalation, rollback evidence, and RCA evidence tied to each alert scenario. | [Incident response drill](evidence/incident-response-drill.md) |
+| C19 | Critical AI dependencies can fail without an explicit operating contract | Vector cache, feature store, model runtime, and telemetry exporter paths need owners, timeout/retry/fallback controls, alert routing, trace attributes, and release actions. | [Dependency contract audit](evidence/dependency-contract-audit.md) |
+| C20 | Rollouts can pass static checks without a black-box preflight signal | Teams need synthetic probes that exercise baseline health, dependency failures, canary regressions, and telemetry delivery before real users discover the issue. | [Synthetic probe audit](evidence/synthetic-probe-audit.md) |
+| C21 | Model releases can pass deployment checks while the model itself is unsafe | AI inference releases need pinned model artifacts, eval thresholds, schema compatibility, canary evidence, cost deltas, rollback targets, and trace labels before promotion. | [Model release safety audit](evidence/model-release-safety-audit.md) |
+| C22 | Shadow traffic can accidentally affect users or leak prompts | Candidate inference paths need no-user-serving guarantees, disabled writes/side effects, privacy-safe telemetry, rollout comparison, cost checks, probes, and rollback linkage. | [Shadow traffic replay audit](evidence/shadow-traffic-replay-audit.md) |
+| C23 | Overload mitigation can punish the wrong traffic | AI inference systems need explicit load-shedding and fallback policies that protect higher-priority tenants, shed best-effort traffic first, and tie cost/capacity pressure back to release action. | [Load shedding policy audit](evidence/load-shedding-policy-audit.md) |
+| C24 | Regional failover can restore artifacts but still route unsafe traffic | Failover decisions need DR RTO/RPO, standby capacity, probes, load shedding, rollback, runbook ownership, and Kubernetes controls to agree before traffic moves. | [Regional failover audit](evidence/regional-failover-audit.md) |
+| C25 | Accelerator quota overuse can starve high-priority inference tenants | GPU/accelerator quota needs tenant reservations, cost review, load shedding, shadow candidate checks, and release blocking to agree before traffic expands. | [Accelerator quota fairness audit](evidence/accelerator-quota-fairness-audit.md) |
+| C26 | GKE samples can accidentally normalize static keys or broad identity scope | Production recipes need Workload Identity binding, explicit service account token boundaries, least-privilege RBAC, static credential rejection, and TLS exporter transport. | [Workload Identity audit](evidence/workload-identity-audit.md) |
+| C27 | Namespaces can allow runaway AI workloads despite per-pod resource settings | GKE recipes need ResourceQuota and LimitRange controls that cover current workloads with headroom, default missing requests, and keep object counts bounded. | [Namespace resource audit](evidence/namespace-resource-audit.md) |
+| C28 | Workloads can pass static checks but still fail node or zone maintenance | Production GKE recipes need explicit replica floors, PDB coverage, topology spread constraints, selector alignment, and owner labels before rollout evidence is trusted. | [Availability topology audit](evidence/availability-topology-audit.md) |
+| C29 | HPA lag can be analyzed offline while manifests still lack a real scaling policy | Production GKE recipes need an actual HPA with bounded replicas, resource metrics, matching requests, and scale behavior before autoscaling claims are trusted. | [Autoscaling policy audit](evidence/autoscaling-policy-audit.md) |
+| C30 | Workload traffic can drift outside the intended telemetry path | Production GKE recipes need egress and ingress NetworkPolicy boundaries so sample workloads can reach telemetry and DNS without normalizing unrestricted namespace traffic. | [Network boundary audit](evidence/network-boundary-audit.md) |
+| C31 | Sampling can hide the traces needed for AI incident debugging | Production OpenTelemetry collectors need tail-sampling rules that retain errors, dependency timeouts, rollout regressions, and collector-pressure traces while keeping healthy baseline volume bounded. | [Telemetry sampling audit](evidence/telemetry-sampling-audit.md) |
+| C32 | Collector failures can hide the telemetry pipeline's own outage | Production observability needs collector internal metrics scraped and exported through the same durable metrics path so queue, exporter, and receiver failures are visible before telemetry disappears. | [Collector self-observability audit](evidence/collector-self-observability-audit.md) |
+| C33 | AI and telemetry workloads can land on the wrong node pools | GKE recipes need non-preempting PriorityClasses, soft node-pool affinity, and bounded tolerations so scheduling intent is explicit without making local smoke tests unschedulable. | [Scheduling placement audit](evidence/scheduling-placement-audit.md) |
+| C34 | Deployment rollouts can drop capacity or wedge singleton PVC users | Production recipes need HA workloads to use surge-safe RollingUpdate settings while singleton queue-backed collectors use Recreate, bounded rollout timing, termination grace, and compatible PDBs. | [Rollout safety audit](evidence/rollout-safety-audit.md) |
+| C35 | ConfigMap changes can leave collector pods running stale config | Production recipes need pod-template checksum bindings, path/mount alignment, read-only config mounts, labels, and secret-marker checks so config evidence matches the running collector. | [Config rollout audit](evidence/config-rollout-audit.md) |
+| C36 | Namespaces can accept pods that bypass restricted security controls | Production GKE recipes need Pod Security Admission restricted enforcement plus workload compatibility checks before assuming container-level hardening is actually enforced. | [Pod Security Admission audit](evidence/pod-security-admission-audit.md) |
+| C37 | CI can look green while relying on stale runtimes or broad repository permissions | Production evidence needs GitHub Actions governance for maintained action versions, least-privilege permissions, bounded runtime, concurrency cancellation, and the real validation command. | [CI governance audit](evidence/ci-governance-audit.md) |
+| C38 | Public labs can look runnable but still be hard to contribute to or maintain safely | Contributor-ready repositories need contribution rules, security reporting guidance, CODEOWNERS coverage, release process evidence, and project boundaries. | [Repository governance audit](evidence/repository-governance-audit.md) |
+| C39 | Contributors can run different commands or tool versions and get different evidence | Industrial labs need a documented runtime contract, Make targets, Python version pinning, zero-dependency assumptions, optional tool boundaries, and ignored local output. | [Developer runtime audit](evidence/developer-runtime-audit.md) |
+| C40 | Public reuse can outpace license and third-party reference clarity | Open-source labs need Apache-2.0, NOTICE, README license links, approved Actions, approved images, and third-party reference inventory before public reuse. | [OSS license audit](evidence/oss-license-audit.md) |
+| C41 | Public evidence can accidentally ship credentials | Release review needs source, manifests, docs, and generated evidence scanned for high-confidence key, token, webhook, and private-key formats before public reuse. | [Secret hygiene audit](evidence/secret-hygiene-audit.md) |
+| C42 | Third-party references can be approved but still lack a machine inventory | Release review needs a local SBOM that lists Actions, images, and runtime tools with source-file traceability before public reuse. | [SBOM inventory audit](evidence/sbom-inventory-audit.md) |
+| C43 | Vulnerability reports can be accepted without an executable response contract | Release review needs private reporting guidance, severity triage SLAs, fix evidence, and disclosure-update rules before security readiness is claimed. | [Security response audit](evidence/security-response-audit.md) |
+| C44 | Generated evidence can be consumed before it is regenerated | Release review needs generation-order checks so downstream gates cannot pass by reading stale committed artifacts. | [Evidence pipeline audit](evidence/evidence-pipeline-audit.md) |
+| C45 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
+| C46 | Release controls can become orphaned from implementation evidence | Industrial review needs a machine-readable matrix that links configured release-readiness controls back to evidence, source, policy/config inputs, and tests. | [Control traceability audit](evidence/control-traceability-audit.md) |
+| C47 | Release controls can be owned only informally | Industrial review needs explicit owner groups, severity tiers, review cadence, escalation paths, rollback actions, and evidence paths for every release-readiness check. | [Release control ownership audit](evidence/release-control-ownership-audit.md) |
+| C48 | Kubernetes manifests can depend on removed API versions or uninstalled CRDs | Release review needs stable core API versions, optional CRD probes and skip paths, kind smoke apply-order checks, and admission v1 fail-closed behavior before manifests are trusted. | [Kubernetes API compatibility audit](evidence/kubernetes-api-compatibility-audit.md) |
+| C49 | Local debug telemetry can be mistaken for the production evidence path | Release review needs an explicit authoritative upstream exporter, bounded debug export, secure OTLP endpoint, queued retry delivery, and production replacement docs. | [Telemetry exporter authority audit](evidence/telemetry-exporter-authority-audit.md) |
+| C50 | Private GKE clusters can be blocked by unplanned admission webhook reachability | Release review needs proof that admission controls use native policy resources, avoid webhook/operator Service dependencies, and keep optional operator CRDs behind explicit skip paths. | [Private cluster admission boundary audit](evidence/private-cluster-admission-boundary-audit.md) |
+| C51 | Telemetry can be reviewed only after rollout damage has already happened | Release review needs staged rollout telemetry evidence that ties rollback decisions, trace quality, redaction, cost, exporter authority, synthetic probes, and model-release blocking together before promotion. | [Staged telemetry validation audit](evidence/staged-telemetry-validation-audit.md) |
+| C52 | A release can cite a stale proof packet after source or evidence changes | Release review needs a proof-packet integrity gate that re-checks provenance checksums against current evidence, generated artifacts, and source inputs before readiness is trusted. | [Proof packet integrity audit](evidence/proof-packet-integrity-audit.md) |
+| C53 | Public review links can drift after evidence is regenerated | Release review needs local Markdown link, anchor, image, and scheme checks so README, contributor docs, release docs, and evidence indexes stay navigable. | [Documentation link integrity audit](evidence/documentation-link-integrity-audit.md) |
+| C54 | Downstream gates can trust replay output after source schema drift | Release review needs a source contract for replay summaries and OTLP payloads so scenario coverage, span shape, attributes, and incident signals stay stable before downstream evidence consumes them. | [Replay source contract audit](evidence/replay-source-contract-audit.md) |
+| C55 | Release notes can omit changed evidence or validation boundaries | Reviewers need release notes to name the changed capability, evidence artifacts, validation commands, and deployment assumptions before trusting a release packet. | [Release notes contract audit](evidence/release-notes-contract-audit.md) |
+| C56 | Public issue and pull request intake can miss evidence and safety boundaries | Maintainers need issue templates, PR templates, support boundaries, validation commands, and security redirects before public collaboration is treated as release-ready. | [Maintainer intake audit](evidence/maintainer-intake-audit.md) |
+| C57 | Architecture choices can become unverifiable oral history | Industrial review needs accepted ADRs that record tradeoffs, rejected alternatives, committed evidence links, and release-control bindings before architecture claims are trusted. | [Architecture decision audit](evidence/architecture-decision-audit.md) |
+| C58 | Reviewers can miss the shortest reproducible proof path | Public reliability labs need a 10-minute current-head path that names regeneration commands, CI-mode drift checks, evidence packet links, and boundary language before review claims are trusted. | [Reviewer reproducibility audit](evidence/reviewer-reproducibility-audit.md) |
+| C59 | Security risks can be discussed without a reviewable threat model | Industrial review needs an explicit asset, trust-boundary, abuse-case, owner, residual-risk, evidence-link, and release-control register before security-readiness claims are trusted. | [Threat model audit](evidence/threat-model-audit.md) |
+| C60 | Public evidence can grow without a data-handling contract | Industrial review needs explicit data classes, retention boundaries, forbidden-data terms, owners, evidence links, and release-control bindings before data-handling claims are trusted. | [Data handling audit](evidence/data-handling-audit.md) |
+| C61 | Dependency updates can rely on informal maintainer memory | Industrial review needs automated dependency update coverage, bounded update PRs, validation documentation, and release-control linkage before maintenance-readiness claims are trusted. | [Dependency update audit](evidence/dependency-update-audit.md) |
+| C62 | Static code scanning can be configured informally or drift from release gates | Industrial review needs CodeQL trigger, permission, language, query-suite, action-version, and release-control evidence before code-scanning claims are trusted. | [Security scanning audit](evidence/security-scanning-audit.md) |
+
+## Fourth Feature Contribution
+
+1. **Telemetry redaction audit**
+   - Code: [demo/telemetry_redaction_audit.py](../demo/telemetry_redaction_audit.py)
+   - Config: [config/telemetry-redaction-policy.json](../config/telemetry-redaction-policy.json)
+   - Input: per-scenario OTLP payloads emitted by [demo/incident_replay.py](../demo/incident_replay.py)
+   - Evidence: [telemetry redaction audit](evidence/telemetry-redaction-audit.md)
+
+2. **Telemetry cost budget**
+   - Code: [demo/telemetry_cost_budget.py](../demo/telemetry_cost_budget.py)
+   - Config: [config/telemetry-cost-policy.json](../config/telemetry-cost-policy.json)
+   - Input: per-scenario OTLP payload sizes and span counts emitted by [demo/incident_replay.py](../demo/incident_replay.py)
+   - Evidence: [telemetry cost budget](evidence/telemetry-cost-budget.md)
+
+3. **Supply-chain image audit**
+   - Code: [demo/supply_chain_audit.py](../demo/supply_chain_audit.py)
+   - Config: [config/supply-chain-policy.json](../config/supply-chain-policy.json)
+   - Input: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
+   - Evidence: [supply chain audit](evidence/supply-chain-audit.md)
+
+4. **CI governance audit**
+   - Code: [demo/ci_governance_audit.py](../demo/ci_governance_audit.py)
+   - Config: [config/ci-governance-policy.json](../config/ci-governance-policy.json)
+   - Input: [GitHub Actions workflow](../.github/workflows/ci.yml)
+   - Evidence: [CI governance audit](evidence/ci-governance-audit.md)
+
+5. **Repository governance audit**
+   - Code: [demo/repository_governance_audit.py](../demo/repository_governance_audit.py)
+   - Config: [config/repository-governance-policy.json](../config/repository-governance-policy.json)
+   - Inputs: [CONTRIBUTING](../CONTRIBUTING.md), [SECURITY](../SECURITY.md), [CODEOWNERS](../.github/CODEOWNERS), and [release process](release-process.md)
+   - Evidence: [repository governance audit](evidence/repository-governance-audit.md)
+
+6. **Developer runtime audit**
+   - Code: [demo/developer_runtime_audit.py](../demo/developer_runtime_audit.py)
+   - Config: [config/developer-runtime-policy.json](../config/developer-runtime-policy.json)
+   - Inputs: [Makefile](../Makefile), [.python-version](../.python-version), [developer runtime](developer-runtime.md), and [.gitignore](../.gitignore)
+   - Evidence: [developer runtime audit](evidence/developer-runtime-audit.md)
+
+7. **Kubernetes admission policy audit**
+   - Code: [demo/admission_policy_audit.py](../demo/admission_policy_audit.py)
+   - Config: [config/admission-policy.json](../config/admission-policy.json)
+   - Policy: [gke-ai-inference-admission-policy.yaml](../policies/admission/gke-ai-inference-admission-policy.yaml)
+   - Evidence: [admission policy audit](evidence/admission-policy-audit.md)
+
+8. **Release waiver governance**
+   - Code: [demo/release_waiver_governance.py](../demo/release_waiver_governance.py)
+   - Policy: [config/release-waiver-policy.json](../config/release-waiver-policy.json)
+   - Register: [config/release-waivers.json](../config/release-waivers.json)
+   - Evidence: [release waiver governance](evidence/release-waiver-governance.md)
+
+9. **Disaster recovery drill**
+   - Code: [demo/disaster_recovery_drill.py](../demo/disaster_recovery_drill.py)
+   - Policy: [config/disaster-recovery-policy.json](../config/disaster-recovery-policy.json)
+   - Evidence: [disaster recovery drill](evidence/disaster-recovery-drill.md)
+
+10. **Observability drift audit**
+   - Code: [demo/observability_drift_audit.py](../demo/observability_drift_audit.py)
+   - Policy: [config/observability-drift-policy.json](../config/observability-drift-policy.json)
+   - Inputs: [alerting rules](evidence/alerting-rules.md), [Grafana dashboard evidence](evidence/grafana-dashboard.md), [OpenSLO contract evidence](evidence/openslo-contract.md), and [incident runbooks](evidence/incident-runbooks.md)
+   - Evidence: [observability drift audit](evidence/observability-drift-audit.md)
+
+11. **Incident response drill**
+   - Code: [demo/incident_response_drill.py](../demo/incident_response_drill.py)
+   - Policy: [config/incident-response-policy.json](../config/incident-response-policy.json)
+   - Inputs: [alerting rules](evidence/alerting-rules.md), [incident runbooks](evidence/incident-runbooks.md), [incident correlation](evidence/incident-correlation.md), [rollback drill](evidence/rollback-drill.md), and [post-incident review](evidence/post-incident-review.md)
+   - Evidence: [incident response drill](evidence/incident-response-drill.md)
+
+12. **Dependency contract audit**
+   - Code: [demo/dependency_contract_audit.py](../demo/dependency_contract_audit.py)
+   - Policy: [config/dependency-contract-policy.json](../config/dependency-contract-policy.json)
+   - Inputs: [critical-path attribution](evidence/critical-path-attribution.md), [alerting rules](evidence/alerting-rules.md), [incident runbooks](evidence/incident-runbooks.md), [error-budget ledger](evidence/error-budget-ledger.md), and [rollback drill](evidence/rollback-drill.md)
+   - Evidence: [dependency contract audit](evidence/dependency-contract-audit.md)
+
+13. **Synthetic probe audit**
+    - Code: [demo/synthetic_probe_audit.py](../demo/synthetic_probe_audit.py)
+    - Policy: [config/synthetic-probe-policy.json](../config/synthetic-probe-policy.json)
+    - Inputs: [sample summary](evidence/sample-summary.json), [alerting rules](evidence/alerting-rules.md), [dependency contract audit](evidence/dependency-contract-audit.md), [incident response drill](evidence/incident-response-drill.md), [rollback drill](evidence/rollback-drill.md), and [error-budget ledger](evidence/error-budget-ledger.md)
+    - Evidence: [synthetic probe audit](evidence/synthetic-probe-audit.md)
+
+14. **Model release safety audit**
+    - Code: [demo/model_release_safety_audit.py](../demo/model_release_safety_audit.py)
+    - Policy: [config/model-release-policy.json](../config/model-release-policy.json)
+    - Inputs: [rollout guard](evidence/rollout-guard.md), [trace quality audit](evidence/trace-quality-audit.md), [token cost guard](evidence/token-cost-guard.md), [error-budget ledger](evidence/error-budget-ledger.md), [rollback drill](evidence/rollback-drill.md), and [synthetic probe audit](evidence/synthetic-probe-audit.md)
+    - Evidence: [model release safety audit](evidence/model-release-safety-audit.md)
+
+15. **Staged telemetry validation audit**
+    - Code: [demo/staged_telemetry_validation_audit.py](../demo/staged_telemetry_validation_audit.py)
+    - Policy: [config/staged-telemetry-validation-policy.json](../config/staged-telemetry-validation-policy.json)
+    - Inputs: [rollout guard](evidence/rollout-guard.md), [trace quality audit](evidence/trace-quality-audit.md), [telemetry redaction audit](evidence/telemetry-redaction-audit.md), [telemetry cost budget](evidence/telemetry-cost-budget.md), [telemetry exporter authority audit](evidence/telemetry-exporter-authority-audit.md), [synthetic probe audit](evidence/synthetic-probe-audit.md), and [model release safety audit](evidence/model-release-safety-audit.md)
+    - Evidence: [staged telemetry validation audit](evidence/staged-telemetry-validation-audit.md)
+
+16. **Shadow traffic replay audit**
+    - Code: [demo/shadow_traffic_replay_audit.py](../demo/shadow_traffic_replay_audit.py)
+    - Policy: [config/shadow-traffic-policy.json](../config/shadow-traffic-policy.json)
+    - Inputs: [sample summary](evidence/sample-summary.json), [telemetry redaction audit](evidence/telemetry-redaction-audit.md), [rollout guard](evidence/rollout-guard.md), [token cost guard](evidence/token-cost-guard.md), [synthetic probe audit](evidence/synthetic-probe-audit.md), and [model release safety audit](evidence/model-release-safety-audit.md)
+    - Evidence: [shadow traffic replay audit](evidence/shadow-traffic-replay-audit.md)
+
+17. **Load shedding policy audit**
+    - Code: [demo/load_shedding_policy_audit.py](../demo/load_shedding_policy_audit.py)
+    - Policy: [config/load-shedding-policy.json](../config/load-shedding-policy.json)
+    - Inputs: [capacity plan](evidence/capacity-plan.md), [tenant blast radius](evidence/tenant-blast-radius.md), [token cost guard](evidence/token-cost-guard.md), [error-budget ledger](evidence/error-budget-ledger.md), [synthetic probe audit](evidence/synthetic-probe-audit.md), and [incident runbooks](evidence/incident-runbooks.md)
+    - Evidence: [load shedding policy audit](evidence/load-shedding-policy-audit.md)
+
+18. **Regional failover audit**
+    - Code: [demo/regional_failover_audit.py](../demo/regional_failover_audit.py)
+    - Policy: [config/regional-failover-policy.json](../config/regional-failover-policy.json)
+    - Inputs: [capacity plan](evidence/capacity-plan.md), [error-budget ledger](evidence/error-budget-ledger.md), [rollback drill](evidence/rollback-drill.md), [disaster recovery drill](evidence/disaster-recovery-drill.md), [synthetic probe audit](evidence/synthetic-probe-audit.md), [load shedding policy audit](evidence/load-shedding-policy-audit.md), [incident runbooks](evidence/incident-runbooks.md), and [Kubernetes manifest hardening audit](evidence/k8s-hardening-audit.md)
+    - Evidence: [regional failover audit](evidence/regional-failover-audit.md)
+
+19. **Accelerator quota fairness audit**
+    - Code: [demo/accelerator_quota_fairness_audit.py](../demo/accelerator_quota_fairness_audit.py)
+    - Policy: [config/accelerator-quota-policy.json](../config/accelerator-quota-policy.json)
+    - Inputs: [capacity plan](evidence/capacity-plan.md), [tenant blast radius](evidence/tenant-blast-radius.md), [token cost guard](evidence/token-cost-guard.md), [load shedding policy audit](evidence/load-shedding-policy-audit.md), [shadow traffic replay audit](evidence/shadow-traffic-replay-audit.md), and [model release safety audit](evidence/model-release-safety-audit.md)
+    - Evidence: [accelerator quota fairness audit](evidence/accelerator-quota-fairness-audit.md)
+
+20. **Workload Identity audit**
+    - Code: [demo/workload_identity_audit.py](../demo/workload_identity_audit.py)
+    - Policy: [config/workload-identity-policy.json](../config/workload-identity-policy.json)
+    - Inputs: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
+    - Evidence: [Workload Identity audit](evidence/workload-identity-audit.md)
+
+21. **Namespace resource audit**
+    - Code: [demo/namespace_resource_audit.py](../demo/namespace_resource_audit.py)
+    - Policy: [config/namespace-resource-policy.json](../config/namespace-resource-policy.json)
+    - Inputs: GKE-shaped namespace, collector, and sample workload manifests under [k8s/gke](../k8s/gke)
+    - Evidence: [namespace resource audit](evidence/namespace-resource-audit.md)
+
+22. **Availability topology audit**
+    - Code: [demo/availability_topology_audit.py](../demo/availability_topology_audit.py)
+    - Policy: [config/availability-topology-policy.json](../config/availability-topology-policy.json)
+    - Inputs: GKE-shaped collector and sample workload manifests under [k8s/gke](../k8s/gke)
+    - Evidence: [availability topology audit](evidence/availability-topology-audit.md)
+
+23. **Autoscaling policy audit**
+    - Code: [demo/autoscaling_policy_audit.py](../demo/autoscaling_policy_audit.py)
+    - Policy: [config/autoscaling-policy.json](../config/autoscaling-policy.json)
+    - Inputs: sample inference workload HPA and Deployment in [sample-app.yaml](../k8s/gke/sample-app.yaml)
+    - Evidence: [autoscaling policy audit](evidence/autoscaling-policy-audit.md)
+
+24. **Network boundary audit**
+    - Code: [demo/network_boundary_audit.py](../demo/network_boundary_audit.py)
+    - Policy: [config/network-boundary-policy.json](../config/network-boundary-policy.json)
+    - Inputs: workload and collector NetworkPolicies under [k8s/gke](../k8s/gke)
+    - Evidence: [network boundary audit](evidence/network-boundary-audit.md)
+
+25. **Telemetry sampling audit**
+    - Code: [demo/telemetry_sampling_audit.py](../demo/telemetry_sampling_audit.py)
+    - Policy: [config/telemetry-sampling-policy.json](../config/telemetry-sampling-policy.json)
+    - Inputs: collector ConfigMap and trace pipeline in [collector.yaml](../k8s/gke/collector.yaml)
+    - Evidence: [telemetry sampling audit](evidence/telemetry-sampling-audit.md)
+
+26. **Collector self-observability audit**
+    - Code: [demo/collector_self_observability_audit.py](../demo/collector_self_observability_audit.py)
+    - Policy: [config/collector-self-observability-policy.json](../config/collector-self-observability-policy.json)
+    - Inputs: collector ConfigMap and metrics pipeline in [collector.yaml](../k8s/gke/collector.yaml)
+    - Evidence: [collector self-observability audit](evidence/collector-self-observability-audit.md)
+
+27. **Telemetry exporter authority audit**
+    - Code: [demo/telemetry_exporter_authority_audit.py](../demo/telemetry_exporter_authority_audit.py)
+    - Policy: [config/telemetry-exporter-policy.json](../config/telemetry-exporter-policy.json)
+    - Inputs: collector ConfigMap exporter annotations/config in [collector.yaml](../k8s/gke/collector.yaml) and production replacement notes in [README](../README.md)
+    - Evidence: [telemetry exporter authority audit](evidence/telemetry-exporter-authority-audit.md)
+
+28. **Scheduling placement audit**
+    - Code: [demo/scheduling_placement_audit.py](../demo/scheduling_placement_audit.py)
+    - Policy: [config/scheduling-placement-policy.json](../config/scheduling-placement-policy.json)
+    - Inputs: [scheduling.yaml](../k8s/gke/scheduling.yaml), [collector.yaml](../k8s/gke/collector.yaml), and [sample-app.yaml](../k8s/gke/sample-app.yaml)
+    - Evidence: [scheduling placement audit](evidence/scheduling-placement-audit.md)
+
+29. **Rollout safety audit**
+    - Code: [demo/rollout_safety_audit.py](../demo/rollout_safety_audit.py)
+    - Policy: [config/rollout-safety-policy.json](../config/rollout-safety-policy.json)
+    - Inputs: collector and sample workload Deployments/PDBs in [collector.yaml](../k8s/gke/collector.yaml) and [sample-app.yaml](../k8s/gke/sample-app.yaml)
+    - Evidence: [rollout safety audit](evidence/rollout-safety-audit.md)
+
+30. **Config rollout audit**
+    - Code: [demo/config_rollout_audit.py](../demo/config_rollout_audit.py)
+    - Policy: [config/config-rollout-policy.json](../config/config-rollout-policy.json)
+    - Inputs: collector ConfigMap, Deployment pod-template annotations, config volume, mount, and args in [collector.yaml](../k8s/gke/collector.yaml)
+    - Evidence: [config rollout audit](evidence/config-rollout-audit.md)
+
+31. **Pod Security Admission audit**
+    - Code: [demo/pod_security_admission_audit.py](../demo/pod_security_admission_audit.py)
+    - Policy: [config/pod-security-admission-policy.json](../config/pod-security-admission-policy.json)
+    - Inputs: namespace PSA labels and collector/sample workload pod templates under [k8s/gke](../k8s/gke)
+    - Evidence: [Pod Security Admission audit](evidence/pod-security-admission-audit.md)
+
+32. **Kubernetes API compatibility audit**
+    - Code: [demo/kubernetes_api_compatibility_audit.py](../demo/kubernetes_api_compatibility_audit.py)
+    - Policy: [config/kubernetes-api-compatibility-policy.json](../config/kubernetes-api-compatibility-policy.json)
+    - Inputs: GKE-shaped manifests under [k8s/gke](../k8s/gke), admission policy manifests, and [kind smoke script](../scripts/kind-smoke.sh)
+    - Evidence: [Kubernetes API compatibility audit](evidence/kubernetes-api-compatibility-audit.md)
+
+33. **Private cluster admission boundary audit**
+    - Code: [demo/private_cluster_admission_boundary_audit.py](../demo/private_cluster_admission_boundary_audit.py)
+    - Policy: [config/private-cluster-admission-boundary-policy.json](../config/private-cluster-admission-boundary-policy.json)
+    - Inputs: GKE-shaped manifests under [k8s/gke](../k8s/gke), native admission policy manifests, [kind smoke script](../scripts/kind-smoke.sh), and private-cluster README guidance
+    - Evidence: [Private cluster admission boundary audit](evidence/private-cluster-admission-boundary-audit.md)
+
+34. **Evidence pipeline audit**
+    - Code: [demo/evidence_pipeline_audit.py](../demo/evidence_pipeline_audit.py)
+    - Policy: [config/evidence-pipeline-policy.json](../config/evidence-pipeline-policy.json)
+    - Inputs: [evidence generation script](../scripts/generate-evidence.sh)
+    - Evidence: [evidence pipeline audit](evidence/evidence-pipeline-audit.md)
+
+35. **OSS license audit**
+    - Code: [demo/oss_license_audit.py](../demo/oss_license_audit.py)
+    - Policy: [config/oss-license-policy.json](../config/oss-license-policy.json)
+    - Inputs: [LICENSE](../LICENSE), [NOTICE](../NOTICE), [README](../README.md), GitHub Actions, and container image references
+    - Evidence: [OSS license audit](evidence/oss-license-audit.md)
+
+36. **Secret hygiene audit**
+    - Code: [demo/secret_hygiene_audit.py](../demo/secret_hygiene_audit.py)
+    - Policy: [config/secret-hygiene-policy.json](../config/secret-hygiene-policy.json)
+    - Inputs: committed source, manifests, docs, root governance files, and generated evidence
+    - Evidence: [secret hygiene audit](evidence/secret-hygiene-audit.md)
+
+37. **SBOM inventory audit**
+    - Code: [demo/sbom_inventory_audit.py](../demo/sbom_inventory_audit.py)
+    - Policy: [config/sbom-inventory-policy.json](../config/sbom-inventory-policy.json)
+    - Inputs: GitHub Actions, container image references, Python version pinning, and developer runtime docs
+    - Evidence: [SBOM inventory audit](evidence/sbom-inventory-audit.md), [SBOM inventory JSON](evidence/sbom-inventory.json)
+
+38. **Security response audit**
+    - Code: [demo/security_response_audit.py](../demo/security_response_audit.py)
+    - Policy: [config/security-response-policy.json](../config/security-response-policy.json)
+    - Inputs: [SECURITY](../SECURITY.md), [release process](release-process.md), and [contributing guide](../CONTRIBUTING.md)
+    - Evidence: [security response audit](evidence/security-response-audit.md)
+
+39. **Control traceability audit**
+    - Code: [demo/control_traceability_audit.py](../demo/control_traceability_audit.py)
+    - Policy: [config/control-traceability-policy.json](../config/control-traceability-policy.json)
+    - Inputs: [release readiness gate](../demo/release_readiness.py), committed evidence, policy/config files, and tests
+    - Evidence: [control traceability audit](evidence/control-traceability-audit.md)
+
+40. **Release control ownership audit**
+    - Code: [demo/release_control_ownership_audit.py](../demo/release_control_ownership_audit.py)
+    - Policy: [config/release-control-ownership-policy.json](../config/release-control-ownership-policy.json)
+    - Inputs: [release readiness gate](../demo/release_readiness.py)
+    - Evidence: [release control ownership audit](evidence/release-control-ownership-audit.md)
+
+41. **Evidence schema audit**
+    - Code: [demo/evidence_schema_audit.py](../demo/evidence_schema_audit.py)
+    - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
+    - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)
+    - Evidence: [evidence schema audit](evidence/evidence-schema-audit.md)
+
+42. **Proof packet integrity audit**
+    - Code: [demo/proof_packet_integrity_audit.py](../demo/proof_packet_integrity_audit.py)
+    - Policy: [config/proof-packet-integrity-policy.json](../config/proof-packet-integrity-policy.json)
+    - Inputs: [evidence provenance manifest](evidence/evidence-provenance.md), committed evidence, generated artifacts, and source inputs
+    - Evidence: [proof packet integrity audit](evidence/proof-packet-integrity-audit.md)
+
+43. **Documentation link integrity audit**
+    - Code: [demo/documentation_link_integrity_audit.py](../demo/documentation_link_integrity_audit.py)
+    - Policy: [config/documentation-link-policy.json](../config/documentation-link-policy.json)
+    - Inputs: README, contributor docs, release docs, and committed evidence indexes
+    - Evidence: [documentation link integrity audit](evidence/documentation-link-integrity-audit.md)
+
+44. **Replay source contract audit**
+    - Code: [demo/replay_source_contract_audit.py](../demo/replay_source_contract_audit.py)
+    - Policy: [config/replay-source-contract-policy.json](../config/replay-source-contract-policy.json)
+    - Inputs: generated incident replay summary and per-scenario OTLP payloads
+    - Evidence: [replay source contract audit](evidence/replay-source-contract-audit.md)
+
+45. **Validation contract audit**
+    - Code: [demo/validation_contract_audit.py](../demo/validation_contract_audit.py)
+    - Policy: [config/validation-contract-policy.json](../config/validation-contract-policy.json)
+    - Inputs: [evidence generation script](../scripts/generate-evidence.sh), [validation script](../scripts/validate.sh), release-readiness source, config JSON, and committed evidence JSON
+    - Evidence: [validation contract audit](evidence/validation-contract-audit.md)
+
+46. **Public claim evidence audit**
+    - Code: [demo/public_claim_evidence_audit.py](../demo/public_claim_evidence_audit.py)
+    - Policy: [config/public-claim-evidence-policy.json](../config/public-claim-evidence-policy.json)
+    - Inputs: [README](../README.md), this industry map, committed evidence JSON/Markdown, and [release readiness gate](../demo/release_readiness.py)
+    - Evidence: [public claim evidence audit](evidence/public-claim-evidence-audit.md)
+
+47. **Release notes contract audit**
+    - Code: [demo/release_notes_contract_audit.py](../demo/release_notes_contract_audit.py)
+    - Policy: [config/release-notes-contract-policy.json](../config/release-notes-contract-policy.json)
+    - Inputs: [release process](release-process.md), [contributing guide](../CONTRIBUTING.md), [README](../README.md), and this industry map
+    - Evidence: [release notes contract audit](evidence/release-notes-contract-audit.md)
+
+48. **Maintainer intake audit**
+    - Code: [demo/maintainer_intake_audit.py](../demo/maintainer_intake_audit.py)
+    - Policy: [config/maintainer-intake-policy.json](../config/maintainer-intake-policy.json)
+    - Inputs: GitHub issue templates, pull request template, [support guide](../SUPPORT.md), and [contributing guide](../CONTRIBUTING.md)
+    - Evidence: [maintainer intake audit](evidence/maintainer-intake-audit.md)
+
+49. **Architecture decision audit**
+    - Code: [demo/architecture_decision_audit.py](../demo/architecture_decision_audit.py)
+    - Policy: [config/architecture-decision-policy.json](../config/architecture-decision-policy.json)
+    - Inputs: accepted ADRs under [docs/adr](adr/README.md)
+    - Evidence: [architecture decision audit](evidence/architecture-decision-audit.md)
+
+50. **Reviewer reproducibility audit**
+    - Code: [demo/reviewer_reproducibility_audit.py](../demo/reviewer_reproducibility_audit.py)
+    - Policy: [config/reviewer-reproducibility-policy.json](../config/reviewer-reproducibility-policy.json)
+    - Inputs: [reviewer quickstart](reviewer-quickstart.md), [release process](release-process.md), [contributing guide](../CONTRIBUTING.md), committed evidence packet, and release-readiness source
+    - Evidence: [reviewer reproducibility audit](evidence/reviewer-reproducibility-audit.md)
+
+51. **Threat model audit**
+    - Code: [demo/threat_model_audit.py](../demo/threat_model_audit.py)
+    - Policy: [config/threat-model-policy.json](../config/threat-model-policy.json)
+    - Inputs: [threat model](threat-model.md), README, industry map, security policy, release process, committed evidence packet, and release-readiness source
+    - Evidence: [threat model audit](evidence/threat-model-audit.md)
+
+52. **Data handling audit**
+    - Code: [demo/data_handling_audit.py](../demo/data_handling_audit.py)
+    - Policy: [config/data-handling-policy.json](../config/data-handling-policy.json)
+    - Inputs: [data handling register](data-handling.md), threat model, privacy-safe ADR, release process, security policy, committed evidence packet, and release-readiness source
+    - Evidence: [data handling audit](evidence/data-handling-audit.md)
+
+53. **Dependency update audit**
+    - Code: [demo/dependency_update_audit.py](../demo/dependency_update_audit.py)
+    - Policy: [config/dependency-update-policy.json](../config/dependency-update-policy.json)
+    - Inputs: [Dependabot config](../.github/dependabot.yml), [dependency update governance](dependency-updates.md), release process, security policy, README, and release-readiness source
+    - Evidence: [dependency update audit](evidence/dependency-update-audit.md)
+
+54. **Security scanning audit**
+    - Code: [demo/security_scanning_audit.py](../demo/security_scanning_audit.py)
+    - Policy: [config/security-scanning-policy.json](../config/security-scanning-policy.json)
+    - Inputs: [CodeQL workflow](../.github/workflows/codeql.yml), release-readiness source, SBOM policy, OSS license policy, and README security-scanning claims
+    - Evidence: [security scanning audit](evidence/security-scanning-audit.md)
+
 ## Boundary
 
 The lab is production-oriented, not production-deployed. It gives a reviewer a

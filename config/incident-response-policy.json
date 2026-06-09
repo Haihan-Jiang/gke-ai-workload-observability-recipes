@@ -1,0 +1,134 @@
+{
+  "description": "Policy for proving that alerts, runbooks, escalation, rollback drills, and post-incident reviews form an executable incident-response path.",
+  "required_scenarios": [
+    "baseline",
+    "cache_miss_storm",
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "incident_scenarios": [
+    "cache_miss_storm",
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "minimum_responses": 5,
+  "minimum_incident_responses": 4,
+  "required_timeline_phases": [
+    "detect",
+    "acknowledge",
+    "mitigate",
+    "verify"
+  ],
+  "severity_routes": {
+    "page": {
+      "ack_sla_minutes": 5,
+      "mitigation_sla_minutes": 15,
+      "verification_sla_minutes": 30,
+      "minimum_escalation_steps": 3,
+      "escalation": [
+        {
+          "minute": 0,
+          "role": "primary_oncall",
+          "action": "acknowledge page and open incident channel"
+        },
+        {
+          "minute": 5,
+          "role": "incident_commander",
+          "action": "assign scenario owner and freeze rollout expansion"
+        },
+        {
+          "minute": 10,
+          "role": "owning_team_lead",
+          "action": "approve rollback, dependency fallback, or telemetry recovery path"
+        }
+      ]
+    },
+    "ticket": {
+      "ack_sla_minutes": 30,
+      "mitigation_sla_minutes": 120,
+      "verification_sla_minutes": 240,
+      "minimum_escalation_steps": 2,
+      "escalation": [
+        {
+          "minute": 0,
+          "role": "triage_owner",
+          "action": "assign owner and link dashboard/runbook evidence"
+        },
+        {
+          "minute": 60,
+          "role": "platform_lead",
+          "action": "escalate if release remains blocked or budget continues burning"
+        }
+      ]
+    }
+  },
+  "baseline_control_timeline": [
+    {
+      "minute": 0,
+      "phase": "detect",
+      "action": "baseline latency page fires from generated SLO alert evidence"
+    },
+    {
+      "minute": 3,
+      "phase": "acknowledge",
+      "action": "primary on-call confirms whether the baseline represents a service-wide regression"
+    },
+    {
+      "minute": 12,
+      "phase": "mitigate",
+      "action": "hold promotion and compare baseline telemetry against incident scenarios before changing traffic"
+    },
+    {
+      "minute": 18,
+      "phase": "verify",
+      "action": "re-run evidence generation and confirm baseline SLO, dashboards, and runbook links"
+    }
+  ],
+  "required_core_evidence": [
+    "docs/evidence/alerting-rules.md",
+    "docs/evidence/grafana-dashboard.md",
+    "docs/evidence/incident-runbooks.md",
+    "docs/evidence/openslo-contract.md"
+  ],
+  "required_incident_evidence": [
+    "docs/evidence/incident-correlation.md",
+    "docs/evidence/rollback-drill.md",
+    "docs/evidence/post-incident-review.md",
+    "docs/evidence/error-budget-ledger.md"
+  ],
+  "drill_fixtures": [
+    {
+      "name": "missing_runbook_owner",
+      "mutation": "remove_runbook_owner",
+      "scenario": "dependency_timeout",
+      "expected_failed_check": "owner_coverage"
+    },
+    {
+      "name": "slow_page_ack",
+      "mutation": "slow_acknowledgement",
+      "scenario": "rollout_regression",
+      "expected_failed_check": "response_sla"
+    },
+    {
+      "name": "missing_escalation",
+      "mutation": "remove_escalation",
+      "severity": "page",
+      "expected_failed_check": "escalation_coverage"
+    },
+    {
+      "name": "missing_post_incident_review",
+      "mutation": "remove_post_incident_review",
+      "scenario": "collector_queue_pressure",
+      "expected_failed_check": "incident_evidence_linkage"
+    },
+    {
+      "name": "unknown_alert_severity",
+      "mutation": "set_alert_severity",
+      "scenario": "dependency_timeout",
+      "severity": "critical",
+      "expected_failed_check": "response_sla"
+    }
+  ]
+}

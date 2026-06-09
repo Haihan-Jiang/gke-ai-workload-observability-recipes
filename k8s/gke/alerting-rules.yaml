@@ -1,0 +1,82 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: gke-ai-inference-reliability-alerts
+  namespace: telemetry
+  labels:
+    app.kubernetes.io/name: gke-ai-inference-alerts
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+spec:
+  groups:
+    - name: gke-ai-inference.rules
+      rules:
+        - alert: GKEAIInferenceBaselineLatencySLOViolation
+          expr: |
+            histogram_quantile(0.95, sum by (le) (rate(http_server_duration_seconds_bucket{k8s_namespace_name="ai-observability-demo",service_name="toy-ai-inference-api"}[5m]))) > 0.1
+          for: 5m
+          labels:
+            severity: "page"
+            team: "sre-platform"
+            service: "toy-ai-inference-api"
+            scenario: "baseline"
+          annotations:
+            summary: "Baseline inference latency exceeded the control SLO."
+            description: "Healthy baseline traffic should remain inside the configured p95 latency SLO. Treat this as a service-wide reliability page before comparing failure scenarios."
+            runbook_url: "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#baseline"
+            dashboard_hint: "docs/evidence/incident-dashboard.svg"
+        - alert: GKEAIInferenceCacheMissStorm
+          expr: |
+            sum(rate(ai_inference_cache_requests_total{k8s_namespace_name="ai-observability-demo",service_name="toy-ai-inference-api",cache_result="miss"}[5m])) / clamp_min(sum(rate(ai_inference_cache_requests_total{k8s_namespace_name="ai-observability-demo",service_name="toy-ai-inference-api"}[5m])), 1) > 0.75
+          for: 10m
+          labels:
+            severity: "ticket"
+            team: "sre-platform"
+            service: "toy-ai-inference-api"
+            scenario: "cache_miss_storm"
+          annotations:
+            summary: "Inference cache miss ratio crossed the storm threshold."
+            description: "High cache misses explain latency without blaming model inference. Use the cache miss runbook before scaling the serving deployment."
+            runbook_url: "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#cache_miss_storm"
+            dashboard_hint: "docs/evidence/incident-dashboard.svg"
+        - alert: GKEAIInferenceDependencyErrorBudgetBurn
+          expr: |
+            sum(rate(http_server_duration_seconds_count{k8s_namespace_name="ai-observability-demo",service_name="toy-ai-inference-api",http_response_status_code=~"5.."}[5m])) / clamp_min(sum(rate(http_server_duration_seconds_count{k8s_namespace_name="ai-observability-demo",service_name="toy-ai-inference-api"}[5m])), 1) > 0.3
+          for: 5m
+          labels:
+            severity: "page"
+            team: "sre-platform"
+            service: "toy-ai-inference-api"
+            scenario: "dependency_timeout"
+          annotations:
+            summary: "Dependency-driven inference errors are burning budget."
+            description: "Feature-store or dependency failures are creating material user-visible errors. Page the dependency owner instead of treating this as a pure autoscaling issue."
+            runbook_url: "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#dependency_timeout"
+            dashboard_hint: "docs/evidence/incident-dashboard.svg"
+        - alert: GKEAIInferenceRolloutVersionRegression
+          expr: |
+            histogram_quantile(0.95, sum by (le) (rate(http_server_duration_seconds_bucket{k8s_namespace_name="ai-observability-demo",service_name="toy-ai-inference-api",service_version="v2"}[5m]))) > 0.3
+          for: 5m
+          labels:
+            severity: "page"
+            team: "sre-platform"
+            service: "toy-ai-inference-api"
+            scenario: "rollout_regression"
+          annotations:
+            summary: "Candidate service version is breaching latency SLO."
+            description: "A version-specific latency regression should pause or rollback the rollout before more traffic shifts."
+            runbook_url: "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression"
+            dashboard_hint: "docs/evidence/incident-dashboard.svg"
+        - alert: GKEAICollectorTelemetryLoss
+          expr: |
+            sum(rate(otelcol_exporter_send_failed_spans_total[5m])) / clamp_min(sum(rate(otelcol_exporter_sent_spans_total[5m])) + sum(rate(otelcol_exporter_send_failed_spans_total[5m])), 1) > 0.25
+          for: 5m
+          labels:
+            severity: "page"
+            team: "sre-platform"
+            service: "toy-ai-inference-api"
+            scenario: "collector_queue_pressure"
+          annotations:
+            summary: "Collector telemetry delivery loss crossed the release evidence threshold."
+            description: "Application traffic can look healthy while telemetry is missing. Protect queue storage and exporter delivery before trusting dashboards."
+            runbook_url: "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#collector_queue_pressure"
+            dashboard_hint: "docs/evidence/incident-dashboard.svg"

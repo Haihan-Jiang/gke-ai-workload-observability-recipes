@@ -1,0 +1,129 @@
+{
+  "description": "Policy for proving regional failover readiness for AI inference reliability evidence and control-plane actions.",
+  "primary_region": "us-central1",
+  "standby_regions": [
+    "us-west1",
+    "us-east1"
+  ],
+  "minimum_event_count": 5,
+  "minimum_standby_region_count": 2,
+  "minimum_detected_fixtures": 5,
+  "required_k8s_controls": [
+    "collector_durable_queue",
+    "collector_pdb",
+    "collector_probes",
+    "sample_workload_probes",
+    "sample_workload_resources"
+  ],
+  "events": [
+    {
+      "name": "evidence_control_plane_restore",
+      "scenario": "baseline",
+      "event_type": "control_plane_restore",
+      "owner": "SRE / platform",
+      "standby_region": "us-west1",
+      "standby_replicas": 2,
+      "expected_budget_decision": "within_budget",
+      "expected_release_action": "eligible_for_release",
+      "expected_load_shedding_action": "no_action",
+      "expected_probe": "baseline_readiness_probe",
+      "requires_dr": true,
+      "requires_rollback": false,
+      "requires_k8s_controls": true
+    },
+    {
+      "name": "retrieval_cache_region_failover",
+      "scenario": "cache_miss_storm",
+      "event_type": "retrieval_cache_failover",
+      "owner": "Inference platform / retrieval owner",
+      "standby_region": "us-west1",
+      "standby_replicas": 6,
+      "expected_budget_decision": "manual_review_required",
+      "expected_release_action": "require_sre_review_before_rollout",
+      "expected_load_shedding_action": "rate_limit_retrieval",
+      "expected_probe": "cache_dependency_probe",
+      "requires_dr": false,
+      "requires_rollback": false,
+      "requires_k8s_controls": false
+    },
+    {
+      "name": "feature_store_region_failover",
+      "scenario": "dependency_timeout",
+      "event_type": "dependency_failover",
+      "owner": "Feature platform / dependency owner",
+      "standby_region": "us-east1",
+      "standby_replicas": 12,
+      "expected_budget_decision": "budget_exhausted",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_load_shedding_action": "shed_best_effort",
+      "expected_probe": "feature_store_timeout_probe",
+      "requires_dr": false,
+      "requires_rollback": true,
+      "requires_k8s_controls": false
+    },
+    {
+      "name": "canary_region_rollback",
+      "scenario": "rollout_regression",
+      "event_type": "canary_failover",
+      "owner": "Service owner / release engineer",
+      "standby_region": "us-west1",
+      "standby_replicas": 8,
+      "expected_budget_decision": "budget_exhausted",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_load_shedding_action": "rollback_canary",
+      "expected_probe": "canary_version_probe",
+      "requires_dr": false,
+      "requires_rollback": true,
+      "requires_k8s_controls": false
+    },
+    {
+      "name": "telemetry_region_failover",
+      "scenario": "collector_queue_pressure",
+      "event_type": "telemetry_failover",
+      "owner": "Observability platform",
+      "standby_region": "us-east1",
+      "standby_replicas": 4,
+      "expected_budget_decision": "manual_review_required",
+      "expected_release_action": "require_sre_review_before_rollout",
+      "expected_load_shedding_action": "protect_telemetry",
+      "expected_probe": "telemetry_delivery_probe",
+      "requires_dr": true,
+      "requires_rollback": false,
+      "requires_k8s_controls": true
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_telemetry_failover",
+      "mutation": "remove_event",
+      "event": "telemetry_region_failover",
+      "expected_failed_check": "failover_inventory"
+    },
+    {
+      "name": "restore_exceeds_rto",
+      "mutation": "set_dr_restore_minutes",
+      "minutes": 30,
+      "expected_failed_check": "dr_recovery_contract"
+    },
+    {
+      "name": "standby_capacity_too_small",
+      "mutation": "set_standby_replicas",
+      "event": "retrieval_cache_region_failover",
+      "standby_replicas": 2,
+      "expected_failed_check": "capacity_failover_guard"
+    },
+    {
+      "name": "wrong_release_action",
+      "mutation": "set_expected_release_action",
+      "event": "feature_store_region_failover",
+      "expected_release_action": "eligible_for_release",
+      "expected_failed_check": "traffic_safety_linkage"
+    },
+    {
+      "name": "missing_collector_queue_control",
+      "mutation": "fail_k8s_control",
+      "control": "collector_durable_queue",
+      "expected_failed_check": "rollback_observability_contract"
+    }
+  ]
+}

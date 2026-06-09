@@ -1,0 +1,187 @@
+{
+  "status": "pass",
+  "workload_count": 2,
+  "priority_class_count": 2,
+  "preferred_affinity_count": 4,
+  "toleration_count": 2,
+  "check_count": 7,
+  "detected_fixture_count": 10,
+  "failed_count": 0,
+  "workloads": [
+    {
+      "workload": "telemetry/otel-collector",
+      "priority_class": "ai-telemetry-critical",
+      "preferred_affinity_keys": [
+        "cloud.google.com/gke-nodepool",
+        "workload.haihan.dev/telemetry"
+      ],
+      "toleration_keys": [
+        "workload.haihan.dev/telemetry"
+      ]
+    },
+    {
+      "workload": "ai-observability-demo/toy-ai-inference-api",
+      "priority_class": "ai-inference-serving",
+      "preferred_affinity_keys": [
+        "cloud.google.com/gke-nodepool",
+        "workload.haihan.dev/inference"
+      ],
+      "toleration_keys": [
+        "workload.haihan.dev/inference"
+      ]
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_inference_priority_class",
+      "mutation": "remove_priority_class",
+      "expected_failed_check": "priority_class_definitions",
+      "failed_checks": [
+        "priority_class_definitions",
+        "scheduling_label_governance"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_telemetry_priority_value",
+      "mutation": "set_priority_value",
+      "expected_failed_check": "priority_class_definitions",
+      "failed_checks": [
+        "priority_class_definitions"
+      ],
+      "detected": true
+    },
+    {
+      "name": "preempting_telemetry_priority",
+      "mutation": "set_preemption_policy",
+      "expected_failed_check": "priority_class_definitions",
+      "failed_checks": [
+        "priority_class_definitions"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_missing_priority_binding",
+      "mutation": "remove_workload_priority",
+      "expected_failed_check": "workload_priority_binding",
+      "failed_checks": [
+        "workload_priority_binding"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_wrong_priority_binding",
+      "mutation": "set_workload_priority",
+      "expected_failed_check": "workload_priority_binding",
+      "failed_checks": [
+        "workload_priority_binding"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_missing_nodepool_preference",
+      "mutation": "remove_affinity_expression",
+      "expected_failed_check": "preferred_node_affinity",
+      "failed_checks": [
+        "preferred_node_affinity"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_hard_node_selector",
+      "mutation": "add_node_selector",
+      "expected_failed_check": "portable_scheduling_preferences",
+      "failed_checks": [
+        "portable_scheduling_preferences"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_missing_toleration",
+      "mutation": "remove_toleration",
+      "expected_failed_check": "bounded_tolerations",
+      "failed_checks": [
+        "bounded_tolerations"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_wildcard_toleration",
+      "mutation": "set_toleration_operator",
+      "expected_failed_check": "bounded_tolerations",
+      "failed_checks": [
+        "bounded_tolerations"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_priority_class_owner_label",
+      "mutation": "remove_priority_class_label",
+      "expected_failed_check": "scheduling_label_governance",
+      "failed_checks": [
+        "scheduling_label_governance"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "priority_class_definitions",
+      "status": "pass",
+      "reason": "PriorityClasses exist, are non-global, use non-preempting policy, and meet minimum values.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "workload_priority_binding",
+      "status": "pass",
+      "reason": "Collector and inference Deployments bind to their expected PriorityClasses.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "preferred_node_affinity",
+      "status": "pass",
+      "reason": "Workloads declare preferred GKE node-pool and workload-purpose placement without hard scheduling locks.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "portable_scheduling_preferences",
+      "status": "pass",
+      "reason": "Scheduling intent uses portable soft preferences, not hard nodeSelector or required node affinity.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "bounded_tolerations",
+      "status": "pass",
+      "reason": "Tolerations are explicit Equal matches with expected NoSchedule effects.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "scheduling_label_governance",
+      "status": "pass",
+      "reason": "Scheduling-relevant manifests carry owner labels used by review and policy tooling.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove priority, affinity, toleration, and portability drift is detected.",
+      "evidence": {
+        "fixture_count": 10,
+        "detected_fixture_count": 10,
+        "undetected": []
+      }
+    }
+  ]
+}

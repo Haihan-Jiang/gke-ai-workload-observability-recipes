@@ -1,0 +1,99 @@
+{
+  "description": "Policy for auditing the authoritative telemetry exporter boundary for the OpenTelemetry Collector.",
+  "target_manifests": [
+    "k8s/gke/collector.yaml"
+  ],
+  "documentation_files": [
+    "README.md"
+  ],
+  "collector": {
+    "namespace": "telemetry",
+    "config_map": "otel-collector-config",
+    "config_key": "config.yaml",
+    "authoritative_exporter_annotation": "telemetry.haihan.dev/authoritative-exporter",
+    "local_exporter_annotation": "telemetry.haihan.dev/local-exporter",
+    "authority_mode_annotation": "telemetry.haihan.dev/exporter-authority-mode",
+    "authority_mode": "upstream-gateway",
+    "authoritative_exporter": "otlphttp/upstream",
+    "local_exporter": "debug",
+    "required_pipelines": [
+      "traces",
+      "metrics"
+    ],
+    "required_endpoint_scheme": "https",
+    "required_endpoint_port": 4318,
+    "forbidden_endpoint_hosts": [
+      "0.0.0.0",
+      "127.0.0.1",
+      "localhost"
+    ],
+    "required_queue_storage": "file_storage",
+    "required_service_extension": "file_storage"
+  },
+  "required_documentation_text": [
+    "replace the placeholder upstream OTLP endpoint",
+    "Cloud Trace",
+    "Managed Service for Prometheus",
+    "organization-managed collector",
+    "gateway exporter"
+  ],
+  "minimum_detected_fixtures": 8,
+  "fixtures": [
+    {
+      "name": "missing_authoritative_exporter_annotation",
+      "mutation": "remove_config_map_annotation",
+      "annotation": "telemetry.haihan.dev/authoritative-exporter",
+      "expected_failed_check": "exporter_authority_annotations"
+    },
+    {
+      "name": "debug_declared_authoritative",
+      "mutation": "set_config_map_annotation",
+      "annotation": "telemetry.haihan.dev/authoritative-exporter",
+      "value": "debug",
+      "expected_failed_check": "exporter_authority_annotations"
+    },
+    {
+      "name": "traces_missing_authoritative_exporter",
+      "mutation": "remove_pipeline_exporter",
+      "pipeline": "traces",
+      "exporter": "otlphttp/upstream",
+      "expected_failed_check": "authoritative_pipeline_path"
+    },
+    {
+      "name": "metrics_debug_only",
+      "mutation": "set_pipeline_exporters",
+      "pipeline": "metrics",
+      "exporters": [
+        "debug"
+      ],
+      "expected_failed_check": "local_debug_boundary"
+    },
+    {
+      "name": "insecure_http_upstream",
+      "mutation": "set_exporter_endpoint",
+      "exporter": "otlphttp/upstream",
+      "endpoint": "http://otel-gateway.example.com:4318",
+      "expected_failed_check": "secure_upstream_endpoint"
+    },
+    {
+      "name": "localhost_upstream",
+      "mutation": "set_exporter_endpoint",
+      "exporter": "otlphttp/upstream",
+      "endpoint": "https://localhost:4318",
+      "expected_failed_check": "secure_upstream_endpoint"
+    },
+    {
+      "name": "disabled_upstream_queue",
+      "mutation": "set_exporter_queue_enabled",
+      "exporter": "otlphttp/upstream",
+      "enabled": false,
+      "expected_failed_check": "queued_delivery_boundary"
+    },
+    {
+      "name": "missing_replacement_docs",
+      "mutation": "remove_documentation_text",
+      "text": "replace the placeholder upstream OTLP endpoint",
+      "expected_failed_check": "production_replacement_docs"
+    }
+  ]
+}

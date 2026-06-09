@@ -1,0 +1,215 @@
+{
+  "status": "pass",
+  "objective": {
+    "target_percent": 99.5,
+    "time_window": "30d",
+    "budgeting_method": "Occurrences",
+    "allowed_bad_fraction": 0.005,
+    "latency_threshold_ms": 100
+  },
+  "scenario_count": 5,
+  "non_green_count": 4,
+  "decision_counts": {
+    "within_budget": 1,
+    "manual_review_required": 2,
+    "budget_exhausted": 2
+  },
+  "failed_count": 0,
+  "ledger": [
+    {
+      "scenario": "baseline",
+      "description": "Healthy inference path with cache hits and stable model latency.",
+      "requests": 8,
+      "allowed_bad_events": 1,
+      "budget_used_events": 0,
+      "budget_remaining_events": 1,
+      "consumed_ratio": 0.0,
+      "decision": "within_budget",
+      "release_action": "eligible_for_release",
+      "bad_event_sources": {
+        "errors": 0,
+        "latency_budget_pressure": 0,
+        "telemetry_delivery_loss": 0
+      },
+      "signals": {
+        "p95_ms": 48,
+        "error_rate": 0.0,
+        "telemetry_loss_rate": 0.0,
+        "service_version": "v1"
+      }
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "description": "Vector cache misses push model latency above the SLO.",
+      "requests": 7,
+      "allowed_bad_events": 1,
+      "budget_used_events": 5,
+      "budget_remaining_events": -4,
+      "consumed_ratio": 5.0,
+      "decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "bad_event_sources": {
+        "errors": 0,
+        "latency_budget_pressure": 5,
+        "telemetry_delivery_loss": 0
+      },
+      "signals": {
+        "p95_ms": 251,
+        "error_rate": 0.0,
+        "telemetry_loss_rate": 0.0,
+        "service_version": "v1"
+      }
+    },
+    {
+      "scenario": "dependency_timeout",
+      "description": "Feature-store timeouts create elevated latency and user-visible errors.",
+      "requests": 6,
+      "allowed_bad_events": 1,
+      "budget_used_events": 9,
+      "budget_remaining_events": -8,
+      "consumed_ratio": 9.0,
+      "decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "bad_event_sources": {
+        "errors": 3,
+        "latency_budget_pressure": 6,
+        "telemetry_delivery_loss": 0
+      },
+      "signals": {
+        "p95_ms": 1320,
+        "error_rate": 0.5,
+        "telemetry_loss_rate": 0.0,
+        "service_version": "v1"
+      }
+    },
+    {
+      "scenario": "rollout_regression",
+      "description": "A new service version increases latency and error rate during rollout.",
+      "requests": 7,
+      "allowed_bad_events": 1,
+      "budget_used_events": 8,
+      "budget_remaining_events": -7,
+      "consumed_ratio": 8.0,
+      "decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "bad_event_sources": {
+        "errors": 2,
+        "latency_budget_pressure": 6,
+        "telemetry_delivery_loss": 0
+      },
+      "signals": {
+        "p95_ms": 455,
+        "error_rate": 0.29,
+        "telemetry_loss_rate": 0.0,
+        "service_version": "v2"
+      }
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "description": "Collector queue pressure drops telemetry while user traffic still looks healthy.",
+      "requests": 6,
+      "allowed_bad_events": 1,
+      "budget_used_events": 5,
+      "budget_remaining_events": -4,
+      "consumed_ratio": 5.0,
+      "decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "bad_event_sources": {
+        "errors": 0,
+        "latency_budget_pressure": 2,
+        "telemetry_delivery_loss": 3
+      },
+      "signals": {
+        "p95_ms": 126,
+        "error_rate": 0.0,
+        "telemetry_loss_rate": 0.42,
+        "service_version": "v1"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "objective_target",
+      "ok": true,
+      "evidence": {
+        "target_percent": 99.5,
+        "allowed_bad_fraction": 0.005
+      }
+    },
+    {
+      "name": "scenario_coverage",
+      "ok": true,
+      "evidence": {
+        "observed": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "required": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "missing": []
+      }
+    },
+    {
+      "name": "baseline_within_budget",
+      "ok": true,
+      "evidence": {
+        "scenario": "baseline",
+        "description": "Healthy inference path with cache hits and stable model latency.",
+        "requests": 8,
+        "allowed_bad_events": 1,
+        "budget_used_events": 0,
+        "budget_remaining_events": 1,
+        "consumed_ratio": 0.0,
+        "decision": "within_budget",
+        "release_action": "eligible_for_release",
+        "bad_event_sources": {
+          "errors": 0,
+          "latency_budget_pressure": 0,
+          "telemetry_delivery_loss": 0
+        },
+        "signals": {
+          "p95_ms": 48,
+          "error_rate": 0.0,
+          "telemetry_loss_rate": 0.0,
+          "service_version": "v1"
+        }
+      }
+    },
+    {
+      "name": "incident_budget_pressure",
+      "ok": true,
+      "evidence": {
+        "non_green_scenarios": [
+          "cache_miss_storm",
+          "dependency_timeout",
+          "rollout_regression",
+          "collector_queue_pressure"
+        ]
+      }
+    },
+    {
+      "name": "release_action_mapping",
+      "ok": true,
+      "evidence": {
+        "within_budget": "eligible_for_release",
+        "manual_review_required": "require_sre_review_before_rollout",
+        "budget_exhausted": "block_release_or_rollback"
+      }
+    },
+    {
+      "name": "math_consistency",
+      "ok": true,
+      "evidence": {
+        "ledger_rows": 5
+      }
+    }
+  ]
+}

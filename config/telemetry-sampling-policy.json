@@ -1,0 +1,142 @@
+{
+  "description": "Policy for auditing OpenTelemetry Collector tail sampling on AI inference traces.",
+  "target_manifests": [
+    "k8s/gke/collector.yaml"
+  ],
+  "collector": {
+    "namespace": "telemetry",
+    "config_map": "otel-collector-config",
+    "trace_pipeline": "traces",
+    "metrics_pipeline": "metrics",
+    "sampling_processor": "tail_sampling",
+    "required_processor_order": [
+      "memory_limiter",
+      "k8sattributes",
+      "resource/gke",
+      "tail_sampling",
+      "batch"
+    ],
+    "max_decision_wait_seconds": 30,
+    "min_num_traces": 20000,
+    "min_expected_new_traces_per_sec": 100,
+    "required_exporter": "otlphttp/upstream"
+  },
+  "required_labels": [
+    "app.kubernetes.io/name",
+    "app.kubernetes.io/part-of"
+  ],
+  "required_policies": [
+    {
+      "name": "keep-error-traces",
+      "type": "status_code",
+      "body": "status_code",
+      "status_codes": [
+        "ERROR"
+      ]
+    },
+    {
+      "name": "keep-dependency-timeouts",
+      "type": "string_attribute",
+      "body": "string_attribute",
+      "key": "error.type",
+      "values": [
+        "upstream_dependency"
+      ]
+    },
+    {
+      "name": "keep-rollout-regressions",
+      "type": "string_attribute",
+      "body": "string_attribute",
+      "key": "service.version",
+      "values": [
+        "v2"
+      ]
+    },
+    {
+      "name": "keep-collector-pressure",
+      "type": "string_attribute",
+      "body": "string_attribute",
+      "key": "collector.queue.pressure",
+      "values": [
+        "high"
+      ]
+    },
+    {
+      "name": "baseline-probabilistic-sample",
+      "type": "probabilistic",
+      "body": "probabilistic",
+      "min_sampling_percentage": 1,
+      "max_sampling_percentage": 5
+    }
+  ],
+  "minimum_detected_fixtures": 10,
+  "fixtures": [
+    {
+      "name": "missing_tail_sampling_processor",
+      "mutation": "remove_sampling_processor",
+      "expected_failed_check": "sampling_processor_defined"
+    },
+    {
+      "name": "tail_sampling_removed_from_traces",
+      "mutation": "remove_pipeline_processor",
+      "pipeline": "traces",
+      "processor": "tail_sampling",
+      "expected_failed_check": "trace_pipeline_sampling_order"
+    },
+    {
+      "name": "tail_sampling_after_batch",
+      "mutation": "move_processor_after",
+      "pipeline": "traces",
+      "processor": "tail_sampling",
+      "after": "batch",
+      "expected_failed_check": "trace_pipeline_sampling_order"
+    },
+    {
+      "name": "metrics_pipeline_tail_sampling",
+      "mutation": "add_pipeline_processor",
+      "pipeline": "metrics",
+      "processor": "tail_sampling",
+      "expected_failed_check": "metrics_pipeline_excludes_tail_sampling"
+    },
+    {
+      "name": "unbounded_decision_wait",
+      "mutation": "set_sampling_field",
+      "field": "decision_wait",
+      "value": "90s",
+      "expected_failed_check": "sampling_decision_window"
+    },
+    {
+      "name": "undersized_trace_buffer",
+      "mutation": "set_sampling_field",
+      "field": "num_traces",
+      "value": 1000,
+      "expected_failed_check": "sampling_buffer"
+    },
+    {
+      "name": "missing_error_policy",
+      "mutation": "remove_policy",
+      "policy": "keep-error-traces",
+      "expected_failed_check": "critical_trace_policy_coverage"
+    },
+    {
+      "name": "wrong_dependency_attribute",
+      "mutation": "set_policy_attribute_key",
+      "policy": "keep-dependency-timeouts",
+      "key": "ai.dependency.name",
+      "expected_failed_check": "critical_trace_policy_coverage"
+    },
+    {
+      "name": "excessive_baseline_sampling",
+      "mutation": "set_policy_sampling_percentage",
+      "policy": "baseline-probabilistic-sample",
+      "sampling_percentage": 50,
+      "expected_failed_check": "baseline_sampling_budget"
+    },
+    {
+      "name": "missing_collector_config_owner_label",
+      "mutation": "remove_config_map_label",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "collector_config_label_governance"
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "status": "pass",
+  "probe_count": 5,
+  "incident_probe_count": 4,
+  "preflight_block_count": 2,
+  "fixture_count": 5,
+  "detected_fixture_count": 5,
+  "failed_count": 0,
+  "probes": [
+    {
+      "name": "baseline_readiness_probe",
+      "scenario": "baseline",
+      "probe_type": "readiness",
+      "dependency": null,
+      "observed": {
+        "p95_ms": 48,
+        "errors": 0,
+        "cache_miss_rate": 0.0,
+        "telemetry_loss_rate": 0.0,
+        "collector_queue_pressure": "normal",
+        "service_version": "v1",
+        "model_variant": "recommender-small"
+      },
+      "expected": {
+        "alert_severity": "page",
+        "release_action": "eligible_for_release",
+        "rollback_response": null,
+        "requires_rollback": false
+      },
+      "signal_ok": true,
+      "signal_failures": [],
+      "alert": "GKEAIInferenceBaselineLatencySLOViolation",
+      "alert_severity": "page",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#baseline",
+      "response_route_known": true,
+      "response_owner": "SRE / platform",
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true,
+      "response_rollback_type": "baseline_control",
+      "rollback_drill_type": null,
+      "rollback_within_rto": null,
+      "budget_decision": "within_budget",
+      "release_action": "eligible_for_release",
+      "dependency_contract": {
+        "name": null,
+        "scenario": null,
+        "owner": null,
+        "alert_severity": null,
+        "release_action": null,
+        "rollback_response": null
+      }
+    },
+    {
+      "name": "cache_dependency_probe",
+      "scenario": "cache_miss_storm",
+      "probe_type": "dependency",
+      "dependency": "vector_cache",
+      "observed": {
+        "p95_ms": 251,
+        "errors": 0,
+        "cache_miss_rate": 1.0,
+        "telemetry_loss_rate": 0.0,
+        "collector_queue_pressure": "normal",
+        "service_version": "v1",
+        "model_variant": "recommender-small"
+      },
+      "expected": {
+        "alert_severity": "ticket",
+        "release_action": "require_sre_review_before_rollout",
+        "rollback_response": "manual_review",
+        "requires_rollback": false
+      },
+      "signal_ok": true,
+      "signal_failures": [],
+      "alert": "GKEAIInferenceCacheMissStorm",
+      "alert_severity": "ticket",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#cache_miss_storm",
+      "response_route_known": true,
+      "response_owner": "Inference platform / retrieval owner",
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true,
+      "response_rollback_type": "manual_review",
+      "rollback_drill_type": "manual_review",
+      "rollback_within_rto": true,
+      "budget_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "dependency_contract": {
+        "name": "vector_cache",
+        "scenario": "cache_miss_storm",
+        "owner": "Inference platform / retrieval owner",
+        "alert_severity": "ticket",
+        "release_action": "require_sre_review_before_rollout",
+        "rollback_response": "manual_review"
+      }
+    },
+    {
+      "name": "feature_store_timeout_probe",
+      "scenario": "dependency_timeout",
+      "probe_type": "dependency",
+      "dependency": "feature_store",
+      "observed": {
+        "p95_ms": 1320,
+        "errors": 3,
+        "cache_miss_rate": 0.0,
+        "telemetry_loss_rate": 0.0,
+        "collector_queue_pressure": "normal",
+        "service_version": "v1",
+        "model_variant": "recommender-small"
+      },
+      "expected": {
+        "alert_severity": "page",
+        "release_action": "block_release_or_rollback",
+        "rollback_response": "rollback_required",
+        "requires_rollback": true
+      },
+      "signal_ok": true,
+      "signal_failures": [],
+      "alert": "GKEAIInferenceDependencyErrorBudgetBurn",
+      "alert_severity": "page",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#dependency_timeout",
+      "response_route_known": true,
+      "response_owner": "Feature platform / dependency owner",
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true,
+      "response_rollback_type": "rollback_required",
+      "rollback_drill_type": "rollback_required",
+      "rollback_within_rto": true,
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "dependency_contract": {
+        "name": "feature_store",
+        "scenario": "dependency_timeout",
+        "owner": "Feature platform / dependency owner",
+        "alert_severity": "page",
+        "release_action": "block_release_or_rollback",
+        "rollback_response": "rollback_required"
+      }
+    },
+    {
+      "name": "canary_version_probe",
+      "scenario": "rollout_regression",
+      "probe_type": "canary",
+      "dependency": "model_runtime",
+      "observed": {
+        "p95_ms": 455,
+        "errors": 2,
+        "cache_miss_rate": 0.43,
+        "telemetry_loss_rate": 0.0,
+        "collector_queue_pressure": "normal",
+        "service_version": "v2",
+        "model_variant": "recommender-v2"
+      },
+      "expected": {
+        "alert_severity": "page",
+        "release_action": "block_release_or_rollback",
+        "rollback_response": "rollback_required",
+        "requires_rollback": true
+      },
+      "signal_ok": true,
+      "signal_failures": [],
+      "alert": "GKEAIInferenceRolloutVersionRegression",
+      "alert_severity": "page",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression",
+      "response_route_known": true,
+      "response_owner": "Service owner / release engineer",
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true,
+      "response_rollback_type": "rollback_required",
+      "rollback_drill_type": "rollback_required",
+      "rollback_within_rto": true,
+      "budget_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "dependency_contract": {
+        "name": "model_runtime",
+        "scenario": "rollout_regression",
+        "owner": "Service owner / release engineer",
+        "alert_severity": "page",
+        "release_action": "block_release_or_rollback",
+        "rollback_response": "rollback_required"
+      }
+    },
+    {
+      "name": "telemetry_delivery_probe",
+      "scenario": "collector_queue_pressure",
+      "probe_type": "telemetry",
+      "dependency": "telemetry_exporter",
+      "observed": {
+        "p95_ms": 126,
+        "errors": 0,
+        "cache_miss_rate": 0.0,
+        "telemetry_loss_rate": 0.42,
+        "collector_queue_pressure": "high",
+        "service_version": "v1",
+        "model_variant": "recommender-small"
+      },
+      "expected": {
+        "alert_severity": "page",
+        "release_action": "require_sre_review_before_rollout",
+        "rollback_response": "manual_review",
+        "requires_rollback": false
+      },
+      "signal_ok": true,
+      "signal_failures": [],
+      "alert": "GKEAICollectorTelemetryLoss",
+      "alert_severity": "page",
+      "runbook_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#collector_queue_pressure",
+      "response_route_known": true,
+      "response_owner": "Observability platform",
+      "within_ack_sla": true,
+      "within_mitigation_sla": true,
+      "within_verification_sla": true,
+      "response_rollback_type": "manual_review",
+      "rollback_drill_type": "manual_review",
+      "rollback_within_rto": true,
+      "budget_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "dependency_contract": {
+        "name": "telemetry_exporter",
+        "scenario": "collector_queue_pressure",
+        "owner": "Observability platform",
+        "alert_severity": "page",
+        "release_action": "require_sre_review_before_rollout",
+        "rollback_response": "manual_review"
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_baseline_probe",
+      "mutation": "remove_probe",
+      "probe": "baseline_readiness_probe",
+      "expected_failed_check": "probe_inventory",
+      "failed_checks": [
+        "probe_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "unhealthy_baseline_probe",
+      "mutation": "set_summary_value",
+      "probe": "baseline_readiness_probe",
+      "expected_failed_check": "signal_contract",
+      "failed_checks": [
+        "signal_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_dependency_link",
+      "mutation": "clear_probe_dependency",
+      "probe": "feature_store_timeout_probe",
+      "expected_failed_check": "dependency_contract_linkage",
+      "failed_checks": [
+        "dependency_contract_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_canary_alert_severity",
+      "mutation": "set_alert_severity",
+      "probe": "canary_version_probe",
+      "expected_failed_check": "alert_response_contract",
+      "failed_checks": [
+        "alert_response_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_canary_rollback_response",
+      "mutation": "set_rollback_response",
+      "probe": "canary_version_probe",
+      "expected_failed_check": "rollout_preflight_guard",
+      "failed_checks": [
+        "rollout_preflight_guard"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "probe_inventory",
+      "ok": true,
+      "evidence": {
+        "probe_count": 5,
+        "incident_probe_count": 4,
+        "missing_summary": []
+      }
+    },
+    {
+      "name": "signal_contract",
+      "ok": true,
+      "evidence": {
+        "failures": []
+      }
+    },
+    {
+      "name": "dependency_contract_linkage",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "alert_response_contract",
+      "ok": true,
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "rollout_preflight_guard",
+      "ok": true,
+      "evidence": {
+        "gaps": [],
+        "preflight_block_count": 2
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 5,
+        "detected_fixture_count": 5,
+        "undetected": []
+      }
+    }
+  ]
+}

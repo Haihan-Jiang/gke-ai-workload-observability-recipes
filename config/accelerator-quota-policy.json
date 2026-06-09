@@ -1,0 +1,149 @@
+{
+  "description": "Policy for proving accelerator quota fairness across AI inference tenants and candidate releases.",
+  "minimum_quota_count": 5,
+  "minimum_detected_fixtures": 7,
+  "tiers": {
+    "premium": {
+      "max_gpu_ms": 180,
+      "reserved_share": 0.55
+    },
+    "standard": {
+      "max_gpu_ms": 120,
+      "reserved_share": 0.35
+    },
+    "best_effort": {
+      "max_gpu_ms": 60,
+      "reserved_share": 0.1
+    }
+  },
+  "quotas": [
+    {
+      "name": "baseline_standard_quota",
+      "scenario": "baseline",
+      "tenant_tier": "standard",
+      "expected_cost_decision": "allow",
+      "expected_release_action": "eligible_for_release",
+      "expected_traffic_action": "no_action",
+      "requires_shadow_block": false,
+      "protect_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": []
+    },
+    {
+      "name": "cache_standard_quota",
+      "scenario": "cache_miss_storm",
+      "tenant_tier": "standard",
+      "expected_cost_decision": "allow",
+      "expected_release_action": "require_sre_review_before_rollout",
+      "expected_traffic_action": "rate_limit_retrieval",
+      "requires_shadow_block": false,
+      "protect_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ]
+    },
+    {
+      "name": "dependency_standard_quota",
+      "scenario": "dependency_timeout",
+      "tenant_tier": "standard",
+      "expected_cost_decision": "allow",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_traffic_action": "shed_best_effort",
+      "requires_shadow_block": false,
+      "protect_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ]
+    },
+    {
+      "name": "candidate_premium_quota",
+      "scenario": "rollout_regression",
+      "tenant_tier": "premium",
+      "expected_cost_decision": "block_or_review",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_traffic_action": "rollback_canary",
+      "requires_shadow_block": true,
+      "protect_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ]
+    },
+    {
+      "name": "telemetry_standard_quota",
+      "scenario": "collector_queue_pressure",
+      "tenant_tier": "standard",
+      "expected_cost_decision": "allow",
+      "expected_release_action": "require_sre_review_before_rollout",
+      "expected_traffic_action": "protect_telemetry",
+      "requires_shadow_block": false,
+      "protect_tiers": [
+        "premium",
+        "standard"
+      ],
+      "shed_tiers": [
+        "best_effort"
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_candidate_quota",
+      "mutation": "remove_quota",
+      "quota": "candidate_premium_quota",
+      "expected_failed_check": "quota_inventory"
+    },
+    {
+      "name": "standard_quota_too_low",
+      "mutation": "set_tier_max_gpu_ms",
+      "tier": "standard",
+      "max_gpu_ms": 10,
+      "expected_failed_check": "accelerator_budget_guard"
+    },
+    {
+      "name": "candidate_expected_cost_allows_overage",
+      "mutation": "set_expected_cost_decision",
+      "quota": "candidate_premium_quota",
+      "expected_cost_decision": "allow",
+      "expected_failed_check": "accelerator_budget_guard"
+    },
+    {
+      "name": "premium_not_protected",
+      "mutation": "remove_protect_tier",
+      "quota": "candidate_premium_quota",
+      "tier": "premium",
+      "expected_failed_check": "tenant_fairness_contract"
+    },
+    {
+      "name": "best_effort_not_shed",
+      "mutation": "remove_shed_tier",
+      "quota": "dependency_standard_quota",
+      "tier": "best_effort",
+      "expected_failed_check": "tenant_fairness_contract"
+    },
+    {
+      "name": "wrong_traffic_action",
+      "mutation": "set_expected_traffic_action",
+      "quota": "dependency_standard_quota",
+      "expected_traffic_action": "no_action",
+      "expected_failed_check": "load_shedding_linkage"
+    },
+    {
+      "name": "candidate_shadow_not_required",
+      "mutation": "set_requires_shadow_block",
+      "quota": "candidate_premium_quota",
+      "requires_shadow_block": false,
+      "expected_failed_check": "shadow_candidate_quota"
+    }
+  ]
+}

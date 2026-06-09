@@ -1,0 +1,132 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 7,
+  "detected_fixture_count": 7,
+  "config_file_count": 1,
+  "update_count": 1,
+  "ecosystem_count": 1,
+  "weekly_schedule_count": 1,
+  "label_count": 2,
+  "validation_term_count": 8,
+  "release_control_count": 6,
+  "updates": [
+    {
+      "package-ecosystem": "github-actions",
+      "directory": "/",
+      "schedule": {
+        "interval": "weekly",
+        "day": "monday",
+        "time": "09:00",
+        "timezone": "America/Los_Angeles"
+      },
+      "open-pull-requests-limit": 5,
+      "labels": [
+        "dependencies",
+        "maintenance"
+      ],
+      "commit-message": {
+        "prefix": "deps"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "config_file_contract",
+      "ok": true,
+      "evidence": {
+        "config_exists": true,
+        "version": 2
+      }
+    },
+    {
+      "name": "ecosystem_contract",
+      "ok": true,
+      "evidence": {
+        "update_count": 1,
+        "ecosystem_count": 1,
+        "missing_required": []
+      }
+    },
+    {
+      "name": "schedule_contract",
+      "ok": true,
+      "evidence": {
+        "weekly_schedule_count": 1,
+        "schedule_gaps": []
+      }
+    },
+    {
+      "name": "review_boundary_contract",
+      "ok": true,
+      "evidence": {
+        "label_gaps": [],
+        "pr_limit_gaps": [],
+        "prefix_gaps": [],
+        "maximum_open_pull_requests": 5
+      }
+    },
+    {
+      "name": "validation_linkage",
+      "ok": true,
+      "evidence": {
+        "validation_term_count": 8,
+        "minimum_validation_term_count": 8,
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "release_control_linkage",
+      "ok": true,
+      "evidence": {
+        "release_control_count": 6,
+        "minimum_release_control_count": 6,
+        "missing_release_controls": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 7
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_dependabot_config",
+      "expected_failed_check": "config_file_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_github_actions_update",
+      "expected_failed_check": "ecosystem_contract",
+      "detected": true
+    },
+    {
+      "name": "monthly_schedule",
+      "expected_failed_check": "schedule_contract",
+      "detected": true
+    },
+    {
+      "name": "too_many_open_prs",
+      "expected_failed_check": "review_boundary_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_dependency_label",
+      "expected_failed_check": "review_boundary_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_validation_term",
+      "expected_failed_check": "validation_linkage",
+      "detected": true
+    },
+    {
+      "name": "missing_release_control",
+      "expected_failed_check": "release_control_linkage",
+      "detected": true
+    }
+  ]
+}

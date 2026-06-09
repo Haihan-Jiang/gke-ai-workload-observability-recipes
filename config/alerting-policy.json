@@ -1,0 +1,23 @@
+{
+  "service": {
+    "name": "toy-ai-inference-api",
+    "namespace": "ai-observability-demo",
+    "team": "sre-platform"
+  },
+  "prometheus_rule": {
+    "name": "gke-ai-inference-reliability-alerts",
+    "namespace": "telemetry",
+    "group": "gke-ai-inference.rules"
+  },
+  "runbook_base_url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md",
+  "dashboard_hint": "docs/evidence/incident-dashboard.svg",
+  "scenario_coverage": [
+    "baseline",
+    "cache_miss_storm",
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "required_labels": ["severity", "team", "service", "scenario"],
+  "required_annotations": ["summary", "description", "runbook_url", "dashboard_hint"]
+}

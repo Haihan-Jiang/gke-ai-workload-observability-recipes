@@ -1,0 +1,203 @@
+{
+  "status": "pass",
+  "required_file_count": 6,
+  "present_file_count": 6,
+  "codeowner_pattern_count": 9,
+  "owned_pattern_count": 9,
+  "detected_fixture_count": 8,
+  "failed_count": 0,
+  "check_count": 6,
+  "checks": [
+    {
+      "name": "required_files",
+      "ok": true,
+      "evidence": {
+        "missing_files": [],
+        "required_files": [
+          "README.md",
+          "LICENSE",
+          "CONTRIBUTING.md",
+          "SECURITY.md",
+          ".github/CODEOWNERS",
+          "docs/release-process.md"
+        ]
+      }
+    },
+    {
+      "name": "contribution_workflow",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "security_reporting",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "release_process",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "codeowners_coverage",
+      "ok": true,
+      "evidence": {
+        "required_owner": "@Haihan-Jiang",
+        "missing_patterns": [],
+        "owner_count": 9,
+        "entries": [
+          {
+            "pattern": "*",
+            "owners": "@Haihan-Jiang"
+          },
+          {
+            "pattern": "/.github/",
+            "owners": "@Haihan-Jiang"
+          },
+          {
+            "pattern": "/scripts/",
+            "owners": "@Haihan-Jiang"
+          },
+          {
+            "pattern": "/config/",
+            "owners": "@Haihan-Jiang"
+          },
+          {
+            "pattern": "/docs/evidence/",
+            "owners": "@Haihan-Jiang"
+          },
+          {
+            "pattern": "/demo/",
+            "owners": "@Haihan-Jiang"
+          },
+          {
+            "pattern": "/k8s/",
+            "owners": "@Haihan-Jiang"
+          },
+          {
+            "pattern": "/policies/",
+            "owners": "@Haihan-Jiang"
+          },
+          {
+            "pattern": "/slos/",
+            "owners": "@Haihan-Jiang"
+          }
+        ]
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 8,
+        "minimum_detected_fixtures": 8,
+        "fixtures": [
+          {
+            "name": "missing_contributing",
+            "mutation": "remove_file",
+            "expected_failed_check": "required_files",
+            "detected": true
+          },
+          {
+            "name": "missing_security_private_channel",
+            "mutation": "remove_text",
+            "expected_failed_check": "security_reporting",
+            "detected": true
+          },
+          {
+            "name": "missing_ci_mode_validation",
+            "mutation": "remove_text",
+            "expected_failed_check": "contribution_workflow",
+            "detected": true
+          },
+          {
+            "name": "missing_release_evidence_review",
+            "mutation": "remove_text",
+            "expected_failed_check": "release_process",
+            "detected": true
+          },
+          {
+            "name": "missing_default_codeowner",
+            "mutation": "remove_line_containing",
+            "expected_failed_check": "codeowners_coverage",
+            "detected": true
+          },
+          {
+            "name": "wrong_codeowner",
+            "mutation": "replace_text",
+            "expected_failed_check": "codeowners_coverage",
+            "detected": true
+          },
+          {
+            "name": "missing_no_paid_dependency_boundary",
+            "mutation": "remove_text",
+            "expected_failed_check": "contribution_workflow",
+            "detected": true
+          },
+          {
+            "name": "missing_clean_merge_state_step",
+            "mutation": "remove_text",
+            "expected_failed_check": "release_process",
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_contributing",
+      "mutation": "remove_file",
+      "expected_failed_check": "required_files",
+      "detected": true
+    },
+    {
+      "name": "missing_security_private_channel",
+      "mutation": "remove_text",
+      "expected_failed_check": "security_reporting",
+      "detected": true
+    },
+    {
+      "name": "missing_ci_mode_validation",
+      "mutation": "remove_text",
+      "expected_failed_check": "contribution_workflow",
+      "detected": true
+    },
+    {
+      "name": "missing_release_evidence_review",
+      "mutation": "remove_text",
+      "expected_failed_check": "release_process",
+      "detected": true
+    },
+    {
+      "name": "missing_default_codeowner",
+      "mutation": "remove_line_containing",
+      "expected_failed_check": "codeowners_coverage",
+      "detected": true
+    },
+    {
+      "name": "wrong_codeowner",
+      "mutation": "replace_text",
+      "expected_failed_check": "codeowners_coverage",
+      "detected": true
+    },
+    {
+      "name": "missing_no_paid_dependency_boundary",
+      "mutation": "remove_text",
+      "expected_failed_check": "contribution_workflow",
+      "detected": true
+    },
+    {
+      "name": "missing_clean_merge_state_step",
+      "mutation": "remove_text",
+      "expected_failed_check": "release_process",
+      "detected": true
+    }
+  ]
+}

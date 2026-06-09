@@ -1,0 +1,122 @@
+{
+  "status": "pass",
+  "scenario_count": 5,
+  "production_qps": 250.0,
+  "weighted_bytes_per_request": 544.1,
+  "daily_ingest_gib": 10.95,
+  "retained_gib": 76.62,
+  "failed_count": 0,
+  "scenarios": [
+    {
+      "scenario": "baseline",
+      "requests": 8,
+      "payload_bytes": 50327,
+      "span_count": 32,
+      "bytes_per_request": 6290.88,
+      "spans_per_request": 4.0
+    },
+    {
+      "scenario": "cache_miss_storm",
+      "requests": 7,
+      "payload_bytes": 44492,
+      "span_count": 28,
+      "bytes_per_request": 6356.0,
+      "spans_per_request": 4.0
+    },
+    {
+      "scenario": "dependency_timeout",
+      "requests": 6,
+      "payload_bytes": 39980,
+      "span_count": 24,
+      "bytes_per_request": 6663.33,
+      "spans_per_request": 4.0
+    },
+    {
+      "scenario": "rollout_regression",
+      "requests": 7,
+      "payload_bytes": 45548,
+      "span_count": 28,
+      "bytes_per_request": 6506.86,
+      "spans_per_request": 4.0
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "requests": 6,
+      "payload_bytes": 41761,
+      "span_count": 24,
+      "bytes_per_request": 6960.17,
+      "spans_per_request": 4.0
+    }
+  ],
+  "checks": [
+    {
+      "name": "payload_coverage",
+      "ok": true,
+      "evidence": {
+        "scenarios": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "missing_traffic_mix": [],
+        "missing_sampling_rates": []
+      }
+    },
+    {
+      "name": "span_budget",
+      "ok": true,
+      "evidence": {
+        "max_allowed": 5,
+        "max_observed": 4.0
+      }
+    },
+    {
+      "name": "payload_size_budget",
+      "ok": true,
+      "evidence": {
+        "max_allowed": 9000,
+        "max_observed": 6960.17
+      }
+    },
+    {
+      "name": "sampling_policy",
+      "ok": true,
+      "evidence": {
+        "traffic_mix_total": 1.0,
+        "baseline_sample_rate": 0.02,
+        "incident_sample_gaps": []
+      }
+    },
+    {
+      "name": "critical_scenario_sampling",
+      "ok": true,
+      "evidence": {
+        "critical_scenarios": [
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "critical_sample_gaps": []
+      }
+    },
+    {
+      "name": "daily_ingest_budget",
+      "ok": true,
+      "evidence": {
+        "daily_ingest_gib": 10.95,
+        "max_daily_ingest_gib": 25
+      }
+    },
+    {
+      "name": "retention_budget",
+      "ok": true,
+      "evidence": {
+        "retention_days": 7,
+        "retained_gib": 76.62,
+        "max_retained_gib": 180
+      }
+    }
+  ]
+}

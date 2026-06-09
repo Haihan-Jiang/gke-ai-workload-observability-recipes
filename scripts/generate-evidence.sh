@@ -8,6 +8,11 @@ source_dir="out/evidence-source"
 payload_dir="${source_dir}/payloads"
 
 python3 demo/incident_replay.py --no-send --output-dir "${source_dir}" --payload-dir "${payload_dir}" >/dev/null
+python3 demo/replay_source_contract_audit.py \
+  --policy config/replay-source-contract-policy.json \
+  --summary "${source_dir}/summary.json" \
+  --payload-dir "${payload_dir}" \
+  --output-dir docs/evidence >/dev/null
 python3 demo/reliability_gate.py \
   --summary "${source_dir}/summary.json" \
   --slo-config config/reliability-slo.json \
@@ -31,15 +36,421 @@ python3 demo/detailed_reliability.py \
   --payload-dir "${payload_dir}" \
   --detailed-config config/detailed-reliability.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/deployment_policy.py \
+  --gate docs/evidence/reliability-gate.json \
+  --burn-rate docs/evidence/burn-rate-analysis.json \
+  --rollout-guard docs/evidence/rollout-guard.json \
+  --trace-quality docs/evidence/trace-quality-audit.json \
+  --collector-resilience docs/evidence/collector-resilience.json \
+  --hpa-lag docs/evidence/hpa-lag-analysis.json \
+  --tenant-blast-radius docs/evidence/tenant-blast-radius.json \
+  --token-cost-guard docs/evidence/token-cost-guard.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/policy_regression_suite.py \
+  --fixtures config/deployment-policy-fixtures.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/supply_chain_audit.py \
+  --policy config/supply-chain-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/oss_license_audit.py \
+  --policy config/oss-license-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/secret_hygiene_audit.py \
+  --policy config/secret-hygiene-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/sbom_inventory_audit.py \
+  --policy config/sbom-inventory-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/security_response_audit.py \
+  --policy config/security-response-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/ci_governance_audit.py \
+  --policy config/ci-governance-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/repository_governance_audit.py \
+  --policy config/repository-governance-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/developer_runtime_audit.py \
+  --policy config/developer-runtime-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/k8s_hardening_audit.py \
+  --policy config/k8s-hardening-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/pod_security_admission_audit.py \
+  --policy config/pod-security-admission-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/kubernetes_api_compatibility_audit.py \
+  --policy config/kubernetes-api-compatibility-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/private_cluster_admission_boundary_audit.py \
+  --policy config/private-cluster-admission-boundary-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/namespace_resource_audit.py \
+  --policy config/namespace-resource-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/availability_topology_audit.py \
+  --policy config/availability-topology-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/autoscaling_policy_audit.py \
+  --policy config/autoscaling-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/scheduling_placement_audit.py \
+  --policy config/scheduling-placement-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/rollout_safety_audit.py \
+  --policy config/rollout-safety-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/config_rollout_audit.py \
+  --policy config/config-rollout-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/network_boundary_audit.py \
+  --policy config/network-boundary-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/collector_self_observability_audit.py \
+  --policy config/collector-self-observability-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/telemetry_exporter_authority_audit.py \
+  --policy config/telemetry-exporter-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/telemetry_sampling_audit.py \
+  --policy config/telemetry-sampling-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/workload_identity_audit.py \
+  --policy config/workload-identity-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/admission_policy_audit.py \
+  --policy config/admission-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/alerting_rules.py \
+  --slo-config config/reliability-slo.json \
+  --policy config/alerting-policy.json \
+  --output-dir docs/evidence \
+  --manifest k8s/gke/alerting-rules.yaml >/dev/null
+python3 demo/grafana_dashboard.py \
+  --slo-config config/reliability-slo.json \
+  --alert-policy config/alerting-policy.json \
+  --dashboard-policy config/dashboard-policy.json \
+  --output-dir docs/evidence \
+  --dashboard dashboards/grafana/gke-ai-inference-reliability.json \
+  --config-map k8s/gke/grafana-dashboard-configmap.yaml >/dev/null
+python3 demo/openslo_contract.py \
+  --slo-config config/reliability-slo.json \
+  --alert-policy config/alerting-policy.json \
+  --openslo-policy config/openslo-policy.json \
+  --output-dir docs/evidence \
+  --contract slos/openslo/gke-ai-inference-slo.yaml >/dev/null
+python3 demo/observability_drift_audit.py \
+  --policy config/observability-drift-policy.json \
+  --alerting docs/evidence/alerting-rules.json \
+  --dashboard docs/evidence/grafana-dashboard.json \
+  --openslo docs/evidence/openslo-contract.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/telemetry_redaction_audit.py \
+  --summary "${source_dir}/summary.json" \
+  --payload-dir "${payload_dir}" \
+  --policy config/telemetry-redaction-policy.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/telemetry_cost_budget.py \
+  --summary "${source_dir}/summary.json" \
+  --payload-dir "${payload_dir}" \
+  --policy config/telemetry-cost-policy.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/error_budget_ledger.py \
+  --summary "${source_dir}/summary.json" \
+  --slo-config config/reliability-slo.json \
+  --openslo-policy config/openslo-policy.json \
+  --error-budget-policy config/error-budget-policy.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/rollback_drill.py \
+  --summary "${source_dir}/summary.json" \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --deployment-policy docs/evidence/deployment-policy.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --drill-policy config/rollback-drill-policy.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/post_incident_review.py \
+  --summary "${source_dir}/summary.json" \
+  --incident-correlation docs/evidence/incident-correlation.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --deployment-policy docs/evidence/deployment-policy.json \
+  --policy config/post-incident-review-policy.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/incident_response_drill.py \
+  --policy config/incident-response-policy.json \
+  --alerting docs/evidence/alerting-rules.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --incident-correlation docs/evidence/incident-correlation.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --post-incident-review docs/evidence/post-incident-review.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/dependency_contract_audit.py \
+  --policy config/dependency-contract-policy.json \
+  --summary docs/evidence/sample-summary.json \
+  --critical-path docs/evidence/critical-path-attribution.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --alerting docs/evidence/alerting-rules.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/synthetic_probe_audit.py \
+  --policy config/synthetic-probe-policy.json \
+  --summary docs/evidence/sample-summary.json \
+  --alerting docs/evidence/alerting-rules.json \
+  --dependency-contract docs/evidence/dependency-contract-audit.json \
+  --incident-response docs/evidence/incident-response-drill.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/model_release_safety_audit.py \
+  --policy config/model-release-policy.json \
+  --rollout-guard docs/evidence/rollout-guard.json \
+  --trace-quality docs/evidence/trace-quality-audit.json \
+  --token-cost docs/evidence/token-cost-guard.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/staged_telemetry_validation_audit.py \
+  --policy config/staged-telemetry-validation-policy.json \
+  --rollout-guard docs/evidence/rollout-guard.json \
+  --trace-quality docs/evidence/trace-quality-audit.json \
+  --telemetry-redaction docs/evidence/telemetry-redaction-audit.json \
+  --telemetry-cost docs/evidence/telemetry-cost-budget.json \
+  --telemetry-exporter-authority docs/evidence/telemetry-exporter-authority-audit.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/evidence_pipeline_audit.py \
+  --policy config/evidence-pipeline-policy.json \
+  --script scripts/generate-evidence.sh \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/validation_contract_audit.py \
+  --policy config/validation-contract-policy.json \
+  --repo-root . \
+  --generate-script scripts/generate-evidence.sh \
+  --validate-script scripts/validate.sh \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
+python3 demo/shadow_traffic_replay_audit.py \
+  --policy config/shadow-traffic-policy.json \
+  --summary docs/evidence/sample-summary.json \
+  --telemetry-redaction docs/evidence/telemetry-redaction-audit.json \
+  --rollout-guard docs/evidence/rollout-guard.json \
+  --token-cost docs/evidence/token-cost-guard.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/load_shedding_policy_audit.py \
+  --policy config/load-shedding-policy.json \
+  --capacity docs/evidence/capacity-plan.json \
+  --tenant-blast-radius docs/evidence/tenant-blast-radius.json \
+  --token-cost docs/evidence/token-cost-guard.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/accelerator_quota_fairness_audit.py \
+  --policy config/accelerator-quota-policy.json \
+  --capacity docs/evidence/capacity-plan.json \
+  --tenant-blast-radius docs/evidence/tenant-blast-radius.json \
+  --token-cost docs/evidence/token-cost-guard.json \
+  --load-shedding docs/evidence/load-shedding-policy-audit.json \
+  --shadow-traffic docs/evidence/shadow-traffic-replay-audit.json \
+  --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/release_waiver_governance.py \
+  --policy config/release-waiver-policy.json \
+  --waivers config/release-waivers.json \
+  --deployment-policy docs/evidence/deployment-policy.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --post-incident-review docs/evidence/post-incident-review.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/maintainer_intake_audit.py \
+  --policy config/maintainer-intake-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/architecture_decision_audit.py \
+  --policy config/architecture-decision-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/reviewer_reproducibility_audit.py \
+  --policy config/reviewer-reproducibility-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
+python3 demo/threat_model_audit.py \
+  --policy config/threat-model-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
+python3 demo/data_handling_audit.py \
+  --policy config/data-handling-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
+python3 demo/dependency_update_audit.py \
+  --policy config/dependency-update-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
+python3 demo/security_scanning_audit.py \
+  --policy config/security-scanning-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
+python3 demo/public_claim_evidence_audit.py \
+  --policy config/public-claim-evidence-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
+python3 demo/release_notes_contract_audit.py \
+  --policy config/release-notes-contract-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
+python3 demo/documentation_link_integrity_audit.py \
+  --policy config/documentation-link-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/evidence_schema_audit.py \
+  --policy config/evidence-schema-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/disaster_recovery_drill.py \
+  --repo-root . \
+  --policy config/disaster-recovery-policy.json \
+  --restore-dir out/disaster-recovery-restore \
+  --output-dir docs/evidence >/dev/null
+python3 demo/regional_failover_audit.py \
+  --policy config/regional-failover-policy.json \
+  --capacity docs/evidence/capacity-plan.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --disaster-recovery docs/evidence/disaster-recovery-drill.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --load-shedding docs/evidence/load-shedding-policy-audit.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --k8s-hardening docs/evidence/k8s-hardening-audit.json \
+  --output-dir docs/evidence >/dev/null
+python3 demo/release_control_ownership_audit.py \
+  --policy config/release-control-ownership-policy.json \
+  --release-readiness-source demo/release_readiness.py \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/evidence_provenance.py \
+  --policy config/evidence-provenance-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/proof_packet_integrity_audit.py \
+  --policy config/proof-packet-integrity-policy.json \
+  --provenance docs/evidence/evidence-provenance.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/control_traceability_audit.py \
+  --policy config/control-traceability-policy.json \
+  --release-readiness-source demo/release_readiness.py \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/release_readiness.py \
   --gate docs/evidence/reliability-gate.json \
   --capacity docs/evidence/capacity-plan.json \
   --runbooks docs/evidence/incident-runbooks.json \
   --advanced docs/evidence/complex-problems.json \
   --detailed docs/evidence/detailed-problems.json \
+  --policy docs/evidence/deployment-policy.json \
+  --policy-regression docs/evidence/policy-regression-suite.json \
+  --supply-chain docs/evidence/supply-chain-audit.json \
+  --oss-license docs/evidence/oss-license-audit.json \
+  --secret-hygiene docs/evidence/secret-hygiene-audit.json \
+  --sbom-inventory docs/evidence/sbom-inventory-audit.json \
+  --security-response docs/evidence/security-response-audit.json \
+  --ci-governance docs/evidence/ci-governance-audit.json \
+  --repository-governance docs/evidence/repository-governance-audit.json \
+  --developer-runtime docs/evidence/developer-runtime-audit.json \
+  --k8s-hardening docs/evidence/k8s-hardening-audit.json \
+  --pod-security-admission docs/evidence/pod-security-admission-audit.json \
+  --kubernetes-api-compatibility docs/evidence/kubernetes-api-compatibility-audit.json \
+  --private-cluster-admission-boundary docs/evidence/private-cluster-admission-boundary-audit.json \
+  --namespace-resource docs/evidence/namespace-resource-audit.json \
+  --availability-topology docs/evidence/availability-topology-audit.json \
+  --autoscaling-policy docs/evidence/autoscaling-policy-audit.json \
+  --scheduling-placement docs/evidence/scheduling-placement-audit.json \
+  --rollout-safety docs/evidence/rollout-safety-audit.json \
+  --config-rollout docs/evidence/config-rollout-audit.json \
+  --network-boundary docs/evidence/network-boundary-audit.json \
+  --collector-self-observability docs/evidence/collector-self-observability-audit.json \
+  --telemetry-exporter-authority docs/evidence/telemetry-exporter-authority-audit.json \
+  --telemetry-sampling docs/evidence/telemetry-sampling-audit.json \
+  --workload-identity docs/evidence/workload-identity-audit.json \
+  --admission-policy docs/evidence/admission-policy-audit.json \
+  --alerting docs/evidence/alerting-rules.json \
+  --dashboard docs/evidence/grafana-dashboard.json \
+  --openslo docs/evidence/openslo-contract.json \
+  --telemetry-redaction docs/evidence/telemetry-redaction-audit.json \
+  --telemetry-cost docs/evidence/telemetry-cost-budget.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --post-incident-review docs/evidence/post-incident-review.json \
+  --incident-response-drill docs/evidence/incident-response-drill.json \
+  --dependency-contract docs/evidence/dependency-contract-audit.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --model-release-safety docs/evidence/model-release-safety-audit.json \
+  --staged-telemetry-validation docs/evidence/staged-telemetry-validation-audit.json \
+  --shadow-traffic-replay docs/evidence/shadow-traffic-replay-audit.json \
+  --accelerator-quota docs/evidence/accelerator-quota-fairness-audit.json \
+  --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
+  --regional-failover docs/evidence/regional-failover-audit.json \
+  --release-waiver-governance docs/evidence/release-waiver-governance.json \
+  --release-control-ownership docs/evidence/release-control-ownership-audit.json \
+  --control-traceability docs/evidence/control-traceability-audit.json \
+  --replay-source-contract docs/evidence/replay-source-contract-audit.json \
+  --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
+  --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
+  --architecture-decisions docs/evidence/architecture-decision-audit.json \
+  --reviewer-reproducibility docs/evidence/reviewer-reproducibility-audit.json \
+  --threat-model docs/evidence/threat-model-audit.json \
+  --data-handling docs/evidence/data-handling-audit.json \
+  --dependency-update docs/evidence/dependency-update-audit.json \
+  --security-scanning docs/evidence/security-scanning-audit.json \
+  --maintainer-intake docs/evidence/maintainer-intake-audit.json \
+  --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
+  --release-notes-contract docs/evidence/release-notes-contract-audit.json \
+  --observability-drift docs/evidence/observability-drift-audit.json \
+  --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
+  --evidence-schema docs/evidence/evidence-schema-audit.json \
+  --validation-contract docs/evidence/validation-contract-audit.json \
+  --evidence-provenance docs/evidence/evidence-provenance.json \
+  --proof-packet-integrity docs/evidence/proof-packet-integrity-audit.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 

@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible lab defect in local evidence, manifests, or docs.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Security issue? Do not open a public issue with exploit details. Use GitHub private vulnerability reporting.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should the lab, evidence, manifest, or documentation do?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or logs
+      description: No credentials, tokens, private customer data, or production secrets.
+      placeholder: Paste relevant local output, evidence file paths, or command logs.
+    validations:
+      required: true
+  - type: input
+    id: validation-command
+    attributes:
+      label: Validation command
+      description: Include the exact command that reproduces or validates the issue.
+      placeholder: ./scripts/validate.sh
+    validations:
+      required: true
+  - type: dropdown
+    id: boundary-check
+    attributes:
+      label: Boundary check
+      description: Confirm the issue is about the portable lab, not private production infrastructure.
+      options:
+        - Local lab evidence only
+        - Kubernetes-shaped manifest review
+        - Documentation or release evidence review
+    validations:
+      required: true

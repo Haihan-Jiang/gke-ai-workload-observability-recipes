@@ -1,0 +1,764 @@
+{
+  "status": "pass",
+  "artifact_count": 25,
+  "policy_artifact_count": 25,
+  "required_field_count": 287,
+  "required_check_count": 169,
+  "metric_contract_count": 191,
+  "array_contract_count": 59,
+  "observed_check_count": 170,
+  "detected_fixture_count": 25,
+  "failed_count": 0,
+  "check_count": 9,
+  "checks": [
+    {
+      "name": "artifact_inventory",
+      "ok": true,
+      "evidence": {
+        "missing_artifacts": [],
+        "artifact_count": 25,
+        "policy_artifact_count": 25,
+        "minimum_artifact_count": 25
+      }
+    },
+    {
+      "name": "required_fields",
+      "ok": true,
+      "evidence": {
+        "field_gaps": []
+      }
+    },
+    {
+      "name": "status_contract",
+      "ok": true,
+      "evidence": {
+        "status_gaps": []
+      }
+    },
+    {
+      "name": "value_contract",
+      "ok": true,
+      "evidence": {
+        "value_gaps": []
+      }
+    },
+    {
+      "name": "check_shape",
+      "ok": true,
+      "evidence": {
+        "check_shape_gaps": []
+      }
+    },
+    {
+      "name": "check_inventory",
+      "ok": true,
+      "evidence": {
+        "check_inventory_gaps": []
+      }
+    },
+    {
+      "name": "metric_contract",
+      "ok": true,
+      "evidence": {
+        "metric_gaps": []
+      }
+    },
+    {
+      "name": "array_contract",
+      "ok": true,
+      "evidence": {
+        "array_gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 25,
+        "minimum_detected_fixtures": 25,
+        "fixtures": [
+          {
+            "name": "missing_developer_runtime_status",
+            "artifact": "docs/evidence/developer-runtime-audit.json",
+            "mutation": "remove_field",
+            "expected_failed_check": "required_fields",
+            "failed_checks": [
+              "required_fields",
+              "status_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "invalid_ci_status",
+            "artifact": "docs/evidence/ci-governance-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "status_contract",
+            "failed_checks": [
+              "status_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "malformed_synthetic_probe_checks",
+            "artifact": "docs/evidence/synthetic-probe-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "check_shape",
+            "failed_checks": [
+              "check_shape",
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_pod_security_namespace_check",
+            "artifact": "docs/evidence/pod-security-admission-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_kubernetes_api_stable_core_check",
+            "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_exporter_authority_annotation_check",
+            "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_private_cluster_webhook_boundary_check",
+            "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_staged_telemetry_preflight_check",
+            "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_developer_runtime_make_target_count",
+            "artifact": "docs/evidence/developer-runtime-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "deployment_policy_without_decision",
+            "artifact": "docs/evidence/deployment-policy.json",
+            "mutation": "remove_field",
+            "expected_failed_check": "required_fields",
+            "failed_checks": [
+              "required_fields",
+              "value_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "model_release_without_blocked_candidate",
+            "artifact": "docs/evidence/model-release-safety-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_workload_identity_annotation_check",
+            "artifact": "docs/evidence/workload-identity-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_supply_chain_digest_count",
+            "artifact": "docs/evidence/supply-chain-audit.json",
+            "mutation": "remove_field",
+            "expected_failed_check": "required_fields",
+            "failed_checks": [
+              "required_fields",
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_k8s_hardening_container_check",
+            "artifact": "docs/evidence/k8s-hardening-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_pipeline_dependency_count",
+            "artifact": "docs/evidence/evidence-pipeline-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_validation_committed_json_check",
+            "artifact": "docs/evidence/validation-contract-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_public_claim_count",
+            "artifact": "docs/evidence/public-claim-evidence-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_release_note_field_count",
+            "artifact": "docs/evidence/release-notes-contract-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_maintainer_issue_template_count",
+            "artifact": "docs/evidence/maintainer-intake-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_architecture_decision_count",
+            "artifact": "docs/evidence/architecture-decision-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_reviewer_command_count",
+            "artifact": "docs/evidence/reviewer-reproducibility-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_threat_model_count",
+            "artifact": "docs/evidence/threat-model-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_data_handling_class_count",
+            "artifact": "docs/evidence/data-handling-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_dependency_update_count",
+            "artifact": "docs/evidence/dependency-update-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_security_scanning_language_count",
+            "artifact": "docs/evidence/security-scanning-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_developer_runtime_status",
+      "artifact": "docs/evidence/developer-runtime-audit.json",
+      "mutation": "remove_field",
+      "expected_failed_check": "required_fields",
+      "failed_checks": [
+        "required_fields",
+        "status_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "invalid_ci_status",
+      "artifact": "docs/evidence/ci-governance-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "status_contract",
+      "failed_checks": [
+        "status_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "malformed_synthetic_probe_checks",
+      "artifact": "docs/evidence/synthetic-probe-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "check_shape",
+      "failed_checks": [
+        "check_shape",
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_pod_security_namespace_check",
+      "artifact": "docs/evidence/pod-security-admission-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_kubernetes_api_stable_core_check",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_exporter_authority_annotation_check",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_private_cluster_webhook_boundary_check",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_staged_telemetry_preflight_check",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_developer_runtime_make_target_count",
+      "artifact": "docs/evidence/developer-runtime-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "deployment_policy_without_decision",
+      "artifact": "docs/evidence/deployment-policy.json",
+      "mutation": "remove_field",
+      "expected_failed_check": "required_fields",
+      "failed_checks": [
+        "required_fields",
+        "value_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "model_release_without_blocked_candidate",
+      "artifact": "docs/evidence/model-release-safety-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_workload_identity_annotation_check",
+      "artifact": "docs/evidence/workload-identity-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_supply_chain_digest_count",
+      "artifact": "docs/evidence/supply-chain-audit.json",
+      "mutation": "remove_field",
+      "expected_failed_check": "required_fields",
+      "failed_checks": [
+        "required_fields",
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_k8s_hardening_container_check",
+      "artifact": "docs/evidence/k8s-hardening-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_pipeline_dependency_count",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_validation_committed_json_check",
+      "artifact": "docs/evidence/validation-contract-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_public_claim_count",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_release_note_field_count",
+      "artifact": "docs/evidence/release-notes-contract-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_maintainer_issue_template_count",
+      "artifact": "docs/evidence/maintainer-intake-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_architecture_decision_count",
+      "artifact": "docs/evidence/architecture-decision-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_reviewer_command_count",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_threat_model_count",
+      "artifact": "docs/evidence/threat-model-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_data_handling_class_count",
+      "artifact": "docs/evidence/data-handling-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_dependency_update_count",
+      "artifact": "docs/evidence/dependency-update-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "low_security_scanning_language_count",
+      "artifact": "docs/evidence/security-scanning-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/evidence/evidence-pipeline-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 5
+    },
+    {
+      "path": "docs/evidence/validation-contract-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 7
+    },
+    {
+      "path": "docs/evidence/developer-runtime-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 7
+    },
+    {
+      "path": "docs/evidence/repository-governance-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/ci-governance-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
+    },
+    {
+      "path": "docs/evidence/pod-security-admission-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/kubernetes-api-compatibility-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/telemetry-exporter-authority-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
+    },
+    {
+      "path": "docs/evidence/synthetic-probe-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/model-release-safety-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
+    },
+    {
+      "path": "docs/evidence/staged-telemetry-validation-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 7
+    },
+    {
+      "path": "docs/evidence/deployment-policy.json",
+      "present": true,
+      "status": "generated",
+      "check_count": null
+    },
+    {
+      "path": "docs/evidence/supply-chain-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/k8s-hardening-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 11
+    },
+    {
+      "path": "docs/evidence/workload-identity-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
+    },
+    {
+      "path": "docs/evidence/public-claim-evidence-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/release-notes-contract-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 7
+    },
+    {
+      "path": "docs/evidence/maintainer-intake-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
+    },
+    {
+      "path": "docs/evidence/architecture-decision-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/reviewer-reproducibility-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/threat-model-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
+    },
+    {
+      "path": "docs/evidence/data-handling-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
+    },
+    {
+      "path": "docs/evidence/dependency-update-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 7
+    },
+    {
+      "path": "docs/evidence/security-scanning-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 9
+    }
+  ]
+}

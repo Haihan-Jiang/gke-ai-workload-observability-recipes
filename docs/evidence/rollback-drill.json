@@ -1,0 +1,254 @@
+{
+  "status": "pass",
+  "rto_minutes": 15,
+  "rpo_minutes": 5,
+  "deployment_decision": "block_production_promotion",
+  "drill_count": 4,
+  "rollback_required_count": 2,
+  "manual_review_count": 2,
+  "failed_count": 0,
+  "required_evidence": [
+    "deployment-policy.json",
+    "error-budget-ledger.json",
+    "incident-runbooks.json",
+    "alerting-rules.md",
+    "grafana-dashboard.md"
+  ],
+  "drills": [
+    {
+      "scenario": "cache_miss_storm",
+      "response_type": "manual_review",
+      "owner_role": "retrieval_owner",
+      "owner": "Inference platform / retrieval owner",
+      "rto_minutes": 15,
+      "rpo_minutes": 5,
+      "completion_minutes": 12,
+      "within_rto": true,
+      "release_action": "require_sre_review_before_rollout",
+      "budget_decision": "manual_review_required",
+      "runbook_owner": "Inference platform / retrieval owner",
+      "signals": {
+        "p95_ms": 251,
+        "error_rate": 0.0,
+        "telemetry_loss_rate": 0.0,
+        "service_version": "v1"
+      },
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 3,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 9,
+          "phase": "mitigate",
+          "action": "hold rollout, warm the retrieval cache, and reduce cache churn before resuming traffic expansion"
+        },
+        {
+          "minute": 12,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ]
+    },
+    {
+      "scenario": "dependency_timeout",
+      "response_type": "rollback_required",
+      "owner_role": "dependency_owner",
+      "owner": "Feature platform / dependency owner",
+      "rto_minutes": 15,
+      "rpo_minutes": 5,
+      "completion_minutes": 13,
+      "within_rto": true,
+      "release_action": "block_release_or_rollback",
+      "budget_decision": "budget_exhausted",
+      "runbook_owner": "Feature platform / dependency owner",
+      "signals": {
+        "p95_ms": 1320,
+        "error_rate": 0.5,
+        "telemetry_loss_rate": 0.0,
+        "service_version": "v1"
+      },
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 2,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 9,
+          "phase": "mitigate",
+          "action": "fail closed with fallback features, cap retries, and page the dependency owner before allowing production promotion"
+        },
+        {
+          "minute": 13,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ]
+    },
+    {
+      "scenario": "rollout_regression",
+      "response_type": "rollback_required",
+      "owner_role": "release_owner",
+      "owner": "Service owner / release engineer",
+      "rto_minutes": 15,
+      "rpo_minutes": 5,
+      "completion_minutes": 11,
+      "within_rto": true,
+      "release_action": "block_release_or_rollback",
+      "budget_decision": "budget_exhausted",
+      "runbook_owner": "Service owner / release engineer",
+      "signals": {
+        "p95_ms": 455,
+        "error_rate": 0.29,
+        "telemetry_loss_rate": 0.0,
+        "service_version": "v2"
+      },
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 2,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 7,
+          "phase": "mitigate",
+          "action": "rollback the candidate version or shift traffic back to the stable service version"
+        },
+        {
+          "minute": 11,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ]
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "response_type": "manual_review",
+      "owner_role": "observability_owner",
+      "owner": "Observability platform",
+      "rto_minutes": 15,
+      "rpo_minutes": 5,
+      "completion_minutes": 14,
+      "within_rto": true,
+      "release_action": "require_sre_review_before_rollout",
+      "budget_decision": "manual_review_required",
+      "runbook_owner": "Observability platform",
+      "signals": {
+        "p95_ms": 126,
+        "error_rate": 0.0,
+        "telemetry_loss_rate": 0.42,
+        "service_version": "v1"
+      },
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 4,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 10,
+          "phase": "mitigate",
+          "action": "protect persistent collector queues, reduce exporter pressure, and verify telemetry delivery before trusting dashboards"
+        },
+        {
+          "minute": 14,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "scenario_coverage",
+      "ok": true,
+      "evidence": {
+        "configured": [
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "missing_summary": [],
+        "missing_budget": []
+      }
+    },
+    {
+      "name": "runbook_linkage",
+      "ok": true,
+      "evidence": {
+        "missing_runbooks": []
+      }
+    },
+    {
+      "name": "rollback_path",
+      "ok": true,
+      "evidence": {
+        "rollback_required": [
+          "dependency_timeout",
+          "rollout_regression"
+        ]
+      }
+    },
+    {
+      "name": "manual_review_path",
+      "ok": true,
+      "evidence": {
+        "manual_review": [
+          "cache_miss_storm",
+          "collector_queue_pressure"
+        ]
+      }
+    },
+    {
+      "name": "rto_coverage",
+      "ok": true,
+      "evidence": {
+        "rto_minutes": 15,
+        "completion_minutes": {
+          "cache_miss_storm": 12,
+          "dependency_timeout": 13,
+          "rollout_regression": 11,
+          "collector_queue_pressure": 14
+        }
+      }
+    },
+    {
+      "name": "owner_coverage",
+      "ok": true,
+      "evidence": {
+        "missing_owner_roles": []
+      }
+    },
+    {
+      "name": "release_policy_linkage",
+      "ok": true,
+      "evidence": {
+        "deployment_decision": "block_production_promotion",
+        "error_budget_status": "pass"
+      }
+    }
+  ]
+}

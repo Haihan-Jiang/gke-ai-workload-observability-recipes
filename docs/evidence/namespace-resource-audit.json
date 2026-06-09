@@ -1,0 +1,210 @@
+{
+  "status": "pass",
+  "namespace_count": 2,
+  "check_count": 8,
+  "detected_fixture_count": 8,
+  "failed_count": 0,
+  "namespaces": [
+    {
+      "namespace": "telemetry",
+      "role": "telemetry",
+      "resource_quota": "telemetry-resource-quota",
+      "limit_range": "telemetry-limit-range",
+      "usage": {
+        "pods": 1,
+        "requests.cpu": 100,
+        "requests.memory": 256,
+        "limits.cpu": 500,
+        "limits.memory": 512,
+        "persistentvolumeclaims": 1,
+        "requests.storage": 5120,
+        "services": 1,
+        "configmaps": 1
+      },
+      "hard": {
+        "pods": "10",
+        "requests.cpu": "1",
+        "requests.memory": "1Gi",
+        "limits.cpu": "2",
+        "limits.memory": "2Gi",
+        "persistentvolumeclaims": "2",
+        "requests.storage": "10Gi",
+        "services": "4",
+        "configmaps": "8"
+      }
+    },
+    {
+      "namespace": "ai-observability-demo",
+      "role": "workload",
+      "resource_quota": "ai-workload-resource-quota",
+      "limit_range": "ai-workload-limit-range",
+      "usage": {
+        "pods": 2,
+        "requests.cpu": 100,
+        "requests.memory": 128,
+        "limits.cpu": 500,
+        "limits.memory": 512,
+        "persistentvolumeclaims": 0,
+        "services": 1,
+        "configmaps": 0
+      },
+      "hard": {
+        "pods": "12",
+        "requests.cpu": "2",
+        "requests.memory": "2Gi",
+        "limits.cpu": "4",
+        "limits.memory": "4Gi",
+        "services": "4",
+        "configmaps": "6"
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "missing_telemetry_quota",
+      "mutation": "remove_resource_quota",
+      "expected_failed_check": "namespace_resource_quota",
+      "failed_checks": [
+        "namespace_resource_quota"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_workload_limit_range",
+      "mutation": "remove_limit_range",
+      "expected_failed_check": "namespace_limit_range",
+      "failed_checks": [
+        "namespace_limit_range",
+        "container_defaulting"
+      ],
+      "detected": true
+    },
+    {
+      "name": "telemetry_cpu_quota_too_low",
+      "mutation": "set_quota",
+      "expected_failed_check": "quota_covers_workloads",
+      "failed_checks": [
+        "quota_covers_workloads"
+      ],
+      "detected": true
+    },
+    {
+      "name": "workload_memory_quota_too_low",
+      "mutation": "set_quota",
+      "expected_failed_check": "quota_covers_workloads",
+      "failed_checks": [
+        "quota_covers_workloads"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_quota_services_key",
+      "mutation": "remove_quota_key",
+      "expected_failed_check": "namespace_resource_quota",
+      "failed_checks": [
+        "namespace_resource_quota"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_container_default_request",
+      "mutation": "remove_limit_field",
+      "expected_failed_check": "container_defaulting",
+      "failed_checks": [
+        "container_defaulting"
+      ],
+      "detected": true
+    },
+    {
+      "name": "limit_range_max_below_default",
+      "mutation": "set_limit_field",
+      "expected_failed_check": "limit_range_sane_bounds",
+      "failed_checks": [
+        "limit_range_sane_bounds"
+      ],
+      "detected": true
+    },
+    {
+      "name": "namespace_missing_owner_label",
+      "mutation": "remove_namespace_label",
+      "expected_failed_check": "namespace_governance_labels",
+      "failed_checks": [
+        "namespace_governance_labels"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "namespace_inventory",
+      "status": "pass",
+      "reason": "Policy covers the expected telemetry and workload namespaces.",
+      "evidence": {
+        "namespace_count": 2,
+        "namespaces": [
+          "ai-observability-demo",
+          "telemetry"
+        ]
+      }
+    },
+    {
+      "name": "namespace_governance_labels",
+      "status": "pass",
+      "reason": "Namespaces carry ownership labels used by admission and cost/governance selection.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "namespace_resource_quota",
+      "status": "pass",
+      "reason": "Every namespace has ResourceQuota with required compute, memory, object, and storage keys.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "quota_covers_workloads",
+      "status": "pass",
+      "reason": "ResourceQuota hard limits cover current Deployment resource requests and limits with configured headroom.",
+      "evidence": {
+        "headroom_ratio": 1.2,
+        "gaps": []
+      }
+    },
+    {
+      "name": "namespace_limit_range",
+      "status": "pass",
+      "reason": "Every namespace has a container LimitRange.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "container_defaulting",
+      "status": "pass",
+      "reason": "LimitRanges define default requests, defaults, minimums, and maximums for CPU and memory.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "limit_range_sane_bounds",
+      "status": "pass",
+      "reason": "LimitRange min/defaultRequest/default/max values are ordered for CPU and memory.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove quota, limit range, coverage, bounds, and label drift is detected.",
+      "evidence": {
+        "fixture_count": 8,
+        "detected_fixture_count": 8,
+        "undetected": []
+      }
+    }
+  ]
+}

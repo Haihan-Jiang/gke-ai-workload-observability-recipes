@@ -1,0 +1,235 @@
+{
+  "description": "Policy for auditing that the lab has an evidence-backed threat model and risk register tied to release controls.",
+  "required_files": [
+    "README.md",
+    "docs/threat-model.md",
+    "docs/industry-map.md",
+    "SECURITY.md",
+    "docs/release-process.md"
+  ],
+  "threat_model_surface": "docs/threat-model.md",
+  "required_sections": [
+    "## Scope and Assets",
+    "## Trust Boundaries",
+    "## Risk Register",
+    "## Release Gate Bindings",
+    "## Review Cadence"
+  ],
+  "required_assets": [
+    "A1: incident replay traces",
+    "A2: AI inference request metadata",
+    "A3: telemetry exporter credentials and identity",
+    "A4: Kubernetes admission controls",
+    "A5: model release artifacts",
+    "A6: committed evidence packet"
+  ],
+  "required_trust_boundaries": [
+    "TB-01: Local replay to committed evidence boundary",
+    "TB-02: Workload namespace to telemetry collector boundary",
+    "TB-03: Telemetry export boundary",
+    "TB-04: Admission control boundary",
+    "TB-05: Public repository review boundary",
+    "TB-06: Model rollout promotion boundary"
+  ],
+  "minimum_required_file_count": 5,
+  "minimum_asset_count": 6,
+  "minimum_trust_boundary_count": 6,
+  "minimum_threat_count": 6,
+  "minimum_mitigation_count": 19,
+  "minimum_residual_risk_count": 6,
+  "minimum_owner_count": 6,
+  "minimum_evidence_link_count": 19,
+  "minimum_release_control_count": 19,
+  "minimum_detected_fixtures": 7,
+  "threats": [
+    {
+      "id": "TM-01",
+      "title": "Unauthorized telemetry export route",
+      "owner": "security-review",
+      "residual_risk": "Residual risk: low after exporter authority, identity binding, and network",
+      "required_terms": [
+        "authoritative upstream exporter",
+        "bounded local debug export",
+        "queued retry delivery",
+        "workload identity binding",
+        "namespace egress restrictions"
+      ],
+      "evidence_links": [
+        "docs/evidence/telemetry-exporter-authority-audit.md",
+        "docs/evidence/network-boundary-audit.md",
+        "docs/evidence/workload-identity-audit.md"
+      ],
+      "release_controls": [
+        "telemetry_exporter_authority_audit",
+        "network_boundary_audit",
+        "workload_identity_audit"
+      ]
+    },
+    {
+      "id": "TM-02",
+      "title": "Admission bypass or private cluster webhook dependency",
+      "owner": "security-review",
+      "residual_risk": "Residual risk: low after native admission controls and private-cluster",
+      "required_terms": [
+        "restricted Pod Security Admission",
+        "native admission policy",
+        "fail-closed admission binding",
+        "optional operator skip paths"
+      ],
+      "evidence_links": [
+        "docs/evidence/pod-security-admission-audit.md",
+        "docs/evidence/admission-policy-audit.md",
+        "docs/evidence/private-cluster-admission-boundary-audit.md"
+      ],
+      "release_controls": [
+        "pod_security_admission_audit",
+        "admission_policy_audit",
+        "private_cluster_admission_boundary_audit"
+      ]
+    },
+    {
+      "id": "TM-03",
+      "title": "Prompt/response leakage through telemetry",
+      "owner": "security-review",
+      "residual_risk": "Residual risk: low after redaction, replay contract, and secret-hygiene",
+      "required_terms": [
+        "telemetry redaction",
+        "replay source contract checks",
+        "secret hygiene scanning",
+        "safe model and tenant labels",
+        "no prompt/response storage"
+      ],
+      "evidence_links": [
+        "docs/evidence/telemetry-redaction-audit.md",
+        "docs/evidence/replay-source-contract-audit.md",
+        "docs/evidence/secret-hygiene-audit.md"
+      ],
+      "release_controls": [
+        "telemetry_redaction_audit",
+        "replay_source_contract_audit",
+        "secret_hygiene_audit"
+      ]
+    },
+    {
+      "id": "TM-04",
+      "title": "Supply chain image drift or unapproved runtime",
+      "owner": "security-review",
+      "residual_risk": "Residual risk: low after image pinning, SBOM inventory, and license review.",
+      "required_terms": [
+        "digest-pinned images",
+        "approved action inventory",
+        "CycloneDX-style SBOM inventory",
+        "Apache-2.0 license and NOTICE coverage",
+        "source-file traceability"
+      ],
+      "evidence_links": [
+        "docs/evidence/supply-chain-audit.md",
+        "docs/evidence/sbom-inventory-audit.md",
+        "docs/evidence/oss-license-audit.md"
+      ],
+      "release_controls": [
+        "supply_chain_audit",
+        "sbom_inventory_audit",
+        "oss_license_audit"
+      ]
+    },
+    {
+      "id": "TM-05",
+      "title": "Model rollout causes unsafe capacity or tenant impact",
+      "owner": "mlops-release",
+      "residual_risk": "Residual risk: medium until real tenant traffic and capacity telemetry",
+      "required_terms": [
+        "model release safety",
+        "accelerator quota fairness",
+        "load-shedding policy",
+        "tenant blast-radius checks",
+        "rollback evidence"
+      ],
+      "evidence_links": [
+        "docs/evidence/model-release-safety-audit.md",
+        "docs/evidence/accelerator-quota-fairness-audit.md",
+        "docs/evidence/load-shedding-policy-audit.md"
+      ],
+      "release_controls": [
+        "model_release_safety_audit",
+        "accelerator_quota_fairness_audit",
+        "load_shedding_policy_audit"
+      ]
+    },
+    {
+      "id": "TM-06",
+      "title": "Evidence packet tampering or stale proof",
+      "owner": "release-evidence",
+      "residual_risk": "Residual risk: low after current-head provenance and proof-packet checks.",
+      "required_terms": [
+        "evidence provenance",
+        "proof packet integrity",
+        "validation contract checks",
+        "control traceability",
+        "CI-mode committed evidence drift checks"
+      ],
+      "evidence_links": [
+        "docs/evidence/evidence-provenance.md",
+        "docs/evidence/proof-packet-integrity-audit.md",
+        "docs/evidence/validation-contract-audit.md",
+        "docs/evidence/control-traceability-audit.md"
+      ],
+      "release_controls": [
+        "evidence_provenance",
+        "proof_packet_integrity_audit",
+        "validation_contract_audit",
+        "control_traceability_audit"
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_threat_model_document",
+      "mutation": "remove_file",
+      "path": "docs/threat-model.md",
+      "expected_failed_check": "required_files"
+    },
+    {
+      "name": "missing_telemetry_export_boundary",
+      "mutation": "remove_text",
+      "path": "docs/threat-model.md",
+      "text": "TB-03: Telemetry export boundary",
+      "expected_failed_check": "scope_boundary_contract"
+    },
+    {
+      "name": "missing_prompt_leakage_threat",
+      "mutation": "remove_text",
+      "path": "docs/threat-model.md",
+      "text": "TM-03: Prompt/response leakage through telemetry",
+      "expected_failed_check": "threat_register_contract"
+    },
+    {
+      "name": "missing_tailored_mitigation",
+      "mutation": "remove_text",
+      "path": "docs/threat-model.md",
+      "text": "telemetry redaction",
+      "expected_failed_check": "mitigation_contract"
+    },
+    {
+      "name": "missing_redaction_evidence_link",
+      "mutation": "remove_text",
+      "path": "docs/threat-model.md",
+      "text": "docs/evidence/telemetry-redaction-audit.md",
+      "expected_failed_check": "evidence_linkage"
+    },
+    {
+      "name": "missing_identity_release_control",
+      "mutation": "remove_text",
+      "path": "docs/threat-model.md",
+      "text": "workload_identity_audit",
+      "expected_failed_check": "release_control_linkage"
+    },
+    {
+      "name": "missing_residual_risk_statement",
+      "mutation": "remove_text",
+      "path": "docs/threat-model.md",
+      "text": "Residual risk: low after redaction, replay contract, and secret-hygiene",
+      "expected_failed_check": "residual_risk_contract"
+    }
+  ]
+}

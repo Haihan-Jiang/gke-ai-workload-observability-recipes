@@ -1,0 +1,133 @@
+{
+  "description": "Policy for auditing Kubernetes Deployment rollout safety for the collector and sample AI inference workload.",
+  "target_manifests": [
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "required_labels": [
+    "app.kubernetes.io/name",
+    "app.kubernetes.io/part-of"
+  ],
+  "workloads": [
+    {
+      "name": "otel-collector",
+      "namespace": "telemetry",
+      "kind": "Deployment",
+      "pdb": "otel-collector",
+      "mode": "singleton_recreate",
+      "expected_strategy": "Recreate",
+      "min_ready_seconds": 10,
+      "min_progress_deadline_seconds": 120,
+      "min_termination_grace_seconds": 60,
+      "requires_pvc_queue": true,
+      "pvc": "otel-collector-queue"
+    },
+    {
+      "name": "toy-ai-inference-api",
+      "namespace": "ai-observability-demo",
+      "kind": "Deployment",
+      "pdb": "toy-ai-inference-api",
+      "mode": "rolling_ha",
+      "expected_strategy": "RollingUpdate",
+      "max_unavailable": 0,
+      "max_surge": 1,
+      "min_ready_seconds": 10,
+      "min_progress_deadline_seconds": 120,
+      "min_termination_grace_seconds": 30
+    }
+  ],
+  "minimum_detected_fixtures": 12,
+  "fixtures": [
+    {
+      "name": "sample_strategy_recreate",
+      "mutation": "set_strategy_type",
+      "workload": "toy-ai-inference-api",
+      "strategy": "Recreate",
+      "expected_failed_check": "rolling_update_strategy"
+    },
+    {
+      "name": "sample_allows_unavailable_pod",
+      "mutation": "set_rolling_value",
+      "workload": "toy-ai-inference-api",
+      "field": "maxUnavailable",
+      "value": 1,
+      "expected_failed_check": "rolling_update_availability"
+    },
+    {
+      "name": "sample_missing_surge_capacity",
+      "mutation": "remove_rolling_value",
+      "workload": "toy-ai-inference-api",
+      "field": "maxSurge",
+      "expected_failed_check": "rolling_update_availability"
+    },
+    {
+      "name": "sample_min_ready_zero",
+      "mutation": "set_deployment_field",
+      "workload": "toy-ai-inference-api",
+      "field": "minReadySeconds",
+      "value": 0,
+      "expected_failed_check": "rollout_timing"
+    },
+    {
+      "name": "sample_progress_deadline_short",
+      "mutation": "set_deployment_field",
+      "workload": "toy-ai-inference-api",
+      "field": "progressDeadlineSeconds",
+      "value": 30,
+      "expected_failed_check": "rollout_timing"
+    },
+    {
+      "name": "sample_missing_termination_grace",
+      "mutation": "remove_pod_spec_field",
+      "workload": "toy-ai-inference-api",
+      "field": "terminationGracePeriodSeconds",
+      "expected_failed_check": "termination_drain_window"
+    },
+    {
+      "name": "collector_rolling_update_with_pvc",
+      "mutation": "set_strategy_type",
+      "workload": "otel-collector",
+      "strategy": "RollingUpdate",
+      "expected_failed_check": "singleton_recreate_strategy"
+    },
+    {
+      "name": "collector_missing_queue_pvc",
+      "mutation": "remove_pvc_volume",
+      "workload": "otel-collector",
+      "pvc": "otel-collector-queue",
+      "expected_failed_check": "singleton_queue_alignment"
+    },
+    {
+      "name": "collector_short_termination_grace",
+      "mutation": "set_pod_spec_field",
+      "workload": "otel-collector",
+      "field": "terminationGracePeriodSeconds",
+      "value": 10,
+      "expected_failed_check": "termination_drain_window"
+    },
+    {
+      "name": "missing_deployment_owner_label",
+      "mutation": "remove_owner_label",
+      "workload": "toy-ai-inference-api",
+      "kind": "Deployment",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "rollout_label_governance"
+    },
+    {
+      "name": "sample_pdb_min_equals_replicas",
+      "mutation": "set_pdb_field",
+      "workload": "toy-ai-inference-api",
+      "field": "minAvailable",
+      "value": 2,
+      "expected_failed_check": "pdb_rollout_alignment"
+    },
+    {
+      "name": "collector_pdb_allows_eviction",
+      "mutation": "set_pdb_field",
+      "workload": "otel-collector",
+      "field": "minAvailable",
+      "value": 0,
+      "expected_failed_check": "pdb_rollout_alignment"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "description": "Policy for auditing GKE Workload Identity, API mount boundaries, RBAC least privilege, and static identity-material handling.",
+  "target_manifests": [
+    "k8s/gke/namespace.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "minimum_detected_fixtures": 8,
+  "workload_identity_annotation": "iam.gke.io/gcp-service-account",
+  "collector": {
+    "namespace": "telemetry",
+    "deployment": "otel-collector",
+    "service_account": "otel-collector",
+    "gcp_service_account": "otel-collector@gke-ai-inference-reliability.iam.gserviceaccount.com",
+    "cluster_role": "otel-collector-readonly",
+    "cluster_role_binding": "otel-collector-readonly",
+    "config_map": "otel-collector-config",
+    "requires_service_account_token": true
+  },
+  "workload": {
+    "namespace": "ai-observability-demo",
+    "deployment": "toy-ai-inference-api",
+    "service_account": "toy-ai-inference-api",
+    "requires_service_account_token": false
+  },
+  "rbac": {
+    "allowed_verbs": [
+      "get",
+      "list",
+      "watch"
+    ],
+    "forbid_wildcards": true,
+    "forbidden_verbs": [
+      "*",
+      "bind",
+      "create",
+      "delete",
+      "deletecollection",
+      "escalate",
+      "impersonate",
+      "patch",
+      "update"
+    ]
+  },
+  "identity_material": {
+    "require_tls_upstream_endpoint": true,
+    "allowed_plaintext_hosts": [
+      "127.0.0.1",
+      "localhost"
+    ],
+    "forbidden_patterns": [
+      "(?i)GOOGLE_APPLICATION_CREDENTIALS",
+      "(?i)^authorization$",
+      "(?i)bearer\\s+",
+      "(?i)client_email",
+      "(?i)client_secret",
+      "(?i)password",
+      "(?i)private_key",
+      "(?i)service_account_key",
+      "(?i)api[_-]?key"
+    ]
+  },
+  "fixtures": [
+    {
+      "name": "missing_workload_identity_annotation",
+      "mutation": "remove_service_account_annotation",
+      "namespace": "telemetry",
+      "service_account": "otel-collector",
+      "expected_failed_check": "workload_identity_annotation"
+    },
+    {
+      "name": "wrong_gcp_service_account_binding",
+      "mutation": "set_service_account_annotation",
+      "namespace": "telemetry",
+      "service_account": "otel-collector",
+      "value": "default@gke-ai-inference-reliability.iam.gserviceaccount.com",
+      "expected_failed_check": "workload_identity_annotation"
+    },
+    {
+      "name": "workload_api_mount_enabled",
+      "mutation": "set_deployment_automount",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "value": true,
+      "expected_failed_check": "application_api_mount_boundary"
+    },
+    {
+      "name": "static_gcp_identity_material_added",
+      "mutation": "add_static_identity_resource",
+      "namespace": "telemetry",
+      "expected_failed_check": "static_identity_material_guard"
+    },
+    {
+      "name": "application_identity_env_added",
+      "mutation": "add_env",
+      "namespace": "ai-observability-demo",
+      "deployment": "toy-ai-inference-api",
+      "container": "app",
+      "env_name": "GOOGLE_APPLICATION_CREDENTIALS",
+      "env_value": "/var/secrets/google/key.json",
+      "expected_failed_check": "static_identity_material_guard"
+    },
+    {
+      "name": "collector_rbac_mutating_verb",
+      "mutation": "add_rbac_verb",
+      "cluster_role": "otel-collector-readonly",
+      "verb": "update",
+      "expected_failed_check": "rbac_least_privilege"
+    },
+    {
+      "name": "collector_rbac_wildcard_resource",
+      "mutation": "add_rbac_resource",
+      "cluster_role": "otel-collector-readonly",
+      "resource": "*",
+      "expected_failed_check": "rbac_least_privilege"
+    },
+    {
+      "name": "collector_binding_wrong_subject",
+      "mutation": "set_binding_subject",
+      "cluster_role_binding": "otel-collector-readonly",
+      "service_account": "default",
+      "expected_failed_check": "rbac_binding_scope"
+    },
+    {
+      "name": "insecure_upstream_endpoint",
+      "mutation": "set_upstream_endpoint",
+      "namespace": "telemetry",
+      "config_map": "otel-collector-config",
+      "endpoint": "http://otel-gateway.example.com:4318",
+      "expected_failed_check": "secure_exporter_boundary"
+    }
+  ]
+}

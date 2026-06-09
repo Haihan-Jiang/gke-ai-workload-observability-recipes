@@ -1,0 +1,1346 @@
+{
+  "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
+  "minimum_step_count": 72,
+  "minimum_dependency_count": 204,
+  "minimum_detected_fixtures": 4,
+  "required_steps": [
+    {
+      "name": "incident_replay",
+      "script": "demo/incident_replay.py"
+    },
+    {
+      "name": "replay_source_contract_audit",
+      "script": "demo/replay_source_contract_audit.py"
+    },
+    {
+      "name": "reliability_gate",
+      "script": "demo/reliability_gate.py"
+    },
+    {
+      "name": "capacity_planner",
+      "script": "demo/capacity_planner.py"
+    },
+    {
+      "name": "runbook_generator",
+      "script": "demo/runbook_generator.py"
+    },
+    {
+      "name": "advanced_reliability",
+      "script": "demo/advanced_reliability.py"
+    },
+    {
+      "name": "detailed_reliability",
+      "script": "demo/detailed_reliability.py"
+    },
+    {
+      "name": "deployment_policy",
+      "script": "demo/deployment_policy.py"
+    },
+    {
+      "name": "policy_regression_suite",
+      "script": "demo/policy_regression_suite.py"
+    },
+    {
+      "name": "supply_chain_audit",
+      "script": "demo/supply_chain_audit.py"
+    },
+    {
+      "name": "oss_license_audit",
+      "script": "demo/oss_license_audit.py"
+    },
+    {
+      "name": "secret_hygiene_audit",
+      "script": "demo/secret_hygiene_audit.py"
+    },
+    {
+      "name": "sbom_inventory_audit",
+      "script": "demo/sbom_inventory_audit.py"
+    },
+    {
+      "name": "security_response_audit",
+      "script": "demo/security_response_audit.py"
+    },
+    {
+      "name": "ci_governance_audit",
+      "script": "demo/ci_governance_audit.py"
+    },
+    {
+      "name": "repository_governance_audit",
+      "script": "demo/repository_governance_audit.py"
+    },
+    {
+      "name": "developer_runtime_audit",
+      "script": "demo/developer_runtime_audit.py"
+    },
+    {
+      "name": "k8s_hardening_audit",
+      "script": "demo/k8s_hardening_audit.py"
+    },
+    {
+      "name": "pod_security_admission_audit",
+      "script": "demo/pod_security_admission_audit.py"
+    },
+    {
+      "name": "kubernetes_api_compatibility_audit",
+      "script": "demo/kubernetes_api_compatibility_audit.py"
+    },
+    {
+      "name": "private_cluster_admission_boundary_audit",
+      "script": "demo/private_cluster_admission_boundary_audit.py"
+    },
+    {
+      "name": "namespace_resource_audit",
+      "script": "demo/namespace_resource_audit.py"
+    },
+    {
+      "name": "availability_topology_audit",
+      "script": "demo/availability_topology_audit.py"
+    },
+    {
+      "name": "autoscaling_policy_audit",
+      "script": "demo/autoscaling_policy_audit.py"
+    },
+    {
+      "name": "scheduling_placement_audit",
+      "script": "demo/scheduling_placement_audit.py"
+    },
+    {
+      "name": "rollout_safety_audit",
+      "script": "demo/rollout_safety_audit.py"
+    },
+    {
+      "name": "config_rollout_audit",
+      "script": "demo/config_rollout_audit.py"
+    },
+    {
+      "name": "network_boundary_audit",
+      "script": "demo/network_boundary_audit.py"
+    },
+    {
+      "name": "collector_self_observability_audit",
+      "script": "demo/collector_self_observability_audit.py"
+    },
+    {
+      "name": "telemetry_exporter_authority_audit",
+      "script": "demo/telemetry_exporter_authority_audit.py"
+    },
+    {
+      "name": "telemetry_sampling_audit",
+      "script": "demo/telemetry_sampling_audit.py"
+    },
+    {
+      "name": "workload_identity_audit",
+      "script": "demo/workload_identity_audit.py"
+    },
+    {
+      "name": "admission_policy_audit",
+      "script": "demo/admission_policy_audit.py"
+    },
+    {
+      "name": "alerting_rules",
+      "script": "demo/alerting_rules.py"
+    },
+    {
+      "name": "grafana_dashboard",
+      "script": "demo/grafana_dashboard.py"
+    },
+    {
+      "name": "openslo_contract",
+      "script": "demo/openslo_contract.py"
+    },
+    {
+      "name": "observability_drift_audit",
+      "script": "demo/observability_drift_audit.py"
+    },
+    {
+      "name": "telemetry_redaction_audit",
+      "script": "demo/telemetry_redaction_audit.py"
+    },
+    {
+      "name": "telemetry_cost_budget",
+      "script": "demo/telemetry_cost_budget.py"
+    },
+    {
+      "name": "error_budget_ledger",
+      "script": "demo/error_budget_ledger.py"
+    },
+    {
+      "name": "rollback_drill",
+      "script": "demo/rollback_drill.py"
+    },
+    {
+      "name": "post_incident_review",
+      "script": "demo/post_incident_review.py"
+    },
+    {
+      "name": "incident_response_drill",
+      "script": "demo/incident_response_drill.py"
+    },
+    {
+      "name": "dependency_contract_audit",
+      "script": "demo/dependency_contract_audit.py"
+    },
+    {
+      "name": "synthetic_probe_audit",
+      "script": "demo/synthetic_probe_audit.py"
+    },
+    {
+      "name": "model_release_safety_audit",
+      "script": "demo/model_release_safety_audit.py"
+    },
+    {
+      "name": "staged_telemetry_validation_audit",
+      "script": "demo/staged_telemetry_validation_audit.py"
+    },
+    {
+      "name": "evidence_pipeline_audit",
+      "script": "demo/evidence_pipeline_audit.py"
+    },
+    {
+      "name": "evidence_schema_audit",
+      "script": "demo/evidence_schema_audit.py"
+    },
+    {
+      "name": "validation_contract_audit",
+      "script": "demo/validation_contract_audit.py"
+    },
+    {
+      "name": "shadow_traffic_replay_audit",
+      "script": "demo/shadow_traffic_replay_audit.py"
+    },
+    {
+      "name": "load_shedding_policy_audit",
+      "script": "demo/load_shedding_policy_audit.py"
+    },
+    {
+      "name": "accelerator_quota_fairness_audit",
+      "script": "demo/accelerator_quota_fairness_audit.py"
+    },
+    {
+      "name": "release_waiver_governance",
+      "script": "demo/release_waiver_governance.py"
+    },
+    {
+      "name": "maintainer_intake_audit",
+      "script": "demo/maintainer_intake_audit.py"
+    },
+    {
+      "name": "architecture_decision_audit",
+      "script": "demo/architecture_decision_audit.py"
+    },
+    {
+      "name": "reviewer_reproducibility_audit",
+      "script": "demo/reviewer_reproducibility_audit.py"
+    },
+    {
+      "name": "threat_model_audit",
+      "script": "demo/threat_model_audit.py"
+    },
+    {
+      "name": "data_handling_audit",
+      "script": "demo/data_handling_audit.py"
+    },
+    {
+      "name": "dependency_update_audit",
+      "script": "demo/dependency_update_audit.py"
+    },
+    {
+      "name": "security_scanning_audit",
+      "script": "demo/security_scanning_audit.py"
+    },
+    {
+      "name": "public_claim_evidence_audit",
+      "script": "demo/public_claim_evidence_audit.py"
+    },
+    {
+      "name": "release_notes_contract_audit",
+      "script": "demo/release_notes_contract_audit.py"
+    },
+    {
+      "name": "disaster_recovery_drill",
+      "script": "demo/disaster_recovery_drill.py"
+    },
+    {
+      "name": "regional_failover_audit",
+      "script": "demo/regional_failover_audit.py"
+    },
+    {
+      "name": "release_control_ownership_audit",
+      "script": "demo/release_control_ownership_audit.py"
+    },
+    {
+      "name": "control_traceability_audit",
+      "script": "demo/control_traceability_audit.py"
+    },
+    {
+      "name": "render_incident_evidence",
+      "script": "demo/render_incident_evidence.py"
+    },
+    {
+      "name": "documentation_link_integrity_audit",
+      "script": "demo/documentation_link_integrity_audit.py"
+    },
+    {
+      "name": "evidence_provenance",
+      "script": "demo/evidence_provenance.py"
+    },
+    {
+      "name": "proof_packet_integrity_audit",
+      "script": "demo/proof_packet_integrity_audit.py"
+    },
+    {
+      "name": "release_readiness",
+      "script": "demo/release_readiness.py"
+    }
+  ],
+  "dependencies": [
+    {
+      "producer": "incident_replay",
+      "consumer": "replay_source_contract_audit",
+      "artifact": "out/evidence-source/summary.json"
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "replay_source_contract_audit",
+      "artifact": "out/evidence-source/payloads/baseline.otlp.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "reliability_gate",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "advanced_reliability",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "detailed_reliability",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "telemetry_redaction_audit",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "telemetry_cost_budget",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "reliability_gate",
+      "artifact": "out/evidence-source/summary.json"
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "capacity_planner",
+      "artifact": "out/evidence-source/summary.json"
+    },
+    {
+      "producer": "reliability_gate",
+      "consumer": "runbook_generator",
+      "artifact": "docs/evidence/reliability-gate.json"
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "advanced_reliability",
+      "artifact": "out/evidence-source/summary.json"
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "detailed_reliability",
+      "artifact": "out/evidence-source/summary.json"
+    },
+    {
+      "producer": "reliability_gate",
+      "consumer": "deployment_policy",
+      "artifact": "docs/evidence/reliability-gate.json"
+    },
+    {
+      "producer": "advanced_reliability",
+      "consumer": "deployment_policy",
+      "artifact": "docs/evidence/rollout-guard.json"
+    },
+    {
+      "producer": "detailed_reliability",
+      "consumer": "deployment_policy",
+      "artifact": "docs/evidence/hpa-lag-analysis.json"
+    },
+    {
+      "producer": "alerting_rules",
+      "consumer": "observability_drift_audit",
+      "artifact": "docs/evidence/alerting-rules.json"
+    },
+    {
+      "producer": "grafana_dashboard",
+      "consumer": "observability_drift_audit",
+      "artifact": "docs/evidence/grafana-dashboard.json"
+    },
+    {
+      "producer": "openslo_contract",
+      "consumer": "observability_drift_audit",
+      "artifact": "docs/evidence/openslo-contract.json"
+    },
+    {
+      "producer": "runbook_generator",
+      "consumer": "observability_drift_audit",
+      "artifact": "docs/evidence/incident-runbooks.json"
+    },
+    {
+      "producer": "openslo_contract",
+      "consumer": "error_budget_ledger",
+      "artifact": "docs/evidence/openslo-contract.json"
+    },
+    {
+      "producer": "runbook_generator",
+      "consumer": "rollback_drill",
+      "artifact": "docs/evidence/incident-runbooks.json"
+    },
+    {
+      "producer": "deployment_policy",
+      "consumer": "rollback_drill",
+      "artifact": "docs/evidence/deployment-policy.json"
+    },
+    {
+      "producer": "error_budget_ledger",
+      "consumer": "rollback_drill",
+      "artifact": "docs/evidence/error-budget-ledger.json"
+    },
+    {
+      "producer": "advanced_reliability",
+      "consumer": "post_incident_review",
+      "artifact": "docs/evidence/incident-correlation.json"
+    },
+    {
+      "producer": "rollback_drill",
+      "consumer": "post_incident_review",
+      "artifact": "docs/evidence/rollback-drill.json"
+    },
+    {
+      "producer": "post_incident_review",
+      "consumer": "incident_response_drill",
+      "artifact": "docs/evidence/post-incident-review.json"
+    },
+    {
+      "producer": "alerting_rules",
+      "consumer": "incident_response_drill",
+      "artifact": "docs/evidence/alerting-rules.json"
+    },
+    {
+      "producer": "detailed_reliability",
+      "consumer": "dependency_contract_audit",
+      "artifact": "docs/evidence/critical-path-attribution.json"
+    },
+    {
+      "producer": "dependency_contract_audit",
+      "consumer": "synthetic_probe_audit",
+      "artifact": "docs/evidence/dependency-contract-audit.json"
+    },
+    {
+      "producer": "incident_response_drill",
+      "consumer": "synthetic_probe_audit",
+      "artifact": "docs/evidence/incident-response-drill.json"
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "model_release_safety_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json"
+    },
+    {
+      "producer": "advanced_reliability",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/rollout-guard.json"
+    },
+    {
+      "producer": "advanced_reliability",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/trace-quality-audit.json"
+    },
+    {
+      "producer": "telemetry_redaction_audit",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/telemetry-redaction-audit.json"
+    },
+    {
+      "producer": "telemetry_cost_budget",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/telemetry-cost-budget.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json"
+    },
+    {
+      "producer": "model_release_safety_audit",
+      "consumer": "staged_telemetry_validation_audit",
+      "artifact": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "evidence_pipeline_audit",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "oss_license_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/oss-license-audit.json"
+    },
+    {
+      "producer": "secret_hygiene_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/secret-hygiene-audit.json"
+    },
+    {
+      "producer": "sbom_inventory_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/sbom-inventory-audit.json"
+    },
+    {
+      "producer": "security_response_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/security-response-audit.json"
+    },
+    {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "evidence_pipeline_audit",
+      "consumer": "validation_contract_audit",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json"
+    },
+    {
+      "producer": "developer_runtime_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/developer-runtime-audit.json"
+    },
+    {
+      "producer": "pod_security_admission_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/pod-security-admission-audit.json"
+    },
+    {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json"
+    },
+    {
+      "producer": "model_release_safety_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/validation-contract-audit.md"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "telemetry_redaction_audit",
+      "consumer": "shadow_traffic_replay_audit",
+      "artifact": "docs/evidence/telemetry-redaction-audit.json"
+    },
+    {
+      "producer": "model_release_safety_audit",
+      "consumer": "shadow_traffic_replay_audit",
+      "artifact": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "load_shedding_policy_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json"
+    },
+    {
+      "producer": "load_shedding_policy_audit",
+      "consumer": "accelerator_quota_fairness_audit",
+      "artifact": "docs/evidence/load-shedding-policy-audit.json"
+    },
+    {
+      "producer": "shadow_traffic_replay_audit",
+      "consumer": "accelerator_quota_fairness_audit",
+      "artifact": "docs/evidence/shadow-traffic-replay-audit.json"
+    },
+    {
+      "producer": "release_waiver_governance",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/release-waiver-governance.json"
+    },
+    {
+      "producer": "security_response_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/security-response-audit.json"
+    },
+    {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "evidence_schema_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/evidence-schema-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "disaster_recovery_drill",
+      "consumer": "regional_failover_audit",
+      "artifact": "docs/evidence/disaster-recovery-drill.json"
+    },
+    {
+      "producer": "load_shedding_policy_audit",
+      "consumer": "regional_failover_audit",
+      "artifact": "docs/evidence/load-shedding-policy-audit.json"
+    },
+    {
+      "producer": "regional_failover_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/regional-failover-audit.json"
+    },
+    {
+      "producer": "regional_failover_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/regional-failover-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "release_control_ownership_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "release_control_ownership_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/release-control-ownership-audit.json"
+    },
+    {
+      "producer": "evidence_schema_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/evidence-schema-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "evidence_pipeline_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json"
+    },
+    {
+      "producer": "oss_license_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/oss-license-audit.json"
+    },
+    {
+      "producer": "secret_hygiene_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/secret-hygiene-audit.json"
+    },
+    {
+      "producer": "sbom_inventory_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/sbom-inventory.json"
+    },
+    {
+      "producer": "security_response_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/security-response-audit.json"
+    },
+    {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "render_incident_evidence",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/README.md"
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json"
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json"
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json"
+    },
+    {
+      "producer": "render_incident_evidence",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/README.md"
+    },
+    {
+      "producer": "evidence_provenance",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/evidence-provenance.json"
+    },
+    {
+      "producer": "evidence_provenance",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/evidence-provenance.json"
+    },
+    {
+      "producer": "proof_packet_integrity_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/proof-packet-integrity-audit.json"
+    },
+    {
+      "producer": "proof_packet_integrity_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/proof-packet-integrity-audit.json"
+    },
+    {
+      "producer": "evidence_provenance",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/evidence-provenance.json"
+    },
+    {
+      "producer": "regional_failover_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/regional-failover-audit.json"
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json"
+    },
+    {
+      "producer": "control_traceability_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/control-traceability-audit.json"
+    },
+    {
+      "producer": "release_control_ownership_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/release-control-ownership-audit.json"
+    },
+    {
+      "producer": "oss_license_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/oss-license-audit.json"
+    },
+    {
+      "producer": "secret_hygiene_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/secret-hygiene-audit.json"
+    },
+    {
+      "producer": "sbom_inventory_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/sbom-inventory-audit.json"
+    },
+    {
+      "producer": "security_response_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/security-response-audit.json"
+    },
+    {
+      "producer": "kubernetes_api_compatibility_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "private_cluster_admission_boundary_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "disaster_recovery_drill",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/disaster-recovery-drill.json"
+    },
+    {
+      "producer": "evidence_schema_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/evidence-schema-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "replay_source_contract_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/replay-source-contract-audit.json"
+    },
+    {
+      "producer": "telemetry_redaction_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/telemetry-redaction-audit.json"
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json"
+    },
+    {
+      "producer": "model_release_safety_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "producer": "staged_telemetry_validation_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "shadow_traffic_replay_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/shadow-traffic-replay-audit.json"
+    },
+    {
+      "producer": "accelerator_quota_fairness_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/accelerator-quota-fairness-audit.json"
+    },
+    {
+      "producer": "load_shedding_policy_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/load-shedding-policy-audit.json"
+    },
+    {
+      "producer": "release_waiver_governance",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/release-waiver-governance.json"
+    },
+    {
+      "producer": "evidence_pipeline_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "maintainer_intake_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/maintainer-intake-audit.json"
+    },
+    {
+      "producer": "maintainer_intake_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/maintainer-intake-audit.md"
+    },
+    {
+      "producer": "maintainer_intake_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/maintainer-intake-audit.md"
+    },
+    {
+      "producer": "maintainer_intake_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/maintainer-intake-audit.json"
+    },
+    {
+      "producer": "maintainer_intake_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/maintainer-intake-audit.json"
+    },
+    {
+      "producer": "maintainer_intake_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/maintainer-intake-audit.json"
+    },
+    {
+      "producer": "maintainer_intake_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/maintainer-intake-audit.json"
+    },
+    {
+      "producer": "maintainer_intake_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/maintainer-intake-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json"
+    },
+    {
+      "producer": "public_claim_evidence_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/public-claim-evidence-audit.md"
+    },
+    {
+      "producer": "release_notes_contract_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/release-notes-contract-audit.md"
+    },
+    {
+      "producer": "release_notes_contract_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/release-notes-contract-audit.md"
+    },
+    {
+      "producer": "release_notes_contract_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/release-notes-contract-audit.json"
+    },
+    {
+      "producer": "release_notes_contract_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/release-notes-contract-audit.json"
+    },
+    {
+      "producer": "release_notes_contract_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/release-notes-contract-audit.json"
+    },
+    {
+      "producer": "release_notes_contract_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/release-notes-contract-audit.json"
+    },
+    {
+      "producer": "release_notes_contract_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/release-notes-contract-audit.json"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/architecture-decision-audit.json"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/architecture-decision-audit.md"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/architecture-decision-audit.md"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/architecture-decision-audit.json"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/architecture-decision-audit.json"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/architecture-decision-audit.json"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/architecture-decision-audit.json"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/architecture-decision-audit.json"
+    },
+    {
+      "producer": "architecture_decision_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/architecture-decision-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.md"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.md"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/threat-model-audit.md"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/threat-model-audit.md"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/data-handling-audit.json"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/data-handling-audit.md"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/data-handling-audit.md"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/data-handling-audit.json"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/data-handling-audit.json"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/data-handling-audit.json"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/data-handling-audit.json"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/data-handling-audit.json"
+    },
+    {
+      "producer": "data_handling_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/data-handling-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/dependency-update-audit.md"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/dependency-update-audit.md"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/security-scanning-audit.json"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/security-scanning-audit.md"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/security-scanning-audit.md"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/security-scanning-audit.json"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/security-scanning-audit.json"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/security-scanning-audit.json"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/security-scanning-audit.json"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/security-scanning-audit.json"
+    },
+    {
+      "producer": "security_scanning_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/security-scanning-audit.json"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "regional_before_disaster_recovery",
+      "mutation": "producer_after_consumer",
+      "producer": "disaster_recovery_drill",
+      "consumer": "regional_failover_audit",
+      "expected_failed_check": "dependency_order"
+    },
+    {
+      "name": "provenance_before_render_index",
+      "mutation": "producer_after_consumer",
+      "producer": "render_incident_evidence",
+      "consumer": "evidence_provenance",
+      "expected_failed_check": "dependency_order"
+    },
+    {
+      "name": "missing_release_readiness_step",
+      "mutation": "remove_step",
+      "step": "release_readiness",
+      "expected_failed_check": "step_inventory"
+    },
+    {
+      "name": "duplicate_schema_audit_step",
+      "mutation": "duplicate_step",
+      "step": "evidence_schema_audit",
+      "expected_failed_check": "step_inventory"
+    }
+  ]
+}

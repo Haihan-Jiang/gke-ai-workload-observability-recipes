@@ -1,0 +1,245 @@
+{
+  "status": "pass",
+  "document_count": 28,
+  "native_admission_resource_count": 2,
+  "webhook_configuration_count": 0,
+  "webhook_service_count": 0,
+  "optional_operator_boundary_count": 2,
+  "private_cluster_doc_count": 2,
+  "detected_fixture_count": 6,
+  "failed_count": 0,
+  "check_count": 6,
+  "admission_resources": [
+    "ValidatingAdmissionPolicy/gke-ai-inference-reliability-deployments",
+    "ValidatingAdmissionPolicyBinding/gke-ai-inference-reliability-deployments"
+  ],
+  "webhook_configurations": [],
+  "webhook_services": [],
+  "operator_workloads": [],
+  "optional_boundaries": [
+    {
+      "kind": "Instrumentation",
+      "api_group": "opentelemetry.io",
+      "manifest_present": true,
+      "api_resource_probe_present": true,
+      "skip_text_present": true,
+      "complete": true
+    },
+    {
+      "kind": "PrometheusRule",
+      "api_group": "monitoring.coreos.com",
+      "manifest_present": true,
+      "api_resource_probe_present": true,
+      "skip_text_present": true,
+      "complete": true
+    }
+  ],
+  "doc_markers": [
+    {
+      "path": "README.md",
+      "text": "Private-cluster admission boundary evidence checks",
+      "present": true
+    },
+    {
+      "path": "README.md",
+      "text": "without an admission webhook firewall",
+      "present": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "document_inventory",
+      "status": "pass",
+      "reason": "Configured Kubernetes and admission manifests are parseable and present.",
+      "evidence": {
+        "document_count": 28,
+        "minimum_document_count": 28
+      }
+    },
+    {
+      "name": "native_admission_boundary",
+      "status": "pass",
+      "reason": "Admission guardrails use native admissionregistration.k8s.io resources and avoid external webhook clientConfig dependencies.",
+      "evidence": {
+        "native_admission_resource_count": 2,
+        "webhook_configuration_count": 0,
+        "native_client_configs": [],
+        "webhook_configurations": []
+      }
+    },
+    {
+      "name": "webhook_service_boundary",
+      "status": "pass",
+      "reason": "Manifests avoid webhook/operator Service dependencies that private clusters would need firewall reachability for.",
+      "evidence": {
+        "webhook_services": [],
+        "operator_workloads": []
+      }
+    },
+    {
+      "name": "optional_operator_boundary",
+      "status": "pass",
+      "reason": "Optional operator-backed CRDs stay behind kind smoke API-resource probes and explicit skip paths.",
+      "evidence": {
+        "optional_boundaries": [
+          {
+            "kind": "Instrumentation",
+            "api_group": "opentelemetry.io",
+            "manifest_present": true,
+            "api_resource_probe_present": true,
+            "skip_text_present": true,
+            "complete": true
+          },
+          {
+            "kind": "PrometheusRule",
+            "api_group": "monitoring.coreos.com",
+            "manifest_present": true,
+            "api_resource_probe_present": true,
+            "skip_text_present": true,
+            "complete": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "private_cluster_docs",
+      "status": "pass",
+      "reason": "README production guidance states the private-cluster admission boundary and no-webhook dependency.",
+      "evidence": {
+        "doc_markers": [
+          {
+            "path": "README.md",
+            "text": "Private-cluster admission boundary evidence checks",
+            "present": true
+          },
+          {
+            "path": "README.md",
+            "text": "without an admission webhook firewall",
+            "present": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove webhook configuration, webhook service, optional operator, and documentation drift are detected.",
+      "evidence": {
+        "detected_fixture_count": 6,
+        "minimum_detected_fixtures": 6,
+        "fixtures": [
+          {
+            "name": "adds_validating_webhook_configuration",
+            "mutation": "add_validating_webhook_configuration",
+            "expected_failed_check": "native_admission_boundary",
+            "failed_checks": [
+              "native_admission_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "adds_mutating_webhook_configuration",
+            "mutation": "add_mutating_webhook_configuration",
+            "expected_failed_check": "native_admission_boundary",
+            "failed_checks": [
+              "native_admission_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "adds_admission_webhook_service",
+            "mutation": "add_webhook_service",
+            "expected_failed_check": "webhook_service_boundary",
+            "failed_checks": [
+              "webhook_service_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "adds_native_admission_client_config",
+            "mutation": "add_admission_client_config",
+            "expected_failed_check": "native_admission_boundary",
+            "failed_checks": [
+              "native_admission_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "removes_otel_operator_skip",
+            "mutation": "remove_kind_smoke_text",
+            "expected_failed_check": "optional_operator_boundary",
+            "failed_checks": [
+              "optional_operator_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "removes_private_cluster_docs",
+            "mutation": "remove_doc_text",
+            "expected_failed_check": "private_cluster_docs",
+            "failed_checks": [
+              "private_cluster_docs"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "adds_validating_webhook_configuration",
+      "mutation": "add_validating_webhook_configuration",
+      "expected_failed_check": "native_admission_boundary",
+      "failed_checks": [
+        "native_admission_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "adds_mutating_webhook_configuration",
+      "mutation": "add_mutating_webhook_configuration",
+      "expected_failed_check": "native_admission_boundary",
+      "failed_checks": [
+        "native_admission_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "adds_admission_webhook_service",
+      "mutation": "add_webhook_service",
+      "expected_failed_check": "webhook_service_boundary",
+      "failed_checks": [
+        "webhook_service_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "adds_native_admission_client_config",
+      "mutation": "add_admission_client_config",
+      "expected_failed_check": "native_admission_boundary",
+      "failed_checks": [
+        "native_admission_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "removes_otel_operator_skip",
+      "mutation": "remove_kind_smoke_text",
+      "expected_failed_check": "optional_operator_boundary",
+      "failed_checks": [
+        "optional_operator_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "removes_private_cluster_docs",
+      "mutation": "remove_doc_text",
+      "expected_failed_check": "private_cluster_docs",
+      "failed_checks": [
+        "private_cluster_docs"
+      ],
+      "detected": true
+    }
+  ]
+}

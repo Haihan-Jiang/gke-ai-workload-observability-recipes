@@ -1,0 +1,356 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gke-ai-inference-grafana-dashboard
+  namespace: telemetry
+  labels:
+    grafana_dashboard: "1"
+    app.kubernetes.io/name: "gke-ai-inference-dashboard"
+    app.kubernetes.io/part-of: "gke-ai-inference-reliability-lab"
+data:
+  gke-ai-inference-reliability.json: |
+    {
+      "uid": "gke-ai-inference-reliability",
+      "title": "GKE AI Inference Reliability Lab",
+      "tags": [
+        "gke",
+        "ai-inference",
+        "reliability",
+        "slo"
+      ],
+      "timezone": "browser",
+      "refresh": "30s",
+      "schemaVersion": 39,
+      "version": 1,
+      "editable": true,
+      "templating": {
+        "list": []
+      },
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      },
+      "panels": [
+        {
+          "id": 1,
+          "title": "p95 latency by service version",
+          "type": "timeseries",
+          "description": "Scenarios: baseline, rollout_regression",
+          "gridPos": {
+            "x": 0,
+            "y": 0,
+            "w": 12,
+            "h": 8
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "options": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "histogram_quantile(0.95, sum by (le, service_version) (rate(http_server_duration_seconds_bucket{k8s_namespace_name=\"ai-observability-demo\",service_name=\"toy-ai-inference-api\"}[5m])))",
+              "legendFormat": "p95 {{service_version}}",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "refId": "B",
+              "expr": "0.1",
+              "legendFormat": "baseline threshold",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "refId": "C",
+              "expr": "0.3",
+              "legendFormat": "rollout threshold",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "links": [
+            {
+              "title": "Runbook: baseline",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#baseline",
+              "targetBlank": true
+            },
+            {
+              "title": "Runbook: rollout_regression",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression",
+              "targetBlank": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "error rate by response class",
+          "type": "timeseries",
+          "description": "Scenarios: dependency_timeout, rollout_regression",
+          "gridPos": {
+            "x": 12,
+            "y": 0,
+            "w": 12,
+            "h": 8
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "options": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum by (http_response_status_code) (rate(http_server_duration_seconds_count{k8s_namespace_name=\"ai-observability-demo\",service_name=\"toy-ai-inference-api\",http_response_status_code=~\"5..\"}[5m])) / clamp_min(sum(rate(http_server_duration_seconds_count{k8s_namespace_name=\"ai-observability-demo\",service_name=\"toy-ai-inference-api\"}[5m])), 1)",
+              "legendFormat": "5xx error rate",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "refId": "B",
+              "expr": "0.3",
+              "legendFormat": "dependency threshold",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "links": [
+            {
+              "title": "Runbook: dependency_timeout",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#dependency_timeout",
+              "targetBlank": true
+            },
+            {
+              "title": "Runbook: rollout_regression",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression",
+              "targetBlank": true
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "cache miss ratio",
+          "type": "timeseries",
+          "description": "Scenarios: cache_miss_storm",
+          "gridPos": {
+            "x": 0,
+            "y": 8,
+            "w": 8,
+            "h": 7
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "options": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(rate(ai_inference_cache_requests_total{k8s_namespace_name=\"ai-observability-demo\",service_name=\"toy-ai-inference-api\",cache_result=\"miss\"}[5m])) / clamp_min(sum(rate(ai_inference_cache_requests_total{k8s_namespace_name=\"ai-observability-demo\",service_name=\"toy-ai-inference-api\"}[5m])), 1)",
+              "legendFormat": "cache miss ratio",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "refId": "B",
+              "expr": "0.75",
+              "legendFormat": "storm threshold",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "links": [
+            {
+              "title": "Runbook: cache_miss_storm",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#cache_miss_storm",
+              "targetBlank": true
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "collector telemetry loss",
+          "type": "timeseries",
+          "description": "Scenarios: collector_queue_pressure",
+          "gridPos": {
+            "x": 8,
+            "y": 8,
+            "w": 8,
+            "h": 7
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "options": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "sum(rate(otelcol_exporter_send_failed_spans_total[5m])) / clamp_min(sum(rate(otelcol_exporter_sent_spans_total[5m])) + sum(rate(otelcol_exporter_send_failed_spans_total[5m])), 1)",
+              "legendFormat": "telemetry loss ratio",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "refId": "B",
+              "expr": "0.25",
+              "legendFormat": "loss threshold",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "links": [
+            {
+              "title": "Runbook: collector_queue_pressure",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#collector_queue_pressure",
+              "targetBlank": true
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "active SLO alerts",
+          "type": "table",
+          "description": "Scenarios: baseline, cache_miss_storm, dependency_timeout, rollout_regression, collector_queue_pressure",
+          "gridPos": {
+            "x": 16,
+            "y": 8,
+            "w": 8,
+            "h": 7
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "options": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "ALERTS{alertstate=\"firing\",team=\"sre-platform\",service=\"toy-ai-inference-api\"}",
+              "legendFormat": "{{alertname}} {{scenario}}",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "links": [
+            {
+              "title": "Runbook: baseline",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#baseline",
+              "targetBlank": true
+            },
+            {
+              "title": "Runbook: cache_miss_storm",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#cache_miss_storm",
+              "targetBlank": true
+            },
+            {
+              "title": "Runbook: dependency_timeout",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#dependency_timeout",
+              "targetBlank": true
+            },
+            {
+              "title": "Runbook: rollout_regression",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression",
+              "targetBlank": true
+            },
+            {
+              "title": "Runbook: collector_queue_pressure",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#collector_queue_pressure",
+              "targetBlank": true
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "title": "rollout candidate p95",
+          "type": "stat",
+          "description": "Scenarios: rollout_regression",
+          "gridPos": {
+            "x": 0,
+            "y": 15,
+            "w": 8,
+            "h": 5
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "options": {},
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "histogram_quantile(0.95, sum by (le) (rate(http_server_duration_seconds_bucket{k8s_namespace_name=\"ai-observability-demo\",service_name=\"toy-ai-inference-api\",service_version=\"v2\"}[5m])))",
+              "legendFormat": "candidate v2",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "links": [
+            {
+              "title": "Runbook: rollout_regression",
+              "url": "https://github.com/Haihan-Jiang/gke-ai-workload-observability-recipes/blob/main/docs/evidence/incident-runbooks.md#rollout_regression",
+              "targetBlank": true
+            }
+          ]
+        }
+      ]
+    }

@@ -1,0 +1,237 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 8,
+  "detected_fixture_count": 7,
+  "required_file_count": 5,
+  "present_file_count": 5,
+  "asset_count": 6,
+  "trust_boundary_count": 6,
+  "threat_count": 6,
+  "mitigation_count": 29,
+  "owner_count": 6,
+  "residual_risk_count": 6,
+  "evidence_link_count": 19,
+  "existing_evidence_link_count": 19,
+  "release_control_count": 19,
+  "checks": [
+    {
+      "name": "required_files",
+      "ok": true,
+      "evidence": {
+        "missing_files": [],
+        "required_files": [
+          "README.md",
+          "docs/threat-model.md",
+          "docs/industry-map.md",
+          "SECURITY.md",
+          "docs/release-process.md"
+        ]
+      }
+    },
+    {
+      "name": "scope_boundary_contract",
+      "ok": true,
+      "evidence": {
+        "missing_sections": [],
+        "asset_count": 6,
+        "missing_assets": [],
+        "trust_boundary_count": 6,
+        "missing_trust_boundaries": []
+      }
+    },
+    {
+      "name": "threat_register_contract",
+      "ok": true,
+      "evidence": {
+        "threat_count": 6,
+        "threat_gaps": []
+      }
+    },
+    {
+      "name": "mitigation_contract",
+      "ok": true,
+      "evidence": {
+        "mitigation_count": 29,
+        "mitigation_gaps": []
+      }
+    },
+    {
+      "name": "residual_risk_contract",
+      "ok": true,
+      "evidence": {
+        "residual_risk_count": 6,
+        "owner_count": 6,
+        "residual_risk_gaps": [],
+        "owner_gaps": []
+      }
+    },
+    {
+      "name": "evidence_linkage",
+      "ok": true,
+      "evidence": {
+        "evidence_link_count": 19,
+        "existing_evidence_link_count": 19,
+        "evidence_gaps": []
+      }
+    },
+    {
+      "name": "release_control_linkage",
+      "ok": true,
+      "evidence": {
+        "release_control_count": 19,
+        "release_control_gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 7,
+        "minimum_detected_fixtures": 7,
+        "fixtures": [
+          {
+            "name": "missing_threat_model_document",
+            "mutation": "remove_file",
+            "expected_failed_check": "required_files",
+            "failed_checks": [
+              "required_files",
+              "scope_boundary_contract",
+              "threat_register_contract",
+              "mitigation_contract",
+              "residual_risk_contract",
+              "evidence_linkage",
+              "release_control_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_telemetry_export_boundary",
+            "mutation": "remove_text",
+            "expected_failed_check": "scope_boundary_contract",
+            "failed_checks": [
+              "scope_boundary_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_prompt_leakage_threat",
+            "mutation": "remove_text",
+            "expected_failed_check": "threat_register_contract",
+            "failed_checks": [
+              "threat_register_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_tailored_mitigation",
+            "mutation": "remove_text",
+            "expected_failed_check": "mitigation_contract",
+            "failed_checks": [
+              "mitigation_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_redaction_evidence_link",
+            "mutation": "remove_text",
+            "expected_failed_check": "evidence_linkage",
+            "failed_checks": [
+              "evidence_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_identity_release_control",
+            "mutation": "remove_text",
+            "expected_failed_check": "release_control_linkage",
+            "failed_checks": [
+              "release_control_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_residual_risk_statement",
+            "mutation": "remove_text",
+            "expected_failed_check": "residual_risk_contract",
+            "failed_checks": [
+              "residual_risk_contract"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_threat_model_document",
+      "mutation": "remove_file",
+      "expected_failed_check": "required_files",
+      "failed_checks": [
+        "required_files",
+        "scope_boundary_contract",
+        "threat_register_contract",
+        "mitigation_contract",
+        "residual_risk_contract",
+        "evidence_linkage",
+        "release_control_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_telemetry_export_boundary",
+      "mutation": "remove_text",
+      "expected_failed_check": "scope_boundary_contract",
+      "failed_checks": [
+        "scope_boundary_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_prompt_leakage_threat",
+      "mutation": "remove_text",
+      "expected_failed_check": "threat_register_contract",
+      "failed_checks": [
+        "threat_register_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_tailored_mitigation",
+      "mutation": "remove_text",
+      "expected_failed_check": "mitigation_contract",
+      "failed_checks": [
+        "mitigation_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_redaction_evidence_link",
+      "mutation": "remove_text",
+      "expected_failed_check": "evidence_linkage",
+      "failed_checks": [
+        "evidence_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_identity_release_control",
+      "mutation": "remove_text",
+      "expected_failed_check": "release_control_linkage",
+      "failed_checks": [
+        "release_control_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_residual_risk_statement",
+      "mutation": "remove_text",
+      "expected_failed_check": "residual_risk_contract",
+      "failed_checks": [
+        "residual_risk_contract"
+      ],
+      "detected": true
+    }
+  ]
+}

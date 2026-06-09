@@ -1,0 +1,100 @@
+{
+  "description": "Policy for proving shadow traffic replay is safe before an AI inference candidate receives production traffic.",
+  "minimum_replay_count": 2,
+  "minimum_candidate_replay_count": 1,
+  "minimum_detected_fixtures": 7,
+  "minimum_sample_requests": 100,
+  "max_shadow_percent": 10,
+  "replays": [
+    {
+      "name": "stable_baseline_shadow",
+      "scenario": "baseline",
+      "role": "stable",
+      "model_variant": "recommender-small",
+      "service_version": "v1",
+      "shadow_percent": 5,
+      "sample_requests": 1000,
+      "served_to_users": false,
+      "writes_disabled": true,
+      "side_effects_disabled": true,
+      "store_prompt": false,
+      "store_response": false,
+      "requires_redaction": true,
+      "expected_probe": "baseline_readiness_probe",
+      "expected_release_action": "eligible_for_release",
+      "expected_cost_decision": "allow",
+      "expected_rollout_decision": "promote",
+      "requires_rollback": false
+    },
+    {
+      "name": "candidate_v2_shadow",
+      "scenario": "rollout_regression",
+      "role": "candidate",
+      "model_variant": "recommender-v2",
+      "service_version": "v2",
+      "shadow_percent": 5,
+      "sample_requests": 1000,
+      "served_to_users": false,
+      "writes_disabled": true,
+      "side_effects_disabled": true,
+      "store_prompt": false,
+      "store_response": false,
+      "requires_redaction": true,
+      "expected_probe": "canary_version_probe",
+      "expected_release_action": "block_release_or_rollback",
+      "expected_cost_decision": "block_or_review",
+      "expected_rollout_decision": "rollback",
+      "requires_rollback": true
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_candidate_shadow",
+      "mutation": "remove_replay",
+      "replay": "candidate_v2_shadow",
+      "expected_failed_check": "shadow_inventory"
+    },
+    {
+      "name": "candidate_shadow_serves_users",
+      "mutation": "set_served_to_users",
+      "replay": "candidate_v2_shadow",
+      "served_to_users": true,
+      "expected_failed_check": "isolation_contract"
+    },
+    {
+      "name": "candidate_shadow_too_large",
+      "mutation": "set_shadow_percent",
+      "replay": "candidate_v2_shadow",
+      "shadow_percent": 50,
+      "expected_failed_check": "isolation_contract"
+    },
+    {
+      "name": "candidate_shadow_stores_prompt",
+      "mutation": "set_store_prompt",
+      "replay": "candidate_v2_shadow",
+      "store_prompt": true,
+      "expected_failed_check": "privacy_contract"
+    },
+    {
+      "name": "wrong_rollout_decision",
+      "mutation": "set_expected_rollout_decision",
+      "replay": "candidate_v2_shadow",
+      "expected_rollout_decision": "promote",
+      "expected_failed_check": "candidate_comparison_gate"
+    },
+    {
+      "name": "wrong_cost_decision",
+      "mutation": "set_expected_cost_decision",
+      "replay": "candidate_v2_shadow",
+      "expected_cost_decision": "allow",
+      "expected_failed_check": "cost_budget_gate"
+    },
+    {
+      "name": "wrong_candidate_probe",
+      "mutation": "set_expected_probe",
+      "replay": "candidate_v2_shadow",
+      "expected_probe": "baseline_readiness_probe",
+      "expected_failed_check": "rollback_probe_linkage"
+    }
+  ]
+}

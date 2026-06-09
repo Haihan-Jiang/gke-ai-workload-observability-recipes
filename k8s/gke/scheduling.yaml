@@ -1,0 +1,23 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: ai-telemetry-critical
+  labels:
+    app.kubernetes.io/name: ai-telemetry-critical
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+value: 900000
+globalDefault: false
+preemptionPolicy: Never
+description: "Telemetry collector priority without preempting existing cluster workloads."
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: ai-inference-serving
+  labels:
+    app.kubernetes.io/name: ai-inference-serving
+    app.kubernetes.io/part-of: gke-ai-inference-reliability-lab
+value: 800000
+globalDefault: false
+preemptionPolicy: Never
+description: "AI inference serving priority without preempting existing cluster workloads."

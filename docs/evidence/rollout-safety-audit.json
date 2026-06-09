@@ -1,0 +1,219 @@
+{
+  "status": "pass",
+  "workload_count": 2,
+  "rolling_update_count": 1,
+  "recreate_count": 1,
+  "timing_guard_count": 2,
+  "termination_window_count": 2,
+  "check_count": 9,
+  "detected_fixture_count": 12,
+  "failed_count": 0,
+  "workloads": [
+    {
+      "workload": "telemetry/otel-collector",
+      "mode": "singleton_recreate",
+      "strategy": "Recreate",
+      "timing_guarded": true,
+      "termination_window_guarded": true,
+      "min_ready_seconds": 10,
+      "progress_deadline_seconds": 180,
+      "termination_grace_seconds": 60
+    },
+    {
+      "workload": "ai-observability-demo/toy-ai-inference-api",
+      "mode": "rolling_ha",
+      "strategy": "RollingUpdate",
+      "timing_guarded": true,
+      "termination_window_guarded": true,
+      "min_ready_seconds": 10,
+      "progress_deadline_seconds": 180,
+      "termination_grace_seconds": 30
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "sample_strategy_recreate",
+      "mutation": "set_strategy_type",
+      "expected_failed_check": "rolling_update_strategy",
+      "failed_checks": [
+        "rolling_update_strategy"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_allows_unavailable_pod",
+      "mutation": "set_rolling_value",
+      "expected_failed_check": "rolling_update_availability",
+      "failed_checks": [
+        "rolling_update_availability"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_missing_surge_capacity",
+      "mutation": "remove_rolling_value",
+      "expected_failed_check": "rolling_update_availability",
+      "failed_checks": [
+        "rolling_update_availability"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_min_ready_zero",
+      "mutation": "set_deployment_field",
+      "expected_failed_check": "rollout_timing",
+      "failed_checks": [
+        "rollout_timing"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_progress_deadline_short",
+      "mutation": "set_deployment_field",
+      "expected_failed_check": "rollout_timing",
+      "failed_checks": [
+        "rollout_timing"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_missing_termination_grace",
+      "mutation": "remove_pod_spec_field",
+      "expected_failed_check": "termination_drain_window",
+      "failed_checks": [
+        "termination_drain_window"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_rolling_update_with_pvc",
+      "mutation": "set_strategy_type",
+      "expected_failed_check": "singleton_recreate_strategy",
+      "failed_checks": [
+        "singleton_recreate_strategy"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_missing_queue_pvc",
+      "mutation": "remove_pvc_volume",
+      "expected_failed_check": "singleton_queue_alignment",
+      "failed_checks": [
+        "singleton_queue_alignment"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_short_termination_grace",
+      "mutation": "set_pod_spec_field",
+      "expected_failed_check": "termination_drain_window",
+      "failed_checks": [
+        "termination_drain_window"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_deployment_owner_label",
+      "mutation": "remove_owner_label",
+      "expected_failed_check": "rollout_label_governance",
+      "failed_checks": [
+        "rollout_label_governance"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_pdb_min_equals_replicas",
+      "mutation": "set_pdb_field",
+      "expected_failed_check": "pdb_rollout_alignment",
+      "failed_checks": [
+        "pdb_rollout_alignment"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_pdb_allows_eviction",
+      "mutation": "set_pdb_field",
+      "expected_failed_check": "pdb_rollout_alignment",
+      "failed_checks": [
+        "pdb_rollout_alignment"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "rolling_update_strategy",
+      "status": "pass",
+      "reason": "HA inference workloads use RollingUpdate instead of disruptive replacement.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "rolling_update_availability",
+      "status": "pass",
+      "reason": "HA inference rollouts keep maxUnavailable at zero and reserve surge capacity.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "singleton_recreate_strategy",
+      "status": "pass",
+      "reason": "Singleton collector rollouts use Recreate to avoid RWO queue PVC multi-attach drift.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "singleton_queue_alignment",
+      "status": "pass",
+      "reason": "Singleton collector rollout policy remains aligned with PVC-backed durable queue storage.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "rollout_timing",
+      "status": "pass",
+      "reason": "Deployments define minReadySeconds and progressDeadlineSeconds so rollout failures are observable.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "termination_drain_window",
+      "status": "pass",
+      "reason": "Pods define enough termination grace for request drain and collector export shutdown.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "pdb_rollout_alignment",
+      "status": "pass",
+      "reason": "PDBs remain compatible with each workload rollout mode.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "rollout_label_governance",
+      "status": "pass",
+      "reason": "Rollout-relevant manifests carry owner labels used by review and policy tooling.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove rollout strategy, timing, termination, PDB, and label drift is detected.",
+      "evidence": {
+        "fixture_count": 12,
+        "detected_fixture_count": 12,
+        "undetected": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "description": "Policy for auditing automated dependency update governance before trusting maintenance-readiness claims.",
+  "config_path": ".github/dependabot.yml",
+  "documentation_paths": [
+    "docs/dependency-updates.md",
+    "docs/release-process.md",
+    "SECURITY.md",
+    "README.md"
+  ],
+  "required_ecosystems": [
+    {
+      "package_ecosystem": "github-actions",
+      "directory": "/",
+      "schedule_interval": "weekly"
+    }
+  ],
+  "allowed_schedule_intervals": [
+    "weekly"
+  ],
+  "minimum_update_count": 1,
+  "minimum_ecosystem_count": 1,
+  "minimum_weekly_schedule_count": 1,
+  "maximum_open_pull_requests": 5,
+  "required_labels": [
+    "dependencies",
+    "maintenance"
+  ],
+  "required_commit_prefix": "deps",
+  "minimum_validation_term_count": 8,
+  "required_validation_terms": [
+    "Dependabot",
+    "dependency update",
+    "dependencies",
+    "maintenance",
+    "./scripts/validate.sh",
+    "CI=true ./scripts/validate.sh",
+    "SBOM",
+    "supply-chain"
+  ],
+  "minimum_release_control_count": 6,
+  "required_release_controls": [
+    "dependency_update_audit",
+    "ci_governance_audit",
+    "supply_chain_audit",
+    "sbom_inventory_audit",
+    "validation_contract_audit",
+    "proof_packet_integrity_audit"
+  ],
+  "minimum_detected_fixtures": 7,
+  "fixtures": [
+    {
+      "name": "missing_dependabot_config",
+      "mutation": "remove_config",
+      "expected_failed_check": "config_file_contract"
+    },
+    {
+      "name": "missing_github_actions_update",
+      "mutation": "remove_update",
+      "ecosystem": "github-actions",
+      "expected_failed_check": "ecosystem_contract"
+    },
+    {
+      "name": "monthly_schedule",
+      "mutation": "set_schedule_interval",
+      "ecosystem": "github-actions",
+      "value": "monthly",
+      "expected_failed_check": "schedule_contract"
+    },
+    {
+      "name": "too_many_open_prs",
+      "mutation": "set_open_pull_requests_limit",
+      "ecosystem": "github-actions",
+      "value": 25,
+      "expected_failed_check": "review_boundary_contract"
+    },
+    {
+      "name": "missing_dependency_label",
+      "mutation": "remove_label",
+      "ecosystem": "github-actions",
+      "label": "dependencies",
+      "expected_failed_check": "review_boundary_contract"
+    },
+    {
+      "name": "missing_validation_term",
+      "mutation": "remove_documentation_term",
+      "term": "CI=true ./scripts/validate.sh",
+      "expected_failed_check": "validation_linkage"
+    },
+    {
+      "name": "missing_release_control",
+      "mutation": "remove_release_control",
+      "control": "proof_packet_integrity_audit",
+      "expected_failed_check": "release_control_linkage"
+    }
+  ]
+}

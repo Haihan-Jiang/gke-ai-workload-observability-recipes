@@ -1,0 +1,47 @@
+{
+  "description": "Policy for auditing release exception and waiver requests against generated reliability evidence.",
+  "audit_reference_time": "2026-06-01T12:00:00Z",
+  "max_valid_days": 14,
+  "minimum_waivers": 4,
+  "minimum_conditional_approvals": 2,
+  "minimum_denied_overrides": 2,
+  "minimum_approvers": 2,
+  "max_manual_review_traffic_percent": 10,
+  "required_fields": [
+    "id",
+    "scenario",
+    "requested_by",
+    "approvers",
+    "created_at",
+    "expires_at",
+    "reason",
+    "risk_acceptance",
+    "rollback_drill",
+    "post_incident_review",
+    "release_action",
+    "budget_acknowledgement",
+    "linked_evidence"
+  ],
+  "required_linked_evidence": [
+    "docs/evidence/deployment-policy.json",
+    "docs/evidence/error-budget-ledger.json",
+    "docs/evidence/rollback-drill.json",
+    "docs/evidence/post-incident-review.json"
+  ],
+  "manual_review_decisions": [
+    "manual_review_required"
+  ],
+  "deny_override_decisions": [
+    "budget_exhausted"
+  ],
+  "fixture_mutations": [
+    "expired",
+    "missing_approver",
+    "missing_evidence",
+    "missing_rollback_link",
+    "missing_review_link",
+    "excessive_duration",
+    "understated_budget",
+    "unknown_scenario"
+  ]
+}

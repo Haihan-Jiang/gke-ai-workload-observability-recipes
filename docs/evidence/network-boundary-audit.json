@@ -1,0 +1,258 @@
+{
+  "status": "pass",
+  "network_policy_count": 2,
+  "egress_rule_count": 2,
+  "check_count": 10,
+  "detected_fixture_count": 10,
+  "failed_count": 0,
+  "fixture_results": [
+    {
+      "name": "missing_workload_egress_policy",
+      "mutation": "remove_workload_policy",
+      "expected_failed_check": "workload_egress_policy",
+      "failed_checks": [
+        "workload_egress_policy",
+        "workload_policy_selector",
+        "workload_egress_policy_type",
+        "telemetry_egress",
+        "telemetry_ports",
+        "dns_egress",
+        "deny_unbounded_egress",
+        "network_policy_label_governance"
+      ],
+      "detected": true
+    },
+    {
+      "name": "workload_policy_wrong_selector",
+      "mutation": "set_workload_pod_selector",
+      "expected_failed_check": "workload_policy_selector",
+      "failed_checks": [
+        "workload_policy_selector"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_egress_policy_type",
+      "mutation": "remove_policy_type",
+      "expected_failed_check": "workload_egress_policy_type",
+      "failed_checks": [
+        "workload_egress_policy_type"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_telemetry_egress",
+      "mutation": "remove_egress_kind",
+      "expected_failed_check": "telemetry_egress",
+      "failed_checks": [
+        "telemetry_egress",
+        "telemetry_ports"
+      ],
+      "detected": true
+    },
+    {
+      "name": "wrong_telemetry_namespace_selector",
+      "mutation": "set_egress_namespace_selector",
+      "expected_failed_check": "telemetry_egress",
+      "failed_checks": [
+        "telemetry_egress",
+        "telemetry_ports"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_otlp_http_port",
+      "mutation": "remove_egress_port",
+      "expected_failed_check": "telemetry_ports",
+      "failed_checks": [
+        "telemetry_egress",
+        "telemetry_ports"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_dns_egress",
+      "mutation": "remove_egress_kind",
+      "expected_failed_check": "dns_egress",
+      "failed_checks": [
+        "dns_egress"
+      ],
+      "detected": true
+    },
+    {
+      "name": "allow_all_egress",
+      "mutation": "add_allow_all_egress",
+      "expected_failed_check": "deny_unbounded_egress",
+      "failed_checks": [
+        "deny_unbounded_egress"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_ingress_wrong_namespace_selector",
+      "mutation": "set_collector_ingress_namespace_selector",
+      "expected_failed_check": "collector_ingress_boundary",
+      "failed_checks": [
+        "collector_ingress_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_workload_policy_owner_label",
+      "mutation": "remove_owner_label",
+      "expected_failed_check": "network_policy_label_governance",
+      "failed_checks": [
+        "network_policy_label_governance"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "workload_egress_policy",
+      "status": "pass",
+      "reason": "The sample workload has an egress NetworkPolicy.",
+      "evidence": {
+        "network_policy": "allow-ai-workload-egress"
+      }
+    },
+    {
+      "name": "workload_policy_selector",
+      "status": "pass",
+      "reason": "The workload egress policy selects only the sample inference pods.",
+      "evidence": {
+        "observed": {
+          "app": "toy-ai-inference-api"
+        },
+        "expected": {
+          "app": "toy-ai-inference-api"
+        }
+      }
+    },
+    {
+      "name": "workload_egress_policy_type",
+      "status": "pass",
+      "reason": "The workload policy explicitly enables egress isolation.",
+      "evidence": {
+        "policy_types": [
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "telemetry_egress",
+      "status": "pass",
+      "reason": "Workload egress is allowed to the telemetry collector namespace and pods.",
+      "evidence": {
+        "rule": {
+          "to": [
+            {
+              "namespaceSelector": {
+                "matchLabels": {
+                  "observability.haihan.dev/role": "telemetry"
+                }
+              },
+              "podSelector": {
+                "matchLabels": {
+                  "app": "otel-collector"
+                }
+              }
+            }
+          ],
+          "ports": [
+            {
+              "protocol": "TCP",
+              "port": 4317
+            },
+            {
+              "protocol": "TCP",
+              "port": 4318
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "telemetry_ports",
+      "status": "pass",
+      "reason": "Workload telemetry egress allows the expected OTLP ports.",
+      "evidence": {
+        "required_ports": [
+          4317,
+          4318
+        ],
+        "observed_ports": [
+          4317,
+          4318
+        ]
+      }
+    },
+    {
+      "name": "dns_egress",
+      "status": "pass",
+      "reason": "Workload egress keeps a bounded DNS exception for Kubernetes service discovery.",
+      "evidence": {
+        "rule": {
+          "to": [
+            {
+              "namespaceSelector": {
+                "matchLabels": {
+                  "kubernetes.io/metadata.name": "kube-system"
+                }
+              },
+              "podSelector": {
+                "matchLabels": {
+                  "k8s-app": "kube-dns"
+                }
+              }
+            }
+          ],
+          "ports": [
+            {
+              "protocol": "UDP",
+              "port": 53
+            },
+            {
+              "protocol": "TCP",
+              "port": 53
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "deny_unbounded_egress",
+      "status": "pass",
+      "reason": "Workload egress policy does not include allow-all egress peers or empty egress rules.",
+      "evidence": {
+        "unbounded": false
+      }
+    },
+    {
+      "name": "collector_ingress_boundary",
+      "status": "pass",
+      "reason": "Collector ingress remains scoped to workload namespaces on OTLP ports.",
+      "evidence": {
+        "network_policy": "allow-otlp-from-ai-workloads"
+      }
+    },
+    {
+      "name": "network_policy_label_governance",
+      "status": "pass",
+      "reason": "NetworkPolicies carry owner labels used by review and policy tooling.",
+      "evidence": {
+        "missing_labels": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove workload egress, DNS, telemetry, collector ingress, and label drift is detected.",
+      "evidence": {
+        "fixture_count": 10,
+        "detected_fixture_count": 10,
+        "undetected": []
+      }
+    }
+  ]
+}

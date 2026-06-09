@@ -1,0 +1,193 @@
+{
+  "status": "pass",
+  "required_scenario_count": 5,
+  "surface_count": 4,
+  "fixture_count": 5,
+  "detected_fixture_count": 5,
+  "failed_count": 0,
+  "scenario_surfaces": {
+    "alerting": [
+      "baseline",
+      "cache_miss_storm",
+      "collector_queue_pressure",
+      "dependency_timeout",
+      "rollout_regression"
+    ],
+    "dashboard": [
+      "baseline",
+      "cache_miss_storm",
+      "collector_queue_pressure",
+      "dependency_timeout",
+      "rollout_regression"
+    ],
+    "openslo": [
+      "baseline",
+      "cache_miss_storm",
+      "collector_queue_pressure",
+      "dependency_timeout",
+      "rollout_regression"
+    ],
+    "runbooks": [
+      "baseline",
+      "cache_miss_storm",
+      "collector_queue_pressure",
+      "dependency_timeout",
+      "rollout_regression"
+    ]
+  },
+  "fixture_results": [
+    {
+      "name": "missing_alert_scenario",
+      "mutation": "remove_alert_scenario",
+      "scenario": "dependency_timeout",
+      "expected_failed_check": "scenario_contract",
+      "failed_checks": [
+        "scenario_contract",
+        "alert_metadata_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_dashboard_scenario",
+      "mutation": "remove_dashboard_scenario",
+      "scenario": "cache_miss_storm",
+      "expected_failed_check": "scenario_contract",
+      "failed_checks": [
+        "scenario_contract",
+        "dashboard_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_openslo_scenario",
+      "mutation": "remove_openslo_scenario",
+      "scenario": "collector_queue_pressure",
+      "expected_failed_check": "scenario_contract",
+      "failed_checks": [
+        "scenario_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_runbook_scenario",
+      "mutation": "remove_runbook_scenario",
+      "scenario": "rollout_regression",
+      "expected_failed_check": "scenario_contract",
+      "failed_checks": [
+        "scenario_contract",
+        "runbook_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "severity_mismatch",
+      "mutation": "set_alert_severity",
+      "scenario": "cache_miss_storm",
+      "expected_failed_check": "alert_metadata_contract",
+      "failed_checks": [
+        "alert_metadata_contract"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "scenario_contract",
+      "ok": true,
+      "evidence": {
+        "required": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "surfaces": {
+          "alerting": [
+            "baseline",
+            "cache_miss_storm",
+            "collector_queue_pressure",
+            "dependency_timeout",
+            "rollout_regression"
+          ],
+          "dashboard": [
+            "baseline",
+            "cache_miss_storm",
+            "collector_queue_pressure",
+            "dependency_timeout",
+            "rollout_regression"
+          ],
+          "openslo": [
+            "baseline",
+            "cache_miss_storm",
+            "collector_queue_pressure",
+            "dependency_timeout",
+            "rollout_regression"
+          ],
+          "runbooks": [
+            "baseline",
+            "cache_miss_storm",
+            "collector_queue_pressure",
+            "dependency_timeout",
+            "rollout_regression"
+          ]
+        },
+        "missing_by_surface": {}
+      }
+    },
+    {
+      "name": "alert_metadata_contract",
+      "ok": true,
+      "evidence": {
+        "rule_count": 5,
+        "required_rule_count": 5,
+        "violations": []
+      }
+    },
+    {
+      "name": "dashboard_contract",
+      "ok": true,
+      "evidence": {
+        "panel_count": 6,
+        "required_panel_count": 6,
+        "linked_scenarios": [
+          "baseline",
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ]
+      }
+    },
+    {
+      "name": "openslo_contract",
+      "ok": true,
+      "evidence": {
+        "objective_target": 99.5,
+        "minimum_target": 99.0,
+        "links": [
+          "alerting_rules",
+          "grafana_dashboard",
+          "release_readiness",
+          "runbooks"
+        ]
+      }
+    },
+    {
+      "name": "runbook_contract",
+      "ok": true,
+      "evidence": {
+        "violations": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "fixture_count": 5,
+        "detected_fixture_count": 5,
+        "undetected": []
+      }
+    }
+  ]
+}

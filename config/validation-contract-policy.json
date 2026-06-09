@@ -1,0 +1,60 @@
+{
+  "description": "Policy for auditing that local and CI validation cover every committed evidence generator, policy JSON, release-readiness input, and committed evidence JSON artifact.",
+  "minimum_py_compile_script_count": 74,
+  "minimum_generation_script_count": 72,
+  "minimum_direct_validation_script_count": 71,
+  "minimum_policy_json_count": 67,
+  "minimum_committed_json_count": 82,
+  "minimum_release_readiness_argument_count": 71,
+  "minimum_required_command_count": 3,
+  "minimum_detected_fixtures": 6,
+  "excluded_demo_scripts": [
+    "demo/__init__.py"
+  ],
+  "allowed_generate_only_scripts": [
+    "demo/render_incident_evidence.py"
+  ],
+  "required_validate_commands": [
+    "./scripts/generate-evidence.sh",
+    "python3 -m unittest discover -s tests",
+    "git diff --exit-code -- docs/evidence"
+  ],
+  "fixtures": [
+    {
+      "name": "missing_py_compile_script",
+      "mutation": "remove_py_compile_script",
+      "target": "demo/release_readiness.py",
+      "expected_failed_check": "py_compile_contract"
+    },
+    {
+      "name": "missing_direct_validation_script",
+      "mutation": "remove_validate_script",
+      "target": "demo/evidence_pipeline_audit.py",
+      "expected_failed_check": "generation_validation_contract"
+    },
+    {
+      "name": "missing_policy_json_validation",
+      "mutation": "remove_config_json_tool",
+      "target": "config/evidence-pipeline-policy.json",
+      "expected_failed_check": "policy_json_contract"
+    },
+    {
+      "name": "missing_committed_json_validation",
+      "mutation": "remove_committed_json_tool",
+      "target": "docs/evidence/evidence-pipeline-audit.json",
+      "expected_failed_check": "committed_json_contract"
+    },
+    {
+      "name": "missing_release_readiness_argument",
+      "mutation": "remove_release_arg",
+      "target": "--evidence-pipeline",
+      "expected_failed_check": "release_readiness_argument_contract"
+    },
+    {
+      "name": "missing_required_validate_command",
+      "mutation": "remove_required_command",
+      "target": "./scripts/generate-evidence.sh",
+      "expected_failed_check": "required_command_contract"
+    }
+  ]
+}

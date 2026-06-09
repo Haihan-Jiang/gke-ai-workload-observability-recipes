@@ -1,0 +1,32 @@
+{
+  "dashboard": {
+    "uid": "gke-ai-inference-reliability",
+    "title": "GKE AI Inference Reliability Lab",
+    "refresh": "30s",
+    "timezone": "browser",
+    "schema_version": 39,
+    "tags": ["gke", "ai-inference", "reliability", "slo"]
+  },
+  "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+  },
+  "config_map": {
+    "name": "gke-ai-inference-grafana-dashboard",
+    "namespace": "telemetry",
+    "dashboard_key": "gke-ai-inference-reliability.json",
+    "labels": {
+      "grafana_dashboard": "1",
+      "app.kubernetes.io/name": "gke-ai-inference-dashboard",
+      "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab"
+    }
+  },
+  "required_scenarios": [
+    "baseline",
+    "cache_miss_storm",
+    "dependency_timeout",
+    "rollout_regression",
+    "collector_queue_pressure"
+  ],
+  "required_panel_types": ["timeseries", "stat", "table"]
+}

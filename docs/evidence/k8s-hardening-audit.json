@@ -1,0 +1,181 @@
+{
+  "status": "pass",
+  "check_count": 11,
+  "passed_count": 11,
+  "failed_count": 0,
+  "checks": [
+    {
+      "name": "namespace_labels",
+      "status": "pass",
+      "reason": "Namespaces carry ownership and role labels for policy selection.",
+      "evidence": {
+        "telemetry_namespace": {
+          "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab",
+          "observability.haihan.dev/role": "telemetry",
+          "pod-security.kubernetes.io/audit": "restricted",
+          "pod-security.kubernetes.io/audit-version": "latest",
+          "pod-security.kubernetes.io/enforce": "restricted",
+          "pod-security.kubernetes.io/enforce-version": "latest",
+          "pod-security.kubernetes.io/warn": "restricted",
+          "pod-security.kubernetes.io/warn-version": "latest"
+        },
+        "workload_namespace": {
+          "app.kubernetes.io/part-of": "gke-ai-inference-reliability-lab",
+          "observability.haihan.dev/role": "workload",
+          "pod-security.kubernetes.io/audit": "restricted",
+          "pod-security.kubernetes.io/audit-version": "latest",
+          "pod-security.kubernetes.io/enforce": "restricted",
+          "pod-security.kubernetes.io/enforce-version": "latest",
+          "pod-security.kubernetes.io/warn": "restricted",
+          "pod-security.kubernetes.io/warn-version": "latest"
+        }
+      }
+    },
+    {
+      "name": "collector_readonly_rbac",
+      "status": "pass",
+      "reason": "Collector has a service account with explicit read-only cluster metadata RBAC.",
+      "evidence": {
+        "service_account": true
+      }
+    },
+    {
+      "name": "collector_resources",
+      "status": "pass",
+      "reason": "Collector container declares CPU and memory requests and limits.",
+      "evidence": {
+        "resources": {
+          "requests": {
+            "cpu": "100m",
+            "memory": "256Mi"
+          },
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          }
+        }
+      }
+    },
+    {
+      "name": "collector_probes",
+      "status": "pass",
+      "reason": "Collector exposes readiness and liveness probes backed by the health_check extension.",
+      "evidence": {
+        "readiness_probe": true,
+        "liveness_probe": true
+      }
+    },
+    {
+      "name": "collector_security_context",
+      "status": "pass",
+      "reason": "Collector pod and container security contexts use non-root, RuntimeDefault seccomp, no privilege escalation, and dropped capabilities.",
+      "evidence": {
+        "pod_security_context": {
+          "runAsNonRoot": true,
+          "runAsUser": 10001,
+          "runAsGroup": 10001,
+          "fsGroup": 10001,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "container_security_context": {
+          "allowPrivilegeEscalation": false,
+          "readOnlyRootFilesystem": true,
+          "capabilities": {
+            "drop": [
+              "ALL"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "collector_durable_queue",
+      "status": "pass",
+      "reason": "Collector has PVC-backed file storage, queued export, retry, and health check configuration.",
+      "evidence": {
+        "pvc": true,
+        "mounted_claim": true,
+        "required_config_fragments": [
+          "file_storage",
+          "health_check",
+          "sending_queue",
+          "retry_on_failure"
+        ]
+      }
+    },
+    {
+      "name": "collector_pdb",
+      "status": "pass",
+      "reason": "Collector has a PodDisruptionBudget to prevent voluntary disruption from evicting the only collector.",
+      "evidence": {
+        "min_available": 1
+      }
+    },
+    {
+      "name": "collector_network_policy",
+      "status": "pass",
+      "reason": "Collector ingress is scoped by NetworkPolicy to OTLP ports from workload namespaces.",
+      "evidence": {
+        "required_ports": [
+          4317,
+          4318
+        ],
+        "observed_ports": [
+          4317,
+          4318
+        ]
+      }
+    },
+    {
+      "name": "sample_workload_resources",
+      "status": "pass",
+      "reason": "Sample workload has CPU and memory requests and limits so scheduler pressure is represented in the recipe.",
+      "evidence": {
+        "resources": {
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          },
+          "limits": {
+            "cpu": "250m",
+            "memory": "256Mi"
+          }
+        }
+      }
+    },
+    {
+      "name": "sample_workload_probes",
+      "status": "pass",
+      "reason": "Sample workload has readiness and liveness probes for staged rollout behavior.",
+      "evidence": {
+        "readiness_probe": true,
+        "liveness_probe": true
+      }
+    },
+    {
+      "name": "sample_workload_security_context",
+      "status": "pass",
+      "reason": "Sample workload runs as non-root with RuntimeDefault seccomp, no privilege escalation, and dropped capabilities.",
+      "evidence": {
+        "pod_security_context": {
+          "runAsNonRoot": true,
+          "runAsUser": 1000,
+          "runAsGroup": 1000,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "container_security_context": {
+          "allowPrivilegeEscalation": false,
+          "capabilities": {
+            "drop": [
+              "ALL"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

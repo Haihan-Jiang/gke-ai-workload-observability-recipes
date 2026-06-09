@@ -1,0 +1,101 @@
+{
+  "description": "Policy for auditing GitHub issue, pull request, and support intake before the repository is treated as maintainer-ready.",
+  "required_files": [
+    ".github/ISSUE_TEMPLATE/bug_report.yml",
+    ".github/ISSUE_TEMPLATE/feature_request.yml",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    "SUPPORT.md",
+    "CONTRIBUTING.md"
+  ],
+  "minimum_issue_template_count": 2,
+  "minimum_pr_validation_command_count": 3,
+  "minimum_support_term_count": 5,
+  "minimum_detected_fixtures": 6,
+  "required_bug_terms": [
+    "Expected behavior",
+    "Actual behavior",
+    "Evidence or logs",
+    "Validation command",
+    "Boundary check",
+    "No credentials, tokens, private customer data, or production secrets."
+  ],
+  "required_feature_terms": [
+    "Problem statement",
+    "Production risk",
+    "Evidence artifacts",
+    "Validation plan",
+    "No paid services or external credentials"
+  ],
+  "required_security_terms": [
+    "Do not open a public issue with exploit details",
+    "GitHub private vulnerability reporting",
+    "Security vulnerability reporting"
+  ],
+  "required_pr_terms": [
+    "Summary",
+    "Evidence changed",
+    "Validation commands",
+    "Boundary / risk notes",
+    "Checklist"
+  ],
+  "required_validation_commands": [
+    "./scripts/generate-evidence.sh",
+    "./scripts/validate.sh",
+    "CI=true ./scripts/validate.sh"
+  ],
+  "required_support_terms": [
+    "does not provide production support",
+    "GitHub private vulnerability reporting",
+    "best-effort public triage target is 7 days",
+    "not a service-level agreement",
+    "outside the support boundary"
+  ],
+  "required_contribution_terms": [
+    "Summarize which evidence changed",
+    "which validation commands were run"
+  ],
+  "fixtures": [
+    {
+      "name": "missing_bug_template",
+      "mutation": "remove_file",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "expected_failed_check": "required_files"
+    },
+    {
+      "name": "missing_no_secret_bug_text",
+      "mutation": "remove_text",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "text": "No credentials, tokens, private customer data, or production secrets.",
+      "expected_failed_check": "issue_intake_contract"
+    },
+    {
+      "name": "missing_feature_validation_plan",
+      "mutation": "remove_text",
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "text": "Validation plan",
+      "expected_failed_check": "feature_request_contract"
+    },
+    {
+      "name": "missing_security_redirect",
+      "mutation": "remove_text",
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "text": "Security vulnerability reporting",
+      "expected_failed_check": "issue_security_boundary"
+    },
+    {
+      "name": "missing_ci_validation_command",
+      "mutation": "remove_text",
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "text": "CI=true ./scripts/validate.sh",
+      "expected_failed_check": "pull_request_validation_contract"
+    },
+    {
+      "name": "missing_support_boundary",
+      "mutation": "remove_text",
+      "path": "SUPPORT.md",
+      "text": "does not provide production support",
+      "expected_failed_check": "support_boundary"
+    }
+  ]
+}

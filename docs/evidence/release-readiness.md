@@ -4,8 +4,25 @@ Overall status: **PASS**
 
 This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
-reliability controls, detailed reliability controls, and committed
-evidence are present and internally consistent.
+reliability controls, detailed reliability controls, deployment
+policy, policy regression fixtures, supply-chain audit, OSS license compliance, secret hygiene, SBOM inventory, security response, CI
+governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, Kubernetes API compatibility, namespace resource governance, availability
+topology governance, autoscaling policy governance, scheduling
+placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry exporter authority, telemetry sampling
+governance, Workload Identity audit, admission policy simulation,
+SLO alerting rules,
+Grafana dashboard coverage, OpenSLO contract, observability drift
+detection,
+telemetry redaction, telemetry cost budget, error-budget accounting,
+rollback drill coverage, post-incident review coverage, incident
+response drill coverage, dependency contract coverage, synthetic
+probe coverage, model release safety coverage, shadow traffic replay
+coverage, accelerator quota fairness coverage, load-shedding policy
+coverage, regional failover coverage,
+waiver governance, release control ownership, control traceability, replay source contract, evidence pipeline ordering, evidence schema contracts, disaster recovery
+drill coverage, documentation link integrity, architecture decisions, reviewer reproducibility, threat modeling, data handling, dependency update governance, security scanning, maintainer intake, public claim evidence, release notes contract, evidence provenance, proof-packet integrity, and committed evidence are
+present and internally
+consistent.
 
 ## Checks
 
@@ -17,6 +34,70 @@ evidence are present and internally consistent.
 | `capacity_plan` | PASS |
 | `advanced_problem_coverage` | PASS |
 | `detailed_problem_coverage` | PASS |
+| `deployment_policy` | PASS |
+| `policy_regression_suite` | PASS |
+| `supply_chain_audit` | PASS |
+| `oss_license_audit` | PASS |
+| `secret_hygiene_audit` | PASS |
+| `sbom_inventory_audit` | PASS |
+| `security_response_audit` | PASS |
+| `ci_governance_audit` | PASS |
+| `repository_governance_audit` | PASS |
+| `developer_runtime_audit` | PASS |
+| `k8s_manifest_hardening` | PASS |
+| `pod_security_admission_audit` | PASS |
+| `kubernetes_api_compatibility_audit` | PASS |
+| `private_cluster_admission_boundary_audit` | PASS |
+| `namespace_resource_audit` | PASS |
+| `availability_topology_audit` | PASS |
+| `autoscaling_policy_audit` | PASS |
+| `scheduling_placement_audit` | PASS |
+| `rollout_safety_audit` | PASS |
+| `config_rollout_audit` | PASS |
+| `network_boundary_audit` | PASS |
+| `collector_self_observability_audit` | PASS |
+| `telemetry_exporter_authority_audit` | PASS |
+| `telemetry_sampling_audit` | PASS |
+| `workload_identity_audit` | PASS |
+| `admission_policy_audit` | PASS |
+| `slo_alerting_rules` | PASS |
+| `grafana_dashboard` | PASS |
+| `openslo_contract` | PASS |
+| `observability_drift_audit` | PASS |
+| `telemetry_redaction_audit` | PASS |
+| `telemetry_cost_budget` | PASS |
+| `error_budget_ledger` | PASS |
+| `rollback_drill` | PASS |
+| `post_incident_review` | PASS |
+| `incident_response_drill` | PASS |
+| `dependency_contract_audit` | PASS |
+| `synthetic_probe_audit` | PASS |
+| `model_release_safety_audit` | PASS |
+| `staged_telemetry_validation_audit` | PASS |
+| `shadow_traffic_replay_audit` | PASS |
+| `accelerator_quota_fairness_audit` | PASS |
+| `load_shedding_policy_audit` | PASS |
+| `regional_failover_audit` | PASS |
+| `release_waiver_governance` | PASS |
+| `release_control_ownership_audit` | PASS |
+| `control_traceability_audit` | PASS |
+| `replay_source_contract_audit` | PASS |
+| `evidence_pipeline_audit` | PASS |
+| `evidence_schema_audit` | PASS |
+| `validation_contract_audit` | PASS |
+| `disaster_recovery_drill` | PASS |
+| `documentation_link_integrity_audit` | PASS |
+| `architecture_decision_audit` | PASS |
+| `reviewer_reproducibility_audit` | PASS |
+| `threat_model_audit` | PASS |
+| `data_handling_audit` | PASS |
+| `dependency_update_audit` | PASS |
+| `security_scanning_audit` | PASS |
+| `public_claim_evidence_audit` | PASS |
+| `maintainer_intake_audit` | PASS |
+| `release_notes_contract_audit` | PASS |
+| `evidence_provenance` | PASS |
+| `proof_packet_integrity_audit` | PASS |
 
 ## Evidence Files
 
@@ -25,6 +106,8 @@ evidence are present and internally consistent.
 | `sample-incident-report.md` | yes |
 | `sample-summary.json` | yes |
 | `incident-dashboard.svg` | yes |
+| `replay-source-contract-audit.md` | yes |
+| `replay-source-contract-audit.json` | yes |
 | `reliability-gate.md` | yes |
 | `reliability-gate.json` | yes |
 | `capacity-plan.md` | yes |
@@ -37,6 +120,10 @@ evidence are present and internally consistent.
 | `rollout-guard.json` | yes |
 | `trace-quality-audit.md` | yes |
 | `trace-quality-audit.json` | yes |
+| `telemetry-redaction-audit.md` | yes |
+| `telemetry-redaction-audit.json` | yes |
+| `telemetry-cost-budget.md` | yes |
+| `telemetry-cost-budget.json` | yes |
 | `collector-resilience.md` | yes |
 | `collector-resilience.json` | yes |
 | `incident-correlation.md` | yes |
@@ -55,6 +142,129 @@ evidence are present and internally consistent.
 | `token-cost-guard.json` | yes |
 | `detailed-problems.md` | yes |
 | `detailed-problems.json` | yes |
+| `deployment-policy.md` | yes |
+| `deployment-policy.json` | yes |
+| `policy-regression-suite.md` | yes |
+| `policy-regression-suite.json` | yes |
+| `supply-chain-audit.md` | yes |
+| `supply-chain-audit.json` | yes |
+| `oss-license-audit.md` | yes |
+| `oss-license-audit.json` | yes |
+| `secret-hygiene-audit.md` | yes |
+| `secret-hygiene-audit.json` | yes |
+| `sbom-inventory-audit.md` | yes |
+| `sbom-inventory-audit.json` | yes |
+| `sbom-inventory.json` | yes |
+| `security-response-audit.md` | yes |
+| `security-response-audit.json` | yes |
+| `ci-governance-audit.md` | yes |
+| `ci-governance-audit.json` | yes |
+| `repository-governance-audit.md` | yes |
+| `repository-governance-audit.json` | yes |
+| `developer-runtime-audit.md` | yes |
+| `developer-runtime-audit.json` | yes |
+| `k8s-hardening-audit.md` | yes |
+| `k8s-hardening-audit.json` | yes |
+| `pod-security-admission-audit.md` | yes |
+| `pod-security-admission-audit.json` | yes |
+| `kubernetes-api-compatibility-audit.md` | yes |
+| `kubernetes-api-compatibility-audit.json` | yes |
+| `private-cluster-admission-boundary-audit.md` | yes |
+| `private-cluster-admission-boundary-audit.json` | yes |
+| `namespace-resource-audit.md` | yes |
+| `namespace-resource-audit.json` | yes |
+| `availability-topology-audit.md` | yes |
+| `availability-topology-audit.json` | yes |
+| `autoscaling-policy-audit.md` | yes |
+| `autoscaling-policy-audit.json` | yes |
+| `scheduling-placement-audit.md` | yes |
+| `scheduling-placement-audit.json` | yes |
+| `rollout-safety-audit.md` | yes |
+| `rollout-safety-audit.json` | yes |
+| `config-rollout-audit.md` | yes |
+| `config-rollout-audit.json` | yes |
+| `network-boundary-audit.md` | yes |
+| `network-boundary-audit.json` | yes |
+| `collector-self-observability-audit.md` | yes |
+| `collector-self-observability-audit.json` | yes |
+| `telemetry-exporter-authority-audit.md` | yes |
+| `telemetry-exporter-authority-audit.json` | yes |
+| `telemetry-sampling-audit.md` | yes |
+| `telemetry-sampling-audit.json` | yes |
+| `workload-identity-audit.md` | yes |
+| `workload-identity-audit.json` | yes |
+| `admission-policy-audit.md` | yes |
+| `admission-policy-audit.json` | yes |
+| `alerting-rules.md` | yes |
+| `alerting-rules.json` | yes |
+| `grafana-dashboard.md` | yes |
+| `grafana-dashboard.json` | yes |
+| `openslo-contract.md` | yes |
+| `openslo-contract.json` | yes |
+| `observability-drift-audit.md` | yes |
+| `observability-drift-audit.json` | yes |
+| `error-budget-ledger.md` | yes |
+| `error-budget-ledger.json` | yes |
+| `rollback-drill.md` | yes |
+| `rollback-drill.json` | yes |
+| `post-incident-review.md` | yes |
+| `post-incident-review.json` | yes |
+| `incident-response-drill.md` | yes |
+| `incident-response-drill.json` | yes |
+| `dependency-contract-audit.md` | yes |
+| `dependency-contract-audit.json` | yes |
+| `synthetic-probe-audit.md` | yes |
+| `synthetic-probe-audit.json` | yes |
+| `model-release-safety-audit.md` | yes |
+| `model-release-safety-audit.json` | yes |
+| `staged-telemetry-validation-audit.md` | yes |
+| `staged-telemetry-validation-audit.json` | yes |
+| `shadow-traffic-replay-audit.md` | yes |
+| `shadow-traffic-replay-audit.json` | yes |
+| `accelerator-quota-fairness-audit.md` | yes |
+| `accelerator-quota-fairness-audit.json` | yes |
+| `load-shedding-policy-audit.md` | yes |
+| `load-shedding-policy-audit.json` | yes |
+| `regional-failover-audit.md` | yes |
+| `regional-failover-audit.json` | yes |
+| `release-waiver-governance.md` | yes |
+| `release-waiver-governance.json` | yes |
+| `release-control-ownership-audit.md` | yes |
+| `release-control-ownership-audit.json` | yes |
+| `control-traceability-audit.md` | yes |
+| `control-traceability-audit.json` | yes |
+| `evidence-pipeline-audit.md` | yes |
+| `evidence-pipeline-audit.json` | yes |
+| `evidence-schema-audit.md` | yes |
+| `evidence-schema-audit.json` | yes |
+| `validation-contract-audit.md` | yes |
+| `validation-contract-audit.json` | yes |
+| `disaster-recovery-drill.md` | yes |
+| `disaster-recovery-drill.json` | yes |
+| `documentation-link-integrity-audit.md` | yes |
+| `documentation-link-integrity-audit.json` | yes |
+| `architecture-decision-audit.md` | yes |
+| `architecture-decision-audit.json` | yes |
+| `reviewer-reproducibility-audit.md` | yes |
+| `reviewer-reproducibility-audit.json` | yes |
+| `threat-model-audit.md` | yes |
+| `threat-model-audit.json` | yes |
+| `data-handling-audit.md` | yes |
+| `data-handling-audit.json` | yes |
+| `dependency-update-audit.md` | yes |
+| `dependency-update-audit.json` | yes |
+| `security-scanning-audit.md` | yes |
+| `security-scanning-audit.json` | yes |
+| `maintainer-intake-audit.md` | yes |
+| `maintainer-intake-audit.json` | yes |
+| `public-claim-evidence-audit.md` | yes |
+| `public-claim-evidence-audit.json` | yes |
+| `release-notes-contract-audit.md` | yes |
+| `release-notes-contract-audit.json` | yes |
+| `evidence-provenance.md` | yes |
+| `evidence-provenance.json` | yes |
+| `proof-packet-integrity-audit.md` | yes |
+| `proof-packet-integrity-audit.json` | yes |
 
 ## Capacity Warnings
 

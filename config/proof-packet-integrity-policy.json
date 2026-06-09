@@ -1,0 +1,69 @@
+{
+  "description": "Policy for validating that the release proof packet still matches the checksum manifest produced for the current repository state.",
+  "minimum_evidence_artifacts": 157,
+  "minimum_generated_artifacts": 4,
+  "minimum_source_inputs": 169,
+  "minimum_manifest_entries": 330,
+  "minimum_detected_fixtures": 6,
+  "required_validation_commands": [
+    "./scripts/generate-evidence.sh",
+    "./scripts/validate.sh",
+    "CI=true ./scripts/validate.sh"
+  ],
+  "forbidden_circular_artifacts": [
+    "docs/evidence/release-readiness.md",
+    "docs/evidence/release-readiness.json",
+    "docs/evidence/evidence-provenance.md",
+    "docs/evidence/evidence-provenance.json",
+    "docs/evidence/control-traceability-audit.md",
+    "docs/evidence/control-traceability-audit.json",
+    "docs/evidence/proof-packet-integrity-audit.md",
+    "docs/evidence/proof-packet-integrity-audit.json"
+  ],
+  "fixtures": [
+    {
+      "name": "source_digest_drift",
+      "mutation": "set_digest",
+      "section": "source_inputs",
+      "index": 0,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_failed_check": "current_digest_match"
+    },
+    {
+      "name": "missing_evidence_artifact",
+      "mutation": "set_path",
+      "section": "artifacts",
+      "index": 0,
+      "path": "docs/evidence/not-real-anymore.json",
+      "expected_failed_check": "current_digest_match"
+    },
+    {
+      "name": "release_readiness_cycle",
+      "mutation": "append_forbidden_entry",
+      "section": "artifacts",
+      "path": "docs/evidence/release-readiness.json",
+      "expected_failed_check": "circular_artifact_boundary"
+    },
+    {
+      "name": "absolute_manifest_path",
+      "mutation": "set_path",
+      "section": "source_inputs",
+      "index": 0,
+      "path": "/tmp/outside-repo.py",
+      "expected_failed_check": "path_safety_contract"
+    },
+    {
+      "name": "duplicate_manifest_path",
+      "mutation": "duplicate_entry",
+      "section": "generated_artifacts",
+      "index": 0,
+      "expected_failed_check": "manifest_inventory"
+    },
+    {
+      "name": "missing_ci_validation_command",
+      "mutation": "remove_validation_command",
+      "command": "CI=true ./scripts/validate.sh",
+      "expected_failed_check": "validation_command_contract"
+    }
+  ]
+}

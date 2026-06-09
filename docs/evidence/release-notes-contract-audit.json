@@ -1,0 +1,199 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 7,
+  "detected_fixture_count": 6,
+  "required_file_count": 4,
+  "present_file_count": 4,
+  "release_note_field_count": 4,
+  "evidence_reference_count": 8,
+  "validation_command_count": 6,
+  "boundary_statement_count": 3,
+  "contribution_term_count": 2,
+  "checks": [
+    {
+      "name": "required_files",
+      "ok": true,
+      "evidence": {
+        "missing_files": [],
+        "required_files": [
+          "docs/release-process.md",
+          "CONTRIBUTING.md",
+          "README.md",
+          "docs/industry-map.md"
+        ]
+      }
+    },
+    {
+      "name": "release_notes_template",
+      "ok": true,
+      "evidence": {
+        "missing_fields": [],
+        "release_note_field_count": 4,
+        "minimum_release_note_field_count": 4
+      }
+    },
+    {
+      "name": "evidence_reference_contract",
+      "ok": true,
+      "evidence": {
+        "missing_references": [],
+        "evidence_reference_count": 8,
+        "minimum_evidence_reference_count": 8
+      }
+    },
+    {
+      "name": "validation_command_contract",
+      "ok": true,
+      "evidence": {
+        "missing_commands": [],
+        "validation_command_count": 6,
+        "minimum_validation_command_count": 6
+      }
+    },
+    {
+      "name": "boundary_language_contract",
+      "ok": true,
+      "evidence": {
+        "missing_boundaries": [],
+        "boundary_statement_count": 3,
+        "minimum_boundary_statement_count": 3
+      }
+    },
+    {
+      "name": "contribution_change_summary",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 6,
+        "minimum_detected_fixtures": 6,
+        "fixtures": [
+          {
+            "name": "missing_release_process",
+            "mutation": "remove_file",
+            "expected_failed_check": "required_files",
+            "failed_checks": [
+              "required_files",
+              "release_notes_template",
+              "evidence_reference_contract",
+              "validation_command_contract",
+              "boundary_language_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_release_note_capability_field",
+            "mutation": "remove_text",
+            "expected_failed_check": "release_notes_template",
+            "failed_checks": [
+              "release_notes_template"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_proof_packet_reference",
+            "mutation": "remove_text",
+            "expected_failed_check": "evidence_reference_contract",
+            "failed_checks": [
+              "evidence_reference_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_ci_validation_command",
+            "mutation": "remove_text",
+            "expected_failed_check": "validation_command_contract",
+            "failed_checks": [
+              "validation_command_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_release_boundary",
+            "mutation": "remove_text",
+            "expected_failed_check": "boundary_language_contract",
+            "failed_checks": [
+              "boundary_language_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_contribution_summary",
+            "mutation": "remove_text",
+            "expected_failed_check": "contribution_change_summary",
+            "failed_checks": [
+              "contribution_change_summary"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_release_process",
+      "mutation": "remove_file",
+      "expected_failed_check": "required_files",
+      "failed_checks": [
+        "required_files",
+        "release_notes_template",
+        "evidence_reference_contract",
+        "validation_command_contract",
+        "boundary_language_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_release_note_capability_field",
+      "mutation": "remove_text",
+      "expected_failed_check": "release_notes_template",
+      "failed_checks": [
+        "release_notes_template"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_proof_packet_reference",
+      "mutation": "remove_text",
+      "expected_failed_check": "evidence_reference_contract",
+      "failed_checks": [
+        "evidence_reference_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_ci_validation_command",
+      "mutation": "remove_text",
+      "expected_failed_check": "validation_command_contract",
+      "failed_checks": [
+        "validation_command_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_release_boundary",
+      "mutation": "remove_text",
+      "expected_failed_check": "boundary_language_contract",
+      "failed_checks": [
+        "boundary_language_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_contribution_summary",
+      "mutation": "remove_text",
+      "expected_failed_check": "contribution_change_summary",
+      "failed_checks": [
+        "contribution_change_summary"
+      ],
+      "detected": true
+    }
+  ]
+}

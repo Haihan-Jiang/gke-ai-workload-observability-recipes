@@ -1,0 +1,224 @@
+{
+  "status": "pass",
+  "required_file_count": 3,
+  "present_file_count": 3,
+  "severity_tier_count": 4,
+  "critical_triage_hours": 24,
+  "detected_fixture_count": 8,
+  "failed_count": 0,
+  "check_count": 8,
+  "checks": [
+    {
+      "name": "required_files",
+      "ok": true,
+      "evidence": {
+        "missing_files": [],
+        "required_files": [
+          "SECURITY.md",
+          "docs/release-process.md",
+          "CONTRIBUTING.md"
+        ]
+      }
+    },
+    {
+      "name": "private_reporting",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "severity_sla",
+      "ok": true,
+      "evidence": {
+        "severity_gaps": [],
+        "tier_count": 4,
+        "critical_triage_hours": 24
+      }
+    },
+    {
+      "name": "fix_and_evidence",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "disclosure_flow",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "release_process",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "contribution_boundary",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 8,
+        "minimum_detected_fixtures": 8,
+        "fixtures": [
+          {
+            "name": "missing_private_reporting",
+            "mutation": "remove_text",
+            "expected_failed_check": "private_reporting",
+            "failed_checks": [
+              "private_reporting"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_no_public_exploit_rule",
+            "mutation": "remove_text",
+            "expected_failed_check": "private_reporting",
+            "failed_checks": [
+              "private_reporting"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_critical_tier",
+            "mutation": "remove_tier",
+            "expected_failed_check": "severity_sla",
+            "failed_checks": [
+              "severity_sla"
+            ],
+            "detected": true
+          },
+          {
+            "name": "critical_triage_too_slow",
+            "mutation": "set_tier_field",
+            "expected_failed_check": "severity_sla",
+            "failed_checks": [
+              "severity_sla"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_regression_fixture_expectation",
+            "mutation": "remove_text",
+            "expected_failed_check": "fix_and_evidence",
+            "failed_checks": [
+              "fix_and_evidence"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_security_release_review",
+            "mutation": "remove_text",
+            "expected_failed_check": "release_process",
+            "failed_checks": [
+              "release_process"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_disclosure_update",
+            "mutation": "remove_text",
+            "expected_failed_check": "disclosure_flow",
+            "failed_checks": [
+              "disclosure_flow"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_contribution_boundary",
+            "mutation": "remove_text",
+            "expected_failed_check": "contribution_boundary",
+            "failed_checks": [
+              "contribution_boundary"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_private_reporting",
+      "mutation": "remove_text",
+      "expected_failed_check": "private_reporting",
+      "failed_checks": [
+        "private_reporting"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_no_public_exploit_rule",
+      "mutation": "remove_text",
+      "expected_failed_check": "private_reporting",
+      "failed_checks": [
+        "private_reporting"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_critical_tier",
+      "mutation": "remove_tier",
+      "expected_failed_check": "severity_sla",
+      "failed_checks": [
+        "severity_sla"
+      ],
+      "detected": true
+    },
+    {
+      "name": "critical_triage_too_slow",
+      "mutation": "set_tier_field",
+      "expected_failed_check": "severity_sla",
+      "failed_checks": [
+        "severity_sla"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_regression_fixture_expectation",
+      "mutation": "remove_text",
+      "expected_failed_check": "fix_and_evidence",
+      "failed_checks": [
+        "fix_and_evidence"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_security_release_review",
+      "mutation": "remove_text",
+      "expected_failed_check": "release_process",
+      "failed_checks": [
+        "release_process"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_disclosure_update",
+      "mutation": "remove_text",
+      "expected_failed_check": "disclosure_flow",
+      "failed_checks": [
+        "disclosure_flow"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_contribution_boundary",
+      "mutation": "remove_text",
+      "expected_failed_check": "contribution_boundary",
+      "failed_checks": [
+        "contribution_boundary"
+      ],
+      "detected": true
+    }
+  ]
+}

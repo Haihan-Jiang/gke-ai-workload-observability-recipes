@@ -1,0 +1,490 @@
+{
+  "status": "pass",
+  "document_count": 28,
+  "stable_resource_count": 26,
+  "optional_crd_count": 2,
+  "admission_policy_count": 1,
+  "admission_binding_count": 1,
+  "core_apply_step_count": 5,
+  "detected_fixture_count": 8,
+  "failed_count": 0,
+  "check_count": 6,
+  "resources": [
+    {
+      "path": "k8s/gke/namespace.yaml",
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "namespace": "default",
+      "name": "telemetry",
+      "resource": "Namespace/telemetry",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/namespace.yaml",
+      "apiVersion": "v1",
+      "kind": "ResourceQuota",
+      "namespace": "telemetry",
+      "name": "telemetry-resource-quota",
+      "resource": "ResourceQuota/telemetry/telemetry-resource-quota",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/namespace.yaml",
+      "apiVersion": "v1",
+      "kind": "LimitRange",
+      "namespace": "telemetry",
+      "name": "telemetry-limit-range",
+      "resource": "LimitRange/telemetry/telemetry-limit-range",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/namespace.yaml",
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "namespace": "default",
+      "name": "ai-observability-demo",
+      "resource": "Namespace/ai-observability-demo",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/namespace.yaml",
+      "apiVersion": "v1",
+      "kind": "ResourceQuota",
+      "namespace": "ai-observability-demo",
+      "name": "ai-workload-resource-quota",
+      "resource": "ResourceQuota/ai-observability-demo/ai-workload-resource-quota",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/namespace.yaml",
+      "apiVersion": "v1",
+      "kind": "LimitRange",
+      "namespace": "ai-observability-demo",
+      "name": "ai-workload-limit-range",
+      "resource": "LimitRange/ai-observability-demo/ai-workload-limit-range",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/scheduling.yaml",
+      "apiVersion": "scheduling.k8s.io/v1",
+      "kind": "PriorityClass",
+      "namespace": "default",
+      "name": "ai-telemetry-critical",
+      "resource": "PriorityClass/ai-telemetry-critical",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/scheduling.yaml",
+      "apiVersion": "scheduling.k8s.io/v1",
+      "kind": "PriorityClass",
+      "namespace": "default",
+      "name": "ai-inference-serving",
+      "resource": "PriorityClass/ai-inference-serving",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "namespace": "telemetry",
+      "name": "otel-collector",
+      "resource": "ServiceAccount/telemetry/otel-collector",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRole",
+      "namespace": "default",
+      "name": "otel-collector-readonly",
+      "resource": "ClusterRole/otel-collector-readonly",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRoleBinding",
+      "namespace": "default",
+      "name": "otel-collector-readonly",
+      "resource": "ClusterRoleBinding/otel-collector-readonly",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "v1",
+      "kind": "PersistentVolumeClaim",
+      "namespace": "telemetry",
+      "name": "otel-collector-queue",
+      "resource": "PersistentVolumeClaim/telemetry/otel-collector-queue",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "v1",
+      "kind": "ConfigMap",
+      "namespace": "telemetry",
+      "name": "otel-collector-config",
+      "resource": "ConfigMap/telemetry/otel-collector-config",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "namespace": "telemetry",
+      "name": "otel-collector",
+      "resource": "Deployment/telemetry/otel-collector",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "v1",
+      "kind": "Service",
+      "namespace": "telemetry",
+      "name": "otel-collector",
+      "resource": "Service/telemetry/otel-collector",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "policy/v1",
+      "kind": "PodDisruptionBudget",
+      "namespace": "telemetry",
+      "name": "otel-collector",
+      "resource": "PodDisruptionBudget/telemetry/otel-collector",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/collector.yaml",
+      "apiVersion": "networking.k8s.io/v1",
+      "kind": "NetworkPolicy",
+      "namespace": "telemetry",
+      "name": "allow-otlp-from-ai-workloads",
+      "resource": "NetworkPolicy/telemetry/allow-otlp-from-ai-workloads",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/instrumentation.yaml",
+      "apiVersion": "opentelemetry.io/v1alpha1",
+      "kind": "Instrumentation",
+      "namespace": "telemetry",
+      "name": "python-instrumentation",
+      "resource": "Instrumentation/telemetry/python-instrumentation",
+      "optional_crd": true
+    },
+    {
+      "path": "k8s/gke/alerting-rules.yaml",
+      "apiVersion": "monitoring.coreos.com/v1",
+      "kind": "PrometheusRule",
+      "namespace": "telemetry",
+      "name": "gke-ai-inference-reliability-alerts",
+      "resource": "PrometheusRule/telemetry/gke-ai-inference-reliability-alerts",
+      "optional_crd": true
+    },
+    {
+      "path": "k8s/gke/grafana-dashboard-configmap.yaml",
+      "apiVersion": "v1",
+      "kind": "ConfigMap",
+      "namespace": "telemetry",
+      "name": "gke-ai-inference-grafana-dashboard",
+      "resource": "ConfigMap/telemetry/gke-ai-inference-grafana-dashboard",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/sample-app.yaml",
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "namespace": "ai-observability-demo",
+      "name": "toy-ai-inference-api",
+      "resource": "ServiceAccount/ai-observability-demo/toy-ai-inference-api",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/sample-app.yaml",
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "namespace": "ai-observability-demo",
+      "name": "toy-ai-inference-api",
+      "resource": "Deployment/ai-observability-demo/toy-ai-inference-api",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/sample-app.yaml",
+      "apiVersion": "v1",
+      "kind": "Service",
+      "namespace": "ai-observability-demo",
+      "name": "toy-ai-inference-api",
+      "resource": "Service/ai-observability-demo/toy-ai-inference-api",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/sample-app.yaml",
+      "apiVersion": "policy/v1",
+      "kind": "PodDisruptionBudget",
+      "namespace": "ai-observability-demo",
+      "name": "toy-ai-inference-api",
+      "resource": "PodDisruptionBudget/ai-observability-demo/toy-ai-inference-api",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/sample-app.yaml",
+      "apiVersion": "autoscaling/v2",
+      "kind": "HorizontalPodAutoscaler",
+      "namespace": "ai-observability-demo",
+      "name": "toy-ai-inference-api",
+      "resource": "HorizontalPodAutoscaler/ai-observability-demo/toy-ai-inference-api",
+      "optional_crd": false
+    },
+    {
+      "path": "k8s/gke/sample-app.yaml",
+      "apiVersion": "networking.k8s.io/v1",
+      "kind": "NetworkPolicy",
+      "namespace": "ai-observability-demo",
+      "name": "allow-ai-workload-egress",
+      "resource": "NetworkPolicy/ai-observability-demo/allow-ai-workload-egress",
+      "optional_crd": false
+    },
+    {
+      "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
+      "apiVersion": "admissionregistration.k8s.io/v1",
+      "kind": "ValidatingAdmissionPolicy",
+      "namespace": "default",
+      "name": "gke-ai-inference-reliability-deployments",
+      "resource": "ValidatingAdmissionPolicy/gke-ai-inference-reliability-deployments",
+      "optional_crd": false
+    },
+    {
+      "path": "policies/admission/gke-ai-inference-admission-policy.yaml",
+      "apiVersion": "admissionregistration.k8s.io/v1",
+      "kind": "ValidatingAdmissionPolicyBinding",
+      "namespace": "default",
+      "name": "gke-ai-inference-reliability-deployments",
+      "resource": "ValidatingAdmissionPolicyBinding/gke-ai-inference-reliability-deployments",
+      "optional_crd": false
+    }
+  ],
+  "checks": [
+    {
+      "name": "document_inventory",
+      "status": "pass",
+      "reason": "All configured Kubernetes manifest documents are parseable and present.",
+      "evidence": {
+        "document_count": 28,
+        "minimum_document_count": 28
+      }
+    },
+    {
+      "name": "stable_core_api_versions",
+      "status": "pass",
+      "reason": "Core Kubernetes resources use stable API versions and avoid removed beta API groups.",
+      "evidence": {
+        "stable_resource_count": 26,
+        "minimum_stable_resource_count": 26,
+        "version_gaps": []
+      }
+    },
+    {
+      "name": "optional_crd_boundary",
+      "status": "pass",
+      "reason": "Optional OpenTelemetry and Prometheus CRDs stay guarded by kind smoke API-resource probes and skip paths.",
+      "evidence": {
+        "optional_crd_count": 2,
+        "minimum_optional_crd_count": 2,
+        "optional_gaps": []
+      }
+    },
+    {
+      "name": "admission_policy_api",
+      "status": "pass",
+      "reason": "Admission policy manifests use admissionregistration.k8s.io/v1 and fail closed with Deny bindings.",
+      "evidence": {
+        "policy_count": 1,
+        "binding_count": 1,
+        "admission_gaps": []
+      }
+    },
+    {
+      "name": "kind_smoke_contract",
+      "status": "pass",
+      "reason": "The kind smoke path applies core manifests in dependency order before rollout checks.",
+      "evidence": {
+        "apply_order": [
+          "k8s/gke/namespace.yaml",
+          "k8s/gke/scheduling.yaml",
+          "k8s/gke/collector.yaml",
+          "k8s/gke/instrumentation.yaml",
+          "k8s/gke/alerting-rules.yaml",
+          "k8s/gke/grafana-dashboard-configmap.yaml",
+          "k8s/gke/sample-app.yaml"
+        ],
+        "required_core_apply_order": [
+          "k8s/gke/namespace.yaml",
+          "k8s/gke/scheduling.yaml",
+          "k8s/gke/collector.yaml",
+          "k8s/gke/grafana-dashboard-configmap.yaml",
+          "k8s/gke/sample-app.yaml"
+        ],
+        "missing_apply_steps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove beta API drift, optional CRD skip drift, and fail-open admission drift are detected.",
+      "evidence": {
+        "detected_fixture_count": 8,
+        "minimum_detected_fixtures": 8,
+        "fixtures": [
+          {
+            "name": "deployment_uses_extensions_beta",
+            "mutation": "set_api_version",
+            "expected_failed_check": "stable_core_api_versions",
+            "failed_checks": [
+              "stable_core_api_versions"
+            ],
+            "detected": true
+          },
+          {
+            "name": "pdb_uses_policy_beta",
+            "mutation": "set_api_version",
+            "expected_failed_check": "stable_core_api_versions",
+            "failed_checks": [
+              "stable_core_api_versions"
+            ],
+            "detected": true
+          },
+          {
+            "name": "hpa_uses_legacy_version",
+            "mutation": "set_api_version",
+            "expected_failed_check": "stable_core_api_versions",
+            "failed_checks": [
+              "stable_core_api_versions"
+            ],
+            "detected": true
+          },
+          {
+            "name": "admission_policy_uses_beta",
+            "mutation": "set_api_version",
+            "expected_failed_check": "admission_policy_api",
+            "failed_checks": [
+              "stable_core_api_versions",
+              "admission_policy_api"
+            ],
+            "detected": true
+          },
+          {
+            "name": "admission_binding_warns_only",
+            "mutation": "set_binding_validation_action",
+            "expected_failed_check": "admission_policy_api",
+            "failed_checks": [
+              "admission_policy_api"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_otel_crd_skip",
+            "mutation": "remove_text",
+            "expected_failed_check": "optional_crd_boundary",
+            "failed_checks": [
+              "optional_crd_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_prometheus_crd_skip",
+            "mutation": "remove_text",
+            "expected_failed_check": "optional_crd_boundary",
+            "failed_checks": [
+              "optional_crd_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_collector_apply_step",
+            "mutation": "remove_apply",
+            "expected_failed_check": "kind_smoke_contract",
+            "failed_checks": [
+              "kind_smoke_contract"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "deployment_uses_extensions_beta",
+      "mutation": "set_api_version",
+      "expected_failed_check": "stable_core_api_versions",
+      "failed_checks": [
+        "stable_core_api_versions"
+      ],
+      "detected": true
+    },
+    {
+      "name": "pdb_uses_policy_beta",
+      "mutation": "set_api_version",
+      "expected_failed_check": "stable_core_api_versions",
+      "failed_checks": [
+        "stable_core_api_versions"
+      ],
+      "detected": true
+    },
+    {
+      "name": "hpa_uses_legacy_version",
+      "mutation": "set_api_version",
+      "expected_failed_check": "stable_core_api_versions",
+      "failed_checks": [
+        "stable_core_api_versions"
+      ],
+      "detected": true
+    },
+    {
+      "name": "admission_policy_uses_beta",
+      "mutation": "set_api_version",
+      "expected_failed_check": "admission_policy_api",
+      "failed_checks": [
+        "stable_core_api_versions",
+        "admission_policy_api"
+      ],
+      "detected": true
+    },
+    {
+      "name": "admission_binding_warns_only",
+      "mutation": "set_binding_validation_action",
+      "expected_failed_check": "admission_policy_api",
+      "failed_checks": [
+        "admission_policy_api"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_otel_crd_skip",
+      "mutation": "remove_text",
+      "expected_failed_check": "optional_crd_boundary",
+      "failed_checks": [
+        "optional_crd_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_prometheus_crd_skip",
+      "mutation": "remove_text",
+      "expected_failed_check": "optional_crd_boundary",
+      "failed_checks": [
+        "optional_crd_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_collector_apply_step",
+      "mutation": "remove_apply",
+      "expected_failed_check": "kind_smoke_contract",
+      "failed_checks": [
+        "kind_smoke_contract"
+      ],
+      "detected": true
+    }
+  ]
+}

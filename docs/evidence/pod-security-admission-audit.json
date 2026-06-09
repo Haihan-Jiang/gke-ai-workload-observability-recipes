@@ -1,0 +1,172 @@
+{
+  "status": "pass",
+  "namespace_count": 2,
+  "workload_count": 2,
+  "restricted_namespace_count": 2,
+  "restricted_workload_count": 2,
+  "check_count": 6,
+  "detected_fixture_count": 10,
+  "failed_count": 0,
+  "workloads": [
+    {
+      "workload": "telemetry/otel-collector",
+      "namespace": "telemetry",
+      "psa_restricted": true,
+      "pod_restricted": true,
+      "container_restricted": true,
+      "volume_restricted": true
+    },
+    {
+      "workload": "ai-observability-demo/toy-ai-inference-api",
+      "namespace": "ai-observability-demo",
+      "psa_restricted": true,
+      "pod_restricted": true,
+      "container_restricted": true,
+      "volume_restricted": true
+    }
+  ],
+  "fixture_results": [
+    {
+      "name": "telemetry_missing_enforce_label",
+      "mutation": "remove_namespace_label",
+      "expected_failed_check": "namespace_psa_labels",
+      "failed_checks": [
+        "namespace_psa_labels"
+      ],
+      "detected": true
+    },
+    {
+      "name": "workload_enforce_baseline",
+      "mutation": "set_namespace_label",
+      "expected_failed_check": "namespace_psa_labels",
+      "failed_checks": [
+        "namespace_psa_labels"
+      ],
+      "detected": true
+    },
+    {
+      "name": "telemetry_missing_warn_version",
+      "mutation": "remove_namespace_label",
+      "expected_failed_check": "namespace_psa_labels",
+      "failed_checks": [
+        "namespace_psa_labels"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_privileged_container",
+      "mutation": "set_container_security_field",
+      "expected_failed_check": "restricted_container_security",
+      "failed_checks": [
+        "restricted_container_security"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_allows_privilege_escalation",
+      "mutation": "set_container_security_field",
+      "expected_failed_check": "restricted_container_security",
+      "failed_checks": [
+        "restricted_container_security"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_adds_net_raw",
+      "mutation": "add_container_capability",
+      "expected_failed_check": "restricted_container_security",
+      "failed_checks": [
+        "restricted_container_security"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_host_network",
+      "mutation": "set_pod_spec_field",
+      "expected_failed_check": "restricted_pod_security",
+      "failed_checks": [
+        "restricted_pod_security"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_host_path_volume",
+      "mutation": "add_host_path_volume",
+      "expected_failed_check": "restricted_volume_types",
+      "failed_checks": [
+        "restricted_volume_types"
+      ],
+      "detected": true
+    },
+    {
+      "name": "sample_missing_seccomp",
+      "mutation": "remove_pod_security_field",
+      "expected_failed_check": "restricted_pod_security",
+      "failed_checks": [
+        "restricted_pod_security"
+      ],
+      "detected": true
+    },
+    {
+      "name": "collector_run_as_root",
+      "mutation": "set_pod_security_field",
+      "expected_failed_check": "restricted_pod_security",
+      "failed_checks": [
+        "restricted_pod_security"
+      ],
+      "detected": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "namespace_psa_labels",
+      "status": "pass",
+      "reason": "Namespaces enforce, audit, and warn with the restricted Pod Security Admission profile.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "namespace_label_governance",
+      "status": "pass",
+      "reason": "Namespaces keep owner and role labels alongside Pod Security Admission labels.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "restricted_pod_security",
+      "status": "pass",
+      "reason": "Pod templates set non-root execution, RuntimeDefault seccomp, and avoid host namespace access.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "restricted_container_security",
+      "status": "pass",
+      "reason": "Containers avoid privileged mode, privilege escalation, added capabilities, and missing capability drops.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "restricted_volume_types",
+      "status": "pass",
+      "reason": "Pod templates avoid hostPath volumes that violate the restricted profile.",
+      "evidence": {
+        "gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures prove Pod Security Admission and restricted workload drift is detected.",
+      "evidence": {
+        "fixture_count": 10,
+        "detected_fixture_count": 10,
+        "undetected": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,1179 @@
+{
+  "status": "pass",
+  "deployment_decision": "block_production_promotion",
+  "waiver_count": 4,
+  "conditional_approval_count": 2,
+  "denied_override_count": 2,
+  "invalid_waiver_count": 0,
+  "unsafe_approved_count": 0,
+  "fixture_count": 8,
+  "failed_count": 0,
+  "decisions": [
+    {
+      "id": "WVR-CACHE-001",
+      "scenario": "cache_miss_storm",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "conditionally_approved",
+      "failed_checks": [],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead",
+              "product_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-06-03T16:00:00Z",
+            "duration_days": 3.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "rollback_drill": "cache_miss_storm",
+            "post_incident_review": "cache_miss_storm",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "WVR-COLLECTOR-001",
+      "scenario": "collector_queue_pressure",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "conditionally_approved",
+      "failed_checks": [],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "collector_queue_pressure",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Telemetry platform owner",
+            "approvers": [
+              "sre_lead",
+              "security_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T18:00:00Z",
+            "expires_at": "2026-06-04T18:00:00Z",
+            "duration_days": 4.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "collector_queue_pressure",
+            "rollback_drill": "collector_queue_pressure",
+            "post_incident_review": "collector_queue_pressure",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "WVR-DEPENDENCY-001",
+      "scenario": "dependency_timeout",
+      "ledger_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "decision": "denied_override",
+      "failed_checks": [],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "dependency_timeout",
+            "ledger_decision": "budget_exhausted"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Feature platform / dependency owner",
+            "approvers": [
+              "sre_lead",
+              "incident_commander"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T19:00:00Z",
+            "expires_at": "2026-06-02T19:00:00Z",
+            "duration_days": 2.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "dependency_timeout",
+            "rollback_drill": "dependency_timeout",
+            "post_incident_review": "dependency_timeout",
+            "release_action": "block_release_or_rollback",
+            "ledger_release_action": "block_release_or_rollback"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 9.0,
+              "budget_used_events": 9
+            },
+            "ledger": {
+              "consumed_ratio": 9.0,
+              "budget_used_events": 9
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "WVR-ROLLOUT-001",
+      "scenario": "rollout_regression",
+      "ledger_decision": "budget_exhausted",
+      "release_action": "block_release_or_rollback",
+      "decision": "denied_override",
+      "failed_checks": [],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "rollout_regression",
+            "ledger_decision": "budget_exhausted"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Release owner",
+            "approvers": [
+              "sre_lead",
+              "incident_commander"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T20:00:00Z",
+            "expires_at": "2026-06-02T20:00:00Z",
+            "duration_days": 2.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "rollout_regression",
+            "rollback_drill": "rollout_regression",
+            "post_incident_review": "rollout_regression",
+            "release_action": "block_release_or_rollback",
+            "ledger_release_action": "block_release_or_rollback"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 8.0,
+              "budget_used_events": 8
+            },
+            "ledger": {
+              "consumed_ratio": 8.0,
+              "budget_used_events": 8
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "fixture_decisions": [
+    {
+      "fixture": "expired",
+      "id": "WVR-CACHE-001-expired",
+      "scenario": "cache_miss_storm",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "invalid_request",
+      "failed_checks": [
+        "validity_window"
+      ],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead",
+              "product_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "fail",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-06-01T11:00:00Z",
+            "duration_days": 0.79,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "rollback_drill": "cache_miss_storm",
+            "post_incident_review": "cache_miss_storm",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "missing_approver",
+      "id": "WVR-CACHE-001-missing_approver",
+      "scenario": "cache_miss_storm",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "invalid_request",
+      "failed_checks": [
+        "owner_approvals"
+      ],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "fail",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-06-03T16:00:00Z",
+            "duration_days": 3.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "rollback_drill": "cache_miss_storm",
+            "post_incident_review": "cache_miss_storm",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "missing_evidence",
+      "id": "WVR-CACHE-001-missing_evidence",
+      "scenario": "cache_miss_storm",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "invalid_request",
+      "failed_checks": [
+        "evidence_linkage"
+      ],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead",
+              "product_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-06-03T16:00:00Z",
+            "duration_days": 3.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "fail",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "rollback_drill": "cache_miss_storm",
+            "post_incident_review": "cache_miss_storm",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "missing_rollback_link",
+      "id": "WVR-CACHE-001-missing_rollback_link",
+      "scenario": "cache_miss_storm",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "invalid_request",
+      "failed_checks": [
+        "scenario_linkage"
+      ],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead",
+              "product_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-06-03T16:00:00Z",
+            "duration_days": 3.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "fail",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "rollback_drill": "wrong_scenario",
+            "post_incident_review": "cache_miss_storm",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "missing_review_link",
+      "id": "WVR-CACHE-001-missing_review_link",
+      "scenario": "cache_miss_storm",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "invalid_request",
+      "failed_checks": [
+        "scenario_linkage"
+      ],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead",
+              "product_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-06-03T16:00:00Z",
+            "duration_days": 3.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "fail",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "rollback_drill": "cache_miss_storm",
+            "post_incident_review": "wrong_scenario",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "excessive_duration",
+      "id": "WVR-CACHE-001-excessive_duration",
+      "scenario": "cache_miss_storm",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "invalid_request",
+      "failed_checks": [
+        "validity_window"
+      ],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead",
+              "product_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "fail",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-07-15T16:00:00Z",
+            "duration_days": 45.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "rollback_drill": "cache_miss_storm",
+            "post_incident_review": "cache_miss_storm",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "pass",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "understated_budget",
+      "id": "WVR-CACHE-001-understated_budget",
+      "scenario": "cache_miss_storm",
+      "ledger_decision": "manual_review_required",
+      "release_action": "require_sre_review_before_rollout",
+      "decision": "invalid_request",
+      "failed_checks": [
+        "budget_acknowledgement"
+      ],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "pass",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "ledger_decision": "manual_review_required"
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead",
+              "product_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "pass",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-06-03T16:00:00Z",
+            "duration_days": 3.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "pass",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "cache_miss_storm",
+            "rollback_drill": "cache_miss_storm",
+            "post_incident_review": "cache_miss_storm",
+            "release_action": "require_sre_review_before_rollout",
+            "ledger_release_action": "require_sre_review_before_rollout"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "fail",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 0.5,
+              "budget_used_events": 1
+            },
+            "ledger": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "unknown_scenario",
+      "id": "WVR-CACHE-001-unknown_scenario",
+      "scenario": "unknown_scenario",
+      "ledger_decision": "unknown",
+      "release_action": null,
+      "decision": "invalid_request",
+      "failed_checks": [
+        "known_scenario",
+        "validity_window",
+        "scenario_linkage",
+        "budget_acknowledgement"
+      ],
+      "checks": [
+        {
+          "name": "required_fields",
+          "status": "pass",
+          "reason": "Waiver request includes the required governance fields.",
+          "evidence": {
+            "missing": []
+          }
+        },
+        {
+          "name": "known_scenario",
+          "status": "fail",
+          "reason": "Waiver is tied to a non-green error-budget scenario.",
+          "evidence": {
+            "scenario": "unknown_scenario",
+            "ledger_decision": null
+          }
+        },
+        {
+          "name": "owner_approvals",
+          "status": "pass",
+          "reason": "Waiver has enough distinct approvers and no self-approval.",
+          "evidence": {
+            "requested_by": "Inference platform / retrieval owner",
+            "approvers": [
+              "sre_lead",
+              "product_oncall"
+            ]
+          }
+        },
+        {
+          "name": "validity_window",
+          "status": "fail",
+          "reason": "Waiver is active at the audit reference time and expires inside the maximum duration.",
+          "evidence": {
+            "created_at": "2026-05-31T16:00:00Z",
+            "expires_at": "2026-06-03T16:00:00Z",
+            "duration_days": 3.0,
+            "audit_reference_time": "2026-06-01T12:00:00Z"
+          }
+        },
+        {
+          "name": "evidence_linkage",
+          "status": "pass",
+          "reason": "Waiver links the required release, budget, rollback, RCA, and readiness evidence.",
+          "evidence": {
+            "linked_evidence": [
+              "docs/evidence/deployment-policy.json",
+              "docs/evidence/error-budget-ledger.json",
+              "docs/evidence/rollback-drill.json",
+              "docs/evidence/post-incident-review.json"
+            ]
+          }
+        },
+        {
+          "name": "scenario_linkage",
+          "status": "fail",
+          "reason": "Waiver scenario matches rollback drill, post-incident review, and release action evidence.",
+          "evidence": {
+            "scenario": "unknown_scenario"
+          }
+        },
+        {
+          "name": "budget_acknowledgement",
+          "status": "fail",
+          "reason": "Waiver acknowledges at least the replayed budget consumption.",
+          "evidence": {
+            "waiver": {
+              "consumed_ratio": 5.0,
+              "budget_used_events": 5
+            },
+            "ledger": {
+              "consumed_ratio": null,
+              "budget_used_events": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "waiver_coverage",
+      "status": "pass",
+      "reason": "Waiver register covers the non-green replay scenarios.",
+      "evidence": {
+        "waiver_count": 4
+      }
+    },
+    {
+      "name": "conditional_approval_path",
+      "status": "pass",
+      "reason": "Manual-review scenarios have limited conditional approvals.",
+      "evidence": {
+        "conditional_approvals": [
+          "cache_miss_storm",
+          "collector_queue_pressure"
+        ]
+      }
+    },
+    {
+      "name": "deny_override_path",
+      "status": "pass",
+      "reason": "Budget-exhausted scenarios deny production-promotion overrides.",
+      "evidence": {
+        "denied_overrides": [
+          "dependency_timeout",
+          "rollout_regression"
+        ]
+      }
+    },
+    {
+      "name": "no_invalid_waivers",
+      "status": "pass",
+      "reason": "Configured waiver requests satisfy metadata, linkage, expiry, and budget acknowledgement checks.",
+      "evidence": {
+        "invalid": []
+      }
+    },
+    {
+      "name": "no_unsafe_approvals",
+      "status": "pass",
+      "reason": "Budget-exhausted scenarios are never conditionally approved for production promotion.",
+      "evidence": {
+        "unsafe_approved": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "status": "pass",
+      "reason": "Negative fixtures become invalid waiver requests.",
+      "evidence": {
+        "failed_fixtures": []
+      }
+    },
+    {
+      "name": "release_policy_linkage",
+      "status": "pass",
+      "reason": "Waiver governance only activates when release evidence requires human approval.",
+      "evidence": {
+        "deployment_decision": "block_production_promotion",
+        "human_approval_required": true
+      }
+    }
+  ]
+}

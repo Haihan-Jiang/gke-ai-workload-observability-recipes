@@ -1,0 +1,359 @@
+{
+  "status": "pass",
+  "review_count": 4,
+  "action_item_count": 8,
+  "preventive_control_count": 6,
+  "deployment_decision": "block_production_promotion",
+  "failed_count": 0,
+  "reviews": [
+    {
+      "scenario": "cache_miss_storm",
+      "severity": "SEV-2",
+      "owner": "Inference platform / retrieval owner",
+      "status": "review_ready",
+      "impact": {
+        "requests": 7,
+        "p95_ms": 251,
+        "error_rate": 0.0,
+        "telemetry_loss_rate": 0.0,
+        "budget_used_events": 5,
+        "budget_remaining_events": -4,
+        "release_action": "require_sre_review_before_rollout"
+      },
+      "root_cause": {
+        "category": "cache_miss_storm",
+        "dedupe_key": "cache_miss_storm:v1",
+        "symptoms": [
+          "latency",
+          "cache_miss"
+        ]
+      },
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 3,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 9,
+          "phase": "mitigate",
+          "action": "hold rollout, warm the retrieval cache, and reduce cache churn before resuming traffic expansion"
+        },
+        {
+          "minute": 12,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ],
+      "corrective_actions": [
+        {
+          "id": "cache_miss_storm-A1",
+          "owner": "Inference platform / retrieval owner",
+          "due_days": 7,
+          "action": "Add cache-warm validation before increasing traffic."
+        },
+        {
+          "id": "cache_miss_storm-A2",
+          "owner": "Inference platform / retrieval owner",
+          "due_days": 14,
+          "action": "Track cache miss rate as a release blocker in the rollout checklist."
+        }
+      ],
+      "preventive_controls": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/openslo-contract.md",
+        "docs/evidence/error-budget-ledger.md",
+        "docs/evidence/rollback-drill.md",
+        "docs/evidence/evidence-provenance.md"
+      ]
+    },
+    {
+      "scenario": "dependency_timeout",
+      "severity": "SEV-1",
+      "owner": "Feature platform / dependency owner",
+      "status": "review_ready",
+      "impact": {
+        "requests": 6,
+        "p95_ms": 1320,
+        "error_rate": 0.5,
+        "telemetry_loss_rate": 0.0,
+        "budget_used_events": 9,
+        "budget_remaining_events": -8,
+        "release_action": "block_release_or_rollback"
+      },
+      "root_cause": {
+        "category": "dependency_timeout",
+        "dedupe_key": "dependency_timeout:v1",
+        "symptoms": [
+          "latency",
+          "errors"
+        ]
+      },
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 2,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 9,
+          "phase": "mitigate",
+          "action": "fail closed with fallback features, cap retries, and page the dependency owner before allowing production promotion"
+        },
+        {
+          "minute": 13,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ],
+      "corrective_actions": [
+        {
+          "id": "dependency_timeout-A1",
+          "owner": "Feature platform / dependency owner",
+          "due_days": 7,
+          "action": "Add bounded retry and fallback-feature behavior for feature-store timeouts."
+        },
+        {
+          "id": "dependency_timeout-A2",
+          "owner": "Feature platform / dependency owner",
+          "due_days": 14,
+          "action": "Page the dependency owner when feature-store latency breaches the SLO envelope."
+        }
+      ],
+      "preventive_controls": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/openslo-contract.md",
+        "docs/evidence/error-budget-ledger.md",
+        "docs/evidence/rollback-drill.md",
+        "docs/evidence/evidence-provenance.md"
+      ]
+    },
+    {
+      "scenario": "rollout_regression",
+      "severity": "SEV-1",
+      "owner": "Service owner / release engineer",
+      "status": "review_ready",
+      "impact": {
+        "requests": 7,
+        "p95_ms": 455,
+        "error_rate": 0.29,
+        "telemetry_loss_rate": 0.0,
+        "budget_used_events": 8,
+        "budget_remaining_events": -7,
+        "release_action": "block_release_or_rollback"
+      },
+      "root_cause": {
+        "category": "rollout_regression",
+        "dedupe_key": "rollout_regression:v2",
+        "symptoms": [
+          "latency",
+          "errors",
+          "cache_miss",
+          "new_version"
+        ]
+      },
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 2,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 7,
+          "phase": "mitigate",
+          "action": "rollback the candidate version or shift traffic back to the stable service version"
+        },
+        {
+          "minute": 11,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ],
+      "corrective_actions": [
+        {
+          "id": "rollout_regression-A1",
+          "owner": "Service owner / release engineer",
+          "due_days": 7,
+          "action": "Require canary comparison against the stable service version before promotion."
+        },
+        {
+          "id": "rollout_regression-A2",
+          "owner": "Service owner / release engineer",
+          "due_days": 14,
+          "action": "Keep rollback instructions tied to service.version and image digest evidence."
+        }
+      ],
+      "preventive_controls": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/openslo-contract.md",
+        "docs/evidence/error-budget-ledger.md",
+        "docs/evidence/rollback-drill.md",
+        "docs/evidence/evidence-provenance.md"
+      ]
+    },
+    {
+      "scenario": "collector_queue_pressure",
+      "severity": "SEV-2",
+      "owner": "Observability platform",
+      "status": "review_ready",
+      "impact": {
+        "requests": 6,
+        "p95_ms": 126,
+        "error_rate": 0.0,
+        "telemetry_loss_rate": 0.42,
+        "budget_used_events": 5,
+        "budget_remaining_events": -4,
+        "release_action": "require_sre_review_before_rollout"
+      },
+      "root_cause": {
+        "category": "telemetry_delivery",
+        "dedupe_key": "telemetry_delivery:v1",
+        "symptoms": [
+          "latency",
+          "telemetry_loss"
+        ]
+      },
+      "timeline": [
+        {
+          "minute": 0,
+          "phase": "detect",
+          "action": "alert fires or release gate blocks promotion from generated evidence"
+        },
+        {
+          "minute": 4,
+          "phase": "acknowledge",
+          "action": "incident commander assigns scenario owner and freezes rollout expansion"
+        },
+        {
+          "minute": 10,
+          "phase": "mitigate",
+          "action": "protect persistent collector queues, reduce exporter pressure, and verify telemetry delivery before trusting dashboards"
+        },
+        {
+          "minute": 14,
+          "phase": "verify",
+          "action": "re-run evidence generation and confirm SLO budget, alerts, dashboard, and runbook status"
+        }
+      ],
+      "corrective_actions": [
+        {
+          "id": "collector_queue_pressure-A1",
+          "owner": "Observability platform",
+          "due_days": 7,
+          "action": "Validate persistent collector queue storage before declaring dashboards healthy."
+        },
+        {
+          "id": "collector_queue_pressure-A2",
+          "owner": "Observability platform",
+          "due_days": 14,
+          "action": "Add telemetry-loss checks to release review so app health and evidence health are separated."
+        }
+      ],
+      "preventive_controls": [
+        "docs/evidence/alerting-rules.md",
+        "docs/evidence/grafana-dashboard.md",
+        "docs/evidence/openslo-contract.md",
+        "docs/evidence/error-budget-ledger.md",
+        "docs/evidence/rollback-drill.md",
+        "docs/evidence/evidence-provenance.md"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "review_coverage",
+      "ok": true,
+      "evidence": {
+        "reviews": [
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "rollback_scenarios": [
+          "dependency_timeout",
+          "rollout_regression"
+        ],
+        "budget_review_scenarios": [
+          "cache_miss_storm",
+          "collector_queue_pressure",
+          "dependency_timeout",
+          "rollout_regression"
+        ]
+      }
+    },
+    {
+      "name": "required_sections",
+      "ok": true,
+      "evidence": {
+        "required": [
+          "corrective_actions",
+          "impact",
+          "preventive_controls",
+          "root_cause",
+          "timeline"
+        ]
+      }
+    },
+    {
+      "name": "action_item_coverage",
+      "ok": true,
+      "evidence": {
+        "action_items": 8
+      }
+    },
+    {
+      "name": "preventive_control_coverage",
+      "ok": true,
+      "evidence": {
+        "preventive_controls": [
+          "docs/evidence/alerting-rules.md",
+          "docs/evidence/grafana-dashboard.md",
+          "docs/evidence/openslo-contract.md",
+          "docs/evidence/error-budget-ledger.md",
+          "docs/evidence/rollback-drill.md",
+          "docs/evidence/evidence-provenance.md"
+        ]
+      }
+    },
+    {
+      "name": "release_evidence_linkage",
+      "ok": true,
+      "evidence": {
+        "deployment_decision": "block_production_promotion",
+        "error_budget_status": "pass",
+        "rollback_drill_status": "pass"
+      }
+    },
+    {
+      "name": "severity_assignment",
+      "ok": true,
+      "evidence": {
+        "severities": {
+          "cache_miss_storm": "SEV-2",
+          "dependency_timeout": "SEV-1",
+          "rollout_regression": "SEV-1",
+          "collector_queue_pressure": "SEV-2"
+        }
+      }
+    }
+  ]
+}

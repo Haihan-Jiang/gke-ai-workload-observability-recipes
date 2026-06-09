@@ -1,0 +1,1333 @@
+{
+  "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
+  "minimum_artifact_count": 25,
+  "minimum_detected_fixtures": 25,
+  "artifacts": [
+    {
+      "path": "docs/evidence/evidence-pipeline-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "step_count",
+        "required_step_count",
+        "dependency_count",
+        "artifact_dependency_count",
+        "detected_fixture_count",
+        "checks",
+        "steps",
+        "dependencies",
+        "fixtures"
+      ],
+      "required_checks": [
+        "step_inventory",
+        "dependency_inventory",
+        "dependency_order",
+        "artifact_dependency_coverage",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 5,
+        "step_count": 72,
+        "required_step_count": 72,
+        "dependency_count": 204,
+        "artifact_dependency_count": 204,
+        "detected_fixture_count": 4
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 5,
+        "steps": 72,
+        "dependencies": 204,
+        "fixtures": 4
+      }
+    },
+    {
+      "path": "docs/evidence/validation-contract-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "py_compile_script_count",
+        "generation_script_count",
+        "direct_validation_script_count",
+        "policy_json_count",
+        "committed_json_count",
+        "release_argument_count",
+        "detected_fixture_count",
+        "checks",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "py_compile_contract",
+        "generation_validation_contract",
+        "policy_json_contract",
+        "committed_json_contract",
+        "release_readiness_argument_contract",
+        "required_command_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "py_compile_script_count": 74,
+        "generation_script_count": 72,
+        "direct_validation_script_count": 71,
+        "policy_json_count": 67,
+        "committed_json_count": 82,
+        "release_argument_count": 71,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "fixture_results": 6
+      }
+    },
+    {
+      "path": "docs/evidence/developer-runtime-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "present_file_count",
+        "make_target_count",
+        "detected_fixture_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "make_target_inventory",
+        "make_command_contract",
+        "python_runtime_contract",
+        "developer_runtime_docs",
+        "output_boundary",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "present_file_count": 4,
+        "make_target_count": 8,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "fixtures": 8
+      }
+    },
+    {
+      "path": "docs/evidence/repository-governance-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "present_file_count",
+        "owned_pattern_count",
+        "detected_fixture_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "contribution_workflow",
+        "security_reporting",
+        "release_process",
+        "codeowners_coverage",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "present_file_count": 6,
+        "owned_pattern_count": 9,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "fixtures": 8
+      }
+    },
+    {
+      "path": "docs/evidence/ci-governance-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "workflow_count",
+        "job_count",
+        "action_count",
+        "hardened_action_count",
+        "detected_fixture_count",
+        "workflow_name",
+        "workflow_path",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "workflow_inventory",
+        "trigger_surface",
+        "least_privilege_permissions",
+        "concurrency_cancellation",
+        "action_runtime_hygiene",
+        "job_execution_bounds",
+        "validation_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "workflow_count": 1,
+        "job_count": 1,
+        "action_count": 2,
+        "hardened_action_count": 2,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 8
+      }
+    },
+    {
+      "path": "docs/evidence/pod-security-admission-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "namespace_count",
+        "workload_count",
+        "restricted_namespace_count",
+        "restricted_workload_count",
+        "detected_fixture_count",
+        "checks",
+        "fixture_results",
+        "workloads"
+      ],
+      "required_checks": [
+        "namespace_psa_labels",
+        "namespace_label_governance",
+        "restricted_pod_security",
+        "restricted_container_security",
+        "restricted_volume_types",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "namespace_count": 2,
+        "workload_count": 2,
+        "restricted_namespace_count": 2,
+        "restricted_workload_count": 2,
+        "detected_fixture_count": 10
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "fixture_results": 10,
+        "workloads": 2
+      }
+    },
+    {
+      "path": "docs/evidence/kubernetes-api-compatibility-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "document_count",
+        "stable_resource_count",
+        "optional_crd_count",
+        "admission_policy_count",
+        "admission_binding_count",
+        "core_apply_step_count",
+        "detected_fixture_count",
+        "checks",
+        "resources",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "document_inventory",
+        "stable_core_api_versions",
+        "optional_crd_boundary",
+        "admission_policy_api",
+        "kind_smoke_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "document_count": 28,
+        "stable_resource_count": 26,
+        "optional_crd_count": 2,
+        "admission_policy_count": 1,
+        "admission_binding_count": 1,
+        "core_apply_step_count": 5,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "resources": 28,
+        "fixture_results": 8
+      }
+    },
+    {
+      "path": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "document_count",
+        "native_admission_resource_count",
+        "webhook_configuration_count",
+        "webhook_service_count",
+        "optional_operator_boundary_count",
+        "private_cluster_doc_count",
+        "detected_fixture_count",
+        "checks",
+        "optional_boundaries",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "document_inventory",
+        "native_admission_boundary",
+        "webhook_service_boundary",
+        "optional_operator_boundary",
+        "private_cluster_docs",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "document_count": 28,
+        "native_admission_resource_count": 2,
+        "optional_operator_boundary_count": 2,
+        "private_cluster_doc_count": 2,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0,
+        "webhook_configuration_count": 0,
+        "webhook_service_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "optional_boundaries": 2,
+        "fixture_results": 6
+      }
+    },
+    {
+      "path": "docs/evidence/telemetry-exporter-authority-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "exporter_count",
+        "authoritative_pipeline_count",
+        "local_debug_pipeline_count",
+        "queued_exporter_count",
+        "retry_enabled_count",
+        "detected_fixture_count",
+        "authoritative_endpoint",
+        "pipelines",
+        "checks",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "collector_config_map",
+        "exporter_authority_annotations",
+        "authoritative_pipeline_path",
+        "local_debug_boundary",
+        "secure_upstream_endpoint",
+        "queued_delivery_boundary",
+        "production_replacement_docs",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "exporter_count": 2,
+        "authoritative_pipeline_count": 2,
+        "local_debug_pipeline_count": 2,
+        "queued_exporter_count": 1,
+        "retry_enabled_count": 1,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixture_results": 8
+      }
+    },
+    {
+      "path": "docs/evidence/synthetic-probe-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "failed_count",
+        "probe_count",
+        "incident_probe_count",
+        "preflight_block_count",
+        "detected_fixture_count",
+        "fixture_count",
+        "checks",
+        "probes",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "probe_inventory",
+        "signal_contract",
+        "dependency_contract_linkage",
+        "alert_response_contract",
+        "rollout_preflight_guard",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "probe_count": 5,
+        "incident_probe_count": 4,
+        "preflight_block_count": 2,
+        "detected_fixture_count": 5,
+        "fixture_count": 5
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "probes": 5,
+        "fixture_results": 5
+      }
+    },
+    {
+      "path": "docs/evidence/model-release-safety-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "failed_count",
+        "release_count",
+        "candidate_count",
+        "blocked_candidate_count",
+        "detected_fixture_count",
+        "fixture_count",
+        "checks",
+        "releases",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "artifact_inventory",
+        "eval_schema_gate",
+        "canary_rollout_gate",
+        "cost_budget_gate",
+        "release_budget_linkage",
+        "rollback_contract",
+        "observability_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "release_count": 2,
+        "candidate_count": 1,
+        "blocked_candidate_count": 1,
+        "detected_fixture_count": 7,
+        "fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "releases": 2,
+        "fixture_results": 7
+      }
+    },
+    {
+      "path": "docs/evidence/staged-telemetry-validation-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "artifact_count",
+        "scenario_count",
+        "validated_surface_count",
+        "authoritative_pipeline_count",
+        "preflight_block_count",
+        "blocked_candidate_count",
+        "detected_fixture_count",
+        "artifact_statuses",
+        "surfaces",
+        "checks",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "evidence_status_contract",
+        "staged_rollout_guard",
+        "pre_promotion_telemetry_contract",
+        "synthetic_preflight_contract",
+        "model_promotion_block",
+        "scenario_surface_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "artifact_count": 7,
+        "scenario_count": 5,
+        "validated_surface_count": 4,
+        "authoritative_pipeline_count": 2,
+        "preflight_block_count": 2,
+        "blocked_candidate_count": 1,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "artifact_statuses": 7,
+        "fixture_results": 6
+      }
+    },
+    {
+      "path": "docs/evidence/deployment-policy.json",
+      "allowed_statuses": [
+        "generated"
+      ],
+      "required_fields": [
+        "status",
+        "decision",
+        "control_count",
+        "controls",
+        "blocking_controls",
+        "review_controls",
+        "operator_actions",
+        "human_approval_required"
+      ],
+      "allowed_values": {
+        "decision": [
+          "promote",
+          "manual_review_required",
+          "block_production_promotion"
+        ]
+      },
+      "required_checks": [],
+      "minimum_metrics": {
+        "control_count": 8
+      },
+      "maximum_metrics": {},
+      "array_min_lengths": {
+        "controls": 8,
+        "operator_actions": 5
+      }
+    },
+    {
+      "path": "docs/evidence/supply-chain-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "failed_count",
+        "image_count",
+        "digest_pinned_count",
+        "checks",
+        "images"
+      ],
+      "required_checks": [
+        "image_coverage",
+        "digest_pinning",
+        "forbidden_tags",
+        "allowed_registries",
+        "pull_policy",
+        "artifact_owner_labels"
+      ],
+      "minimum_metrics": {
+        "image_count": 2,
+        "digest_pinned_count": 2
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "images": 2
+      }
+    },
+    {
+      "path": "docs/evidence/k8s-hardening-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "passed_count",
+        "checks"
+      ],
+      "required_checks": [
+        "namespace_labels",
+        "collector_readonly_rbac",
+        "collector_resources",
+        "collector_probes",
+        "collector_security_context",
+        "collector_durable_queue",
+        "collector_pdb",
+        "collector_network_policy",
+        "sample_workload_resources",
+        "sample_workload_probes",
+        "sample_workload_security_context"
+      ],
+      "minimum_metrics": {
+        "check_count": 11,
+        "passed_count": 11
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 11
+      }
+    },
+    {
+      "path": "docs/evidence/workload-identity-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "passed_count",
+        "identity_boundary_count",
+        "detected_fixture_count",
+        "upstream_endpoint",
+        "checks",
+        "fixture_results",
+        "identity_boundaries"
+      ],
+      "required_checks": [
+        "workload_identity_annotation",
+        "collector_api_mount_boundary",
+        "application_api_mount_boundary",
+        "rbac_least_privilege",
+        "rbac_binding_scope",
+        "static_identity_material_guard",
+        "secure_exporter_boundary",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "passed_count": 8,
+        "identity_boundary_count": 2,
+        "detected_fixture_count": 9
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixture_results": 9,
+        "identity_boundaries": 2
+      }
+    },
+    {
+      "path": "docs/evidence/public-claim-evidence-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "claim_count",
+        "evidence_claim_count",
+        "release_check_count",
+        "boundary_statement_count",
+        "forbidden_phrase_count",
+        "detected_fixture_count",
+        "checks",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "claim_text_contract",
+        "evidence_status_contract",
+        "evidence_metric_contract",
+        "release_check_contract",
+        "boundary_language_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "claim_count": 18,
+        "evidence_claim_count": 18,
+        "release_check_count": 18,
+        "boundary_statement_count": 2,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0,
+        "forbidden_phrase_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "fixture_results": 6
+      }
+    },
+    {
+      "path": "docs/evidence/release-notes-contract-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "required_file_count",
+        "present_file_count",
+        "release_note_field_count",
+        "evidence_reference_count",
+        "validation_command_count",
+        "boundary_statement_count",
+        "contribution_term_count",
+        "detected_fixture_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "release_notes_template",
+        "evidence_reference_contract",
+        "validation_command_contract",
+        "boundary_language_contract",
+        "contribution_change_summary",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "required_file_count": 4,
+        "present_file_count": 4,
+        "release_note_field_count": 4,
+        "evidence_reference_count": 8,
+        "validation_command_count": 6,
+        "boundary_statement_count": 3,
+        "contribution_term_count": 2,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "fixtures": 6
+      }
+    },
+    {
+      "path": "docs/evidence/maintainer-intake-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "required_file_count",
+        "present_file_count",
+        "issue_template_count",
+        "pr_validation_command_count",
+        "support_term_count",
+        "contribution_term_count",
+        "detected_fixture_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "issue_intake_contract",
+        "feature_request_contract",
+        "issue_security_boundary",
+        "pull_request_validation_contract",
+        "support_boundary",
+        "contribution_summary_linkage",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "required_file_count": 6,
+        "present_file_count": 6,
+        "issue_template_count": 2,
+        "pr_validation_command_count": 3,
+        "support_term_count": 5,
+        "contribution_term_count": 2,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 6
+      }
+    },
+    {
+      "path": "docs/evidence/architecture-decision-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "required_file_count",
+        "present_file_count",
+        "decision_count",
+        "accepted_decision_count",
+        "evidence_link_count",
+        "existing_evidence_link_count",
+        "release_control_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "adr_section_contract",
+        "decision_rationale",
+        "evidence_linkage",
+        "release_control_linkage",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "required_file_count": 5,
+        "present_file_count": 5,
+        "decision_count": 4,
+        "accepted_decision_count": 4,
+        "evidence_link_count": 18,
+        "existing_evidence_link_count": 18,
+        "release_control_count": 18,
+        "detected_fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "fixtures": 7
+      }
+    },
+    {
+      "path": "docs/evidence/reviewer-reproducibility-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "required_file_count",
+        "present_file_count",
+        "command_count",
+        "evidence_path_count",
+        "existing_evidence_path_count",
+        "boundary_term_count",
+        "release_control_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "reviewer_command_contract",
+        "evidence_packet_contract",
+        "review_boundary_contract",
+        "release_control_linkage",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "required_file_count": 8,
+        "present_file_count": 8,
+        "command_count": 6,
+        "evidence_path_count": 6,
+        "existing_evidence_path_count": 6,
+        "boundary_term_count": 7,
+        "release_control_count": 6,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "fixtures": 6
+      }
+    },
+    {
+      "path": "docs/evidence/threat-model-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "required_file_count",
+        "present_file_count",
+        "asset_count",
+        "trust_boundary_count",
+        "threat_count",
+        "mitigation_count",
+        "owner_count",
+        "residual_risk_count",
+        "evidence_link_count",
+        "existing_evidence_link_count",
+        "release_control_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "scope_boundary_contract",
+        "threat_register_contract",
+        "mitigation_contract",
+        "residual_risk_contract",
+        "evidence_linkage",
+        "release_control_linkage",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "required_file_count": 5,
+        "present_file_count": 5,
+        "asset_count": 6,
+        "trust_boundary_count": 6,
+        "threat_count": 6,
+        "mitigation_count": 19,
+        "owner_count": 6,
+        "residual_risk_count": 6,
+        "evidence_link_count": 19,
+        "existing_evidence_link_count": 19,
+        "release_control_count": 19,
+        "detected_fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 7
+      }
+    },
+    {
+      "path": "docs/evidence/data-handling-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "required_file_count",
+        "present_file_count",
+        "data_class_count",
+        "handling_term_count",
+        "retention_term_count",
+        "owner_count",
+        "evidence_link_count",
+        "existing_evidence_link_count",
+        "release_control_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "data_class_contract",
+        "handling_contract",
+        "retention_contract",
+        "owner_contract",
+        "evidence_linkage",
+        "release_control_linkage",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "required_file_count": 6,
+        "present_file_count": 6,
+        "data_class_count": 6,
+        "handling_term_count": 54,
+        "retention_term_count": 6,
+        "owner_count": 6,
+        "evidence_link_count": 18,
+        "existing_evidence_link_count": 18,
+        "release_control_count": 18,
+        "detected_fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 7
+      }
+    },
+    {
+      "path": "docs/evidence/dependency-update-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "config_file_count",
+        "update_count",
+        "ecosystem_count",
+        "weekly_schedule_count",
+        "label_count",
+        "validation_term_count",
+        "release_control_count",
+        "checks",
+        "fixtures",
+        "updates"
+      ],
+      "required_checks": [
+        "config_file_contract",
+        "ecosystem_contract",
+        "schedule_contract",
+        "review_boundary_contract",
+        "validation_linkage",
+        "release_control_linkage",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "config_file_count": 1,
+        "update_count": 1,
+        "ecosystem_count": 1,
+        "weekly_schedule_count": 1,
+        "label_count": 2,
+        "validation_term_count": 8,
+        "release_control_count": 6,
+        "detected_fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "fixtures": 7,
+        "updates": 1
+      }
+    },
+    {
+      "path": "docs/evidence/security-scanning-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "workflow_count",
+        "job_count",
+        "language_count",
+        "query_suite_count",
+        "codeql_action_count",
+        "release_control_count",
+        "workflow_path",
+        "workflow_name",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "workflow_inventory",
+        "trigger_contract",
+        "permission_contract",
+        "concurrency_contract",
+        "job_contract",
+        "codeql_action_contract",
+        "query_suite_contract",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "workflow_count": 1,
+        "job_count": 1,
+        "language_count": 1,
+        "query_suite_count": 2,
+        "codeql_action_count": 2,
+        "release_control_count": 6,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 8
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_developer_runtime_status",
+      "mutation": "remove_field",
+      "artifact": "docs/evidence/developer-runtime-audit.json",
+      "field": "status",
+      "expected_failed_check": "required_fields"
+    },
+    {
+      "name": "invalid_ci_status",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/ci-governance-audit.json",
+      "field": "status",
+      "value": "green",
+      "expected_failed_check": "status_contract"
+    },
+    {
+      "name": "malformed_synthetic_probe_checks",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/synthetic-probe-audit.json",
+      "field": "checks",
+      "value": "not-a-list",
+      "expected_failed_check": "check_shape"
+    },
+    {
+      "name": "missing_pod_security_namespace_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/pod-security-admission-audit.json",
+      "check": "namespace_psa_labels",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_kubernetes_api_stable_core_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
+      "check": "stable_core_api_versions",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_exporter_authority_annotation_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
+      "check": "exporter_authority_annotations",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_private_cluster_webhook_boundary_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
+      "check": "webhook_service_boundary",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_staged_telemetry_preflight_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
+      "check": "synthetic_preflight_contract",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "low_developer_runtime_make_target_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/developer-runtime-audit.json",
+      "field": "make_target_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "deployment_policy_without_decision",
+      "mutation": "remove_field",
+      "artifact": "docs/evidence/deployment-policy.json",
+      "field": "decision",
+      "expected_failed_check": "required_fields"
+    },
+    {
+      "name": "model_release_without_blocked_candidate",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/model-release-safety-audit.json",
+      "field": "blocked_candidate_count",
+      "value": 0,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "missing_workload_identity_annotation_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/workload-identity-audit.json",
+      "check": "workload_identity_annotation",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_supply_chain_digest_count",
+      "mutation": "remove_field",
+      "artifact": "docs/evidence/supply-chain-audit.json",
+      "field": "digest_pinned_count",
+      "expected_failed_check": "required_fields"
+    },
+    {
+      "name": "missing_k8s_hardening_container_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/k8s-hardening-audit.json",
+      "check": "collector_security_context",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "low_pipeline_dependency_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json",
+      "field": "dependency_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "missing_validation_committed_json_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/validation-contract-audit.json",
+      "check": "committed_json_contract",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "low_public_claim_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/public-claim-evidence-audit.json",
+      "field": "claim_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_release_note_field_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/release-notes-contract-audit.json",
+      "field": "release_note_field_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_maintainer_issue_template_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/maintainer-intake-audit.json",
+      "field": "issue_template_count",
+      "value": 1,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_architecture_decision_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/architecture-decision-audit.json",
+      "field": "accepted_decision_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_reviewer_command_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json",
+      "field": "command_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_threat_model_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/threat-model-audit.json",
+      "field": "threat_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_data_handling_class_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/data-handling-audit.json",
+      "field": "data_class_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_dependency_update_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/dependency-update-audit.json",
+      "field": "update_count",
+      "value": 0,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_security_scanning_language_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/security-scanning-audit.json",
+      "field": "language_count",
+      "value": 0,
+      "expected_failed_check": "metric_contract"
+    }
+  ]
+}

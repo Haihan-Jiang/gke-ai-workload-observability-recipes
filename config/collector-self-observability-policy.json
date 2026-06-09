@@ -1,0 +1,98 @@
+{
+  "description": "Policy for auditing OpenTelemetry Collector self-observability metrics in the GKE AI inference reliability lab.",
+  "target_manifests": [
+    "k8s/gke/collector.yaml"
+  ],
+  "collector": {
+    "namespace": "telemetry",
+    "config_map": "otel-collector-config",
+    "metrics_pipeline": "metrics",
+    "self_metrics_receiver": "prometheus/internal",
+    "required_job_name": "otel-collector-internal",
+    "required_targets": [
+      "127.0.0.1:8888"
+    ],
+    "max_scrape_interval_seconds": 60,
+    "required_receivers": [
+      "otlp",
+      "k8s_cluster",
+      "prometheus/internal"
+    ],
+    "required_processors": [
+      "memory_limiter",
+      "k8sattributes",
+      "resource/gke",
+      "batch"
+    ],
+    "forbidden_metrics_processors": [
+      "tail_sampling"
+    ],
+    "required_exporter": "otlphttp/upstream"
+  },
+  "required_labels": [
+    "app.kubernetes.io/name",
+    "app.kubernetes.io/part-of"
+  ],
+  "minimum_detected_fixtures": 10,
+  "fixtures": [
+    {
+      "name": "missing_self_metrics_receiver",
+      "mutation": "remove_receiver",
+      "receiver": "prometheus/internal",
+      "expected_failed_check": "self_metrics_receiver_defined"
+    },
+    {
+      "name": "self_metrics_removed_from_pipeline",
+      "mutation": "remove_pipeline_receiver",
+      "receiver": "prometheus/internal",
+      "expected_failed_check": "metrics_pipeline_collects_self_metrics"
+    },
+    {
+      "name": "wrong_scrape_job_name",
+      "mutation": "set_scrape_job_name",
+      "job_name": "collector",
+      "expected_failed_check": "self_metrics_scrape_job"
+    },
+    {
+      "name": "missing_scrape_target",
+      "mutation": "clear_scrape_targets",
+      "expected_failed_check": "self_metrics_loopback_target"
+    },
+    {
+      "name": "non_loopback_scrape_target",
+      "mutation": "set_scrape_target",
+      "target": "0.0.0.0:8888",
+      "expected_failed_check": "self_metrics_loopback_target"
+    },
+    {
+      "name": "slow_scrape_interval",
+      "mutation": "set_scrape_interval",
+      "scrape_interval": "5m",
+      "expected_failed_check": "self_metrics_scrape_interval"
+    },
+    {
+      "name": "tail_sampling_in_metrics_pipeline",
+      "mutation": "add_pipeline_processor",
+      "processor": "tail_sampling",
+      "expected_failed_check": "metrics_pipeline_excludes_trace_sampling"
+    },
+    {
+      "name": "missing_resource_enrichment",
+      "mutation": "remove_pipeline_processor",
+      "processor": "resource/gke",
+      "expected_failed_check": "metrics_pipeline_processor_order"
+    },
+    {
+      "name": "disabled_exporter_queue",
+      "mutation": "set_exporter_queue_enabled",
+      "enabled": false,
+      "expected_failed_check": "self_metrics_exporter_queue"
+    },
+    {
+      "name": "missing_collector_config_owner_label",
+      "mutation": "remove_config_map_label",
+      "label": "app.kubernetes.io/part-of",
+      "expected_failed_check": "collector_config_label_governance"
+    }
+  ]
+}
