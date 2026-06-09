@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 18,
-  "policy_artifact_count": 18,
-  "required_field_count": 189,
-  "required_check_count": 118,
-  "metric_contract_count": 117,
-  "array_contract_count": 44,
-  "observed_check_count": 118,
-  "detected_fixture_count": 18,
+  "artifact_count": 19,
+  "policy_artifact_count": 19,
+  "required_field_count": 201,
+  "required_check_count": 126,
+  "metric_contract_count": 126,
+  "array_contract_count": 46,
+  "observed_check_count": 126,
+  "detected_fixture_count": 19,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 18,
-        "policy_artifact_count": 18,
-        "minimum_artifact_count": 18
+        "artifact_count": 19,
+        "policy_artifact_count": 19,
+        "minimum_artifact_count": 19
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 18,
-        "minimum_detected_fixtures": 18,
+        "detected_fixture_count": 19,
+        "minimum_detected_fixtures": 19,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -263,6 +263,16 @@
           {
             "name": "low_release_note_field_count",
             "artifact": "docs/evidence/release-notes-contract-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_maintainer_issue_template_count",
+            "artifact": "docs/evidence/maintainer-intake-audit.json",
             "mutation": "set_field",
             "expected_failed_check": "metric_contract",
             "failed_checks": [
@@ -467,6 +477,16 @@
         "metric_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "low_maintainer_issue_template_count",
+      "artifact": "docs/evidence/maintainer-intake-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
@@ -577,6 +597,12 @@
       "present": true,
       "status": "pass",
       "check_count": 7
+    },
+    {
+      "path": "docs/evidence/maintainer-intake-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
     }
   ]
 }

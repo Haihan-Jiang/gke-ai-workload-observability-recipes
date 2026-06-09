@@ -242,6 +242,10 @@
       "ok": true
     },
     {
+      "name": "maintainer_intake_audit",
+      "ok": true
+    },
+    {
       "name": "release_notes_contract_audit",
       "ok": true
     },
@@ -813,6 +817,14 @@
     },
     {
       "path": "documentation-link-integrity-audit.json",
+      "exists": true
+    },
+    {
+      "path": "maintainer-intake-audit.md",
+      "exists": true
+    },
+    {
+      "path": "maintainer-intake-audit.json",
       "exists": true
     },
     {

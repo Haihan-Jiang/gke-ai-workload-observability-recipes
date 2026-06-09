@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 18,
-  "minimum_detected_fixtures": 18,
+  "minimum_artifact_count": 19,
+  "minimum_detected_fixtures": 19,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 65,
-        "required_step_count": 65,
-        "dependency_count": 142,
-        "artifact_dependency_count": 142,
+        "step_count": 66,
+        "required_step_count": 66,
+        "dependency_count": 150,
+        "artifact_dependency_count": 150,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 65,
-        "dependencies": 142,
+        "steps": 66,
+        "dependencies": 150,
         "fixtures": 4
       }
     },
@@ -79,12 +79,12 @@
       ],
       "minimum_metrics": {
         "check_count": 7,
-        "py_compile_script_count": 67,
-        "generation_script_count": 65,
-        "direct_validation_script_count": 64,
-        "policy_json_count": 60,
-        "committed_json_count": 75,
-        "release_argument_count": 64,
+        "py_compile_script_count": 68,
+        "generation_script_count": 66,
+        "direct_validation_script_count": 65,
+        "policy_json_count": 61,
+        "committed_json_count": 76,
+        "release_argument_count": 65,
         "detected_fixture_count": 6
       },
       "maximum_metrics": {
@@ -717,9 +717,9 @@
       ],
       "minimum_metrics": {
         "check_count": 6,
-        "claim_count": 12,
-        "evidence_claim_count": 12,
-        "release_check_count": 12,
+        "claim_count": 13,
+        "evidence_claim_count": 13,
+        "release_check_count": 13,
         "boundary_statement_count": 2,
         "detected_fixture_count": 6
       },
@@ -778,6 +778,54 @@
       },
       "array_min_lengths": {
         "checks": 7,
+        "fixtures": 6
+      }
+    },
+    {
+      "path": "docs/evidence/maintainer-intake-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "required_file_count",
+        "present_file_count",
+        "issue_template_count",
+        "pr_validation_command_count",
+        "support_term_count",
+        "contribution_term_count",
+        "detected_fixture_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "issue_intake_contract",
+        "feature_request_contract",
+        "issue_security_boundary",
+        "pull_request_validation_contract",
+        "support_boundary",
+        "contribution_summary_linkage",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "required_file_count": 6,
+        "present_file_count": 6,
+        "issue_template_count": 2,
+        "pr_validation_command_count": 3,
+        "support_term_count": 5,
+        "contribution_term_count": 2,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
         "fixtures": 6
       }
     }
@@ -914,6 +962,14 @@
       "artifact": "docs/evidence/release-notes-contract-audit.json",
       "field": "release_note_field_count",
       "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_maintainer_issue_template_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/maintainer-intake-audit.json",
+      "field": "issue_template_count",
+      "value": 1,
       "expected_failed_check": "metric_contract"
     }
   ]

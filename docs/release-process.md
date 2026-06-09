@@ -34,6 +34,7 @@ policy checks are internally consistent at a Git revision.
    - `docs/evidence/developer-runtime-audit.md`
    - `docs/evidence/security-response-audit.md`
    - `docs/evidence/security-response-audit.json`
+   - `docs/evidence/maintainer-intake-audit.md`
    - `docs/evidence/public-claim-evidence-audit.md`
    - `docs/evidence/release-notes-contract-audit.md`
 

@@ -1,0 +1,38 @@
+name: Feature request
+description: Propose a bounded reliability, evidence, or governance improvement.
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep proposals portable. No paid services or external credentials.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What reliability, governance, evidence, or documentation gap would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: production-risk
+    attributes:
+      label: Production risk
+      description: What failure mode would remain if this is not handled?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence-artifacts
+    attributes:
+      label: Evidence artifacts
+      description: Which committed evidence, policy, manifest, or test artifacts should change?
+    validations:
+      required: true
+  - type: textarea
+    id: validation-plan
+    attributes:
+      label: Validation plan
+      description: Name the local validation commands or fixtures that would prove the change.
+      placeholder: ./scripts/generate-evidence.sh, ./scripts/validate.sh
+    validations:
+      required: true

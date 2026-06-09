@@ -1,0 +1,200 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 8,
+  "detected_fixture_count": 6,
+  "required_file_count": 6,
+  "present_file_count": 6,
+  "issue_template_count": 2,
+  "pr_validation_command_count": 3,
+  "support_term_count": 5,
+  "contribution_term_count": 2,
+  "checks": [
+    {
+      "name": "required_files",
+      "ok": true,
+      "evidence": {
+        "missing_files": [],
+        "required_files": [
+          ".github/ISSUE_TEMPLATE/bug_report.yml",
+          ".github/ISSUE_TEMPLATE/feature_request.yml",
+          ".github/ISSUE_TEMPLATE/config.yml",
+          ".github/PULL_REQUEST_TEMPLATE.md",
+          "SUPPORT.md",
+          "CONTRIBUTING.md"
+        ]
+      }
+    },
+    {
+      "name": "issue_intake_contract",
+      "ok": true,
+      "evidence": {
+        "missing_terms": [],
+        "issue_template_count": 2,
+        "minimum_issue_template_count": 2
+      }
+    },
+    {
+      "name": "feature_request_contract",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "issue_security_boundary",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "pull_request_validation_contract",
+      "ok": true,
+      "evidence": {
+        "missing_terms": [],
+        "missing_validation_commands": [],
+        "pr_validation_command_count": 3,
+        "minimum_pr_validation_command_count": 3
+      }
+    },
+    {
+      "name": "support_boundary",
+      "ok": true,
+      "evidence": {
+        "missing_terms": [],
+        "support_term_count": 5,
+        "minimum_support_term_count": 5
+      }
+    },
+    {
+      "name": "contribution_summary_linkage",
+      "ok": true,
+      "evidence": {
+        "missing_terms": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 6,
+        "minimum_detected_fixtures": 6,
+        "fixtures": [
+          {
+            "name": "missing_bug_template",
+            "mutation": "remove_file",
+            "expected_failed_check": "required_files",
+            "failed_checks": [
+              "required_files",
+              "issue_intake_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_no_secret_bug_text",
+            "mutation": "remove_text",
+            "expected_failed_check": "issue_intake_contract",
+            "failed_checks": [
+              "issue_intake_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_feature_validation_plan",
+            "mutation": "remove_text",
+            "expected_failed_check": "feature_request_contract",
+            "failed_checks": [
+              "feature_request_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_security_redirect",
+            "mutation": "remove_text",
+            "expected_failed_check": "issue_security_boundary",
+            "failed_checks": [
+              "issue_security_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_ci_validation_command",
+            "mutation": "remove_text",
+            "expected_failed_check": "pull_request_validation_contract",
+            "failed_checks": [
+              "pull_request_validation_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_support_boundary",
+            "mutation": "remove_text",
+            "expected_failed_check": "support_boundary",
+            "failed_checks": [
+              "support_boundary"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_bug_template",
+      "mutation": "remove_file",
+      "expected_failed_check": "required_files",
+      "failed_checks": [
+        "required_files",
+        "issue_intake_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_no_secret_bug_text",
+      "mutation": "remove_text",
+      "expected_failed_check": "issue_intake_contract",
+      "failed_checks": [
+        "issue_intake_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_feature_validation_plan",
+      "mutation": "remove_text",
+      "expected_failed_check": "feature_request_contract",
+      "failed_checks": [
+        "feature_request_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_security_redirect",
+      "mutation": "remove_text",
+      "expected_failed_check": "issue_security_boundary",
+      "failed_checks": [
+        "issue_security_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_ci_validation_command",
+      "mutation": "remove_text",
+      "expected_failed_check": "pull_request_validation_contract",
+      "failed_checks": [
+        "pull_request_validation_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_support_boundary",
+      "mutation": "remove_text",
+      "expected_failed_check": "support_boundary",
+      "failed_checks": [
+        "support_boundary"
+      ],
+      "detected": true
+    }
+  ]
+}

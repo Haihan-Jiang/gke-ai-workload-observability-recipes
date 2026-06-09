@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing that public README and industry-map claims are backed by committed evidence and release-readiness source checks.",
-  "minimum_claim_count": 12,
-  "minimum_evidence_claim_count": 12,
-  "minimum_release_check_count": 12,
+  "minimum_claim_count": 13,
+  "minimum_evidence_claim_count": 13,
+  "minimum_release_check_count": 13,
   "minimum_boundary_statement_count": 2,
   "minimum_detected_fixtures": 6,
   "boundary_statements": [
@@ -51,8 +51,8 @@
       "evidence_doc": "docs/evidence/validation-contract-audit.md",
       "release_check": "validation_contract_audit",
       "minimum_metrics": {
-        "py_compile_script_count": 66,
-        "committed_json_count": 74,
+        "py_compile_script_count": 68,
+        "committed_json_count": 76,
         "detected_fixture_count": 6
       }
     },
@@ -64,8 +64,8 @@
       "evidence_doc": "docs/evidence/evidence-pipeline-audit.md",
       "release_check": "evidence_pipeline_audit",
       "minimum_metrics": {
-        "step_count": 64,
-        "dependency_count": 135
+        "step_count": 66,
+        "dependency_count": 150
       }
     },
     {
@@ -193,6 +193,20 @@
       "release_check": "validation_contract_audit",
       "minimum_metrics": {
         "check_count": 7
+      }
+    },
+    {
+      "id": "maintainer_intake",
+      "surface": "README.md",
+      "required_text": "Maintainer intake evidence checks",
+      "evidence_json": "docs/evidence/maintainer-intake-audit.json",
+      "evidence_doc": "docs/evidence/maintainer-intake-audit.md",
+      "release_check": "maintainer_intake_audit",
+      "minimum_metrics": {
+        "issue_template_count": 2,
+        "pr_validation_command_count": 3,
+        "support_term_count": 5,
+        "detected_fixture_count": 6
       }
     }
   ],

@@ -65,6 +65,7 @@ python3 -m py_compile \
   demo/evidence_provenance.py \
   demo/proof_packet_integrity_audit.py \
   demo/documentation_link_integrity_audit.py \
+  demo/maintainer_intake_audit.py \
   demo/public_claim_evidence_audit.py \
   demo/release_notes_contract_audit.py \
   demo/capacity_planner.py \
@@ -140,6 +141,7 @@ python3 -m json.tool config/disaster-recovery-policy.json >/dev/null
 python3 -m json.tool config/evidence-provenance-policy.json >/dev/null
 python3 -m json.tool config/proof-packet-integrity-policy.json >/dev/null
 python3 -m json.tool config/documentation-link-policy.json >/dev/null
+python3 -m json.tool config/maintainer-intake-policy.json >/dev/null
 python3 -m json.tool config/public-claim-evidence-policy.json >/dev/null
 python3 -m json.tool config/release-notes-contract-policy.json >/dev/null
 python3 demo/reliability_gate.py \
@@ -444,6 +446,10 @@ python3 demo/release_waiver_governance.py \
   --post-incident-review out/post-incident-review-validate/post-incident-review.json \
   --output-dir out/release-waiver-governance-validate >/dev/null
 ./scripts/generate-evidence.sh >/dev/null
+python3 demo/maintainer_intake_audit.py \
+  --policy config/maintainer-intake-policy.json \
+  --repo-root . \
+  --output-dir out/maintainer-intake-audit-validate >/dev/null
 python3 demo/evidence_provenance.py \
   --policy config/evidence-provenance-policy.json \
   --repo-root . \
@@ -530,6 +536,7 @@ python3 demo/release_readiness.py \
   --replay-source-contract docs/evidence/replay-source-contract-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
+  --maintainer-intake docs/evidence/maintainer-intake-audit.json \
   --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
   --release-notes-contract docs/evidence/release-notes-contract-audit.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
@@ -613,6 +620,7 @@ python3 -m json.tool docs/evidence/disaster-recovery-drill.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null
 python3 -m json.tool docs/evidence/proof-packet-integrity-audit.json >/dev/null
 python3 -m json.tool docs/evidence/documentation-link-integrity-audit.json >/dev/null
+python3 -m json.tool docs/evidence/maintainer-intake-audit.json >/dev/null
 python3 -m json.tool docs/evidence/public-claim-evidence-audit.json >/dev/null
 python3 -m json.tool docs/evidence/release-notes-contract-audit.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null

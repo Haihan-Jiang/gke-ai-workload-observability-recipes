@@ -118,6 +118,10 @@ arguments before a proof packet is trusted.
 Documentation link integrity evidence checks README, contributor docs, release
 docs, and committed evidence indexes for local path, anchor, image, and scheme
 drift before public review links are trusted.
+Maintainer intake evidence checks that issue templates, the pull request
+template, and support guidance collect reproducible evidence, validation
+commands, security routing, no-secret boundaries, and support expectations
+before the repository is treated as maintainer-ready.
 Public claim evidence audit checks that README and industry-map claims stay
 backed by committed JSON/Markdown evidence, release-readiness checks, and
 explicit boundary language before public review text is trusted.
@@ -290,6 +294,10 @@ not described as merged.
 - A documentation link integrity audit that verifies README, docs, evidence
   indexes, anchors, images, and allowed schemes before public review links are
   trusted.
+- A maintainer intake audit that verifies bug reports, feature requests, pull
+  requests, and support guidance ask for reproducible evidence, validation
+  commands, no-secret boundaries, security reporting redirects, and portable
+  support expectations.
 - A public claim evidence audit that verifies README and industry-map claims
   stay backed by committed evidence, release-readiness checks, and explicit
   project boundary language.
@@ -490,6 +498,7 @@ script:
 - [Validation contract audit](docs/evidence/validation-contract-audit.md)
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
 - [Documentation link integrity audit](docs/evidence/documentation-link-integrity-audit.md)
+- [Maintainer intake audit](docs/evidence/maintainer-intake-audit.md)
 - [Public claim evidence audit](docs/evidence/public-claim-evidence-audit.md)
 - [Release notes contract audit](docs/evidence/release-notes-contract-audit.md)
 - [Evidence provenance](docs/evidence/evidence-provenance.md)
@@ -688,6 +697,9 @@ Before adapting this to a real GKE cluster:
 55. Keep release notes aligned with changed capability, evidence artifacts,
    validation commands, deployment boundaries, and contribution summary
    requirements before a release packet is trusted.
+56. Keep maintainer intake aligned with reproducible evidence, validation
+   commands, no-secret boundaries, security routing, and support expectations
+   before treating public issues or pull requests as release-ready inputs.
 
 ## Case Study
 

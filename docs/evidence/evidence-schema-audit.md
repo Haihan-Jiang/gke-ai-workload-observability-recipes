@@ -11,13 +11,13 @@ values, and negative drift fixtures.
 
 | Metric | Value |
 | --- | ---: |
-| Artifacts | 18 |
-| Required fields | 189 |
-| Required checks | 118 |
-| Metric contracts | 117 |
-| Array contracts | 44 |
-| Observed checks | 118 |
-| Detected fixtures | 18 |
+| Artifacts | 19 |
+| Required fields | 201 |
+| Required checks | 126 |
+| Metric contracts | 126 |
+| Array contracts | 46 |
+| Observed checks | 126 |
+| Detected fixtures | 19 |
 
 ## Checks
 
@@ -55,6 +55,7 @@ values, and negative drift fixtures.
 | `docs/evidence/workload-identity-audit.json` | `pass` | 8 |
 | `docs/evidence/public-claim-evidence-audit.json` | `pass` | 6 |
 | `docs/evidence/release-notes-contract-audit.json` | `pass` | 7 |
+| `docs/evidence/maintainer-intake-audit.json` | `pass` | 8 |
 
 ## Negative Fixtures
 
@@ -78,3 +79,4 @@ values, and negative drift fixtures.
 | `missing_validation_committed_json_check` | `check_inventory` | yes |
 | `low_public_claim_count` | `metric_contract` | yes |
 | `low_release_note_field_count` | `metric_contract` | yes |
+| `low_maintainer_issue_template_count` | `metric_contract` | yes |

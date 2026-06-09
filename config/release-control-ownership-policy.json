@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing ownership, severity, cadence, escalation, rollback, and evidence paths for release-readiness checks.",
-  "minimum_control_count": 63,
-  "minimum_tier0_count": 40,
-  "minimum_every_release_count": 51,
+  "minimum_control_count": 64,
+  "minimum_tier0_count": 41,
+  "minimum_every_release_count": 52,
   "minimum_owner_group_count": 5,
   "minimum_detected_fixtures": 6,
   "allowed_tiers": [
@@ -102,6 +102,7 @@
     {"name": "validation_contract_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/validation-contract-audit.json"},
     {"name": "disaster_recovery_drill", "owner": "sre", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/disaster-recovery-drill.json"},
     {"name": "documentation_link_integrity_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/documentation-link-integrity-audit.json"},
+    {"name": "maintainer_intake_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/maintainer-intake-audit.json"},
     {"name": "public_claim_evidence_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/public-claim-evidence-audit.json"},
     {"name": "release_notes_contract_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/release-notes-contract-audit.json"},
     {"name": "evidence_provenance", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/evidence-provenance.json"},

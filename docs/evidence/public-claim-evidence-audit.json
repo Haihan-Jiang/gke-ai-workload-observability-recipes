@@ -3,9 +3,9 @@
   "check_count": 6,
   "failed_count": 0,
   "detected_fixture_count": 6,
-  "claim_count": 12,
-  "evidence_claim_count": 12,
-  "release_check_count": 12,
+  "claim_count": 13,
+  "evidence_claim_count": 13,
+  "release_check_count": 13,
   "boundary_statement_count": 3,
   "forbidden_phrase_count": 0,
   "missing_claim_count": 0,
@@ -19,8 +19,8 @@
       "name": "claim_text_contract",
       "ok": true,
       "evidence": {
-        "claim_count": 12,
-        "minimum_claim_count": 12,
+        "claim_count": 13,
+        "minimum_claim_count": 13,
         "missing_claims": []
       }
     },
@@ -28,7 +28,7 @@
       "name": "evidence_status_contract",
       "ok": true,
       "evidence": {
-        "evidence_claim_count": 12,
+        "evidence_claim_count": 13,
         "missing_evidence": [],
         "bad_status": [],
         "missing_docs": []
@@ -45,7 +45,7 @@
       "name": "release_check_contract",
       "ok": true,
       "evidence": {
-        "release_check_count": 12,
+        "release_check_count": 13,
         "release_gaps": []
       }
     },

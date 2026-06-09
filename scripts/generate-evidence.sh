@@ -293,6 +293,10 @@ python3 demo/release_waiver_governance.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --post-incident-review docs/evidence/post-incident-review.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/maintainer_intake_audit.py \
+  --policy config/maintainer-intake-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/public_claim_evidence_audit.py \
   --policy config/public-claim-evidence-policy.json \
   --repo-root . \
@@ -403,6 +407,7 @@ python3 demo/release_readiness.py \
   --replay-source-contract docs/evidence/replay-source-contract-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
+  --maintainer-intake docs/evidence/maintainer-intake-audit.json \
   --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
   --release-notes-contract docs/evidence/release-notes-contract-audit.json \
   --observability-drift docs/evidence/observability-drift-audit.json \

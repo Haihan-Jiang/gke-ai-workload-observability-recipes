@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 65 |
-| Required steps | 65 |
-| Dependencies | 142 |
-| Artifact dependencies | 142 |
+| Steps | 66 |
+| Required steps | 66 |
+| Dependencies | 150 |
+| Artifact dependencies | 150 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -159,6 +159,14 @@ accidentally read stale committed artifacts.
 | `release_waiver_governance` | `public_claim_evidence_audit` | yes |
 | `evidence_pipeline_audit` | `public_claim_evidence_audit` | yes |
 | `validation_contract_audit` | `public_claim_evidence_audit` | yes |
+| `maintainer_intake_audit` | `public_claim_evidence_audit` | yes |
+| `maintainer_intake_audit` | `render_incident_evidence` | yes |
+| `maintainer_intake_audit` | `documentation_link_integrity_audit` | yes |
+| `maintainer_intake_audit` | `evidence_schema_audit` | yes |
+| `maintainer_intake_audit` | `disaster_recovery_drill` | yes |
+| `maintainer_intake_audit` | `evidence_provenance` | yes |
+| `maintainer_intake_audit` | `control_traceability_audit` | yes |
+| `maintainer_intake_audit` | `release_readiness` | yes |
 | `public_claim_evidence_audit` | `disaster_recovery_drill` | yes |
 | `public_claim_evidence_audit` | `evidence_provenance` | yes |
 | `public_claim_evidence_audit` | `control_traceability_audit` | yes |

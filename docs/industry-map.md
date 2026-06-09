@@ -174,6 +174,7 @@ inference incidents before a service reaches production.
 | C53 | Public review links can drift after evidence is regenerated | Release review needs local Markdown link, anchor, image, and scheme checks so README, contributor docs, release docs, and evidence indexes stay navigable. | [Documentation link integrity audit](evidence/documentation-link-integrity-audit.md) |
 | C54 | Downstream gates can trust replay output after source schema drift | Release review needs a source contract for replay summaries and OTLP payloads so scenario coverage, span shape, attributes, and incident signals stay stable before downstream evidence consumes them. | [Replay source contract audit](evidence/replay-source-contract-audit.md) |
 | C55 | Release notes can omit changed evidence or validation boundaries | Reviewers need release notes to name the changed capability, evidence artifacts, validation commands, and deployment assumptions before trusting a release packet. | [Release notes contract audit](evidence/release-notes-contract-audit.md) |
+| C56 | Public issue and pull request intake can miss evidence and safety boundaries | Maintainers need issue templates, PR templates, support boundaries, validation commands, and security redirects before public collaboration is treated as release-ready. | [Maintainer intake audit](evidence/maintainer-intake-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -457,6 +458,12 @@ inference incidents before a service reaches production.
     - Policy: [config/release-notes-contract-policy.json](../config/release-notes-contract-policy.json)
     - Inputs: [release process](release-process.md), [contributing guide](../CONTRIBUTING.md), [README](../README.md), and this industry map
     - Evidence: [release notes contract audit](evidence/release-notes-contract-audit.md)
+
+48. **Maintainer intake audit**
+    - Code: [demo/maintainer_intake_audit.py](../demo/maintainer_intake_audit.py)
+    - Policy: [config/maintainer-intake-policy.json](../config/maintainer-intake-policy.json)
+    - Inputs: GitHub issue templates, pull request template, [support guide](../SUPPORT.md), and [contributing guide](../CONTRIBUTING.md)
+    - Evidence: [maintainer intake audit](evidence/maintainer-intake-audit.md)
 
 ## Boundary
 
