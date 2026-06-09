@@ -9,12 +9,12 @@ release-readiness arguments stay synchronized.
 
 ## Summary
 
-- Py-compiled demo scripts: `71`
-- Generation scripts: `69`
-- Direct validation scripts: `68`
-- Policy JSON files validated: `64`
-- Committed evidence JSON files validated: `79`
-- Release-readiness arguments: `68`
+- Py-compiled demo scripts: `72`
+- Generation scripts: `70`
+- Direct validation scripts: `69`
+- Policy JSON files validated: `65`
+- Committed evidence JSON files validated: `80`
+- Release-readiness arguments: `69`
 - Detected negative fixtures: `6`
 
 ## Checks

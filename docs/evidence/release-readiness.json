@@ -250,6 +250,10 @@
       "ok": true
     },
     {
+      "name": "data_handling_audit",
+      "ok": true
+    },
+    {
       "name": "public_claim_evidence_audit",
       "ok": true
     },
@@ -853,6 +857,14 @@
     },
     {
       "path": "threat-model-audit.json",
+      "exists": true
+    },
+    {
+      "path": "data-handling-audit.md",
+      "exists": true
+    },
+    {
+      "path": "data-handling-audit.json",
       "exists": true
     },
     {

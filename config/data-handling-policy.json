@@ -1,0 +1,262 @@
+{
+  "description": "Policy for auditing public data handling, retention, forbidden-data, evidence, and release-control bindings.",
+  "required_files": [
+    "README.md",
+    "docs/data-handling.md",
+    "docs/threat-model.md",
+    "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+    "docs/release-process.md",
+    "SECURITY.md"
+  ],
+  "data_handling_surface": "docs/data-handling.md",
+  "required_sections": [
+    "## Scope",
+    "## Data Classes",
+    "## Retention Boundaries",
+    "## Forbidden Data",
+    "## Release Gate Bindings",
+    "## Review Cadence"
+  ],
+  "required_data_classes": [
+    "DC-01: Synthetic incident metadata",
+    "DC-02: AI model and tenant labels",
+    "DC-03: Trace attributes and span metrics",
+    "DC-04: Telemetry exporter configuration",
+    "DC-05: Public evidence artifacts",
+    "DC-06: Contributor and security intake data"
+  ],
+  "minimum_required_file_count": 6,
+  "minimum_data_class_count": 6,
+  "minimum_handling_term_count": 27,
+  "minimum_retention_term_count": 6,
+  "minimum_owner_count": 6,
+  "minimum_evidence_link_count": 18,
+  "minimum_release_control_count": 18,
+  "minimum_detected_fixtures": 7,
+  "data_classes": [
+    {
+      "id": "DC-01",
+      "title": "Synthetic incident metadata",
+      "owner": "release-evidence",
+      "retention": "Retention: committed current-head evidence until replaced by regenerated",
+      "required_terms": [
+        "local replay only",
+        "no cloud account",
+        "synthetic scenario IDs",
+        "no production data"
+      ],
+      "forbidden_terms": [
+        "production traces",
+        "customer identifiers",
+        "raw IP addresses",
+        "request bodies"
+      ],
+      "evidence_links": [
+        "docs/evidence/replay-source-contract-audit.md",
+        "docs/evidence/evidence-provenance.md",
+        "docs/evidence/proof-packet-integrity-audit.md"
+      ],
+      "release_controls": [
+        "replay_source_contract_audit",
+        "evidence_provenance",
+        "proof_packet_integrity_audit"
+      ]
+    },
+    {
+      "id": "DC-02",
+      "title": "AI model and tenant labels",
+      "owner": "mlops-release",
+      "retention": "Retention: committed only as bounded labels, not prompts or responses.",
+      "required_terms": [
+        "telemetry redaction",
+        "model release safety",
+        "shadow traffic isolation",
+        "disabled writes and side effects",
+        "no prompt/response storage"
+      ],
+      "forbidden_terms": [
+        "no prompt text",
+        "no response text",
+        "no embeddings",
+        "no user-provided documents"
+      ],
+      "evidence_links": [
+        "docs/evidence/telemetry-redaction-audit.md",
+        "docs/evidence/model-release-safety-audit.md",
+        "docs/evidence/shadow-traffic-replay-audit.md"
+      ],
+      "release_controls": [
+        "telemetry_redaction_audit",
+        "model_release_safety_audit",
+        "shadow_traffic_replay_audit"
+      ]
+    },
+    {
+      "id": "DC-03",
+      "title": "Trace attributes and span metrics",
+      "owner": "sre-platform",
+      "retention": "Retention: retention_days=7 budget for generated trace volume assumptions.",
+      "required_terms": [
+        "bounded sampling",
+        "trace retention control",
+        "retention_days=7",
+        "telemetry cost budget",
+        "observability drift checks"
+      ],
+      "forbidden_terms": [
+        "full payload capture",
+        "long-term baseline retention",
+        "unsampled healthy traffic replay",
+        "unbounded high-cardinality attributes"
+      ],
+      "evidence_links": [
+        "docs/evidence/telemetry-cost-budget.md",
+        "docs/evidence/telemetry-sampling-audit.md",
+        "docs/evidence/observability-drift-audit.md"
+      ],
+      "release_controls": [
+        "telemetry_cost_budget",
+        "telemetry_sampling_audit",
+        "observability_drift_audit"
+      ]
+    },
+    {
+      "id": "DC-04",
+      "title": "Telemetry exporter configuration",
+      "owner": "security-review",
+      "retention": "Retention: configuration may be committed; credentials must not be committed.",
+      "required_terms": [
+        "no static credentials",
+        "Workload Identity",
+        "authoritative upstream exporter",
+        "network egress restrictions",
+        "secret hygiene scanning"
+      ],
+      "forbidden_terms": [
+        "static credentials",
+        "bearer tokens",
+        "private keys",
+        "service account keys",
+        "production exporter secrets"
+      ],
+      "evidence_links": [
+        "docs/evidence/workload-identity-audit.md",
+        "docs/evidence/telemetry-exporter-authority-audit.md",
+        "docs/evidence/secret-hygiene-audit.md"
+      ],
+      "release_controls": [
+        "workload_identity_audit",
+        "telemetry_exporter_authority_audit",
+        "secret_hygiene_audit"
+      ]
+    },
+    {
+      "id": "DC-05",
+      "title": "Public evidence artifacts",
+      "owner": "release-evidence",
+      "retention": "Retention: current-head evidence only; regenerate before release review.",
+      "required_terms": [
+        "evidence provenance",
+        "proof packet integrity",
+        "validation contract checks",
+        "no circular artifacts",
+        "CI-mode committed evidence drift checks"
+      ],
+      "forbidden_terms": [
+        "stale proof packets",
+        "circular proof artifacts",
+        "hand-edited generated JSON",
+        "untracked source inputs"
+      ],
+      "evidence_links": [
+        "docs/evidence/evidence-provenance.md",
+        "docs/evidence/proof-packet-integrity-audit.md",
+        "docs/evidence/validation-contract-audit.md"
+      ],
+      "release_controls": [
+        "evidence_provenance",
+        "proof_packet_integrity_audit",
+        "validation_contract_audit"
+      ]
+    },
+    {
+      "id": "DC-06",
+      "title": "Contributor and security intake data",
+      "owner": "security-review",
+      "retention": "Retention: public issues must contain reproducible evidence only; sensitive",
+      "required_terms": [
+        "private vulnerability reporting",
+        "no-secret boundaries",
+        "support boundary",
+        "reproducible evidence only",
+        "public claim boundaries"
+      ],
+      "forbidden_terms": [
+        "no secrets in public issues",
+        "no credentials in pull requests",
+        "no private vulnerability details",
+        "no customer data"
+      ],
+      "evidence_links": [
+        "docs/evidence/maintainer-intake-audit.md",
+        "docs/evidence/security-response-audit.md",
+        "docs/evidence/public-claim-evidence-audit.md"
+      ],
+      "release_controls": [
+        "maintainer_intake_audit",
+        "security_response_audit",
+        "public_claim_evidence_audit"
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_data_handling_document",
+      "mutation": "remove_file",
+      "path": "docs/data-handling.md",
+      "expected_failed_check": "required_files"
+    },
+    {
+      "name": "missing_model_label_class",
+      "mutation": "remove_text",
+      "path": "docs/data-handling.md",
+      "text": "DC-02: AI model and tenant labels",
+      "expected_failed_check": "data_class_contract"
+    },
+    {
+      "name": "missing_prompt_forbidden_term",
+      "mutation": "remove_text",
+      "path": "docs/data-handling.md",
+      "text": "no prompt text",
+      "expected_failed_check": "handling_contract"
+    },
+    {
+      "name": "missing_retention_budget",
+      "mutation": "remove_text",
+      "path": "docs/data-handling.md",
+      "text": "retention_days=7",
+      "expected_failed_check": "retention_contract"
+    },
+    {
+      "name": "missing_redaction_evidence_link",
+      "mutation": "remove_text",
+      "path": "docs/data-handling.md",
+      "text": "docs/evidence/telemetry-redaction-audit.md",
+      "expected_failed_check": "evidence_linkage"
+    },
+    {
+      "name": "missing_exporter_release_control",
+      "mutation": "remove_text",
+      "path": "docs/data-handling.md",
+      "text": "telemetry_exporter_authority_audit",
+      "expected_failed_check": "release_control_linkage"
+    },
+    {
+      "name": "missing_security_owner",
+      "mutation": "remove_text",
+      "path": "docs/data-handling.md",
+      "text": "security-review",
+      "expected_failed_check": "owner_contract"
+    }
+  ]
+}

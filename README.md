@@ -133,6 +133,10 @@ release gate.
 Threat model evidence checks that assets, trust boundaries, abuse cases,
 owners, residual risk, evidence links, and release controls stay aligned before
 security-readiness claims are trusted.
+Data handling evidence checks that synthetic replay data, model labels, trace
+attributes, exporter configuration, public evidence, and contributor/security
+intake stay within retention and forbidden-data boundaries before public
+data-handling claims are trusted.
 Public claim evidence audit checks that README and industry-map claims stay
 backed by committed JSON/Markdown evidence, release-readiness checks, and
 explicit boundary language before public review text is trusted.
@@ -175,6 +179,8 @@ not described as merged.
 - A threat model audit that verifies assets, trust boundaries, abuse cases,
   owners, residual risk statements, evidence links, and release-control
   bindings.
+- A data handling audit that verifies data classes, retention boundaries,
+  forbidden-data terms, owners, evidence links, and release-control bindings.
 - A supply-chain audit that verifies Kubernetes image references are
   digest-pinned, non-floating, explicitly pulled, and owner-labeled.
 - An OSS license audit that verifies Apache-2.0, NOTICE, README license links,

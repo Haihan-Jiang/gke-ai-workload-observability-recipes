@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing that public README and industry-map claims are backed by committed evidence and release-readiness source checks.",
-  "minimum_claim_count": 16,
-  "minimum_evidence_claim_count": 16,
-  "minimum_release_check_count": 16,
+  "minimum_claim_count": 17,
+  "minimum_evidence_claim_count": 17,
+  "minimum_release_check_count": 17,
   "minimum_boundary_statement_count": 2,
   "minimum_detected_fixtures": 6,
   "boundary_statements": [
@@ -64,8 +64,8 @@
       "evidence_doc": "docs/evidence/evidence-pipeline-audit.md",
       "release_check": "evidence_pipeline_audit",
       "minimum_metrics": {
-        "step_count": 69,
-        "dependency_count": 177
+        "step_count": 70,
+        "dependency_count": 186
       }
     },
     {
@@ -251,6 +251,22 @@
         "threat_count": 6,
         "evidence_link_count": 19,
         "release_control_count": 19,
+        "detected_fixture_count": 7
+      }
+    },
+    {
+      "id": "data_handling",
+      "surface": "README.md",
+      "required_text": "Data handling evidence checks that synthetic replay data, model labels",
+      "evidence_json": "docs/evidence/data-handling-audit.json",
+      "evidence_doc": "docs/evidence/data-handling-audit.md",
+      "release_check": "data_handling_audit",
+      "minimum_metrics": {
+        "data_class_count": 6,
+        "handling_term_count": 54,
+        "retention_term_count": 6,
+        "evidence_link_count": 18,
+        "release_control_count": 18,
         "detected_fixture_count": 7
       }
     }

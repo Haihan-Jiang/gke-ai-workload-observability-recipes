@@ -178,6 +178,7 @@ inference incidents before a service reaches production.
 | C57 | Architecture choices can become unverifiable oral history | Industrial review needs accepted ADRs that record tradeoffs, rejected alternatives, committed evidence links, and release-control bindings before architecture claims are trusted. | [Architecture decision audit](evidence/architecture-decision-audit.md) |
 | C58 | Reviewers can miss the shortest reproducible proof path | Public reliability labs need a 10-minute current-head path that names regeneration commands, CI-mode drift checks, evidence packet links, and boundary language before review claims are trusted. | [Reviewer reproducibility audit](evidence/reviewer-reproducibility-audit.md) |
 | C59 | Security risks can be discussed without a reviewable threat model | Industrial review needs an explicit asset, trust-boundary, abuse-case, owner, residual-risk, evidence-link, and release-control register before security-readiness claims are trusted. | [Threat model audit](evidence/threat-model-audit.md) |
+| C60 | Public evidence can grow without a data-handling contract | Industrial review needs explicit data classes, retention boundaries, forbidden-data terms, owners, evidence links, and release-control bindings before data-handling claims are trusted. | [Data handling audit](evidence/data-handling-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -485,6 +486,12 @@ inference incidents before a service reaches production.
     - Policy: [config/threat-model-policy.json](../config/threat-model-policy.json)
     - Inputs: [threat model](threat-model.md), README, industry map, security policy, release process, committed evidence packet, and release-readiness source
     - Evidence: [threat model audit](evidence/threat-model-audit.md)
+
+52. **Data handling audit**
+    - Code: [demo/data_handling_audit.py](../demo/data_handling_audit.py)
+    - Policy: [config/data-handling-policy.json](../config/data-handling-policy.json)
+    - Inputs: [data handling register](data-handling.md), threat model, privacy-safe ADR, release process, security policy, committed evidence packet, and release-readiness source
+    - Evidence: [data handling audit](evidence/data-handling-audit.md)
 
 ## Boundary
 

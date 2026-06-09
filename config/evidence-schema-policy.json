@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 22,
-  "minimum_detected_fixtures": 22,
+  "minimum_artifact_count": 23,
+  "minimum_detected_fixtures": 23,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 69,
-        "required_step_count": 69,
-        "dependency_count": 177,
-        "artifact_dependency_count": 177,
+        "step_count": 70,
+        "required_step_count": 70,
+        "dependency_count": 186,
+        "artifact_dependency_count": 186,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 69,
-        "dependencies": 177,
+        "steps": 70,
+        "dependencies": 186,
         "fixtures": 4
       }
     },
@@ -79,12 +79,12 @@
       ],
       "minimum_metrics": {
         "check_count": 7,
-        "py_compile_script_count": 71,
-        "generation_script_count": 69,
-        "direct_validation_script_count": 68,
-        "policy_json_count": 64,
-        "committed_json_count": 79,
-        "release_argument_count": 68,
+        "py_compile_script_count": 72,
+        "generation_script_count": 70,
+        "direct_validation_script_count": 69,
+        "policy_json_count": 65,
+        "committed_json_count": 80,
+        "release_argument_count": 69,
         "detected_fixture_count": 6
       },
       "maximum_metrics": {
@@ -717,9 +717,9 @@
       ],
       "minimum_metrics": {
         "check_count": 6,
-        "claim_count": 16,
-        "evidence_claim_count": 16,
-        "release_check_count": 16,
+        "claim_count": 17,
+        "evidence_claim_count": 17,
+        "release_check_count": 17,
         "boundary_statement_count": 2,
         "detected_fixture_count": 6
       },
@@ -982,6 +982,60 @@
         "checks": 8,
         "fixtures": 7
       }
+    },
+    {
+      "path": "docs/evidence/data-handling-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "required_file_count",
+        "present_file_count",
+        "data_class_count",
+        "handling_term_count",
+        "retention_term_count",
+        "owner_count",
+        "evidence_link_count",
+        "existing_evidence_link_count",
+        "release_control_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "data_class_contract",
+        "handling_contract",
+        "retention_contract",
+        "owner_contract",
+        "evidence_linkage",
+        "release_control_linkage",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "required_file_count": 6,
+        "present_file_count": 6,
+        "data_class_count": 6,
+        "handling_term_count": 54,
+        "retention_term_count": 6,
+        "owner_count": 6,
+        "evidence_link_count": 18,
+        "existing_evidence_link_count": 18,
+        "release_control_count": 18,
+        "detected_fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 7
+      }
     }
   ],
   "fixtures": [
@@ -1147,6 +1201,14 @@
       "mutation": "set_field",
       "artifact": "docs/evidence/threat-model-audit.json",
       "field": "threat_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_data_handling_class_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/data-handling-audit.json",
+      "field": "data_class_count",
       "value": 2,
       "expected_failed_check": "metric_contract"
     }

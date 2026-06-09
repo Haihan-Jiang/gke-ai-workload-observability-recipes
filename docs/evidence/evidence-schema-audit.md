@@ -11,13 +11,13 @@ values, and negative drift fixtures.
 
 | Metric | Value |
 | --- | ---: |
-| Artifacts | 22 |
-| Required fields | 244 |
-| Required checks | 146 |
-| Metric contracts | 160 |
-| Array contracts | 52 |
-| Observed checks | 146 |
-| Detected fixtures | 22 |
+| Artifacts | 23 |
+| Required fields | 259 |
+| Required checks | 154 |
+| Metric contracts | 172 |
+| Array contracts | 54 |
+| Observed checks | 154 |
+| Detected fixtures | 23 |
 
 ## Checks
 
@@ -59,6 +59,7 @@ values, and negative drift fixtures.
 | `docs/evidence/architecture-decision-audit.json` | `pass` | 6 |
 | `docs/evidence/reviewer-reproducibility-audit.json` | `pass` | 6 |
 | `docs/evidence/threat-model-audit.json` | `pass` | 8 |
+| `docs/evidence/data-handling-audit.json` | `pass` | 8 |
 
 ## Negative Fixtures
 
@@ -86,3 +87,4 @@ values, and negative drift fixtures.
 | `low_architecture_decision_count` | `metric_contract` | yes |
 | `low_reviewer_command_count` | `metric_contract` | yes |
 | `low_threat_model_count` | `metric_contract` | yes |
+| `low_data_handling_class_count` | `metric_contract` | yes |

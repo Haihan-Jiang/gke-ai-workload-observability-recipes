@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 62,
-  "release_check_count": 67,
-  "evidence_file_count": 125,
-  "source_input_count": 65,
-  "policy_input_count": 63,
-  "test_file_count": 62,
+  "control_count": 63,
+  "release_check_count": 68,
+  "evidence_file_count": 127,
+  "source_input_count": 66,
+  "policy_input_count": 64,
+  "test_file_count": 63,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 62,
-        "minimum_control_count": 62,
+        "control_count": 63,
+        "minimum_control_count": 63,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 67,
-        "minimum_release_check_count": 67,
+        "release_check_count": 68,
+        "minimum_release_check_count": 68,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 63,
-        "minimum_policy_input_count": 63,
+        "policy_input_count": 64,
+        "minimum_policy_input_count": 64,
         "policy_gaps": []
       }
     },
@@ -1189,6 +1189,23 @@
       ],
       "tests": [
         "tests/test_threat_model_audit.py"
+      ]
+    },
+    {
+      "name": "data_handling_audit",
+      "release_readiness_check": "data_handling_audit",
+      "evidence": [
+        "docs/evidence/data-handling-audit.json",
+        "docs/evidence/data-handling-audit.md"
+      ],
+      "source_inputs": [
+        "demo/data_handling_audit.py"
+      ],
+      "policy_inputs": [
+        "config/data-handling-policy.json"
+      ],
+      "tests": [
+        "tests/test_data_handling_audit.py"
       ]
     }
   ],

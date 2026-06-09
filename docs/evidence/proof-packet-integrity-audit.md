@@ -10,11 +10,11 @@ artifacts out of the manifest cycle.
 
 ## Summary
 
-- Manifest entries: `314`
-- Evidence artifacts: `151`
+- Manifest entries: `319`
+- Evidence artifacts: `153`
 - Generated artifacts: `4`
-- Source inputs: `159`
-- Matched digests: `314`
+- Source inputs: `162`
+- Matched digests: `319`
 - Missing paths: `0`
 - Digest mismatches: `0`
 - Circular artifacts: `0`
