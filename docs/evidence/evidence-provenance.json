@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 116,
+  "artifact_count": 118,
   "generated_artifact_count": 4,
-  "source_input_count": 107,
+  "source_input_count": 109,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3482,
-      "sha256": "246f2c5950d208296d662e84e8eccce07c0c021212137d95beab62ccf76cb144"
+      "bytes": 3554,
+      "sha256": "923fbadc36f8289b84b001d265deda058db6e2c4ea2a2dfaa5b368fb812511db"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -772,32 +772,46 @@
       "sha256": "61b4e70df2e3001a57490056a20b268cc775cc64bd8b26d08468489b26daa63c"
     },
     {
+      "path": "docs/evidence/release-control-ownership-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 7225,
+      "sha256": "a44ace974db93c3aaaebd429cfc28fd5c688d58e1e4cfe5d3dba687a9abd46fb"
+    },
+    {
+      "path": "docs/evidence/release-control-ownership-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 16015,
+      "sha256": "920abe063b02186701481f8733919347cddb8d68b04a7b3dc4f28d7e71b604f9"
+    },
+    {
       "path": "docs/evidence/control-traceability-audit.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3832,
-      "sha256": "af0a26d3dd2f7660547c0997421da30263200264ba02b97d8e2c71f45747b3a9"
+      "bytes": 3910,
+      "sha256": "497083fba5edef43746ab8aabeb3cac022e4709132eb0820201cc0b70cecf9c9"
     },
     {
       "path": "docs/evidence/control-traceability-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 24987,
-      "sha256": "3552b6f6541bcaa14ede8a784b2583d0d036dc286831b3306d59419247c921e6"
+      "bytes": 25577,
+      "sha256": "dd347b8e3c4e460b2f8de0fb2211a63cbaae343200ff8301ccaa5ebaac5b2103"
     },
     {
       "path": "docs/evidence/evidence-pipeline-audit.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 4040,
-      "sha256": "500d421b4836738ac3f6030925768ecdd7caf512f430a310d6e8ddfd0e0f2076"
+      "bytes": 4181,
+      "sha256": "94e7f805b43ca2e311098aa9779158d481b57de34ec3e51e67d5354b924f5832"
     },
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 21314,
-      "sha256": "842c7d5c13d419d855d64e5d29025cafe81bcc4ea45dd72d1a83b31d2c9574d7"
+      "bytes": 21972,
+      "sha256": "4a6e26f46543b81d7932ae8c394214e08369a1f14454208619219b620d94a516"
     },
     {
       "path": "docs/evidence/evidence-schema-audit.md",
@@ -825,7 +839,7 @@
       "group": "evidence",
       "exists": true,
       "bytes": 35143,
-      "sha256": "3c27aa7aacd065abf776033ecba496a8065e77edc62ca43c153996fb09957200"
+      "sha256": "cdeb490f63cd19b955656d893f7eb63c09535c92e212efa4671355fc071079aa"
     }
   ],
   "generated_artifacts": [
@@ -863,15 +877,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 15629,
-      "sha256": "c3355fe650bdf8aafc8e963a313d51c65c40c5c534a2fdde6ff63a77bc3d1af1"
+      "bytes": 15935,
+      "sha256": "aa7ae076bacdaa09d721a4edd0d822748fcc1d2426d0cc667d2c878a8c192a60"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 28234,
-      "sha256": "e998bf94f3937556d3e2715a743906370ce46c5967845b6a0952034d8f460f93"
+      "bytes": 28775,
+      "sha256": "5562331487d96fbedafc5f1c9a9b8a3b9abbf11c2b08b751665b06118055c263"
     },
     {
       "path": "scripts/kind-smoke.sh",
@@ -1182,6 +1196,13 @@
       "sha256": "5429b2346be49daa7b57d388e8074deff77238efb69575e550676ebf210f34f2"
     },
     {
+      "path": "demo/release_control_ownership_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 12403,
+      "sha256": "5d918cdb46b6c05eb488554f33143d53b647e861de4313bcf8a76fc3980c98ac"
+    },
+    {
       "path": "demo/control_traceability_audit.py",
       "group": "source-input",
       "exists": true,
@@ -1213,8 +1234,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 11582,
-      "sha256": "d4b52dfac6613336e02840304529f3750fc580d52b39ae3a42e10ef8a553e92e"
+      "bytes": 11673,
+      "sha256": "a953e7f9ada2d1bdcd630f121af47b69d122a446c1e72a0656c3c26ef58e9b3d"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1497,18 +1518,25 @@
       "sha256": "7aeba4d4559ed59dbf695f41d15a7cc1a18e5a4292b4c5a5c6c40bf9d28eed11"
     },
     {
+      "path": "config/release-control-ownership-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 11765,
+      "sha256": "595f1d52b48cf14101fe90626db8e8d5bf14078f41338535f063b369732c648d"
+    },
+    {
       "path": "config/control-traceability-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 22060,
-      "sha256": "3e26b2fb36a9be87b54aa9147a5e2e291cf18d44d90535141f716dbf0c483a13"
+      "bytes": 22594,
+      "sha256": "393a0effdcbe6a58fcd8b39204edb862b8eceed2efe02d16d6050ea16eb98ad0"
     },
     {
       "path": "config/evidence-pipeline-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 14180,
-      "sha256": "70b2daef36f2c7f80177d50e9788026b9568c059d321f3b9ee2d38322ad690d3"
+      "bytes": 14661,
+      "sha256": "aa004df3ad5ffa4e0b96c38da061ad675433603938436cf360e8de0a2bca752a"
     },
     {
       "path": "config/evidence-schema-policy.json",
@@ -1615,8 +1643,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 116,
-        "minimum": 116
+        "count": 118,
+        "minimum": 118
       }
     },
     {
@@ -1632,8 +1660,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 107,
-        "minimum": 107
+        "count": 109,
+        "minimum": 109
       }
     },
     {

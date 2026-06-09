@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 50 |
-| Required steps | 50 |
-| Dependencies | 50 |
-| Artifact dependencies | 50 |
+| Steps | 51 |
+| Required steps | 51 |
+| Dependencies | 52 |
+| Artifact dependencies | 52 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -71,6 +71,7 @@ accidentally read stale committed artifacts.
 | `load_shedding_policy_audit` | `regional_failover_audit` | yes |
 | `regional_failover_audit` | `evidence_provenance` | yes |
 | `regional_failover_audit` | `control_traceability_audit` | yes |
+| `release_control_ownership_audit` | `control_traceability_audit` | yes |
 | `evidence_schema_audit` | `control_traceability_audit` | yes |
 | `evidence_pipeline_audit` | `control_traceability_audit` | yes |
 | `control_traceability_audit` | `evidence_provenance` | yes |
@@ -78,6 +79,7 @@ accidentally read stale committed artifacts.
 | `evidence_provenance` | `release_readiness` | yes |
 | `regional_failover_audit` | `release_readiness` | yes |
 | `control_traceability_audit` | `release_readiness` | yes |
+| `release_control_ownership_audit` | `release_readiness` | yes |
 | `disaster_recovery_drill` | `release_readiness` | yes |
 | `evidence_schema_audit` | `release_readiness` | yes |
 

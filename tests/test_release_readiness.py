@@ -309,21 +309,32 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "unsafe_approved_count": 0,
             "failed_count": 0,
         },
+        "release_control_ownership": {
+            "status": "pass",
+            "control_count": 49,
+            "release_check_count": 49,
+            "covered_release_check_count": 49,
+            "tier0_count": 24,
+            "every_release_count": 36,
+            "owner_group_count": 5,
+            "detected_fixture_count": 6,
+            "failed_count": 0,
+        },
         "control_traceability": {
             "status": "pass",
-            "control_count": 43,
-            "evidence_file_count": 86,
-            "source_input_count": 43,
-            "policy_input_count": 44,
-            "test_file_count": 43,
+            "control_count": 44,
+            "evidence_file_count": 88,
+            "source_input_count": 44,
+            "policy_input_count": 45,
+            "test_file_count": 44,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 50,
-            "dependency_count": 50,
-            "artifact_dependency_count": 50,
+            "step_count": 51,
+            "dependency_count": 52,
+            "artifact_dependency_count": 52,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
@@ -766,6 +777,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["disaster_recovery_drill"])
+
+    def test_requires_release_control_ownership_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["release_control_ownership"]["owner_group_count"] = 2
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["release_control_ownership_audit"])
 
     def test_requires_control_traceability_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

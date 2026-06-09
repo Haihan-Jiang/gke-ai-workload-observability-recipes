@@ -263,6 +263,11 @@ python3 demo/regional_failover_audit.py \
   --runbooks docs/evidence/incident-runbooks.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/release_control_ownership_audit.py \
+  --policy config/release-control-ownership-policy.json \
+  --release-readiness-source demo/release_readiness.py \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/control_traceability_audit.py \
   --policy config/control-traceability-policy.json \
   --release-readiness-source demo/release_readiness.py \
@@ -317,6 +322,7 @@ python3 demo/release_readiness.py \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
   --regional-failover docs/evidence/regional-failover-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
+  --release-control-ownership docs/evidence/release-control-ownership-audit.json \
   --control-traceability docs/evidence/control-traceability-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \

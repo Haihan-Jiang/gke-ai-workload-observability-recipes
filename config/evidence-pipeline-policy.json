@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 50,
-  "minimum_dependency_count": 50,
+  "minimum_step_count": 51,
+  "minimum_dependency_count": 52,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -187,6 +187,10 @@
     {
       "name": "regional_failover_audit",
       "script": "demo/regional_failover_audit.py"
+    },
+    {
+      "name": "release_control_ownership_audit",
+      "script": "demo/release_control_ownership_audit.py"
     },
     {
       "name": "control_traceability_audit",
@@ -412,6 +416,11 @@
       "artifact": "docs/evidence/regional-failover-audit.json"
     },
     {
+      "producer": "release_control_ownership_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/release-control-ownership-audit.json"
+    },
+    {
       "producer": "evidence_schema_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/evidence-schema-audit.json"
@@ -445,6 +454,11 @@
       "producer": "control_traceability_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/control-traceability-audit.json"
+    },
+    {
+      "producer": "release_control_ownership_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/release-control-ownership-audit.json"
     },
     {
       "producer": "disaster_recovery_drill",

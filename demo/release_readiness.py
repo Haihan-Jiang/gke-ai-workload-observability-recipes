@@ -117,6 +117,8 @@ REQUIRED_EVIDENCE = [
     "regional-failover-audit.json",
     "release-waiver-governance.md",
     "release-waiver-governance.json",
+    "release-control-ownership-audit.md",
+    "release-control-ownership-audit.json",
     "control-traceability-audit.md",
     "control-traceability-audit.json",
     "evidence-pipeline-audit.md",
@@ -189,6 +191,7 @@ def evaluate(
     load_shedding_policy: dict[str, Any],
     regional_failover: dict[str, Any],
     release_waiver_governance: dict[str, Any],
+    release_control_ownership: dict[str, Any],
     control_traceability: dict[str, Any],
     evidence_pipeline: dict[str, Any],
     evidence_schema: dict[str, Any],
@@ -523,22 +526,34 @@ def evaluate(
             and int(release_waiver_governance.get("failed_count", -1)) == 0,
         },
         {
+            "name": "release_control_ownership_audit",
+            "ok": release_control_ownership.get("status") == "pass"
+            and int(release_control_ownership.get("control_count", 0)) >= 49
+            and int(release_control_ownership.get("covered_release_check_count", 0))
+            == int(release_control_ownership.get("release_check_count", -1))
+            and int(release_control_ownership.get("tier0_count", 0)) >= 18
+            and int(release_control_ownership.get("every_release_count", 0)) >= 30
+            and int(release_control_ownership.get("owner_group_count", 0)) >= 5
+            and int(release_control_ownership.get("detected_fixture_count", 0)) >= 6
+            and int(release_control_ownership.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "control_traceability_audit",
             "ok": control_traceability.get("status") == "pass"
-            and int(control_traceability.get("control_count", 0)) >= 43
-            and int(control_traceability.get("evidence_file_count", 0)) >= 80
-            and int(control_traceability.get("source_input_count", 0)) >= 40
-            and int(control_traceability.get("policy_input_count", 0)) >= 40
-            and int(control_traceability.get("test_file_count", 0)) >= 40
+            and int(control_traceability.get("control_count", 0)) >= 44
+            and int(control_traceability.get("evidence_file_count", 0)) >= 88
+            and int(control_traceability.get("source_input_count", 0)) >= 44
+            and int(control_traceability.get("policy_input_count", 0)) >= 45
+            and int(control_traceability.get("test_file_count", 0)) >= 44
             and int(control_traceability.get("detected_fixture_count", 0)) >= 6
             and int(control_traceability.get("failed_count", -1)) == 0,
         },
         {
             "name": "evidence_pipeline_audit",
             "ok": evidence_pipeline.get("status") == "pass"
-            and int(evidence_pipeline.get("step_count", 0)) >= 50
-            and int(evidence_pipeline.get("dependency_count", 0)) >= 50
-            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 50
+            and int(evidence_pipeline.get("step_count", 0)) >= 51
+            and int(evidence_pipeline.get("dependency_count", 0)) >= 52
+            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 52
             and int(evidence_pipeline.get("detected_fixture_count", 0)) >= 4
             and int(evidence_pipeline.get("failed_count", -1)) == 0,
         },
@@ -605,7 +620,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "probe coverage, model release safety coverage, shadow traffic replay",
         "coverage, accelerator quota fairness coverage, load-shedding policy",
         "coverage, regional failover coverage,",
-        "waiver governance, control traceability, evidence pipeline ordering, evidence schema contracts, disaster recovery",
+        "waiver governance, release control ownership, control traceability, evidence pipeline ordering, evidence schema contracts, disaster recovery",
         "drill coverage, evidence provenance, and committed evidence are",
         "present and internally",
         "consistent.",
@@ -676,6 +691,7 @@ def main() -> int:
     parser.add_argument("--load-shedding-policy", default="out/load-shedding-policy-audit/load-shedding-policy-audit.json")
     parser.add_argument("--regional-failover", default="out/regional-failover-audit/regional-failover-audit.json")
     parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
+    parser.add_argument("--release-control-ownership", default="out/release-control-ownership-audit/release-control-ownership-audit.json")
     parser.add_argument("--control-traceability", default="out/control-traceability-audit/control-traceability-audit.json")
     parser.add_argument("--evidence-pipeline", default="out/evidence-pipeline-audit/evidence-pipeline-audit.json")
     parser.add_argument("--evidence-schema", default="out/evidence-schema-audit/evidence-schema-audit.json")
@@ -728,6 +744,7 @@ def main() -> int:
         load_shedding_policy=load_json(Path(args.load_shedding_policy)),
         regional_failover=load_json(Path(args.regional_failover)),
         release_waiver_governance=load_json(Path(args.release_waiver_governance)),
+        release_control_ownership=load_json(Path(args.release_control_ownership)),
         control_traceability=load_json(Path(args.control_traceability)),
         evidence_pipeline=load_json(Path(args.evidence_pipeline)),
         evidence_schema=load_json(Path(args.evidence_schema)),

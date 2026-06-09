@@ -70,6 +70,9 @@ and link cost, capacity, runbook, probe, and release-action evidence.
 Regional failover evidence checks that zone or region failure decisions are
 connected to DR RTO/RPO, standby capacity, synthetic probes, load shedding,
 rollback, runbook ownership, and Kubernetes control-plane hardening.
+Release control ownership evidence checks that every release-readiness check
+has an owner, severity tier, review cadence, escalation path, rollback action,
+and evidence path.
 Control traceability evidence checks that each configured release-readiness
 control links back to committed evidence, source code, policy/config inputs,
 and tests.
@@ -202,6 +205,9 @@ not described as merged.
 - Release waiver governance that conditionally approves bounded manual-review
   exceptions while denying production-promotion overrides for budget-exhausted
   incidents.
+- A release control ownership audit that assigns owner groups, severity tiers,
+  review cadence, escalation, rollback action, and evidence paths to release
+  checks.
 - A control traceability audit that links configured release-readiness controls to
   committed evidence, generator code, policy/config inputs, and tests.
 - A disaster recovery drill that restores critical release evidence,
@@ -388,6 +394,7 @@ script:
 - [Load shedding policy audit](docs/evidence/load-shedding-policy-audit.md)
 - [Regional failover audit](docs/evidence/regional-failover-audit.md)
 - [Release waiver governance](docs/evidence/release-waiver-governance.md)
+- [Release control ownership audit](docs/evidence/release-control-ownership-audit.md)
 - [Control traceability audit](docs/evidence/control-traceability-audit.md)
 - [Evidence pipeline audit](docs/evidence/evidence-pipeline-audit.md)
 - [Evidence schema audit](docs/evidence/evidence-schema-audit.md)
@@ -530,26 +537,28 @@ Before adapting this to a real GKE cluster:
 35. Keep release waivers bounded by owner, approver, expiry, rollback drill,
    post-incident review, linked evidence, and acknowledged error-budget
    impact.
-36. Keep control traceability aligned with configured release-readiness checks,
+36. Keep release control ownership aligned with owner groups, severity tiers,
+   review cadence, escalation paths, rollback actions, and evidence paths.
+37. Keep control traceability aligned with configured release-readiness checks,
    evidence files, generator code, policy/config inputs, and tests.
-37. Verify disaster recovery after changing evidence, generated manifests,
+38. Verify disaster recovery after changing evidence, generated manifests,
    dashboards, SLO contracts, admission policies, or release control files.
-38. Regenerate evidence provenance after changing evidence scripts, generated
+39. Regenerate evidence provenance after changing evidence scripts, generated
    manifests, or policy files so reviewers can detect stale artifacts.
-39. Keep CI governance aligned with maintained GitHub Actions versions,
+40. Keep CI governance aligned with maintained GitHub Actions versions,
    least-privilege permissions, concurrency cancellation, job timeouts, and the
    real validation command.
-40. Keep repository governance aligned with contribution validation, security
+41. Keep repository governance aligned with contribution validation, security
    reporting, CODEOWNERS coverage, release process evidence, and project
    boundaries.
-41. Keep the developer runtime contract aligned with Make targets, Python
+42. Keep the developer runtime contract aligned with Make targets, Python
    version pinning, Ruby/YAML validation, zero-dependency assumptions, and
    local output boundaries.
-42. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+43. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-43. For private GKE clusters, verify webhook/firewall access for any operators
+44. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-44. Treat telemetry as production evidence: validate it during staged rollout,
+45. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
@@ -581,6 +590,7 @@ Current wording before upstream merges:
 > dependency contract auditing, synthetic probe auditing, model release safety
 > auditing, shadow traffic replay auditing, load-shedding policy auditing,
 > accelerator quota fairness auditing, regional failover auditing,
+> release control ownership auditing,
 > control traceability auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
 > audits,
@@ -607,6 +617,7 @@ After an upstream PR merges, update this to:
 > dependency contract auditing, synthetic probe auditing, model release safety
 > auditing, shadow traffic replay auditing, load-shedding policy auditing,
 > accelerator quota fairness auditing, regional failover auditing,
+> release control ownership auditing,
 > control traceability auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
 > audits,

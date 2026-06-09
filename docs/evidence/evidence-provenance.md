@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `116`
+- Evidence artifacts: `118`
 - Generated artifacts: `4`
-- Source inputs: `107`
+- Source inputs: `109`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 3482 | `246f2c5950d20829...` |
+| `docs/evidence/README.md` | 3554 | `923fbadc36f8289b...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -138,14 +138,16 @@ evidence easier to detect during review.
 | `docs/evidence/regional-failover-audit.json` | 12350 | `8adb0e813521be56...` |
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
-| `docs/evidence/control-traceability-audit.md` | 3832 | `af0a26d3dd2f7660...` |
-| `docs/evidence/control-traceability-audit.json` | 24987 | `3552b6f6541bcaa1...` |
-| `docs/evidence/evidence-pipeline-audit.md` | 4040 | `500d421b4836738a...` |
-| `docs/evidence/evidence-pipeline-audit.json` | 21314 | `842c7d5c13d419d8...` |
+| `docs/evidence/release-control-ownership-audit.md` | 7225 | `a44ace974db93c3a...` |
+| `docs/evidence/release-control-ownership-audit.json` | 16015 | `920abe063b021867...` |
+| `docs/evidence/control-traceability-audit.md` | 3910 | `497083fba5edef43...` |
+| `docs/evidence/control-traceability-audit.json` | 25577 | `dd347b8e3c4e460b...` |
+| `docs/evidence/evidence-pipeline-audit.md` | 4181 | `94e7f805b43ca2e3...` |
+| `docs/evidence/evidence-pipeline-audit.json` | 21972 | `4a6e26f46543b81d...` |
 | `docs/evidence/evidence-schema-audit.md` | 2398 | `12356575f1daaa8b...` |
 | `docs/evidence/evidence-schema-audit.json` | 10772 | `284d81b53f406549...` |
 | `docs/evidence/disaster-recovery-drill.md` | 1034 | `268ef1b48cc1de9c...` |
-| `docs/evidence/disaster-recovery-drill.json` | 35143 | `3c27aa7aacd065ab...` |
+| `docs/evidence/disaster-recovery-drill.json` | 35143 | `cdeb490f63cd19b9...` |
 
 ## Generated Artifacts
 

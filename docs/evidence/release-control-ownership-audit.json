@@ -1,0 +1,547 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 7,
+  "detected_fixture_count": 6,
+  "control_count": 49,
+  "release_check_count": 49,
+  "covered_release_check_count": 49,
+  "tier0_count": 26,
+  "every_release_count": 37,
+  "owner_group_count": 5,
+  "checks": [
+    {
+      "name": "control_inventory",
+      "ok": true,
+      "evidence": {
+        "control_count": 49,
+        "release_check_count": 49,
+        "minimum_control_count": 49,
+        "duplicate_controls": [],
+        "missing_release_checks": [],
+        "unknown_release_checks": []
+      }
+    },
+    {
+      "name": "ownership_metadata",
+      "ok": true,
+      "evidence": {
+        "metadata_gaps": [],
+        "owner_gaps": []
+      }
+    },
+    {
+      "name": "tier_contract",
+      "ok": true,
+      "evidence": {
+        "tier_counts": {
+          "tier_0_release_blocker": 26,
+          "tier_1_production_guard": 22,
+          "tier_2_evidence_guard": 1
+        },
+        "tier_gaps": [],
+        "minimum_tier0_count": 18
+      }
+    },
+    {
+      "name": "review_cadence_contract",
+      "ok": true,
+      "evidence": {
+        "cadence_counts": {
+          "every_release": 37,
+          "monthly": 12,
+          "quarterly": 0
+        },
+        "cadence_gaps": [],
+        "minimum_every_release_count": 30
+      }
+    },
+    {
+      "name": "owner_group_coverage",
+      "ok": true,
+      "evidence": {
+        "owner_group_count": 5,
+        "minimum_owner_group_count": 5,
+        "owner_groups": [
+          "gke-platform",
+          "mlops-release",
+          "release-evidence",
+          "security-review",
+          "sre-platform"
+        ]
+      }
+    },
+    {
+      "name": "evidence_path_contract",
+      "ok": true,
+      "evidence": {
+        "evidence_path_gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 6,
+        "minimum_detected_fixtures": 6,
+        "fixtures": [
+          {
+            "name": "missing_provenance_owner",
+            "mutation": "remove_control",
+            "expected_failed_check": "control_inventory",
+            "failed_checks": [
+              "control_inventory"
+            ],
+            "detected": true
+          },
+          {
+            "name": "unknown_release_check",
+            "mutation": "set_name",
+            "expected_failed_check": "control_inventory",
+            "failed_checks": [
+              "control_inventory"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_owner",
+            "mutation": "remove_field",
+            "expected_failed_check": "ownership_metadata",
+            "failed_checks": [
+              "ownership_metadata"
+            ],
+            "detected": true
+          },
+          {
+            "name": "unknown_owner",
+            "mutation": "set_field",
+            "expected_failed_check": "ownership_metadata",
+            "failed_checks": [
+              "ownership_metadata"
+            ],
+            "detected": true
+          },
+          {
+            "name": "invalid_tier",
+            "mutation": "set_field",
+            "expected_failed_check": "tier_contract",
+            "failed_checks": [
+              "tier_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "bad_evidence_path",
+            "mutation": "set_field",
+            "expected_failed_check": "evidence_path_contract",
+            "failed_checks": [
+              "evidence_path_contract"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "reliability_gate",
+      "owner": "sre",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/reliability-gate.json"
+    },
+    {
+      "name": "evidence_files",
+      "owner": "evidence",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/README.md"
+    },
+    {
+      "name": "runbook_coverage",
+      "owner": "sre",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/incident-runbooks.json"
+    },
+    {
+      "name": "capacity_plan",
+      "owner": "sre",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/capacity-plan.json"
+    },
+    {
+      "name": "advanced_problem_coverage",
+      "owner": "mlops",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/complex-problems.json"
+    },
+    {
+      "name": "detailed_problem_coverage",
+      "owner": "mlops",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/detailed-problems.json"
+    },
+    {
+      "name": "deployment_policy",
+      "owner": "sre",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/deployment-policy.json"
+    },
+    {
+      "name": "policy_regression_suite",
+      "owner": "evidence",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/policy-regression-suite.json"
+    },
+    {
+      "name": "supply_chain_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/supply-chain-audit.json"
+    },
+    {
+      "name": "ci_governance_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/ci-governance-audit.json"
+    },
+    {
+      "name": "repository_governance_audit",
+      "owner": "security",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/repository-governance-audit.json"
+    },
+    {
+      "name": "developer_runtime_audit",
+      "owner": "evidence",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/developer-runtime-audit.json"
+    },
+    {
+      "name": "k8s_manifest_hardening",
+      "owner": "platform",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/k8s-hardening-audit.json"
+    },
+    {
+      "name": "pod_security_admission_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/pod-security-admission-audit.json"
+    },
+    {
+      "name": "namespace_resource_audit",
+      "owner": "platform",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/namespace-resource-audit.json"
+    },
+    {
+      "name": "availability_topology_audit",
+      "owner": "platform",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/availability-topology-audit.json"
+    },
+    {
+      "name": "autoscaling_policy_audit",
+      "owner": "platform",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/autoscaling-policy-audit.json"
+    },
+    {
+      "name": "scheduling_placement_audit",
+      "owner": "platform",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/scheduling-placement-audit.json"
+    },
+    {
+      "name": "rollout_safety_audit",
+      "owner": "platform",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/rollout-safety-audit.json"
+    },
+    {
+      "name": "config_rollout_audit",
+      "owner": "platform",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/config-rollout-audit.json"
+    },
+    {
+      "name": "network_boundary_audit",
+      "owner": "platform",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/network-boundary-audit.json"
+    },
+    {
+      "name": "collector_self_observability_audit",
+      "owner": "platform",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/collector-self-observability-audit.json"
+    },
+    {
+      "name": "telemetry_sampling_audit",
+      "owner": "platform",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/telemetry-sampling-audit.json"
+    },
+    {
+      "name": "workload_identity_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/workload-identity-audit.json"
+    },
+    {
+      "name": "admission_policy_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/admission-policy-audit.json"
+    },
+    {
+      "name": "slo_alerting_rules",
+      "owner": "sre",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/alerting-rules.json"
+    },
+    {
+      "name": "grafana_dashboard",
+      "owner": "sre",
+      "tier": "tier_2_evidence_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/grafana-dashboard.json"
+    },
+    {
+      "name": "openslo_contract",
+      "owner": "sre",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/openslo-contract.json"
+    },
+    {
+      "name": "observability_drift_audit",
+      "owner": "sre",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/observability-drift-audit.json"
+    },
+    {
+      "name": "telemetry_redaction_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/telemetry-redaction-audit.json"
+    },
+    {
+      "name": "telemetry_cost_budget",
+      "owner": "mlops",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/telemetry-cost-budget.json"
+    },
+    {
+      "name": "error_budget_ledger",
+      "owner": "sre",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/error-budget-ledger.json"
+    },
+    {
+      "name": "rollback_drill",
+      "owner": "sre",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/rollback-drill.json"
+    },
+    {
+      "name": "post_incident_review",
+      "owner": "sre",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/post-incident-review.json"
+    },
+    {
+      "name": "incident_response_drill",
+      "owner": "sre",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/incident-response-drill.json"
+    },
+    {
+      "name": "dependency_contract_audit",
+      "owner": "mlops",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "monthly",
+      "evidence_path": "docs/evidence/dependency-contract-audit.json"
+    },
+    {
+      "name": "synthetic_probe_audit",
+      "owner": "mlops",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/synthetic-probe-audit.json"
+    },
+    {
+      "name": "model_release_safety_audit",
+      "owner": "mlops",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/model-release-safety-audit.json"
+    },
+    {
+      "name": "shadow_traffic_replay_audit",
+      "owner": "mlops",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/shadow-traffic-replay-audit.json"
+    },
+    {
+      "name": "accelerator_quota_fairness_audit",
+      "owner": "mlops",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/accelerator-quota-fairness-audit.json"
+    },
+    {
+      "name": "load_shedding_policy_audit",
+      "owner": "sre",
+      "tier": "tier_1_production_guard",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/load-shedding-policy-audit.json"
+    },
+    {
+      "name": "regional_failover_audit",
+      "owner": "sre",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/regional-failover-audit.json"
+    },
+    {
+      "name": "release_waiver_governance",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/release-waiver-governance.json"
+    },
+    {
+      "name": "release_control_ownership_audit",
+      "owner": "evidence",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/release-control-ownership-audit.json"
+    },
+    {
+      "name": "control_traceability_audit",
+      "owner": "evidence",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/control-traceability-audit.json"
+    },
+    {
+      "name": "evidence_pipeline_audit",
+      "owner": "evidence",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/evidence-pipeline-audit.json"
+    },
+    {
+      "name": "evidence_schema_audit",
+      "owner": "evidence",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/evidence-schema-audit.json"
+    },
+    {
+      "name": "disaster_recovery_drill",
+      "owner": "sre",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/disaster-recovery-drill.json"
+    },
+    {
+      "name": "evidence_provenance",
+      "owner": "evidence",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/evidence-provenance.json"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_provenance_owner",
+      "mutation": "remove_control",
+      "expected_failed_check": "control_inventory",
+      "failed_checks": [
+        "control_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "unknown_release_check",
+      "mutation": "set_name",
+      "expected_failed_check": "control_inventory",
+      "failed_checks": [
+        "control_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_owner",
+      "mutation": "remove_field",
+      "expected_failed_check": "ownership_metadata",
+      "failed_checks": [
+        "ownership_metadata"
+      ],
+      "detected": true
+    },
+    {
+      "name": "unknown_owner",
+      "mutation": "set_field",
+      "expected_failed_check": "ownership_metadata",
+      "failed_checks": [
+        "ownership_metadata"
+      ],
+      "detected": true
+    },
+    {
+      "name": "invalid_tier",
+      "mutation": "set_field",
+      "expected_failed_check": "tier_contract",
+      "failed_checks": [
+        "tier_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "bad_evidence_path",
+      "mutation": "set_field",
+      "expected_failed_check": "evidence_path_contract",
+      "failed_checks": [
+        "evidence_path_contract"
+      ],
+      "detected": true
+    }
+  ]
+}

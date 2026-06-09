@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 43,
-  "minimum_release_check_count": 45,
-  "minimum_policy_input_count": 40,
+  "minimum_control_count": 44,
+  "minimum_release_check_count": 49,
+  "minimum_policy_input_count": 45,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -667,6 +667,23 @@
       ],
       "tests": [
         "tests/test_release_waiver_governance.py"
+      ]
+    },
+    {
+      "name": "release_control_ownership_audit",
+      "release_readiness_check": "release_control_ownership_audit",
+      "evidence": [
+        "docs/evidence/release-control-ownership-audit.json",
+        "docs/evidence/release-control-ownership-audit.md"
+      ],
+      "source_inputs": [
+        "demo/release_control_ownership_audit.py"
+      ],
+      "policy_inputs": [
+        "config/release-control-ownership-policy.json"
+      ],
+      "tests": [
+        "tests/test_release_control_ownership_audit.py"
       ]
     },
     {

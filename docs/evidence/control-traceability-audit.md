@@ -9,12 +9,12 @@ committed evidence, source code, policy/config inputs, and tests.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 43 |
-| Release checks | 48 |
-| Evidence files | 86 |
-| Source inputs | 43 |
-| Policy inputs | 44 |
-| Test files | 43 |
+| Controls | 44 |
+| Release checks | 49 |
+| Evidence files | 88 |
+| Source inputs | 44 |
+| Policy inputs | 45 |
+| Test files | 44 |
 | Detected fixtures | 6 |
 
 ## Checks
@@ -73,6 +73,7 @@ committed evidence, source code, policy/config inputs, and tests.
 | `load_shedding_policy_audit` | `load_shedding_policy_audit` | 2 |
 | `regional_failover_audit` | `regional_failover_audit` | 2 |
 | `release_waiver_governance` | `release_waiver_governance` | 2 |
+| `release_control_ownership_audit` | `release_control_ownership_audit` | 2 |
 | `evidence_pipeline_audit` | `evidence_pipeline_audit` | 2 |
 | `evidence_schema_audit` | `evidence_schema_audit` | 2 |
 | `disaster_recovery_drill` | `disaster_recovery_drill` | 2 |

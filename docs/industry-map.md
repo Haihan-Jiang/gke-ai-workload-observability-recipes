@@ -161,6 +161,7 @@ inference incidents before a service reaches production.
 | C40 | Generated evidence can be consumed before it is regenerated | Release review needs generation-order checks so downstream gates cannot pass by reading stale committed artifacts. | [Evidence pipeline audit](evidence/evidence-pipeline-audit.md) |
 | C41 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
 | C42 | Release controls can become orphaned from implementation evidence | Industrial review needs a machine-readable matrix that links configured release-readiness controls back to evidence, source, policy/config inputs, and tests. | [Control traceability audit](evidence/control-traceability-audit.md) |
+| C43 | Release controls can be owned only informally | Industrial review needs explicit owner groups, severity tiers, review cadence, escalation paths, rollback actions, and evidence paths for every release-readiness check. | [Release control ownership audit](evidence/release-control-ownership-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -349,7 +350,13 @@ inference incidents before a service reaches production.
     - Inputs: [release readiness gate](../demo/release_readiness.py), committed evidence, policy/config files, and tests
     - Evidence: [control traceability audit](evidence/control-traceability-audit.md)
 
-32. **Evidence schema audit**
+32. **Release control ownership audit**
+    - Code: [demo/release_control_ownership_audit.py](../demo/release_control_ownership_audit.py)
+    - Policy: [config/release-control-ownership-policy.json](../config/release-control-ownership-policy.json)
+    - Inputs: [release readiness gate](../demo/release_readiness.py)
+    - Evidence: [release control ownership audit](evidence/release-control-ownership-audit.md)
+
+33. **Evidence schema audit**
     - Code: [demo/evidence_schema_audit.py](../demo/evidence_schema_audit.py)
     - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
     - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)

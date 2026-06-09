@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 43,
-  "release_check_count": 48,
-  "evidence_file_count": 86,
-  "source_input_count": 43,
-  "policy_input_count": 44,
-  "test_file_count": 43,
+  "control_count": 44,
+  "release_check_count": 49,
+  "evidence_file_count": 88,
+  "source_input_count": 44,
+  "policy_input_count": 45,
+  "test_file_count": 44,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 43,
-        "minimum_control_count": 43,
+        "control_count": 44,
+        "minimum_control_count": 44,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 48,
-        "minimum_release_check_count": 45,
+        "release_check_count": 49,
+        "minimum_release_check_count": 49,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 44,
-        "minimum_policy_input_count": 40,
+        "policy_input_count": 45,
+        "minimum_policy_input_count": 45,
         "policy_gaps": []
       }
     },
@@ -77,7 +77,8 @@
             "mutation": "remove_control",
             "expected_failed_check": "control_inventory",
             "failed_checks": [
-              "control_inventory"
+              "control_inventory",
+              "policy_inputs"
             ],
             "detected": true
           },
@@ -796,6 +797,23 @@
       ]
     },
     {
+      "name": "release_control_ownership_audit",
+      "release_readiness_check": "release_control_ownership_audit",
+      "evidence": [
+        "docs/evidence/release-control-ownership-audit.json",
+        "docs/evidence/release-control-ownership-audit.md"
+      ],
+      "source_inputs": [
+        "demo/release_control_ownership_audit.py"
+      ],
+      "policy_inputs": [
+        "config/release-control-ownership-policy.json"
+      ],
+      "tests": [
+        "tests/test_release_control_ownership_audit.py"
+      ]
+    },
+    {
       "name": "evidence_pipeline_audit",
       "release_readiness_check": "evidence_pipeline_audit",
       "evidence": [
@@ -870,7 +888,8 @@
       "mutation": "remove_control",
       "expected_failed_check": "control_inventory",
       "failed_checks": [
-        "control_inventory"
+        "control_inventory",
+        "policy_inputs"
       ],
       "detected": true
     },

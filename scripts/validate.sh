@@ -47,6 +47,7 @@ python3 -m py_compile \
   demo/accelerator_quota_fairness_audit.py \
   demo/regional_failover_audit.py \
   demo/release_waiver_governance.py \
+  demo/release_control_ownership_audit.py \
   demo/control_traceability_audit.py \
   demo/evidence_pipeline_audit.py \
   demo/evidence_schema_audit.py \
@@ -102,6 +103,7 @@ python3 -m json.tool config/accelerator-quota-policy.json >/dev/null
 python3 -m json.tool config/regional-failover-policy.json >/dev/null
 python3 -m json.tool config/release-waiver-policy.json >/dev/null
 python3 -m json.tool config/release-waivers.json >/dev/null
+python3 -m json.tool config/release-control-ownership-policy.json >/dev/null
 python3 -m json.tool config/control-traceability-policy.json >/dev/null
 python3 -m json.tool config/evidence-pipeline-policy.json >/dev/null
 python3 -m json.tool config/evidence-schema-policy.json >/dev/null
@@ -354,6 +356,11 @@ python3 demo/regional_failover_audit.py \
   --runbooks out/incident-runbooks-validate/incident-runbooks.json \
   --k8s-hardening out/k8s-hardening-audit-validate/k8s-hardening-audit.json \
   --output-dir out/regional-failover-audit-validate >/dev/null
+python3 demo/release_control_ownership_audit.py \
+  --policy config/release-control-ownership-policy.json \
+  --release-readiness-source demo/release_readiness.py \
+  --repo-root . \
+  --output-dir out/release-control-ownership-audit-validate >/dev/null
 python3 demo/control_traceability_audit.py \
   --policy config/control-traceability-policy.json \
   --release-readiness-source demo/release_readiness.py \
@@ -414,6 +421,7 @@ python3 demo/release_readiness.py \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
   --regional-failover docs/evidence/regional-failover-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
+  --release-control-ownership docs/evidence/release-control-ownership-audit.json \
   --control-traceability docs/evidence/control-traceability-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
@@ -476,6 +484,7 @@ python3 -m json.tool docs/evidence/load-shedding-policy-audit.json >/dev/null
 python3 -m json.tool docs/evidence/accelerator-quota-fairness-audit.json >/dev/null
 python3 -m json.tool docs/evidence/regional-failover-audit.json >/dev/null
 python3 -m json.tool docs/evidence/release-waiver-governance.json >/dev/null
+python3 -m json.tool docs/evidence/release-control-ownership-audit.json >/dev/null
 python3 -m json.tool docs/evidence/control-traceability-audit.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-pipeline-audit.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-schema-audit.json >/dev/null
