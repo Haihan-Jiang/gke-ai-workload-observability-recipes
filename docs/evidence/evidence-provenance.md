@@ -115,8 +115,8 @@ evidence easier to detect during review.
 | `docs/evidence/telemetry-exporter-authority-audit.json` | 7570 | `9c9c46bc21645b33...` |
 | `docs/evidence/telemetry-sampling-audit.md` | 1349 | `a16bccdc9621eb84...` |
 | `docs/evidence/telemetry-sampling-audit.json` | 6602 | `a2d8e3d174788774...` |
-| `docs/evidence/workload-identity-audit.md` | 1595 | `0443fb61d6775467...` |
-| `docs/evidence/workload-identity-audit.json` | 6266 | `03873ccf75651a3a...` |
+| `docs/evidence/workload-identity-audit.md` | 1595 | `14994894cb93b750...` |
+| `docs/evidence/workload-identity-audit.json` | 6266 | `e8cf06f834694258...` |
 | `docs/evidence/admission-policy-audit.md` | 1859 | `f9af1e271477a16c...` |
 | `docs/evidence/admission-policy-audit.json` | 47596 | `2c38c0f19819eaee...` |
 | `docs/evidence/alerting-rules.md` | 1034 | `dc833704511d7837...` |

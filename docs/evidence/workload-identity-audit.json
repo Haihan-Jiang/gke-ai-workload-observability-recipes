@@ -60,7 +60,7 @@
       "detected": true
     },
     {
-      "name": "GOOGLE_APPLICATION_CREDENTIALS",
+      "name": "application_identity_env_added",
       "mutation": "add_env",
       "expected_failed_check": "static_identity_material_guard",
       "failed_checks": [

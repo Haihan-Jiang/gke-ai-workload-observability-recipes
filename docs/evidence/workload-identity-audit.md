@@ -42,7 +42,7 @@ deployment evidence.
 | `wrong_gcp_service_account_binding` | yes |
 | `workload_api_mount_enabled` | yes |
 | `static_gcp_identity_material_added` | yes |
-| `GOOGLE_APPLICATION_CREDENTIALS` | yes |
+| `application_identity_env_added` | yes |
 | `collector_rbac_mutating_verb` | yes |
 | `collector_rbac_wildcard_resource` | yes |
 | `collector_binding_wrong_subject` | yes |

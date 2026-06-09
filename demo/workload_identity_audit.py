@@ -359,7 +359,7 @@ def mutate_fixture(docs: list[dict[str, Any]], fixture: dict[str, Any], annotati
     elif mutation == "add_env":
         deployment = find_doc(mutated, "Deployment", str(fixture["namespace"]), str(fixture["deployment"]))
         container = find_container(deployment, str(fixture["container"]))
-        container.setdefault("env", []).append({"name": str(fixture["name"]), "value": str(fixture["value"])})
+        container.setdefault("env", []).append({"name": str(fixture["env_name"]), "value": str(fixture["env_value"])})
     elif mutation == "add_rbac_verb":
         role = find_doc(mutated, "ClusterRole", "default", str(fixture["cluster_role"]))
         role.setdefault("rules", [{}])[0].setdefault("verbs", []).append(str(fixture["verb"]))

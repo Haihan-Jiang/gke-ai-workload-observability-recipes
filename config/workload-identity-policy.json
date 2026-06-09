@@ -96,8 +96,8 @@
       "namespace": "ai-observability-demo",
       "deployment": "toy-ai-inference-api",
       "container": "app",
-      "name": "GOOGLE_APPLICATION_CREDENTIALS",
-      "value": "/var/secrets/google/key.json",
+      "env_name": "GOOGLE_APPLICATION_CREDENTIALS",
+      "env_value": "/var/secrets/google/key.json",
       "expected_failed_check": "static_identity_material_guard"
     },
     {
