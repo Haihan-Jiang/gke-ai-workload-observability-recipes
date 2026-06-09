@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 56 |
-| Required steps | 56 |
-| Dependencies | 70 |
-| Artifact dependencies | 70 |
+| Steps | 57 |
+| Required steps | 57 |
+| Dependencies | 75 |
+| Artifact dependencies | 75 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -60,10 +60,12 @@ accidentally read stale committed artifacts.
 | `sbom_inventory_audit` | `control_traceability_audit` | yes |
 | `security_response_audit` | `control_traceability_audit` | yes |
 | `kubernetes_api_compatibility_audit` | `control_traceability_audit` | yes |
+| `telemetry_exporter_authority_audit` | `control_traceability_audit` | yes |
 | `evidence_pipeline_audit` | `evidence_schema_audit` | yes |
 | `developer_runtime_audit` | `evidence_schema_audit` | yes |
 | `pod_security_admission_audit` | `evidence_schema_audit` | yes |
 | `kubernetes_api_compatibility_audit` | `evidence_schema_audit` | yes |
+| `telemetry_exporter_authority_audit` | `evidence_schema_audit` | yes |
 | `synthetic_probe_audit` | `evidence_schema_audit` | yes |
 | `model_release_safety_audit` | `evidence_schema_audit` | yes |
 | `telemetry_redaction_audit` | `shadow_traffic_replay_audit` | yes |
@@ -74,6 +76,7 @@ accidentally read stale committed artifacts.
 | `release_waiver_governance` | `disaster_recovery_drill` | yes |
 | `security_response_audit` | `disaster_recovery_drill` | yes |
 | `kubernetes_api_compatibility_audit` | `disaster_recovery_drill` | yes |
+| `telemetry_exporter_authority_audit` | `disaster_recovery_drill` | yes |
 | `evidence_schema_audit` | `disaster_recovery_drill` | yes |
 | `disaster_recovery_drill` | `regional_failover_audit` | yes |
 | `load_shedding_policy_audit` | `regional_failover_audit` | yes |
@@ -88,6 +91,7 @@ accidentally read stale committed artifacts.
 | `sbom_inventory_audit` | `evidence_provenance` | yes |
 | `security_response_audit` | `evidence_provenance` | yes |
 | `kubernetes_api_compatibility_audit` | `evidence_provenance` | yes |
+| `telemetry_exporter_authority_audit` | `evidence_provenance` | yes |
 | `render_incident_evidence` | `evidence_provenance` | yes |
 | `evidence_provenance` | `release_readiness` | yes |
 | `regional_failover_audit` | `release_readiness` | yes |
@@ -98,6 +102,7 @@ accidentally read stale committed artifacts.
 | `sbom_inventory_audit` | `release_readiness` | yes |
 | `security_response_audit` | `release_readiness` | yes |
 | `kubernetes_api_compatibility_audit` | `release_readiness` | yes |
+| `telemetry_exporter_authority_audit` | `release_readiness` | yes |
 | `disaster_recovery_drill` | `release_readiness` | yes |
 | `evidence_schema_audit` | `release_readiness` | yes |
 

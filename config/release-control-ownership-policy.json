@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing ownership, severity, cadence, escalation, rollback, and evidence paths for release-readiness checks.",
-  "minimum_control_count": 54,
-  "minimum_tier0_count": 31,
-  "minimum_every_release_count": 42,
+  "minimum_control_count": 55,
+  "minimum_tier0_count": 32,
+  "minimum_every_release_count": 43,
   "minimum_owner_group_count": 5,
   "minimum_detected_fixtures": 6,
   "allowed_tiers": [
@@ -70,6 +70,7 @@
     {"name": "config_rollout_audit", "owner": "platform", "tier": "tier_1_production_guard", "review_cadence": "every_release", "evidence_path": "docs/evidence/config-rollout-audit.json"},
     {"name": "network_boundary_audit", "owner": "platform", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/network-boundary-audit.json"},
     {"name": "collector_self_observability_audit", "owner": "platform", "tier": "tier_1_production_guard", "review_cadence": "monthly", "evidence_path": "docs/evidence/collector-self-observability-audit.json"},
+    {"name": "telemetry_exporter_authority_audit", "owner": "platform", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/telemetry-exporter-authority-audit.json"},
     {"name": "telemetry_sampling_audit", "owner": "platform", "tier": "tier_1_production_guard", "review_cadence": "monthly", "evidence_path": "docs/evidence/telemetry-sampling-audit.json"},
     {"name": "workload_identity_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/workload-identity-audit.json"},
     {"name": "admission_policy_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/admission-policy-audit.json"},

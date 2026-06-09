@@ -8,7 +8,7 @@ reliability controls, detailed reliability controls, deployment
 policy, policy regression fixtures, supply-chain audit, OSS license compliance, secret hygiene, SBOM inventory, security response, CI
 governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, Kubernetes API compatibility, namespace resource governance, availability
 topology governance, autoscaling policy governance, scheduling
-placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling
+placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry exporter authority, telemetry sampling
 governance, Workload Identity audit, admission policy simulation,
 SLO alerting rules,
 Grafana dashboard coverage, OpenSLO contract, observability drift
@@ -55,6 +55,7 @@ consistent.
 | `config_rollout_audit` | PASS |
 | `network_boundary_audit` | PASS |
 | `collector_self_observability_audit` | PASS |
+| `telemetry_exporter_authority_audit` | PASS |
 | `telemetry_sampling_audit` | PASS |
 | `workload_identity_audit` | PASS |
 | `admission_policy_audit` | PASS |
@@ -167,6 +168,8 @@ consistent.
 | `network-boundary-audit.json` | yes |
 | `collector-self-observability-audit.md` | yes |
 | `collector-self-observability-audit.json` | yes |
+| `telemetry-exporter-authority-audit.md` | yes |
+| `telemetry-exporter-authority-audit.json` | yes |
 | `telemetry-sampling-audit.md` | yes |
 | `telemetry-sampling-audit.json` | yes |
 | `workload-identity-audit.md` | yes |

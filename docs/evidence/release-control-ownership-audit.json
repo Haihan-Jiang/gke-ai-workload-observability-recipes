@@ -3,20 +3,20 @@
   "failed_count": 0,
   "check_count": 7,
   "detected_fixture_count": 6,
-  "control_count": 54,
-  "release_check_count": 54,
-  "covered_release_check_count": 54,
-  "tier0_count": 31,
-  "every_release_count": 42,
+  "control_count": 55,
+  "release_check_count": 55,
+  "covered_release_check_count": 55,
+  "tier0_count": 32,
+  "every_release_count": 43,
   "owner_group_count": 5,
   "checks": [
     {
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 54,
-        "release_check_count": 54,
-        "minimum_control_count": 54,
+        "control_count": 55,
+        "release_check_count": 55,
+        "minimum_control_count": 55,
         "duplicate_controls": [],
         "missing_release_checks": [],
         "unknown_release_checks": []
@@ -35,12 +35,12 @@
       "ok": true,
       "evidence": {
         "tier_counts": {
-          "tier_0_release_blocker": 31,
+          "tier_0_release_blocker": 32,
           "tier_1_production_guard": 22,
           "tier_2_evidence_guard": 1
         },
         "tier_gaps": [],
-        "minimum_tier0_count": 31
+        "minimum_tier0_count": 32
       }
     },
     {
@@ -48,12 +48,12 @@
       "ok": true,
       "evidence": {
         "cadence_counts": {
-          "every_release": 42,
+          "every_release": 43,
           "monthly": 12,
           "quarterly": 0
         },
         "cadence_gaps": [],
-        "minimum_every_release_count": 42
+        "minimum_every_release_count": 43
       }
     },
     {
@@ -334,6 +334,13 @@
       "tier": "tier_1_production_guard",
       "review_cadence": "monthly",
       "evidence_path": "docs/evidence/collector-self-observability-audit.json"
+    },
+    {
+      "name": "telemetry_exporter_authority_audit",
+      "owner": "platform",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/telemetry-exporter-authority-audit.json"
     },
     {
       "name": "telemetry_sampling_audit",

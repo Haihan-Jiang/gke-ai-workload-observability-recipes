@@ -9,12 +9,12 @@ committed evidence, source code, policy/config inputs, and tests.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 49 |
-| Release checks | 54 |
-| Evidence files | 99 |
-| Source inputs | 50 |
-| Policy inputs | 50 |
-| Test files | 49 |
+| Controls | 50 |
+| Release checks | 55 |
+| Evidence files | 101 |
+| Source inputs | 52 |
+| Policy inputs | 51 |
+| Test files | 50 |
 | Detected fixtures | 6 |
 
 ## Checks
@@ -57,6 +57,7 @@ committed evidence, source code, policy/config inputs, and tests.
 | `config_rollout_audit` | `config_rollout_audit` | 2 |
 | `network_boundary_audit` | `network_boundary_audit` | 2 |
 | `collector_self_observability_audit` | `collector_self_observability_audit` | 2 |
+| `telemetry_exporter_authority_audit` | `telemetry_exporter_authority_audit` | 2 |
 | `telemetry_sampling_audit` | `telemetry_sampling_audit` | 2 |
 | `workload_identity_audit` | `workload_identity_audit` | 2 |
 | `admission_policy_audit` | `admission_policy_audit` | 2 |

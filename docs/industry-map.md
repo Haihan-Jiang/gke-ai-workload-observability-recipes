@@ -167,6 +167,7 @@ inference incidents before a service reaches production.
 | C46 | Release controls can become orphaned from implementation evidence | Industrial review needs a machine-readable matrix that links configured release-readiness controls back to evidence, source, policy/config inputs, and tests. | [Control traceability audit](evidence/control-traceability-audit.md) |
 | C47 | Release controls can be owned only informally | Industrial review needs explicit owner groups, severity tiers, review cadence, escalation paths, rollback actions, and evidence paths for every release-readiness check. | [Release control ownership audit](evidence/release-control-ownership-audit.md) |
 | C48 | Kubernetes manifests can depend on removed API versions or uninstalled CRDs | Release review needs stable core API versions, optional CRD probes and skip paths, kind smoke apply-order checks, and admission v1 fail-closed behavior before manifests are trusted. | [Kubernetes API compatibility audit](evidence/kubernetes-api-compatibility-audit.md) |
+| C49 | Local debug telemetry can be mistaken for the production evidence path | Release review needs an explicit authoritative upstream exporter, bounded debug export, secure OTLP endpoint, queued retry delivery, and production replacement docs. | [Telemetry exporter authority audit](evidence/telemetry-exporter-authority-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -319,79 +320,85 @@ inference incidents before a service reaches production.
     - Inputs: collector ConfigMap and metrics pipeline in [collector.yaml](../k8s/gke/collector.yaml)
     - Evidence: [collector self-observability audit](evidence/collector-self-observability-audit.md)
 
-26. **Scheduling placement audit**
+26. **Telemetry exporter authority audit**
+    - Code: [demo/telemetry_exporter_authority_audit.py](../demo/telemetry_exporter_authority_audit.py)
+    - Policy: [config/telemetry-exporter-policy.json](../config/telemetry-exporter-policy.json)
+    - Inputs: collector ConfigMap exporter annotations/config in [collector.yaml](../k8s/gke/collector.yaml) and production replacement notes in [README](../README.md)
+    - Evidence: [telemetry exporter authority audit](evidence/telemetry-exporter-authority-audit.md)
+
+27. **Scheduling placement audit**
     - Code: [demo/scheduling_placement_audit.py](../demo/scheduling_placement_audit.py)
     - Policy: [config/scheduling-placement-policy.json](../config/scheduling-placement-policy.json)
     - Inputs: [scheduling.yaml](../k8s/gke/scheduling.yaml), [collector.yaml](../k8s/gke/collector.yaml), and [sample-app.yaml](../k8s/gke/sample-app.yaml)
     - Evidence: [scheduling placement audit](evidence/scheduling-placement-audit.md)
 
-27. **Rollout safety audit**
+28. **Rollout safety audit**
     - Code: [demo/rollout_safety_audit.py](../demo/rollout_safety_audit.py)
     - Policy: [config/rollout-safety-policy.json](../config/rollout-safety-policy.json)
     - Inputs: collector and sample workload Deployments/PDBs in [collector.yaml](../k8s/gke/collector.yaml) and [sample-app.yaml](../k8s/gke/sample-app.yaml)
     - Evidence: [rollout safety audit](evidence/rollout-safety-audit.md)
 
-28. **Config rollout audit**
+29. **Config rollout audit**
     - Code: [demo/config_rollout_audit.py](../demo/config_rollout_audit.py)
     - Policy: [config/config-rollout-policy.json](../config/config-rollout-policy.json)
     - Inputs: collector ConfigMap, Deployment pod-template annotations, config volume, mount, and args in [collector.yaml](../k8s/gke/collector.yaml)
     - Evidence: [config rollout audit](evidence/config-rollout-audit.md)
 
-29. **Pod Security Admission audit**
+30. **Pod Security Admission audit**
     - Code: [demo/pod_security_admission_audit.py](../demo/pod_security_admission_audit.py)
     - Policy: [config/pod-security-admission-policy.json](../config/pod-security-admission-policy.json)
     - Inputs: namespace PSA labels and collector/sample workload pod templates under [k8s/gke](../k8s/gke)
     - Evidence: [Pod Security Admission audit](evidence/pod-security-admission-audit.md)
 
-30. **Kubernetes API compatibility audit**
+31. **Kubernetes API compatibility audit**
     - Code: [demo/kubernetes_api_compatibility_audit.py](../demo/kubernetes_api_compatibility_audit.py)
     - Policy: [config/kubernetes-api-compatibility-policy.json](../config/kubernetes-api-compatibility-policy.json)
     - Inputs: GKE-shaped manifests under [k8s/gke](../k8s/gke), admission policy manifests, and [kind smoke script](../scripts/kind-smoke.sh)
     - Evidence: [Kubernetes API compatibility audit](evidence/kubernetes-api-compatibility-audit.md)
 
-31. **Evidence pipeline audit**
+32. **Evidence pipeline audit**
     - Code: [demo/evidence_pipeline_audit.py](../demo/evidence_pipeline_audit.py)
     - Policy: [config/evidence-pipeline-policy.json](../config/evidence-pipeline-policy.json)
     - Inputs: [evidence generation script](../scripts/generate-evidence.sh)
     - Evidence: [evidence pipeline audit](evidence/evidence-pipeline-audit.md)
 
-32. **OSS license audit**
+33. **OSS license audit**
     - Code: [demo/oss_license_audit.py](../demo/oss_license_audit.py)
     - Policy: [config/oss-license-policy.json](../config/oss-license-policy.json)
     - Inputs: [LICENSE](../LICENSE), [NOTICE](../NOTICE), [README](../README.md), GitHub Actions, and container image references
     - Evidence: [OSS license audit](evidence/oss-license-audit.md)
 
-33. **Secret hygiene audit**
+34. **Secret hygiene audit**
     - Code: [demo/secret_hygiene_audit.py](../demo/secret_hygiene_audit.py)
     - Policy: [config/secret-hygiene-policy.json](../config/secret-hygiene-policy.json)
     - Inputs: committed source, manifests, docs, root governance files, and generated evidence
     - Evidence: [secret hygiene audit](evidence/secret-hygiene-audit.md)
 
-34. **SBOM inventory audit**
+35. **SBOM inventory audit**
     - Code: [demo/sbom_inventory_audit.py](../demo/sbom_inventory_audit.py)
     - Policy: [config/sbom-inventory-policy.json](../config/sbom-inventory-policy.json)
     - Inputs: GitHub Actions, container image references, Python version pinning, and developer runtime docs
     - Evidence: [SBOM inventory audit](evidence/sbom-inventory-audit.md), [SBOM inventory JSON](evidence/sbom-inventory.json)
 
-35. **Security response audit**
+36. **Security response audit**
     - Code: [demo/security_response_audit.py](../demo/security_response_audit.py)
     - Policy: [config/security-response-policy.json](../config/security-response-policy.json)
     - Inputs: [SECURITY](../SECURITY.md), [release process](release-process.md), and [contributing guide](../CONTRIBUTING.md)
     - Evidence: [security response audit](evidence/security-response-audit.md)
 
-36. **Control traceability audit**
+37. **Control traceability audit**
     - Code: [demo/control_traceability_audit.py](../demo/control_traceability_audit.py)
     - Policy: [config/control-traceability-policy.json](../config/control-traceability-policy.json)
     - Inputs: [release readiness gate](../demo/release_readiness.py), committed evidence, policy/config files, and tests
     - Evidence: [control traceability audit](evidence/control-traceability-audit.md)
 
-37. **Release control ownership audit**
+38. **Release control ownership audit**
     - Code: [demo/release_control_ownership_audit.py](../demo/release_control_ownership_audit.py)
     - Policy: [config/release-control-ownership-policy.json](../config/release-control-ownership-policy.json)
     - Inputs: [release readiness gate](../demo/release_readiness.py)
     - Evidence: [release control ownership audit](evidence/release-control-ownership-audit.md)
 
-38. **Evidence schema audit**
+39. **Evidence schema audit**
     - Code: [demo/evidence_schema_audit.py](../demo/evidence_schema_audit.py)
     - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
     - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)

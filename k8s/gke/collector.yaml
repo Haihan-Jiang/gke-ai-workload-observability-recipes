@@ -62,6 +62,10 @@ kind: ConfigMap
 metadata:
   name: otel-collector-config
   namespace: telemetry
+  annotations:
+    telemetry.haihan.dev/authoritative-exporter: otlphttp/upstream
+    telemetry.haihan.dev/local-exporter: debug
+    telemetry.haihan.dev/exporter-authority-mode: upstream-gateway
   labels:
     app.kubernetes.io/name: otel-collector
     app.kubernetes.io/part-of: gke-ai-inference-reliability-lab

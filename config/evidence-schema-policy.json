@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 12,
-  "minimum_detected_fixtures": 12,
+  "minimum_artifact_count": 13,
+  "minimum_detected_fixtures": 13,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -260,6 +260,54 @@
       "array_min_lengths": {
         "checks": 6,
         "resources": 28,
+        "fixture_results": 8
+      }
+    },
+    {
+      "path": "docs/evidence/telemetry-exporter-authority-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "exporter_count",
+        "authoritative_pipeline_count",
+        "local_debug_pipeline_count",
+        "queued_exporter_count",
+        "retry_enabled_count",
+        "detected_fixture_count",
+        "authoritative_endpoint",
+        "pipelines",
+        "checks",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "collector_config_map",
+        "exporter_authority_annotations",
+        "authoritative_pipeline_path",
+        "local_debug_boundary",
+        "secure_upstream_endpoint",
+        "queued_delivery_boundary",
+        "production_replacement_docs",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "exporter_count": 2,
+        "authoritative_pipeline_count": 2,
+        "local_debug_pipeline_count": 2,
+        "queued_exporter_count": 1,
+        "retry_enabled_count": 1,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
         "fixture_results": 8
       }
     },
@@ -532,6 +580,13 @@
       "mutation": "remove_check",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
       "check": "stable_core_api_versions",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_exporter_authority_annotation_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
+      "check": "exporter_authority_annotations",
       "expected_failed_check": "check_inventory"
     },
     {

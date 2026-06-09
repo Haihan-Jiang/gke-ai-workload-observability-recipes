@@ -10,11 +10,11 @@ evidence path before the final release gate passes.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 54 |
-| Release checks | 54 |
-| Covered release checks | 54 |
-| Tier 0 controls | 31 |
-| Every-release controls | 42 |
+| Controls | 55 |
+| Release checks | 55 |
+| Covered release checks | 55 |
+| Tier 0 controls | 32 |
+| Every-release controls | 43 |
 | Owner groups | 5 |
 | Detected fixtures | 6 |
 
@@ -61,6 +61,7 @@ evidence path before the final release gate passes.
 | `config_rollout_audit` | `platform` | `tier_1_production_guard` | `every_release` | `docs/evidence/config-rollout-audit.json` |
 | `network_boundary_audit` | `platform` | `tier_0_release_blocker` | `every_release` | `docs/evidence/network-boundary-audit.json` |
 | `collector_self_observability_audit` | `platform` | `tier_1_production_guard` | `monthly` | `docs/evidence/collector-self-observability-audit.json` |
+| `telemetry_exporter_authority_audit` | `platform` | `tier_0_release_blocker` | `every_release` | `docs/evidence/telemetry-exporter-authority-audit.json` |
 | `telemetry_sampling_audit` | `platform` | `tier_1_production_guard` | `monthly` | `docs/evidence/telemetry-sampling-audit.json` |
 | `workload_identity_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/workload-identity-audit.json` |
 | `admission_policy_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/admission-policy-audit.json` |

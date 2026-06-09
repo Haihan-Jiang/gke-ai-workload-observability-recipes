@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 56,
-  "minimum_dependency_count": 70,
+  "minimum_step_count": 57,
+  "minimum_dependency_count": 75,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -111,6 +111,10 @@
     {
       "name": "collector_self_observability_audit",
       "script": "demo/collector_self_observability_audit.py"
+    },
+    {
+      "name": "telemetry_exporter_authority_audit",
+      "script": "demo/telemetry_exporter_authority_audit.py"
     },
     {
       "name": "telemetry_sampling_audit",
@@ -381,6 +385,11 @@
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
     },
     {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
       "producer": "evidence_pipeline_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/evidence-pipeline-audit.json"
@@ -399,6 +408,11 @@
       "producer": "kubernetes_api_compatibility_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
     },
     {
       "producer": "synthetic_probe_audit",
@@ -449,6 +463,11 @@
       "producer": "kubernetes_api_compatibility_audit",
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
     },
     {
       "producer": "evidence_schema_audit",
@@ -521,6 +540,11 @@
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
     },
     {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
+    },
+    {
       "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md"
@@ -569,6 +593,11 @@
       "producer": "kubernetes_api_compatibility_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json"
+    },
+    {
+      "producer": "telemetry_exporter_authority_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json"
     },
     {
       "producer": "disaster_recovery_drill",

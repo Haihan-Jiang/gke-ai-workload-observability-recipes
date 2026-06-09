@@ -44,6 +44,9 @@ and DNS while collector ingress remains scoped to workload namespaces.
 Collector self-observability evidence checks that the collector scrapes its
 own internal metrics on loopback and sends those metrics through the same
 queued exporter path as workload telemetry.
+Telemetry exporter authority evidence checks that the collector explicitly
+declares the upstream gateway as authoritative, keeps local debug export as a
+bounded companion path, and preserves file-backed queue/retry delivery.
 Telemetry sampling evidence checks that collector tail sampling keeps critical
 error, dependency-timeout, rollout-regression, and collector-pressure traces
 while bounding healthy baseline trace volume.
@@ -176,6 +179,9 @@ not described as merged.
 - A collector self-observability audit that verifies loopback scraping of
   collector internal metrics, metrics pipeline wiring, queued export, retry,
   and negative drift fixtures.
+- A telemetry exporter authority audit that verifies traces and metrics have
+  an explicit authoritative upstream gateway, local debug export is not the
+  only release path, and queued retry delivery remains enabled.
 - A telemetry sampling audit that verifies OpenTelemetry tail-sampling policy,
   critical incident trace retention, bounded baseline sampling, trace pipeline
   processor order, and negative drift fixtures.
@@ -406,6 +412,7 @@ script:
 - [Config rollout audit](docs/evidence/config-rollout-audit.md)
 - [Network boundary audit](docs/evidence/network-boundary-audit.md)
 - [Collector self-observability audit](docs/evidence/collector-self-observability-audit.md)
+- [Telemetry exporter authority audit](docs/evidence/telemetry-exporter-authority-audit.md)
 - [Telemetry sampling audit](docs/evidence/telemetry-sampling-audit.md)
 - [Workload Identity audit](docs/evidence/workload-identity-audit.md)
 - [Admission policy audit](docs/evidence/admission-policy-audit.md)
@@ -598,8 +605,9 @@ Before adapting this to a real GKE cluster:
 46. Keep the developer runtime contract aligned with Make targets, Python
    version pinning, Ruby/YAML validation, zero-dependency assumptions, and
    local output boundaries.
-47. Decide which exporter is authoritative: debug/local, Google Cloud, or an
-   internal telemetry gateway.
+47. Keep telemetry exporter authority explicit: debug/local can remain a
+   companion path, but production evidence must identify the upstream gateway
+   exporter and preserve queued retry delivery.
 48. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
 49. Treat telemetry as production evidence: validate it during staged rollout,
@@ -637,7 +645,7 @@ Current wording before upstream merges:
 > release control ownership auditing,
 > control traceability auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
-> audits,
+> audits, telemetry exporter authority checks,
 > supply-chain image checks, OSS license auditing, secret hygiene auditing,
 > SBOM inventory auditing,
 > namespace quota/LimitRange governance,
@@ -667,7 +675,7 @@ After an upstream PR merges, update this to:
 > release control ownership auditing,
 > control traceability auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
-> audits,
+> audits, telemetry exporter authority checks,
 > supply-chain image checks, OSS license auditing, secret hygiene auditing,
 > SBOM inventory auditing,
 > namespace quota/LimitRange governance,

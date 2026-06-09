@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 12,
-  "policy_artifact_count": 12,
-  "required_field_count": 113,
-  "required_check_count": 77,
-  "metric_contract_count": 64,
-  "array_contract_count": 30,
-  "observed_check_count": 77,
-  "detected_fixture_count": 12,
+  "artifact_count": 13,
+  "policy_artifact_count": 13,
+  "required_field_count": 126,
+  "required_check_count": 85,
+  "metric_contract_count": 72,
+  "array_contract_count": 32,
+  "observed_check_count": 85,
+  "detected_fixture_count": 13,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 12,
-        "policy_artifact_count": 12,
-        "minimum_artifact_count": 12
+        "artifact_count": 13,
+        "policy_artifact_count": 13,
+        "minimum_artifact_count": 13
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 12,
-        "minimum_detected_fixtures": 12,
+        "detected_fixture_count": 13,
+        "minimum_detected_fixtures": 13,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -124,6 +124,17 @@
           {
             "name": "missing_kubernetes_api_stable_core_check",
             "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_exporter_authority_annotation_check",
+            "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
             "mutation": "remove_check",
             "expected_failed_check": "check_inventory",
             "failed_checks": [
@@ -267,6 +278,17 @@
       "detected": true
     },
     {
+      "name": "missing_exporter_authority_annotation_check",
+      "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
+    },
+    {
       "name": "low_developer_runtime_make_target_count",
       "artifact": "docs/evidence/developer-runtime-audit.json",
       "mutation": "set_field",
@@ -377,6 +399,12 @@
       "present": true,
       "status": "pass",
       "check_count": 6
+    },
+    {
+      "path": "docs/evidence/telemetry-exporter-authority-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
     },
     {
       "path": "docs/evidence/synthetic-probe-audit.json",

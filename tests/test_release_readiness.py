@@ -204,6 +204,16 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 10,
             "failed_count": 0,
         },
+        "telemetry_exporter_authority": {
+            "status": "pass",
+            "exporter_count": 2,
+            "authoritative_pipeline_count": 2,
+            "local_debug_pipeline_count": 2,
+            "queued_exporter_count": 1,
+            "retry_enabled_count": 1,
+            "detected_fixture_count": 8,
+            "failed_count": 0,
+        },
         "telemetry_sampling": {
             "status": "pass",
             "policy_count": 5,
@@ -358,46 +368,46 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "release_control_ownership": {
             "status": "pass",
-            "control_count": 54,
-            "release_check_count": 54,
-            "covered_release_check_count": 54,
-            "tier0_count": 31,
-            "every_release_count": 42,
+            "control_count": 55,
+            "release_check_count": 55,
+            "covered_release_check_count": 55,
+            "tier0_count": 32,
+            "every_release_count": 43,
             "owner_group_count": 5,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "control_traceability": {
             "status": "pass",
-            "control_count": 49,
-            "evidence_file_count": 99,
-            "source_input_count": 50,
-            "policy_input_count": 50,
-            "test_file_count": 49,
+            "control_count": 50,
+            "evidence_file_count": 101,
+            "source_input_count": 52,
+            "policy_input_count": 51,
+            "test_file_count": 50,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 56,
-            "dependency_count": 70,
-            "artifact_dependency_count": 70,
+            "step_count": 57,
+            "dependency_count": 75,
+            "artifact_dependency_count": 75,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
         "evidence_schema": {
             "status": "pass",
-            "artifact_count": 12,
-            "required_field_count": 103,
-            "required_check_count": 76,
-            "detected_fixture_count": 12,
+            "artifact_count": 13,
+            "required_field_count": 126,
+            "required_check_count": 85,
+            "detected_fixture_count": 13,
             "failed_count": 0,
         },
         "disaster_recovery_drill": {
             "status": "pass",
-            "artifact_count": 77,
-            "restored_count": 77,
-            "hash_match_count": 77,
+            "artifact_count": 81,
+            "restored_count": 81,
+            "hash_match_count": 81,
             "detected_fixture_count": 4,
             "estimated_restore_minutes": 7,
             "rto_minutes": 15,
@@ -405,8 +415,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 129,
-            "source_input_count": 121,
+            "artifact_count": 131,
+            "source_input_count": 123,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -648,6 +658,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["collector_self_observability_audit"])
+
+    def test_requires_telemetry_exporter_authority_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["telemetry_exporter_authority"]["authoritative_pipeline_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["telemetry_exporter_authority_audit"])
 
     def test_requires_telemetry_sampling_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

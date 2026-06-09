@@ -90,6 +90,8 @@ REQUIRED_EVIDENCE = [
     "network-boundary-audit.json",
     "collector-self-observability-audit.md",
     "collector-self-observability-audit.json",
+    "telemetry-exporter-authority-audit.md",
+    "telemetry-exporter-authority-audit.json",
     "telemetry-sampling-audit.md",
     "telemetry-sampling-audit.json",
     "workload-identity-audit.md",
@@ -186,6 +188,7 @@ def evaluate(
     config_rollout: dict[str, Any],
     network_boundary: dict[str, Any],
     collector_self_observability: dict[str, Any],
+    telemetry_exporter_authority: dict[str, Any],
     telemetry_sampling: dict[str, Any],
     workload_identity: dict[str, Any],
     admission_policy: dict[str, Any],
@@ -423,6 +426,17 @@ def evaluate(
             and int(collector_self_observability.get("scrape_job_count", 0)) >= 1
             and int(collector_self_observability.get("detected_fixture_count", 0)) >= 10
             and int(collector_self_observability.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "telemetry_exporter_authority_audit",
+            "ok": telemetry_exporter_authority.get("status") == "pass"
+            and int(telemetry_exporter_authority.get("exporter_count", 0)) >= 2
+            and int(telemetry_exporter_authority.get("authoritative_pipeline_count", 0)) >= 2
+            and int(telemetry_exporter_authority.get("local_debug_pipeline_count", 0)) >= 2
+            and int(telemetry_exporter_authority.get("queued_exporter_count", 0)) >= 1
+            and int(telemetry_exporter_authority.get("retry_enabled_count", 0)) >= 1
+            and int(telemetry_exporter_authority.get("detected_fixture_count", 0)) >= 8
+            and int(telemetry_exporter_authority.get("failed_count", -1)) == 0,
         },
         {
             "name": "telemetry_sampling_audit",
@@ -677,7 +691,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "policy, policy regression fixtures, supply-chain audit, OSS license compliance, secret hygiene, SBOM inventory, security response, CI",
         "governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, Kubernetes API compatibility, namespace resource governance, availability",
         "topology governance, autoscaling policy governance, scheduling",
-        "placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling",
+        "placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry exporter authority, telemetry sampling",
         "governance, Workload Identity audit, admission policy simulation,",
         "SLO alerting rules,",
         "Grafana dashboard coverage, OpenSLO contract, observability drift",
@@ -743,6 +757,7 @@ def main() -> int:
     parser.add_argument("--config-rollout", default="out/config-rollout-audit/config-rollout-audit.json")
     parser.add_argument("--network-boundary", default="out/network-boundary-audit/network-boundary-audit.json")
     parser.add_argument("--collector-self-observability", default="out/collector-self-observability-audit/collector-self-observability-audit.json")
+    parser.add_argument("--telemetry-exporter-authority", default="out/telemetry-exporter-authority-audit/telemetry-exporter-authority-audit.json")
     parser.add_argument("--telemetry-sampling", default="out/telemetry-sampling-audit/telemetry-sampling-audit.json")
     parser.add_argument("--workload-identity", default="out/workload-identity-audit/workload-identity-audit.json")
     parser.add_argument("--admission-policy", default="out/admission-policy-audit/admission-policy-audit.json")
@@ -801,6 +816,7 @@ def main() -> int:
         config_rollout=load_json(Path(args.config_rollout)),
         network_boundary=load_json(Path(args.network_boundary)),
         collector_self_observability=load_json(Path(args.collector_self_observability)),
+        telemetry_exporter_authority=load_json(Path(args.telemetry_exporter_authority)),
         telemetry_sampling=load_json(Path(args.telemetry_sampling)),
         workload_identity=load_json(Path(args.workload_identity)),
         admission_policy=load_json(Path(args.admission_policy)),

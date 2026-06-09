@@ -9,9 +9,9 @@ the evidence needed to explain, block, roll back, or waive a release.
 
 ## Summary
 
-- Artifacts: `77`
-- Restored: `77`
-- Hash matches: `77`
+- Artifacts: `81`
+- Restored: `81`
+- Hash matches: `81`
 - Generated artifacts: `10`
 - Estimated restore: `7 minutes`
 - RTO: `15 minutes`
@@ -24,9 +24,9 @@ the evidence needed to explain, block, roll back, or waive a release.
 | `deployment_manifests` | 6 |
 | `incident_replay_evidence` | 4 |
 | `observability_contracts` | 7 |
-| `recovery_source_policy` | 30 |
+| `recovery_source_policy` | 32 |
 | `release_control_evidence` | 14 |
-| `security_policy_evidence` | 16 |
+| `security_policy_evidence` | 18 |
 
 ## Checks
 

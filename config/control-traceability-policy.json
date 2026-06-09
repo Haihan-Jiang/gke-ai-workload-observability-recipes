@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 49,
-  "minimum_release_check_count": 54,
-  "minimum_policy_input_count": 50,
+  "minimum_control_count": 50,
+  "minimum_release_check_count": 55,
+  "minimum_policy_input_count": 51,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -396,6 +396,24 @@
       ],
       "tests": [
         "tests/test_collector_self_observability_audit.py"
+      ]
+    },
+    {
+      "name": "telemetry_exporter_authority_audit",
+      "release_readiness_check": "telemetry_exporter_authority_audit",
+      "evidence": [
+        "docs/evidence/telemetry-exporter-authority-audit.json",
+        "docs/evidence/telemetry-exporter-authority-audit.md"
+      ],
+      "source_inputs": [
+        "demo/telemetry_exporter_authority_audit.py",
+        "k8s/gke/collector.yaml"
+      ],
+      "policy_inputs": [
+        "config/telemetry-exporter-policy.json"
+      ],
+      "tests": [
+        "tests/test_telemetry_exporter_authority_audit.py"
       ]
     },
     {

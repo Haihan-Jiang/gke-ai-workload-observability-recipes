@@ -110,6 +110,10 @@
       "ok": true
     },
     {
+      "name": "telemetry_exporter_authority_audit",
+      "ok": true
+    },
+    {
       "name": "telemetry_sampling_audit",
       "ok": true
     },
@@ -537,6 +541,14 @@
     },
     {
       "path": "collector-self-observability-audit.json",
+      "exists": true
+    },
+    {
+      "path": "telemetry-exporter-authority-audit.md",
+      "exists": true
+    },
+    {
+      "path": "telemetry-exporter-authority-audit.json",
       "exists": true
     },
     {
