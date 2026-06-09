@@ -226,6 +226,10 @@
       "ok": true
     },
     {
+      "name": "validation_contract_audit",
+      "ok": true
+    },
+    {
       "name": "disaster_recovery_drill",
       "ok": true
     },
@@ -777,6 +781,14 @@
     },
     {
       "path": "evidence-schema-audit.json",
+      "exists": true
+    },
+    {
+      "path": "validation-contract-audit.md",
+      "exists": true
+    },
+    {
+      "path": "validation-contract-audit.json",
       "exists": true
     },
     {

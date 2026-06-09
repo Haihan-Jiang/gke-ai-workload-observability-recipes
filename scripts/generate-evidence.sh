@@ -251,6 +251,13 @@ python3 demo/evidence_pipeline_audit.py \
   --script scripts/generate-evidence.sh \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/validation_contract_audit.py \
+  --policy config/validation-contract-policy.json \
+  --repo-root . \
+  --generate-script scripts/generate-evidence.sh \
+  --validate-script scripts/validate.sh \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
 python3 demo/evidence_schema_audit.py \
   --policy config/evidence-schema-policy.json \
   --repo-root . \
@@ -390,6 +397,7 @@ python3 demo/release_readiness.py \
   --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
   --evidence-schema docs/evidence/evidence-schema-audit.json \
+  --validation-contract docs/evidence/validation-contract-audit.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --proof-packet-integrity docs/evidence/proof-packet-integrity-audit.json \
   --evidence-dir docs/evidence \

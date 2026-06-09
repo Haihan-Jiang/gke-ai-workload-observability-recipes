@@ -144,6 +144,8 @@ REQUIRED_EVIDENCE = [
     "evidence-pipeline-audit.json",
     "evidence-schema-audit.md",
     "evidence-schema-audit.json",
+    "validation-contract-audit.md",
+    "validation-contract-audit.json",
     "disaster-recovery-drill.md",
     "disaster-recovery-drill.json",
     "documentation-link-integrity-audit.md",
@@ -227,6 +229,7 @@ def evaluate(
     replay_source_contract: dict[str, Any],
     evidence_pipeline: dict[str, Any],
     evidence_schema: dict[str, Any],
+    validation_contract: dict[str, Any],
     disaster_recovery_drill: dict[str, Any],
     documentation_link_integrity: dict[str, Any],
     evidence_provenance: dict[str, Any],
@@ -649,11 +652,11 @@ def evaluate(
         {
             "name": "release_control_ownership_audit",
             "ok": release_control_ownership.get("status") == "pass"
-            and int(release_control_ownership.get("control_count", 0)) >= 60
+            and int(release_control_ownership.get("control_count", 0)) >= 61
             and int(release_control_ownership.get("covered_release_check_count", 0))
             == int(release_control_ownership.get("release_check_count", -1))
-            and int(release_control_ownership.get("tier0_count", 0)) >= 37
-            and int(release_control_ownership.get("every_release_count", 0)) >= 48
+            and int(release_control_ownership.get("tier0_count", 0)) >= 38
+            and int(release_control_ownership.get("every_release_count", 0)) >= 49
             and int(release_control_ownership.get("owner_group_count", 0)) >= 5
             and int(release_control_ownership.get("detected_fixture_count", 0)) >= 6
             and int(release_control_ownership.get("failed_count", -1)) == 0,
@@ -661,11 +664,11 @@ def evaluate(
         {
             "name": "control_traceability_audit",
             "ok": control_traceability.get("status") == "pass"
-            and int(control_traceability.get("control_count", 0)) >= 55
-            and int(control_traceability.get("evidence_file_count", 0)) >= 111
-            and int(control_traceability.get("source_input_count", 0)) >= 58
-            and int(control_traceability.get("policy_input_count", 0)) >= 56
-            and int(control_traceability.get("test_file_count", 0)) >= 55
+            and int(control_traceability.get("control_count", 0)) >= 56
+            and int(control_traceability.get("evidence_file_count", 0)) >= 113
+            and int(control_traceability.get("source_input_count", 0)) >= 59
+            and int(control_traceability.get("policy_input_count", 0)) >= 57
+            and int(control_traceability.get("test_file_count", 0)) >= 56
             and int(control_traceability.get("detected_fixture_count", 0)) >= 6
             and int(control_traceability.get("failed_count", -1)) == 0,
         },
@@ -683,25 +686,37 @@ def evaluate(
         {
             "name": "evidence_pipeline_audit",
             "ok": evidence_pipeline.get("status") == "pass"
-            and int(evidence_pipeline.get("step_count", 0)) >= 62
-            and int(evidence_pipeline.get("dependency_count", 0)) >= 110
-            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 110
+            and int(evidence_pipeline.get("step_count", 0)) >= 63
+            and int(evidence_pipeline.get("dependency_count", 0)) >= 118
+            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 118
             and int(evidence_pipeline.get("detected_fixture_count", 0)) >= 4
             and int(evidence_pipeline.get("failed_count", -1)) == 0,
         },
         {
             "name": "evidence_schema_audit",
             "ok": evidence_schema.get("status") == "pass"
-            and int(evidence_schema.get("artifact_count", 0)) >= 15
-            and int(evidence_schema.get("required_field_count", 0)) >= 153
-            and int(evidence_schema.get("required_check_count", 0)) >= 98
-            and int(evidence_schema.get("detected_fixture_count", 0)) >= 15
+            and int(evidence_schema.get("artifact_count", 0)) >= 16
+            and int(evidence_schema.get("required_field_count", 0)) >= 165
+            and int(evidence_schema.get("required_check_count", 0)) >= 105
+            and int(evidence_schema.get("detected_fixture_count", 0)) >= 16
             and int(evidence_schema.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "validation_contract_audit",
+            "ok": validation_contract.get("status") == "pass"
+            and int(validation_contract.get("py_compile_script_count", 0)) >= 65
+            and int(validation_contract.get("generation_script_count", 0)) >= 63
+            and int(validation_contract.get("direct_validation_script_count", 0)) >= 62
+            and int(validation_contract.get("policy_json_count", 0)) >= 58
+            and int(validation_contract.get("committed_json_count", 0)) >= 73
+            and int(validation_contract.get("release_argument_count", 0)) >= 62
+            and int(validation_contract.get("detected_fixture_count", 0)) >= 6
+            and int(validation_contract.get("failed_count", -1)) == 0,
         },
         {
             "name": "disaster_recovery_drill",
             "ok": disaster_recovery_drill.get("status") == "pass"
-            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 97
+            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 101
             and int(disaster_recovery_drill.get("restored_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("hash_match_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("detected_fixture_count", 0)) >= 4
@@ -724,17 +739,17 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 137
-            and int(evidence_provenance.get("source_input_count", 0)) >= 133
+            and int(evidence_provenance.get("artifact_count", 0)) >= 139
+            and int(evidence_provenance.get("source_input_count", 0)) >= 135
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
         {
             "name": "proof_packet_integrity_audit",
             "ok": proof_packet_integrity.get("status") == "pass"
-            and int(proof_packet_integrity.get("manifest_entry_count", 0)) >= 274
-            and int(proof_packet_integrity.get("evidence_artifact_count", 0)) >= 137
+            and int(proof_packet_integrity.get("manifest_entry_count", 0)) >= 278
+            and int(proof_packet_integrity.get("evidence_artifact_count", 0)) >= 139
             and int(proof_packet_integrity.get("generated_artifact_count", 0)) >= 4
-            and int(proof_packet_integrity.get("source_input_count", 0)) >= 133
+            and int(proof_packet_integrity.get("source_input_count", 0)) >= 135
             and int(proof_packet_integrity.get("matched_digest_count", 0))
             == int(proof_packet_integrity.get("manifest_entry_count", -1))
             and int(proof_packet_integrity.get("missing_path_count", -1)) == 0
@@ -864,6 +879,7 @@ def main() -> int:
     parser.add_argument("--replay-source-contract", default="out/replay-source-contract-audit/replay-source-contract-audit.json")
     parser.add_argument("--evidence-pipeline", default="out/evidence-pipeline-audit/evidence-pipeline-audit.json")
     parser.add_argument("--evidence-schema", default="out/evidence-schema-audit/evidence-schema-audit.json")
+    parser.add_argument("--validation-contract", default="out/validation-contract-audit/validation-contract-audit.json")
     parser.add_argument("--disaster-recovery-drill", default="out/disaster-recovery-drill/disaster-recovery-drill.json")
     parser.add_argument("--documentation-link-integrity", default="out/documentation-link-integrity-audit/documentation-link-integrity-audit.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
@@ -928,6 +944,7 @@ def main() -> int:
         replay_source_contract=load_json(Path(args.replay_source_contract)),
         evidence_pipeline=load_json(Path(args.evidence_pipeline)),
         evidence_schema=load_json(Path(args.evidence_schema)),
+        validation_contract=load_json(Path(args.validation_contract)),
         disaster_recovery_drill=load_json(Path(args.disaster_recovery_drill)),
         documentation_link_integrity=load_json(Path(args.documentation_link_integrity)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),

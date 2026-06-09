@@ -5,7 +5,7 @@
   "estimated_data_loss_minutes": 0,
   "restore_throughput_mib_per_minute": 64,
   "operator_step_minutes": 6,
-  "minimum_artifacts": 97,
+  "minimum_artifacts": 101,
   "minimum_groups": 6,
   "minimum_generated_artifacts": 4,
   "required_rpo_artifacts": [
@@ -25,6 +25,7 @@
     "docs/evidence/staged-telemetry-validation-audit.json",
     "docs/evidence/evidence-pipeline-audit.json",
     "docs/evidence/evidence-schema-audit.json",
+    "docs/evidence/validation-contract-audit.json",
     "docs/evidence/documentation-link-integrity-audit.json"
   ],
   "artifact_groups": [
@@ -54,6 +55,8 @@
         "docs/evidence/evidence-pipeline-audit.json",
         "docs/evidence/evidence-schema-audit.md",
         "docs/evidence/evidence-schema-audit.json",
+        "docs/evidence/validation-contract-audit.md",
+        "docs/evidence/validation-contract-audit.json",
         "docs/evidence/replay-source-contract-audit.md",
         "docs/evidence/replay-source-contract-audit.json",
         "docs/evidence/documentation-link-integrity-audit.md",
@@ -128,6 +131,7 @@
         "config/staged-telemetry-validation-policy.json",
         "config/evidence-pipeline-policy.json",
         "config/evidence-schema-policy.json",
+        "config/validation-contract-policy.json",
         "config/disaster-recovery-policy.json",
         "config/documentation-link-policy.json",
         ".github/workflows/ci.yml",
@@ -150,6 +154,7 @@
         "demo/telemetry_exporter_authority_audit.py",
         "demo/staged_telemetry_validation_audit.py",
         "demo/evidence_pipeline_audit.py",
+        "demo/validation_contract_audit.py",
         "demo/documentation_link_integrity_audit.py",
         "scripts/generate-evidence.sh",
         "scripts/validate.sh"

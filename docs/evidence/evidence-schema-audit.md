@@ -11,13 +11,13 @@ values, and negative drift fixtures.
 
 | Metric | Value |
 | --- | ---: |
-| Artifacts | 15 |
-| Required fields | 153 |
-| Required checks | 98 |
-| Metric contracts | 90 |
-| Array contracts | 38 |
-| Observed checks | 98 |
-| Detected fixtures | 15 |
+| Artifacts | 16 |
+| Required fields | 165 |
+| Required checks | 105 |
+| Metric contracts | 99 |
+| Array contracts | 40 |
+| Observed checks | 105 |
+| Detected fixtures | 16 |
 
 ## Checks
 
@@ -38,6 +38,7 @@ values, and negative drift fixtures.
 | Artifact | Status | Checks |
 | --- | --- | ---: |
 | `docs/evidence/evidence-pipeline-audit.json` | `pass` | 5 |
+| `docs/evidence/validation-contract-audit.json` | `pass` | 7 |
 | `docs/evidence/developer-runtime-audit.json` | `pass` | 7 |
 | `docs/evidence/repository-governance-audit.json` | `pass` | 6 |
 | `docs/evidence/ci-governance-audit.json` | `pass` | 8 |
@@ -72,3 +73,4 @@ values, and negative drift fixtures.
 | `missing_supply_chain_digest_count` | `required_fields` | yes |
 | `missing_k8s_hardening_container_check` | `check_inventory` | yes |
 | `low_pipeline_dependency_count` | `metric_contract` | yes |
+| `missing_validation_committed_json_check` | `check_inventory` | yes |

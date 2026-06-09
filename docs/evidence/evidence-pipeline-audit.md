@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 62 |
-| Required steps | 62 |
-| Dependencies | 110 |
-| Artifact dependencies | 110 |
+| Steps | 63 |
+| Required steps | 63 |
+| Dependencies | 118 |
+| Artifact dependencies | 118 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -80,7 +80,7 @@ accidentally read stale committed artifacts.
 | `private_cluster_admission_boundary_audit` | `control_traceability_audit` | yes |
 | `telemetry_exporter_authority_audit` | `control_traceability_audit` | yes |
 | `staged_telemetry_validation_audit` | `control_traceability_audit` | yes |
-| `evidence_pipeline_audit` | `evidence_schema_audit` | yes |
+| `evidence_pipeline_audit` | `validation_contract_audit` | yes |
 | `developer_runtime_audit` | `evidence_schema_audit` | yes |
 | `pod_security_admission_audit` | `evidence_schema_audit` | yes |
 | `kubernetes_api_compatibility_audit` | `evidence_schema_audit` | yes |
@@ -89,6 +89,9 @@ accidentally read stale committed artifacts.
 | `synthetic_probe_audit` | `evidence_schema_audit` | yes |
 | `model_release_safety_audit` | `evidence_schema_audit` | yes |
 | `staged_telemetry_validation_audit` | `evidence_schema_audit` | yes |
+| `validation_contract_audit` | `evidence_schema_audit` | yes |
+| `validation_contract_audit` | `render_incident_evidence` | yes |
+| `validation_contract_audit` | `documentation_link_integrity_audit` | yes |
 | `telemetry_redaction_audit` | `shadow_traffic_replay_audit` | yes |
 | `model_release_safety_audit` | `shadow_traffic_replay_audit` | yes |
 | `synthetic_probe_audit` | `load_shedding_policy_audit` | yes |
@@ -101,12 +104,15 @@ accidentally read stale committed artifacts.
 | `telemetry_exporter_authority_audit` | `disaster_recovery_drill` | yes |
 | `staged_telemetry_validation_audit` | `disaster_recovery_drill` | yes |
 | `evidence_schema_audit` | `disaster_recovery_drill` | yes |
+| `validation_contract_audit` | `disaster_recovery_drill` | yes |
 | `disaster_recovery_drill` | `regional_failover_audit` | yes |
 | `load_shedding_policy_audit` | `regional_failover_audit` | yes |
 | `regional_failover_audit` | `evidence_provenance` | yes |
 | `regional_failover_audit` | `control_traceability_audit` | yes |
+| `validation_contract_audit` | `release_control_ownership_audit` | yes |
 | `release_control_ownership_audit` | `control_traceability_audit` | yes |
 | `evidence_schema_audit` | `control_traceability_audit` | yes |
+| `validation_contract_audit` | `control_traceability_audit` | yes |
 | `evidence_pipeline_audit` | `control_traceability_audit` | yes |
 | `oss_license_audit` | `evidence_provenance` | yes |
 | `secret_hygiene_audit` | `evidence_provenance` | yes |
@@ -116,6 +122,7 @@ accidentally read stale committed artifacts.
 | `private_cluster_admission_boundary_audit` | `evidence_provenance` | yes |
 | `telemetry_exporter_authority_audit` | `evidence_provenance` | yes |
 | `staged_telemetry_validation_audit` | `evidence_provenance` | yes |
+| `validation_contract_audit` | `evidence_provenance` | yes |
 | `render_incident_evidence` | `documentation_link_integrity_audit` | yes |
 | `documentation_link_integrity_audit` | `disaster_recovery_drill` | yes |
 | `documentation_link_integrity_audit` | `evidence_provenance` | yes |
@@ -140,6 +147,7 @@ accidentally read stale committed artifacts.
 | `staged_telemetry_validation_audit` | `release_readiness` | yes |
 | `disaster_recovery_drill` | `release_readiness` | yes |
 | `evidence_schema_audit` | `release_readiness` | yes |
+| `validation_contract_audit` | `release_readiness` | yes |
 
 ## Negative Fixtures
 

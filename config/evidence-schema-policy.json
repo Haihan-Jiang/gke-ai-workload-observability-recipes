@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 15,
-  "minimum_detected_fixtures": 15,
+  "minimum_artifact_count": 16,
+  "minimum_detected_fixtures": 16,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 62,
-        "required_step_count": 62,
-        "dependency_count": 110,
-        "artifact_dependency_count": 110,
+        "step_count": 63,
+        "required_step_count": 63,
+        "dependency_count": 118,
+        "artifact_dependency_count": 118,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,9 +43,56 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 62,
-        "dependencies": 110,
+        "steps": 63,
+        "dependencies": 118,
         "fixtures": 4
+      }
+    },
+    {
+      "path": "docs/evidence/validation-contract-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "py_compile_script_count",
+        "generation_script_count",
+        "direct_validation_script_count",
+        "policy_json_count",
+        "committed_json_count",
+        "release_argument_count",
+        "detected_fixture_count",
+        "checks",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "py_compile_contract",
+        "generation_validation_contract",
+        "policy_json_contract",
+        "committed_json_contract",
+        "release_readiness_argument_contract",
+        "required_command_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "py_compile_script_count": 65,
+        "generation_script_count": 63,
+        "direct_validation_script_count": 62,
+        "policy_json_count": 58,
+        "committed_json_count": 73,
+        "release_argument_count": 62,
+        "detected_fixture_count": 6
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "fixture_results": 6
       }
     },
     {
@@ -752,6 +799,13 @@
       "field": "dependency_count",
       "value": 2,
       "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "missing_validation_committed_json_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/validation-contract-audit.json",
+      "check": "committed_json_contract",
+      "expected_failed_check": "check_inventory"
     }
   ]
 }

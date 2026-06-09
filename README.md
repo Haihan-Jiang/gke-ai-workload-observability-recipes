@@ -111,6 +111,10 @@ silently satisfying later release gates.
 Evidence schema audit evidence checks that critical generated JSON reports keep
 stable status fields, required fields, required checks, metric contracts, array
 shapes, and negative drift fixtures before release readiness is reported.
+Validation contract evidence checks that CI/local validation covers generated
+evidence scripts, Python compile coverage, policy JSON files, committed
+evidence JSON files, required validation commands, and release-readiness
+arguments before a proof packet is trusted.
 Documentation link integrity evidence checks README, contributor docs, release
 docs, and committed evidence indexes for local path, anchor, image, and scheme
 drift before public review links are trusted.
@@ -273,6 +277,10 @@ not described as merged.
 - An evidence schema audit that verifies generated JSON reports keep required
   fields, check shapes, metric contracts, allowed values, and negative drift
   fixtures stable.
+- A validation contract audit that verifies generated evidence scripts,
+  Python compile coverage, policy JSON checks, committed evidence JSON checks,
+  required validation commands, and release-readiness arguments stay
+  synchronized.
 - A documentation link integrity audit that verifies README, docs, evidence
   indexes, anchors, images, and allowed schemes before public review links are
   trusted.
@@ -467,9 +475,11 @@ script:
 - [Replay source contract audit](docs/evidence/replay-source-contract-audit.md)
 - [Evidence pipeline audit](docs/evidence/evidence-pipeline-audit.md)
 - [Evidence schema audit](docs/evidence/evidence-schema-audit.md)
+- [Validation contract audit](docs/evidence/validation-contract-audit.md)
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
 - [Documentation link integrity audit](docs/evidence/documentation-link-integrity-audit.md)
 - [Evidence provenance](docs/evidence/evidence-provenance.md)
+- [Proof packet integrity audit](docs/evidence/proof-packet-integrity-audit.md)
 - [Release readiness report](docs/evidence/release-readiness.md)
 - [Evidence index](docs/evidence/README.md)
 
@@ -648,10 +658,14 @@ Before adapting this to a real GKE cluster:
    fields, OTLP payload files, root span attributes, child span shape,
    model/tenant/version metadata, and incident signal traits before downstream
    evidence gates consume replay output.
-51. Keep proof packet integrity aligned with evidence provenance checksums,
+51. Keep validation contracts aligned with generated evidence scripts, Python
+   compile coverage, policy JSON validation, committed evidence JSON
+   validation, required validate commands, and release-readiness arguments
+   before trusting CI as proof.
+52. Keep proof packet integrity aligned with evidence provenance checksums,
    current source inputs, generated artifacts, and non-circular release
    readiness inputs before claiming committed evidence is fresh.
-52. Keep documentation link integrity aligned with README, contributor docs,
+53. Keep documentation link integrity aligned with README, contributor docs,
    release docs, evidence indexes, anchors, images, and allowed link schemes
    before treating public review links as trustworthy.
 
@@ -687,6 +701,7 @@ Current wording before upstream merges:
 > release control ownership auditing,
 > control traceability auditing,
 > replay source contract auditing,
+> validation contract auditing,
 > documentation link integrity auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
 > audits, telemetry exporter authority checks,
@@ -719,6 +734,7 @@ After an upstream PR merges, update this to:
 > release control ownership auditing,
 > control traceability auditing,
 > replay source contract auditing,
+> validation contract auditing,
 > documentation link integrity auditing,
 > telemetry redaction, collector self-observability, tail-sampling, and cost
 > audits, telemetry exporter authority checks,

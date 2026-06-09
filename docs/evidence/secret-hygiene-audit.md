@@ -10,8 +10,8 @@ readiness is reported.
 
 | Metric | Value |
 | --- | ---: |
-| Scanned files | 356 |
-| Generated evidence files scanned | 145 |
+| Scanned files | 361 |
+| Generated evidence files scanned | 147 |
 | Deny patterns | 6 |
 | Findings | 0 |
 | Skipped files | 0 |

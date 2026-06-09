@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 62,
-  "minimum_dependency_count": 110,
+  "minimum_step_count": 63,
+  "minimum_dependency_count": 118,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -199,6 +199,10 @@
     {
       "name": "evidence_schema_audit",
       "script": "demo/evidence_schema_audit.py"
+    },
+    {
+      "name": "validation_contract_audit",
+      "script": "demo/validation_contract_audit.py"
     },
     {
       "name": "shadow_traffic_replay_audit",
@@ -506,7 +510,7 @@
     },
     {
       "producer": "evidence_pipeline_audit",
-      "consumer": "evidence_schema_audit",
+      "consumer": "validation_contract_audit",
       "artifact": "docs/evidence/evidence-pipeline-audit.json"
     },
     {
@@ -548,6 +552,21 @@
       "producer": "staged_telemetry_validation_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/validation-contract-audit.md"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
     },
     {
       "producer": "telemetry_redaction_audit",
@@ -610,6 +629,11 @@
       "artifact": "docs/evidence/evidence-schema-audit.json"
     },
     {
+      "producer": "validation_contract_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
       "producer": "disaster_recovery_drill",
       "consumer": "regional_failover_audit",
       "artifact": "docs/evidence/disaster-recovery-drill.json"
@@ -630,6 +654,11 @@
       "artifact": "docs/evidence/regional-failover-audit.json"
     },
     {
+      "producer": "validation_contract_audit",
+      "consumer": "release_control_ownership_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
+    },
+    {
       "producer": "release_control_ownership_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/release-control-ownership-audit.json"
@@ -638,6 +667,11 @@
       "producer": "evidence_schema_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/evidence-schema-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json"
     },
     {
       "producer": "evidence_pipeline_audit",
@@ -683,6 +717,11 @@
       "producer": "staged_telemetry_validation_audit",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/staged-telemetry-validation-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/validation-contract-audit.json"
     },
     {
       "producer": "render_incident_evidence",
@@ -803,6 +842,11 @@
       "producer": "evidence_schema_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/evidence-schema-audit.json"
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/validation-contract-audit.json"
     }
   ],
   "fixtures": [

@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 55,
-  "release_check_count": 60,
-  "evidence_file_count": 111,
-  "source_input_count": 58,
-  "policy_input_count": 56,
-  "test_file_count": 55,
+  "control_count": 56,
+  "release_check_count": 61,
+  "evidence_file_count": 113,
+  "source_input_count": 59,
+  "policy_input_count": 57,
+  "test_file_count": 56,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 55,
-        "minimum_control_count": 55,
+        "control_count": 56,
+        "minimum_control_count": 56,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 60,
-        "minimum_release_check_count": 60,
+        "release_check_count": 61,
+        "minimum_release_check_count": 61,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 56,
-        "minimum_policy_input_count": 56,
+        "policy_input_count": 57,
+        "minimum_policy_input_count": 57,
         "policy_gaps": []
       }
     },
@@ -985,6 +985,23 @@
       ],
       "tests": [
         "tests/test_evidence_schema_audit.py"
+      ]
+    },
+    {
+      "name": "validation_contract_audit",
+      "release_readiness_check": "validation_contract_audit",
+      "evidence": [
+        "docs/evidence/validation-contract-audit.json",
+        "docs/evidence/validation-contract-audit.md"
+      ],
+      "source_inputs": [
+        "demo/validation_contract_audit.py"
+      ],
+      "policy_inputs": [
+        "config/validation-contract-policy.json"
+      ],
+      "tests": [
+        "tests/test_validation_contract_audit.py"
       ]
     },
     {

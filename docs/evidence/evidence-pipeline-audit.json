@@ -1,10 +1,10 @@
 {
   "status": "pass",
   "script": "scripts/generate-evidence.sh",
-  "step_count": 62,
-  "required_step_count": 62,
-  "dependency_count": 110,
-  "artifact_dependency_count": 110,
+  "step_count": 63,
+  "required_step_count": 63,
+  "dependency_count": 118,
+  "artifact_dependency_count": 118,
   "detected_fixture_count": 4,
   "failed_count": 0,
   "check_count": 5,
@@ -13,8 +13,8 @@
       "name": "step_inventory",
       "ok": true,
       "evidence": {
-        "step_count": 62,
-        "minimum_step_count": 62,
+        "step_count": 63,
+        "minimum_step_count": 63,
         "missing_steps": [],
         "duplicate_steps": []
       }
@@ -23,8 +23,8 @@
       "name": "dependency_inventory",
       "ok": true,
       "evidence": {
-        "dependency_count": 110,
-        "minimum_dependency_count": 110,
+        "dependency_count": 118,
+        "minimum_dependency_count": 118,
         "unknown_dependencies": []
       }
     },
@@ -39,8 +39,8 @@
       "name": "artifact_dependency_coverage",
       "ok": true,
       "evidence": {
-        "artifact_dependency_count": 110,
-        "dependency_count": 110
+        "artifact_dependency_count": 118,
+        "dependency_count": 118
       }
     },
     {
@@ -333,74 +333,79 @@
       "line": 249
     },
     {
+      "name": "validation_contract_audit",
+      "script": "demo/validation_contract_audit.py",
+      "line": 254
+    },
+    {
       "name": "evidence_schema_audit",
       "script": "demo/evidence_schema_audit.py",
-      "line": 254
+      "line": 261
     },
     {
       "name": "shadow_traffic_replay_audit",
       "script": "demo/shadow_traffic_replay_audit.py",
-      "line": 258
+      "line": 265
     },
     {
       "name": "load_shedding_policy_audit",
       "script": "demo/load_shedding_policy_audit.py",
-      "line": 267
+      "line": 274
     },
     {
       "name": "accelerator_quota_fairness_audit",
       "script": "demo/accelerator_quota_fairness_audit.py",
-      "line": 276
+      "line": 283
     },
     {
       "name": "release_waiver_governance",
       "script": "demo/release_waiver_governance.py",
-      "line": 285
+      "line": 292
     },
     {
       "name": "render_incident_evidence",
       "script": "demo/render_incident_evidence.py",
-      "line": 293
+      "line": 300
     },
     {
       "name": "documentation_link_integrity_audit",
       "script": "demo/documentation_link_integrity_audit.py",
-      "line": 296
+      "line": 303
     },
     {
       "name": "disaster_recovery_drill",
       "script": "demo/disaster_recovery_drill.py",
-      "line": 300
+      "line": 307
     },
     {
       "name": "regional_failover_audit",
       "script": "demo/regional_failover_audit.py",
-      "line": 305
+      "line": 312
     },
     {
       "name": "release_control_ownership_audit",
       "script": "demo/release_control_ownership_audit.py",
-      "line": 316
+      "line": 323
     },
     {
       "name": "evidence_provenance",
       "script": "demo/evidence_provenance.py",
-      "line": 321
+      "line": 328
     },
     {
       "name": "proof_packet_integrity_audit",
       "script": "demo/proof_packet_integrity_audit.py",
-      "line": 325
+      "line": 332
     },
     {
       "name": "control_traceability_audit",
       "script": "demo/control_traceability_audit.py",
-      "line": 330
+      "line": 337
     },
     {
       "name": "release_readiness",
       "script": "demo/release_readiness.py",
-      "line": 335
+      "line": 342
     }
   ],
   "dependencies": [
@@ -465,7 +470,7 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/replay-source-contract-audit.json",
       "producer_index": 1,
-      "consumer_index": 58,
+      "consumer_index": 59,
       "ordered": true
     },
     {
@@ -473,7 +478,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/replay-source-contract-audit.json",
       "producer_index": 1,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -481,7 +486,7 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/replay-source-contract-audit.json",
       "producer_index": 1,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -745,7 +750,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/oss-license-audit.json",
       "producer_index": 10,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -753,7 +758,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/secret-hygiene-audit.json",
       "producer_index": 11,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -761,7 +766,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/sbom-inventory-audit.json",
       "producer_index": 12,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -769,7 +774,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/security-response-audit.json",
       "producer_index": 13,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -777,7 +782,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
       "producer_index": 19,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -785,7 +790,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
       "producer_index": 20,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -793,7 +798,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
       "producer_index": 29,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -801,12 +806,12 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
       "producer_index": 46,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
       "producer": "evidence_pipeline_audit",
-      "consumer": "evidence_schema_audit",
+      "consumer": "validation_contract_audit",
       "artifact": "docs/evidence/evidence-pipeline-audit.json",
       "producer_index": 47,
       "consumer_index": 48,
@@ -817,7 +822,7 @@
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/developer-runtime-audit.json",
       "producer_index": 16,
-      "consumer_index": 48,
+      "consumer_index": 49,
       "ordered": true
     },
     {
@@ -825,7 +830,7 @@
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/pod-security-admission-audit.json",
       "producer_index": 18,
-      "consumer_index": 48,
+      "consumer_index": 49,
       "ordered": true
     },
     {
@@ -833,7 +838,7 @@
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
       "producer_index": 19,
-      "consumer_index": 48,
+      "consumer_index": 49,
       "ordered": true
     },
     {
@@ -841,7 +846,7 @@
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
       "producer_index": 20,
-      "consumer_index": 48,
+      "consumer_index": 49,
       "ordered": true
     },
     {
@@ -849,7 +854,7 @@
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
       "producer_index": 29,
-      "consumer_index": 48,
+      "consumer_index": 49,
       "ordered": true
     },
     {
@@ -857,7 +862,7 @@
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/synthetic-probe-audit.json",
       "producer_index": 44,
-      "consumer_index": 48,
+      "consumer_index": 49,
       "ordered": true
     },
     {
@@ -865,7 +870,7 @@
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/model-release-safety-audit.json",
       "producer_index": 45,
-      "consumer_index": 48,
+      "consumer_index": 49,
       "ordered": true
     },
     {
@@ -873,7 +878,31 @@
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
       "producer_index": 46,
-      "consumer_index": 48,
+      "consumer_index": 49,
+      "ordered": true
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json",
+      "producer_index": 48,
+      "consumer_index": 49,
+      "ordered": true
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/validation-contract-audit.md",
+      "producer_index": 48,
+      "consumer_index": 54,
+      "ordered": true
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json",
+      "producer_index": 48,
+      "consumer_index": 55,
       "ordered": true
     },
     {
@@ -881,7 +910,7 @@
       "consumer": "shadow_traffic_replay_audit",
       "artifact": "docs/evidence/telemetry-redaction-audit.json",
       "producer_index": 37,
-      "consumer_index": 49,
+      "consumer_index": 50,
       "ordered": true
     },
     {
@@ -889,7 +918,7 @@
       "consumer": "shadow_traffic_replay_audit",
       "artifact": "docs/evidence/model-release-safety-audit.json",
       "producer_index": 45,
-      "consumer_index": 49,
+      "consumer_index": 50,
       "ordered": true
     },
     {
@@ -897,31 +926,31 @@
       "consumer": "load_shedding_policy_audit",
       "artifact": "docs/evidence/synthetic-probe-audit.json",
       "producer_index": 44,
-      "consumer_index": 50,
+      "consumer_index": 51,
       "ordered": true
     },
     {
       "producer": "load_shedding_policy_audit",
       "consumer": "accelerator_quota_fairness_audit",
       "artifact": "docs/evidence/load-shedding-policy-audit.json",
-      "producer_index": 50,
-      "consumer_index": 51,
+      "producer_index": 51,
+      "consumer_index": 52,
       "ordered": true
     },
     {
       "producer": "shadow_traffic_replay_audit",
       "consumer": "accelerator_quota_fairness_audit",
       "artifact": "docs/evidence/shadow-traffic-replay-audit.json",
-      "producer_index": 49,
-      "consumer_index": 51,
+      "producer_index": 50,
+      "consumer_index": 52,
       "ordered": true
     },
     {
       "producer": "release_waiver_governance",
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/release-waiver-governance.json",
-      "producer_index": 52,
-      "consumer_index": 55,
+      "producer_index": 53,
+      "consumer_index": 56,
       "ordered": true
     },
     {
@@ -929,7 +958,7 @@
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/security-response-audit.json",
       "producer_index": 13,
-      "consumer_index": 55,
+      "consumer_index": 56,
       "ordered": true
     },
     {
@@ -937,7 +966,7 @@
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
       "producer_index": 19,
-      "consumer_index": 55,
+      "consumer_index": 56,
       "ordered": true
     },
     {
@@ -945,7 +974,7 @@
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
       "producer_index": 20,
-      "consumer_index": 55,
+      "consumer_index": 56,
       "ordered": true
     },
     {
@@ -953,7 +982,7 @@
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
       "producer_index": 29,
-      "consumer_index": 55,
+      "consumer_index": 56,
       "ordered": true
     },
     {
@@ -961,63 +990,87 @@
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
       "producer_index": 46,
-      "consumer_index": 55,
+      "consumer_index": 56,
       "ordered": true
     },
     {
       "producer": "evidence_schema_audit",
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/evidence-schema-audit.json",
+      "producer_index": 49,
+      "consumer_index": 56,
+      "ordered": true
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/validation-contract-audit.json",
       "producer_index": 48,
-      "consumer_index": 55,
+      "consumer_index": 56,
       "ordered": true
     },
     {
       "producer": "disaster_recovery_drill",
       "consumer": "regional_failover_audit",
       "artifact": "docs/evidence/disaster-recovery-drill.json",
-      "producer_index": 55,
-      "consumer_index": 56,
+      "producer_index": 56,
+      "consumer_index": 57,
       "ordered": true
     },
     {
       "producer": "load_shedding_policy_audit",
       "consumer": "regional_failover_audit",
       "artifact": "docs/evidence/load-shedding-policy-audit.json",
-      "producer_index": 50,
-      "consumer_index": 56,
+      "producer_index": 51,
+      "consumer_index": 57,
       "ordered": true
     },
     {
       "producer": "regional_failover_audit",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/regional-failover-audit.json",
-      "producer_index": 56,
-      "consumer_index": 58,
+      "producer_index": 57,
+      "consumer_index": 59,
       "ordered": true
     },
     {
       "producer": "regional_failover_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/regional-failover-audit.json",
-      "producer_index": 56,
-      "consumer_index": 60,
+      "producer_index": 57,
+      "consumer_index": 61,
+      "ordered": true
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "release_control_ownership_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json",
+      "producer_index": 48,
+      "consumer_index": 58,
       "ordered": true
     },
     {
       "producer": "release_control_ownership_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/release-control-ownership-audit.json",
-      "producer_index": 57,
-      "consumer_index": 60,
+      "producer_index": 58,
+      "consumer_index": 61,
       "ordered": true
     },
     {
       "producer": "evidence_schema_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/evidence-schema-audit.json",
+      "producer_index": 49,
+      "consumer_index": 61,
+      "ordered": true
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/validation-contract-audit.json",
       "producer_index": 48,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -1025,7 +1078,7 @@
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/evidence-pipeline-audit.json",
       "producer_index": 47,
-      "consumer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
@@ -1033,7 +1086,7 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/oss-license-audit.json",
       "producer_index": 10,
-      "consumer_index": 58,
+      "consumer_index": 59,
       "ordered": true
     },
     {
@@ -1041,7 +1094,7 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/secret-hygiene-audit.json",
       "producer_index": 11,
-      "consumer_index": 58,
+      "consumer_index": 59,
       "ordered": true
     },
     {
@@ -1049,7 +1102,7 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/sbom-inventory.json",
       "producer_index": 12,
-      "consumer_index": 58,
+      "consumer_index": 59,
       "ordered": true
     },
     {
@@ -1057,7 +1110,7 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/security-response-audit.json",
       "producer_index": 13,
-      "consumer_index": 58,
+      "consumer_index": 59,
       "ordered": true
     },
     {
@@ -1065,7 +1118,7 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
       "producer_index": 19,
-      "consumer_index": 58,
+      "consumer_index": 59,
       "ordered": true
     },
     {
@@ -1073,7 +1126,7 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
       "producer_index": 20,
-      "consumer_index": 58,
+      "consumer_index": 59,
       "ordered": true
     },
     {
@@ -1081,7 +1134,7 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
       "producer_index": 29,
-      "consumer_index": 58,
+      "consumer_index": 59,
       "ordered": true
     },
     {
@@ -1089,119 +1142,127 @@
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
       "producer_index": 46,
-      "consumer_index": 58,
+      "consumer_index": 59,
+      "ordered": true
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/validation-contract-audit.json",
+      "producer_index": 48,
+      "consumer_index": 59,
       "ordered": true
     },
     {
       "producer": "render_incident_evidence",
       "consumer": "documentation_link_integrity_audit",
       "artifact": "docs/evidence/README.md",
-      "producer_index": 53,
-      "consumer_index": 54,
-      "ordered": true
-    },
-    {
-      "producer": "documentation_link_integrity_audit",
-      "consumer": "disaster_recovery_drill",
-      "artifact": "docs/evidence/documentation-link-integrity-audit.json",
       "producer_index": 54,
       "consumer_index": 55,
       "ordered": true
     },
     {
       "producer": "documentation_link_integrity_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/documentation-link-integrity-audit.json",
+      "producer_index": 55,
+      "consumer_index": 56,
+      "ordered": true
+    },
+    {
+      "producer": "documentation_link_integrity_audit",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/documentation-link-integrity-audit.json",
-      "producer_index": 54,
-      "consumer_index": 58,
+      "producer_index": 55,
+      "consumer_index": 59,
       "ordered": true
     },
     {
       "producer": "documentation_link_integrity_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/documentation-link-integrity-audit.json",
-      "producer_index": 54,
-      "consumer_index": 60,
+      "producer_index": 55,
+      "consumer_index": 61,
       "ordered": true
     },
     {
       "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md",
-      "producer_index": 53,
-      "consumer_index": 58,
+      "producer_index": 54,
+      "consumer_index": 59,
       "ordered": true
     },
     {
       "producer": "evidence_provenance",
       "consumer": "proof_packet_integrity_audit",
       "artifact": "docs/evidence/evidence-provenance.json",
-      "producer_index": 58,
-      "consumer_index": 59,
+      "producer_index": 59,
+      "consumer_index": 60,
       "ordered": true
     },
     {
       "producer": "evidence_provenance",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/evidence-provenance.json",
-      "producer_index": 58,
-      "consumer_index": 60,
+      "producer_index": 59,
+      "consumer_index": 61,
       "ordered": true
     },
     {
       "producer": "proof_packet_integrity_audit",
       "consumer": "control_traceability_audit",
       "artifact": "docs/evidence/proof-packet-integrity-audit.json",
-      "producer_index": 59,
-      "consumer_index": 60,
+      "producer_index": 60,
+      "consumer_index": 61,
       "ordered": true
     },
     {
       "producer": "proof_packet_integrity_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/proof-packet-integrity-audit.json",
-      "producer_index": 59,
-      "consumer_index": 61,
+      "producer_index": 60,
+      "consumer_index": 62,
       "ordered": true
     },
     {
       "producer": "evidence_provenance",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/evidence-provenance.json",
-      "producer_index": 58,
-      "consumer_index": 61,
+      "producer_index": 59,
+      "consumer_index": 62,
       "ordered": true
     },
     {
       "producer": "regional_failover_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/regional-failover-audit.json",
-      "producer_index": 56,
-      "consumer_index": 61,
+      "producer_index": 57,
+      "consumer_index": 62,
       "ordered": true
     },
     {
       "producer": "documentation_link_integrity_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/documentation-link-integrity-audit.json",
-      "producer_index": 54,
-      "consumer_index": 61,
+      "producer_index": 55,
+      "consumer_index": 62,
       "ordered": true
     },
     {
       "producer": "control_traceability_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/control-traceability-audit.json",
-      "producer_index": 60,
-      "consumer_index": 61,
+      "producer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
       "producer": "release_control_ownership_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/release-control-ownership-audit.json",
-      "producer_index": 57,
-      "consumer_index": 61,
+      "producer_index": 58,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -1209,7 +1270,7 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/oss-license-audit.json",
       "producer_index": 10,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -1217,7 +1278,7 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/secret-hygiene-audit.json",
       "producer_index": 11,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -1225,7 +1286,7 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/sbom-inventory-audit.json",
       "producer_index": 12,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -1233,7 +1294,7 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/security-response-audit.json",
       "producer_index": 13,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -1241,7 +1302,7 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/kubernetes-api-compatibility-audit.json",
       "producer_index": 19,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -1249,7 +1310,7 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/private-cluster-admission-boundary-audit.json",
       "producer_index": 20,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -1257,7 +1318,7 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/telemetry-exporter-authority-audit.json",
       "producer_index": 29,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
@@ -1265,23 +1326,31 @@
       "consumer": "release_readiness",
       "artifact": "docs/evidence/staged-telemetry-validation-audit.json",
       "producer_index": 46,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     },
     {
       "producer": "disaster_recovery_drill",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/disaster-recovery-drill.json",
-      "producer_index": 55,
-      "consumer_index": 61,
+      "producer_index": 56,
+      "consumer_index": 62,
       "ordered": true
     },
     {
       "producer": "evidence_schema_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/evidence-schema-audit.json",
+      "producer_index": 49,
+      "consumer_index": 62,
+      "ordered": true
+    },
+    {
+      "producer": "validation_contract_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/validation-contract-audit.json",
       "producer_index": 48,
-      "consumer_index": 61,
+      "consumer_index": 62,
       "ordered": true
     }
   ],

@@ -439,6 +439,12 @@ inference incidents before a service reaches production.
     - Inputs: generated incident replay summary and per-scenario OTLP payloads
     - Evidence: [replay source contract audit](evidence/replay-source-contract-audit.md)
 
+45. **Validation contract audit**
+    - Code: [demo/validation_contract_audit.py](../demo/validation_contract_audit.py)
+    - Policy: [config/validation-contract-policy.json](../config/validation-contract-policy.json)
+    - Inputs: [evidence generation script](../scripts/generate-evidence.sh), [validation script](../scripts/validate.sh), release-readiness source, config JSON, and committed evidence JSON
+    - Evidence: [validation contract audit](evidence/validation-contract-audit.md)
+
 ## Boundary
 
 The lab is production-oriented, not production-deployed. It gives a reviewer a

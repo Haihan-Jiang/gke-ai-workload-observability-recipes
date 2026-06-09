@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 15,
-  "policy_artifact_count": 15,
-  "required_field_count": 153,
-  "required_check_count": 98,
-  "metric_contract_count": 90,
-  "array_contract_count": 38,
-  "observed_check_count": 98,
-  "detected_fixture_count": 15,
+  "artifact_count": 16,
+  "policy_artifact_count": 16,
+  "required_field_count": 165,
+  "required_check_count": 105,
+  "metric_contract_count": 99,
+  "array_contract_count": 40,
+  "observed_check_count": 105,
+  "detected_fixture_count": 16,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 15,
-        "policy_artifact_count": 15,
-        "minimum_artifact_count": 15
+        "artifact_count": 16,
+        "policy_artifact_count": 16,
+        "minimum_artifact_count": 16
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 15,
-        "minimum_detected_fixtures": 15,
+        "detected_fixture_count": 16,
+        "minimum_detected_fixtures": 16,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -236,6 +236,17 @@
             "expected_failed_check": "metric_contract",
             "failed_checks": [
               "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_validation_committed_json_check",
+            "artifact": "docs/evidence/validation-contract-audit.json",
+            "mutation": "remove_check",
+            "expected_failed_check": "check_inventory",
+            "failed_checks": [
+              "check_inventory",
+              "array_contract"
             ],
             "detected": true
           }
@@ -405,6 +416,17 @@
         "metric_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "missing_validation_committed_json_check",
+      "artifact": "docs/evidence/validation-contract-audit.json",
+      "mutation": "remove_check",
+      "expected_failed_check": "check_inventory",
+      "failed_checks": [
+        "check_inventory",
+        "array_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
@@ -413,6 +435,12 @@
       "present": true,
       "status": "pass",
       "check_count": 5
+    },
+    {
+      "path": "docs/evidence/validation-contract-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 7
     },
     {
       "path": "docs/evidence/developer-runtime-audit.json",

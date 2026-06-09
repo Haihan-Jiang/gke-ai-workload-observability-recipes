@@ -60,6 +60,7 @@ python3 -m py_compile \
   demo/control_traceability_audit.py \
   demo/evidence_pipeline_audit.py \
   demo/evidence_schema_audit.py \
+  demo/validation_contract_audit.py \
   demo/disaster_recovery_drill.py \
   demo/evidence_provenance.py \
   demo/proof_packet_integrity_audit.py \
@@ -132,6 +133,7 @@ python3 -m json.tool config/release-control-ownership-policy.json >/dev/null
 python3 -m json.tool config/control-traceability-policy.json >/dev/null
 python3 -m json.tool config/evidence-pipeline-policy.json >/dev/null
 python3 -m json.tool config/evidence-schema-policy.json >/dev/null
+python3 -m json.tool config/validation-contract-policy.json >/dev/null
 python3 -m json.tool config/disaster-recovery-policy.json >/dev/null
 python3 -m json.tool config/evidence-provenance-policy.json >/dev/null
 python3 -m json.tool config/proof-packet-integrity-policy.json >/dev/null
@@ -374,6 +376,13 @@ python3 demo/evidence_pipeline_audit.py \
   --script scripts/generate-evidence.sh \
   --repo-root . \
   --output-dir out/evidence-pipeline-audit-validate >/dev/null
+python3 demo/validation_contract_audit.py \
+  --policy config/validation-contract-policy.json \
+  --repo-root . \
+  --generate-script scripts/generate-evidence.sh \
+  --validate-script scripts/validate.sh \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir out/validation-contract-audit-validate >/dev/null
 python3 demo/evidence_schema_audit.py \
   --policy config/evidence-schema-policy.json \
   --repo-root . \
@@ -511,6 +520,7 @@ python3 demo/release_readiness.py \
   --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
   --evidence-schema docs/evidence/evidence-schema-audit.json \
+  --validation-contract docs/evidence/validation-contract-audit.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --proof-packet-integrity docs/evidence/proof-packet-integrity-audit.json \
   --evidence-dir docs/evidence \
@@ -583,6 +593,7 @@ python3 -m json.tool docs/evidence/release-control-ownership-audit.json >/dev/nu
 python3 -m json.tool docs/evidence/control-traceability-audit.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-pipeline-audit.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-schema-audit.json >/dev/null
+python3 -m json.tool docs/evidence/validation-contract-audit.json >/dev/null
 python3 -m json.tool docs/evidence/disaster-recovery-drill.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null
 python3 -m json.tool docs/evidence/proof-packet-integrity-audit.json >/dev/null
