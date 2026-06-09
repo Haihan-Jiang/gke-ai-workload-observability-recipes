@@ -38,6 +38,10 @@
       "ok": true
     },
     {
+      "name": "oss_license_audit",
+      "ok": true
+    },
+    {
       "name": "ci_governance_audit",
       "ok": true
     },
@@ -369,6 +373,14 @@
     },
     {
       "path": "supply-chain-audit.json",
+      "exists": true
+    },
+    {
+      "path": "oss-license-audit.md",
+      "exists": true
+    },
+    {
+      "path": "oss-license-audit.json",
       "exists": true
     },
     {

@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 44,
-  "minimum_release_check_count": 49,
-  "minimum_policy_input_count": 45,
+  "minimum_control_count": 45,
+  "minimum_release_check_count": 50,
+  "minimum_policy_input_count": 46,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -88,6 +88,23 @@
       ],
       "tests": [
         "tests/test_supply_chain_audit.py"
+      ]
+    },
+    {
+      "name": "oss_license_audit",
+      "release_readiness_check": "oss_license_audit",
+      "evidence": [
+        "docs/evidence/oss-license-audit.json",
+        "docs/evidence/oss-license-audit.md"
+      ],
+      "source_inputs": [
+        "demo/oss_license_audit.py"
+      ],
+      "policy_inputs": [
+        "config/oss-license-policy.json"
+      ],
+      "tests": [
+        "tests/test_oss_license_audit.py"
       ]
     },
     {

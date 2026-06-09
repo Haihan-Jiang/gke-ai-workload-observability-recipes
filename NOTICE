@@ -1,0 +1,10 @@
+GKE AI Inference Reliability Lab
+Copyright 2026 Haihan Jiang
+
+This project is licensed under Apache-2.0.
+
+Third-party runtime references are used as external tools, container images,
+or GitHub Actions during validation and local demos; they are not vendored into
+this repository. Current referenced projects include actions/checkout,
+actions/setup-python, jaegertracing/all-in-one,
+otel/opentelemetry-collector-contrib, and python:3.12-slim.

@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 118,
+  "artifact_count": 120,
   "generated_artifact_count": 4,
-  "source_input_count": 109,
+  "source_input_count": 113,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3554,
-      "sha256": "923fbadc36f8289b84b001d265deda058db6e2c4ea2a2dfaa5b368fb812511db"
+      "bytes": 3598,
+      "sha256": "a132761dd82455ea5548dfe2a49f96864c98f3e3003ee4012eb6e37c3efb9357"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -294,6 +294,20 @@
       "exists": true,
       "bytes": 1667,
       "sha256": "7d881ef96bd2b8748f2e424cf4349716ca63eaa95c59fba7a41aaaf034124a0c"
+    },
+    {
+      "path": "docs/evidence/oss-license-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 1125,
+      "sha256": "9515c7741cc985ab63ebf5b5048bda660af15d26d68641c8ac782854f7297398"
+    },
+    {
+      "path": "docs/evidence/oss-license-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 5120,
+      "sha256": "45a9919e4f7e6d3f85e3953714461883ab623f209e68b908dee8438be7715f0c"
     },
     {
       "path": "docs/evidence/ci-governance-audit.md",
@@ -775,43 +789,43 @@
       "path": "docs/evidence/release-control-ownership-audit.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 7225,
-      "sha256": "a44ace974db93c3aaaebd429cfc28fd5c688d58e1e4cfe5d3dba687a9abd46fb"
+      "bytes": 7348,
+      "sha256": "b09c1438605a41b72561f4242a5fc29a42e2bbc2922094b91b26eae477e40cc2"
     },
     {
       "path": "docs/evidence/release-control-ownership-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 16015,
-      "sha256": "920abe063b02186701481f8733919347cddb8d68b04a7b3dc4f28d7e71b604f9"
+      "bytes": 16233,
+      "sha256": "1d295d3e0e984d5f8fdbb08905478ede8b8f9499069e11ab31473de1e7913cf7"
     },
     {
       "path": "docs/evidence/control-traceability-audit.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3910,
-      "sha256": "497083fba5edef43746ab8aabeb3cac022e4709132eb0820201cc0b70cecf9c9"
+      "bytes": 3960,
+      "sha256": "99728b61a38c68d40d54241f64822a518741cd9d3cae62259714cd1c8ffbb753"
     },
     {
       "path": "docs/evidence/control-traceability-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 25577,
-      "sha256": "dd347b8e3c4e460b2f8de0fb2211a63cbaae343200ff8301ccaa5ebaac5b2103"
+      "bytes": 26013,
+      "sha256": "95be6644056a273d6a04929aa08ba9ebb2bcc89fc221be01d55e37b4c6073168"
     },
     {
       "path": "docs/evidence/evidence-pipeline-audit.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 4181,
-      "sha256": "94e7f805b43ca2e311098aa9779158d481b57de34ec3e51e67d5354b924f5832"
+      "bytes": 4348,
+      "sha256": "654ab1c11f1af2fbc5ab86bb64e38ea13b1a30b390fee87879753316a61047e4"
     },
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 21972,
-      "sha256": "4a6e26f46543b81d7932ae8c394214e08369a1f14454208619219b620d94a516"
+      "bytes": 22772,
+      "sha256": "1ea850a03a7ad1138c6bbe3650162a77fb667f73a8d6108c55d43ec95d17d12d"
     },
     {
       "path": "docs/evidence/evidence-schema-audit.md",
@@ -832,14 +846,14 @@
       "group": "evidence",
       "exists": true,
       "bytes": 1034,
-      "sha256": "268ef1b48cc1de9c948e2957391a8c8dae5100d933dfe1853b775a2803726655"
+      "sha256": "961739fe193b104ed316adb6f62d47b277516b6818b4d0def9ade39efac44e2a"
     },
     {
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 35143,
-      "sha256": "cdeb490f63cd19b955656d893f7eb63c09535c92e212efa4671355fc071079aa"
+      "bytes": 38525,
+      "sha256": "b08bc367b51a8e4461cfffbf243c7421068adb735456779776276a7d986b5d5d"
     }
   ],
   "generated_artifacts": [
@@ -877,15 +891,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 15935,
-      "sha256": "aa7ae076bacdaa09d721a4edd0d822748fcc1d2426d0cc667d2c878a8c192a60"
+      "bytes": 16128,
+      "sha256": "89cc0b105d0d4fa7f2ce63b78b75924e2ea31b1ae0e03763084444038f03e9df"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 28775,
-      "sha256": "5562331487d96fbedafc5f1c9a9b8a3b9abbf11c2b08b751665b06118055c263"
+      "bytes": 29147,
+      "sha256": "6bf0cb98f23f007e7175e7b91feb988979ea5c9dd701170fb24a430dbae85163"
     },
     {
       "path": "scripts/kind-smoke.sh",
@@ -956,6 +970,13 @@
       "exists": true,
       "bytes": 7663,
       "sha256": "00b73b252ef37e028800fcbc8fd0eba66baa9a89912e0ebe5d7659f15633565b"
+    },
+    {
+      "path": "demo/oss_license_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 8910,
+      "sha256": "8c869b2ccb08feed4b607ff8b5746fe278b12df70ffbd03bd3de516e178e4fc0"
     },
     {
       "path": "demo/ci_governance_audit.py",
@@ -1234,8 +1255,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 11673,
-      "sha256": "a953e7f9ada2d1bdcd630f121af47b69d122a446c1e72a0656c3c26ef58e9b3d"
+      "bytes": 11736,
+      "sha256": "15220d31c94b7b979b1e2c33e1fccd24e06d9cb1e70704c5253593a0951300f1"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1271,6 +1292,13 @@
       "exists": true,
       "bytes": 543,
       "sha256": "b812c3f119eaf10a8ef0e30849f6614f007d943f1b6a8d852300ca55a5ec464a"
+    },
+    {
+      "path": "config/oss-license-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 2509,
+      "sha256": "8e10fb049500d4f9cb834c75bcfe263a062ccc8b1b1f3c211b6dd4450724ae04"
     },
     {
       "path": "config/ci-governance-policy.json",
@@ -1521,22 +1549,22 @@
       "path": "config/release-control-ownership-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 11765,
-      "sha256": "595f1d52b48cf14101fe90626db8e8d5bf14078f41338535f063b369732c648d"
+      "bytes": 11947,
+      "sha256": "5013ab66f00449380fbc82da18474ad90272772ec6fbb8a10bfb46a42a8346bf"
     },
     {
       "path": "config/control-traceability-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 22594,
-      "sha256": "393a0effdcbe6a58fcd8b39204edb862b8eceed2efe02d16d6050ea16eb98ad0"
+      "bytes": 23030,
+      "sha256": "894aec82a332b3988b739b665412e0fd4b0814813af30a2cd92a55a173c0d5ec"
     },
     {
       "path": "config/evidence-pipeline-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 14661,
-      "sha256": "aa004df3ad5ffa4e0b96c38da061ad675433603938436cf360e8de0a2bca752a"
+      "bytes": 15208,
+      "sha256": "3a3c9d664c638709e8a1115ad44f09feeab5f1a7b645fe1f59df9df3e7ca82ab"
     },
     {
       "path": "config/evidence-schema-policy.json",
@@ -1549,8 +1577,8 @@
       "path": "config/disaster-recovery-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 3789,
-      "sha256": "5571c1e63ebfdd3024c2215228c76d65c0b581c44f793a29dad9adb874180fbc"
+      "bytes": 4043,
+      "sha256": "a5675b29de3858c9347c833dfeeaed5b8483d130e5ff94a8a7b4a1a977937bbb"
     },
     {
       "path": ".github/workflows/ci.yml",
@@ -1586,6 +1614,20 @@
       "exists": true,
       "bytes": 1472,
       "sha256": "b697dca1b2f2eca3d82feb92559a37aa8c9d7f103fd991b946bf206aa9900645"
+    },
+    {
+      "path": "LICENSE",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 262,
+      "sha256": "710f461ec9cac9a5679acea1d49d9fd197796ca69c50abc0d45f9ae22d560ec0"
+    },
+    {
+      "path": "NOTICE",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 442,
+      "sha256": "2838b79105cb02e90fab5bc1d652e89c7d758cf1189a150d264b40fb1edd98f2"
     },
     {
       "path": "SECURITY.md",
@@ -1643,8 +1685,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 118,
-        "minimum": 118
+        "count": 120,
+        "minimum": 120
       }
     },
     {
@@ -1660,8 +1702,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 109,
-        "minimum": 109
+        "count": 113,
+        "minimum": 113
       }
     },
     {

@@ -1,0 +1,88 @@
+{
+  "description": "Policy for auditing open-source license, NOTICE, and third-party reference boundaries.",
+  "license_file": "LICENSE",
+  "notice_file": "NOTICE",
+  "readme_file": "README.md",
+  "workflow_files": [
+    ".github/workflows/ci.yml"
+  ],
+  "image_files": [
+    "docker-compose.yaml",
+    "k8s/gke/collector.yaml",
+    "k8s/gke/sample-app.yaml"
+  ],
+  "required_license_terms": [
+    "Apache License",
+    "Version 2.0",
+    "https://www.apache.org/licenses/"
+  ],
+  "required_readme_terms": [
+    "Apache-2.0",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "required_notice_terms": [
+    "GKE AI Inference Reliability Lab",
+    "Apache-2.0",
+    "Third-party runtime references",
+    "not vendored",
+    "actions/checkout",
+    "actions/setup-python",
+    "jaegertracing/all-in-one",
+    "otel/opentelemetry-collector-contrib",
+    "python:3.12-slim"
+  ],
+  "allowed_actions": [
+    "actions/checkout@v6",
+    "actions/setup-python@v6"
+  ],
+  "allowed_images": [
+    "jaegertracing/all-in-one:1.57",
+    "otel/opentelemetry-collector-contrib:0.112.0",
+    "otel/opentelemetry-collector-contrib:0.112.0@sha256:2203eea06554f892c765d6eff8069cdf64ae8d4516526d03cab4a70e82775495",
+    "python:3.12-slim@sha256:090ba77e2958f6af52a5341f788b50b032dd4ca28377d2893dcf1ecbdfdfe203"
+  ],
+  "minimum_detected_fixtures": 6,
+  "fixtures": [
+    {
+      "name": "missing_license",
+      "mutation": "remove_file",
+      "path": "LICENSE",
+      "expected_failed_check": "license_file"
+    },
+    {
+      "name": "missing_notice",
+      "mutation": "remove_file",
+      "path": "NOTICE",
+      "expected_failed_check": "notice_file"
+    },
+    {
+      "name": "missing_readme_notice_link",
+      "mutation": "remove_text",
+      "path": "README.md",
+      "text": "NOTICE",
+      "expected_failed_check": "readme_license_reference"
+    },
+    {
+      "name": "unapproved_action",
+      "mutation": "append_text",
+      "path": ".github/workflows/ci.yml",
+      "text": "\n      - uses: third-party/not-approved@v1\n",
+      "expected_failed_check": "approved_actions"
+    },
+    {
+      "name": "unapproved_image",
+      "mutation": "append_text",
+      "path": "docker-compose.yaml",
+      "text": "\n  unapproved:\n    image: example/not-approved:latest\n",
+      "expected_failed_check": "approved_images"
+    },
+    {
+      "name": "notice_missing_third_party",
+      "mutation": "remove_text",
+      "path": "NOTICE",
+      "text": "jaegertracing/all-in-one",
+      "expected_failed_check": "notice_file"
+    }
+  ]
+}

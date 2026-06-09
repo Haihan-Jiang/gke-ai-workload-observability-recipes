@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 44,
-  "release_check_count": 49,
-  "evidence_file_count": 88,
-  "source_input_count": 44,
-  "policy_input_count": 45,
-  "test_file_count": 44,
+  "control_count": 45,
+  "release_check_count": 50,
+  "evidence_file_count": 90,
+  "source_input_count": 45,
+  "policy_input_count": 46,
+  "test_file_count": 45,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 44,
-        "minimum_control_count": 44,
+        "control_count": 45,
+        "minimum_control_count": 45,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 49,
-        "minimum_release_check_count": 49,
+        "release_check_count": 50,
+        "minimum_release_check_count": 50,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 45,
-        "minimum_policy_input_count": 45,
+        "policy_input_count": 46,
+        "minimum_policy_input_count": 46,
         "policy_gaps": []
       }
     },
@@ -215,6 +215,23 @@
       ],
       "tests": [
         "tests/test_supply_chain_audit.py"
+      ]
+    },
+    {
+      "name": "oss_license_audit",
+      "release_readiness_check": "oss_license_audit",
+      "evidence": [
+        "docs/evidence/oss-license-audit.json",
+        "docs/evidence/oss-license-audit.md"
+      ],
+      "source_inputs": [
+        "demo/oss_license_audit.py"
+      ],
+      "policy_inputs": [
+        "config/oss-license-policy.json"
+      ],
+      "tests": [
+        "tests/test_oss_license_audit.py"
       ]
     },
     {

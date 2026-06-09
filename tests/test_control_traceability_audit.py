@@ -47,9 +47,9 @@ class ControlTraceabilityAuditTest(unittest.TestCase):
         )
 
         self.assertEqual("pass", report["status"])
-        self.assertEqual(44, report["control_count"])
-        self.assertGreaterEqual(report["release_check_count"], 49)
-        self.assertGreaterEqual(report["policy_input_count"], 45)
+        self.assertEqual(45, report["control_count"])
+        self.assertGreaterEqual(report["release_check_count"], 50)
+        self.assertGreaterEqual(report["policy_input_count"], 46)
         self.assertEqual(6, report["detected_fixture_count"])
 
     def test_detects_missing_control_entry(self) -> None:

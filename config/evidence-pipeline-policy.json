@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 51,
-  "minimum_dependency_count": 52,
+  "minimum_step_count": 52,
+  "minimum_dependency_count": 55,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -39,6 +39,10 @@
     {
       "name": "supply_chain_audit",
       "script": "demo/supply_chain_audit.py"
+    },
+    {
+      "name": "oss_license_audit",
+      "script": "demo/oss_license_audit.py"
     },
     {
       "name": "ci_governance_audit",
@@ -336,6 +340,11 @@
       "artifact": "docs/evidence/model-release-safety-audit.json"
     },
     {
+      "producer": "oss_license_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/oss-license-audit.json"
+    },
+    {
       "producer": "evidence_pipeline_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/evidence-pipeline-audit.json"
@@ -436,6 +445,11 @@
       "artifact": "docs/evidence/control-traceability-audit.json"
     },
     {
+      "producer": "oss_license_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/oss-license-audit.json"
+    },
+    {
       "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md"
@@ -459,6 +473,11 @@
       "producer": "release_control_ownership_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/release-control-ownership-audit.json"
+    },
+    {
+      "producer": "oss_license_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/oss-license-audit.json"
     },
     {
       "producer": "disaster_recovery_drill",

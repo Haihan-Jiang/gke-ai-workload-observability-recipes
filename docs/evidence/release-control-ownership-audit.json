@@ -3,20 +3,20 @@
   "failed_count": 0,
   "check_count": 7,
   "detected_fixture_count": 6,
-  "control_count": 49,
-  "release_check_count": 49,
-  "covered_release_check_count": 49,
-  "tier0_count": 26,
-  "every_release_count": 37,
+  "control_count": 50,
+  "release_check_count": 50,
+  "covered_release_check_count": 50,
+  "tier0_count": 27,
+  "every_release_count": 38,
   "owner_group_count": 5,
   "checks": [
     {
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 49,
-        "release_check_count": 49,
-        "minimum_control_count": 49,
+        "control_count": 50,
+        "release_check_count": 50,
+        "minimum_control_count": 50,
         "duplicate_controls": [],
         "missing_release_checks": [],
         "unknown_release_checks": []
@@ -35,7 +35,7 @@
       "ok": true,
       "evidence": {
         "tier_counts": {
-          "tier_0_release_blocker": 26,
+          "tier_0_release_blocker": 27,
           "tier_1_production_guard": 22,
           "tier_2_evidence_guard": 1
         },
@@ -48,7 +48,7 @@
       "ok": true,
       "evidence": {
         "cadence_counts": {
-          "every_release": 37,
+          "every_release": 38,
           "monthly": 12,
           "quarterly": 0
         },
@@ -206,6 +206,13 @@
       "tier": "tier_0_release_blocker",
       "review_cadence": "every_release",
       "evidence_path": "docs/evidence/supply-chain-audit.json"
+    },
+    {
+      "name": "oss_license_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/oss-license-audit.json"
     },
     {
       "name": "ci_governance_audit",
