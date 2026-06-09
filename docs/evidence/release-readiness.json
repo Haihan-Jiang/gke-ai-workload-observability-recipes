@@ -46,6 +46,10 @@
       "ok": true
     },
     {
+      "name": "sbom_inventory_audit",
+      "ok": true
+    },
+    {
       "name": "ci_governance_audit",
       "ok": true
     },
@@ -393,6 +397,18 @@
     },
     {
       "path": "secret-hygiene-audit.json",
+      "exists": true
+    },
+    {
+      "path": "sbom-inventory-audit.md",
+      "exists": true
+    },
+    {
+      "path": "sbom-inventory-audit.json",
+      "exists": true
+    },
+    {
+      "path": "sbom-inventory.json",
       "exists": true
     },
     {

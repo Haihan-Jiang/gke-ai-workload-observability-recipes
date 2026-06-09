@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 53 |
-| Required steps | 53 |
-| Dependencies | 58 |
-| Artifact dependencies | 58 |
+| Steps | 54 |
+| Required steps | 54 |
+| Dependencies | 61 |
+| Artifact dependencies | 61 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -57,6 +57,7 @@ accidentally read stale committed artifacts.
 | `model_release_safety_audit` | `evidence_pipeline_audit` | yes |
 | `oss_license_audit` | `control_traceability_audit` | yes |
 | `secret_hygiene_audit` | `control_traceability_audit` | yes |
+| `sbom_inventory_audit` | `control_traceability_audit` | yes |
 | `evidence_pipeline_audit` | `evidence_schema_audit` | yes |
 | `developer_runtime_audit` | `evidence_schema_audit` | yes |
 | `pod_security_admission_audit` | `evidence_schema_audit` | yes |
@@ -79,6 +80,7 @@ accidentally read stale committed artifacts.
 | `control_traceability_audit` | `evidence_provenance` | yes |
 | `oss_license_audit` | `evidence_provenance` | yes |
 | `secret_hygiene_audit` | `evidence_provenance` | yes |
+| `sbom_inventory_audit` | `evidence_provenance` | yes |
 | `render_incident_evidence` | `evidence_provenance` | yes |
 | `evidence_provenance` | `release_readiness` | yes |
 | `regional_failover_audit` | `release_readiness` | yes |
@@ -86,6 +88,7 @@ accidentally read stale committed artifacts.
 | `release_control_ownership_audit` | `release_readiness` | yes |
 | `oss_license_audit` | `release_readiness` | yes |
 | `secret_hygiene_audit` | `release_readiness` | yes |
+| `sbom_inventory_audit` | `release_readiness` | yes |
 | `disaster_recovery_drill` | `release_readiness` | yes |
 | `evidence_schema_audit` | `release_readiness` | yes |
 

@@ -160,10 +160,11 @@ inference incidents before a service reaches production.
 | C39 | Contributors can run different commands or tool versions and get different evidence | Industrial labs need a documented runtime contract, Make targets, Python version pinning, zero-dependency assumptions, optional tool boundaries, and ignored local output. | [Developer runtime audit](evidence/developer-runtime-audit.md) |
 | C40 | Public reuse can outpace license and third-party reference clarity | Open-source labs need Apache-2.0, NOTICE, README license links, approved Actions, approved images, and third-party reference inventory before public reuse. | [OSS license audit](evidence/oss-license-audit.md) |
 | C41 | Public evidence can accidentally ship credentials | Release review needs source, manifests, docs, and generated evidence scanned for high-confidence key, token, webhook, and private-key formats before public reuse. | [Secret hygiene audit](evidence/secret-hygiene-audit.md) |
-| C42 | Generated evidence can be consumed before it is regenerated | Release review needs generation-order checks so downstream gates cannot pass by reading stale committed artifacts. | [Evidence pipeline audit](evidence/evidence-pipeline-audit.md) |
-| C43 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
-| C44 | Release controls can become orphaned from implementation evidence | Industrial review needs a machine-readable matrix that links configured release-readiness controls back to evidence, source, policy/config inputs, and tests. | [Control traceability audit](evidence/control-traceability-audit.md) |
-| C45 | Release controls can be owned only informally | Industrial review needs explicit owner groups, severity tiers, review cadence, escalation paths, rollback actions, and evidence paths for every release-readiness check. | [Release control ownership audit](evidence/release-control-ownership-audit.md) |
+| C42 | Third-party references can be approved but still lack a machine inventory | Release review needs a local SBOM that lists Actions, images, and runtime tools with source-file traceability before public reuse. | [SBOM inventory audit](evidence/sbom-inventory-audit.md) |
+| C43 | Generated evidence can be consumed before it is regenerated | Release review needs generation-order checks so downstream gates cannot pass by reading stale committed artifacts. | [Evidence pipeline audit](evidence/evidence-pipeline-audit.md) |
+| C44 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
+| C45 | Release controls can become orphaned from implementation evidence | Industrial review needs a machine-readable matrix that links configured release-readiness controls back to evidence, source, policy/config inputs, and tests. | [Control traceability audit](evidence/control-traceability-audit.md) |
+| C46 | Release controls can be owned only informally | Industrial review needs explicit owner groups, severity tiers, review cadence, escalation paths, rollback actions, and evidence paths for every release-readiness check. | [Release control ownership audit](evidence/release-control-ownership-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -358,19 +359,25 @@ inference incidents before a service reaches production.
     - Inputs: committed source, manifests, docs, root governance files, and generated evidence
     - Evidence: [secret hygiene audit](evidence/secret-hygiene-audit.md)
 
-33. **Control traceability audit**
+33. **SBOM inventory audit**
+    - Code: [demo/sbom_inventory_audit.py](../demo/sbom_inventory_audit.py)
+    - Policy: [config/sbom-inventory-policy.json](../config/sbom-inventory-policy.json)
+    - Inputs: GitHub Actions, container image references, Python version pinning, and developer runtime docs
+    - Evidence: [SBOM inventory audit](evidence/sbom-inventory-audit.md), [SBOM inventory JSON](evidence/sbom-inventory.json)
+
+34. **Control traceability audit**
     - Code: [demo/control_traceability_audit.py](../demo/control_traceability_audit.py)
     - Policy: [config/control-traceability-policy.json](../config/control-traceability-policy.json)
     - Inputs: [release readiness gate](../demo/release_readiness.py), committed evidence, policy/config files, and tests
     - Evidence: [control traceability audit](evidence/control-traceability-audit.md)
 
-34. **Release control ownership audit**
+35. **Release control ownership audit**
     - Code: [demo/release_control_ownership_audit.py](../demo/release_control_ownership_audit.py)
     - Policy: [config/release-control-ownership-policy.json](../config/release-control-ownership-policy.json)
     - Inputs: [release readiness gate](../demo/release_readiness.py)
     - Evidence: [release control ownership audit](evidence/release-control-ownership-audit.md)
 
-35. **Evidence schema audit**
+36. **Evidence schema audit**
     - Code: [demo/evidence_schema_audit.py](../demo/evidence_schema_audit.py)
     - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
     - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)

@@ -26,7 +26,7 @@ class DisasterRecoveryDrillTest(unittest.TestCase):
 
         self.assertEqual("pass", report["status"])
         self.assertEqual(0, report["failed_count"])
-        self.assertGreaterEqual(report["artifact_count"], 64)
+        self.assertGreaterEqual(report["artifact_count"], 69)
         self.assertEqual(report["artifact_count"], report["restored_count"])
         self.assertEqual(report["artifact_count"], report["hash_match_count"])
 

@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 53,
-  "minimum_dependency_count": 58,
+  "minimum_step_count": 54,
+  "minimum_dependency_count": 61,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -47,6 +47,10 @@
     {
       "name": "secret_hygiene_audit",
       "script": "demo/secret_hygiene_audit.py"
+    },
+    {
+      "name": "sbom_inventory_audit",
+      "script": "demo/sbom_inventory_audit.py"
     },
     {
       "name": "ci_governance_audit",
@@ -354,6 +358,11 @@
       "artifact": "docs/evidence/secret-hygiene-audit.json"
     },
     {
+      "producer": "sbom_inventory_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/sbom-inventory-audit.json"
+    },
+    {
       "producer": "evidence_pipeline_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/evidence-pipeline-audit.json"
@@ -464,6 +473,11 @@
       "artifact": "docs/evidence/secret-hygiene-audit.json"
     },
     {
+      "producer": "sbom_inventory_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/sbom-inventory.json"
+    },
+    {
       "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md"
@@ -497,6 +511,11 @@
       "producer": "secret_hygiene_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/secret-hygiene-audit.json"
+    },
+    {
+      "producer": "sbom_inventory_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/sbom-inventory-audit.json"
     },
     {
       "producer": "disaster_recovery_drill",

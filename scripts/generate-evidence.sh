@@ -56,6 +56,10 @@ python3 demo/secret_hygiene_audit.py \
   --policy config/secret-hygiene-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/sbom_inventory_audit.py \
+  --policy config/sbom-inventory-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/ci_governance_audit.py \
   --policy config/ci-governance-policy.json \
   --repo-root . \
@@ -299,6 +303,7 @@ python3 demo/release_readiness.py \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --oss-license docs/evidence/oss-license-audit.json \
   --secret-hygiene docs/evidence/secret-hygiene-audit.json \
+  --sbom-inventory docs/evidence/sbom-inventory-audit.json \
   --ci-governance docs/evidence/ci-governance-audit.json \
   --repository-governance docs/evidence/repository-governance-audit.json \
   --developer-runtime docs/evidence/developer-runtime-audit.json \

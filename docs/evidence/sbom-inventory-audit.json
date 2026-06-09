@@ -1,0 +1,212 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 6,
+  "detected_fixture_count": 6,
+  "component_count": 8,
+  "action_count": 2,
+  "image_count": 4,
+  "runtime_count": 2,
+  "source_path_count": 9,
+  "checks": [
+    {
+      "name": "component_discovery",
+      "ok": true,
+      "evidence": {
+        "action_count": 2,
+        "image_count": 4,
+        "runtime_count": 2,
+        "discovered_component_count": 8
+      }
+    },
+    {
+      "name": "sbom_component_coverage",
+      "ok": true,
+      "evidence": {
+        "missing_from_sbom": [],
+        "stale_inventory": [],
+        "component_count": 8
+      }
+    },
+    {
+      "name": "cyclonedx_shape",
+      "ok": true,
+      "evidence": {
+        "duplicate_policy_refs": [],
+        "duplicate_sbom_refs": [],
+        "sbom_component_count": 8
+      }
+    },
+    {
+      "name": "source_traceability",
+      "ok": true,
+      "evidence": {
+        "source_path_count": 9,
+        "source_gaps": []
+      }
+    },
+    {
+      "name": "runtime_boundary",
+      "ok": true,
+      "evidence": {
+        "python_version": "3.12",
+        "ci_python_versions": [
+          "3.12"
+        ],
+        "ruby_documented": true,
+        "python_components": [
+          {
+            "bom_ref": "runtime:python@3.12",
+            "type": "application",
+            "category": "runtime",
+            "name": "python",
+            "version": "3.12",
+            "purl": "pkg:generic/python@3.12",
+            "source_paths": [
+              ".python-version",
+              ".github/workflows/ci.yml"
+            ]
+          }
+        ],
+        "ruby_components": [
+          {
+            "bom_ref": "runtime:ruby@documented",
+            "type": "application",
+            "category": "runtime",
+            "name": "ruby",
+            "version": "documented",
+            "purl": "pkg:generic/ruby",
+            "source_paths": [
+              "docs/developer-runtime.md"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 6,
+        "minimum_detected_fixtures": 6,
+        "fixtures": [
+          {
+            "name": "missing_action_component",
+            "mutation": "remove_component",
+            "expected_failed_check": "sbom_component_coverage",
+            "failed_checks": [
+              "sbom_component_coverage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_image_component",
+            "mutation": "remove_component",
+            "expected_failed_check": "sbom_component_coverage",
+            "failed_checks": [
+              "sbom_component_coverage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "duplicate_bom_ref",
+            "mutation": "set_component_bom_ref",
+            "expected_failed_check": "cyclonedx_shape",
+            "failed_checks": [
+              "sbom_component_coverage",
+              "cyclonedx_shape",
+              "runtime_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_source_path",
+            "mutation": "clear_source_paths",
+            "expected_failed_check": "source_traceability",
+            "failed_checks": [
+              "source_traceability"
+            ],
+            "detected": true
+          },
+          {
+            "name": "python_runtime_mismatch",
+            "mutation": "set_component_version",
+            "expected_failed_check": "runtime_boundary",
+            "failed_checks": [
+              "runtime_boundary"
+            ],
+            "detected": true
+          },
+          {
+            "name": "uninventoried_action_reference",
+            "mutation": "append_text",
+            "expected_failed_check": "sbom_component_coverage",
+            "failed_checks": [
+              "sbom_component_coverage"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_action_component",
+      "mutation": "remove_component",
+      "expected_failed_check": "sbom_component_coverage",
+      "failed_checks": [
+        "sbom_component_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_image_component",
+      "mutation": "remove_component",
+      "expected_failed_check": "sbom_component_coverage",
+      "failed_checks": [
+        "sbom_component_coverage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "duplicate_bom_ref",
+      "mutation": "set_component_bom_ref",
+      "expected_failed_check": "cyclonedx_shape",
+      "failed_checks": [
+        "sbom_component_coverage",
+        "cyclonedx_shape",
+        "runtime_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_source_path",
+      "mutation": "clear_source_paths",
+      "expected_failed_check": "source_traceability",
+      "failed_checks": [
+        "source_traceability"
+      ],
+      "detected": true
+    },
+    {
+      "name": "python_runtime_mismatch",
+      "mutation": "set_component_version",
+      "expected_failed_check": "runtime_boundary",
+      "failed_checks": [
+        "runtime_boundary"
+      ],
+      "detected": true
+    },
+    {
+      "name": "uninventoried_action_reference",
+      "mutation": "append_text",
+      "expected_failed_check": "sbom_component_coverage",
+      "failed_checks": [
+        "sbom_component_coverage"
+      ],
+      "detected": true
+    }
+  ],
+  "sbom_path": "docs/evidence/sbom-inventory.json"
+}
