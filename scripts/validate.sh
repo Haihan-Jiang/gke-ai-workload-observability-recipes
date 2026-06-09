@@ -47,6 +47,7 @@ python3 -m py_compile \
   demo/accelerator_quota_fairness_audit.py \
   demo/regional_failover_audit.py \
   demo/release_waiver_governance.py \
+  demo/evidence_schema_audit.py \
   demo/disaster_recovery_drill.py \
   demo/evidence_provenance.py \
   demo/capacity_planner.py \
@@ -99,6 +100,7 @@ python3 -m json.tool config/accelerator-quota-policy.json >/dev/null
 python3 -m json.tool config/regional-failover-policy.json >/dev/null
 python3 -m json.tool config/release-waiver-policy.json >/dev/null
 python3 -m json.tool config/release-waivers.json >/dev/null
+python3 -m json.tool config/evidence-schema-policy.json >/dev/null
 python3 -m json.tool config/disaster-recovery-policy.json >/dev/null
 python3 -m json.tool config/evidence-provenance-policy.json >/dev/null
 python3 demo/reliability_gate.py \
@@ -296,6 +298,10 @@ python3 demo/model_release_safety_audit.py \
   --rollback-drill out/rollback-drill-validate/rollback-drill.json \
   --synthetic-probe out/synthetic-probe-audit-validate/synthetic-probe-audit.json \
   --output-dir out/model-release-safety-audit-validate >/dev/null
+python3 demo/evidence_schema_audit.py \
+  --policy config/evidence-schema-policy.json \
+  --repo-root . \
+  --output-dir out/evidence-schema-audit-validate >/dev/null
 python3 demo/shadow_traffic_replay_audit.py \
   --policy config/shadow-traffic-policy.json \
   --summary out/incident-replay-validate/summary.json \
@@ -396,6 +402,7 @@ python3 demo/release_readiness.py \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
+  --evidence-schema docs/evidence/evidence-schema-audit.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir out/release-readiness-validate >/dev/null
@@ -453,6 +460,7 @@ python3 -m json.tool docs/evidence/load-shedding-policy-audit.json >/dev/null
 python3 -m json.tool docs/evidence/accelerator-quota-fairness-audit.json >/dev/null
 python3 -m json.tool docs/evidence/regional-failover-audit.json >/dev/null
 python3 -m json.tool docs/evidence/release-waiver-governance.json >/dev/null
+python3 -m json.tool docs/evidence/evidence-schema-audit.json >/dev/null
 python3 -m json.tool docs/evidence/disaster-recovery-drill.json >/dev/null
 python3 -m json.tool docs/evidence/evidence-provenance.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null

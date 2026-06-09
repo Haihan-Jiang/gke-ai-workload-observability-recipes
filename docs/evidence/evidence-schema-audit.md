@@ -1,0 +1,64 @@
+# Evidence Schema Audit
+
+Overall status: **PASS**
+
+This audit checks that critical evidence JSON files keep stable
+machine-readable contracts for status fields, required fields, check
+inventory, metric minimums, metric ceilings, array lengths, allowed
+values, and negative drift fixtures.
+
+## Summary
+
+| Metric | Value |
+| --- | ---: |
+| Artifacts | 10 |
+| Required fields | 88 |
+| Required checks | 66 |
+| Metric contracts | 48 |
+| Array contracts | 23 |
+| Observed checks | 66 |
+| Detected fixtures | 10 |
+
+## Checks
+
+| Check | Status |
+| --- | --- |
+| `artifact_inventory` | PASS |
+| `required_fields` | PASS |
+| `status_contract` | PASS |
+| `value_contract` | PASS |
+| `check_shape` | PASS |
+| `check_inventory` | PASS |
+| `metric_contract` | PASS |
+| `array_contract` | PASS |
+| `negative_fixture_coverage` | PASS |
+
+## Artifact Contracts
+
+| Artifact | Status | Checks |
+| --- | --- | ---: |
+| `docs/evidence/developer-runtime-audit.json` | `pass` | 7 |
+| `docs/evidence/repository-governance-audit.json` | `pass` | 6 |
+| `docs/evidence/ci-governance-audit.json` | `pass` | 8 |
+| `docs/evidence/pod-security-admission-audit.json` | `pass` | 6 |
+| `docs/evidence/synthetic-probe-audit.json` | `pass` | 6 |
+| `docs/evidence/model-release-safety-audit.json` | `pass` | 8 |
+| `docs/evidence/deployment-policy.json` | `generated` | n/a |
+| `docs/evidence/supply-chain-audit.json` | `pass` | 6 |
+| `docs/evidence/k8s-hardening-audit.json` | `pass` | 11 |
+| `docs/evidence/workload-identity-audit.json` | `pass` | 8 |
+
+## Negative Fixtures
+
+| Fixture | Expected Failed Check | Detected |
+| --- | --- | --- |
+| `missing_developer_runtime_status` | `required_fields` | yes |
+| `invalid_ci_status` | `status_contract` | yes |
+| `malformed_synthetic_probe_checks` | `check_shape` | yes |
+| `missing_pod_security_namespace_check` | `check_inventory` | yes |
+| `low_developer_runtime_make_target_count` | `metric_contract` | yes |
+| `deployment_policy_without_decision` | `required_fields` | yes |
+| `model_release_without_blocked_candidate` | `metric_contract` | yes |
+| `missing_workload_identity_annotation_check` | `check_inventory` | yes |
+| `missing_supply_chain_digest_count` | `required_fields` | yes |
+| `missing_k8s_hardening_container_check` | `check_inventory` | yes |

@@ -158,6 +158,7 @@ inference incidents before a service reaches production.
 | C37 | CI can look green while relying on stale runtimes or broad repository permissions | Production evidence needs GitHub Actions governance for maintained action versions, least-privilege permissions, bounded runtime, concurrency cancellation, and the real validation command. | [CI governance audit](evidence/ci-governance-audit.md) |
 | C38 | Public labs can look runnable but still be hard to contribute to or maintain safely | Contributor-ready repositories need contribution rules, security reporting guidance, CODEOWNERS coverage, release process evidence, and project boundaries. | [Repository governance audit](evidence/repository-governance-audit.md) |
 | C39 | Contributors can run different commands or tool versions and get different evidence | Industrial labs need a documented runtime contract, Make targets, Python version pinning, zero-dependency assumptions, optional tool boundaries, and ignored local output. | [Developer runtime audit](evidence/developer-runtime-audit.md) |
+| C40 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -333,6 +334,12 @@ inference incidents before a service reaches production.
     - Policy: [config/pod-security-admission-policy.json](../config/pod-security-admission-policy.json)
     - Inputs: namespace PSA labels and collector/sample workload pod templates under [k8s/gke](../k8s/gke)
     - Evidence: [Pod Security Admission audit](evidence/pod-security-admission-audit.md)
+
+30. **Evidence schema audit**
+    - Code: [demo/evidence_schema_audit.py](../demo/evidence_schema_audit.py)
+    - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
+    - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)
+    - Evidence: [evidence schema audit](evidence/evidence-schema-audit.md)
 
 ## Boundary
 

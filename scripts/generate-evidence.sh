@@ -203,6 +203,10 @@ python3 demo/model_release_safety_audit.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/evidence_schema_audit.py \
+  --policy config/evidence-schema-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/shadow_traffic_replay_audit.py \
   --policy config/shadow-traffic-policy.json \
   --summary docs/evidence/sample-summary.json \
@@ -305,6 +309,7 @@ python3 demo/release_readiness.py \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
+  --evidence-schema docs/evidence/evidence-schema-audit.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null

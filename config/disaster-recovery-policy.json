@@ -13,7 +13,8 @@
     "docs/evidence/deployment-policy.json",
     "docs/evidence/error-budget-ledger.json",
     "docs/evidence/rollback-drill.json",
-    "docs/evidence/release-waiver-governance.json"
+    "docs/evidence/release-waiver-governance.json",
+    "docs/evidence/evidence-schema-audit.json"
   ],
   "artifact_groups": [
     {
@@ -37,7 +38,9 @@
         "docs/evidence/ci-governance-audit.json",
         "docs/evidence/repository-governance-audit.json",
         "docs/evidence/developer-runtime-audit.json",
-        "docs/evidence/release-waiver-governance.json"
+        "docs/evidence/release-waiver-governance.json",
+        "docs/evidence/evidence-schema-audit.md",
+        "docs/evidence/evidence-schema-audit.json"
       ]
     },
     {
@@ -80,6 +83,7 @@
         "config/ci-governance-policy.json",
         "config/repository-governance-policy.json",
         "config/developer-runtime-policy.json",
+        "config/evidence-schema-policy.json",
         "config/disaster-recovery-policy.json",
         ".github/workflows/ci.yml",
         ".github/CODEOWNERS",

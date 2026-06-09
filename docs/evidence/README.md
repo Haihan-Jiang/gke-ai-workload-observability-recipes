@@ -58,6 +58,7 @@
 - [Load shedding policy audit](load-shedding-policy-audit.md)
 - [Regional failover audit](regional-failover-audit.md)
 - [Release waiver governance](release-waiver-governance.md)
+- [Evidence schema audit](evidence-schema-audit.md)
 - [Disaster recovery drill](disaster-recovery-drill.md)
 - [Evidence provenance](evidence-provenance.md)
 - [Release readiness report](release-readiness.md)

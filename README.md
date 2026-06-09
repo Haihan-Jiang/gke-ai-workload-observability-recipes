@@ -70,6 +70,9 @@ and link cost, capacity, runbook, probe, and release-action evidence.
 Regional failover evidence checks that zone or region failure decisions are
 connected to DR RTO/RPO, standby capacity, synthetic probes, load shedding,
 rollback, runbook ownership, and Kubernetes control-plane hardening.
+Evidence schema audit evidence checks that critical generated JSON reports keep
+stable status fields, required fields, required checks, metric contracts, array
+shapes, and negative drift fixtures before release readiness is reported.
 
 This repository is a personal reference project. Related upstream Google Cloud
 OpenTelemetry sample PRs are tracked in
@@ -196,6 +199,9 @@ not described as merged.
 - A disaster recovery drill that restores critical release evidence,
   Kubernetes/Grafana/OpenSLO artifacts, admission policy, and source policy
   files with SHA-256 verification inside the configured RTO/RPO.
+- An evidence schema audit that verifies generated JSON reports keep required
+  fields, check shapes, metric contracts, allowed values, and negative drift
+  fixtures stable.
 - An evidence provenance manifest with SHA-256 checksums for generated
   evidence, Kubernetes/Grafana/OpenSLO artifacts, and source inputs.
 - A release-readiness report that checks committed evidence coverage.

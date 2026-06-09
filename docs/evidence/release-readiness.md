@@ -19,7 +19,7 @@ response drill coverage, dependency contract coverage, synthetic
 probe coverage, model release safety coverage, shadow traffic replay
 coverage, accelerator quota fairness coverage, load-shedding policy
 coverage, regional failover coverage,
-waiver governance, disaster recovery
+waiver governance, evidence schema contracts, disaster recovery
 drill coverage, evidence provenance, and committed evidence are
 present and internally
 consistent.
@@ -71,6 +71,7 @@ consistent.
 | `load_shedding_policy_audit` | PASS |
 | `regional_failover_audit` | PASS |
 | `release_waiver_governance` | PASS |
+| `evidence_schema_audit` | PASS |
 | `disaster_recovery_drill` | PASS |
 | `evidence_provenance` | PASS |
 
@@ -185,6 +186,8 @@ consistent.
 | `regional-failover-audit.json` | yes |
 | `release-waiver-governance.md` | yes |
 | `release-waiver-governance.json` | yes |
+| `evidence-schema-audit.md` | yes |
+| `evidence-schema-audit.json` | yes |
 | `disaster-recovery-drill.md` | yes |
 | `disaster-recovery-drill.json` | yes |
 | `evidence-provenance.md` | yes |

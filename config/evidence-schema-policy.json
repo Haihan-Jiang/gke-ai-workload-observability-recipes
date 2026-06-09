@@ -1,0 +1,482 @@
+{
+  "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
+  "minimum_artifact_count": 10,
+  "minimum_detected_fixtures": 10,
+  "artifacts": [
+    {
+      "path": "docs/evidence/developer-runtime-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "present_file_count",
+        "make_target_count",
+        "detected_fixture_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "make_target_inventory",
+        "make_command_contract",
+        "python_runtime_contract",
+        "developer_runtime_docs",
+        "output_boundary",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "present_file_count": 4,
+        "make_target_count": 8,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "fixtures": 8
+      }
+    },
+    {
+      "path": "docs/evidence/repository-governance-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "present_file_count",
+        "owned_pattern_count",
+        "detected_fixture_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "contribution_workflow",
+        "security_reporting",
+        "release_process",
+        "codeowners_coverage",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "present_file_count": 6,
+        "owned_pattern_count": 9,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "fixtures": 8
+      }
+    },
+    {
+      "path": "docs/evidence/ci-governance-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "workflow_count",
+        "job_count",
+        "action_count",
+        "hardened_action_count",
+        "detected_fixture_count",
+        "workflow_name",
+        "workflow_path",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "workflow_inventory",
+        "trigger_surface",
+        "least_privilege_permissions",
+        "concurrency_cancellation",
+        "action_runtime_hygiene",
+        "job_execution_bounds",
+        "validation_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "workflow_count": 1,
+        "job_count": 1,
+        "action_count": 2,
+        "hardened_action_count": 2,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 8
+      }
+    },
+    {
+      "path": "docs/evidence/pod-security-admission-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "namespace_count",
+        "workload_count",
+        "restricted_namespace_count",
+        "restricted_workload_count",
+        "detected_fixture_count",
+        "checks",
+        "fixture_results",
+        "workloads"
+      ],
+      "required_checks": [
+        "namespace_psa_labels",
+        "namespace_label_governance",
+        "restricted_pod_security",
+        "restricted_container_security",
+        "restricted_volume_types",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 6,
+        "namespace_count": 2,
+        "workload_count": 2,
+        "restricted_namespace_count": 2,
+        "restricted_workload_count": 2,
+        "detected_fixture_count": 10
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "fixture_results": 10,
+        "workloads": 2
+      }
+    },
+    {
+      "path": "docs/evidence/synthetic-probe-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "failed_count",
+        "probe_count",
+        "incident_probe_count",
+        "preflight_block_count",
+        "detected_fixture_count",
+        "fixture_count",
+        "checks",
+        "probes",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "probe_inventory",
+        "signal_contract",
+        "dependency_contract_linkage",
+        "alert_response_contract",
+        "rollout_preflight_guard",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "probe_count": 5,
+        "incident_probe_count": 4,
+        "preflight_block_count": 2,
+        "detected_fixture_count": 5,
+        "fixture_count": 5
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "probes": 5,
+        "fixture_results": 5
+      }
+    },
+    {
+      "path": "docs/evidence/model-release-safety-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "failed_count",
+        "release_count",
+        "candidate_count",
+        "blocked_candidate_count",
+        "detected_fixture_count",
+        "fixture_count",
+        "checks",
+        "releases",
+        "fixture_results"
+      ],
+      "required_checks": [
+        "artifact_inventory",
+        "eval_schema_gate",
+        "canary_rollout_gate",
+        "cost_budget_gate",
+        "release_budget_linkage",
+        "rollback_contract",
+        "observability_contract",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "release_count": 2,
+        "candidate_count": 1,
+        "blocked_candidate_count": 1,
+        "detected_fixture_count": 7,
+        "fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "releases": 2,
+        "fixture_results": 7
+      }
+    },
+    {
+      "path": "docs/evidence/deployment-policy.json",
+      "allowed_statuses": [
+        "generated"
+      ],
+      "required_fields": [
+        "status",
+        "decision",
+        "control_count",
+        "controls",
+        "blocking_controls",
+        "review_controls",
+        "operator_actions",
+        "human_approval_required"
+      ],
+      "allowed_values": {
+        "decision": [
+          "promote",
+          "manual_review_required",
+          "block_production_promotion"
+        ]
+      },
+      "required_checks": [],
+      "minimum_metrics": {
+        "control_count": 8
+      },
+      "maximum_metrics": {},
+      "array_min_lengths": {
+        "controls": 8,
+        "operator_actions": 5
+      }
+    },
+    {
+      "path": "docs/evidence/supply-chain-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "failed_count",
+        "image_count",
+        "digest_pinned_count",
+        "checks",
+        "images"
+      ],
+      "required_checks": [
+        "image_coverage",
+        "digest_pinning",
+        "forbidden_tags",
+        "allowed_registries",
+        "pull_policy",
+        "artifact_owner_labels"
+      ],
+      "minimum_metrics": {
+        "image_count": 2,
+        "digest_pinned_count": 2
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 6,
+        "images": 2
+      }
+    },
+    {
+      "path": "docs/evidence/k8s-hardening-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "passed_count",
+        "checks"
+      ],
+      "required_checks": [
+        "namespace_labels",
+        "collector_readonly_rbac",
+        "collector_resources",
+        "collector_probes",
+        "collector_security_context",
+        "collector_durable_queue",
+        "collector_pdb",
+        "collector_network_policy",
+        "sample_workload_resources",
+        "sample_workload_probes",
+        "sample_workload_security_context"
+      ],
+      "minimum_metrics": {
+        "check_count": 11,
+        "passed_count": 11
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 11
+      }
+    },
+    {
+      "path": "docs/evidence/workload-identity-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "passed_count",
+        "identity_boundary_count",
+        "detected_fixture_count",
+        "upstream_endpoint",
+        "checks",
+        "fixture_results",
+        "identity_boundaries"
+      ],
+      "required_checks": [
+        "workload_identity_annotation",
+        "collector_token_boundary",
+        "application_token_boundary",
+        "rbac_least_privilege",
+        "rbac_binding_scope",
+        "static_credential_guard",
+        "secure_exporter_boundary",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "passed_count": 8,
+        "identity_boundary_count": 2,
+        "detected_fixture_count": 9
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixture_results": 9,
+        "identity_boundaries": 2
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_developer_runtime_status",
+      "mutation": "remove_field",
+      "artifact": "docs/evidence/developer-runtime-audit.json",
+      "field": "status",
+      "expected_failed_check": "required_fields"
+    },
+    {
+      "name": "invalid_ci_status",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/ci-governance-audit.json",
+      "field": "status",
+      "value": "green",
+      "expected_failed_check": "status_contract"
+    },
+    {
+      "name": "malformed_synthetic_probe_checks",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/synthetic-probe-audit.json",
+      "field": "checks",
+      "value": "not-a-list",
+      "expected_failed_check": "check_shape"
+    },
+    {
+      "name": "missing_pod_security_namespace_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/pod-security-admission-audit.json",
+      "check": "namespace_psa_labels",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "low_developer_runtime_make_target_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/developer-runtime-audit.json",
+      "field": "make_target_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "deployment_policy_without_decision",
+      "mutation": "remove_field",
+      "artifact": "docs/evidence/deployment-policy.json",
+      "field": "decision",
+      "expected_failed_check": "required_fields"
+    },
+    {
+      "name": "model_release_without_blocked_candidate",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/model-release-safety-audit.json",
+      "field": "blocked_candidate_count",
+      "value": 0,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "missing_workload_identity_annotation_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/workload-identity-audit.json",
+      "check": "workload_identity_annotation",
+      "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "missing_supply_chain_digest_count",
+      "mutation": "remove_field",
+      "artifact": "docs/evidence/supply-chain-audit.json",
+      "field": "digest_pinned_count",
+      "expected_failed_check": "required_fields"
+    },
+    {
+      "name": "missing_k8s_hardening_container_check",
+      "mutation": "remove_check",
+      "artifact": "docs/evidence/k8s-hardening-audit.json",
+      "check": "collector_security_context",
+      "expected_failed_check": "check_inventory"
+    }
+  ]
+}
