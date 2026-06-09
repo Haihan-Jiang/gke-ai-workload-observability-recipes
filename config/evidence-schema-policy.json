@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 21,
-  "minimum_detected_fixtures": 21,
+  "minimum_artifact_count": 22,
+  "minimum_detected_fixtures": 22,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 68,
-        "required_step_count": 68,
-        "dependency_count": 168,
-        "artifact_dependency_count": 168,
+        "step_count": 69,
+        "required_step_count": 69,
+        "dependency_count": 177,
+        "artifact_dependency_count": 177,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 67,
-        "dependencies": 159,
+        "steps": 69,
+        "dependencies": 177,
         "fixtures": 4
       }
     },
@@ -79,12 +79,12 @@
       ],
       "minimum_metrics": {
         "check_count": 7,
-        "py_compile_script_count": 70,
-        "generation_script_count": 68,
-        "direct_validation_script_count": 67,
-        "policy_json_count": 63,
-        "committed_json_count": 78,
-        "release_argument_count": 67,
+        "py_compile_script_count": 71,
+        "generation_script_count": 69,
+        "direct_validation_script_count": 68,
+        "policy_json_count": 64,
+        "committed_json_count": 79,
+        "release_argument_count": 68,
         "detected_fixture_count": 6
       },
       "maximum_metrics": {
@@ -717,9 +717,9 @@
       ],
       "minimum_metrics": {
         "check_count": 6,
-        "claim_count": 15,
-        "evidence_claim_count": 15,
-        "release_check_count": 15,
+        "claim_count": 16,
+        "evidence_claim_count": 16,
+        "release_check_count": 16,
         "boundary_statement_count": 2,
         "detected_fixture_count": 6
       },
@@ -924,6 +924,64 @@
         "checks": 6,
         "fixtures": 6
       }
+    },
+    {
+      "path": "docs/evidence/threat-model-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "required_file_count",
+        "present_file_count",
+        "asset_count",
+        "trust_boundary_count",
+        "threat_count",
+        "mitigation_count",
+        "owner_count",
+        "residual_risk_count",
+        "evidence_link_count",
+        "existing_evidence_link_count",
+        "release_control_count",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "required_files",
+        "scope_boundary_contract",
+        "threat_register_contract",
+        "mitigation_contract",
+        "residual_risk_contract",
+        "evidence_linkage",
+        "release_control_linkage",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "required_file_count": 5,
+        "present_file_count": 5,
+        "asset_count": 6,
+        "trust_boundary_count": 6,
+        "threat_count": 6,
+        "mitigation_count": 19,
+        "owner_count": 6,
+        "residual_risk_count": 6,
+        "evidence_link_count": 19,
+        "existing_evidence_link_count": 19,
+        "release_control_count": 19,
+        "detected_fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 7
+      }
     }
   ],
   "fixtures": [
@@ -1081,6 +1139,14 @@
       "mutation": "set_field",
       "artifact": "docs/evidence/reviewer-reproducibility-audit.json",
       "field": "command_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_threat_model_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/threat-model-audit.json",
+      "field": "threat_count",
       "value": 2,
       "expected_failed_check": "metric_contract"
     }

@@ -246,6 +246,10 @@
       "ok": true
     },
     {
+      "name": "threat_model_audit",
+      "ok": true
+    },
+    {
       "name": "public_claim_evidence_audit",
       "ok": true
     },
@@ -841,6 +845,14 @@
     },
     {
       "path": "reviewer-reproducibility-audit.json",
+      "exists": true
+    },
+    {
+      "path": "threat-model-audit.md",
+      "exists": true
+    },
+    {
+      "path": "threat-model-audit.json",
       "exists": true
     },
     {

@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing ownership, severity, cadence, escalation, rollback, and evidence paths for release-readiness checks.",
-  "minimum_control_count": 66,
-  "minimum_tier0_count": 43,
-  "minimum_every_release_count": 54,
+  "minimum_control_count": 67,
+  "minimum_tier0_count": 44,
+  "minimum_every_release_count": 55,
   "minimum_owner_group_count": 5,
   "minimum_detected_fixtures": 6,
   "allowed_tiers": [
@@ -108,7 +108,8 @@
     {"name": "evidence_provenance", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/evidence-provenance.json"},
     {"name": "proof_packet_integrity_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/proof-packet-integrity-audit.json"},
     {"name": "architecture_decision_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/architecture-decision-audit.json"},
-    {"name": "reviewer_reproducibility_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/reviewer-reproducibility-audit.json"}
+    {"name": "reviewer_reproducibility_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/reviewer-reproducibility-audit.json"},
+    {"name": "threat_model_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/threat-model-audit.json"}
   ],
   "fixtures": [
     {"name": "missing_provenance_owner", "mutation": "remove_control", "control": "evidence_provenance", "expected_failed_check": "control_inventory"},

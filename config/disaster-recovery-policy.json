@@ -5,7 +5,7 @@
   "estimated_data_loss_minutes": 0,
   "restore_throughput_mib_per_minute": 64,
   "operator_step_minutes": 6,
-  "minimum_artifacts": 132,
+  "minimum_artifacts": 137,
   "minimum_groups": 6,
   "minimum_generated_artifacts": 4,
   "required_rpo_artifacts": [
@@ -31,7 +31,8 @@
     "docs/evidence/public-claim-evidence-audit.json",
     "docs/evidence/release-notes-contract-audit.json",
     "docs/evidence/architecture-decision-audit.json",
-    "docs/evidence/reviewer-reproducibility-audit.json"
+    "docs/evidence/reviewer-reproducibility-audit.json",
+    "docs/evidence/threat-model-audit.json"
   ],
   "artifact_groups": [
     {
@@ -75,7 +76,9 @@
         "docs/evidence/architecture-decision-audit.md",
         "docs/evidence/architecture-decision-audit.json",
         "docs/evidence/reviewer-reproducibility-audit.md",
-        "docs/evidence/reviewer-reproducibility-audit.json"
+        "docs/evidence/reviewer-reproducibility-audit.json",
+        "docs/evidence/threat-model-audit.md",
+        "docs/evidence/threat-model-audit.json"
       ]
     },
     {
@@ -186,6 +189,7 @@
         "scripts/validate.sh",
         "config/architecture-decision-policy.json",
         "config/reviewer-reproducibility-policy.json",
+        "config/threat-model-policy.json",
         "docs/adr/README.md",
         "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
         "docs/adr/0002-fail-closed-release-readiness.md",
@@ -193,7 +197,9 @@
         "docs/adr/0004-policy-as-code-change-control.md",
         "demo/architecture_decision_audit.py",
         "demo/reviewer_reproducibility_audit.py",
-        "docs/reviewer-quickstart.md"
+        "demo/threat_model_audit.py",
+        "docs/reviewer-quickstart.md",
+        "docs/threat-model.md"
       ]
     }
   ],

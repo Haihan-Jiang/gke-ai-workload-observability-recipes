@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 61,
-  "release_check_count": 66,
-  "evidence_file_count": 123,
-  "source_input_count": 64,
-  "policy_input_count": 62,
-  "test_file_count": 61,
+  "control_count": 62,
+  "release_check_count": 67,
+  "evidence_file_count": 125,
+  "source_input_count": 65,
+  "policy_input_count": 63,
+  "test_file_count": 62,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 61,
-        "minimum_control_count": 61,
+        "control_count": 62,
+        "minimum_control_count": 62,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 66,
-        "minimum_release_check_count": 66,
+        "release_check_count": 67,
+        "minimum_release_check_count": 67,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 62,
-        "minimum_policy_input_count": 62,
+        "policy_input_count": 63,
+        "minimum_policy_input_count": 63,
         "policy_gaps": []
       }
     },
@@ -1172,6 +1172,23 @@
       ],
       "tests": [
         "tests/test_reviewer_reproducibility_audit.py"
+      ]
+    },
+    {
+      "name": "threat_model_audit",
+      "release_readiness_check": "threat_model_audit",
+      "evidence": [
+        "docs/evidence/threat-model-audit.json",
+        "docs/evidence/threat-model-audit.md"
+      ],
+      "source_inputs": [
+        "demo/threat_model_audit.py"
+      ],
+      "policy_inputs": [
+        "config/threat-model-policy.json"
+      ],
+      "tests": [
+        "tests/test_threat_model_audit.py"
       ]
     }
   ],

@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 61,
-  "minimum_release_check_count": 66,
-  "minimum_policy_input_count": 62,
+  "minimum_control_count": 62,
+  "minimum_release_check_count": 67,
+  "minimum_policy_input_count": 63,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -1045,6 +1045,23 @@
       ],
       "tests": [
         "tests/test_reviewer_reproducibility_audit.py"
+      ]
+    },
+    {
+      "name": "threat_model_audit",
+      "release_readiness_check": "threat_model_audit",
+      "evidence": [
+        "docs/evidence/threat-model-audit.json",
+        "docs/evidence/threat-model-audit.md"
+      ],
+      "source_inputs": [
+        "demo/threat_model_audit.py"
+      ],
+      "policy_inputs": [
+        "config/threat-model-policy.json"
+      ],
+      "tests": [
+        "tests/test_threat_model_audit.py"
       ]
     }
   ],

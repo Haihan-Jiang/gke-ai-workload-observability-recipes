@@ -130,6 +130,9 @@ Reviewer reproducibility evidence checks that reviewers have a 10-minute
 current-head proof path with the same evidence regeneration, validation,
 CI-mode stability, provenance, proof-packet, and boundary checks used by the
 release gate.
+Threat model evidence checks that assets, trust boundaries, abuse cases,
+owners, residual risk, evidence links, and release controls stay aligned before
+security-readiness claims are trusted.
 Public claim evidence audit checks that README and industry-map claims stay
 backed by committed JSON/Markdown evidence, release-readiness checks, and
 explicit boundary language before public review text is trusted.
@@ -169,6 +172,9 @@ not described as merged.
   gate.
 - Policy regression fixtures that prove promote, block, and manual-review
   decisions stay stable across release-risk scenarios.
+- A threat model audit that verifies assets, trust boundaries, abuse cases,
+  owners, residual risk statements, evidence links, and release-control
+  bindings.
 - A supply-chain audit that verifies Kubernetes image references are
   digest-pinned, non-floating, explicitly pulled, and owner-labeled.
 - An OSS license audit that verifies Apache-2.0, NOTICE, README license links,

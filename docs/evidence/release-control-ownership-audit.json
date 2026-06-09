@@ -3,20 +3,20 @@
   "failed_count": 0,
   "check_count": 7,
   "detected_fixture_count": 6,
-  "control_count": 66,
-  "release_check_count": 66,
-  "covered_release_check_count": 66,
-  "tier0_count": 43,
-  "every_release_count": 54,
+  "control_count": 67,
+  "release_check_count": 67,
+  "covered_release_check_count": 67,
+  "tier0_count": 44,
+  "every_release_count": 55,
   "owner_group_count": 5,
   "checks": [
     {
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 66,
-        "release_check_count": 66,
-        "minimum_control_count": 66,
+        "control_count": 67,
+        "release_check_count": 67,
+        "minimum_control_count": 67,
         "duplicate_controls": [],
         "missing_release_checks": [],
         "unknown_release_checks": []
@@ -35,12 +35,12 @@
       "ok": true,
       "evidence": {
         "tier_counts": {
-          "tier_0_release_blocker": 43,
+          "tier_0_release_blocker": 44,
           "tier_1_production_guard": 22,
           "tier_2_evidence_guard": 1
         },
         "tier_gaps": [],
-        "minimum_tier0_count": 43
+        "minimum_tier0_count": 44
       }
     },
     {
@@ -48,12 +48,12 @@
       "ok": true,
       "evidence": {
         "cadence_counts": {
-          "every_release": 54,
+          "every_release": 55,
           "monthly": 12,
           "quarterly": 0
         },
         "cadence_gaps": [],
-        "minimum_every_release_count": 54
+        "minimum_every_release_count": 55
       }
     },
     {
@@ -607,6 +607,13 @@
       "tier": "tier_0_release_blocker",
       "review_cadence": "every_release",
       "evidence_path": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "name": "threat_model_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/threat-model-audit.json"
     }
   ],
   "fixtures": [

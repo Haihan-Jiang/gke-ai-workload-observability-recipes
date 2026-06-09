@@ -45,11 +45,11 @@ class EvidenceSchemaAuditTest(unittest.TestCase):
         report = evidence_schema_audit.build_report(REPO_ROOT, self.policy)
 
         self.assertEqual("pass", report["status"])
-        self.assertEqual(21, report["artifact_count"])
-        self.assertGreaterEqual(report["required_field_count"], 227)
-        self.assertGreaterEqual(report["required_check_count"], 138)
+        self.assertEqual(22, report["artifact_count"])
+        self.assertGreaterEqual(report["required_field_count"], 244)
+        self.assertGreaterEqual(report["required_check_count"], 146)
         self.assertGreaterEqual(report["metric_contract_count"], 60)
-        self.assertEqual(21, report["detected_fixture_count"])
+        self.assertEqual(22, report["detected_fixture_count"])
 
     def test_policy_avoids_generated_evidence_cycles(self) -> None:
         policy_paths = {artifact["path"] for artifact in self.policy["artifacts"]}

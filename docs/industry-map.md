@@ -177,6 +177,7 @@ inference incidents before a service reaches production.
 | C56 | Public issue and pull request intake can miss evidence and safety boundaries | Maintainers need issue templates, PR templates, support boundaries, validation commands, and security redirects before public collaboration is treated as release-ready. | [Maintainer intake audit](evidence/maintainer-intake-audit.md) |
 | C57 | Architecture choices can become unverifiable oral history | Industrial review needs accepted ADRs that record tradeoffs, rejected alternatives, committed evidence links, and release-control bindings before architecture claims are trusted. | [Architecture decision audit](evidence/architecture-decision-audit.md) |
 | C58 | Reviewers can miss the shortest reproducible proof path | Public reliability labs need a 10-minute current-head path that names regeneration commands, CI-mode drift checks, evidence packet links, and boundary language before review claims are trusted. | [Reviewer reproducibility audit](evidence/reviewer-reproducibility-audit.md) |
+| C59 | Security risks can be discussed without a reviewable threat model | Industrial review needs an explicit asset, trust-boundary, abuse-case, owner, residual-risk, evidence-link, and release-control register before security-readiness claims are trusted. | [Threat model audit](evidence/threat-model-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -478,6 +479,12 @@ inference incidents before a service reaches production.
     - Policy: [config/reviewer-reproducibility-policy.json](../config/reviewer-reproducibility-policy.json)
     - Inputs: [reviewer quickstart](reviewer-quickstart.md), [release process](release-process.md), [contributing guide](../CONTRIBUTING.md), committed evidence packet, and release-readiness source
     - Evidence: [reviewer reproducibility audit](evidence/reviewer-reproducibility-audit.md)
+
+51. **Threat model audit**
+    - Code: [demo/threat_model_audit.py](../demo/threat_model_audit.py)
+    - Policy: [config/threat-model-policy.json](../config/threat-model-policy.json)
+    - Inputs: [threat model](threat-model.md), README, industry map, security policy, release process, committed evidence packet, and release-readiness source
+    - Evidence: [threat model audit](evidence/threat-model-audit.md)
 
 ## Boundary
 

@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 68,
-  "minimum_dependency_count": 168,
+  "minimum_step_count": 69,
+  "minimum_dependency_count": 177,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -231,6 +231,10 @@
     {
       "name": "reviewer_reproducibility_audit",
       "script": "demo/reviewer_reproducibility_audit.py"
+    },
+    {
+      "name": "threat_model_audit",
+      "script": "demo/threat_model_audit.py"
     },
     {
       "name": "public_claim_evidence_audit",
@@ -1117,6 +1121,51 @@
       "producer": "reviewer_reproducibility_audit",
       "consumer": "proof_packet_integrity_audit",
       "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/threat-model-audit.md"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/threat-model-audit.md"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/threat-model-audit.json"
+    },
+    {
+      "producer": "threat_model_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/threat-model-audit.json"
     }
   ],
   "fixtures": [

@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 21,
-  "policy_artifact_count": 21,
-  "required_field_count": 227,
-  "required_check_count": 138,
-  "metric_contract_count": 146,
-  "array_contract_count": 50,
-  "observed_check_count": 138,
-  "detected_fixture_count": 21,
+  "artifact_count": 22,
+  "policy_artifact_count": 22,
+  "required_field_count": 244,
+  "required_check_count": 146,
+  "metric_contract_count": 160,
+  "array_contract_count": 52,
+  "observed_check_count": 146,
+  "detected_fixture_count": 22,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 21,
-        "policy_artifact_count": 21,
-        "minimum_artifact_count": 21
+        "artifact_count": 22,
+        "policy_artifact_count": 22,
+        "minimum_artifact_count": 22
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 21,
-        "minimum_detected_fixtures": 21,
+        "detected_fixture_count": 22,
+        "minimum_detected_fixtures": 22,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -293,6 +293,16 @@
           {
             "name": "low_reviewer_command_count",
             "artifact": "docs/evidence/reviewer-reproducibility-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_threat_model_count",
+            "artifact": "docs/evidence/threat-model-audit.json",
             "mutation": "set_field",
             "expected_failed_check": "metric_contract",
             "failed_checks": [
@@ -527,6 +537,16 @@
         "metric_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "low_threat_model_count",
+      "artifact": "docs/evidence/threat-model-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
@@ -655,6 +675,12 @@
       "present": true,
       "status": "pass",
       "check_count": 6
+    },
+    {
+      "path": "docs/evidence/threat-model-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 8
     }
   ]
 }
