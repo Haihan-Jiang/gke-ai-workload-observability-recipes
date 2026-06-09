@@ -10,11 +10,11 @@ evidence path before the final release gate passes.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 68 |
-| Release checks | 68 |
-| Covered release checks | 68 |
-| Tier 0 controls | 45 |
-| Every-release controls | 56 |
+| Controls | 69 |
+| Release checks | 69 |
+| Covered release checks | 69 |
+| Tier 0 controls | 46 |
+| Every-release controls | 57 |
 | Owner groups | 5 |
 | Detected fixtures | 6 |
 
@@ -102,3 +102,4 @@ evidence path before the final release gate passes.
 | `reviewer_reproducibility_audit` | `evidence` | `tier_0_release_blocker` | `every_release` | `docs/evidence/reviewer-reproducibility-audit.json` |
 | `threat_model_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/threat-model-audit.json` |
 | `data_handling_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/data-handling-audit.json` |
+| `dependency_update_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/dependency-update-audit.json` |

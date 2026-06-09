@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 23,
-  "minimum_detected_fixtures": 23,
+  "minimum_artifact_count": 24,
+  "minimum_detected_fixtures": 24,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 70,
-        "required_step_count": 70,
-        "dependency_count": 186,
-        "artifact_dependency_count": 186,
+        "step_count": 71,
+        "required_step_count": 71,
+        "dependency_count": 195,
+        "artifact_dependency_count": 195,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 70,
-        "dependencies": 186,
+        "steps": 71,
+        "dependencies": 195,
         "fixtures": 4
       }
     },
@@ -79,12 +79,12 @@
       ],
       "minimum_metrics": {
         "check_count": 7,
-        "py_compile_script_count": 72,
-        "generation_script_count": 70,
-        "direct_validation_script_count": 69,
-        "policy_json_count": 65,
-        "committed_json_count": 80,
-        "release_argument_count": 69,
+        "py_compile_script_count": 73,
+        "generation_script_count": 71,
+        "direct_validation_script_count": 70,
+        "policy_json_count": 66,
+        "committed_json_count": 81,
+        "release_argument_count": 70,
         "detected_fixture_count": 6
       },
       "maximum_metrics": {
@@ -717,9 +717,9 @@
       ],
       "minimum_metrics": {
         "check_count": 6,
-        "claim_count": 17,
-        "evidence_claim_count": 17,
-        "release_check_count": 17,
+        "claim_count": 18,
+        "evidence_claim_count": 18,
+        "release_check_count": 18,
         "boundary_statement_count": 2,
         "detected_fixture_count": 6
       },
@@ -1036,6 +1036,57 @@
         "checks": 8,
         "fixtures": 7
       }
+    },
+    {
+      "path": "docs/evidence/dependency-update-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "config_file_count",
+        "update_count",
+        "ecosystem_count",
+        "weekly_schedule_count",
+        "label_count",
+        "validation_term_count",
+        "release_control_count",
+        "checks",
+        "fixtures",
+        "updates"
+      ],
+      "required_checks": [
+        "config_file_contract",
+        "ecosystem_contract",
+        "schedule_contract",
+        "review_boundary_contract",
+        "validation_linkage",
+        "release_control_linkage",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 7,
+        "config_file_count": 1,
+        "update_count": 1,
+        "ecosystem_count": 1,
+        "weekly_schedule_count": 1,
+        "label_count": 2,
+        "validation_term_count": 8,
+        "release_control_count": 6,
+        "detected_fixture_count": 7
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 7,
+        "fixtures": 7,
+        "updates": 1
+      }
     }
   ],
   "fixtures": [
@@ -1210,6 +1261,14 @@
       "artifact": "docs/evidence/data-handling-audit.json",
       "field": "data_class_count",
       "value": 2,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_dependency_update_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/dependency-update-audit.json",
+      "field": "update_count",
+      "value": 0,
       "expected_failed_check": "metric_contract"
     }
   ]

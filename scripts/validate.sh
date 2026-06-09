@@ -70,6 +70,7 @@ python3 -m py_compile \
   demo/reviewer_reproducibility_audit.py \
   demo/threat_model_audit.py \
   demo/data_handling_audit.py \
+  demo/dependency_update_audit.py \
   demo/public_claim_evidence_audit.py \
   demo/release_notes_contract_audit.py \
   demo/capacity_planner.py \
@@ -150,6 +151,7 @@ python3 -m json.tool config/architecture-decision-policy.json >/dev/null
 python3 -m json.tool config/reviewer-reproducibility-policy.json >/dev/null
 python3 -m json.tool config/threat-model-policy.json >/dev/null
 python3 -m json.tool config/data-handling-policy.json >/dev/null
+python3 -m json.tool config/dependency-update-policy.json >/dev/null
 python3 -m json.tool config/public-claim-evidence-policy.json >/dev/null
 python3 -m json.tool config/release-notes-contract-policy.json >/dev/null
 python3 demo/reliability_gate.py \
@@ -477,6 +479,11 @@ python3 demo/data_handling_audit.py \
   --repo-root . \
   --release-readiness-source demo/release_readiness.py \
   --output-dir out/data-handling-audit-validate >/dev/null
+python3 demo/dependency_update_audit.py \
+  --policy config/dependency-update-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir out/dependency-update-audit-validate >/dev/null
 python3 demo/evidence_provenance.py \
   --policy config/evidence-provenance-policy.json \
   --repo-root . \
@@ -567,6 +574,7 @@ python3 demo/release_readiness.py \
   --reviewer-reproducibility docs/evidence/reviewer-reproducibility-audit.json \
   --threat-model docs/evidence/threat-model-audit.json \
   --data-handling docs/evidence/data-handling-audit.json \
+  --dependency-update docs/evidence/dependency-update-audit.json \
   --maintainer-intake docs/evidence/maintainer-intake-audit.json \
   --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
   --release-notes-contract docs/evidence/release-notes-contract-audit.json \
@@ -656,6 +664,7 @@ python3 -m json.tool docs/evidence/architecture-decision-audit.json >/dev/null
 python3 -m json.tool docs/evidence/reviewer-reproducibility-audit.json >/dev/null
 python3 -m json.tool docs/evidence/threat-model-audit.json >/dev/null
 python3 -m json.tool docs/evidence/data-handling-audit.json >/dev/null
+python3 -m json.tool docs/evidence/dependency-update-audit.json >/dev/null
 python3 -m json.tool docs/evidence/public-claim-evidence-audit.json >/dev/null
 python3 -m json.tool docs/evidence/release-notes-contract-audit.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null

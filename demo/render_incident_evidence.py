@@ -211,6 +211,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Reviewer reproducibility audit](reviewer-reproducibility-audit.md)",
                 "- [Threat model audit](threat-model-audit.md)",
                 "- [Data handling audit](data-handling-audit.md)",
+                "- [Dependency update audit](dependency-update-audit.md)",
                 "- [Maintainer intake audit](maintainer-intake-audit.md)",
                 "- [Public claim evidence audit](public-claim-evidence-audit.md)",
                 "- [Release notes contract audit](release-notes-contract-audit.md)",

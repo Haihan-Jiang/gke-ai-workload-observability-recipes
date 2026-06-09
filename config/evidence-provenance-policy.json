@@ -1,7 +1,7 @@
 {
   "description": "Policy for producing a reproducible provenance manifest for generated lab evidence.",
-  "minimum_evidence_artifacts": 153,
-  "minimum_source_inputs": 162,
+  "minimum_evidence_artifacts": 155,
+  "minimum_source_inputs": 166,
   "required_artifacts": [
     "docs/evidence/README.md",
     "docs/evidence/sample-incident-report.md",
@@ -155,7 +155,9 @@
     "docs/evidence/threat-model-audit.md",
     "docs/evidence/threat-model-audit.json",
     "docs/evidence/data-handling-audit.md",
-    "docs/evidence/data-handling-audit.json"
+    "docs/evidence/data-handling-audit.json",
+    "docs/evidence/dependency-update-audit.md",
+    "docs/evidence/dependency-update-audit.json"
   ],
   "generated_artifacts": [
     "k8s/gke/alerting-rules.yaml",
@@ -234,6 +236,7 @@
     "demo/reviewer_reproducibility_audit.py",
     "demo/threat_model_audit.py",
     "demo/data_handling_audit.py",
+    "demo/dependency_update_audit.py",
     "config/reliability-slo.json",
     "config/replay-source-contract-policy.json",
     "config/advanced-reliability.json",
@@ -297,7 +300,9 @@
     "config/reviewer-reproducibility-policy.json",
     "config/threat-model-policy.json",
     "config/data-handling-policy.json",
+    "config/dependency-update-policy.json",
     ".github/workflows/ci.yml",
+    ".github/dependabot.yml",
     ".github/CODEOWNERS",
     ".github/ISSUE_TEMPLATE/bug_report.yml",
     ".github/ISSUE_TEMPLATE/feature_request.yml",
@@ -314,6 +319,7 @@
     "docs/reviewer-quickstart.md",
     "docs/threat-model.md",
     "docs/data-handling.md",
+    "docs/dependency-updates.md",
     "docs/release-process.md",
     "policies/admission/gke-ai-inference-admission-policy.yaml",
     "k8s/gke/scheduling.yaml",

@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 70 |
-| Required steps | 70 |
-| Dependencies | 186 |
-| Artifact dependencies | 186 |
+| Steps | 71 |
+| Required steps | 71 |
+| Dependencies | 195 |
+| Artifact dependencies | 195 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -216,6 +216,15 @@ accidentally read stale committed artifacts.
 | `data_handling_audit` | `control_traceability_audit` | yes |
 | `data_handling_audit` | `release_readiness` | yes |
 | `data_handling_audit` | `proof_packet_integrity_audit` | yes |
+| `dependency_update_audit` | `public_claim_evidence_audit` | yes |
+| `dependency_update_audit` | `render_incident_evidence` | yes |
+| `dependency_update_audit` | `documentation_link_integrity_audit` | yes |
+| `dependency_update_audit` | `evidence_schema_audit` | yes |
+| `dependency_update_audit` | `disaster_recovery_drill` | yes |
+| `dependency_update_audit` | `evidence_provenance` | yes |
+| `dependency_update_audit` | `control_traceability_audit` | yes |
+| `dependency_update_audit` | `release_readiness` | yes |
+| `dependency_update_audit` | `proof_packet_integrity_audit` | yes |
 
 ## Negative Fixtures
 

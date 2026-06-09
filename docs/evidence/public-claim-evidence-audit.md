@@ -8,9 +8,9 @@ explicit boundary language.
 
 ## Summary
 
-- Claims checked: `17`
-- Evidence-backed claims: `17`
-- Release checks referenced: `17`
+- Claims checked: `18`
+- Evidence-backed claims: `18`
+- Release checks referenced: `18`
 - Boundary statements: `3`
 - Surfaces checked: `2`
 - Detected negative fixtures: `6`

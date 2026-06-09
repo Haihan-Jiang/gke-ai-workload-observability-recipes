@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 63,
-  "minimum_release_check_count": 68,
-  "minimum_policy_input_count": 64,
+  "minimum_control_count": 64,
+  "minimum_release_check_count": 69,
+  "minimum_policy_input_count": 65,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -1079,6 +1079,23 @@
       ],
       "tests": [
         "tests/test_data_handling_audit.py"
+      ]
+    },
+    {
+      "name": "dependency_update_audit",
+      "release_readiness_check": "dependency_update_audit",
+      "evidence": [
+        "docs/evidence/dependency-update-audit.json",
+        "docs/evidence/dependency-update-audit.md"
+      ],
+      "source_inputs": [
+        "demo/dependency_update_audit.py"
+      ],
+      "policy_inputs": [
+        "config/dependency-update-policy.json"
+      ],
+      "tests": [
+        "tests/test_dependency_update_audit.py"
       ]
     }
   ],

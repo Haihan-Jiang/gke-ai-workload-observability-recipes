@@ -5,7 +5,7 @@
   "estimated_data_loss_minutes": 0,
   "restore_throughput_mib_per_minute": 64,
   "operator_step_minutes": 6,
-  "minimum_artifacts": 142,
+  "minimum_artifacts": 148,
   "minimum_groups": 6,
   "minimum_generated_artifacts": 4,
   "required_rpo_artifacts": [
@@ -33,7 +33,8 @@
     "docs/evidence/architecture-decision-audit.json",
     "docs/evidence/reviewer-reproducibility-audit.json",
     "docs/evidence/threat-model-audit.json",
-    "docs/evidence/data-handling-audit.json"
+    "docs/evidence/data-handling-audit.json",
+    "docs/evidence/dependency-update-audit.json"
   ],
   "artifact_groups": [
     {
@@ -81,7 +82,9 @@
         "docs/evidence/threat-model-audit.md",
         "docs/evidence/threat-model-audit.json",
         "docs/evidence/data-handling-audit.md",
-        "docs/evidence/data-handling-audit.json"
+        "docs/evidence/data-handling-audit.json",
+        "docs/evidence/dependency-update-audit.md",
+        "docs/evidence/dependency-update-audit.json"
       ]
     },
     {
@@ -159,6 +162,7 @@
         "config/public-claim-evidence-policy.json",
         "config/release-notes-contract-policy.json",
         ".github/workflows/ci.yml",
+        ".github/dependabot.yml",
         ".github/CODEOWNERS",
         ".github/ISSUE_TEMPLATE/bug_report.yml",
         ".github/ISSUE_TEMPLATE/feature_request.yml",
@@ -194,6 +198,7 @@
         "config/reviewer-reproducibility-policy.json",
         "config/threat-model-policy.json",
         "config/data-handling-policy.json",
+        "config/dependency-update-policy.json",
         "docs/adr/README.md",
         "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
         "docs/adr/0002-fail-closed-release-readiness.md",
@@ -203,9 +208,11 @@
         "demo/reviewer_reproducibility_audit.py",
         "demo/threat_model_audit.py",
         "demo/data_handling_audit.py",
+        "demo/dependency_update_audit.py",
         "docs/reviewer-quickstart.md",
         "docs/threat-model.md",
-        "docs/data-handling.md"
+        "docs/data-handling.md",
+        "docs/dependency-updates.md"
       ]
     }
   ],

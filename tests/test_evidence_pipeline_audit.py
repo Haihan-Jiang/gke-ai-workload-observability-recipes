@@ -43,8 +43,8 @@ class EvidencePipelineAuditTest(unittest.TestCase):
         )
 
         self.assertEqual("pass", report["status"])
-        self.assertGreaterEqual(report["step_count"], 70)
-        self.assertGreaterEqual(report["dependency_count"], 186)
+        self.assertGreaterEqual(report["step_count"], 71)
+        self.assertGreaterEqual(report["dependency_count"], 195)
         self.assertEqual(4, report["detected_fixture_count"])
 
     def test_detects_regional_failover_before_disaster_recovery(self) -> None:

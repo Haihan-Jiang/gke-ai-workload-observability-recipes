@@ -316,6 +316,11 @@ python3 demo/data_handling_audit.py \
   --repo-root . \
   --release-readiness-source demo/release_readiness.py \
   --output-dir docs/evidence >/dev/null
+python3 demo/dependency_update_audit.py \
+  --policy config/dependency-update-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
 python3 demo/public_claim_evidence_audit.py \
   --policy config/public-claim-evidence-policy.json \
   --repo-root . \
@@ -430,6 +435,7 @@ python3 demo/release_readiness.py \
   --reviewer-reproducibility docs/evidence/reviewer-reproducibility-audit.json \
   --threat-model docs/evidence/threat-model-audit.json \
   --data-handling docs/evidence/data-handling-audit.json \
+  --dependency-update docs/evidence/dependency-update-audit.json \
   --maintainer-intake docs/evidence/maintainer-intake-audit.json \
   --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
   --release-notes-contract docs/evidence/release-notes-contract-audit.json \

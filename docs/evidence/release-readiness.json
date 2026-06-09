@@ -254,6 +254,10 @@
       "ok": true
     },
     {
+      "name": "dependency_update_audit",
+      "ok": true
+    },
+    {
       "name": "public_claim_evidence_audit",
       "ok": true
     },
@@ -865,6 +869,14 @@
     },
     {
       "path": "data-handling-audit.json",
+      "exists": true
+    },
+    {
+      "path": "dependency-update-audit.md",
+      "exists": true
+    },
+    {
+      "path": "dependency-update-audit.json",
       "exists": true
     },
     {

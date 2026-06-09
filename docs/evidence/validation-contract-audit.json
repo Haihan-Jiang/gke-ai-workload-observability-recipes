@@ -3,22 +3,22 @@
   "check_count": 7,
   "failed_count": 0,
   "detected_fixture_count": 6,
-  "py_compile_script_count": 72,
-  "generation_script_count": 70,
-  "direct_validation_script_count": 69,
-  "policy_json_count": 65,
-  "committed_json_count": 80,
-  "release_argument_count": 69,
-  "validate_argument_count": 108,
+  "py_compile_script_count": 73,
+  "generation_script_count": 71,
+  "direct_validation_script_count": 70,
+  "policy_json_count": 66,
+  "committed_json_count": 81,
+  "release_argument_count": 70,
+  "validate_argument_count": 109,
   "checks": [
     {
       "name": "py_compile_contract",
       "ok": true,
       "evidence": {
         "missing_scripts": [],
-        "observed_count": 72,
-        "expected_count": 72,
-        "minimum": 72
+        "observed_count": 73,
+        "expected_count": 73,
+        "minimum": 73
       }
     },
     {
@@ -26,8 +26,8 @@
       "ok": true,
       "evidence": {
         "missing_direct_validation_scripts": [],
-        "generation_script_count": 70,
-        "direct_validation_script_count": 69,
+        "generation_script_count": 71,
+        "direct_validation_script_count": 70,
         "allowed_generate_only_scripts": [
           "demo/render_incident_evidence.py"
         ]
@@ -38,9 +38,9 @@
       "ok": true,
       "evidence": {
         "missing_policy_json": [],
-        "observed_count": 65,
-        "expected_count": 65,
-        "minimum": 65
+        "observed_count": 66,
+        "expected_count": 66,
+        "minimum": 66
       }
     },
     {
@@ -48,9 +48,9 @@
       "ok": true,
       "evidence": {
         "missing_committed_json": [],
-        "observed_count": 80,
-        "expected_count": 80,
-        "minimum": 80
+        "observed_count": 81,
+        "expected_count": 81,
+        "minimum": 81
       }
     },
     {
@@ -58,9 +58,9 @@
       "ok": true,
       "evidence": {
         "missing_arguments": [],
-        "release_argument_count": 69,
-        "validate_argument_count": 108,
-        "minimum": 69
+        "release_argument_count": 70,
+        "validate_argument_count": 109,
+        "minimum": 70
       }
     },
     {

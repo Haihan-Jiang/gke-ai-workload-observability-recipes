@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 70,
-  "minimum_dependency_count": 186,
+  "minimum_step_count": 71,
+  "minimum_dependency_count": 195,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -239,6 +239,10 @@
     {
       "name": "data_handling_audit",
       "script": "demo/data_handling_audit.py"
+    },
+    {
+      "name": "dependency_update_audit",
+      "script": "demo/dependency_update_audit.py"
     },
     {
       "name": "public_claim_evidence_audit",
@@ -1215,6 +1219,51 @@
       "producer": "data_handling_audit",
       "consumer": "proof_packet_integrity_audit",
       "artifact": "docs/evidence/data-handling-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/dependency-update-audit.md"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/dependency-update-audit.md"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/dependency-update-audit.json"
+    },
+    {
+      "producer": "dependency_update_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/dependency-update-audit.json"
     }
   ],
   "fixtures": [

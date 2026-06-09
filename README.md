@@ -24,6 +24,9 @@ formats before release readiness is reported.
 SBOM inventory evidence generates a CycloneDX-style component list for GitHub
 Actions, container images, and runtime tools so reviewers can trace third-party
 references back to source files.
+Dependency update evidence checks Dependabot coverage, review limits,
+validation documentation, and release-control linkage before maintenance
+readiness claims are trusted.
 Security response evidence checks private vulnerability reporting, severity
 triage SLAs, fix/regression expectations, and coordinated disclosure updates
 before release readiness is reported.
@@ -190,6 +193,8 @@ not described as merged.
   evidence for high-confidence credential formats and proves negative fixtures.
 - A SBOM inventory audit that generates a CycloneDX-style third-party component
   list and verifies source traceability for Actions, images, and runtimes.
+- A dependency update audit that verifies Dependabot coverage, review
+  boundaries, validation documentation, and release-control linkage.
 - A security response audit that verifies private reporting, severity triage
   SLAs, fix evidence expectations, disclosure updates, and negative fixtures.
 - A CI governance audit that verifies GitHub Actions use maintained action
