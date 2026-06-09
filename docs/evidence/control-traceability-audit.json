@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 52,
-  "release_check_count": 57,
-  "evidence_file_count": 105,
-  "source_input_count": 55,
-  "policy_input_count": 53,
-  "test_file_count": 52,
+  "control_count": 53,
+  "release_check_count": 58,
+  "evidence_file_count": 107,
+  "source_input_count": 56,
+  "policy_input_count": 54,
+  "test_file_count": 53,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 52,
-        "minimum_control_count": 52,
+        "control_count": 53,
+        "minimum_control_count": 53,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 57,
-        "minimum_release_check_count": 57,
+        "release_check_count": 58,
+        "minimum_release_check_count": 58,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 53,
-        "minimum_policy_input_count": 53,
+        "policy_input_count": 54,
+        "minimum_policy_input_count": 54,
         "policy_gaps": []
       }
     },
@@ -1019,6 +1019,23 @@
       ],
       "tests": [
         "tests/test_evidence_provenance.py"
+      ]
+    },
+    {
+      "name": "proof_packet_integrity_audit",
+      "release_readiness_check": "proof_packet_integrity_audit",
+      "evidence": [
+        "docs/evidence/proof-packet-integrity-audit.json",
+        "docs/evidence/proof-packet-integrity-audit.md"
+      ],
+      "source_inputs": [
+        "demo/proof_packet_integrity_audit.py"
+      ],
+      "policy_inputs": [
+        "config/proof-packet-integrity-policy.json"
+      ],
+      "tests": [
+        "tests/test_proof_packet_integrity_audit.py"
       ]
     }
   ],

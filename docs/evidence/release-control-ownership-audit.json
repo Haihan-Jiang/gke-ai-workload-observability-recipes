@@ -3,20 +3,20 @@
   "failed_count": 0,
   "check_count": 7,
   "detected_fixture_count": 6,
-  "control_count": 57,
-  "release_check_count": 57,
-  "covered_release_check_count": 57,
-  "tier0_count": 34,
-  "every_release_count": 45,
+  "control_count": 58,
+  "release_check_count": 58,
+  "covered_release_check_count": 58,
+  "tier0_count": 35,
+  "every_release_count": 46,
   "owner_group_count": 5,
   "checks": [
     {
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 57,
-        "release_check_count": 57,
-        "minimum_control_count": 57,
+        "control_count": 58,
+        "release_check_count": 58,
+        "minimum_control_count": 58,
         "duplicate_controls": [],
         "missing_release_checks": [],
         "unknown_release_checks": []
@@ -35,12 +35,12 @@
       "ok": true,
       "evidence": {
         "tier_counts": {
-          "tier_0_release_blocker": 34,
+          "tier_0_release_blocker": 35,
           "tier_1_production_guard": 22,
           "tier_2_evidence_guard": 1
         },
         "tier_gaps": [],
-        "minimum_tier0_count": 34
+        "minimum_tier0_count": 35
       }
     },
     {
@@ -48,12 +48,12 @@
       "ok": true,
       "evidence": {
         "cadence_counts": {
-          "every_release": 45,
+          "every_release": 46,
           "monthly": 12,
           "quarterly": 0
         },
         "cadence_gaps": [],
-        "minimum_every_release_count": 45
+        "minimum_every_release_count": 46
       }
     },
     {
@@ -544,6 +544,13 @@
       "tier": "tier_0_release_blocker",
       "review_cadence": "every_release",
       "evidence_path": "docs/evidence/evidence-provenance.json"
+    },
+    {
+      "name": "proof_packet_integrity_audit",
+      "owner": "evidence",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/proof-packet-integrity-audit.json"
     }
   ],
   "fixtures": [

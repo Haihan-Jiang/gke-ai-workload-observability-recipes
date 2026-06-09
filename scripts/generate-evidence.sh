@@ -306,16 +306,21 @@ python3 demo/release_control_ownership_audit.py \
   --release-readiness-source demo/release_readiness.py \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
-python3 demo/control_traceability_audit.py \
-  --policy config/control-traceability-policy.json \
-  --release-readiness-source demo/release_readiness.py \
-  --repo-root . \
-  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
 python3 demo/evidence_provenance.py \
   --policy config/evidence-provenance-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/proof_packet_integrity_audit.py \
+  --policy config/proof-packet-integrity-policy.json \
+  --provenance docs/evidence/evidence-provenance.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
+python3 demo/control_traceability_audit.py \
+  --policy config/control-traceability-policy.json \
+  --release-readiness-source demo/release_readiness.py \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
 python3 demo/release_readiness.py \
@@ -375,6 +380,7 @@ python3 demo/release_readiness.py \
   --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
   --evidence-schema docs/evidence/evidence-schema-audit.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
+  --proof-packet-integrity docs/evidence/proof-packet-integrity-audit.json \
   --evidence-dir docs/evidence \
   --output-dir docs/evidence >/dev/null
 

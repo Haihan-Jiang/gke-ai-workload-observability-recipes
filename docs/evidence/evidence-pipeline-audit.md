@@ -10,10 +10,10 @@ accidentally read stale committed artifacts.
 
 | Metric | Value |
 | --- | ---: |
-| Steps | 59 |
-| Required steps | 59 |
-| Dependencies | 92 |
-| Artifact dependencies | 92 |
+| Steps | 60 |
+| Required steps | 60 |
+| Dependencies | 95 |
+| Artifact dependencies | 95 |
 | Detected fixtures | 4 |
 
 ## Checks
@@ -98,7 +98,6 @@ accidentally read stale committed artifacts.
 | `release_control_ownership_audit` | `control_traceability_audit` | yes |
 | `evidence_schema_audit` | `control_traceability_audit` | yes |
 | `evidence_pipeline_audit` | `control_traceability_audit` | yes |
-| `control_traceability_audit` | `evidence_provenance` | yes |
 | `oss_license_audit` | `evidence_provenance` | yes |
 | `secret_hygiene_audit` | `evidence_provenance` | yes |
 | `sbom_inventory_audit` | `evidence_provenance` | yes |
@@ -108,6 +107,10 @@ accidentally read stale committed artifacts.
 | `telemetry_exporter_authority_audit` | `evidence_provenance` | yes |
 | `staged_telemetry_validation_audit` | `evidence_provenance` | yes |
 | `render_incident_evidence` | `evidence_provenance` | yes |
+| `evidence_provenance` | `proof_packet_integrity_audit` | yes |
+| `evidence_provenance` | `control_traceability_audit` | yes |
+| `proof_packet_integrity_audit` | `control_traceability_audit` | yes |
+| `proof_packet_integrity_audit` | `release_readiness` | yes |
 | `evidence_provenance` | `release_readiness` | yes |
 | `regional_failover_audit` | `release_readiness` | yes |
 | `control_traceability_audit` | `release_readiness` | yes |

@@ -73,5 +73,6 @@
 - [Evidence schema audit](evidence-schema-audit.md)
 - [Disaster recovery drill](disaster-recovery-drill.md)
 - [Evidence provenance](evidence-provenance.md)
+- [Proof packet integrity audit](proof-packet-integrity-audit.md)
 - [Release readiness report](release-readiness.md)
 - [Release readiness JSON](release-readiness.json)

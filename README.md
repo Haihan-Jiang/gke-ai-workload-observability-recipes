@@ -107,6 +107,9 @@ silently satisfying later release gates.
 Evidence schema audit evidence checks that critical generated JSON reports keep
 stable status fields, required fields, required checks, metric contracts, array
 shapes, and negative drift fixtures before release readiness is reported.
+Proof packet integrity evidence re-checks the provenance manifest against the
+current repository tree so stale evidence, source drift, missing artifacts, and
+circular release-proof inputs block release readiness.
 
 This repository is a personal reference project. Related upstream Google Cloud
 OpenTelemetry sample PRs are tracked in
@@ -262,6 +265,9 @@ not described as merged.
   fixtures stable.
 - An evidence provenance manifest with SHA-256 checksums for generated
   evidence, Kubernetes/Grafana/OpenSLO artifacts, and source inputs.
+- A proof packet integrity audit that re-checks provenance checksums against
+  the current tree and blocks release readiness on stale, missing, or circular
+  proof inputs.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -623,6 +629,9 @@ Before adapting this to a real GKE cluster:
 49. Keep staged telemetry validation aligned with rollout guard, trace quality,
    redaction, cost budget, exporter authority, synthetic probes, and
    model-release blocking before rollout expansion.
+50. Keep proof packet integrity aligned with evidence provenance checksums,
+   current source inputs, generated artifacts, and non-circular release
+   readiness inputs before claiming committed evidence is fresh.
 
 ## Case Study
 

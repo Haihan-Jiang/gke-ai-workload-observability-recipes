@@ -228,6 +228,10 @@
     {
       "name": "evidence_provenance",
       "ok": true
+    },
+    {
+      "name": "proof_packet_integrity_audit",
+      "ok": true
     }
   ],
   "evidence": [
@@ -773,6 +777,14 @@
     },
     {
       "path": "evidence-provenance.json",
+      "exists": true
+    },
+    {
+      "path": "proof-packet-integrity-audit.md",
+      "exists": true
+    },
+    {
+      "path": "proof-packet-integrity-audit.json",
       "exists": true
     }
   ],

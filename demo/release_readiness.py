@@ -146,6 +146,8 @@ REQUIRED_EVIDENCE = [
     "disaster-recovery-drill.json",
     "evidence-provenance.md",
     "evidence-provenance.json",
+    "proof-packet-integrity-audit.md",
+    "proof-packet-integrity-audit.json",
 ]
 
 REQUIRED_POLICY_REGRESSION_CONTROLS = {
@@ -222,6 +224,7 @@ def evaluate(
     evidence_schema: dict[str, Any],
     disaster_recovery_drill: dict[str, Any],
     evidence_provenance: dict[str, Any],
+    proof_packet_integrity: dict[str, Any],
     evidence_dir: Path,
 ) -> dict[str, Any]:
     evidence = [
@@ -640,11 +643,11 @@ def evaluate(
         {
             "name": "release_control_ownership_audit",
             "ok": release_control_ownership.get("status") == "pass"
-            and int(release_control_ownership.get("control_count", 0)) >= 57
+            and int(release_control_ownership.get("control_count", 0)) >= 58
             and int(release_control_ownership.get("covered_release_check_count", 0))
             == int(release_control_ownership.get("release_check_count", -1))
-            and int(release_control_ownership.get("tier0_count", 0)) >= 34
-            and int(release_control_ownership.get("every_release_count", 0)) >= 45
+            and int(release_control_ownership.get("tier0_count", 0)) >= 35
+            and int(release_control_ownership.get("every_release_count", 0)) >= 46
             and int(release_control_ownership.get("owner_group_count", 0)) >= 5
             and int(release_control_ownership.get("detected_fixture_count", 0)) >= 6
             and int(release_control_ownership.get("failed_count", -1)) == 0,
@@ -652,20 +655,20 @@ def evaluate(
         {
             "name": "control_traceability_audit",
             "ok": control_traceability.get("status") == "pass"
-            and int(control_traceability.get("control_count", 0)) >= 52
-            and int(control_traceability.get("evidence_file_count", 0)) >= 105
-            and int(control_traceability.get("source_input_count", 0)) >= 55
-            and int(control_traceability.get("policy_input_count", 0)) >= 53
-            and int(control_traceability.get("test_file_count", 0)) >= 52
+            and int(control_traceability.get("control_count", 0)) >= 53
+            and int(control_traceability.get("evidence_file_count", 0)) >= 107
+            and int(control_traceability.get("source_input_count", 0)) >= 56
+            and int(control_traceability.get("policy_input_count", 0)) >= 54
+            and int(control_traceability.get("test_file_count", 0)) >= 53
             and int(control_traceability.get("detected_fixture_count", 0)) >= 6
             and int(control_traceability.get("failed_count", -1)) == 0,
         },
         {
             "name": "evidence_pipeline_audit",
             "ok": evidence_pipeline.get("status") == "pass"
-            and int(evidence_pipeline.get("step_count", 0)) >= 59
-            and int(evidence_pipeline.get("dependency_count", 0)) >= 92
-            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 92
+            and int(evidence_pipeline.get("step_count", 0)) >= 60
+            and int(evidence_pipeline.get("dependency_count", 0)) >= 95
+            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 95
             and int(evidence_pipeline.get("detected_fixture_count", 0)) >= 4
             and int(evidence_pipeline.get("failed_count", -1)) == 0,
         },
@@ -691,9 +694,24 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 129
-            and int(evidence_provenance.get("source_input_count", 0)) >= 121
+            and int(evidence_provenance.get("artifact_count", 0)) >= 133
+            and int(evidence_provenance.get("source_input_count", 0)) >= 129
             and int(evidence_provenance.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "proof_packet_integrity_audit",
+            "ok": proof_packet_integrity.get("status") == "pass"
+            and int(proof_packet_integrity.get("manifest_entry_count", 0)) >= 266
+            and int(proof_packet_integrity.get("evidence_artifact_count", 0)) >= 133
+            and int(proof_packet_integrity.get("generated_artifact_count", 0)) >= 4
+            and int(proof_packet_integrity.get("source_input_count", 0)) >= 129
+            and int(proof_packet_integrity.get("matched_digest_count", 0))
+            == int(proof_packet_integrity.get("manifest_entry_count", -1))
+            and int(proof_packet_integrity.get("missing_path_count", -1)) == 0
+            and int(proof_packet_integrity.get("mismatched_digest_count", -1)) == 0
+            and int(proof_packet_integrity.get("circular_artifact_count", -1)) == 0
+            and int(proof_packet_integrity.get("detected_fixture_count", 0)) >= 6
+            and int(proof_packet_integrity.get("failed_count", -1)) == 0,
         },
     ]
     return {
@@ -733,7 +751,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "coverage, accelerator quota fairness coverage, load-shedding policy",
         "coverage, regional failover coverage,",
         "waiver governance, release control ownership, control traceability, evidence pipeline ordering, evidence schema contracts, disaster recovery",
-        "drill coverage, evidence provenance, and committed evidence are",
+        "drill coverage, evidence provenance, proof-packet integrity, and committed evidence are",
         "present and internally",
         "consistent.",
         "",
@@ -817,6 +835,7 @@ def main() -> int:
     parser.add_argument("--evidence-schema", default="out/evidence-schema-audit/evidence-schema-audit.json")
     parser.add_argument("--disaster-recovery-drill", default="out/disaster-recovery-drill/disaster-recovery-drill.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
+    parser.add_argument("--proof-packet-integrity", default="out/proof-packet-integrity-audit/proof-packet-integrity-audit.json")
     parser.add_argument("--evidence-dir", default="docs/evidence")
     parser.add_argument("--output-dir", default="out/release-readiness")
     args = parser.parse_args()
@@ -878,6 +897,7 @@ def main() -> int:
         evidence_schema=load_json(Path(args.evidence_schema)),
         disaster_recovery_drill=load_json(Path(args.disaster_recovery_drill)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),
+        proof_packet_integrity=load_json(Path(args.proof_packet_integrity)),
         evidence_dir=Path(args.evidence_dir),
     )
     output_dir = Path(args.output_dir)

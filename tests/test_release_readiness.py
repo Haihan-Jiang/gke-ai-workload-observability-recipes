@@ -390,30 +390,30 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "release_control_ownership": {
             "status": "pass",
-            "control_count": 57,
-            "release_check_count": 57,
-            "covered_release_check_count": 57,
-            "tier0_count": 34,
-            "every_release_count": 45,
+            "control_count": 58,
+            "release_check_count": 58,
+            "covered_release_check_count": 58,
+            "tier0_count": 35,
+            "every_release_count": 46,
             "owner_group_count": 5,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "control_traceability": {
             "status": "pass",
-            "control_count": 52,
-            "evidence_file_count": 105,
-            "source_input_count": 55,
-            "policy_input_count": 53,
-            "test_file_count": 52,
+            "control_count": 53,
+            "evidence_file_count": 107,
+            "source_input_count": 56,
+            "policy_input_count": 54,
+            "test_file_count": 53,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 59,
-            "dependency_count": 92,
-            "artifact_dependency_count": 92,
+            "step_count": 60,
+            "dependency_count": 95,
+            "artifact_dependency_count": 95,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
@@ -437,8 +437,21 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 131,
-            "source_input_count": 123,
+            "artifact_count": 133,
+            "source_input_count": 129,
+            "failed_count": 0,
+        },
+        "proof_packet_integrity": {
+            "status": "pass",
+            "manifest_entry_count": 266,
+            "evidence_artifact_count": 133,
+            "generated_artifact_count": 4,
+            "source_input_count": 129,
+            "matched_digest_count": 266,
+            "missing_path_count": 0,
+            "mismatched_digest_count": 0,
+            "circular_artifact_count": 0,
+            "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -889,6 +902,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["staged_telemetry_validation_audit"])
+
+    def test_requires_proof_packet_integrity_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["proof_packet_integrity"]["mismatched_digest_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["proof_packet_integrity_audit"])
 
     def test_requires_shadow_traffic_replay_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

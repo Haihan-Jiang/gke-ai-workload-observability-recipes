@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 59,
-  "minimum_dependency_count": 92,
+  "minimum_step_count": 60,
+  "minimum_dependency_count": 95,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -235,6 +235,10 @@
     {
       "name": "evidence_provenance",
       "script": "demo/evidence_provenance.py"
+    },
+    {
+      "name": "proof_packet_integrity_audit",
+      "script": "demo/proof_packet_integrity_audit.py"
     },
     {
       "name": "release_readiness",
@@ -583,11 +587,6 @@
       "artifact": "docs/evidence/evidence-pipeline-audit.json"
     },
     {
-      "producer": "control_traceability_audit",
-      "consumer": "evidence_provenance",
-      "artifact": "docs/evidence/control-traceability-audit.json"
-    },
-    {
       "producer": "oss_license_audit",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/oss-license-audit.json"
@@ -631,6 +630,26 @@
       "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md"
+    },
+    {
+      "producer": "evidence_provenance",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/evidence-provenance.json"
+    },
+    {
+      "producer": "evidence_provenance",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/evidence-provenance.json"
+    },
+    {
+      "producer": "proof_packet_integrity_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/proof-packet-integrity-audit.json"
+    },
+    {
+      "producer": "proof_packet_integrity_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/proof-packet-integrity-audit.json"
     },
     {
       "producer": "evidence_provenance",

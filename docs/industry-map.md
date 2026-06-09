@@ -170,6 +170,7 @@ inference incidents before a service reaches production.
 | C49 | Local debug telemetry can be mistaken for the production evidence path | Release review needs an explicit authoritative upstream exporter, bounded debug export, secure OTLP endpoint, queued retry delivery, and production replacement docs. | [Telemetry exporter authority audit](evidence/telemetry-exporter-authority-audit.md) |
 | C50 | Private GKE clusters can be blocked by unplanned admission webhook reachability | Release review needs proof that admission controls use native policy resources, avoid webhook/operator Service dependencies, and keep optional operator CRDs behind explicit skip paths. | [Private cluster admission boundary audit](evidence/private-cluster-admission-boundary-audit.md) |
 | C51 | Telemetry can be reviewed only after rollout damage has already happened | Release review needs staged rollout telemetry evidence that ties rollback decisions, trace quality, redaction, cost, exporter authority, synthetic probes, and model-release blocking together before promotion. | [Staged telemetry validation audit](evidence/staged-telemetry-validation-audit.md) |
+| C52 | A release can cite a stale proof packet after source or evidence changes | Release review needs a proof-packet integrity gate that re-checks provenance checksums against current evidence, generated artifacts, and source inputs before readiness is trusted. | [Proof packet integrity audit](evidence/proof-packet-integrity-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -417,6 +418,12 @@ inference incidents before a service reaches production.
     - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
     - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)
     - Evidence: [evidence schema audit](evidence/evidence-schema-audit.md)
+
+42. **Proof packet integrity audit**
+    - Code: [demo/proof_packet_integrity_audit.py](../demo/proof_packet_integrity_audit.py)
+    - Policy: [config/proof-packet-integrity-policy.json](../config/proof-packet-integrity-policy.json)
+    - Inputs: [evidence provenance manifest](evidence/evidence-provenance.md), committed evidence, generated artifacts, and source inputs
+    - Evidence: [proof packet integrity audit](evidence/proof-packet-integrity-audit.md)
 
 ## Boundary
 
