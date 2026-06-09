@@ -180,6 +180,7 @@ inference incidents before a service reaches production.
 | C59 | Security risks can be discussed without a reviewable threat model | Industrial review needs an explicit asset, trust-boundary, abuse-case, owner, residual-risk, evidence-link, and release-control register before security-readiness claims are trusted. | [Threat model audit](evidence/threat-model-audit.md) |
 | C60 | Public evidence can grow without a data-handling contract | Industrial review needs explicit data classes, retention boundaries, forbidden-data terms, owners, evidence links, and release-control bindings before data-handling claims are trusted. | [Data handling audit](evidence/data-handling-audit.md) |
 | C61 | Dependency updates can rely on informal maintainer memory | Industrial review needs automated dependency update coverage, bounded update PRs, validation documentation, and release-control linkage before maintenance-readiness claims are trusted. | [Dependency update audit](evidence/dependency-update-audit.md) |
+| C62 | Static code scanning can be configured informally or drift from release gates | Industrial review needs CodeQL trigger, permission, language, query-suite, action-version, and release-control evidence before code-scanning claims are trusted. | [Security scanning audit](evidence/security-scanning-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -499,6 +500,12 @@ inference incidents before a service reaches production.
     - Policy: [config/dependency-update-policy.json](../config/dependency-update-policy.json)
     - Inputs: [Dependabot config](../.github/dependabot.yml), [dependency update governance](dependency-updates.md), release process, security policy, README, and release-readiness source
     - Evidence: [dependency update audit](evidence/dependency-update-audit.md)
+
+54. **Security scanning audit**
+    - Code: [demo/security_scanning_audit.py](../demo/security_scanning_audit.py)
+    - Policy: [config/security-scanning-policy.json](../config/security-scanning-policy.json)
+    - Inputs: [CodeQL workflow](../.github/workflows/codeql.yml), release-readiness source, SBOM policy, OSS license policy, and README security-scanning claims
+    - Evidence: [security scanning audit](evidence/security-scanning-audit.md)
 
 ## Boundary
 

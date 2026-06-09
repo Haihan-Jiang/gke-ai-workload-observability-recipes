@@ -27,6 +27,9 @@ references back to source files.
 Dependency update evidence checks Dependabot coverage, review limits,
 validation documentation, and release-control linkage before maintenance
 readiness claims are trusted.
+Security scanning evidence checks CodeQL trigger coverage, workflow
+permissions, Python language scope, query suites, action versions, and
+release-control linkage before security-scan readiness claims are trusted.
 Security response evidence checks private vulnerability reporting, severity
 triage SLAs, fix/regression expectations, and coordinated disclosure updates
 before release readiness is reported.
@@ -195,6 +198,9 @@ not described as merged.
   list and verifies source traceability for Actions, images, and runtimes.
 - A dependency update audit that verifies Dependabot coverage, review
   boundaries, validation documentation, and release-control linkage.
+- A security scanning audit that verifies CodeQL triggers, least-privilege
+  permissions, Python analysis scope, security query suites, action versions,
+  and release-control linkage.
 - A security response audit that verifies private reporting, severity triage
   SLAs, fix evidence expectations, disclosure updates, and negative fixtures.
 - A CI governance audit that verifies GitHub Actions use maintained action
@@ -529,6 +535,7 @@ script:
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
 - [Documentation link integrity audit](docs/evidence/documentation-link-integrity-audit.md)
 - [Architecture decision audit](docs/evidence/architecture-decision-audit.md)
+- [Security scanning audit](docs/evidence/security-scanning-audit.md)
 - [Maintainer intake audit](docs/evidence/maintainer-intake-audit.md)
 - [Public claim evidence audit](docs/evidence/public-claim-evidence-audit.md)
 - [Release notes contract audit](docs/evidence/release-notes-contract-audit.md)

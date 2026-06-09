@@ -10,11 +10,11 @@ runtime tools used by the lab validation path.
 
 | Metric | Value |
 | --- | ---: |
-| Components | 8 |
-| GitHub Actions | 2 |
+| Components | 10 |
+| GitHub Actions | 5 |
 | Container images | 4 |
 | Runtime tools | 2 |
-| Source path links | 9 |
+| Source path links | 12 |
 | Detected fixtures | 6 |
 
 ## Checks

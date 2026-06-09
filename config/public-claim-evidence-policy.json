@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing that public README and industry-map claims are backed by committed evidence and release-readiness source checks.",
-  "minimum_claim_count": 18,
-  "minimum_evidence_claim_count": 18,
-  "minimum_release_check_count": 18,
+  "minimum_claim_count": 19,
+  "minimum_evidence_claim_count": 19,
+  "minimum_release_check_count": 19,
   "minimum_boundary_statement_count": 2,
   "minimum_detected_fixtures": 6,
   "boundary_statements": [
@@ -64,8 +64,8 @@
       "evidence_doc": "docs/evidence/evidence-pipeline-audit.md",
       "release_check": "evidence_pipeline_audit",
       "minimum_metrics": {
-        "step_count": 71,
-        "dependency_count": 195
+        "step_count": 72,
+        "dependency_count": 204
       }
     },
     {
@@ -284,6 +284,22 @@
         "validation_term_count": 8,
         "release_control_count": 6,
         "detected_fixture_count": 7
+      }
+    },
+    {
+      "id": "security_scanning",
+      "surface": "README.md",
+      "required_text": "Security scanning evidence checks CodeQL trigger coverage",
+      "evidence_json": "docs/evidence/security-scanning-audit.json",
+      "evidence_doc": "docs/evidence/security-scanning-audit.md",
+      "release_check": "security_scanning_audit",
+      "minimum_metrics": {
+        "workflow_count": 1,
+        "language_count": 1,
+        "query_suite_count": 2,
+        "codeql_action_count": 2,
+        "release_control_count": 6,
+        "detected_fixture_count": 8
       }
     }
   ],

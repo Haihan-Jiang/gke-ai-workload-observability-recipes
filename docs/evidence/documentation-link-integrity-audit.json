@@ -19,7 +19,7 @@
     },
     {
       "source": "README.md",
-      "line": 155,
+      "line": 158,
       "target": "docs/google-oss-upstream.md",
       "is_image": false,
       "kind": "local",
@@ -32,7 +32,7 @@
     },
     {
       "source": "README.md",
-      "line": 158,
+      "line": 161,
       "target": "docs/evidence/incident-dashboard.svg",
       "is_image": true,
       "kind": "local",
@@ -45,7 +45,7 @@
     },
     {
       "source": "README.md",
-      "line": 356,
+      "line": 362,
       "target": "docs/reviewer-quickstart.md",
       "is_image": false,
       "kind": "local",
@@ -58,7 +58,7 @@
     },
     {
       "source": "README.md",
-      "line": 458,
+      "line": 464,
       "target": "docs/evidence/incident-dashboard.svg",
       "is_image": true,
       "kind": "local",
@@ -71,7 +71,7 @@
     },
     {
       "source": "README.md",
-      "line": 460,
+      "line": 466,
       "target": "docs/evidence/sample-incident-report.md",
       "is_image": false,
       "kind": "local",
@@ -84,7 +84,7 @@
     },
     {
       "source": "README.md",
-      "line": 461,
+      "line": 467,
       "target": "docs/evidence/sample-summary.json",
       "is_image": false,
       "kind": "local",
@@ -97,7 +97,7 @@
     },
     {
       "source": "README.md",
-      "line": 462,
+      "line": 468,
       "target": "docs/evidence/reliability-gate.md",
       "is_image": false,
       "kind": "local",
@@ -110,7 +110,7 @@
     },
     {
       "source": "README.md",
-      "line": 463,
+      "line": 469,
       "target": "docs/evidence/reliability-gate.json",
       "is_image": false,
       "kind": "local",
@@ -123,7 +123,7 @@
     },
     {
       "source": "README.md",
-      "line": 464,
+      "line": 470,
       "target": "docs/evidence/capacity-plan.md",
       "is_image": false,
       "kind": "local",
@@ -136,7 +136,7 @@
     },
     {
       "source": "README.md",
-      "line": 465,
+      "line": 471,
       "target": "docs/evidence/incident-runbooks.md",
       "is_image": false,
       "kind": "local",
@@ -149,7 +149,7 @@
     },
     {
       "source": "README.md",
-      "line": 466,
+      "line": 472,
       "target": "docs/evidence/burn-rate-analysis.md",
       "is_image": false,
       "kind": "local",
@@ -162,7 +162,7 @@
     },
     {
       "source": "README.md",
-      "line": 467,
+      "line": 473,
       "target": "docs/evidence/rollout-guard.md",
       "is_image": false,
       "kind": "local",
@@ -175,7 +175,7 @@
     },
     {
       "source": "README.md",
-      "line": 468,
+      "line": 474,
       "target": "docs/evidence/trace-quality-audit.md",
       "is_image": false,
       "kind": "local",
@@ -188,7 +188,7 @@
     },
     {
       "source": "README.md",
-      "line": 469,
+      "line": 475,
       "target": "docs/evidence/collector-resilience.md",
       "is_image": false,
       "kind": "local",
@@ -201,7 +201,7 @@
     },
     {
       "source": "README.md",
-      "line": 470,
+      "line": 476,
       "target": "docs/evidence/incident-correlation.md",
       "is_image": false,
       "kind": "local",
@@ -214,7 +214,7 @@
     },
     {
       "source": "README.md",
-      "line": 471,
+      "line": 477,
       "target": "docs/evidence/complex-problems.md",
       "is_image": false,
       "kind": "local",
@@ -227,7 +227,7 @@
     },
     {
       "source": "README.md",
-      "line": 472,
+      "line": 478,
       "target": "docs/evidence/critical-path-attribution.md",
       "is_image": false,
       "kind": "local",
@@ -240,7 +240,7 @@
     },
     {
       "source": "README.md",
-      "line": 473,
+      "line": 479,
       "target": "docs/evidence/evidence-coverage.md",
       "is_image": false,
       "kind": "local",
@@ -253,7 +253,7 @@
     },
     {
       "source": "README.md",
-      "line": 474,
+      "line": 480,
       "target": "docs/evidence/hpa-lag-analysis.md",
       "is_image": false,
       "kind": "local",
@@ -266,7 +266,7 @@
     },
     {
       "source": "README.md",
-      "line": 475,
+      "line": 481,
       "target": "docs/evidence/tenant-blast-radius.md",
       "is_image": false,
       "kind": "local",
@@ -279,7 +279,7 @@
     },
     {
       "source": "README.md",
-      "line": 476,
+      "line": 482,
       "target": "docs/evidence/token-cost-guard.md",
       "is_image": false,
       "kind": "local",
@@ -292,7 +292,7 @@
     },
     {
       "source": "README.md",
-      "line": 477,
+      "line": 483,
       "target": "docs/evidence/detailed-problems.md",
       "is_image": false,
       "kind": "local",
@@ -305,7 +305,7 @@
     },
     {
       "source": "README.md",
-      "line": 478,
+      "line": 484,
       "target": "docs/evidence/deployment-policy.md",
       "is_image": false,
       "kind": "local",
@@ -318,7 +318,7 @@
     },
     {
       "source": "README.md",
-      "line": 479,
+      "line": 485,
       "target": "docs/evidence/policy-regression-suite.md",
       "is_image": false,
       "kind": "local",
@@ -331,7 +331,7 @@
     },
     {
       "source": "README.md",
-      "line": 480,
+      "line": 486,
       "target": "docs/evidence/supply-chain-audit.md",
       "is_image": false,
       "kind": "local",
@@ -344,7 +344,7 @@
     },
     {
       "source": "README.md",
-      "line": 481,
+      "line": 487,
       "target": "docs/evidence/oss-license-audit.md",
       "is_image": false,
       "kind": "local",
@@ -357,7 +357,7 @@
     },
     {
       "source": "README.md",
-      "line": 482,
+      "line": 488,
       "target": "docs/evidence/secret-hygiene-audit.md",
       "is_image": false,
       "kind": "local",
@@ -370,7 +370,7 @@
     },
     {
       "source": "README.md",
-      "line": 483,
+      "line": 489,
       "target": "docs/evidence/sbom-inventory-audit.md",
       "is_image": false,
       "kind": "local",
@@ -383,7 +383,7 @@
     },
     {
       "source": "README.md",
-      "line": 484,
+      "line": 490,
       "target": "docs/evidence/security-response-audit.md",
       "is_image": false,
       "kind": "local",
@@ -396,7 +396,7 @@
     },
     {
       "source": "README.md",
-      "line": 485,
+      "line": 491,
       "target": "docs/evidence/ci-governance-audit.md",
       "is_image": false,
       "kind": "local",
@@ -409,7 +409,7 @@
     },
     {
       "source": "README.md",
-      "line": 486,
+      "line": 492,
       "target": "docs/evidence/repository-governance-audit.md",
       "is_image": false,
       "kind": "local",
@@ -422,7 +422,7 @@
     },
     {
       "source": "README.md",
-      "line": 487,
+      "line": 493,
       "target": "docs/evidence/developer-runtime-audit.md",
       "is_image": false,
       "kind": "local",
@@ -435,7 +435,7 @@
     },
     {
       "source": "README.md",
-      "line": 488,
+      "line": 494,
       "target": "docs/evidence/k8s-hardening-audit.md",
       "is_image": false,
       "kind": "local",
@@ -448,7 +448,7 @@
     },
     {
       "source": "README.md",
-      "line": 489,
+      "line": 495,
       "target": "docs/evidence/pod-security-admission-audit.md",
       "is_image": false,
       "kind": "local",
@@ -461,7 +461,7 @@
     },
     {
       "source": "README.md",
-      "line": 490,
+      "line": 496,
       "target": "docs/evidence/kubernetes-api-compatibility-audit.md",
       "is_image": false,
       "kind": "local",
@@ -474,7 +474,7 @@
     },
     {
       "source": "README.md",
-      "line": 491,
+      "line": 497,
       "target": "docs/evidence/private-cluster-admission-boundary-audit.md",
       "is_image": false,
       "kind": "local",
@@ -487,7 +487,7 @@
     },
     {
       "source": "README.md",
-      "line": 492,
+      "line": 498,
       "target": "docs/evidence/namespace-resource-audit.md",
       "is_image": false,
       "kind": "local",
@@ -500,7 +500,7 @@
     },
     {
       "source": "README.md",
-      "line": 493,
+      "line": 499,
       "target": "docs/evidence/availability-topology-audit.md",
       "is_image": false,
       "kind": "local",
@@ -513,7 +513,7 @@
     },
     {
       "source": "README.md",
-      "line": 494,
+      "line": 500,
       "target": "docs/evidence/autoscaling-policy-audit.md",
       "is_image": false,
       "kind": "local",
@@ -526,7 +526,7 @@
     },
     {
       "source": "README.md",
-      "line": 495,
+      "line": 501,
       "target": "docs/evidence/scheduling-placement-audit.md",
       "is_image": false,
       "kind": "local",
@@ -539,7 +539,7 @@
     },
     {
       "source": "README.md",
-      "line": 496,
+      "line": 502,
       "target": "docs/evidence/rollout-safety-audit.md",
       "is_image": false,
       "kind": "local",
@@ -552,7 +552,7 @@
     },
     {
       "source": "README.md",
-      "line": 497,
+      "line": 503,
       "target": "docs/evidence/config-rollout-audit.md",
       "is_image": false,
       "kind": "local",
@@ -565,7 +565,7 @@
     },
     {
       "source": "README.md",
-      "line": 498,
+      "line": 504,
       "target": "docs/evidence/network-boundary-audit.md",
       "is_image": false,
       "kind": "local",
@@ -578,7 +578,7 @@
     },
     {
       "source": "README.md",
-      "line": 499,
+      "line": 505,
       "target": "docs/evidence/collector-self-observability-audit.md",
       "is_image": false,
       "kind": "local",
@@ -591,7 +591,7 @@
     },
     {
       "source": "README.md",
-      "line": 500,
+      "line": 506,
       "target": "docs/evidence/telemetry-exporter-authority-audit.md",
       "is_image": false,
       "kind": "local",
@@ -604,7 +604,7 @@
     },
     {
       "source": "README.md",
-      "line": 501,
+      "line": 507,
       "target": "docs/evidence/telemetry-sampling-audit.md",
       "is_image": false,
       "kind": "local",
@@ -617,7 +617,7 @@
     },
     {
       "source": "README.md",
-      "line": 502,
+      "line": 508,
       "target": "docs/evidence/workload-identity-audit.md",
       "is_image": false,
       "kind": "local",
@@ -630,7 +630,7 @@
     },
     {
       "source": "README.md",
-      "line": 503,
+      "line": 509,
       "target": "docs/evidence/admission-policy-audit.md",
       "is_image": false,
       "kind": "local",
@@ -643,7 +643,7 @@
     },
     {
       "source": "README.md",
-      "line": 504,
+      "line": 510,
       "target": "docs/evidence/alerting-rules.md",
       "is_image": false,
       "kind": "local",
@@ -656,7 +656,7 @@
     },
     {
       "source": "README.md",
-      "line": 505,
+      "line": 511,
       "target": "docs/evidence/grafana-dashboard.md",
       "is_image": false,
       "kind": "local",
@@ -669,7 +669,7 @@
     },
     {
       "source": "README.md",
-      "line": 506,
+      "line": 512,
       "target": "docs/evidence/openslo-contract.md",
       "is_image": false,
       "kind": "local",
@@ -682,7 +682,7 @@
     },
     {
       "source": "README.md",
-      "line": 507,
+      "line": 513,
       "target": "docs/evidence/observability-drift-audit.md",
       "is_image": false,
       "kind": "local",
@@ -695,7 +695,7 @@
     },
     {
       "source": "README.md",
-      "line": 508,
+      "line": 514,
       "target": "docs/evidence/telemetry-redaction-audit.md",
       "is_image": false,
       "kind": "local",
@@ -708,7 +708,7 @@
     },
     {
       "source": "README.md",
-      "line": 509,
+      "line": 515,
       "target": "docs/evidence/telemetry-cost-budget.md",
       "is_image": false,
       "kind": "local",
@@ -721,7 +721,7 @@
     },
     {
       "source": "README.md",
-      "line": 510,
+      "line": 516,
       "target": "docs/evidence/error-budget-ledger.md",
       "is_image": false,
       "kind": "local",
@@ -734,7 +734,7 @@
     },
     {
       "source": "README.md",
-      "line": 511,
+      "line": 517,
       "target": "docs/evidence/rollback-drill.md",
       "is_image": false,
       "kind": "local",
@@ -747,7 +747,7 @@
     },
     {
       "source": "README.md",
-      "line": 512,
+      "line": 518,
       "target": "docs/evidence/post-incident-review.md",
       "is_image": false,
       "kind": "local",
@@ -760,7 +760,7 @@
     },
     {
       "source": "README.md",
-      "line": 513,
+      "line": 519,
       "target": "docs/evidence/incident-response-drill.md",
       "is_image": false,
       "kind": "local",
@@ -773,7 +773,7 @@
     },
     {
       "source": "README.md",
-      "line": 514,
+      "line": 520,
       "target": "docs/evidence/dependency-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -786,7 +786,7 @@
     },
     {
       "source": "README.md",
-      "line": 515,
+      "line": 521,
       "target": "docs/evidence/synthetic-probe-audit.md",
       "is_image": false,
       "kind": "local",
@@ -799,7 +799,7 @@
     },
     {
       "source": "README.md",
-      "line": 516,
+      "line": 522,
       "target": "docs/evidence/model-release-safety-audit.md",
       "is_image": false,
       "kind": "local",
@@ -812,7 +812,7 @@
     },
     {
       "source": "README.md",
-      "line": 517,
+      "line": 523,
       "target": "docs/evidence/staged-telemetry-validation-audit.md",
       "is_image": false,
       "kind": "local",
@@ -825,7 +825,7 @@
     },
     {
       "source": "README.md",
-      "line": 518,
+      "line": 524,
       "target": "docs/evidence/shadow-traffic-replay-audit.md",
       "is_image": false,
       "kind": "local",
@@ -838,7 +838,7 @@
     },
     {
       "source": "README.md",
-      "line": 519,
+      "line": 525,
       "target": "docs/evidence/accelerator-quota-fairness-audit.md",
       "is_image": false,
       "kind": "local",
@@ -851,7 +851,7 @@
     },
     {
       "source": "README.md",
-      "line": 520,
+      "line": 526,
       "target": "docs/evidence/load-shedding-policy-audit.md",
       "is_image": false,
       "kind": "local",
@@ -864,7 +864,7 @@
     },
     {
       "source": "README.md",
-      "line": 521,
+      "line": 527,
       "target": "docs/evidence/regional-failover-audit.md",
       "is_image": false,
       "kind": "local",
@@ -877,7 +877,7 @@
     },
     {
       "source": "README.md",
-      "line": 522,
+      "line": 528,
       "target": "docs/evidence/release-waiver-governance.md",
       "is_image": false,
       "kind": "local",
@@ -890,7 +890,7 @@
     },
     {
       "source": "README.md",
-      "line": 523,
+      "line": 529,
       "target": "docs/evidence/release-control-ownership-audit.md",
       "is_image": false,
       "kind": "local",
@@ -903,7 +903,7 @@
     },
     {
       "source": "README.md",
-      "line": 524,
+      "line": 530,
       "target": "docs/evidence/control-traceability-audit.md",
       "is_image": false,
       "kind": "local",
@@ -916,7 +916,7 @@
     },
     {
       "source": "README.md",
-      "line": 525,
+      "line": 531,
       "target": "docs/evidence/replay-source-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -929,7 +929,7 @@
     },
     {
       "source": "README.md",
-      "line": 526,
+      "line": 532,
       "target": "docs/evidence/evidence-pipeline-audit.md",
       "is_image": false,
       "kind": "local",
@@ -942,7 +942,7 @@
     },
     {
       "source": "README.md",
-      "line": 527,
+      "line": 533,
       "target": "docs/evidence/evidence-schema-audit.md",
       "is_image": false,
       "kind": "local",
@@ -955,7 +955,7 @@
     },
     {
       "source": "README.md",
-      "line": 528,
+      "line": 534,
       "target": "docs/evidence/validation-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -968,7 +968,7 @@
     },
     {
       "source": "README.md",
-      "line": 529,
+      "line": 535,
       "target": "docs/evidence/disaster-recovery-drill.md",
       "is_image": false,
       "kind": "local",
@@ -981,7 +981,7 @@
     },
     {
       "source": "README.md",
-      "line": 530,
+      "line": 536,
       "target": "docs/evidence/documentation-link-integrity-audit.md",
       "is_image": false,
       "kind": "local",
@@ -994,7 +994,7 @@
     },
     {
       "source": "README.md",
-      "line": 531,
+      "line": 537,
       "target": "docs/evidence/architecture-decision-audit.md",
       "is_image": false,
       "kind": "local",
@@ -1007,7 +1007,20 @@
     },
     {
       "source": "README.md",
-      "line": 532,
+      "line": 538,
+      "target": "docs/evidence/security-scanning-audit.md",
+      "is_image": false,
+      "kind": "local",
+      "scheme_allowed": true,
+      "path_safe": true,
+      "target_exists": true,
+      "anchor_exists": true,
+      "resolved_path": "docs/evidence/security-scanning-audit.md",
+      "fragment": ""
+    },
+    {
+      "source": "README.md",
+      "line": 539,
       "target": "docs/evidence/maintainer-intake-audit.md",
       "is_image": false,
       "kind": "local",
@@ -1020,7 +1033,7 @@
     },
     {
       "source": "README.md",
-      "line": 533,
+      "line": 540,
       "target": "docs/evidence/public-claim-evidence-audit.md",
       "is_image": false,
       "kind": "local",
@@ -1033,7 +1046,7 @@
     },
     {
       "source": "README.md",
-      "line": 534,
+      "line": 541,
       "target": "docs/evidence/release-notes-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -1046,7 +1059,7 @@
     },
     {
       "source": "README.md",
-      "line": 535,
+      "line": 542,
       "target": "docs/evidence/evidence-provenance.md",
       "is_image": false,
       "kind": "local",
@@ -1059,7 +1072,7 @@
     },
     {
       "source": "README.md",
-      "line": 536,
+      "line": 543,
       "target": "docs/evidence/proof-packet-integrity-audit.md",
       "is_image": false,
       "kind": "local",
@@ -1072,7 +1085,7 @@
     },
     {
       "source": "README.md",
-      "line": 537,
+      "line": 544,
       "target": "docs/evidence/release-readiness.md",
       "is_image": false,
       "kind": "local",
@@ -1085,7 +1098,7 @@
     },
     {
       "source": "README.md",
-      "line": 538,
+      "line": 545,
       "target": "docs/evidence/README.md",
       "is_image": false,
       "kind": "local",
@@ -1098,7 +1111,7 @@
     },
     {
       "source": "README.md",
-      "line": 558,
+      "line": 565,
       "target": "docs/kind-e2e.md",
       "is_image": false,
       "kind": "local",
@@ -1111,7 +1124,7 @@
     },
     {
       "source": "README.md",
-      "line": 562,
+      "line": 569,
       "target": "k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -1124,7 +1137,7 @@
     },
     {
       "source": "README.md",
-      "line": 564,
+      "line": 571,
       "target": "k8s/gke/namespace.yaml",
       "is_image": false,
       "kind": "local",
@@ -1137,7 +1150,7 @@
     },
     {
       "source": "README.md",
-      "line": 566,
+      "line": 573,
       "target": "k8s/gke/scheduling.yaml",
       "is_image": false,
       "kind": "local",
@@ -1150,7 +1163,7 @@
     },
     {
       "source": "README.md",
-      "line": 568,
+      "line": 575,
       "target": "k8s/gke/collector.yaml",
       "is_image": false,
       "kind": "local",
@@ -1163,7 +1176,7 @@
     },
     {
       "source": "README.md",
-      "line": 570,
+      "line": 577,
       "target": "k8s/gke/instrumentation.yaml",
       "is_image": false,
       "kind": "local",
@@ -1176,7 +1189,7 @@
     },
     {
       "source": "README.md",
-      "line": 572,
+      "line": 579,
       "target": "k8s/gke/sample-app.yaml",
       "is_image": false,
       "kind": "local",
@@ -1189,7 +1202,7 @@
     },
     {
       "source": "README.md",
-      "line": 574,
+      "line": 581,
       "target": "k8s/gke/alerting-rules.yaml",
       "is_image": false,
       "kind": "local",
@@ -1202,7 +1215,7 @@
     },
     {
       "source": "README.md",
-      "line": 577,
+      "line": 584,
       "target": "k8s/gke/grafana-dashboard-configmap.yaml",
       "is_image": false,
       "kind": "local",
@@ -1215,7 +1228,7 @@
     },
     {
       "source": "README.md",
-      "line": 580,
+      "line": 587,
       "target": "slos/openslo/gke-ai-inference-slo.yaml",
       "is_image": false,
       "kind": "local",
@@ -1228,7 +1241,7 @@
     },
     {
       "source": "README.md",
-      "line": 582,
+      "line": 589,
       "target": "policies/admission/gke-ai-inference-admission-policy.yaml",
       "is_image": false,
       "kind": "local",
@@ -1241,7 +1254,7 @@
     },
     {
       "source": "README.md",
-      "line": 743,
+      "line": 750,
       "target": "docs/case-study.md",
       "is_image": false,
       "kind": "local",
@@ -1254,7 +1267,7 @@
     },
     {
       "source": "README.md",
-      "line": 747,
+      "line": 754,
       "target": "docs/industry-map.md",
       "is_image": false,
       "kind": "local",
@@ -1267,7 +1280,7 @@
     },
     {
       "source": "README.md",
-      "line": 754,
+      "line": 761,
       "target": "docs/architecture/incident-replay.md",
       "is_image": false,
       "kind": "local",
@@ -1280,7 +1293,7 @@
     },
     {
       "source": "README.md",
-      "line": 824,
+      "line": 831,
       "target": "LICENSE",
       "is_image": false,
       "kind": "local",
@@ -1293,7 +1306,7 @@
     },
     {
       "source": "README.md",
-      "line": 825,
+      "line": 832,
       "target": "NOTICE",
       "is_image": false,
       "kind": "local",
@@ -3048,6 +3061,19 @@
     {
       "source": "docs/evidence/README.md",
       "line": 83,
+      "target": "security-scanning-audit.md",
+      "is_image": false,
+      "kind": "local",
+      "scheme_allowed": true,
+      "path_safe": true,
+      "target_exists": true,
+      "anchor_exists": true,
+      "resolved_path": "docs/evidence/security-scanning-audit.md",
+      "fragment": ""
+    },
+    {
+      "source": "docs/evidence/README.md",
+      "line": 84,
       "target": "maintainer-intake-audit.md",
       "is_image": false,
       "kind": "local",
@@ -3060,7 +3086,7 @@
     },
     {
       "source": "docs/evidence/README.md",
-      "line": 84,
+      "line": 85,
       "target": "public-claim-evidence-audit.md",
       "is_image": false,
       "kind": "local",
@@ -3073,7 +3099,7 @@
     },
     {
       "source": "docs/evidence/README.md",
-      "line": 85,
+      "line": 86,
       "target": "release-notes-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -3086,7 +3112,7 @@
     },
     {
       "source": "docs/evidence/README.md",
-      "line": 86,
+      "line": 87,
       "target": "evidence-provenance.md",
       "is_image": false,
       "kind": "local",
@@ -3099,7 +3125,7 @@
     },
     {
       "source": "docs/evidence/README.md",
-      "line": 87,
+      "line": 88,
       "target": "proof-packet-integrity-audit.md",
       "is_image": false,
       "kind": "local",
@@ -3112,7 +3138,7 @@
     },
     {
       "source": "docs/evidence/README.md",
-      "line": 88,
+      "line": 89,
       "target": "release-readiness.md",
       "is_image": false,
       "kind": "local",
@@ -3125,7 +3151,7 @@
     },
     {
       "source": "docs/evidence/README.md",
-      "line": 89,
+      "line": 90,
       "target": "release-readiness.json",
       "is_image": false,
       "kind": "local",
@@ -4672,7 +4698,20 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 187,
+      "line": 183,
+      "target": "evidence/security-scanning-audit.md",
+      "is_image": false,
+      "kind": "local",
+      "scheme_allowed": true,
+      "path_safe": true,
+      "target_exists": true,
+      "anchor_exists": true,
+      "resolved_path": "docs/evidence/security-scanning-audit.md",
+      "fragment": ""
+    },
+    {
+      "source": "docs/industry-map.md",
+      "line": 188,
       "target": "../demo/telemetry_redaction_audit.py",
       "is_image": false,
       "kind": "local",
@@ -4685,7 +4724,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 188,
+      "line": 189,
       "target": "../config/telemetry-redaction-policy.json",
       "is_image": false,
       "kind": "local",
@@ -4698,7 +4737,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 189,
+      "line": 190,
       "target": "../demo/incident_replay.py",
       "is_image": false,
       "kind": "local",
@@ -4711,7 +4750,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 190,
+      "line": 191,
       "target": "evidence/telemetry-redaction-audit.md",
       "is_image": false,
       "kind": "local",
@@ -4724,7 +4763,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 193,
+      "line": 194,
       "target": "../demo/telemetry_cost_budget.py",
       "is_image": false,
       "kind": "local",
@@ -4737,7 +4776,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 194,
+      "line": 195,
       "target": "../config/telemetry-cost-policy.json",
       "is_image": false,
       "kind": "local",
@@ -4750,7 +4789,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 195,
+      "line": 196,
       "target": "../demo/incident_replay.py",
       "is_image": false,
       "kind": "local",
@@ -4763,7 +4802,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 196,
+      "line": 197,
       "target": "evidence/telemetry-cost-budget.md",
       "is_image": false,
       "kind": "local",
@@ -4776,7 +4815,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 199,
+      "line": 200,
       "target": "../demo/supply_chain_audit.py",
       "is_image": false,
       "kind": "local",
@@ -4789,7 +4828,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 200,
+      "line": 201,
       "target": "../config/supply-chain-policy.json",
       "is_image": false,
       "kind": "local",
@@ -4802,7 +4841,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 201,
+      "line": 202,
       "target": "../k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -4815,7 +4854,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 202,
+      "line": 203,
       "target": "evidence/supply-chain-audit.md",
       "is_image": false,
       "kind": "local",
@@ -4828,7 +4867,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 205,
+      "line": 206,
       "target": "../demo/ci_governance_audit.py",
       "is_image": false,
       "kind": "local",
@@ -4841,7 +4880,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 206,
+      "line": 207,
       "target": "../config/ci-governance-policy.json",
       "is_image": false,
       "kind": "local",
@@ -4854,7 +4893,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 207,
+      "line": 208,
       "target": "../.github/workflows/ci.yml",
       "is_image": false,
       "kind": "local",
@@ -4867,7 +4906,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 208,
+      "line": 209,
       "target": "evidence/ci-governance-audit.md",
       "is_image": false,
       "kind": "local",
@@ -4880,7 +4919,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 211,
+      "line": 212,
       "target": "../demo/repository_governance_audit.py",
       "is_image": false,
       "kind": "local",
@@ -4893,7 +4932,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 212,
+      "line": 213,
       "target": "../config/repository-governance-policy.json",
       "is_image": false,
       "kind": "local",
@@ -4906,7 +4945,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 213,
+      "line": 214,
       "target": "../CONTRIBUTING.md",
       "is_image": false,
       "kind": "local",
@@ -4919,7 +4958,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 213,
+      "line": 214,
       "target": "../SECURITY.md",
       "is_image": false,
       "kind": "local",
@@ -4932,7 +4971,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 213,
+      "line": 214,
       "target": "../.github/CODEOWNERS",
       "is_image": false,
       "kind": "local",
@@ -4945,7 +4984,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 213,
+      "line": 214,
       "target": "release-process.md",
       "is_image": false,
       "kind": "local",
@@ -4958,7 +4997,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 214,
+      "line": 215,
       "target": "evidence/repository-governance-audit.md",
       "is_image": false,
       "kind": "local",
@@ -4971,7 +5010,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 217,
+      "line": 218,
       "target": "../demo/developer_runtime_audit.py",
       "is_image": false,
       "kind": "local",
@@ -4984,7 +5023,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 218,
+      "line": 219,
       "target": "../config/developer-runtime-policy.json",
       "is_image": false,
       "kind": "local",
@@ -4997,7 +5036,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 219,
+      "line": 220,
       "target": "../Makefile",
       "is_image": false,
       "kind": "local",
@@ -5010,7 +5049,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 219,
+      "line": 220,
       "target": "../.python-version",
       "is_image": false,
       "kind": "local",
@@ -5023,7 +5062,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 219,
+      "line": 220,
       "target": "developer-runtime.md",
       "is_image": false,
       "kind": "local",
@@ -5036,7 +5075,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 219,
+      "line": 220,
       "target": "../.gitignore",
       "is_image": false,
       "kind": "local",
@@ -5049,7 +5088,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 220,
+      "line": 221,
       "target": "evidence/developer-runtime-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5062,7 +5101,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 223,
+      "line": 224,
       "target": "../demo/admission_policy_audit.py",
       "is_image": false,
       "kind": "local",
@@ -5075,7 +5114,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 224,
+      "line": 225,
       "target": "../config/admission-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5088,7 +5127,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 225,
+      "line": 226,
       "target": "../policies/admission/gke-ai-inference-admission-policy.yaml",
       "is_image": false,
       "kind": "local",
@@ -5101,7 +5140,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 226,
+      "line": 227,
       "target": "evidence/admission-policy-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5114,7 +5153,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 229,
+      "line": 230,
       "target": "../demo/release_waiver_governance.py",
       "is_image": false,
       "kind": "local",
@@ -5127,7 +5166,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 230,
+      "line": 231,
       "target": "../config/release-waiver-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5140,7 +5179,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 231,
+      "line": 232,
       "target": "../config/release-waivers.json",
       "is_image": false,
       "kind": "local",
@@ -5153,7 +5192,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 232,
+      "line": 233,
       "target": "evidence/release-waiver-governance.md",
       "is_image": false,
       "kind": "local",
@@ -5166,7 +5205,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 235,
+      "line": 236,
       "target": "../demo/disaster_recovery_drill.py",
       "is_image": false,
       "kind": "local",
@@ -5179,7 +5218,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 236,
+      "line": 237,
       "target": "../config/disaster-recovery-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5192,7 +5231,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 237,
+      "line": 238,
       "target": "evidence/disaster-recovery-drill.md",
       "is_image": false,
       "kind": "local",
@@ -5205,7 +5244,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 240,
+      "line": 241,
       "target": "../demo/observability_drift_audit.py",
       "is_image": false,
       "kind": "local",
@@ -5218,7 +5257,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 241,
+      "line": 242,
       "target": "../config/observability-drift-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5231,7 +5270,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 242,
+      "line": 243,
       "target": "evidence/alerting-rules.md",
       "is_image": false,
       "kind": "local",
@@ -5244,7 +5283,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 242,
+      "line": 243,
       "target": "evidence/grafana-dashboard.md",
       "is_image": false,
       "kind": "local",
@@ -5257,7 +5296,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 242,
+      "line": 243,
       "target": "evidence/openslo-contract.md",
       "is_image": false,
       "kind": "local",
@@ -5270,7 +5309,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 242,
+      "line": 243,
       "target": "evidence/incident-runbooks.md",
       "is_image": false,
       "kind": "local",
@@ -5283,7 +5322,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 243,
+      "line": 244,
       "target": "evidence/observability-drift-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5296,7 +5335,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 246,
+      "line": 247,
       "target": "../demo/incident_response_drill.py",
       "is_image": false,
       "kind": "local",
@@ -5309,7 +5348,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 247,
+      "line": 248,
       "target": "../config/incident-response-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5322,7 +5361,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 248,
+      "line": 249,
       "target": "evidence/alerting-rules.md",
       "is_image": false,
       "kind": "local",
@@ -5335,7 +5374,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 248,
+      "line": 249,
       "target": "evidence/incident-runbooks.md",
       "is_image": false,
       "kind": "local",
@@ -5348,7 +5387,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 248,
+      "line": 249,
       "target": "evidence/incident-correlation.md",
       "is_image": false,
       "kind": "local",
@@ -5361,7 +5400,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 248,
+      "line": 249,
       "target": "evidence/rollback-drill.md",
       "is_image": false,
       "kind": "local",
@@ -5374,7 +5413,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 248,
+      "line": 249,
       "target": "evidence/post-incident-review.md",
       "is_image": false,
       "kind": "local",
@@ -5387,7 +5426,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 249,
+      "line": 250,
       "target": "evidence/incident-response-drill.md",
       "is_image": false,
       "kind": "local",
@@ -5400,7 +5439,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 252,
+      "line": 253,
       "target": "../demo/dependency_contract_audit.py",
       "is_image": false,
       "kind": "local",
@@ -5413,7 +5452,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 253,
+      "line": 254,
       "target": "../config/dependency-contract-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5426,7 +5465,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 254,
+      "line": 255,
       "target": "evidence/critical-path-attribution.md",
       "is_image": false,
       "kind": "local",
@@ -5439,7 +5478,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 254,
+      "line": 255,
       "target": "evidence/alerting-rules.md",
       "is_image": false,
       "kind": "local",
@@ -5452,7 +5491,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 254,
+      "line": 255,
       "target": "evidence/incident-runbooks.md",
       "is_image": false,
       "kind": "local",
@@ -5465,7 +5504,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 254,
+      "line": 255,
       "target": "evidence/error-budget-ledger.md",
       "is_image": false,
       "kind": "local",
@@ -5478,7 +5517,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 254,
+      "line": 255,
       "target": "evidence/rollback-drill.md",
       "is_image": false,
       "kind": "local",
@@ -5491,7 +5530,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 255,
+      "line": 256,
       "target": "evidence/dependency-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5504,7 +5543,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 258,
+      "line": 259,
       "target": "../demo/synthetic_probe_audit.py",
       "is_image": false,
       "kind": "local",
@@ -5517,7 +5556,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 259,
+      "line": 260,
       "target": "../config/synthetic-probe-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5530,7 +5569,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 260,
+      "line": 261,
       "target": "evidence/sample-summary.json",
       "is_image": false,
       "kind": "local",
@@ -5543,7 +5582,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 260,
+      "line": 261,
       "target": "evidence/alerting-rules.md",
       "is_image": false,
       "kind": "local",
@@ -5556,7 +5595,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 260,
+      "line": 261,
       "target": "evidence/dependency-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5569,7 +5608,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 260,
+      "line": 261,
       "target": "evidence/incident-response-drill.md",
       "is_image": false,
       "kind": "local",
@@ -5582,7 +5621,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 260,
+      "line": 261,
       "target": "evidence/rollback-drill.md",
       "is_image": false,
       "kind": "local",
@@ -5595,7 +5634,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 260,
+      "line": 261,
       "target": "evidence/error-budget-ledger.md",
       "is_image": false,
       "kind": "local",
@@ -5608,7 +5647,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 261,
+      "line": 262,
       "target": "evidence/synthetic-probe-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5621,7 +5660,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 264,
+      "line": 265,
       "target": "../demo/model_release_safety_audit.py",
       "is_image": false,
       "kind": "local",
@@ -5634,7 +5673,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 265,
+      "line": 266,
       "target": "../config/model-release-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5647,7 +5686,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 266,
+      "line": 267,
       "target": "evidence/rollout-guard.md",
       "is_image": false,
       "kind": "local",
@@ -5660,7 +5699,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 266,
+      "line": 267,
       "target": "evidence/trace-quality-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5673,7 +5712,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 266,
+      "line": 267,
       "target": "evidence/token-cost-guard.md",
       "is_image": false,
       "kind": "local",
@@ -5686,7 +5725,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 266,
+      "line": 267,
       "target": "evidence/error-budget-ledger.md",
       "is_image": false,
       "kind": "local",
@@ -5699,7 +5738,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 266,
+      "line": 267,
       "target": "evidence/rollback-drill.md",
       "is_image": false,
       "kind": "local",
@@ -5712,7 +5751,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 266,
+      "line": 267,
       "target": "evidence/synthetic-probe-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5725,7 +5764,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 267,
+      "line": 268,
       "target": "evidence/model-release-safety-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5738,7 +5777,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 270,
+      "line": 271,
       "target": "../demo/staged_telemetry_validation_audit.py",
       "is_image": false,
       "kind": "local",
@@ -5751,7 +5790,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 271,
+      "line": 272,
       "target": "../config/staged-telemetry-validation-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5764,7 +5803,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 272,
+      "line": 273,
       "target": "evidence/rollout-guard.md",
       "is_image": false,
       "kind": "local",
@@ -5777,7 +5816,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 272,
+      "line": 273,
       "target": "evidence/trace-quality-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5790,7 +5829,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 272,
+      "line": 273,
       "target": "evidence/telemetry-redaction-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5803,7 +5842,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 272,
+      "line": 273,
       "target": "evidence/telemetry-cost-budget.md",
       "is_image": false,
       "kind": "local",
@@ -5816,7 +5855,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 272,
+      "line": 273,
       "target": "evidence/telemetry-exporter-authority-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5829,7 +5868,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 272,
+      "line": 273,
       "target": "evidence/synthetic-probe-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5842,7 +5881,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 272,
+      "line": 273,
       "target": "evidence/model-release-safety-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5855,7 +5894,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 273,
+      "line": 274,
       "target": "evidence/staged-telemetry-validation-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5868,7 +5907,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 276,
+      "line": 277,
       "target": "../demo/shadow_traffic_replay_audit.py",
       "is_image": false,
       "kind": "local",
@@ -5881,7 +5920,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 277,
+      "line": 278,
       "target": "../config/shadow-traffic-policy.json",
       "is_image": false,
       "kind": "local",
@@ -5894,7 +5933,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 278,
+      "line": 279,
       "target": "evidence/sample-summary.json",
       "is_image": false,
       "kind": "local",
@@ -5907,7 +5946,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 278,
+      "line": 279,
       "target": "evidence/telemetry-redaction-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5920,7 +5959,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 278,
+      "line": 279,
       "target": "evidence/rollout-guard.md",
       "is_image": false,
       "kind": "local",
@@ -5933,7 +5972,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 278,
+      "line": 279,
       "target": "evidence/token-cost-guard.md",
       "is_image": false,
       "kind": "local",
@@ -5946,7 +5985,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 278,
+      "line": 279,
       "target": "evidence/synthetic-probe-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5959,7 +5998,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 278,
+      "line": 279,
       "target": "evidence/model-release-safety-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5972,7 +6011,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 279,
+      "line": 280,
       "target": "evidence/shadow-traffic-replay-audit.md",
       "is_image": false,
       "kind": "local",
@@ -5985,7 +6024,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 282,
+      "line": 283,
       "target": "../demo/load_shedding_policy_audit.py",
       "is_image": false,
       "kind": "local",
@@ -5998,7 +6037,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 283,
+      "line": 284,
       "target": "../config/load-shedding-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6011,7 +6050,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 284,
+      "line": 285,
       "target": "evidence/capacity-plan.md",
       "is_image": false,
       "kind": "local",
@@ -6024,7 +6063,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 284,
+      "line": 285,
       "target": "evidence/tenant-blast-radius.md",
       "is_image": false,
       "kind": "local",
@@ -6037,7 +6076,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 284,
+      "line": 285,
       "target": "evidence/token-cost-guard.md",
       "is_image": false,
       "kind": "local",
@@ -6050,7 +6089,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 284,
+      "line": 285,
       "target": "evidence/error-budget-ledger.md",
       "is_image": false,
       "kind": "local",
@@ -6063,7 +6102,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 284,
+      "line": 285,
       "target": "evidence/synthetic-probe-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6076,7 +6115,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 284,
+      "line": 285,
       "target": "evidence/incident-runbooks.md",
       "is_image": false,
       "kind": "local",
@@ -6089,7 +6128,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 285,
+      "line": 286,
       "target": "evidence/load-shedding-policy-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6102,7 +6141,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 288,
+      "line": 289,
       "target": "../demo/regional_failover_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6115,7 +6154,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 289,
+      "line": 290,
       "target": "../config/regional-failover-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6128,7 +6167,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 290,
+      "line": 291,
       "target": "evidence/capacity-plan.md",
       "is_image": false,
       "kind": "local",
@@ -6141,7 +6180,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 290,
+      "line": 291,
       "target": "evidence/error-budget-ledger.md",
       "is_image": false,
       "kind": "local",
@@ -6154,7 +6193,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 290,
+      "line": 291,
       "target": "evidence/rollback-drill.md",
       "is_image": false,
       "kind": "local",
@@ -6167,7 +6206,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 290,
+      "line": 291,
       "target": "evidence/disaster-recovery-drill.md",
       "is_image": false,
       "kind": "local",
@@ -6180,7 +6219,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 290,
+      "line": 291,
       "target": "evidence/synthetic-probe-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6193,7 +6232,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 290,
+      "line": 291,
       "target": "evidence/load-shedding-policy-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6206,7 +6245,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 290,
+      "line": 291,
       "target": "evidence/incident-runbooks.md",
       "is_image": false,
       "kind": "local",
@@ -6219,7 +6258,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 290,
+      "line": 291,
       "target": "evidence/k8s-hardening-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6232,7 +6271,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 291,
+      "line": 292,
       "target": "evidence/regional-failover-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6245,7 +6284,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 294,
+      "line": 295,
       "target": "../demo/accelerator_quota_fairness_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6258,7 +6297,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 295,
+      "line": 296,
       "target": "../config/accelerator-quota-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6271,7 +6310,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 296,
+      "line": 297,
       "target": "evidence/capacity-plan.md",
       "is_image": false,
       "kind": "local",
@@ -6284,7 +6323,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 296,
+      "line": 297,
       "target": "evidence/tenant-blast-radius.md",
       "is_image": false,
       "kind": "local",
@@ -6297,7 +6336,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 296,
+      "line": 297,
       "target": "evidence/token-cost-guard.md",
       "is_image": false,
       "kind": "local",
@@ -6310,7 +6349,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 296,
+      "line": 297,
       "target": "evidence/load-shedding-policy-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6323,7 +6362,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 296,
+      "line": 297,
       "target": "evidence/shadow-traffic-replay-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6336,7 +6375,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 296,
+      "line": 297,
       "target": "evidence/model-release-safety-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6349,7 +6388,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 297,
+      "line": 298,
       "target": "evidence/accelerator-quota-fairness-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6362,7 +6401,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 300,
+      "line": 301,
       "target": "../demo/workload_identity_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6375,7 +6414,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 301,
+      "line": 302,
       "target": "../config/workload-identity-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6388,7 +6427,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 302,
+      "line": 303,
       "target": "../k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -6401,7 +6440,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 303,
+      "line": 304,
       "target": "evidence/workload-identity-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6414,7 +6453,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 306,
+      "line": 307,
       "target": "../demo/namespace_resource_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6427,7 +6466,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 307,
+      "line": 308,
       "target": "../config/namespace-resource-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6440,7 +6479,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 308,
+      "line": 309,
       "target": "../k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -6453,7 +6492,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 309,
+      "line": 310,
       "target": "evidence/namespace-resource-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6466,7 +6505,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 312,
+      "line": 313,
       "target": "../demo/availability_topology_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6479,7 +6518,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 313,
+      "line": 314,
       "target": "../config/availability-topology-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6492,7 +6531,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 314,
+      "line": 315,
       "target": "../k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -6505,7 +6544,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 315,
+      "line": 316,
       "target": "evidence/availability-topology-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6518,7 +6557,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 318,
+      "line": 319,
       "target": "../demo/autoscaling_policy_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6531,7 +6570,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 319,
+      "line": 320,
       "target": "../config/autoscaling-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6544,7 +6583,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 320,
+      "line": 321,
       "target": "../k8s/gke/sample-app.yaml",
       "is_image": false,
       "kind": "local",
@@ -6557,7 +6596,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 321,
+      "line": 322,
       "target": "evidence/autoscaling-policy-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6570,7 +6609,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 324,
+      "line": 325,
       "target": "../demo/network_boundary_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6583,7 +6622,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 325,
+      "line": 326,
       "target": "../config/network-boundary-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6596,7 +6635,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 326,
+      "line": 327,
       "target": "../k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -6609,7 +6648,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 327,
+      "line": 328,
       "target": "evidence/network-boundary-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6622,7 +6661,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 330,
+      "line": 331,
       "target": "../demo/telemetry_sampling_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6635,7 +6674,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 331,
+      "line": 332,
       "target": "../config/telemetry-sampling-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6648,7 +6687,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 332,
+      "line": 333,
       "target": "../k8s/gke/collector.yaml",
       "is_image": false,
       "kind": "local",
@@ -6661,7 +6700,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 333,
+      "line": 334,
       "target": "evidence/telemetry-sampling-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6674,7 +6713,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 336,
+      "line": 337,
       "target": "../demo/collector_self_observability_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6687,7 +6726,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 337,
+      "line": 338,
       "target": "../config/collector-self-observability-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6700,7 +6739,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 338,
+      "line": 339,
       "target": "../k8s/gke/collector.yaml",
       "is_image": false,
       "kind": "local",
@@ -6713,7 +6752,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 339,
+      "line": 340,
       "target": "evidence/collector-self-observability-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6726,7 +6765,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 342,
+      "line": 343,
       "target": "../demo/telemetry_exporter_authority_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6739,7 +6778,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 343,
+      "line": 344,
       "target": "../config/telemetry-exporter-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6752,7 +6791,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 344,
+      "line": 345,
       "target": "../k8s/gke/collector.yaml",
       "is_image": false,
       "kind": "local",
@@ -6765,7 +6804,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 344,
+      "line": 345,
       "target": "../README.md",
       "is_image": false,
       "kind": "local",
@@ -6778,7 +6817,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 345,
+      "line": 346,
       "target": "evidence/telemetry-exporter-authority-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6791,7 +6830,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 348,
+      "line": 349,
       "target": "../demo/scheduling_placement_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6804,7 +6843,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 349,
+      "line": 350,
       "target": "../config/scheduling-placement-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6817,7 +6856,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 350,
+      "line": 351,
       "target": "../k8s/gke/scheduling.yaml",
       "is_image": false,
       "kind": "local",
@@ -6830,7 +6869,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 350,
+      "line": 351,
       "target": "../k8s/gke/collector.yaml",
       "is_image": false,
       "kind": "local",
@@ -6843,7 +6882,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 350,
+      "line": 351,
       "target": "../k8s/gke/sample-app.yaml",
       "is_image": false,
       "kind": "local",
@@ -6856,7 +6895,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 351,
+      "line": 352,
       "target": "evidence/scheduling-placement-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6869,7 +6908,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 354,
+      "line": 355,
       "target": "../demo/rollout_safety_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6882,7 +6921,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 355,
+      "line": 356,
       "target": "../config/rollout-safety-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6895,7 +6934,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 356,
+      "line": 357,
       "target": "../k8s/gke/collector.yaml",
       "is_image": false,
       "kind": "local",
@@ -6908,7 +6947,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 356,
+      "line": 357,
       "target": "../k8s/gke/sample-app.yaml",
       "is_image": false,
       "kind": "local",
@@ -6921,7 +6960,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 357,
+      "line": 358,
       "target": "evidence/rollout-safety-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6934,7 +6973,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 360,
+      "line": 361,
       "target": "../demo/config_rollout_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6947,7 +6986,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 361,
+      "line": 362,
       "target": "../config/config-rollout-policy.json",
       "is_image": false,
       "kind": "local",
@@ -6960,7 +6999,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 362,
+      "line": 363,
       "target": "../k8s/gke/collector.yaml",
       "is_image": false,
       "kind": "local",
@@ -6973,7 +7012,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 363,
+      "line": 364,
       "target": "evidence/config-rollout-audit.md",
       "is_image": false,
       "kind": "local",
@@ -6986,7 +7025,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 366,
+      "line": 367,
       "target": "../demo/pod_security_admission_audit.py",
       "is_image": false,
       "kind": "local",
@@ -6999,7 +7038,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 367,
+      "line": 368,
       "target": "../config/pod-security-admission-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7012,7 +7051,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 368,
+      "line": 369,
       "target": "../k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -7025,7 +7064,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 369,
+      "line": 370,
       "target": "evidence/pod-security-admission-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7038,7 +7077,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 372,
+      "line": 373,
       "target": "../demo/kubernetes_api_compatibility_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7051,7 +7090,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 373,
+      "line": 374,
       "target": "../config/kubernetes-api-compatibility-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7064,7 +7103,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 374,
+      "line": 375,
       "target": "../k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -7077,7 +7116,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 374,
+      "line": 375,
       "target": "../scripts/kind-smoke.sh",
       "is_image": false,
       "kind": "local",
@@ -7090,7 +7129,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 375,
+      "line": 376,
       "target": "evidence/kubernetes-api-compatibility-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7103,7 +7142,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 378,
+      "line": 379,
       "target": "../demo/private_cluster_admission_boundary_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7116,7 +7155,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 379,
+      "line": 380,
       "target": "../config/private-cluster-admission-boundary-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7129,7 +7168,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 380,
+      "line": 381,
       "target": "../k8s/gke",
       "is_image": false,
       "kind": "local",
@@ -7142,7 +7181,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 380,
+      "line": 381,
       "target": "../scripts/kind-smoke.sh",
       "is_image": false,
       "kind": "local",
@@ -7155,7 +7194,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 381,
+      "line": 382,
       "target": "evidence/private-cluster-admission-boundary-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7168,7 +7207,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 384,
+      "line": 385,
       "target": "../demo/evidence_pipeline_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7181,7 +7220,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 385,
+      "line": 386,
       "target": "../config/evidence-pipeline-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7194,7 +7233,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 386,
+      "line": 387,
       "target": "../scripts/generate-evidence.sh",
       "is_image": false,
       "kind": "local",
@@ -7207,7 +7246,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 387,
+      "line": 388,
       "target": "evidence/evidence-pipeline-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7220,7 +7259,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 390,
+      "line": 391,
       "target": "../demo/oss_license_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7233,7 +7272,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 391,
+      "line": 392,
       "target": "../config/oss-license-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7246,7 +7285,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 392,
+      "line": 393,
       "target": "../LICENSE",
       "is_image": false,
       "kind": "local",
@@ -7259,7 +7298,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 392,
+      "line": 393,
       "target": "../NOTICE",
       "is_image": false,
       "kind": "local",
@@ -7272,7 +7311,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 392,
+      "line": 393,
       "target": "../README.md",
       "is_image": false,
       "kind": "local",
@@ -7285,7 +7324,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 393,
+      "line": 394,
       "target": "evidence/oss-license-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7298,7 +7337,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 396,
+      "line": 397,
       "target": "../demo/secret_hygiene_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7311,7 +7350,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 397,
+      "line": 398,
       "target": "../config/secret-hygiene-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7324,7 +7363,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 399,
+      "line": 400,
       "target": "evidence/secret-hygiene-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7337,7 +7376,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 402,
+      "line": 403,
       "target": "../demo/sbom_inventory_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7350,7 +7389,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 403,
+      "line": 404,
       "target": "../config/sbom-inventory-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7363,7 +7402,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 405,
+      "line": 406,
       "target": "evidence/sbom-inventory-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7376,7 +7415,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 405,
+      "line": 406,
       "target": "evidence/sbom-inventory.json",
       "is_image": false,
       "kind": "local",
@@ -7389,7 +7428,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 408,
+      "line": 409,
       "target": "../demo/security_response_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7402,7 +7441,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 409,
+      "line": 410,
       "target": "../config/security-response-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7415,7 +7454,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 410,
+      "line": 411,
       "target": "../SECURITY.md",
       "is_image": false,
       "kind": "local",
@@ -7428,7 +7467,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 410,
+      "line": 411,
       "target": "release-process.md",
       "is_image": false,
       "kind": "local",
@@ -7441,7 +7480,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 410,
+      "line": 411,
       "target": "../CONTRIBUTING.md",
       "is_image": false,
       "kind": "local",
@@ -7454,7 +7493,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 411,
+      "line": 412,
       "target": "evidence/security-response-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7467,7 +7506,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 414,
+      "line": 415,
       "target": "../demo/control_traceability_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7480,7 +7519,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 415,
+      "line": 416,
       "target": "../config/control-traceability-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7493,7 +7532,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 416,
+      "line": 417,
       "target": "../demo/release_readiness.py",
       "is_image": false,
       "kind": "local",
@@ -7506,7 +7545,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 417,
+      "line": 418,
       "target": "evidence/control-traceability-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7519,7 +7558,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 420,
+      "line": 421,
       "target": "../demo/release_control_ownership_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7532,7 +7571,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 421,
+      "line": 422,
       "target": "../config/release-control-ownership-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7545,7 +7584,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 422,
+      "line": 423,
       "target": "../demo/release_readiness.py",
       "is_image": false,
       "kind": "local",
@@ -7558,7 +7597,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 423,
+      "line": 424,
       "target": "evidence/release-control-ownership-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7571,7 +7610,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 426,
+      "line": 427,
       "target": "../demo/evidence_schema_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7584,7 +7623,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 427,
+      "line": 428,
       "target": "../config/evidence-schema-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7597,7 +7636,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 428,
+      "line": 429,
       "target": "evidence",
       "is_image": false,
       "kind": "local",
@@ -7610,7 +7649,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 429,
+      "line": 430,
       "target": "evidence/evidence-schema-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7623,7 +7662,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 432,
+      "line": 433,
       "target": "../demo/proof_packet_integrity_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7636,7 +7675,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 433,
+      "line": 434,
       "target": "../config/proof-packet-integrity-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7649,7 +7688,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 434,
+      "line": 435,
       "target": "evidence/evidence-provenance.md",
       "is_image": false,
       "kind": "local",
@@ -7662,7 +7701,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 435,
+      "line": 436,
       "target": "evidence/proof-packet-integrity-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7675,7 +7714,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 438,
+      "line": 439,
       "target": "../demo/documentation_link_integrity_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7688,7 +7727,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 439,
+      "line": 440,
       "target": "../config/documentation-link-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7701,7 +7740,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 441,
+      "line": 442,
       "target": "evidence/documentation-link-integrity-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7714,7 +7753,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 444,
+      "line": 445,
       "target": "../demo/replay_source_contract_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7727,7 +7766,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 445,
+      "line": 446,
       "target": "../config/replay-source-contract-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7740,7 +7779,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 447,
+      "line": 448,
       "target": "evidence/replay-source-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7753,7 +7792,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 450,
+      "line": 451,
       "target": "../demo/validation_contract_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7766,7 +7805,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 451,
+      "line": 452,
       "target": "../config/validation-contract-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7779,7 +7818,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 452,
+      "line": 453,
       "target": "../scripts/generate-evidence.sh",
       "is_image": false,
       "kind": "local",
@@ -7792,7 +7831,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 452,
+      "line": 453,
       "target": "../scripts/validate.sh",
       "is_image": false,
       "kind": "local",
@@ -7805,7 +7844,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 453,
+      "line": 454,
       "target": "evidence/validation-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7818,7 +7857,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 456,
+      "line": 457,
       "target": "../demo/public_claim_evidence_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7831,7 +7870,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 457,
+      "line": 458,
       "target": "../config/public-claim-evidence-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7844,7 +7883,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 458,
+      "line": 459,
       "target": "../README.md",
       "is_image": false,
       "kind": "local",
@@ -7857,7 +7896,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 458,
+      "line": 459,
       "target": "../demo/release_readiness.py",
       "is_image": false,
       "kind": "local",
@@ -7870,7 +7909,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 459,
+      "line": 460,
       "target": "evidence/public-claim-evidence-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7883,7 +7922,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 462,
+      "line": 463,
       "target": "../demo/release_notes_contract_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7896,7 +7935,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 463,
+      "line": 464,
       "target": "../config/release-notes-contract-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7909,7 +7948,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 464,
+      "line": 465,
       "target": "release-process.md",
       "is_image": false,
       "kind": "local",
@@ -7922,7 +7961,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 464,
+      "line": 465,
       "target": "../CONTRIBUTING.md",
       "is_image": false,
       "kind": "local",
@@ -7935,7 +7974,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 464,
+      "line": 465,
       "target": "../README.md",
       "is_image": false,
       "kind": "local",
@@ -7948,7 +7987,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 465,
+      "line": 466,
       "target": "evidence/release-notes-contract-audit.md",
       "is_image": false,
       "kind": "local",
@@ -7961,7 +8000,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 468,
+      "line": 469,
       "target": "../demo/maintainer_intake_audit.py",
       "is_image": false,
       "kind": "local",
@@ -7974,7 +8013,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 469,
+      "line": 470,
       "target": "../config/maintainer-intake-policy.json",
       "is_image": false,
       "kind": "local",
@@ -7987,7 +8026,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 470,
+      "line": 471,
       "target": "../SUPPORT.md",
       "is_image": false,
       "kind": "local",
@@ -8000,7 +8039,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 470,
+      "line": 471,
       "target": "../CONTRIBUTING.md",
       "is_image": false,
       "kind": "local",
@@ -8013,7 +8052,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 471,
+      "line": 472,
       "target": "evidence/maintainer-intake-audit.md",
       "is_image": false,
       "kind": "local",
@@ -8026,7 +8065,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 474,
+      "line": 475,
       "target": "../demo/architecture_decision_audit.py",
       "is_image": false,
       "kind": "local",
@@ -8039,7 +8078,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 475,
+      "line": 476,
       "target": "../config/architecture-decision-policy.json",
       "is_image": false,
       "kind": "local",
@@ -8052,7 +8091,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 476,
+      "line": 477,
       "target": "adr/README.md",
       "is_image": false,
       "kind": "local",
@@ -8065,7 +8104,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 477,
+      "line": 478,
       "target": "evidence/architecture-decision-audit.md",
       "is_image": false,
       "kind": "local",
@@ -8078,7 +8117,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 480,
+      "line": 481,
       "target": "../demo/reviewer_reproducibility_audit.py",
       "is_image": false,
       "kind": "local",
@@ -8091,7 +8130,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 481,
+      "line": 482,
       "target": "../config/reviewer-reproducibility-policy.json",
       "is_image": false,
       "kind": "local",
@@ -8104,7 +8143,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 482,
+      "line": 483,
       "target": "reviewer-quickstart.md",
       "is_image": false,
       "kind": "local",
@@ -8117,7 +8156,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 482,
+      "line": 483,
       "target": "release-process.md",
       "is_image": false,
       "kind": "local",
@@ -8130,7 +8169,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 482,
+      "line": 483,
       "target": "../CONTRIBUTING.md",
       "is_image": false,
       "kind": "local",
@@ -8143,7 +8182,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 483,
+      "line": 484,
       "target": "evidence/reviewer-reproducibility-audit.md",
       "is_image": false,
       "kind": "local",
@@ -8156,7 +8195,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 486,
+      "line": 487,
       "target": "../demo/threat_model_audit.py",
       "is_image": false,
       "kind": "local",
@@ -8169,7 +8208,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 487,
+      "line": 488,
       "target": "../config/threat-model-policy.json",
       "is_image": false,
       "kind": "local",
@@ -8182,7 +8221,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 488,
+      "line": 489,
       "target": "threat-model.md",
       "is_image": false,
       "kind": "local",
@@ -8195,7 +8234,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 489,
+      "line": 490,
       "target": "evidence/threat-model-audit.md",
       "is_image": false,
       "kind": "local",
@@ -8208,7 +8247,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 492,
+      "line": 493,
       "target": "../demo/data_handling_audit.py",
       "is_image": false,
       "kind": "local",
@@ -8221,7 +8260,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 493,
+      "line": 494,
       "target": "../config/data-handling-policy.json",
       "is_image": false,
       "kind": "local",
@@ -8234,7 +8273,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 494,
+      "line": 495,
       "target": "data-handling.md",
       "is_image": false,
       "kind": "local",
@@ -8247,7 +8286,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 495,
+      "line": 496,
       "target": "evidence/data-handling-audit.md",
       "is_image": false,
       "kind": "local",
@@ -8260,7 +8299,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 498,
+      "line": 499,
       "target": "../demo/dependency_update_audit.py",
       "is_image": false,
       "kind": "local",
@@ -8273,7 +8312,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 499,
+      "line": 500,
       "target": "../config/dependency-update-policy.json",
       "is_image": false,
       "kind": "local",
@@ -8286,7 +8325,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 500,
+      "line": 501,
       "target": "../.github/dependabot.yml",
       "is_image": false,
       "kind": "local",
@@ -8299,7 +8338,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 500,
+      "line": 501,
       "target": "dependency-updates.md",
       "is_image": false,
       "kind": "local",
@@ -8312,7 +8351,7 @@
     },
     {
       "source": "docs/industry-map.md",
-      "line": 501,
+      "line": 502,
       "target": "evidence/dependency-update-audit.md",
       "is_image": false,
       "kind": "local",
@@ -8321,6 +8360,58 @@
       "target_exists": true,
       "anchor_exists": true,
       "resolved_path": "docs/evidence/dependency-update-audit.md",
+      "fragment": ""
+    },
+    {
+      "source": "docs/industry-map.md",
+      "line": 505,
+      "target": "../demo/security_scanning_audit.py",
+      "is_image": false,
+      "kind": "local",
+      "scheme_allowed": true,
+      "path_safe": true,
+      "target_exists": true,
+      "anchor_exists": true,
+      "resolved_path": "demo/security_scanning_audit.py",
+      "fragment": ""
+    },
+    {
+      "source": "docs/industry-map.md",
+      "line": 506,
+      "target": "../config/security-scanning-policy.json",
+      "is_image": false,
+      "kind": "local",
+      "scheme_allowed": true,
+      "path_safe": true,
+      "target_exists": true,
+      "anchor_exists": true,
+      "resolved_path": "config/security-scanning-policy.json",
+      "fragment": ""
+    },
+    {
+      "source": "docs/industry-map.md",
+      "line": 507,
+      "target": "../.github/workflows/codeql.yml",
+      "is_image": false,
+      "kind": "local",
+      "scheme_allowed": true,
+      "path_safe": true,
+      "target_exists": true,
+      "anchor_exists": true,
+      "resolved_path": ".github/workflows/codeql.yml",
+      "fragment": ""
+    },
+    {
+      "source": "docs/industry-map.md",
+      "line": 508,
+      "target": "evidence/security-scanning-audit.md",
+      "is_image": false,
+      "kind": "local",
+      "scheme_allowed": true,
+      "path_safe": true,
+      "target_exists": true,
+      "anchor_exists": true,
+      "resolved_path": "docs/evidence/security-scanning-audit.md",
       "fragment": ""
     },
     {
@@ -8731,7 +8822,7 @@
       "name": "markdown_inventory",
       "ok": true,
       "evidence": {
-        "markdown_file_count": 99,
+        "markdown_file_count": 100,
         "minimum_markdown_file_count": 80
       }
     },
@@ -8767,7 +8858,7 @@
       "name": "link_volume_contract",
       "ok": true,
       "evidence": {
-        "local_link_count": 653,
+        "local_link_count": 660,
         "external_link_count": 14,
         "image_link_count": 3
       }
@@ -8837,9 +8928,9 @@
       }
     }
   ],
-  "markdown_file_count": 99,
+  "markdown_file_count": 100,
   "required_file_count": 12,
-  "local_link_count": 653,
+  "local_link_count": 660,
   "external_link_count": 14,
   "image_link_count": 3,
   "unsafe_link_count": 0,

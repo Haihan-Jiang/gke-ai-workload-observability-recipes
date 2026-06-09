@@ -39,9 +39,9 @@ class OssLicenseAuditTest(unittest.TestCase):
         report = oss_license_audit.build_report(REPO_ROOT, self.policy)
 
         self.assertEqual("pass", report["status"])
-        self.assertEqual(2, report["action_count"])
+        self.assertEqual(5, report["action_count"])
         self.assertEqual(4, report["image_count"])
-        self.assertEqual(6, report["third_party_reference_count"])
+        self.assertEqual(9, report["third_party_reference_count"])
         self.assertEqual(6, report["detected_fixture_count"])
 
     def test_detects_missing_license_file(self) -> None:

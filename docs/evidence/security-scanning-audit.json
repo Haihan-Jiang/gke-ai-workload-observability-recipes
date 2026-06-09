@@ -1,0 +1,176 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 9,
+  "detected_fixture_count": 8,
+  "workflow_path": ".github/workflows/codeql.yml",
+  "workflow_name": "codeql",
+  "workflow_count": 1,
+  "job_count": 1,
+  "language_count": 1,
+  "query_suite_count": 2,
+  "codeql_action_count": 2,
+  "release_control_count": 6,
+  "checks": [
+    {
+      "name": "workflow_inventory",
+      "ok": true,
+      "evidence": {
+        "workflow_exists": true,
+        "workflow_name": "codeql",
+        "job_names": [
+          "analyze"
+        ]
+      }
+    },
+    {
+      "name": "trigger_contract",
+      "ok": true,
+      "evidence": {
+        "triggers": [
+          "pull_request",
+          "push",
+          "schedule"
+        ],
+        "required_trigger_gaps": [],
+        "forbidden_triggers": []
+      }
+    },
+    {
+      "name": "permission_contract",
+      "ok": true,
+      "evidence": {
+        "permissions": {
+          "actions": "read",
+          "contents": "read",
+          "security-events": "write"
+        },
+        "permission_gaps": [],
+        "unexpected_writes": []
+      }
+    },
+    {
+      "name": "concurrency_contract",
+      "ok": true,
+      "evidence": {
+        "group": "${{ github.workflow }}-${{ github.ref }}",
+        "missing_fragments": [],
+        "cancel_in_progress": true
+      }
+    },
+    {
+      "name": "job_contract",
+      "ok": true,
+      "evidence": {
+        "runs_on": "ubuntu-latest",
+        "timeout_minutes": 20,
+        "languages": [
+          "python"
+        ],
+        "fail_fast": false
+      }
+    },
+    {
+      "name": "codeql_action_contract",
+      "ok": true,
+      "evidence": {
+        "actions": [
+          {
+            "job": "analyze",
+            "uses": "actions/checkout@v6",
+            "action": "actions/checkout",
+            "ref": "v6",
+            "major": 6,
+            "sha_pinned": false
+          },
+          {
+            "job": "analyze",
+            "uses": "github/codeql-action/init@v4",
+            "action": "github/codeql-action/init",
+            "ref": "v4",
+            "major": 4,
+            "sha_pinned": false
+          },
+          {
+            "job": "analyze",
+            "uses": "github/codeql-action/analyze@v4",
+            "action": "github/codeql-action/analyze",
+            "ref": "v4",
+            "major": 4,
+            "sha_pinned": false
+          }
+        ],
+        "action_gaps": [],
+        "codeql_action_count": 2
+      }
+    },
+    {
+      "name": "query_suite_contract",
+      "ok": true,
+      "evidence": {
+        "queries": [
+          "security-extended",
+          "security-and-quality"
+        ],
+        "missing_queries": []
+      }
+    },
+    {
+      "name": "release_control_linkage",
+      "ok": true,
+      "evidence": {
+        "release_control_count": 6,
+        "missing_controls": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 8
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_workflow",
+      "expected_failed_check": "workflow_inventory",
+      "detected": true
+    },
+    {
+      "name": "missing_schedule",
+      "expected_failed_check": "trigger_contract",
+      "detected": true
+    },
+    {
+      "name": "unsafe_pull_request_target",
+      "expected_failed_check": "trigger_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_security_events_permission",
+      "expected_failed_check": "permission_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_concurrency",
+      "expected_failed_check": "concurrency_contract",
+      "detected": true
+    },
+    {
+      "name": "javascript_only_scan",
+      "expected_failed_check": "job_contract",
+      "detected": true
+    },
+    {
+      "name": "floating_codeql_init",
+      "expected_failed_check": "codeql_action_contract",
+      "detected": true
+    },
+    {
+      "name": "missing_security_extended_query",
+      "expected_failed_check": "query_suite_contract",
+      "detected": true
+    }
+  ]
+}

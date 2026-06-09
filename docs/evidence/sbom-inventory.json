@@ -24,7 +24,7 @@
         },
         {
           "name": "source_paths",
-          "value": ".github/workflows/ci.yml"
+          "value": ".github/workflows/ci.yml,.github/workflows/codeql.yml"
         }
       ]
     },
@@ -43,6 +43,42 @@
         {
           "name": "source_paths",
           "value": ".github/workflows/ci.yml"
+        }
+      ]
+    },
+    {
+      "bom-ref": "github-action:github/codeql-action/init@v4",
+      "type": "application",
+      "name": "github/codeql-action/init",
+      "version": "v4",
+      "purl": "pkg:github/github/codeql-action/init@v4",
+      "scope": "required",
+      "properties": [
+        {
+          "name": "category",
+          "value": "github-action"
+        },
+        {
+          "name": "source_paths",
+          "value": ".github/workflows/codeql.yml"
+        }
+      ]
+    },
+    {
+      "bom-ref": "github-action:github/codeql-action/analyze@v4",
+      "type": "application",
+      "name": "github/codeql-action/analyze",
+      "version": "v4",
+      "purl": "pkg:github/github/codeql-action/analyze@v4",
+      "scope": "required",
+      "properties": [
+        {
+          "name": "category",
+          "value": "github-action"
+        },
+        {
+          "name": "source_paths",
+          "value": ".github/workflows/codeql.yml"
         }
       ]
     },

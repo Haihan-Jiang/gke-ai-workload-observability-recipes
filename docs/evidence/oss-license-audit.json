@@ -3,9 +3,9 @@
   "failed_count": 0,
   "check_count": 7,
   "detected_fixture_count": 6,
-  "action_count": 2,
+  "action_count": 5,
   "image_count": 4,
-  "third_party_reference_count": 6,
+  "third_party_reference_count": 9,
   "checks": [
     {
       "name": "license_file",
@@ -43,6 +43,18 @@
           {
             "path": ".github/workflows/ci.yml",
             "value": "actions/setup-python@v6"
+          },
+          {
+            "path": ".github/workflows/codeql.yml",
+            "value": "actions/checkout@v6"
+          },
+          {
+            "path": ".github/workflows/codeql.yml",
+            "value": "github/codeql-action/init@v4"
+          },
+          {
+            "path": ".github/workflows/codeql.yml",
+            "value": "github/codeql-action/analyze@v4"
           }
         ],
         "violations": []
@@ -77,7 +89,7 @@
       "name": "third_party_reference_inventory",
       "ok": true,
       "evidence": {
-        "action_count": 2,
+        "action_count": 5,
         "image_count": 4
       }
     },

@@ -4,7 +4,8 @@
   "notice_file": "NOTICE",
   "readme_file": "README.md",
   "workflow_files": [
-    ".github/workflows/ci.yml"
+    ".github/workflows/ci.yml",
+    ".github/workflows/codeql.yml"
   ],
   "image_files": [
     "docker-compose.yaml",
@@ -28,13 +29,16 @@
     "not vendored",
     "actions/checkout",
     "actions/setup-python",
+    "github/codeql-action",
     "jaegertracing/all-in-one",
     "otel/opentelemetry-collector-contrib",
     "python:3.12-slim"
   ],
   "allowed_actions": [
     "actions/checkout@v6",
-    "actions/setup-python@v6"
+    "actions/setup-python@v6",
+    "github/codeql-action/init@v4",
+    "github/codeql-action/analyze@v4"
   ],
   "allowed_images": [
     "jaegertracing/all-in-one:1.57",

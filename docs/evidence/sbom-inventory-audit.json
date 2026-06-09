@@ -3,20 +3,20 @@
   "failed_count": 0,
   "check_count": 6,
   "detected_fixture_count": 6,
-  "component_count": 8,
-  "action_count": 2,
+  "component_count": 10,
+  "action_count": 5,
   "image_count": 4,
   "runtime_count": 2,
-  "source_path_count": 9,
+  "source_path_count": 12,
   "checks": [
     {
       "name": "component_discovery",
       "ok": true,
       "evidence": {
-        "action_count": 2,
+        "action_count": 5,
         "image_count": 4,
         "runtime_count": 2,
-        "discovered_component_count": 8
+        "discovered_component_count": 10
       }
     },
     {
@@ -25,7 +25,7 @@
       "evidence": {
         "missing_from_sbom": [],
         "stale_inventory": [],
-        "component_count": 8
+        "component_count": 10
       }
     },
     {
@@ -34,14 +34,14 @@
       "evidence": {
         "duplicate_policy_refs": [],
         "duplicate_sbom_refs": [],
-        "sbom_component_count": 8
+        "sbom_component_count": 10
       }
     },
     {
       "name": "source_traceability",
       "ok": true,
       "evidence": {
-        "source_path_count": 9,
+        "source_path_count": 12,
         "source_gaps": []
       }
     },
@@ -95,7 +95,8 @@
             "mutation": "remove_component",
             "expected_failed_check": "sbom_component_coverage",
             "failed_checks": [
-              "sbom_component_coverage"
+              "sbom_component_coverage",
+              "source_traceability"
             ],
             "detected": true
           },
@@ -104,7 +105,8 @@
             "mutation": "remove_component",
             "expected_failed_check": "sbom_component_coverage",
             "failed_checks": [
-              "sbom_component_coverage"
+              "sbom_component_coverage",
+              "source_traceability"
             ],
             "detected": true
           },
@@ -156,7 +158,8 @@
       "mutation": "remove_component",
       "expected_failed_check": "sbom_component_coverage",
       "failed_checks": [
-        "sbom_component_coverage"
+        "sbom_component_coverage",
+        "source_traceability"
       ],
       "detected": true
     },
@@ -165,7 +168,8 @@
       "mutation": "remove_component",
       "expected_failed_check": "sbom_component_coverage",
       "failed_checks": [
-        "sbom_component_coverage"
+        "sbom_component_coverage",
+        "source_traceability"
       ],
       "detected": true
     },

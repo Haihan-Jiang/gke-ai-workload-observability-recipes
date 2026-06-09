@@ -1,7 +1,8 @@
 {
   "description": "Policy for generating and auditing a local CycloneDX-style SBOM inventory for third-party runtime references.",
   "workflow_files": [
-    ".github/workflows/ci.yml"
+    ".github/workflows/ci.yml",
+    ".github/workflows/codeql.yml"
   ],
   "image_files": [
     "docker-compose.yaml",
@@ -10,11 +11,11 @@
   ],
   "python_version_file": ".python-version",
   "developer_runtime_doc": "docs/developer-runtime.md",
-  "minimum_component_count": 8,
-  "minimum_action_count": 2,
+  "minimum_component_count": 10,
+  "minimum_action_count": 5,
   "minimum_image_count": 4,
   "minimum_runtime_count": 2,
-  "minimum_source_path_count": 8,
+  "minimum_source_path_count": 12,
   "minimum_detected_fixtures": 6,
   "expected_components": [
     {
@@ -25,7 +26,8 @@
       "version": "v6",
       "purl": "pkg:github/actions/checkout@v6",
       "source_paths": [
-        ".github/workflows/ci.yml"
+        ".github/workflows/ci.yml",
+        ".github/workflows/codeql.yml"
       ]
     },
     {
@@ -37,6 +39,28 @@
       "purl": "pkg:github/actions/setup-python@v6",
       "source_paths": [
         ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "bom_ref": "github-action:github/codeql-action/init@v4",
+      "type": "application",
+      "category": "github-action",
+      "name": "github/codeql-action/init",
+      "version": "v4",
+      "purl": "pkg:github/github/codeql-action/init@v4",
+      "source_paths": [
+        ".github/workflows/codeql.yml"
+      ]
+    },
+    {
+      "bom_ref": "github-action:github/codeql-action/analyze@v4",
+      "type": "application",
+      "category": "github-action",
+      "name": "github/codeql-action/analyze",
+      "version": "v4",
+      "purl": "pkg:github/github/codeql-action/analyze@v4",
+      "source_paths": [
+        ".github/workflows/codeql.yml"
       ]
     },
     {

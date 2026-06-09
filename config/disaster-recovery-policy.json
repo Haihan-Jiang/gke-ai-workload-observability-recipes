@@ -5,7 +5,7 @@
   "estimated_data_loss_minutes": 0,
   "restore_throughput_mib_per_minute": 64,
   "operator_step_minutes": 6,
-  "minimum_artifacts": 148,
+  "minimum_artifacts": 153,
   "minimum_groups": 6,
   "minimum_generated_artifacts": 4,
   "required_rpo_artifacts": [
@@ -34,7 +34,8 @@
     "docs/evidence/reviewer-reproducibility-audit.json",
     "docs/evidence/threat-model-audit.json",
     "docs/evidence/data-handling-audit.json",
-    "docs/evidence/dependency-update-audit.json"
+    "docs/evidence/dependency-update-audit.json",
+    "docs/evidence/security-scanning-audit.json"
   ],
   "artifact_groups": [
     {
@@ -84,7 +85,9 @@
         "docs/evidence/data-handling-audit.md",
         "docs/evidence/data-handling-audit.json",
         "docs/evidence/dependency-update-audit.md",
-        "docs/evidence/dependency-update-audit.json"
+        "docs/evidence/dependency-update-audit.json",
+        "docs/evidence/security-scanning-audit.md",
+        "docs/evidence/security-scanning-audit.json"
       ]
     },
     {
@@ -199,6 +202,7 @@
         "config/threat-model-policy.json",
         "config/data-handling-policy.json",
         "config/dependency-update-policy.json",
+        "config/security-scanning-policy.json",
         "docs/adr/README.md",
         "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
         "docs/adr/0002-fail-closed-release-readiness.md",
@@ -209,6 +213,8 @@
         "demo/threat_model_audit.py",
         "demo/data_handling_audit.py",
         "demo/dependency_update_audit.py",
+        "demo/security_scanning_audit.py",
+        ".github/workflows/codeql.yml",
         "docs/reviewer-quickstart.md",
         "docs/threat-model.md",
         "docs/data-handling.md",

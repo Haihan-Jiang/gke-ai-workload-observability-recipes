@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 64,
-  "release_check_count": 69,
-  "evidence_file_count": 129,
-  "source_input_count": 67,
-  "policy_input_count": 65,
-  "test_file_count": 64,
+  "control_count": 65,
+  "release_check_count": 70,
+  "evidence_file_count": 131,
+  "source_input_count": 68,
+  "policy_input_count": 66,
+  "test_file_count": 65,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 64,
-        "minimum_control_count": 64,
+        "control_count": 65,
+        "minimum_control_count": 65,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 69,
-        "minimum_release_check_count": 69,
+        "release_check_count": 70,
+        "minimum_release_check_count": 70,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 65,
-        "minimum_policy_input_count": 65,
+        "policy_input_count": 66,
+        "minimum_policy_input_count": 66,
         "policy_gaps": []
       }
     },
@@ -1223,6 +1223,23 @@
       ],
       "tests": [
         "tests/test_dependency_update_audit.py"
+      ]
+    },
+    {
+      "name": "security_scanning_audit",
+      "release_readiness_check": "security_scanning_audit",
+      "evidence": [
+        "docs/evidence/security-scanning-audit.json",
+        "docs/evidence/security-scanning-audit.md"
+      ],
+      "source_inputs": [
+        "demo/security_scanning_audit.py"
+      ],
+      "policy_inputs": [
+        "config/security-scanning-policy.json"
+      ],
+      "tests": [
+        "tests/test_security_scanning_audit.py"
       ]
     }
   ],

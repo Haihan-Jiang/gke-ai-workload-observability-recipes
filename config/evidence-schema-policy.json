@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 24,
-  "minimum_detected_fixtures": 24,
+  "minimum_artifact_count": 25,
+  "minimum_detected_fixtures": 25,
   "artifacts": [
     {
       "path": "docs/evidence/evidence-pipeline-audit.json",
@@ -32,10 +32,10 @@
       ],
       "minimum_metrics": {
         "check_count": 5,
-        "step_count": 71,
-        "required_step_count": 71,
-        "dependency_count": 195,
-        "artifact_dependency_count": 195,
+        "step_count": 72,
+        "required_step_count": 72,
+        "dependency_count": 204,
+        "artifact_dependency_count": 204,
         "detected_fixture_count": 4
       },
       "maximum_metrics": {
@@ -43,8 +43,8 @@
       },
       "array_min_lengths": {
         "checks": 5,
-        "steps": 71,
-        "dependencies": 195,
+        "steps": 72,
+        "dependencies": 204,
         "fixtures": 4
       }
     },
@@ -79,12 +79,12 @@
       ],
       "minimum_metrics": {
         "check_count": 7,
-        "py_compile_script_count": 73,
-        "generation_script_count": 71,
-        "direct_validation_script_count": 70,
-        "policy_json_count": 66,
-        "committed_json_count": 81,
-        "release_argument_count": 70,
+        "py_compile_script_count": 74,
+        "generation_script_count": 72,
+        "direct_validation_script_count": 71,
+        "policy_json_count": 67,
+        "committed_json_count": 82,
+        "release_argument_count": 71,
         "detected_fixture_count": 6
       },
       "maximum_metrics": {
@@ -1087,6 +1087,56 @@
         "fixtures": 7,
         "updates": 1
       }
+    },
+    {
+      "path": "docs/evidence/security-scanning-audit.json",
+      "required_fields": [
+        "status",
+        "failed_count",
+        "check_count",
+        "detected_fixture_count",
+        "workflow_count",
+        "job_count",
+        "language_count",
+        "query_suite_count",
+        "codeql_action_count",
+        "release_control_count",
+        "workflow_path",
+        "workflow_name",
+        "checks",
+        "fixtures"
+      ],
+      "required_checks": [
+        "workflow_inventory",
+        "trigger_contract",
+        "permission_contract",
+        "concurrency_contract",
+        "job_contract",
+        "codeql_action_contract",
+        "query_suite_contract",
+        "negative_fixture_coverage"
+      ],
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "minimum_metrics": {
+        "check_count": 8,
+        "workflow_count": 1,
+        "job_count": 1,
+        "language_count": 1,
+        "query_suite_count": 2,
+        "codeql_action_count": 2,
+        "release_control_count": 6,
+        "detected_fixture_count": 8
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 8,
+        "fixtures": 8
+      }
     }
   ],
   "fixtures": [
@@ -1268,6 +1318,14 @@
       "mutation": "set_field",
       "artifact": "docs/evidence/dependency-update-audit.json",
       "field": "update_count",
+      "value": 0,
+      "expected_failed_check": "metric_contract"
+    },
+    {
+      "name": "low_security_scanning_language_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/security-scanning-audit.json",
+      "field": "language_count",
       "value": 0,
       "expected_failed_check": "metric_contract"
     }

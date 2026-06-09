@@ -258,6 +258,10 @@
       "ok": true
     },
     {
+      "name": "security_scanning_audit",
+      "ok": true
+    },
+    {
       "name": "public_claim_evidence_audit",
       "ok": true
     },
@@ -877,6 +881,14 @@
     },
     {
       "path": "dependency-update-audit.json",
+      "exists": true
+    },
+    {
+      "path": "security-scanning-audit.md",
+      "exists": true
+    },
+    {
+      "path": "security-scanning-audit.json",
       "exists": true
     },
     {

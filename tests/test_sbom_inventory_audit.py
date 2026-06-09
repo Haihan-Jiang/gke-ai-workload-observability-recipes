@@ -39,14 +39,14 @@ class SbomInventoryAuditTest(unittest.TestCase):
         report, sbom = sbom_inventory_audit.build_report(REPO_ROOT, self.policy)
 
         self.assertEqual("pass", report["status"])
-        self.assertEqual(8, report["component_count"])
-        self.assertEqual(2, report["action_count"])
+        self.assertEqual(10, report["component_count"])
+        self.assertEqual(5, report["action_count"])
         self.assertEqual(4, report["image_count"])
         self.assertEqual(2, report["runtime_count"])
-        self.assertEqual(9, report["source_path_count"])
+        self.assertEqual(12, report["source_path_count"])
         self.assertEqual(6, report["detected_fixture_count"])
         self.assertEqual("CycloneDX", sbom["bomFormat"])
-        self.assertEqual(8, len(sbom["components"]))
+        self.assertEqual(10, len(sbom["components"]))
 
     def test_detects_missing_action_component(self) -> None:
         policy = copy.deepcopy(self.policy)

@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 24,
-  "policy_artifact_count": 24,
-  "required_field_count": 273,
-  "required_check_count": 161,
-  "metric_contract_count": 182,
-  "array_contract_count": 57,
-  "observed_check_count": 161,
-  "detected_fixture_count": 24,
+  "artifact_count": 25,
+  "policy_artifact_count": 25,
+  "required_field_count": 287,
+  "required_check_count": 169,
+  "metric_contract_count": 191,
+  "array_contract_count": 59,
+  "observed_check_count": 170,
+  "detected_fixture_count": 25,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 24,
-        "policy_artifact_count": 24,
-        "minimum_artifact_count": 24
+        "artifact_count": 25,
+        "policy_artifact_count": 25,
+        "minimum_artifact_count": 25
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 24,
-        "minimum_detected_fixtures": 24,
+        "detected_fixture_count": 25,
+        "minimum_detected_fixtures": 25,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -323,6 +323,16 @@
           {
             "name": "low_dependency_update_count",
             "artifact": "docs/evidence/dependency-update-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_security_scanning_language_count",
+            "artifact": "docs/evidence/security-scanning-audit.json",
             "mutation": "set_field",
             "expected_failed_check": "metric_contract",
             "failed_checks": [
@@ -587,6 +597,16 @@
         "metric_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "low_security_scanning_language_count",
+      "artifact": "docs/evidence/security-scanning-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
@@ -733,6 +753,12 @@
       "present": true,
       "status": "pass",
       "check_count": 7
+    },
+    {
+      "path": "docs/evidence/security-scanning-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 9
     }
   ]
 }

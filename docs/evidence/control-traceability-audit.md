@@ -9,12 +9,12 @@ committed evidence, source code, policy/config inputs, and tests.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 64 |
-| Release checks | 69 |
-| Evidence files | 129 |
-| Source inputs | 67 |
-| Policy inputs | 65 |
-| Test files | 64 |
+| Controls | 65 |
+| Release checks | 70 |
+| Evidence files | 131 |
+| Source inputs | 68 |
+| Policy inputs | 66 |
+| Test files | 65 |
 | Detected fixtures | 6 |
 
 ## Checks
@@ -98,6 +98,7 @@ committed evidence, source code, policy/config inputs, and tests.
 | `threat_model_audit` | `threat_model_audit` | 2 |
 | `data_handling_audit` | `data_handling_audit` | 2 |
 | `dependency_update_audit` | `dependency_update_audit` | 2 |
+| `security_scanning_audit` | `security_scanning_audit` | 2 |
 
 ## Negative Fixtures
 

@@ -11,9 +11,9 @@ reference inventory.
 
 | Metric | Value |
 | --- | ---: |
-| GitHub Actions references | 2 |
+| GitHub Actions references | 5 |
 | Container image references | 4 |
-| Third-party references | 6 |
+| Third-party references | 9 |
 | Detected fixtures | 6 |
 
 ## Checks
