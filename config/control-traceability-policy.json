@@ -1,0 +1,784 @@
+{
+  "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
+  "minimum_control_count": 43,
+  "minimum_release_check_count": 45,
+  "minimum_policy_input_count": 40,
+  "minimum_detected_fixtures": 6,
+  "controls": [
+    {
+      "name": "advanced_problem_coverage",
+      "release_readiness_check": "advanced_problem_coverage",
+      "evidence": [
+        "docs/evidence/complex-problems.json",
+        "docs/evidence/complex-problems.md"
+      ],
+      "source_inputs": [
+        "demo/advanced_reliability.py"
+      ],
+      "policy_inputs": [
+        "config/advanced-reliability.json"
+      ],
+      "tests": [
+        "tests/test_advanced_reliability.py"
+      ]
+    },
+    {
+      "name": "detailed_problem_coverage",
+      "release_readiness_check": "detailed_problem_coverage",
+      "evidence": [
+        "docs/evidence/detailed-problems.json",
+        "docs/evidence/detailed-problems.md"
+      ],
+      "source_inputs": [
+        "demo/detailed_reliability.py"
+      ],
+      "policy_inputs": [
+        "config/detailed-reliability.json"
+      ],
+      "tests": [
+        "tests/test_detailed_reliability.py"
+      ]
+    },
+    {
+      "name": "deployment_policy",
+      "release_readiness_check": "deployment_policy",
+      "evidence": [
+        "docs/evidence/deployment-policy.json",
+        "docs/evidence/deployment-policy.md"
+      ],
+      "source_inputs": [
+        "demo/deployment_policy.py"
+      ],
+      "policy_inputs": [
+        "config/reliability-slo.json"
+      ],
+      "tests": [
+        "tests/test_deployment_policy.py"
+      ]
+    },
+    {
+      "name": "policy_regression_suite",
+      "release_readiness_check": "policy_regression_suite",
+      "evidence": [
+        "docs/evidence/policy-regression-suite.json",
+        "docs/evidence/policy-regression-suite.md"
+      ],
+      "source_inputs": [
+        "demo/policy_regression_suite.py"
+      ],
+      "policy_inputs": [
+        "config/deployment-policy-fixtures.json"
+      ],
+      "tests": [
+        "tests/test_policy_regression_suite.py"
+      ]
+    },
+    {
+      "name": "supply_chain_audit",
+      "release_readiness_check": "supply_chain_audit",
+      "evidence": [
+        "docs/evidence/supply-chain-audit.json",
+        "docs/evidence/supply-chain-audit.md"
+      ],
+      "source_inputs": [
+        "demo/supply_chain_audit.py"
+      ],
+      "policy_inputs": [
+        "config/supply-chain-policy.json"
+      ],
+      "tests": [
+        "tests/test_supply_chain_audit.py"
+      ]
+    },
+    {
+      "name": "ci_governance_audit",
+      "release_readiness_check": "ci_governance_audit",
+      "evidence": [
+        "docs/evidence/ci-governance-audit.json",
+        "docs/evidence/ci-governance-audit.md"
+      ],
+      "source_inputs": [
+        "demo/ci_governance_audit.py"
+      ],
+      "policy_inputs": [
+        "config/ci-governance-policy.json"
+      ],
+      "tests": [
+        "tests/test_ci_governance_audit.py"
+      ]
+    },
+    {
+      "name": "repository_governance_audit",
+      "release_readiness_check": "repository_governance_audit",
+      "evidence": [
+        "docs/evidence/repository-governance-audit.json",
+        "docs/evidence/repository-governance-audit.md"
+      ],
+      "source_inputs": [
+        "demo/repository_governance_audit.py"
+      ],
+      "policy_inputs": [
+        "config/repository-governance-policy.json"
+      ],
+      "tests": [
+        "tests/test_repository_governance_audit.py"
+      ]
+    },
+    {
+      "name": "developer_runtime_audit",
+      "release_readiness_check": "developer_runtime_audit",
+      "evidence": [
+        "docs/evidence/developer-runtime-audit.json",
+        "docs/evidence/developer-runtime-audit.md"
+      ],
+      "source_inputs": [
+        "demo/developer_runtime_audit.py"
+      ],
+      "policy_inputs": [
+        "config/developer-runtime-policy.json"
+      ],
+      "tests": [
+        "tests/test_developer_runtime_audit.py"
+      ]
+    },
+    {
+      "name": "k8s_manifest_hardening",
+      "release_readiness_check": "k8s_manifest_hardening",
+      "evidence": [
+        "docs/evidence/k8s-hardening-audit.json",
+        "docs/evidence/k8s-hardening-audit.md"
+      ],
+      "source_inputs": [
+        "demo/k8s_hardening_audit.py"
+      ],
+      "policy_inputs": [
+        "config/k8s-hardening-policy.json"
+      ],
+      "tests": [
+        "tests/test_k8s_hardening_audit.py"
+      ]
+    },
+    {
+      "name": "pod_security_admission_audit",
+      "release_readiness_check": "pod_security_admission_audit",
+      "evidence": [
+        "docs/evidence/pod-security-admission-audit.json",
+        "docs/evidence/pod-security-admission-audit.md"
+      ],
+      "source_inputs": [
+        "demo/pod_security_admission_audit.py"
+      ],
+      "policy_inputs": [
+        "config/pod-security-admission-policy.json"
+      ],
+      "tests": [
+        "tests/test_pod_security_admission_audit.py"
+      ]
+    },
+    {
+      "name": "namespace_resource_audit",
+      "release_readiness_check": "namespace_resource_audit",
+      "evidence": [
+        "docs/evidence/namespace-resource-audit.json",
+        "docs/evidence/namespace-resource-audit.md"
+      ],
+      "source_inputs": [
+        "demo/namespace_resource_audit.py"
+      ],
+      "policy_inputs": [
+        "config/namespace-resource-policy.json"
+      ],
+      "tests": [
+        "tests/test_namespace_resource_audit.py"
+      ]
+    },
+    {
+      "name": "availability_topology_audit",
+      "release_readiness_check": "availability_topology_audit",
+      "evidence": [
+        "docs/evidence/availability-topology-audit.json",
+        "docs/evidence/availability-topology-audit.md"
+      ],
+      "source_inputs": [
+        "demo/availability_topology_audit.py"
+      ],
+      "policy_inputs": [
+        "config/availability-topology-policy.json"
+      ],
+      "tests": [
+        "tests/test_availability_topology_audit.py"
+      ]
+    },
+    {
+      "name": "autoscaling_policy_audit",
+      "release_readiness_check": "autoscaling_policy_audit",
+      "evidence": [
+        "docs/evidence/autoscaling-policy-audit.json",
+        "docs/evidence/autoscaling-policy-audit.md"
+      ],
+      "source_inputs": [
+        "demo/autoscaling_policy_audit.py"
+      ],
+      "policy_inputs": [
+        "config/autoscaling-policy.json"
+      ],
+      "tests": [
+        "tests/test_autoscaling_policy_audit.py"
+      ]
+    },
+    {
+      "name": "scheduling_placement_audit",
+      "release_readiness_check": "scheduling_placement_audit",
+      "evidence": [
+        "docs/evidence/scheduling-placement-audit.json",
+        "docs/evidence/scheduling-placement-audit.md"
+      ],
+      "source_inputs": [
+        "demo/scheduling_placement_audit.py"
+      ],
+      "policy_inputs": [
+        "config/scheduling-placement-policy.json"
+      ],
+      "tests": [
+        "tests/test_scheduling_placement_audit.py"
+      ]
+    },
+    {
+      "name": "rollout_safety_audit",
+      "release_readiness_check": "rollout_safety_audit",
+      "evidence": [
+        "docs/evidence/rollout-safety-audit.json",
+        "docs/evidence/rollout-safety-audit.md"
+      ],
+      "source_inputs": [
+        "demo/rollout_safety_audit.py"
+      ],
+      "policy_inputs": [
+        "config/rollout-safety-policy.json"
+      ],
+      "tests": [
+        "tests/test_rollout_safety_audit.py"
+      ]
+    },
+    {
+      "name": "config_rollout_audit",
+      "release_readiness_check": "config_rollout_audit",
+      "evidence": [
+        "docs/evidence/config-rollout-audit.json",
+        "docs/evidence/config-rollout-audit.md"
+      ],
+      "source_inputs": [
+        "demo/config_rollout_audit.py"
+      ],
+      "policy_inputs": [
+        "config/config-rollout-policy.json"
+      ],
+      "tests": [
+        "tests/test_config_rollout_audit.py"
+      ]
+    },
+    {
+      "name": "network_boundary_audit",
+      "release_readiness_check": "network_boundary_audit",
+      "evidence": [
+        "docs/evidence/network-boundary-audit.json",
+        "docs/evidence/network-boundary-audit.md"
+      ],
+      "source_inputs": [
+        "demo/network_boundary_audit.py"
+      ],
+      "policy_inputs": [
+        "config/network-boundary-policy.json"
+      ],
+      "tests": [
+        "tests/test_network_boundary_audit.py"
+      ]
+    },
+    {
+      "name": "collector_self_observability_audit",
+      "release_readiness_check": "collector_self_observability_audit",
+      "evidence": [
+        "docs/evidence/collector-self-observability-audit.json",
+        "docs/evidence/collector-self-observability-audit.md"
+      ],
+      "source_inputs": [
+        "demo/collector_self_observability_audit.py"
+      ],
+      "policy_inputs": [
+        "config/collector-self-observability-policy.json"
+      ],
+      "tests": [
+        "tests/test_collector_self_observability_audit.py"
+      ]
+    },
+    {
+      "name": "telemetry_sampling_audit",
+      "release_readiness_check": "telemetry_sampling_audit",
+      "evidence": [
+        "docs/evidence/telemetry-sampling-audit.json",
+        "docs/evidence/telemetry-sampling-audit.md"
+      ],
+      "source_inputs": [
+        "demo/telemetry_sampling_audit.py"
+      ],
+      "policy_inputs": [
+        "config/telemetry-sampling-policy.json"
+      ],
+      "tests": [
+        "tests/test_telemetry_sampling_audit.py"
+      ]
+    },
+    {
+      "name": "workload_identity_audit",
+      "release_readiness_check": "workload_identity_audit",
+      "evidence": [
+        "docs/evidence/workload-identity-audit.json",
+        "docs/evidence/workload-identity-audit.md"
+      ],
+      "source_inputs": [
+        "demo/workload_identity_audit.py"
+      ],
+      "policy_inputs": [
+        "config/workload-identity-policy.json"
+      ],
+      "tests": [
+        "tests/test_workload_identity_audit.py"
+      ]
+    },
+    {
+      "name": "admission_policy_audit",
+      "release_readiness_check": "admission_policy_audit",
+      "evidence": [
+        "docs/evidence/admission-policy-audit.json",
+        "docs/evidence/admission-policy-audit.md"
+      ],
+      "source_inputs": [
+        "demo/admission_policy_audit.py"
+      ],
+      "policy_inputs": [
+        "config/admission-policy.json"
+      ],
+      "tests": [
+        "tests/test_admission_policy_audit.py"
+      ]
+    },
+    {
+      "name": "slo_alerting_rules",
+      "release_readiness_check": "slo_alerting_rules",
+      "evidence": [
+        "docs/evidence/alerting-rules.json",
+        "docs/evidence/alerting-rules.md"
+      ],
+      "source_inputs": [
+        "demo/alerting_rules.py"
+      ],
+      "policy_inputs": [
+        "config/alerting-policy.json"
+      ],
+      "tests": [
+        "tests/test_alerting_rules.py"
+      ]
+    },
+    {
+      "name": "grafana_dashboard",
+      "release_readiness_check": "grafana_dashboard",
+      "evidence": [
+        "docs/evidence/grafana-dashboard.json",
+        "docs/evidence/grafana-dashboard.md"
+      ],
+      "source_inputs": [
+        "demo/grafana_dashboard.py"
+      ],
+      "policy_inputs": [
+        "config/dashboard-policy.json"
+      ],
+      "tests": [
+        "tests/test_grafana_dashboard.py"
+      ]
+    },
+    {
+      "name": "openslo_contract",
+      "release_readiness_check": "openslo_contract",
+      "evidence": [
+        "docs/evidence/openslo-contract.json",
+        "docs/evidence/openslo-contract.md"
+      ],
+      "source_inputs": [
+        "demo/openslo_contract.py"
+      ],
+      "policy_inputs": [
+        "config/openslo-policy.json"
+      ],
+      "tests": [
+        "tests/test_openslo_contract.py"
+      ]
+    },
+    {
+      "name": "observability_drift_audit",
+      "release_readiness_check": "observability_drift_audit",
+      "evidence": [
+        "docs/evidence/observability-drift-audit.json",
+        "docs/evidence/observability-drift-audit.md"
+      ],
+      "source_inputs": [
+        "demo/observability_drift_audit.py"
+      ],
+      "policy_inputs": [
+        "config/observability-drift-policy.json"
+      ],
+      "tests": [
+        "tests/test_observability_drift_audit.py"
+      ]
+    },
+    {
+      "name": "telemetry_redaction_audit",
+      "release_readiness_check": "telemetry_redaction_audit",
+      "evidence": [
+        "docs/evidence/telemetry-redaction-audit.json",
+        "docs/evidence/telemetry-redaction-audit.md"
+      ],
+      "source_inputs": [
+        "demo/telemetry_redaction_audit.py"
+      ],
+      "policy_inputs": [
+        "config/telemetry-redaction-policy.json"
+      ],
+      "tests": [
+        "tests/test_telemetry_redaction_audit.py"
+      ]
+    },
+    {
+      "name": "telemetry_cost_budget",
+      "release_readiness_check": "telemetry_cost_budget",
+      "evidence": [
+        "docs/evidence/telemetry-cost-budget.json",
+        "docs/evidence/telemetry-cost-budget.md"
+      ],
+      "source_inputs": [
+        "demo/telemetry_cost_budget.py"
+      ],
+      "policy_inputs": [
+        "config/telemetry-cost-policy.json"
+      ],
+      "tests": [
+        "tests/test_telemetry_cost_budget.py"
+      ]
+    },
+    {
+      "name": "error_budget_ledger",
+      "release_readiness_check": "error_budget_ledger",
+      "evidence": [
+        "docs/evidence/error-budget-ledger.json",
+        "docs/evidence/error-budget-ledger.md"
+      ],
+      "source_inputs": [
+        "demo/error_budget_ledger.py"
+      ],
+      "policy_inputs": [
+        "config/error-budget-policy.json"
+      ],
+      "tests": [
+        "tests/test_error_budget_ledger.py"
+      ]
+    },
+    {
+      "name": "rollback_drill",
+      "release_readiness_check": "rollback_drill",
+      "evidence": [
+        "docs/evidence/rollback-drill.json",
+        "docs/evidence/rollback-drill.md"
+      ],
+      "source_inputs": [
+        "demo/rollback_drill.py"
+      ],
+      "policy_inputs": [
+        "config/rollback-drill-policy.json"
+      ],
+      "tests": [
+        "tests/test_rollback_drill.py"
+      ]
+    },
+    {
+      "name": "post_incident_review",
+      "release_readiness_check": "post_incident_review",
+      "evidence": [
+        "docs/evidence/post-incident-review.json",
+        "docs/evidence/post-incident-review.md"
+      ],
+      "source_inputs": [
+        "demo/post_incident_review.py"
+      ],
+      "policy_inputs": [
+        "config/post-incident-review-policy.json"
+      ],
+      "tests": [
+        "tests/test_post_incident_review.py"
+      ]
+    },
+    {
+      "name": "incident_response_drill",
+      "release_readiness_check": "incident_response_drill",
+      "evidence": [
+        "docs/evidence/incident-response-drill.json",
+        "docs/evidence/incident-response-drill.md"
+      ],
+      "source_inputs": [
+        "demo/incident_response_drill.py"
+      ],
+      "policy_inputs": [
+        "config/incident-response-policy.json"
+      ],
+      "tests": [
+        "tests/test_incident_response_drill.py"
+      ]
+    },
+    {
+      "name": "dependency_contract_audit",
+      "release_readiness_check": "dependency_contract_audit",
+      "evidence": [
+        "docs/evidence/dependency-contract-audit.json",
+        "docs/evidence/dependency-contract-audit.md"
+      ],
+      "source_inputs": [
+        "demo/dependency_contract_audit.py"
+      ],
+      "policy_inputs": [
+        "config/dependency-contract-policy.json"
+      ],
+      "tests": [
+        "tests/test_dependency_contract_audit.py"
+      ]
+    },
+    {
+      "name": "synthetic_probe_audit",
+      "release_readiness_check": "synthetic_probe_audit",
+      "evidence": [
+        "docs/evidence/synthetic-probe-audit.json",
+        "docs/evidence/synthetic-probe-audit.md"
+      ],
+      "source_inputs": [
+        "demo/synthetic_probe_audit.py"
+      ],
+      "policy_inputs": [
+        "config/synthetic-probe-policy.json"
+      ],
+      "tests": [
+        "tests/test_synthetic_probe_audit.py"
+      ]
+    },
+    {
+      "name": "model_release_safety_audit",
+      "release_readiness_check": "model_release_safety_audit",
+      "evidence": [
+        "docs/evidence/model-release-safety-audit.json",
+        "docs/evidence/model-release-safety-audit.md"
+      ],
+      "source_inputs": [
+        "demo/model_release_safety_audit.py"
+      ],
+      "policy_inputs": [
+        "config/model-release-policy.json"
+      ],
+      "tests": [
+        "tests/test_model_release_safety_audit.py"
+      ]
+    },
+    {
+      "name": "shadow_traffic_replay_audit",
+      "release_readiness_check": "shadow_traffic_replay_audit",
+      "evidence": [
+        "docs/evidence/shadow-traffic-replay-audit.json",
+        "docs/evidence/shadow-traffic-replay-audit.md"
+      ],
+      "source_inputs": [
+        "demo/shadow_traffic_replay_audit.py"
+      ],
+      "policy_inputs": [
+        "config/shadow-traffic-policy.json"
+      ],
+      "tests": [
+        "tests/test_shadow_traffic_replay_audit.py"
+      ]
+    },
+    {
+      "name": "accelerator_quota_fairness_audit",
+      "release_readiness_check": "accelerator_quota_fairness_audit",
+      "evidence": [
+        "docs/evidence/accelerator-quota-fairness-audit.json",
+        "docs/evidence/accelerator-quota-fairness-audit.md"
+      ],
+      "source_inputs": [
+        "demo/accelerator_quota_fairness_audit.py"
+      ],
+      "policy_inputs": [
+        "config/accelerator-quota-policy.json"
+      ],
+      "tests": [
+        "tests/test_accelerator_quota_fairness_audit.py"
+      ]
+    },
+    {
+      "name": "load_shedding_policy_audit",
+      "release_readiness_check": "load_shedding_policy_audit",
+      "evidence": [
+        "docs/evidence/load-shedding-policy-audit.json",
+        "docs/evidence/load-shedding-policy-audit.md"
+      ],
+      "source_inputs": [
+        "demo/load_shedding_policy_audit.py"
+      ],
+      "policy_inputs": [
+        "config/load-shedding-policy.json"
+      ],
+      "tests": [
+        "tests/test_load_shedding_policy_audit.py"
+      ]
+    },
+    {
+      "name": "regional_failover_audit",
+      "release_readiness_check": "regional_failover_audit",
+      "evidence": [
+        "docs/evidence/regional-failover-audit.json",
+        "docs/evidence/regional-failover-audit.md"
+      ],
+      "source_inputs": [
+        "demo/regional_failover_audit.py"
+      ],
+      "policy_inputs": [
+        "config/regional-failover-policy.json"
+      ],
+      "tests": [
+        "tests/test_regional_failover_audit.py"
+      ]
+    },
+    {
+      "name": "release_waiver_governance",
+      "release_readiness_check": "release_waiver_governance",
+      "evidence": [
+        "docs/evidence/release-waiver-governance.json",
+        "docs/evidence/release-waiver-governance.md"
+      ],
+      "source_inputs": [
+        "demo/release_waiver_governance.py"
+      ],
+      "policy_inputs": [
+        "config/release-waiver-policy.json",
+        "config/release-waivers.json"
+      ],
+      "tests": [
+        "tests/test_release_waiver_governance.py"
+      ]
+    },
+    {
+      "name": "evidence_pipeline_audit",
+      "release_readiness_check": "evidence_pipeline_audit",
+      "evidence": [
+        "docs/evidence/evidence-pipeline-audit.json",
+        "docs/evidence/evidence-pipeline-audit.md"
+      ],
+      "source_inputs": [
+        "demo/evidence_pipeline_audit.py"
+      ],
+      "policy_inputs": [
+        "config/evidence-pipeline-policy.json"
+      ],
+      "tests": [
+        "tests/test_evidence_pipeline_audit.py"
+      ]
+    },
+    {
+      "name": "evidence_schema_audit",
+      "release_readiness_check": "evidence_schema_audit",
+      "evidence": [
+        "docs/evidence/evidence-schema-audit.json",
+        "docs/evidence/evidence-schema-audit.md"
+      ],
+      "source_inputs": [
+        "demo/evidence_schema_audit.py"
+      ],
+      "policy_inputs": [
+        "config/evidence-schema-policy.json"
+      ],
+      "tests": [
+        "tests/test_evidence_schema_audit.py"
+      ]
+    },
+    {
+      "name": "disaster_recovery_drill",
+      "release_readiness_check": "disaster_recovery_drill",
+      "evidence": [
+        "docs/evidence/disaster-recovery-drill.json",
+        "docs/evidence/disaster-recovery-drill.md"
+      ],
+      "source_inputs": [
+        "demo/disaster_recovery_drill.py"
+      ],
+      "policy_inputs": [
+        "config/disaster-recovery-policy.json"
+      ],
+      "tests": [
+        "tests/test_disaster_recovery_drill.py"
+      ]
+    },
+    {
+      "name": "evidence_provenance",
+      "release_readiness_check": "evidence_provenance",
+      "evidence": [
+        "docs/evidence/evidence-provenance.json",
+        "docs/evidence/evidence-provenance.md"
+      ],
+      "source_inputs": [
+        "demo/evidence_provenance.py"
+      ],
+      "policy_inputs": [
+        "config/evidence-provenance-policy.json"
+      ],
+      "tests": [
+        "tests/test_evidence_provenance.py"
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_control_entry",
+      "mutation": "remove_control",
+      "control": "evidence_provenance",
+      "expected_failed_check": "control_inventory"
+    },
+    {
+      "name": "unknown_release_check",
+      "mutation": "set_release_check",
+      "control": "evidence_pipeline_audit",
+      "value": "not_a_release_check",
+      "expected_failed_check": "release_gate_linkage"
+    },
+    {
+      "name": "missing_evidence_file",
+      "mutation": "add_missing_evidence",
+      "control": "evidence_schema_audit",
+      "path": "docs/evidence/not-real-schema.json",
+      "expected_failed_check": "evidence_files"
+    },
+    {
+      "name": "missing_source_input",
+      "mutation": "add_missing_source",
+      "control": "regional_failover_audit",
+      "path": "demo/not_real_regional.py",
+      "expected_failed_check": "source_inputs"
+    },
+    {
+      "name": "missing_policy_input",
+      "mutation": "add_missing_policy",
+      "control": "release_waiver_governance",
+      "path": "config/not-real-waiver-policy.json",
+      "expected_failed_check": "policy_inputs"
+    },
+    {
+      "name": "missing_test_file",
+      "mutation": "add_missing_test",
+      "control": "disaster_recovery_drill",
+      "path": "tests/test_not_real_disaster_recovery.py",
+      "expected_failed_check": "test_coverage"
+    }
+  ]
+}

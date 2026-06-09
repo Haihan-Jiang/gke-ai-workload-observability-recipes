@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `114`
+- Evidence artifacts: `116`
 - Generated artifacts: `4`
-- Source inputs: `105`
+- Source inputs: `107`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 3420 | `c4b764eaff1421a5...` |
+| `docs/evidence/README.md` | 3482 | `246f2c5950d20829...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -138,12 +138,14 @@ evidence easier to detect during review.
 | `docs/evidence/regional-failover-audit.json` | 12350 | `8adb0e813521be56...` |
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
-| `docs/evidence/evidence-pipeline-audit.md` | 3717 | `ebe9debfdbe629bc...` |
-| `docs/evidence/evidence-pipeline-audit.json` | 19953 | `eb965defbec45305...` |
+| `docs/evidence/control-traceability-audit.md` | 3832 | `af0a26d3dd2f7660...` |
+| `docs/evidence/control-traceability-audit.json` | 24987 | `3552b6f6541bcaa1...` |
+| `docs/evidence/evidence-pipeline-audit.md` | 4040 | `500d421b4836738a...` |
+| `docs/evidence/evidence-pipeline-audit.json` | 21314 | `842c7d5c13d419d8...` |
 | `docs/evidence/evidence-schema-audit.md` | 2398 | `12356575f1daaa8b...` |
 | `docs/evidence/evidence-schema-audit.json` | 10772 | `284d81b53f406549...` |
 | `docs/evidence/disaster-recovery-drill.md` | 1034 | `268ef1b48cc1de9c...` |
-| `docs/evidence/disaster-recovery-drill.json` | 35143 | `c9a6bc709e8e4bce...` |
+| `docs/evidence/disaster-recovery-drill.json` | 35143 | `3c27aa7aacd065ab...` |
 
 ## Generated Artifacts
 

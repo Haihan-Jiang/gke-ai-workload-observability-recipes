@@ -309,11 +309,21 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "unsafe_approved_count": 0,
             "failed_count": 0,
         },
+        "control_traceability": {
+            "status": "pass",
+            "control_count": 43,
+            "evidence_file_count": 86,
+            "source_input_count": 43,
+            "policy_input_count": 44,
+            "test_file_count": 43,
+            "detected_fixture_count": 6,
+            "failed_count": 0,
+        },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 45,
-            "dependency_count": 35,
-            "artifact_dependency_count": 35,
+            "step_count": 50,
+            "dependency_count": 50,
+            "artifact_dependency_count": 50,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
@@ -756,6 +766,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["disaster_recovery_drill"])
+
+    def test_requires_control_traceability_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["control_traceability"]["evidence_file_count"] = 20
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["control_traceability_audit"])
 
     def test_requires_evidence_pipeline_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

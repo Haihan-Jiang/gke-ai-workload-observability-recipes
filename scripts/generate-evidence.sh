@@ -263,6 +263,11 @@ python3 demo/regional_failover_audit.py \
   --runbooks docs/evidence/incident-runbooks.json \
   --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/control_traceability_audit.py \
+  --policy config/control-traceability-policy.json \
+  --release-readiness-source demo/release_readiness.py \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
   --output-dir docs/evidence
@@ -312,6 +317,7 @@ python3 demo/release_readiness.py \
   --load-shedding-policy docs/evidence/load-shedding-policy-audit.json \
   --regional-failover docs/evidence/regional-failover-audit.json \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
+  --control-traceability docs/evidence/control-traceability-audit.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
   --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
