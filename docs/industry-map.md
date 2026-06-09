@@ -158,7 +158,8 @@ inference incidents before a service reaches production.
 | C37 | CI can look green while relying on stale runtimes or broad repository permissions | Production evidence needs GitHub Actions governance for maintained action versions, least-privilege permissions, bounded runtime, concurrency cancellation, and the real validation command. | [CI governance audit](evidence/ci-governance-audit.md) |
 | C38 | Public labs can look runnable but still be hard to contribute to or maintain safely | Contributor-ready repositories need contribution rules, security reporting guidance, CODEOWNERS coverage, release process evidence, and project boundaries. | [Repository governance audit](evidence/repository-governance-audit.md) |
 | C39 | Contributors can run different commands or tool versions and get different evidence | Industrial labs need a documented runtime contract, Make targets, Python version pinning, zero-dependency assumptions, optional tool boundaries, and ignored local output. | [Developer runtime audit](evidence/developer-runtime-audit.md) |
-| C40 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
+| C40 | Generated evidence can be consumed before it is regenerated | Release review needs generation-order checks so downstream gates cannot pass by reading stale committed artifacts. | [Evidence pipeline audit](evidence/evidence-pipeline-audit.md) |
+| C41 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -335,7 +336,13 @@ inference incidents before a service reaches production.
     - Inputs: namespace PSA labels and collector/sample workload pod templates under [k8s/gke](../k8s/gke)
     - Evidence: [Pod Security Admission audit](evidence/pod-security-admission-audit.md)
 
-30. **Evidence schema audit**
+30. **Evidence pipeline audit**
+    - Code: [demo/evidence_pipeline_audit.py](../demo/evidence_pipeline_audit.py)
+    - Policy: [config/evidence-pipeline-policy.json](../config/evidence-pipeline-policy.json)
+    - Inputs: [evidence generation script](../scripts/generate-evidence.sh)
+    - Evidence: [evidence pipeline audit](evidence/evidence-pipeline-audit.md)
+
+31. **Evidence schema audit**
     - Code: [demo/evidence_schema_audit.py](../demo/evidence_schema_audit.py)
     - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
     - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)

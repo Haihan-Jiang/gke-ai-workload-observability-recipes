@@ -11,13 +11,13 @@ values, and negative drift fixtures.
 
 | Metric | Value |
 | --- | ---: |
-| Artifacts | 10 |
-| Required fields | 88 |
-| Required checks | 66 |
-| Metric contracts | 48 |
-| Array contracts | 23 |
-| Observed checks | 66 |
-| Detected fixtures | 10 |
+| Artifacts | 11 |
+| Required fields | 100 |
+| Required checks | 71 |
+| Metric contracts | 55 |
+| Array contracts | 27 |
+| Observed checks | 71 |
+| Detected fixtures | 11 |
 
 ## Checks
 
@@ -37,6 +37,7 @@ values, and negative drift fixtures.
 
 | Artifact | Status | Checks |
 | --- | --- | ---: |
+| `docs/evidence/evidence-pipeline-audit.json` | `pass` | 5 |
 | `docs/evidence/developer-runtime-audit.json` | `pass` | 7 |
 | `docs/evidence/repository-governance-audit.json` | `pass` | 6 |
 | `docs/evidence/ci-governance-audit.json` | `pass` | 8 |
@@ -62,3 +63,4 @@ values, and negative drift fixtures.
 | `missing_workload_identity_annotation_check` | `check_inventory` | yes |
 | `missing_supply_chain_digest_count` | `required_fields` | yes |
 | `missing_k8s_hardening_container_check` | `check_inventory` | yes |
+| `low_pipeline_dependency_count` | `metric_contract` | yes |

@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 10,
-  "policy_artifact_count": 10,
-  "required_field_count": 88,
-  "required_check_count": 66,
-  "metric_contract_count": 48,
-  "array_contract_count": 23,
-  "observed_check_count": 66,
-  "detected_fixture_count": 10,
+  "artifact_count": 11,
+  "policy_artifact_count": 11,
+  "required_field_count": 100,
+  "required_check_count": 71,
+  "metric_contract_count": 55,
+  "array_contract_count": 27,
+  "observed_check_count": 71,
+  "detected_fixture_count": 11,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 10,
-        "policy_artifact_count": 10,
-        "minimum_artifact_count": 10
+        "artifact_count": 11,
+        "policy_artifact_count": 11,
+        "minimum_artifact_count": 11
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 10,
-        "minimum_detected_fixtures": 10,
+        "detected_fixture_count": 11,
+        "minimum_detected_fixtures": 11,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -182,6 +182,16 @@
             "failed_checks": [
               "check_inventory",
               "array_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_pipeline_dependency_count",
+            "artifact": "docs/evidence/evidence-pipeline-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
             ],
             "detected": true
           }
@@ -297,9 +307,25 @@
         "array_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "low_pipeline_dependency_count",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
+    {
+      "path": "docs/evidence/evidence-pipeline-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 5
+    },
     {
       "path": "docs/evidence/developer-runtime-audit.json",
       "present": true,

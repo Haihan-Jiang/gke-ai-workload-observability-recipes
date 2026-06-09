@@ -203,6 +203,11 @@ python3 demo/model_release_safety_audit.py \
   --rollback-drill docs/evidence/rollback-drill.json \
   --synthetic-probe docs/evidence/synthetic-probe-audit.json \
   --output-dir docs/evidence >/dev/null
+python3 demo/evidence_pipeline_audit.py \
+  --policy config/evidence-pipeline-policy.json \
+  --script scripts/generate-evidence.sh \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/evidence_schema_audit.py \
   --policy config/evidence-schema-policy.json \
   --repo-root . \
@@ -234,17 +239,6 @@ python3 demo/accelerator_quota_fairness_audit.py \
   --shadow-traffic docs/evidence/shadow-traffic-replay-audit.json \
   --model-release-safety docs/evidence/model-release-safety-audit.json \
   --output-dir docs/evidence >/dev/null
-python3 demo/regional_failover_audit.py \
-  --policy config/regional-failover-policy.json \
-  --capacity docs/evidence/capacity-plan.json \
-  --error-budget docs/evidence/error-budget-ledger.json \
-  --rollback-drill docs/evidence/rollback-drill.json \
-  --disaster-recovery docs/evidence/disaster-recovery-drill.json \
-  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
-  --load-shedding docs/evidence/load-shedding-policy-audit.json \
-  --runbooks docs/evidence/incident-runbooks.json \
-  --k8s-hardening docs/evidence/k8s-hardening-audit.json \
-  --output-dir docs/evidence >/dev/null
 python3 demo/release_waiver_governance.py \
   --policy config/release-waiver-policy.json \
   --waivers config/release-waivers.json \
@@ -257,6 +251,17 @@ python3 demo/disaster_recovery_drill.py \
   --repo-root . \
   --policy config/disaster-recovery-policy.json \
   --restore-dir out/disaster-recovery-restore \
+  --output-dir docs/evidence >/dev/null
+python3 demo/regional_failover_audit.py \
+  --policy config/regional-failover-policy.json \
+  --capacity docs/evidence/capacity-plan.json \
+  --error-budget docs/evidence/error-budget-ledger.json \
+  --rollback-drill docs/evidence/rollback-drill.json \
+  --disaster-recovery docs/evidence/disaster-recovery-drill.json \
+  --synthetic-probe docs/evidence/synthetic-probe-audit.json \
+  --load-shedding docs/evidence/load-shedding-policy-audit.json \
+  --runbooks docs/evidence/incident-runbooks.json \
+  --k8s-hardening docs/evidence/k8s-hardening-audit.json \
   --output-dir docs/evidence >/dev/null
 python3 demo/render_incident_evidence.py \
   --input "${source_dir}/summary.json" \
@@ -309,6 +314,7 @@ python3 demo/release_readiness.py \
   --release-waiver-governance docs/evidence/release-waiver-governance.json \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --observability-drift docs/evidence/observability-drift-audit.json \
+  --evidence-pipeline docs/evidence/evidence-pipeline-audit.json \
   --evidence-schema docs/evidence/evidence-schema-audit.json \
   --evidence-provenance docs/evidence/evidence-provenance.json \
   --evidence-dir docs/evidence \

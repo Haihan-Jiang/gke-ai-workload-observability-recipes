@@ -14,6 +14,7 @@
     "docs/evidence/error-budget-ledger.json",
     "docs/evidence/rollback-drill.json",
     "docs/evidence/release-waiver-governance.json",
+    "docs/evidence/evidence-pipeline-audit.json",
     "docs/evidence/evidence-schema-audit.json"
   ],
   "artifact_groups": [
@@ -39,6 +40,8 @@
         "docs/evidence/repository-governance-audit.json",
         "docs/evidence/developer-runtime-audit.json",
         "docs/evidence/release-waiver-governance.json",
+        "docs/evidence/evidence-pipeline-audit.md",
+        "docs/evidence/evidence-pipeline-audit.json",
         "docs/evidence/evidence-schema-audit.md",
         "docs/evidence/evidence-schema-audit.json"
       ]
@@ -83,6 +86,7 @@
         "config/ci-governance-policy.json",
         "config/repository-governance-policy.json",
         "config/developer-runtime-policy.json",
+        "config/evidence-pipeline-policy.json",
         "config/evidence-schema-policy.json",
         "config/disaster-recovery-policy.json",
         ".github/workflows/ci.yml",
@@ -93,6 +97,7 @@
         "SECURITY.md",
         "docs/developer-runtime.md",
         "docs/release-process.md",
+        "demo/evidence_pipeline_audit.py",
         "scripts/generate-evidence.sh",
         "scripts/validate.sh"
       ]

@@ -1,0 +1,742 @@
+{
+  "status": "pass",
+  "script": "scripts/generate-evidence.sh",
+  "step_count": 49,
+  "required_step_count": 49,
+  "dependency_count": 45,
+  "artifact_dependency_count": 45,
+  "detected_fixture_count": 4,
+  "failed_count": 0,
+  "check_count": 5,
+  "checks": [
+    {
+      "name": "step_inventory",
+      "ok": true,
+      "evidence": {
+        "step_count": 49,
+        "minimum_step_count": 45,
+        "missing_steps": [],
+        "duplicate_steps": []
+      }
+    },
+    {
+      "name": "dependency_inventory",
+      "ok": true,
+      "evidence": {
+        "dependency_count": 45,
+        "minimum_dependency_count": 35,
+        "unknown_dependencies": []
+      }
+    },
+    {
+      "name": "dependency_order",
+      "ok": true,
+      "evidence": {
+        "order_gaps": []
+      }
+    },
+    {
+      "name": "artifact_dependency_coverage",
+      "ok": true,
+      "evidence": {
+        "artifact_dependency_count": 45,
+        "dependency_count": 45
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 4,
+        "minimum_detected_fixtures": 4,
+        "fixtures": [
+          {
+            "name": "regional_before_disaster_recovery",
+            "mutation": "producer_after_consumer",
+            "expected_failed_check": "dependency_order",
+            "failed_checks": [
+              "dependency_order"
+            ],
+            "detected": true
+          },
+          {
+            "name": "provenance_before_render_index",
+            "mutation": "producer_after_consumer",
+            "expected_failed_check": "dependency_order",
+            "failed_checks": [
+              "dependency_order"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_release_readiness_step",
+            "mutation": "remove_step",
+            "expected_failed_check": "step_inventory",
+            "failed_checks": [
+              "step_inventory",
+              "dependency_inventory"
+            ],
+            "detected": true
+          },
+          {
+            "name": "duplicate_schema_audit_step",
+            "mutation": "duplicate_step",
+            "expected_failed_check": "step_inventory",
+            "failed_checks": [
+              "step_inventory"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "steps": [
+    {
+      "name": "incident_replay",
+      "script": "demo/incident_replay.py",
+      "line": 10
+    },
+    {
+      "name": "reliability_gate",
+      "script": "demo/reliability_gate.py",
+      "line": 11
+    },
+    {
+      "name": "capacity_planner",
+      "script": "demo/capacity_planner.py",
+      "line": 15
+    },
+    {
+      "name": "runbook_generator",
+      "script": "demo/runbook_generator.py",
+      "line": 19
+    },
+    {
+      "name": "advanced_reliability",
+      "script": "demo/advanced_reliability.py",
+      "line": 23
+    },
+    {
+      "name": "detailed_reliability",
+      "script": "demo/detailed_reliability.py",
+      "line": 29
+    },
+    {
+      "name": "deployment_policy",
+      "script": "demo/deployment_policy.py",
+      "line": 34
+    },
+    {
+      "name": "policy_regression_suite",
+      "script": "demo/policy_regression_suite.py",
+      "line": 44
+    },
+    {
+      "name": "supply_chain_audit",
+      "script": "demo/supply_chain_audit.py",
+      "line": 47
+    },
+    {
+      "name": "ci_governance_audit",
+      "script": "demo/ci_governance_audit.py",
+      "line": 51
+    },
+    {
+      "name": "repository_governance_audit",
+      "script": "demo/repository_governance_audit.py",
+      "line": 55
+    },
+    {
+      "name": "developer_runtime_audit",
+      "script": "demo/developer_runtime_audit.py",
+      "line": 59
+    },
+    {
+      "name": "k8s_hardening_audit",
+      "script": "demo/k8s_hardening_audit.py",
+      "line": 63
+    },
+    {
+      "name": "pod_security_admission_audit",
+      "script": "demo/pod_security_admission_audit.py",
+      "line": 67
+    },
+    {
+      "name": "namespace_resource_audit",
+      "script": "demo/namespace_resource_audit.py",
+      "line": 71
+    },
+    {
+      "name": "availability_topology_audit",
+      "script": "demo/availability_topology_audit.py",
+      "line": 75
+    },
+    {
+      "name": "autoscaling_policy_audit",
+      "script": "demo/autoscaling_policy_audit.py",
+      "line": 79
+    },
+    {
+      "name": "scheduling_placement_audit",
+      "script": "demo/scheduling_placement_audit.py",
+      "line": 83
+    },
+    {
+      "name": "rollout_safety_audit",
+      "script": "demo/rollout_safety_audit.py",
+      "line": 87
+    },
+    {
+      "name": "config_rollout_audit",
+      "script": "demo/config_rollout_audit.py",
+      "line": 91
+    },
+    {
+      "name": "network_boundary_audit",
+      "script": "demo/network_boundary_audit.py",
+      "line": 95
+    },
+    {
+      "name": "collector_self_observability_audit",
+      "script": "demo/collector_self_observability_audit.py",
+      "line": 99
+    },
+    {
+      "name": "telemetry_sampling_audit",
+      "script": "demo/telemetry_sampling_audit.py",
+      "line": 103
+    },
+    {
+      "name": "workload_identity_audit",
+      "script": "demo/workload_identity_audit.py",
+      "line": 107
+    },
+    {
+      "name": "admission_policy_audit",
+      "script": "demo/admission_policy_audit.py",
+      "line": 111
+    },
+    {
+      "name": "alerting_rules",
+      "script": "demo/alerting_rules.py",
+      "line": 115
+    },
+    {
+      "name": "grafana_dashboard",
+      "script": "demo/grafana_dashboard.py",
+      "line": 120
+    },
+    {
+      "name": "openslo_contract",
+      "script": "demo/openslo_contract.py",
+      "line": 127
+    },
+    {
+      "name": "observability_drift_audit",
+      "script": "demo/observability_drift_audit.py",
+      "line": 133
+    },
+    {
+      "name": "telemetry_redaction_audit",
+      "script": "demo/telemetry_redaction_audit.py",
+      "line": 140
+    },
+    {
+      "name": "telemetry_cost_budget",
+      "script": "demo/telemetry_cost_budget.py",
+      "line": 145
+    },
+    {
+      "name": "error_budget_ledger",
+      "script": "demo/error_budget_ledger.py",
+      "line": 150
+    },
+    {
+      "name": "rollback_drill",
+      "script": "demo/rollback_drill.py",
+      "line": 156
+    },
+    {
+      "name": "post_incident_review",
+      "script": "demo/post_incident_review.py",
+      "line": 163
+    },
+    {
+      "name": "incident_response_drill",
+      "script": "demo/incident_response_drill.py",
+      "line": 171
+    },
+    {
+      "name": "dependency_contract_audit",
+      "script": "demo/dependency_contract_audit.py",
+      "line": 179
+    },
+    {
+      "name": "synthetic_probe_audit",
+      "script": "demo/synthetic_probe_audit.py",
+      "line": 188
+    },
+    {
+      "name": "model_release_safety_audit",
+      "script": "demo/model_release_safety_audit.py",
+      "line": 197
+    },
+    {
+      "name": "evidence_pipeline_audit",
+      "script": "demo/evidence_pipeline_audit.py",
+      "line": 206
+    },
+    {
+      "name": "evidence_schema_audit",
+      "script": "demo/evidence_schema_audit.py",
+      "line": 211
+    },
+    {
+      "name": "shadow_traffic_replay_audit",
+      "script": "demo/shadow_traffic_replay_audit.py",
+      "line": 215
+    },
+    {
+      "name": "load_shedding_policy_audit",
+      "script": "demo/load_shedding_policy_audit.py",
+      "line": 224
+    },
+    {
+      "name": "accelerator_quota_fairness_audit",
+      "script": "demo/accelerator_quota_fairness_audit.py",
+      "line": 233
+    },
+    {
+      "name": "release_waiver_governance",
+      "script": "demo/release_waiver_governance.py",
+      "line": 242
+    },
+    {
+      "name": "disaster_recovery_drill",
+      "script": "demo/disaster_recovery_drill.py",
+      "line": 250
+    },
+    {
+      "name": "regional_failover_audit",
+      "script": "demo/regional_failover_audit.py",
+      "line": 255
+    },
+    {
+      "name": "render_incident_evidence",
+      "script": "demo/render_incident_evidence.py",
+      "line": 266
+    },
+    {
+      "name": "evidence_provenance",
+      "script": "demo/evidence_provenance.py",
+      "line": 269
+    },
+    {
+      "name": "release_readiness",
+      "script": "demo/release_readiness.py",
+      "line": 273
+    }
+  ],
+  "dependencies": [
+    {
+      "producer": "incident_replay",
+      "consumer": "reliability_gate",
+      "artifact": "out/evidence-source/summary.json",
+      "producer_index": 0,
+      "consumer_index": 1,
+      "ordered": true
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "capacity_planner",
+      "artifact": "out/evidence-source/summary.json",
+      "producer_index": 0,
+      "consumer_index": 2,
+      "ordered": true
+    },
+    {
+      "producer": "reliability_gate",
+      "consumer": "runbook_generator",
+      "artifact": "docs/evidence/reliability-gate.json",
+      "producer_index": 1,
+      "consumer_index": 3,
+      "ordered": true
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "advanced_reliability",
+      "artifact": "out/evidence-source/summary.json",
+      "producer_index": 0,
+      "consumer_index": 4,
+      "ordered": true
+    },
+    {
+      "producer": "incident_replay",
+      "consumer": "detailed_reliability",
+      "artifact": "out/evidence-source/summary.json",
+      "producer_index": 0,
+      "consumer_index": 5,
+      "ordered": true
+    },
+    {
+      "producer": "reliability_gate",
+      "consumer": "deployment_policy",
+      "artifact": "docs/evidence/reliability-gate.json",
+      "producer_index": 1,
+      "consumer_index": 6,
+      "ordered": true
+    },
+    {
+      "producer": "advanced_reliability",
+      "consumer": "deployment_policy",
+      "artifact": "docs/evidence/rollout-guard.json",
+      "producer_index": 4,
+      "consumer_index": 6,
+      "ordered": true
+    },
+    {
+      "producer": "detailed_reliability",
+      "consumer": "deployment_policy",
+      "artifact": "docs/evidence/hpa-lag-analysis.json",
+      "producer_index": 5,
+      "consumer_index": 6,
+      "ordered": true
+    },
+    {
+      "producer": "alerting_rules",
+      "consumer": "observability_drift_audit",
+      "artifact": "docs/evidence/alerting-rules.json",
+      "producer_index": 25,
+      "consumer_index": 28,
+      "ordered": true
+    },
+    {
+      "producer": "grafana_dashboard",
+      "consumer": "observability_drift_audit",
+      "artifact": "docs/evidence/grafana-dashboard.json",
+      "producer_index": 26,
+      "consumer_index": 28,
+      "ordered": true
+    },
+    {
+      "producer": "openslo_contract",
+      "consumer": "observability_drift_audit",
+      "artifact": "docs/evidence/openslo-contract.json",
+      "producer_index": 27,
+      "consumer_index": 28,
+      "ordered": true
+    },
+    {
+      "producer": "runbook_generator",
+      "consumer": "observability_drift_audit",
+      "artifact": "docs/evidence/incident-runbooks.json",
+      "producer_index": 3,
+      "consumer_index": 28,
+      "ordered": true
+    },
+    {
+      "producer": "openslo_contract",
+      "consumer": "error_budget_ledger",
+      "artifact": "docs/evidence/openslo-contract.json",
+      "producer_index": 27,
+      "consumer_index": 31,
+      "ordered": true
+    },
+    {
+      "producer": "runbook_generator",
+      "consumer": "rollback_drill",
+      "artifact": "docs/evidence/incident-runbooks.json",
+      "producer_index": 3,
+      "consumer_index": 32,
+      "ordered": true
+    },
+    {
+      "producer": "deployment_policy",
+      "consumer": "rollback_drill",
+      "artifact": "docs/evidence/deployment-policy.json",
+      "producer_index": 6,
+      "consumer_index": 32,
+      "ordered": true
+    },
+    {
+      "producer": "error_budget_ledger",
+      "consumer": "rollback_drill",
+      "artifact": "docs/evidence/error-budget-ledger.json",
+      "producer_index": 31,
+      "consumer_index": 32,
+      "ordered": true
+    },
+    {
+      "producer": "advanced_reliability",
+      "consumer": "post_incident_review",
+      "artifact": "docs/evidence/incident-correlation.json",
+      "producer_index": 4,
+      "consumer_index": 33,
+      "ordered": true
+    },
+    {
+      "producer": "rollback_drill",
+      "consumer": "post_incident_review",
+      "artifact": "docs/evidence/rollback-drill.json",
+      "producer_index": 32,
+      "consumer_index": 33,
+      "ordered": true
+    },
+    {
+      "producer": "post_incident_review",
+      "consumer": "incident_response_drill",
+      "artifact": "docs/evidence/post-incident-review.json",
+      "producer_index": 33,
+      "consumer_index": 34,
+      "ordered": true
+    },
+    {
+      "producer": "alerting_rules",
+      "consumer": "incident_response_drill",
+      "artifact": "docs/evidence/alerting-rules.json",
+      "producer_index": 25,
+      "consumer_index": 34,
+      "ordered": true
+    },
+    {
+      "producer": "detailed_reliability",
+      "consumer": "dependency_contract_audit",
+      "artifact": "docs/evidence/critical-path-attribution.json",
+      "producer_index": 5,
+      "consumer_index": 35,
+      "ordered": true
+    },
+    {
+      "producer": "dependency_contract_audit",
+      "consumer": "synthetic_probe_audit",
+      "artifact": "docs/evidence/dependency-contract-audit.json",
+      "producer_index": 35,
+      "consumer_index": 36,
+      "ordered": true
+    },
+    {
+      "producer": "incident_response_drill",
+      "consumer": "synthetic_probe_audit",
+      "artifact": "docs/evidence/incident-response-drill.json",
+      "producer_index": 34,
+      "consumer_index": 36,
+      "ordered": true
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "model_release_safety_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json",
+      "producer_index": 36,
+      "consumer_index": 37,
+      "ordered": true
+    },
+    {
+      "producer": "model_release_safety_audit",
+      "consumer": "evidence_pipeline_audit",
+      "artifact": "docs/evidence/model-release-safety-audit.json",
+      "producer_index": 37,
+      "consumer_index": 38,
+      "ordered": true
+    },
+    {
+      "producer": "evidence_pipeline_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json",
+      "producer_index": 38,
+      "consumer_index": 39,
+      "ordered": true
+    },
+    {
+      "producer": "developer_runtime_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/developer-runtime-audit.json",
+      "producer_index": 11,
+      "consumer_index": 39,
+      "ordered": true
+    },
+    {
+      "producer": "pod_security_admission_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/pod-security-admission-audit.json",
+      "producer_index": 13,
+      "consumer_index": 39,
+      "ordered": true
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json",
+      "producer_index": 36,
+      "consumer_index": 39,
+      "ordered": true
+    },
+    {
+      "producer": "model_release_safety_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/model-release-safety-audit.json",
+      "producer_index": 37,
+      "consumer_index": 39,
+      "ordered": true
+    },
+    {
+      "producer": "telemetry_redaction_audit",
+      "consumer": "shadow_traffic_replay_audit",
+      "artifact": "docs/evidence/telemetry-redaction-audit.json",
+      "producer_index": 29,
+      "consumer_index": 40,
+      "ordered": true
+    },
+    {
+      "producer": "model_release_safety_audit",
+      "consumer": "shadow_traffic_replay_audit",
+      "artifact": "docs/evidence/model-release-safety-audit.json",
+      "producer_index": 37,
+      "consumer_index": 40,
+      "ordered": true
+    },
+    {
+      "producer": "synthetic_probe_audit",
+      "consumer": "load_shedding_policy_audit",
+      "artifact": "docs/evidence/synthetic-probe-audit.json",
+      "producer_index": 36,
+      "consumer_index": 41,
+      "ordered": true
+    },
+    {
+      "producer": "load_shedding_policy_audit",
+      "consumer": "accelerator_quota_fairness_audit",
+      "artifact": "docs/evidence/load-shedding-policy-audit.json",
+      "producer_index": 41,
+      "consumer_index": 42,
+      "ordered": true
+    },
+    {
+      "producer": "shadow_traffic_replay_audit",
+      "consumer": "accelerator_quota_fairness_audit",
+      "artifact": "docs/evidence/shadow-traffic-replay-audit.json",
+      "producer_index": 40,
+      "consumer_index": 42,
+      "ordered": true
+    },
+    {
+      "producer": "release_waiver_governance",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/release-waiver-governance.json",
+      "producer_index": 43,
+      "consumer_index": 44,
+      "ordered": true
+    },
+    {
+      "producer": "evidence_schema_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/evidence-schema-audit.json",
+      "producer_index": 39,
+      "consumer_index": 44,
+      "ordered": true
+    },
+    {
+      "producer": "disaster_recovery_drill",
+      "consumer": "regional_failover_audit",
+      "artifact": "docs/evidence/disaster-recovery-drill.json",
+      "producer_index": 44,
+      "consumer_index": 45,
+      "ordered": true
+    },
+    {
+      "producer": "load_shedding_policy_audit",
+      "consumer": "regional_failover_audit",
+      "artifact": "docs/evidence/load-shedding-policy-audit.json",
+      "producer_index": 41,
+      "consumer_index": 45,
+      "ordered": true
+    },
+    {
+      "producer": "regional_failover_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/regional-failover-audit.json",
+      "producer_index": 45,
+      "consumer_index": 47,
+      "ordered": true
+    },
+    {
+      "producer": "render_incident_evidence",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/README.md",
+      "producer_index": 46,
+      "consumer_index": 47,
+      "ordered": true
+    },
+    {
+      "producer": "evidence_provenance",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/evidence-provenance.json",
+      "producer_index": 47,
+      "consumer_index": 48,
+      "ordered": true
+    },
+    {
+      "producer": "regional_failover_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/regional-failover-audit.json",
+      "producer_index": 45,
+      "consumer_index": 48,
+      "ordered": true
+    },
+    {
+      "producer": "disaster_recovery_drill",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/disaster-recovery-drill.json",
+      "producer_index": 44,
+      "consumer_index": 48,
+      "ordered": true
+    },
+    {
+      "producer": "evidence_schema_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/evidence-schema-audit.json",
+      "producer_index": 39,
+      "consumer_index": 48,
+      "ordered": true
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "regional_before_disaster_recovery",
+      "mutation": "producer_after_consumer",
+      "expected_failed_check": "dependency_order",
+      "failed_checks": [
+        "dependency_order"
+      ],
+      "detected": true
+    },
+    {
+      "name": "provenance_before_render_index",
+      "mutation": "producer_after_consumer",
+      "expected_failed_check": "dependency_order",
+      "failed_checks": [
+        "dependency_order"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_release_readiness_step",
+      "mutation": "remove_step",
+      "expected_failed_check": "step_inventory",
+      "failed_checks": [
+        "step_inventory",
+        "dependency_inventory"
+      ],
+      "detected": true
+    },
+    {
+      "name": "duplicate_schema_audit_step",
+      "mutation": "duplicate_step",
+      "expected_failed_check": "step_inventory",
+      "failed_checks": [
+        "step_inventory"
+      ],
+      "detected": true
+    }
+  ]
+}

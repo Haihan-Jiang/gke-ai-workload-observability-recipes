@@ -117,6 +117,8 @@ REQUIRED_EVIDENCE = [
     "regional-failover-audit.json",
     "release-waiver-governance.md",
     "release-waiver-governance.json",
+    "evidence-pipeline-audit.md",
+    "evidence-pipeline-audit.json",
     "evidence-schema-audit.md",
     "evidence-schema-audit.json",
     "disaster-recovery-drill.md",
@@ -185,6 +187,7 @@ def evaluate(
     load_shedding_policy: dict[str, Any],
     regional_failover: dict[str, Any],
     release_waiver_governance: dict[str, Any],
+    evidence_pipeline: dict[str, Any],
     evidence_schema: dict[str, Any],
     disaster_recovery_drill: dict[str, Any],
     evidence_provenance: dict[str, Any],
@@ -517,12 +520,21 @@ def evaluate(
             and int(release_waiver_governance.get("failed_count", -1)) == 0,
         },
         {
+            "name": "evidence_pipeline_audit",
+            "ok": evidence_pipeline.get("status") == "pass"
+            and int(evidence_pipeline.get("step_count", 0)) >= 45
+            and int(evidence_pipeline.get("dependency_count", 0)) >= 35
+            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 35
+            and int(evidence_pipeline.get("detected_fixture_count", 0)) >= 4
+            and int(evidence_pipeline.get("failed_count", -1)) == 0,
+        },
+        {
             "name": "evidence_schema_audit",
             "ok": evidence_schema.get("status") == "pass"
-            and int(evidence_schema.get("artifact_count", 0)) >= 10
-            and int(evidence_schema.get("required_field_count", 0)) >= 80
-            and int(evidence_schema.get("required_check_count", 0)) >= 60
-            and int(evidence_schema.get("detected_fixture_count", 0)) >= 10
+            and int(evidence_schema.get("artifact_count", 0)) >= 11
+            and int(evidence_schema.get("required_field_count", 0)) >= 90
+            and int(evidence_schema.get("required_check_count", 0)) >= 70
+            and int(evidence_schema.get("detected_fixture_count", 0)) >= 11
             and int(evidence_schema.get("failed_count", -1)) == 0,
         },
         {
@@ -579,7 +591,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "probe coverage, model release safety coverage, shadow traffic replay",
         "coverage, accelerator quota fairness coverage, load-shedding policy",
         "coverage, regional failover coverage,",
-        "waiver governance, evidence schema contracts, disaster recovery",
+        "waiver governance, evidence pipeline ordering, evidence schema contracts, disaster recovery",
         "drill coverage, evidence provenance, and committed evidence are",
         "present and internally",
         "consistent.",
@@ -650,6 +662,7 @@ def main() -> int:
     parser.add_argument("--load-shedding-policy", default="out/load-shedding-policy-audit/load-shedding-policy-audit.json")
     parser.add_argument("--regional-failover", default="out/regional-failover-audit/regional-failover-audit.json")
     parser.add_argument("--release-waiver-governance", default="out/release-waiver-governance/release-waiver-governance.json")
+    parser.add_argument("--evidence-pipeline", default="out/evidence-pipeline-audit/evidence-pipeline-audit.json")
     parser.add_argument("--evidence-schema", default="out/evidence-schema-audit/evidence-schema-audit.json")
     parser.add_argument("--disaster-recovery-drill", default="out/disaster-recovery-drill/disaster-recovery-drill.json")
     parser.add_argument("--evidence-provenance", default="out/evidence-provenance/evidence-provenance.json")
@@ -700,6 +713,7 @@ def main() -> int:
         load_shedding_policy=load_json(Path(args.load_shedding_policy)),
         regional_failover=load_json(Path(args.regional_failover)),
         release_waiver_governance=load_json(Path(args.release_waiver_governance)),
+        evidence_pipeline=load_json(Path(args.evidence_pipeline)),
         evidence_schema=load_json(Path(args.evidence_schema)),
         disaster_recovery_drill=load_json(Path(args.disaster_recovery_drill)),
         evidence_provenance=load_json(Path(args.evidence_provenance)),

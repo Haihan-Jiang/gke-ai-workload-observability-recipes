@@ -1,8 +1,53 @@
 {
   "description": "Policy for auditing machine-readable evidence JSON contracts across critical non-circular release artifacts.",
-  "minimum_artifact_count": 10,
-  "minimum_detected_fixtures": 10,
+  "minimum_artifact_count": 11,
+  "minimum_detected_fixtures": 11,
   "artifacts": [
+    {
+      "path": "docs/evidence/evidence-pipeline-audit.json",
+      "allowed_statuses": [
+        "pass",
+        "fail"
+      ],
+      "required_fields": [
+        "status",
+        "check_count",
+        "failed_count",
+        "step_count",
+        "required_step_count",
+        "dependency_count",
+        "artifact_dependency_count",
+        "detected_fixture_count",
+        "checks",
+        "steps",
+        "dependencies",
+        "fixtures"
+      ],
+      "required_checks": [
+        "step_inventory",
+        "dependency_inventory",
+        "dependency_order",
+        "artifact_dependency_coverage",
+        "negative_fixture_coverage"
+      ],
+      "minimum_metrics": {
+        "check_count": 5,
+        "step_count": 45,
+        "required_step_count": 45,
+        "dependency_count": 35,
+        "artifact_dependency_count": 35,
+        "detected_fixture_count": 4
+      },
+      "maximum_metrics": {
+        "failed_count": 0
+      },
+      "array_min_lengths": {
+        "checks": 5,
+        "steps": 45,
+        "dependencies": 35,
+        "fixtures": 4
+      }
+    },
     {
       "path": "docs/evidence/developer-runtime-audit.json",
       "allowed_statuses": [
@@ -477,6 +522,14 @@
       "artifact": "docs/evidence/k8s-hardening-audit.json",
       "check": "collector_security_context",
       "expected_failed_check": "check_inventory"
+    },
+    {
+      "name": "low_pipeline_dependency_count",
+      "mutation": "set_field",
+      "artifact": "docs/evidence/evidence-pipeline-audit.json",
+      "field": "dependency_count",
+      "value": 2,
+      "expected_failed_check": "metric_contract"
     }
   ]
 }

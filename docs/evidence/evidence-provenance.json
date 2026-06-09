@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "failed_count": 0,
-  "artifact_count": 112,
+  "artifact_count": 114,
   "generated_artifact_count": 4,
-  "source_input_count": 103,
+  "source_input_count": 105,
   "validation_commands": [
     "./scripts/generate-evidence.sh",
     "./scripts/validate.sh",
@@ -19,8 +19,8 @@
       "path": "docs/evidence/README.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 3364,
-      "sha256": "4428b907e4e104b99dadfdf9c9d723235b0fa72ed95bd7d83235466ebf30a954"
+      "bytes": 3420,
+      "sha256": "c4b764eaff1421a565e1e2b4345f3c4571fee043d953a6982f800cd6fbccf3f2"
     },
     {
       "path": "docs/evidence/sample-incident-report.md",
@@ -772,32 +772,46 @@
       "sha256": "61b4e70df2e3001a57490056a20b268cc775cc64bd8b26d08468489b26daa63c"
     },
     {
+      "path": "docs/evidence/evidence-pipeline-audit.md",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 3717,
+      "sha256": "ebe9debfdbe629bc50f2975257fa7b66ebd77ab7573ca37f88a337d77fea78ca"
+    },
+    {
+      "path": "docs/evidence/evidence-pipeline-audit.json",
+      "group": "evidence",
+      "exists": true,
+      "bytes": 19953,
+      "sha256": "eb965defbec4530511cda53384d8664aefd5275a994651dc32b8dd6845861a8e"
+    },
+    {
       "path": "docs/evidence/evidence-schema-audit.md",
       "group": "evidence",
       "exists": true,
-      "bytes": 2273,
-      "sha256": "7d558499bb124df2bbe0316e806f5595d723a697c1137a6909284eb06710e706"
+      "bytes": 2398,
+      "sha256": "12356575f1daaa8b2224c25b5412e5494d03e5dc9b46655a3f21dc30d55d3746"
     },
     {
       "path": "docs/evidence/evidence-schema-audit.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 9992,
-      "sha256": "23a3a02efed37bb72bb6f7b2a2edc2f037244ec3761876f567a1e51426505eb4"
+      "bytes": 10772,
+      "sha256": "284d81b53f40654964dc4af842cca54ae09cf571d768e3aba030c00fa5189c2d"
     },
     {
       "path": "docs/evidence/disaster-recovery-drill.md",
       "group": "evidence",
       "exists": true,
       "bytes": 1034,
-      "sha256": "226fe162004544e1895e3f1524fcd4c46cd30555e4ef53d4b71a58ebc6d9bafe"
+      "sha256": "268ef1b48cc1de9c948e2957391a8c8dae5100d933dfe1853b775a2803726655"
     },
     {
       "path": "docs/evidence/disaster-recovery-drill.json",
       "group": "evidence",
       "exists": true,
-      "bytes": 32761,
-      "sha256": "71c61abcbc96afa86173b10b9f8c252fd0070d0366615bab34a457e02a48f623"
+      "bytes": 35143,
+      "sha256": "c9a6bc709e8e4bced13f20bd379e02ea188858e7e39e5746237ad78272c9e88c"
     }
   ],
   "generated_artifacts": [
@@ -835,15 +849,15 @@
       "path": "scripts/generate-evidence.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 15084,
-      "sha256": "d8c7b3787231fba56a920b256388d5cac00e5af012a83778fb797de5a95cb740"
+      "bytes": 15343,
+      "sha256": "0a918f322e448770d4050ac8ae3bd5f8400483a11bba03ea7191d0a1d3c97bdd"
     },
     {
       "path": "scripts/validate.sh",
       "group": "source-input",
       "exists": true,
-      "bytes": 27271,
-      "sha256": "8631a2f94d9e2c6d938e5636d3b2b8909c3d6fd31ce03c5c689625da20775523"
+      "bytes": 27733,
+      "sha256": "35fb053257d061a76c13c23ee94b0b673ae49ac6985dfd4126bd93aaffb255a6"
     },
     {
       "path": "scripts/kind-smoke.sh",
@@ -1154,6 +1168,13 @@
       "sha256": "5429b2346be49daa7b57d388e8074deff77238efb69575e550676ebf210f34f2"
     },
     {
+      "path": "demo/evidence_pipeline_audit.py",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 13284,
+      "sha256": "b521acf8a8ee8e3286daba5a619f9b079eadb1040a11061891d473928c4b2a56"
+    },
+    {
       "path": "demo/evidence_schema_audit.py",
       "group": "source-input",
       "exists": true,
@@ -1171,8 +1192,8 @@
       "path": "demo/render_incident_evidence.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 11426,
-      "sha256": "ef00ddfe3538410fd0d951575f156397d9b7e6ea51bc945a93d8b64db7772c98"
+      "bytes": 11501,
+      "sha256": "2a7e18da1964b27b3e82df96f8993a07a9c60f35d86d82f8ad4c4c87faf86858"
     },
     {
       "path": "config/reliability-slo.json",
@@ -1455,18 +1476,25 @@
       "sha256": "7aeba4d4559ed59dbf695f41d15a7cc1a18e5a4292b4c5a5c6c40bf9d28eed11"
     },
     {
+      "path": "config/evidence-pipeline-policy.json",
+      "group": "source-input",
+      "exists": true,
+      "bytes": 13233,
+      "sha256": "428195d1522970945ec2595bf368bce8cf4dfda7ad440c454cfd263ab2cbd08f"
+    },
+    {
       "path": "config/evidence-schema-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 12456,
-      "sha256": "aa13fae28d78e17fe78033d3efced295121629b19e787e82a439d2a7353fb70e"
+      "bytes": 13806,
+      "sha256": "c3ef1dc6d343f2c3fa8d2d5a8fc9e4b7fc0733f00fd49f3ee549fbe64c067742"
     },
     {
       "path": "config/disaster-recovery-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 3542,
-      "sha256": "7be90a9a93633a3d70f646607065a215f0b4f3929f1619a435509c68920c71b3"
+      "bytes": 3789,
+      "sha256": "5571c1e63ebfdd3024c2215228c76d65c0b581c44f793a29dad9adb874180fbc"
     },
     {
       "path": ".github/workflows/ci.yml",
@@ -1559,8 +1587,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 112,
-        "minimum": 112
+        "count": 114,
+        "minimum": 114
       }
     },
     {
@@ -1576,8 +1604,8 @@
       "ok": true,
       "evidence": {
         "missing": [],
-        "count": 103,
-        "minimum": 103
+        "count": 105,
+        "minimum": 105
       }
     },
     {
