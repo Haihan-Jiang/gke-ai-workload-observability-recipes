@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit GKE Workload Identity and secretless identity boundaries."""
+"""Audit GKE Workload Identity and static identity-material boundaries."""
 
 from __future__ import annotations
 
@@ -201,8 +201,8 @@ def evaluate_documents(docs: list[dict[str, Any]], config: dict[str, Any]) -> di
     collector = config["collector"]
     workload = config["workload"]
     annotation_key = str(config["workload_identity_annotation"])
-    allowed_plaintext_hosts = list(config.get("secretless", {}).get("allowed_plaintext_hosts", []))
-    restricted_patterns = list(config.get("secretless", {}).get("forbidden_patterns", []))
+    allowed_plaintext_hosts = list(config.get("identity_material", {}).get("allowed_plaintext_hosts", []))
+    restricted_patterns = list(config.get("identity_material", {}).get("forbidden_patterns", []))
 
     collector_sa = index.get(("ServiceAccount", collector["namespace"], collector["service_account"]), {})
     workload_sa = index.get(("ServiceAccount", workload["namespace"], workload["service_account"]), {})

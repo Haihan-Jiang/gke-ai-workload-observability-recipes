@@ -1388,8 +1388,8 @@
       "path": "demo/workload_identity_audit.py",
       "group": "source-input",
       "exists": true,
-      "bytes": 22873,
-      "sha256": "74d97a31e7b3741f0b3a411b8ed64cd85e8eb84d6782aff0b0b0ea22d98b085d"
+      "bytes": 22892,
+      "sha256": "028b4fefebd2698478555b7b6eec8507bea5484bb982257563c0d6e27869f9b9"
     },
     {
       "path": "demo/admission_policy_audit.py",
@@ -1843,8 +1843,8 @@
       "path": "config/workload-identity-policy.json",
       "group": "source-input",
       "exists": true,
-      "bytes": 4184,
-      "sha256": "7b38b3744c3ae8216f74d928ba5be458a18000c1233806141cabdb40d213b5ff"
+      "bytes": 4179,
+      "sha256": "2972cf5cd676160a055b27a9d4d462b7917a7185a39b159906149ccaf7315cb8"
     },
     {
       "path": "config/admission-policy.json",

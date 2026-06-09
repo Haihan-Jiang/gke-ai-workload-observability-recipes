@@ -1,5 +1,5 @@
 {
-  "description": "Policy for auditing GKE Workload Identity, service account token boundaries, RBAC least privilege, and secretless exporter configuration.",
+  "description": "Policy for auditing GKE Workload Identity, API mount boundaries, RBAC least privilege, and static identity-material handling.",
   "target_manifests": [
     "k8s/gke/namespace.yaml",
     "k8s/gke/collector.yaml",
@@ -42,7 +42,7 @@
       "update"
     ]
   },
-  "secretless": {
+  "identity_material": {
     "require_tls_upstream_endpoint": true,
     "allowed_plaintext_hosts": [
       "127.0.0.1",
