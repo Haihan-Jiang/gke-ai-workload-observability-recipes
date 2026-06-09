@@ -67,6 +67,7 @@ python3 -m py_compile \
   demo/documentation_link_integrity_audit.py \
   demo/maintainer_intake_audit.py \
   demo/architecture_decision_audit.py \
+  demo/reviewer_reproducibility_audit.py \
   demo/public_claim_evidence_audit.py \
   demo/release_notes_contract_audit.py \
   demo/capacity_planner.py \
@@ -144,6 +145,7 @@ python3 -m json.tool config/proof-packet-integrity-policy.json >/dev/null
 python3 -m json.tool config/documentation-link-policy.json >/dev/null
 python3 -m json.tool config/maintainer-intake-policy.json >/dev/null
 python3 -m json.tool config/architecture-decision-policy.json >/dev/null
+python3 -m json.tool config/reviewer-reproducibility-policy.json >/dev/null
 python3 -m json.tool config/public-claim-evidence-policy.json >/dev/null
 python3 -m json.tool config/release-notes-contract-policy.json >/dev/null
 python3 demo/reliability_gate.py \
@@ -456,6 +458,11 @@ python3 demo/architecture_decision_audit.py \
   --policy config/architecture-decision-policy.json \
   --repo-root . \
   --output-dir out/architecture-decision-audit-validate >/dev/null
+python3 demo/reviewer_reproducibility_audit.py \
+  --policy config/reviewer-reproducibility-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir out/reviewer-reproducibility-audit-validate >/dev/null
 python3 demo/evidence_provenance.py \
   --policy config/evidence-provenance-policy.json \
   --repo-root . \
@@ -543,6 +550,7 @@ python3 demo/release_readiness.py \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
   --architecture-decisions docs/evidence/architecture-decision-audit.json \
+  --reviewer-reproducibility docs/evidence/reviewer-reproducibility-audit.json \
   --maintainer-intake docs/evidence/maintainer-intake-audit.json \
   --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
   --release-notes-contract docs/evidence/release-notes-contract-audit.json \
@@ -629,6 +637,7 @@ python3 -m json.tool docs/evidence/proof-packet-integrity-audit.json >/dev/null
 python3 -m json.tool docs/evidence/documentation-link-integrity-audit.json >/dev/null
 python3 -m json.tool docs/evidence/maintainer-intake-audit.json >/dev/null
 python3 -m json.tool docs/evidence/architecture-decision-audit.json >/dev/null
+python3 -m json.tool docs/evidence/reviewer-reproducibility-audit.json >/dev/null
 python3 -m json.tool docs/evidence/public-claim-evidence-audit.json >/dev/null
 python3 -m json.tool docs/evidence/release-notes-contract-audit.json >/dev/null
 python3 -m json.tool dashboards/grafana/gke-ai-inference-reliability.json >/dev/null

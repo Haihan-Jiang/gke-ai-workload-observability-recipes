@@ -126,6 +126,10 @@ Architecture Decision Records explain the major reliability-lab tradeoffs and
 architecture decision evidence checks that accepted ADRs include rationale,
 rejected alternatives, committed evidence links, and release-control bindings
 before release readiness is reported.
+Reviewer reproducibility evidence checks that reviewers have a 10-minute
+current-head proof path with the same evidence regeneration, validation,
+CI-mode stability, provenance, proof-packet, and boundary checks used by the
+release gate.
 Public claim evidence audit checks that README and industry-map claims stay
 backed by committed JSON/Markdown evidence, release-readiness checks, and
 explicit boundary language before public review text is trusted.
@@ -313,6 +317,8 @@ not described as merged.
 - A proof packet integrity audit that re-checks provenance checksums against
   the current tree and blocks release readiness on stale, missing, or circular
   proof inputs.
+- A reviewer reproducibility audit that verifies the shortest review path,
+  evidence packet links, release-control names, and project boundary language.
 - A release-readiness report that checks committed evidence coverage.
 - A generated incident report that turns raw telemetry into a reviewer-friendly
   debugging narrative.
@@ -328,6 +334,9 @@ not described as merged.
   the collector, replays incidents, and runs the reliability gate.
 
 ## Quick Start
+
+For the shortest external review path, start with
+[docs/reviewer-quickstart.md](docs/reviewer-quickstart.md).
 
 Validate the repo:
 
@@ -708,6 +717,9 @@ Before adapting this to a real GKE cluster:
 57. Keep Architecture Decision Records aligned with accepted decisions,
    rationale, rejected alternatives, committed evidence links, and
    release-control bindings before treating the lab architecture as stable.
+58. Keep reviewer reproducibility aligned with the 10-minute current-head proof
+   path, committed evidence packet links, validation commands, release-control
+   names, and explicit project boundary language.
 
 ## Case Study
 

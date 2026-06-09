@@ -76,6 +76,7 @@
 - [Disaster recovery drill](disaster-recovery-drill.md)
 - [Documentation link integrity audit](documentation-link-integrity-audit.md)
 - [Architecture decision audit](architecture-decision-audit.md)
+- [Reviewer reproducibility audit](reviewer-reproducibility-audit.md)
 - [Maintainer intake audit](maintainer-intake-audit.md)
 - [Public claim evidence audit](public-claim-evidence-audit.md)
 - [Release notes contract audit](release-notes-contract-audit.md)

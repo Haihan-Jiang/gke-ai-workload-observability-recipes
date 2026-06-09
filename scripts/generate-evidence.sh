@@ -301,6 +301,11 @@ python3 demo/architecture_decision_audit.py \
   --policy config/architecture-decision-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/reviewer_reproducibility_audit.py \
+  --policy config/reviewer-reproducibility-policy.json \
+  --repo-root . \
+  --release-readiness-source demo/release_readiness.py \
+  --output-dir docs/evidence >/dev/null
 python3 demo/public_claim_evidence_audit.py \
   --policy config/public-claim-evidence-policy.json \
   --repo-root . \
@@ -412,6 +417,7 @@ python3 demo/release_readiness.py \
   --disaster-recovery-drill docs/evidence/disaster-recovery-drill.json \
   --documentation-link-integrity docs/evidence/documentation-link-integrity-audit.json \
   --architecture-decisions docs/evidence/architecture-decision-audit.json \
+  --reviewer-reproducibility docs/evidence/reviewer-reproducibility-audit.json \
   --maintainer-intake docs/evidence/maintainer-intake-audit.json \
   --public-claim-evidence docs/evidence/public-claim-evidence-audit.json \
   --release-notes-contract docs/evidence/release-notes-contract-audit.json \

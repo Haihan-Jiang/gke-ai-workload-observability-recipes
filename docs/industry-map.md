@@ -176,6 +176,7 @@ inference incidents before a service reaches production.
 | C55 | Release notes can omit changed evidence or validation boundaries | Reviewers need release notes to name the changed capability, evidence artifacts, validation commands, and deployment assumptions before trusting a release packet. | [Release notes contract audit](evidence/release-notes-contract-audit.md) |
 | C56 | Public issue and pull request intake can miss evidence and safety boundaries | Maintainers need issue templates, PR templates, support boundaries, validation commands, and security redirects before public collaboration is treated as release-ready. | [Maintainer intake audit](evidence/maintainer-intake-audit.md) |
 | C57 | Architecture choices can become unverifiable oral history | Industrial review needs accepted ADRs that record tradeoffs, rejected alternatives, committed evidence links, and release-control bindings before architecture claims are trusted. | [Architecture decision audit](evidence/architecture-decision-audit.md) |
+| C58 | Reviewers can miss the shortest reproducible proof path | Public reliability labs need a 10-minute current-head path that names regeneration commands, CI-mode drift checks, evidence packet links, and boundary language before review claims are trusted. | [Reviewer reproducibility audit](evidence/reviewer-reproducibility-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -471,6 +472,12 @@ inference incidents before a service reaches production.
     - Policy: [config/architecture-decision-policy.json](../config/architecture-decision-policy.json)
     - Inputs: accepted ADRs under [docs/adr](adr/README.md)
     - Evidence: [architecture decision audit](evidence/architecture-decision-audit.md)
+
+50. **Reviewer reproducibility audit**
+    - Code: [demo/reviewer_reproducibility_audit.py](../demo/reviewer_reproducibility_audit.py)
+    - Policy: [config/reviewer-reproducibility-policy.json](../config/reviewer-reproducibility-policy.json)
+    - Inputs: [reviewer quickstart](reviewer-quickstart.md), [release process](release-process.md), [contributing guide](../CONTRIBUTING.md), committed evidence packet, and release-readiness source
+    - Evidence: [reviewer reproducibility audit](evidence/reviewer-reproducibility-audit.md)
 
 ## Boundary
 

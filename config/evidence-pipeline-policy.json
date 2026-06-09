@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 67,
-  "minimum_dependency_count": 159,
+  "minimum_step_count": 68,
+  "minimum_dependency_count": 168,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -227,6 +227,10 @@
     {
       "name": "architecture_decision_audit",
       "script": "demo/architecture_decision_audit.py"
+    },
+    {
+      "name": "reviewer_reproducibility_audit",
+      "script": "demo/reviewer_reproducibility_audit.py"
     },
     {
       "name": "public_claim_evidence_audit",
@@ -1068,6 +1072,51 @@
       "producer": "architecture_decision_audit",
       "consumer": "proof_packet_integrity_audit",
       "artifact": "docs/evidence/architecture-decision-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "public_claim_evidence_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "render_incident_evidence",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.md"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "documentation_link_integrity_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.md"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "evidence_schema_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
+    },
+    {
+      "producer": "reviewer_reproducibility_audit",
+      "consumer": "proof_packet_integrity_audit",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json"
     }
   ],
   "fixtures": [

@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 20,
-  "policy_artifact_count": 20,
-  "required_field_count": 214,
-  "required_check_count": 132,
-  "metric_contract_count": 136,
-  "array_contract_count": 48,
-  "observed_check_count": 132,
-  "detected_fixture_count": 20,
+  "artifact_count": 21,
+  "policy_artifact_count": 21,
+  "required_field_count": 227,
+  "required_check_count": 138,
+  "metric_contract_count": 146,
+  "array_contract_count": 50,
+  "observed_check_count": 138,
+  "detected_fixture_count": 21,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 20,
-        "policy_artifact_count": 20,
-        "minimum_artifact_count": 20
+        "artifact_count": 21,
+        "policy_artifact_count": 21,
+        "minimum_artifact_count": 21
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 20,
-        "minimum_detected_fixtures": 20,
+        "detected_fixture_count": 21,
+        "minimum_detected_fixtures": 21,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -283,6 +283,16 @@
           {
             "name": "low_architecture_decision_count",
             "artifact": "docs/evidence/architecture-decision-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_reviewer_command_count",
+            "artifact": "docs/evidence/reviewer-reproducibility-audit.json",
             "mutation": "set_field",
             "expected_failed_check": "metric_contract",
             "failed_checks": [
@@ -507,6 +517,16 @@
         "metric_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "low_reviewer_command_count",
+      "artifact": "docs/evidence/reviewer-reproducibility-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
@@ -626,6 +646,12 @@
     },
     {
       "path": "docs/evidence/architecture-decision-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
+    },
+    {
+      "path": "docs/evidence/reviewer-reproducibility-audit.json",
       "present": true,
       "status": "pass",
       "check_count": 6

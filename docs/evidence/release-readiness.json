@@ -242,6 +242,10 @@
       "ok": true
     },
     {
+      "name": "reviewer_reproducibility_audit",
+      "ok": true
+    },
+    {
       "name": "public_claim_evidence_audit",
       "ok": true
     },
@@ -829,6 +833,14 @@
     },
     {
       "path": "architecture-decision-audit.json",
+      "exists": true
+    },
+    {
+      "path": "reviewer-reproducibility-audit.md",
+      "exists": true
+    },
+    {
+      "path": "reviewer-reproducibility-audit.json",
       "exists": true
     },
     {

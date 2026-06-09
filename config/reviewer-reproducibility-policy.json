@@ -1,0 +1,96 @@
+{
+  "description": "Policy for auditing that reviewers have a short, reproducible current-head proof path.",
+  "required_files": [
+    "README.md",
+    "docs/reviewer-quickstart.md",
+    "docs/release-process.md",
+    "CONTRIBUTING.md",
+    "docs/evidence/README.md",
+    "docs/evidence/release-readiness.md",
+    "docs/evidence/evidence-provenance.md",
+    "docs/evidence/proof-packet-integrity-audit.md"
+  ],
+  "reviewer_surface": "docs/reviewer-quickstart.md",
+  "required_commands": [
+    "make evidence",
+    "make validate",
+    "make ci",
+    "./scripts/generate-evidence.sh",
+    "./scripts/validate.sh",
+    "CI=true ./scripts/validate.sh"
+  ],
+  "required_evidence_paths": [
+    "docs/evidence/release-readiness.md",
+    "docs/evidence/evidence-provenance.md",
+    "docs/evidence/proof-packet-integrity-audit.md",
+    "docs/evidence/validation-contract-audit.md",
+    "docs/evidence/documentation-link-integrity-audit.md",
+    "docs/evidence/public-claim-evidence-audit.md"
+  ],
+  "required_boundary_terms": [
+    "10-Minute Reviewer Path",
+    "current head",
+    "committed evidence",
+    "no cloud account",
+    "No paid services",
+    "not production-deployed",
+    "This repository is a personal reference project."
+  ],
+  "required_release_controls": [
+    "validation_contract_audit",
+    "evidence_provenance",
+    "proof_packet_integrity_audit",
+    "documentation_link_integrity_audit",
+    "public_claim_evidence_audit",
+    "reviewer_reproducibility_audit"
+  ],
+  "minimum_required_file_count": 8,
+  "minimum_command_count": 6,
+  "minimum_evidence_path_count": 6,
+  "minimum_release_control_count": 6,
+  "minimum_boundary_term_count": 7,
+  "minimum_detected_fixtures": 6,
+  "fixtures": [
+    {
+      "name": "missing_reviewer_quickstart",
+      "mutation": "remove_file",
+      "path": "docs/reviewer-quickstart.md",
+      "expected_failed_check": "required_files"
+    },
+    {
+      "name": "missing_ci_command",
+      "mutation": "remove_text",
+      "path": "docs/reviewer-quickstart.md",
+      "text": "make ci",
+      "expected_failed_check": "reviewer_command_contract"
+    },
+    {
+      "name": "missing_provenance_packet_link",
+      "mutation": "remove_text",
+      "path": "docs/reviewer-quickstart.md",
+      "text": "docs/evidence/evidence-provenance.md",
+      "expected_failed_check": "evidence_packet_contract"
+    },
+    {
+      "name": "missing_no_cloud_boundary",
+      "mutation": "remove_text",
+      "path": "docs/reviewer-quickstart.md",
+      "text": "no cloud account",
+      "expected_failed_check": "review_boundary_contract"
+    },
+    {
+      "name": "missing_proof_packet_control",
+      "mutation": "remove_text",
+      "path": "docs/reviewer-quickstart.md",
+      "text": "proof_packet_integrity_audit",
+      "expected_failed_check": "release_control_linkage"
+    },
+    {
+      "name": "missing_current_head_phrase",
+      "mutation": "remove_text",
+      "path": "docs/reviewer-quickstart.md",
+      "text": "current head",
+      "expected_failed_check": "review_boundary_contract"
+    }
+  ]
+}

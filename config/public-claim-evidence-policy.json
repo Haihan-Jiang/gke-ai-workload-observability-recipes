@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing that public README and industry-map claims are backed by committed evidence and release-readiness source checks.",
-  "minimum_claim_count": 14,
-  "minimum_evidence_claim_count": 14,
-  "minimum_release_check_count": 14,
+  "minimum_claim_count": 15,
+  "minimum_evidence_claim_count": 15,
+  "minimum_release_check_count": 15,
   "minimum_boundary_statement_count": 2,
   "minimum_detected_fixtures": 6,
   "boundary_statements": [
@@ -51,8 +51,8 @@
       "evidence_doc": "docs/evidence/validation-contract-audit.md",
       "release_check": "validation_contract_audit",
       "minimum_metrics": {
-        "py_compile_script_count": 69,
-        "committed_json_count": 77,
+        "py_compile_script_count": 70,
+        "committed_json_count": 78,
         "detected_fixture_count": 6
       }
     },
@@ -64,8 +64,8 @@
       "evidence_doc": "docs/evidence/evidence-pipeline-audit.md",
       "release_check": "evidence_pipeline_audit",
       "minimum_metrics": {
-        "step_count": 67,
-        "dependency_count": 159
+        "step_count": 68,
+        "dependency_count": 168
       }
     },
     {
@@ -221,6 +221,21 @@
         "evidence_link_count": 18,
         "release_control_count": 18,
         "detected_fixture_count": 7
+      }
+    },
+    {
+      "id": "reviewer_reproducibility",
+      "surface": "README.md",
+      "required_text": "Reviewer reproducibility evidence checks that reviewers have a 10-minute",
+      "evidence_json": "docs/evidence/reviewer-reproducibility-audit.json",
+      "evidence_doc": "docs/evidence/reviewer-reproducibility-audit.md",
+      "release_check": "reviewer_reproducibility_audit",
+      "minimum_metrics": {
+        "command_count": 6,
+        "evidence_path_count": 6,
+        "existing_evidence_path_count": 6,
+        "release_control_count": 6,
+        "detected_fixture_count": 6
       }
     }
   ],

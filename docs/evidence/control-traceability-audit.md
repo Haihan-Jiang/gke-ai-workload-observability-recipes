@@ -9,12 +9,12 @@ committed evidence, source code, policy/config inputs, and tests.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 60 |
-| Release checks | 65 |
-| Evidence files | 121 |
-| Source inputs | 63 |
-| Policy inputs | 61 |
-| Test files | 60 |
+| Controls | 61 |
+| Release checks | 66 |
+| Evidence files | 123 |
+| Source inputs | 64 |
+| Policy inputs | 62 |
+| Test files | 61 |
 | Detected fixtures | 6 |
 
 ## Checks
@@ -94,6 +94,7 @@ committed evidence, source code, policy/config inputs, and tests.
 | `replay_source_contract_audit` | `replay_source_contract_audit` | 2 |
 | `proof_packet_integrity_audit` | `proof_packet_integrity_audit` | 2 |
 | `architecture_decision_audit` | `architecture_decision_audit` | 2 |
+| `reviewer_reproducibility_audit` | `reviewer_reproducibility_audit` | 2 |
 
 ## Negative Fixtures
 

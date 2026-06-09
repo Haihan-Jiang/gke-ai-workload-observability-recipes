@@ -16,6 +16,9 @@ make ci
 
 `make evidence` refreshes committed evidence under `docs/evidence`. `make ci`
 verifies that generated evidence is stable against the committed files.
+External reviewers can use the shorter packet in
+[docs/reviewer-quickstart.md](docs/reviewer-quickstart.md) to inspect the
+same current-head proof path.
 
 ## Pull Request Checklist
 

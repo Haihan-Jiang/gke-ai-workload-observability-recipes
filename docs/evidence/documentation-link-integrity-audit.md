@@ -9,8 +9,8 @@ links must use approved schemes.
 
 ## Summary
 
-- Markdown files: `91`
-- Local links: `580`
+- Markdown files: `93`
+- Local links: `597`
 - External links: `14`
 - Image links: `3`
 - Missing targets: `0`

@@ -11,6 +11,7 @@
     "docs/google-oss-upstream.md",
     "docs/industry-map.md",
     "docs/kind-e2e.md",
+    "docs/reviewer-quickstart.md",
     "docs/release-process.md"
   ],
   "include_markdown_roots": [
@@ -23,7 +24,7 @@
     "docs/evidence/documentation-link-integrity-audit.md"
   ],
   "minimum_markdown_file_count": 80,
-  "minimum_required_file_count": 11,
+  "minimum_required_file_count": 12,
   "minimum_local_link_count": 520,
   "minimum_external_link_count": 10,
   "minimum_image_link_count": 2,

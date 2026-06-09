@@ -9,9 +9,9 @@ evidence easier to detect during review.
 
 ## Summary
 
-- Evidence artifacts: `147`
+- Evidence artifacts: `149`
 - Generated artifacts: `4`
-- Source inputs: `153`
+- Source inputs: `156`
 - Generator runtime: `python3`
 - Environment: `not recorded in committed provenance`
 
@@ -30,7 +30,7 @@ evidence easier to detect during review.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `docs/evidence/README.md` | 4641 | `575032f4fac18185...` |
+| `docs/evidence/README.md` | 4711 | `002eabff31aa5187...` |
 | `docs/evidence/sample-incident-report.md` | 1724 | `59e9fed419453327...` |
 | `docs/evidence/sample-summary.json` | 3636 | `a9c0fbbd61757a14...` |
 | `docs/evidence/incident-dashboard.svg` | 5392 | `7a3bf4e6a6b905d5...` |
@@ -74,8 +74,8 @@ evidence easier to detect during review.
 | `docs/evidence/supply-chain-audit.json` | 1667 | `7d881ef96bd2b874...` |
 | `docs/evidence/oss-license-audit.md` | 1125 | `9515c7741cc985ab...` |
 | `docs/evidence/oss-license-audit.json` | 5120 | `45a9919e4f7e6d3f...` |
-| `docs/evidence/secret-hygiene-audit.md` | 1205 | `88e9229d041776e6...` |
-| `docs/evidence/secret-hygiene-audit.json` | 4888 | `621e8ba546a1a22f...` |
+| `docs/evidence/secret-hygiene-audit.md` | 1205 | `e312f1996ccada6e...` |
+| `docs/evidence/secret-hygiene-audit.json` | 4888 | `1ffb9698f7dd0459...` |
 | `docs/evidence/sbom-inventory-audit.md` | 1112 | `b31e98a5b7b34416...` |
 | `docs/evidence/sbom-inventory-audit.json` | 5560 | `e21ba88f2e847652...` |
 | `docs/evidence/sbom-inventory.json` | 4382 | `62863c85d1d3c561...` |
@@ -157,26 +157,28 @@ evidence easier to detect during review.
 | `docs/evidence/regional-failover-audit.json` | 12350 | `8adb0e813521be56...` |
 | `docs/evidence/release-waiver-governance.md` | 1935 | `391f2a465c60f6cb...` |
 | `docs/evidence/release-waiver-governance.json` | 39093 | `61b4e70df2e3001a...` |
-| `docs/evidence/release-control-ownership-audit.md` | 9521 | `aae3eafc2d2ab673...` |
-| `docs/evidence/release-control-ownership-audit.json` | 19963 | `245a56ed8d69444d...` |
-| `docs/evidence/evidence-pipeline-audit.md` | 11562 | `7b831b8276eebe0e...` |
-| `docs/evidence/evidence-pipeline-audit.json` | 51221 | `585d670131adaa72...` |
-| `docs/evidence/evidence-schema-audit.md` | 3644 | `3c955f70fd127309...` |
-| `docs/evidence/evidence-schema-audit.json` | 18424 | `6c1e87879a9a9a09...` |
-| `docs/evidence/validation-contract-audit.md` | 1211 | `f4e5856e30aec4ac...` |
-| `docs/evidence/validation-contract-audit.json` | 5576 | `3d0b52bbc7dd0628...` |
-| `docs/evidence/disaster-recovery-drill.md` | 1038 | `24269d4e1597f891...` |
-| `docs/evidence/disaster-recovery-drill.json` | 78841 | `9414b52cce2fc554...` |
-| `docs/evidence/documentation-link-integrity-audit.md` | 1045 | `8c8e61dacf15b7dd...` |
-| `docs/evidence/documentation-link-integrity-audit.json` | 222520 | `602693306e5cfa0d...` |
+| `docs/evidence/release-control-ownership-audit.md` | 9670 | `10453c87874409e0...` |
+| `docs/evidence/release-control-ownership-audit.json` | 20207 | `b6b547c478f9cfc6...` |
+| `docs/evidence/evidence-pipeline-audit.md` | 12213 | `6ce654acdd27038b...` |
+| `docs/evidence/evidence-pipeline-audit.json` | 53697 | `eabe10e8bcdb75ca...` |
+| `docs/evidence/evidence-schema-audit.md` | 3772 | `be0fee7931c5d33a...` |
+| `docs/evidence/evidence-schema-audit.json` | 19218 | `13ace20e9093504c...` |
+| `docs/evidence/validation-contract-audit.md` | 1211 | `6ac09f0971dcfbf1...` |
+| `docs/evidence/validation-contract-audit.json` | 5576 | `1ba15d69e2319f8e...` |
+| `docs/evidence/disaster-recovery-drill.md` | 1038 | `77ecf8020b5aa18d...` |
+| `docs/evidence/disaster-recovery-drill.json` | 81844 | `9454903dc6ef5901...` |
+| `docs/evidence/documentation-link-integrity-audit.md` | 1045 | `715b7fe0f3e54c7c...` |
+| `docs/evidence/documentation-link-integrity-audit.json` | 228884 | `97f4a8f65b03ee01...` |
 | `docs/evidence/maintainer-intake-audit.md` | 1321 | `97a1653872f133a4...` |
 | `docs/evidence/maintainer-intake-audit.json` | 5223 | `3f452b885d82ca7c...` |
-| `docs/evidence/public-claim-evidence-audit.md` | 942 | `2f34c6658029f170...` |
-| `docs/evidence/public-claim-evidence-audit.json` | 4823 | `8c4cd81e7a491420...` |
+| `docs/evidence/public-claim-evidence-audit.md` | 942 | `474992d15af8f963...` |
+| `docs/evidence/public-claim-evidence-audit.json` | 4823 | `ada96a718804221e...` |
 | `docs/evidence/release-notes-contract-audit.md` | 1310 | `2d497a89df060598...` |
 | `docs/evidence/release-notes-contract-audit.json` | 5420 | `c343e4ec7a19d8e3...` |
 | `docs/evidence/architecture-decision-audit.md` | 1256 | `da160c4b0a4d563d...` |
 | `docs/evidence/architecture-decision-audit.json` | 5411 | `ac90225e362f9aff...` |
+| `docs/evidence/reviewer-reproducibility-audit.md` | 1252 | `96d7caea935fe958...` |
+| `docs/evidence/reviewer-reproducibility-audit.json` | 5316 | `a0a9c58c5d8496b4...` |
 
 ## Generated Artifacts
 
