@@ -52,6 +52,10 @@ python3 demo/oss_license_audit.py \
   --policy config/oss-license-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/secret_hygiene_audit.py \
+  --policy config/secret-hygiene-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/ci_governance_audit.py \
   --policy config/ci-governance-policy.json \
   --repo-root . \
@@ -294,6 +298,7 @@ python3 demo/release_readiness.py \
   --policy-regression docs/evidence/policy-regression-suite.json \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --oss-license docs/evidence/oss-license-audit.json \
+  --secret-hygiene docs/evidence/secret-hygiene-audit.json \
   --ci-governance docs/evidence/ci-governance-audit.json \
   --repository-governance docs/evidence/repository-governance-audit.json \
   --developer-runtime docs/evidence/developer-runtime-audit.json \

@@ -157,6 +157,7 @@ def write_index(output_dir: Path) -> None:
                 "- [Policy regression suite](policy-regression-suite.md)",
                 "- [Supply chain audit](supply-chain-audit.md)",
                 "- [OSS license audit](oss-license-audit.md)",
+                "- [Secret hygiene audit](secret-hygiene-audit.md)",
                 "- [CI governance audit](ci-governance-audit.md)",
                 "- [Repository governance audit](repository-governance-audit.md)",
                 "- [Developer runtime audit](developer-runtime-audit.md)",

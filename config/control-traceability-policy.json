@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing traceability from release-readiness controls to evidence, source code, policy inputs, and tests.",
-  "minimum_control_count": 45,
-  "minimum_release_check_count": 50,
-  "minimum_policy_input_count": 46,
+  "minimum_control_count": 46,
+  "minimum_release_check_count": 51,
+  "minimum_policy_input_count": 47,
   "minimum_detected_fixtures": 6,
   "controls": [
     {
@@ -105,6 +105,23 @@
       ],
       "tests": [
         "tests/test_oss_license_audit.py"
+      ]
+    },
+    {
+      "name": "secret_hygiene_audit",
+      "release_readiness_check": "secret_hygiene_audit",
+      "evidence": [
+        "docs/evidence/secret-hygiene-audit.json",
+        "docs/evidence/secret-hygiene-audit.md"
+      ],
+      "source_inputs": [
+        "demo/secret_hygiene_audit.py"
+      ],
+      "policy_inputs": [
+        "config/secret-hygiene-policy.json"
+      ],
+      "tests": [
+        "tests/test_secret_hygiene_audit.py"
       ]
     },
     {

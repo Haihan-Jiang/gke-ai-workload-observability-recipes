@@ -159,10 +159,11 @@ inference incidents before a service reaches production.
 | C38 | Public labs can look runnable but still be hard to contribute to or maintain safely | Contributor-ready repositories need contribution rules, security reporting guidance, CODEOWNERS coverage, release process evidence, and project boundaries. | [Repository governance audit](evidence/repository-governance-audit.md) |
 | C39 | Contributors can run different commands or tool versions and get different evidence | Industrial labs need a documented runtime contract, Make targets, Python version pinning, zero-dependency assumptions, optional tool boundaries, and ignored local output. | [Developer runtime audit](evidence/developer-runtime-audit.md) |
 | C40 | Public reuse can outpace license and third-party reference clarity | Open-source labs need Apache-2.0, NOTICE, README license links, approved Actions, approved images, and third-party reference inventory before public reuse. | [OSS license audit](evidence/oss-license-audit.md) |
-| C41 | Generated evidence can be consumed before it is regenerated | Release review needs generation-order checks so downstream gates cannot pass by reading stale committed artifacts. | [Evidence pipeline audit](evidence/evidence-pipeline-audit.md) |
-| C42 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
-| C43 | Release controls can become orphaned from implementation evidence | Industrial review needs a machine-readable matrix that links configured release-readiness controls back to evidence, source, policy/config inputs, and tests. | [Control traceability audit](evidence/control-traceability-audit.md) |
-| C44 | Release controls can be owned only informally | Industrial review needs explicit owner groups, severity tiers, review cadence, escalation paths, rollback actions, and evidence paths for every release-readiness check. | [Release control ownership audit](evidence/release-control-ownership-audit.md) |
+| C41 | Public evidence can accidentally ship credentials | Release review needs source, manifests, docs, and generated evidence scanned for high-confidence key, token, webhook, and private-key formats before public reuse. | [Secret hygiene audit](evidence/secret-hygiene-audit.md) |
+| C42 | Generated evidence can be consumed before it is regenerated | Release review needs generation-order checks so downstream gates cannot pass by reading stale committed artifacts. | [Evidence pipeline audit](evidence/evidence-pipeline-audit.md) |
+| C43 | Generated evidence can drift into incompatible JSON shapes | Release review needs stable machine-readable contracts for status fields, required checks, metrics, arrays, allowed values, and negative drift fixtures. | [Evidence schema audit](evidence/evidence-schema-audit.md) |
+| C44 | Release controls can become orphaned from implementation evidence | Industrial review needs a machine-readable matrix that links configured release-readiness controls back to evidence, source, policy/config inputs, and tests. | [Control traceability audit](evidence/control-traceability-audit.md) |
+| C45 | Release controls can be owned only informally | Industrial review needs explicit owner groups, severity tiers, review cadence, escalation paths, rollback actions, and evidence paths for every release-readiness check. | [Release control ownership audit](evidence/release-control-ownership-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -351,19 +352,25 @@ inference incidents before a service reaches production.
     - Inputs: [LICENSE](../LICENSE), [NOTICE](../NOTICE), [README](../README.md), GitHub Actions, and container image references
     - Evidence: [OSS license audit](evidence/oss-license-audit.md)
 
-32. **Control traceability audit**
+32. **Secret hygiene audit**
+    - Code: [demo/secret_hygiene_audit.py](../demo/secret_hygiene_audit.py)
+    - Policy: [config/secret-hygiene-policy.json](../config/secret-hygiene-policy.json)
+    - Inputs: committed source, manifests, docs, root governance files, and generated evidence
+    - Evidence: [secret hygiene audit](evidence/secret-hygiene-audit.md)
+
+33. **Control traceability audit**
     - Code: [demo/control_traceability_audit.py](../demo/control_traceability_audit.py)
     - Policy: [config/control-traceability-policy.json](../config/control-traceability-policy.json)
     - Inputs: [release readiness gate](../demo/release_readiness.py), committed evidence, policy/config files, and tests
     - Evidence: [control traceability audit](evidence/control-traceability-audit.md)
 
-33. **Release control ownership audit**
+34. **Release control ownership audit**
     - Code: [demo/release_control_ownership_audit.py](../demo/release_control_ownership_audit.py)
     - Policy: [config/release-control-ownership-policy.json](../config/release-control-ownership-policy.json)
     - Inputs: [release readiness gate](../demo/release_readiness.py)
     - Evidence: [release control ownership audit](evidence/release-control-ownership-audit.md)
 
-34. **Evidence schema audit**
+35. **Evidence schema audit**
     - Code: [demo/evidence_schema_audit.py](../demo/evidence_schema_audit.py)
     - Policy: [config/evidence-schema-policy.json](../config/evidence-schema-policy.json)
     - Inputs: critical non-circular evidence JSON reports under [docs/evidence](evidence)

@@ -57,6 +57,16 @@ def ready_inputs(evidence_dir: Path) -> dict:
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
+        "secret_hygiene": {
+            "status": "pass",
+            "scanned_file_count": 310,
+            "evidence_file_count": 126,
+            "pattern_count": 6,
+            "finding_count": 0,
+            "skipped_file_count": 0,
+            "detected_fixture_count": 6,
+            "failed_count": 0,
+        },
         "ci_governance": {
             "status": "pass",
             "workflow_count": 1,
@@ -319,30 +329,30 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "release_control_ownership": {
             "status": "pass",
-            "control_count": 50,
-            "release_check_count": 50,
-            "covered_release_check_count": 50,
-            "tier0_count": 27,
-            "every_release_count": 38,
+            "control_count": 51,
+            "release_check_count": 51,
+            "covered_release_check_count": 51,
+            "tier0_count": 28,
+            "every_release_count": 39,
             "owner_group_count": 5,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "control_traceability": {
             "status": "pass",
-            "control_count": 45,
-            "evidence_file_count": 90,
-            "source_input_count": 45,
-            "policy_input_count": 46,
-            "test_file_count": 45,
+            "control_count": 46,
+            "evidence_file_count": 92,
+            "source_input_count": 46,
+            "policy_input_count": 47,
+            "test_file_count": 46,
             "detected_fixture_count": 6,
             "failed_count": 0,
         },
         "evidence_pipeline": {
             "status": "pass",
-            "step_count": 52,
-            "dependency_count": 55,
-            "artifact_dependency_count": 55,
+            "step_count": 53,
+            "dependency_count": 58,
+            "artifact_dependency_count": 58,
             "detected_fixture_count": 4,
             "failed_count": 0,
         },
@@ -356,9 +366,9 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "disaster_recovery_drill": {
             "status": "pass",
-            "artifact_count": 60,
-            "restored_count": 60,
-            "hash_match_count": 60,
+            "artifact_count": 64,
+            "restored_count": 64,
+            "hash_match_count": 64,
             "detected_fixture_count": 4,
             "estimated_restore_minutes": 7,
             "rto_minutes": 15,
@@ -366,8 +376,8 @@ def ready_inputs(evidence_dir: Path) -> dict:
         },
         "evidence_provenance": {
             "status": "pass",
-            "artifact_count": 120,
-            "source_input_count": 113,
+            "artifact_count": 122,
+            "source_input_count": 115,
             "failed_count": 0,
         },
         "evidence_dir": evidence_dir,
@@ -444,6 +454,17 @@ class ReleaseReadinessTest(unittest.TestCase):
 
             self.assertEqual("fail", report["status"])
             self.assertFalse(checks["oss_license_audit"])
+
+    def test_requires_secret_hygiene_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = ready_inputs(Path(tmp))
+
+            inputs["secret_hygiene"]["finding_count"] = 1
+            report = release_readiness.evaluate(**inputs)
+            checks = {item["name"]: item["ok"] for item in report["checks"]}
+
+            self.assertEqual("fail", report["status"])
+            self.assertFalse(checks["secret_hygiene_audit"])
 
     def test_requires_repository_governance_audit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

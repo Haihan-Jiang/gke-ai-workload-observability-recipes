@@ -10,11 +10,11 @@ evidence path before the final release gate passes.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 50 |
-| Release checks | 50 |
-| Covered release checks | 50 |
-| Tier 0 controls | 27 |
-| Every-release controls | 38 |
+| Controls | 51 |
+| Release checks | 51 |
+| Covered release checks | 51 |
+| Tier 0 controls | 28 |
+| Every-release controls | 39 |
 | Owner groups | 5 |
 | Detected fixtures | 6 |
 
@@ -44,6 +44,7 @@ evidence path before the final release gate passes.
 | `policy_regression_suite` | `evidence` | `tier_0_release_blocker` | `every_release` | `docs/evidence/policy-regression-suite.json` |
 | `supply_chain_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/supply-chain-audit.json` |
 | `oss_license_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/oss-license-audit.json` |
+| `secret_hygiene_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/secret-hygiene-audit.json` |
 | `ci_governance_audit` | `security` | `tier_0_release_blocker` | `every_release` | `docs/evidence/ci-governance-audit.json` |
 | `repository_governance_audit` | `security` | `tier_1_production_guard` | `monthly` | `docs/evidence/repository-governance-audit.json` |
 | `developer_runtime_audit` | `evidence` | `tier_1_production_guard` | `monthly` | `docs/evidence/developer-runtime-audit.json` |

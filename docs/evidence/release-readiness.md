@@ -5,7 +5,7 @@ Overall status: **PASS**
 This report is the final local gate for the portfolio lab. It verifies
 that the replay, reliability gate, capacity plan, runbooks, advanced
 reliability controls, detailed reliability controls, deployment
-policy, policy regression fixtures, supply-chain audit, OSS license compliance, CI
+policy, policy regression fixtures, supply-chain audit, OSS license compliance, secret hygiene, CI
 governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, namespace resource governance, availability
 topology governance, autoscaling policy governance, scheduling
 placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling
@@ -38,6 +38,7 @@ consistent.
 | `policy_regression_suite` | PASS |
 | `supply_chain_audit` | PASS |
 | `oss_license_audit` | PASS |
+| `secret_hygiene_audit` | PASS |
 | `ci_governance_audit` | PASS |
 | `repository_governance_audit` | PASS |
 | `developer_runtime_audit` | PASS |
@@ -128,6 +129,8 @@ consistent.
 | `supply-chain-audit.json` | yes |
 | `oss-license-audit.md` | yes |
 | `oss-license-audit.json` | yes |
+| `secret-hygiene-audit.md` | yes |
+| `secret-hygiene-audit.json` | yes |
 | `ci-governance-audit.md` | yes |
 | `ci-governance-audit.json` | yes |
 | `repository-governance-audit.md` | yes |

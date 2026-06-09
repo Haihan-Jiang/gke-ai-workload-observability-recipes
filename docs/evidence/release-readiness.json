@@ -42,6 +42,10 @@
       "ok": true
     },
     {
+      "name": "secret_hygiene_audit",
+      "ok": true
+    },
+    {
       "name": "ci_governance_audit",
       "ok": true
     },
@@ -381,6 +385,14 @@
     },
     {
       "path": "oss-license-audit.json",
+      "exists": true
+    },
+    {
+      "path": "secret-hygiene-audit.md",
+      "exists": true
+    },
+    {
+      "path": "secret-hygiene-audit.json",
       "exists": true
     },
     {

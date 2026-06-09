@@ -14,6 +14,7 @@ python3 -m py_compile \
   demo/policy_regression_suite.py \
   demo/supply_chain_audit.py \
   demo/oss_license_audit.py \
+  demo/secret_hygiene_audit.py \
   demo/ci_governance_audit.py \
   demo/repository_governance_audit.py \
   demo/developer_runtime_audit.py \
@@ -70,6 +71,7 @@ python3 -m json.tool config/detailed-reliability.json >/dev/null
 python3 -m json.tool config/deployment-policy-fixtures.json >/dev/null
 python3 -m json.tool config/supply-chain-policy.json >/dev/null
 python3 -m json.tool config/oss-license-policy.json >/dev/null
+python3 -m json.tool config/secret-hygiene-policy.json >/dev/null
 python3 -m json.tool config/ci-governance-policy.json >/dev/null
 python3 -m json.tool config/repository-governance-policy.json >/dev/null
 python3 -m json.tool config/developer-runtime-policy.json >/dev/null
@@ -155,6 +157,10 @@ python3 demo/oss_license_audit.py \
   --policy config/oss-license-policy.json \
   --repo-root . \
   --output-dir out/oss-license-audit-validate >/dev/null
+python3 demo/secret_hygiene_audit.py \
+  --policy config/secret-hygiene-policy.json \
+  --repo-root . \
+  --output-dir out/secret-hygiene-audit-validate >/dev/null
 python3 demo/ci_governance_audit.py \
   --policy config/ci-governance-policy.json \
   --repo-root . \
@@ -395,6 +401,7 @@ python3 demo/release_readiness.py \
   --policy-regression docs/evidence/policy-regression-suite.json \
   --supply-chain docs/evidence/supply-chain-audit.json \
   --oss-license docs/evidence/oss-license-audit.json \
+  --secret-hygiene docs/evidence/secret-hygiene-audit.json \
   --ci-governance docs/evidence/ci-governance-audit.json \
   --repository-governance docs/evidence/repository-governance-audit.json \
   --developer-runtime docs/evidence/developer-runtime-audit.json \
@@ -458,6 +465,7 @@ python3 -m json.tool docs/evidence/deployment-policy.json >/dev/null
 python3 -m json.tool docs/evidence/policy-regression-suite.json >/dev/null
 python3 -m json.tool docs/evidence/supply-chain-audit.json >/dev/null
 python3 -m json.tool docs/evidence/oss-license-audit.json >/dev/null
+python3 -m json.tool docs/evidence/secret-hygiene-audit.json >/dev/null
 python3 -m json.tool docs/evidence/ci-governance-audit.json >/dev/null
 python3 -m json.tool docs/evidence/repository-governance-audit.json >/dev/null
 python3 -m json.tool docs/evidence/developer-runtime-audit.json >/dev/null

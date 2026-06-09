@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 45,
-  "release_check_count": 50,
-  "evidence_file_count": 90,
-  "source_input_count": 45,
-  "policy_input_count": 46,
-  "test_file_count": 45,
+  "control_count": 46,
+  "release_check_count": 51,
+  "evidence_file_count": 92,
+  "source_input_count": 46,
+  "policy_input_count": 47,
+  "test_file_count": 46,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 45,
-        "minimum_control_count": 45,
+        "control_count": 46,
+        "minimum_control_count": 46,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 50,
-        "minimum_release_check_count": 50,
+        "release_check_count": 51,
+        "minimum_release_check_count": 51,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 46,
-        "minimum_policy_input_count": 46,
+        "policy_input_count": 47,
+        "minimum_policy_input_count": 47,
         "policy_gaps": []
       }
     },
@@ -232,6 +232,23 @@
       ],
       "tests": [
         "tests/test_oss_license_audit.py"
+      ]
+    },
+    {
+      "name": "secret_hygiene_audit",
+      "release_readiness_check": "secret_hygiene_audit",
+      "evidence": [
+        "docs/evidence/secret-hygiene-audit.json",
+        "docs/evidence/secret-hygiene-audit.md"
+      ],
+      "source_inputs": [
+        "demo/secret_hygiene_audit.py"
+      ],
+      "policy_inputs": [
+        "config/secret-hygiene-policy.json"
+      ],
+      "tests": [
+        "tests/test_secret_hygiene_audit.py"
       ]
     },
     {

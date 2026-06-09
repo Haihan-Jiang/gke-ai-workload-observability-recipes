@@ -55,6 +55,8 @@ REQUIRED_EVIDENCE = [
     "supply-chain-audit.json",
     "oss-license-audit.md",
     "oss-license-audit.json",
+    "secret-hygiene-audit.md",
+    "secret-hygiene-audit.json",
     "ci-governance-audit.md",
     "ci-governance-audit.json",
     "repository-governance-audit.md",
@@ -160,6 +162,7 @@ def evaluate(
     policy_regression: dict[str, Any],
     supply_chain: dict[str, Any],
     oss_license: dict[str, Any],
+    secret_hygiene: dict[str, Any],
     ci_governance: dict[str, Any],
     repository_governance: dict[str, Any],
     developer_runtime: dict[str, Any],
@@ -250,6 +253,17 @@ def evaluate(
             and int(oss_license.get("third_party_reference_count", 0)) >= 6
             and int(oss_license.get("detected_fixture_count", 0)) >= 6
             and int(oss_license.get("failed_count", -1)) == 0,
+        },
+        {
+            "name": "secret_hygiene_audit",
+            "ok": secret_hygiene.get("status") == "pass"
+            and int(secret_hygiene.get("scanned_file_count", 0)) >= 150
+            and int(secret_hygiene.get("evidence_file_count", 0)) >= 120
+            and int(secret_hygiene.get("pattern_count", 0)) >= 6
+            and int(secret_hygiene.get("finding_count", -1)) == 0
+            and int(secret_hygiene.get("skipped_file_count", -1)) == 0
+            and int(secret_hygiene.get("detected_fixture_count", 0)) >= 6
+            and int(secret_hygiene.get("failed_count", -1)) == 0,
         },
         {
             "name": "ci_governance_audit",
@@ -540,7 +554,7 @@ def evaluate(
         {
             "name": "release_control_ownership_audit",
             "ok": release_control_ownership.get("status") == "pass"
-            and int(release_control_ownership.get("control_count", 0)) >= 50
+            and int(release_control_ownership.get("control_count", 0)) >= 51
             and int(release_control_ownership.get("covered_release_check_count", 0))
             == int(release_control_ownership.get("release_check_count", -1))
             and int(release_control_ownership.get("tier0_count", 0)) >= 18
@@ -552,20 +566,20 @@ def evaluate(
         {
             "name": "control_traceability_audit",
             "ok": control_traceability.get("status") == "pass"
-            and int(control_traceability.get("control_count", 0)) >= 45
-            and int(control_traceability.get("evidence_file_count", 0)) >= 90
-            and int(control_traceability.get("source_input_count", 0)) >= 45
-            and int(control_traceability.get("policy_input_count", 0)) >= 46
-            and int(control_traceability.get("test_file_count", 0)) >= 45
+            and int(control_traceability.get("control_count", 0)) >= 46
+            and int(control_traceability.get("evidence_file_count", 0)) >= 92
+            and int(control_traceability.get("source_input_count", 0)) >= 46
+            and int(control_traceability.get("policy_input_count", 0)) >= 47
+            and int(control_traceability.get("test_file_count", 0)) >= 46
             and int(control_traceability.get("detected_fixture_count", 0)) >= 6
             and int(control_traceability.get("failed_count", -1)) == 0,
         },
         {
             "name": "evidence_pipeline_audit",
             "ok": evidence_pipeline.get("status") == "pass"
-            and int(evidence_pipeline.get("step_count", 0)) >= 52
-            and int(evidence_pipeline.get("dependency_count", 0)) >= 55
-            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 55
+            and int(evidence_pipeline.get("step_count", 0)) >= 53
+            and int(evidence_pipeline.get("dependency_count", 0)) >= 58
+            and int(evidence_pipeline.get("artifact_dependency_count", 0)) >= 58
             and int(evidence_pipeline.get("detected_fixture_count", 0)) >= 4
             and int(evidence_pipeline.get("failed_count", -1)) == 0,
         },
@@ -581,7 +595,7 @@ def evaluate(
         {
             "name": "disaster_recovery_drill",
             "ok": disaster_recovery_drill.get("status") == "pass"
-            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 60
+            and int(disaster_recovery_drill.get("artifact_count", 0)) >= 64
             and int(disaster_recovery_drill.get("restored_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("hash_match_count", -1)) == int(disaster_recovery_drill.get("artifact_count", 0))
             and int(disaster_recovery_drill.get("detected_fixture_count", 0)) >= 4
@@ -591,8 +605,8 @@ def evaluate(
         {
             "name": "evidence_provenance",
             "ok": evidence_provenance.get("status") == "pass"
-            and int(evidence_provenance.get("artifact_count", 0)) >= 120
-            and int(evidence_provenance.get("source_input_count", 0)) >= 113
+            and int(evidence_provenance.get("artifact_count", 0)) >= 122
+            and int(evidence_provenance.get("source_input_count", 0)) >= 115
             and int(evidence_provenance.get("failed_count", -1)) == 0,
         },
     ]
@@ -618,7 +632,7 @@ def write_markdown(report: dict[str, Any], output_dir: Path) -> None:
         "This report is the final local gate for the portfolio lab. It verifies",
         "that the replay, reliability gate, capacity plan, runbooks, advanced",
         "reliability controls, detailed reliability controls, deployment",
-        "policy, policy regression fixtures, supply-chain audit, OSS license compliance, CI",
+        "policy, policy regression fixtures, supply-chain audit, OSS license compliance, secret hygiene, CI",
         "governance, repository governance, developer runtime governance, Kubernetes manifest hardening, Pod Security Admission governance, namespace resource governance, availability",
         "topology governance, autoscaling policy governance, scheduling",
         "placement governance, rollout safety governance, config rollout governance, network boundary governance, collector self-observability, telemetry sampling",
@@ -670,6 +684,7 @@ def main() -> int:
     parser.add_argument("--policy-regression", default="out/policy-regression-suite/policy-regression-suite.json")
     parser.add_argument("--supply-chain", default="out/supply-chain-audit/supply-chain-audit.json")
     parser.add_argument("--oss-license", default="out/oss-license-audit/oss-license-audit.json")
+    parser.add_argument("--secret-hygiene", default="out/secret-hygiene-audit/secret-hygiene-audit.json")
     parser.add_argument("--ci-governance", default="out/ci-governance-audit/ci-governance-audit.json")
     parser.add_argument("--repository-governance", default="out/repository-governance-audit/repository-governance-audit.json")
     parser.add_argument("--developer-runtime", default="out/developer-runtime-audit/developer-runtime-audit.json")
@@ -724,6 +739,7 @@ def main() -> int:
         policy_regression=load_json(Path(args.policy_regression)),
         supply_chain=load_json(Path(args.supply_chain)),
         oss_license=load_json(Path(args.oss_license)),
+        secret_hygiene=load_json(Path(args.secret_hygiene)),
         ci_governance=load_json(Path(args.ci_governance)),
         repository_governance=load_json(Path(args.repository_governance)),
         developer_runtime=load_json(Path(args.developer_runtime)),

@@ -5,7 +5,7 @@
   "estimated_data_loss_minutes": 0,
   "restore_throughput_mib_per_minute": 64,
   "operator_step_minutes": 6,
-  "minimum_artifacts": 60,
+  "minimum_artifacts": 64,
   "minimum_groups": 6,
   "minimum_generated_artifacts": 4,
   "required_rpo_artifacts": [
@@ -15,6 +15,7 @@
     "docs/evidence/rollback-drill.json",
     "docs/evidence/release-waiver-governance.json",
     "docs/evidence/oss-license-audit.json",
+    "docs/evidence/secret-hygiene-audit.json",
     "docs/evidence/evidence-pipeline-audit.json",
     "docs/evidence/evidence-schema-audit.json"
   ],
@@ -53,6 +54,8 @@
         "docs/evidence/supply-chain-audit.json",
         "docs/evidence/oss-license-audit.md",
         "docs/evidence/oss-license-audit.json",
+        "docs/evidence/secret-hygiene-audit.md",
+        "docs/evidence/secret-hygiene-audit.json",
         "docs/evidence/k8s-hardening-audit.json",
         "docs/evidence/pod-security-admission-audit.json",
         "docs/evidence/admission-policy-audit.json",
@@ -90,6 +93,7 @@
         "config/repository-governance-policy.json",
         "config/developer-runtime-policy.json",
         "config/oss-license-policy.json",
+        "config/secret-hygiene-policy.json",
         "config/evidence-pipeline-policy.json",
         "config/evidence-schema-policy.json",
         "config/disaster-recovery-policy.json",
@@ -104,6 +108,7 @@
         "docs/developer-runtime.md",
         "docs/release-process.md",
         "demo/oss_license_audit.py",
+        "demo/secret_hygiene_audit.py",
         "demo/evidence_pipeline_audit.py",
         "scripts/generate-evidence.sh",
         "scripts/validate.sh"
