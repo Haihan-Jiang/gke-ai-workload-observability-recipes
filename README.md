@@ -122,6 +122,10 @@ Maintainer intake evidence checks that issue templates, the pull request
 template, and support guidance collect reproducible evidence, validation
 commands, security routing, no-secret boundaries, and support expectations
 before the repository is treated as maintainer-ready.
+Architecture Decision Records explain the major reliability-lab tradeoffs and
+architecture decision evidence checks that accepted ADRs include rationale,
+rejected alternatives, committed evidence links, and release-control bindings
+before release readiness is reported.
 Public claim evidence audit checks that README and industry-map claims stay
 backed by committed JSON/Markdown evidence, release-readiness checks, and
 explicit boundary language before public review text is trusted.
@@ -498,6 +502,7 @@ script:
 - [Validation contract audit](docs/evidence/validation-contract-audit.md)
 - [Disaster recovery drill](docs/evidence/disaster-recovery-drill.md)
 - [Documentation link integrity audit](docs/evidence/documentation-link-integrity-audit.md)
+- [Architecture decision audit](docs/evidence/architecture-decision-audit.md)
 - [Maintainer intake audit](docs/evidence/maintainer-intake-audit.md)
 - [Public claim evidence audit](docs/evidence/public-claim-evidence-audit.md)
 - [Release notes contract audit](docs/evidence/release-notes-contract-audit.md)
@@ -700,6 +705,9 @@ Before adapting this to a real GKE cluster:
 56. Keep maintainer intake aligned with reproducible evidence, validation
    commands, no-secret boundaries, security routing, and support expectations
    before treating public issues or pull requests as release-ready inputs.
+57. Keep Architecture Decision Records aligned with accepted decisions,
+   rationale, rejected alternatives, committed evidence links, and
+   release-control bindings before treating the lab architecture as stable.
 
 ## Case Study
 

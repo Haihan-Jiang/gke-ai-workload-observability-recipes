@@ -175,6 +175,7 @@ inference incidents before a service reaches production.
 | C54 | Downstream gates can trust replay output after source schema drift | Release review needs a source contract for replay summaries and OTLP payloads so scenario coverage, span shape, attributes, and incident signals stay stable before downstream evidence consumes them. | [Replay source contract audit](evidence/replay-source-contract-audit.md) |
 | C55 | Release notes can omit changed evidence or validation boundaries | Reviewers need release notes to name the changed capability, evidence artifacts, validation commands, and deployment assumptions before trusting a release packet. | [Release notes contract audit](evidence/release-notes-contract-audit.md) |
 | C56 | Public issue and pull request intake can miss evidence and safety boundaries | Maintainers need issue templates, PR templates, support boundaries, validation commands, and security redirects before public collaboration is treated as release-ready. | [Maintainer intake audit](evidence/maintainer-intake-audit.md) |
+| C57 | Architecture choices can become unverifiable oral history | Industrial review needs accepted ADRs that record tradeoffs, rejected alternatives, committed evidence links, and release-control bindings before architecture claims are trusted. | [Architecture decision audit](evidence/architecture-decision-audit.md) |
 
 ## Fourth Feature Contribution
 
@@ -464,6 +465,12 @@ inference incidents before a service reaches production.
     - Policy: [config/maintainer-intake-policy.json](../config/maintainer-intake-policy.json)
     - Inputs: GitHub issue templates, pull request template, [support guide](../SUPPORT.md), and [contributing guide](../CONTRIBUTING.md)
     - Evidence: [maintainer intake audit](evidence/maintainer-intake-audit.md)
+
+49. **Architecture decision audit**
+    - Code: [demo/architecture_decision_audit.py](../demo/architecture_decision_audit.py)
+    - Policy: [config/architecture-decision-policy.json](../config/architecture-decision-policy.json)
+    - Inputs: accepted ADRs under [docs/adr](adr/README.md)
+    - Evidence: [architecture decision audit](evidence/architecture-decision-audit.md)
 
 ## Boundary
 

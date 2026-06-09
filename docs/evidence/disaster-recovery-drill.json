@@ -1,8 +1,8 @@
 {
   "status": "pass",
-  "artifact_count": 118,
-  "restored_count": 118,
-  "hash_match_count": 118,
+  "artifact_count": 127,
+  "restored_count": 127,
+  "hash_match_count": 127,
   "generated_artifact_count": 10,
   "group_count": 6,
   "fixture_count": 4,
@@ -115,43 +115,43 @@
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-pipeline-audit.md",
       "exists": true,
-      "bytes": 10938,
-      "sha256": "9cf341f6641f3a50f4d43fc2e60a2d29f5bb3a088c5f48ed6f5f035f6e46ee6c"
+      "bytes": 11562,
+      "sha256": "7b831b8276eebe0e29ffae6199ba05980a60d278f4dc1c22713d3e46e382baec"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-pipeline-audit.json",
       "exists": true,
-      "bytes": 48805,
-      "sha256": "0035fd44673efde1d98dbfac29e1e8f63170490491e00beb1cc1e6e0322d2696"
+      "bytes": 51221,
+      "sha256": "585d670131adaa729cba19ce6249d9dcd94c28f872a4b29416718221adaa93de"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-schema-audit.md",
       "exists": true,
-      "bytes": 3514,
-      "sha256": "d8ff7ca78e7bd12b024f4d10487f03b0e653908214e3c6eee3566f58da1411f9"
+      "bytes": 3644,
+      "sha256": "3c955f70fd127309ca6b78c9bbdca1c22bd7fa2ed0123196cbe3d9ed5d2d8113"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-schema-audit.json",
       "exists": true,
-      "bytes": 17629,
-      "sha256": "a37488eaee9c083dcbab4a448a1581c65e25cbc6394776c93c459ad819dabf19"
+      "bytes": 18424,
+      "sha256": "6c1e87879a9a9a09b304b783f13d72f920d3b117105b1c6dcf6cc822cdf287e3"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/validation-contract-audit.md",
       "exists": true,
       "bytes": 1211,
-      "sha256": "6a80e3ce15727eb4efc361fbf9ad7beb4d51a21e992c9db5edf624130d816aae"
+      "sha256": "f4e5856e30aec4ac735ef438c55e8664a7eaa7019506a3c28c0c76bbe248139e"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/validation-contract-audit.json",
       "exists": true,
       "bytes": 5576,
-      "sha256": "82252cc77db5810628dc5beff15ef9e80ff5ebd6403aedc7f1ff53ec248fb6a7"
+      "sha256": "3d0b52bbc7dd062810043ed3b5cb418bee4c0cfb2bddc6a34af4044235ad3663"
     },
     {
       "group": "release_control_evidence",
@@ -172,14 +172,14 @@
       "path": "docs/evidence/documentation-link-integrity-audit.md",
       "exists": true,
       "bytes": 1045,
-      "sha256": "03e9c88217eabeb3881894cdf5d73ab64a36b4ae8ef3bd11a712cd7aff026111"
+      "sha256": "8c8e61dacf15b7dd82904fb98711e09e802b4f6bfaa8dc1aaee9bf8a75196a48"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/documentation-link-integrity-audit.json",
       "exists": true,
-      "bytes": 218360,
-      "sha256": "8c452610d80c5068bc00541e68cff56847b48feafd6ad12fab462928fd75f366"
+      "bytes": 222520,
+      "sha256": "602693306e5cfa0ddbaba683fb85b4f02b8e8bdf4be4d26796e76b054b7bb2a6"
     },
     {
       "group": "release_control_evidence",
@@ -200,14 +200,14 @@
       "path": "docs/evidence/public-claim-evidence-audit.md",
       "exists": true,
       "bytes": 942,
-      "sha256": "2029acdfb4aa1f0208b5a7e680f745b690009e8923f864af8cec16232d69badd"
+      "sha256": "2f34c6658029f170e0c2e3964b09f50efda46106ecdaf5b56cf4f61f9a3f801a"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/public-claim-evidence-audit.json",
       "exists": true,
       "bytes": 4823,
-      "sha256": "b4ebd882bfdf7330b851cc058b34036e1b6bc0d42d64cd065bffa861f382fdc1"
+      "sha256": "8c4cd81e7a49142073069ef29876608bb9ca8bd30011f3b5f7f96b4afbee13da"
     },
     {
       "group": "release_control_evidence",
@@ -222,6 +222,20 @@
       "exists": true,
       "bytes": 5420,
       "sha256": "c343e4ec7a19d8e30edb6c65f2c1d6107f9ece404c7e06b182241d99b4f9c1e1"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/architecture-decision-audit.md",
+      "exists": true,
+      "bytes": 1256,
+      "sha256": "da160c4b0a4d563dd70cc1162150405b53f0db8aff4f3be50122d3161f81ed45"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/architecture-decision-audit.json",
+      "exists": true,
+      "bytes": 5411,
+      "sha256": "ac90225e362f9affcd13449247d2f409039bca4827f2434903a0fb01bb662df8"
     },
     {
       "group": "security_policy_evidence",
@@ -249,14 +263,14 @@
       "path": "docs/evidence/secret-hygiene-audit.md",
       "exists": true,
       "bytes": 1205,
-      "sha256": "3365cc9cba96891582e307b0c0c57ca375a4b36c775a8cd31da4ae713f87f04b"
+      "sha256": "88e9229d041776e6faca1d7084ad667748bf6810b810ca3c7da2242570b5959d"
     },
     {
       "group": "security_policy_evidence",
       "path": "docs/evidence/secret-hygiene-audit.json",
       "exists": true,
       "bytes": 4888,
-      "sha256": "1f7a2d536d2b6bf8f516cf91f7143aa0caef128a5ff8d7a80c252fa6f697941e"
+      "sha256": "621e8ba546a1a22f4e32a0fbfdde8f2ef6658fce4e80871f95ddc73779e9b73d"
     },
     {
       "group": "security_policy_evidence",
@@ -563,29 +577,29 @@
       "group": "recovery_source_policy",
       "path": "config/evidence-pipeline-policy.json",
       "exists": true,
-      "bytes": 33479,
-      "sha256": "06880f38e79dc37e24778707bea5d4b6a822a894d9067e97f88c527ea5ddb9b6"
+      "bytes": 35165,
+      "sha256": "1bf08c4e2d0f2cf91ea761080a805d9aa6c5ff28ae897b855436cd26a3885325"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/evidence-schema-policy.json",
       "exists": true,
-      "bytes": 26332,
-      "sha256": "24239f19ee281f17f706c7e8ffbc8fd687d5edc7015b4741d957f060e89a1a8f"
+      "bytes": 27858,
+      "sha256": "9faf7c601a2cfa7fba20782a29f32ac78e762703e5dcda9457f6d89f669e0927"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/validation-contract-policy.json",
       "exists": true,
       "bytes": 2140,
-      "sha256": "7acadb07457e0081ab5f101041bc69f380a6f4b47d4c45da26b35802d9915076"
+      "sha256": "2ad6ac2ebf850dc630759ad2413005662ab99136d45b992e18285eb260fdf08a"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/disaster-recovery-policy.json",
       "exists": true,
-      "bytes": 7838,
-      "sha256": "e8f33501f70588de4140449978eb6d224663e4feff5dfcc4237f6c60aa1a24bb"
+      "bytes": 8379,
+      "sha256": "b57c433986691e9aeb479b3efd0d0ce913142d71284e349573b688c093deec58"
     },
     {
       "group": "recovery_source_policy",
@@ -605,8 +619,8 @@
       "group": "recovery_source_policy",
       "path": "config/public-claim-evidence-policy.json",
       "exists": true,
-      "bytes": 8796,
-      "sha256": "04dc1fe33b4d535de4da0ae8cb884d9b252bd71bc113e8f35032c0caeb989f09"
+      "bytes": 9355,
+      "sha256": "944d919e8f1be8105f24fad551eb79b101f912a94b1252a39672ee6af10a7030"
     },
     {
       "group": "recovery_source_policy",
@@ -717,8 +731,8 @@
       "group": "recovery_source_policy",
       "path": "docs/release-process.md",
       "exists": true,
-      "bytes": 2144,
-      "sha256": "06448be28b5ec28de67d3fdf218aa7590ea5d6ff8e0cf0c243ba3c18b3b5fb68"
+      "bytes": 2196,
+      "sha256": "50eae2706d8cca0d8e99f959394b6f7072fc2b2af6971ac1861325339c159a9c"
     },
     {
       "group": "recovery_source_policy",
@@ -829,15 +843,64 @@
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
       "exists": true,
-      "bytes": 20221,
-      "sha256": "b4754b9d9bb01902bf4710d0d57c53420123e654ee02a7c781f29de0b95daffb"
+      "bytes": 20455,
+      "sha256": "44a2e6fec5e717e5e6dd40fa86c9a2b4684d73ff6d5513df8c26822f419015ee"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
       "exists": true,
-      "bytes": 36648,
-      "sha256": "8475901664691f477a5a6b9b13234bb62d526dc1c5f61e9f508aed5580fb55b2"
+      "bytes": 37101,
+      "sha256": "53052cfae5a065d9370ffd509d45797623ee7243bfe17011813e18fd606ecfa8"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "config/architecture-decision-policy.json",
+      "exists": true,
+      "bytes": 5220,
+      "sha256": "bf17ba210cff7dcb505551a33d2d03597fd0ed762cc23777117b991a6b34df16"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/README.md",
+      "exists": true,
+      "bytes": 753,
+      "sha256": "3eb47ec6a4b1197dbc04b0fcaff57fb60cb2bfb428c21fa4ce673d4e94eba1ac"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
+      "exists": true,
+      "bytes": 1340,
+      "sha256": "d811d32399951c89f12183135deb6662f5d13dad23dad582b1c60102f3adcd15"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/0002-fail-closed-release-readiness.md",
+      "exists": true,
+      "bytes": 1322,
+      "sha256": "7ce55856348fc16940134557a670784c703d1ad9ab2e8b81bab30c599a2f28b9"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+      "exists": true,
+      "bytes": 1180,
+      "sha256": "3b048e1b5dfccc696de734306943dc46e58ccc960b54846e4171d4f70f9cb0f7"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/0004-policy-as-code-change-control.md",
+      "exists": true,
+      "bytes": 1327,
+      "sha256": "cc0e82ba11878d4da80b1af9f71ef012bd4aaf9b83031601a48f2fdd0eb7b38d"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "demo/architecture_decision_audit.py",
+      "exists": true,
+      "bytes": 10689,
+      "sha256": "f89dff81ea042541238b53f9271baecf21753a3aa56dc4945d00ea9606ea443c"
     }
   ],
   "restored_artifacts": [
@@ -970,56 +1033,56 @@
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-pipeline-audit.md",
-      "expected_sha256": "9cf341f6641f3a50f4d43fc2e60a2d29f5bb3a088c5f48ed6f5f035f6e46ee6c",
+      "expected_sha256": "7b831b8276eebe0e29ffae6199ba05980a60d278f4dc1c22713d3e46e382baec",
       "restored": true,
       "hash_match": true,
-      "bytes": 10938,
-      "sha256": "9cf341f6641f3a50f4d43fc2e60a2d29f5bb3a088c5f48ed6f5f035f6e46ee6c"
+      "bytes": 11562,
+      "sha256": "7b831b8276eebe0e29ffae6199ba05980a60d278f4dc1c22713d3e46e382baec"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-pipeline-audit.json",
-      "expected_sha256": "0035fd44673efde1d98dbfac29e1e8f63170490491e00beb1cc1e6e0322d2696",
+      "expected_sha256": "585d670131adaa729cba19ce6249d9dcd94c28f872a4b29416718221adaa93de",
       "restored": true,
       "hash_match": true,
-      "bytes": 48805,
-      "sha256": "0035fd44673efde1d98dbfac29e1e8f63170490491e00beb1cc1e6e0322d2696"
+      "bytes": 51221,
+      "sha256": "585d670131adaa729cba19ce6249d9dcd94c28f872a4b29416718221adaa93de"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-schema-audit.md",
-      "expected_sha256": "d8ff7ca78e7bd12b024f4d10487f03b0e653908214e3c6eee3566f58da1411f9",
+      "expected_sha256": "3c955f70fd127309ca6b78c9bbdca1c22bd7fa2ed0123196cbe3d9ed5d2d8113",
       "restored": true,
       "hash_match": true,
-      "bytes": 3514,
-      "sha256": "d8ff7ca78e7bd12b024f4d10487f03b0e653908214e3c6eee3566f58da1411f9"
+      "bytes": 3644,
+      "sha256": "3c955f70fd127309ca6b78c9bbdca1c22bd7fa2ed0123196cbe3d9ed5d2d8113"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/evidence-schema-audit.json",
-      "expected_sha256": "a37488eaee9c083dcbab4a448a1581c65e25cbc6394776c93c459ad819dabf19",
+      "expected_sha256": "6c1e87879a9a9a09b304b783f13d72f920d3b117105b1c6dcf6cc822cdf287e3",
       "restored": true,
       "hash_match": true,
-      "bytes": 17629,
-      "sha256": "a37488eaee9c083dcbab4a448a1581c65e25cbc6394776c93c459ad819dabf19"
+      "bytes": 18424,
+      "sha256": "6c1e87879a9a9a09b304b783f13d72f920d3b117105b1c6dcf6cc822cdf287e3"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/validation-contract-audit.md",
-      "expected_sha256": "6a80e3ce15727eb4efc361fbf9ad7beb4d51a21e992c9db5edf624130d816aae",
+      "expected_sha256": "f4e5856e30aec4ac735ef438c55e8664a7eaa7019506a3c28c0c76bbe248139e",
       "restored": true,
       "hash_match": true,
       "bytes": 1211,
-      "sha256": "6a80e3ce15727eb4efc361fbf9ad7beb4d51a21e992c9db5edf624130d816aae"
+      "sha256": "f4e5856e30aec4ac735ef438c55e8664a7eaa7019506a3c28c0c76bbe248139e"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/validation-contract-audit.json",
-      "expected_sha256": "82252cc77db5810628dc5beff15ef9e80ff5ebd6403aedc7f1ff53ec248fb6a7",
+      "expected_sha256": "3d0b52bbc7dd062810043ed3b5cb418bee4c0cfb2bddc6a34af4044235ad3663",
       "restored": true,
       "hash_match": true,
       "bytes": 5576,
-      "sha256": "82252cc77db5810628dc5beff15ef9e80ff5ebd6403aedc7f1ff53ec248fb6a7"
+      "sha256": "3d0b52bbc7dd062810043ed3b5cb418bee4c0cfb2bddc6a34af4044235ad3663"
     },
     {
       "group": "release_control_evidence",
@@ -1042,20 +1105,20 @@
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/documentation-link-integrity-audit.md",
-      "expected_sha256": "03e9c88217eabeb3881894cdf5d73ab64a36b4ae8ef3bd11a712cd7aff026111",
+      "expected_sha256": "8c8e61dacf15b7dd82904fb98711e09e802b4f6bfaa8dc1aaee9bf8a75196a48",
       "restored": true,
       "hash_match": true,
       "bytes": 1045,
-      "sha256": "03e9c88217eabeb3881894cdf5d73ab64a36b4ae8ef3bd11a712cd7aff026111"
+      "sha256": "8c8e61dacf15b7dd82904fb98711e09e802b4f6bfaa8dc1aaee9bf8a75196a48"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/documentation-link-integrity-audit.json",
-      "expected_sha256": "8c452610d80c5068bc00541e68cff56847b48feafd6ad12fab462928fd75f366",
+      "expected_sha256": "602693306e5cfa0ddbaba683fb85b4f02b8e8bdf4be4d26796e76b054b7bb2a6",
       "restored": true,
       "hash_match": true,
-      "bytes": 218360,
-      "sha256": "8c452610d80c5068bc00541e68cff56847b48feafd6ad12fab462928fd75f366"
+      "bytes": 222520,
+      "sha256": "602693306e5cfa0ddbaba683fb85b4f02b8e8bdf4be4d26796e76b054b7bb2a6"
     },
     {
       "group": "release_control_evidence",
@@ -1078,20 +1141,20 @@
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/public-claim-evidence-audit.md",
-      "expected_sha256": "2029acdfb4aa1f0208b5a7e680f745b690009e8923f864af8cec16232d69badd",
+      "expected_sha256": "2f34c6658029f170e0c2e3964b09f50efda46106ecdaf5b56cf4f61f9a3f801a",
       "restored": true,
       "hash_match": true,
       "bytes": 942,
-      "sha256": "2029acdfb4aa1f0208b5a7e680f745b690009e8923f864af8cec16232d69badd"
+      "sha256": "2f34c6658029f170e0c2e3964b09f50efda46106ecdaf5b56cf4f61f9a3f801a"
     },
     {
       "group": "release_control_evidence",
       "path": "docs/evidence/public-claim-evidence-audit.json",
-      "expected_sha256": "b4ebd882bfdf7330b851cc058b34036e1b6bc0d42d64cd065bffa861f382fdc1",
+      "expected_sha256": "8c4cd81e7a49142073069ef29876608bb9ca8bd30011f3b5f7f96b4afbee13da",
       "restored": true,
       "hash_match": true,
       "bytes": 4823,
-      "sha256": "b4ebd882bfdf7330b851cc058b34036e1b6bc0d42d64cd065bffa861f382fdc1"
+      "sha256": "8c4cd81e7a49142073069ef29876608bb9ca8bd30011f3b5f7f96b4afbee13da"
     },
     {
       "group": "release_control_evidence",
@@ -1110,6 +1173,24 @@
       "hash_match": true,
       "bytes": 5420,
       "sha256": "c343e4ec7a19d8e30edb6c65f2c1d6107f9ece404c7e06b182241d99b4f9c1e1"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/architecture-decision-audit.md",
+      "expected_sha256": "da160c4b0a4d563dd70cc1162150405b53f0db8aff4f3be50122d3161f81ed45",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1256,
+      "sha256": "da160c4b0a4d563dd70cc1162150405b53f0db8aff4f3be50122d3161f81ed45"
+    },
+    {
+      "group": "release_control_evidence",
+      "path": "docs/evidence/architecture-decision-audit.json",
+      "expected_sha256": "ac90225e362f9affcd13449247d2f409039bca4827f2434903a0fb01bb662df8",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 5411,
+      "sha256": "ac90225e362f9affcd13449247d2f409039bca4827f2434903a0fb01bb662df8"
     },
     {
       "group": "security_policy_evidence",
@@ -1141,20 +1222,20 @@
     {
       "group": "security_policy_evidence",
       "path": "docs/evidence/secret-hygiene-audit.md",
-      "expected_sha256": "3365cc9cba96891582e307b0c0c57ca375a4b36c775a8cd31da4ae713f87f04b",
+      "expected_sha256": "88e9229d041776e6faca1d7084ad667748bf6810b810ca3c7da2242570b5959d",
       "restored": true,
       "hash_match": true,
       "bytes": 1205,
-      "sha256": "3365cc9cba96891582e307b0c0c57ca375a4b36c775a8cd31da4ae713f87f04b"
+      "sha256": "88e9229d041776e6faca1d7084ad667748bf6810b810ca3c7da2242570b5959d"
     },
     {
       "group": "security_policy_evidence",
       "path": "docs/evidence/secret-hygiene-audit.json",
-      "expected_sha256": "1f7a2d536d2b6bf8f516cf91f7143aa0caef128a5ff8d7a80c252fa6f697941e",
+      "expected_sha256": "621e8ba546a1a22f4e32a0fbfdde8f2ef6658fce4e80871f95ddc73779e9b73d",
       "restored": true,
       "hash_match": true,
       "bytes": 4888,
-      "sha256": "1f7a2d536d2b6bf8f516cf91f7143aa0caef128a5ff8d7a80c252fa6f697941e"
+      "sha256": "621e8ba546a1a22f4e32a0fbfdde8f2ef6658fce4e80871f95ddc73779e9b73d"
     },
     {
       "group": "security_policy_evidence",
@@ -1546,38 +1627,38 @@
     {
       "group": "recovery_source_policy",
       "path": "config/evidence-pipeline-policy.json",
-      "expected_sha256": "06880f38e79dc37e24778707bea5d4b6a822a894d9067e97f88c527ea5ddb9b6",
+      "expected_sha256": "1bf08c4e2d0f2cf91ea761080a805d9aa6c5ff28ae897b855436cd26a3885325",
       "restored": true,
       "hash_match": true,
-      "bytes": 33479,
-      "sha256": "06880f38e79dc37e24778707bea5d4b6a822a894d9067e97f88c527ea5ddb9b6"
+      "bytes": 35165,
+      "sha256": "1bf08c4e2d0f2cf91ea761080a805d9aa6c5ff28ae897b855436cd26a3885325"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/evidence-schema-policy.json",
-      "expected_sha256": "24239f19ee281f17f706c7e8ffbc8fd687d5edc7015b4741d957f060e89a1a8f",
+      "expected_sha256": "9faf7c601a2cfa7fba20782a29f32ac78e762703e5dcda9457f6d89f669e0927",
       "restored": true,
       "hash_match": true,
-      "bytes": 26332,
-      "sha256": "24239f19ee281f17f706c7e8ffbc8fd687d5edc7015b4741d957f060e89a1a8f"
+      "bytes": 27858,
+      "sha256": "9faf7c601a2cfa7fba20782a29f32ac78e762703e5dcda9457f6d89f669e0927"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/validation-contract-policy.json",
-      "expected_sha256": "7acadb07457e0081ab5f101041bc69f380a6f4b47d4c45da26b35802d9915076",
+      "expected_sha256": "2ad6ac2ebf850dc630759ad2413005662ab99136d45b992e18285eb260fdf08a",
       "restored": true,
       "hash_match": true,
       "bytes": 2140,
-      "sha256": "7acadb07457e0081ab5f101041bc69f380a6f4b47d4c45da26b35802d9915076"
+      "sha256": "2ad6ac2ebf850dc630759ad2413005662ab99136d45b992e18285eb260fdf08a"
     },
     {
       "group": "recovery_source_policy",
       "path": "config/disaster-recovery-policy.json",
-      "expected_sha256": "e8f33501f70588de4140449978eb6d224663e4feff5dfcc4237f6c60aa1a24bb",
+      "expected_sha256": "b57c433986691e9aeb479b3efd0d0ce913142d71284e349573b688c093deec58",
       "restored": true,
       "hash_match": true,
-      "bytes": 7838,
-      "sha256": "e8f33501f70588de4140449978eb6d224663e4feff5dfcc4237f6c60aa1a24bb"
+      "bytes": 8379,
+      "sha256": "b57c433986691e9aeb479b3efd0d0ce913142d71284e349573b688c093deec58"
     },
     {
       "group": "recovery_source_policy",
@@ -1600,11 +1681,11 @@
     {
       "group": "recovery_source_policy",
       "path": "config/public-claim-evidence-policy.json",
-      "expected_sha256": "04dc1fe33b4d535de4da0ae8cb884d9b252bd71bc113e8f35032c0caeb989f09",
+      "expected_sha256": "944d919e8f1be8105f24fad551eb79b101f912a94b1252a39672ee6af10a7030",
       "restored": true,
       "hash_match": true,
-      "bytes": 8796,
-      "sha256": "04dc1fe33b4d535de4da0ae8cb884d9b252bd71bc113e8f35032c0caeb989f09"
+      "bytes": 9355,
+      "sha256": "944d919e8f1be8105f24fad551eb79b101f912a94b1252a39672ee6af10a7030"
     },
     {
       "group": "recovery_source_policy",
@@ -1744,11 +1825,11 @@
     {
       "group": "recovery_source_policy",
       "path": "docs/release-process.md",
-      "expected_sha256": "06448be28b5ec28de67d3fdf218aa7590ea5d6ff8e0cf0c243ba3c18b3b5fb68",
+      "expected_sha256": "50eae2706d8cca0d8e99f959394b6f7072fc2b2af6971ac1861325339c159a9c",
       "restored": true,
       "hash_match": true,
-      "bytes": 2144,
-      "sha256": "06448be28b5ec28de67d3fdf218aa7590ea5d6ff8e0cf0c243ba3c18b3b5fb68"
+      "bytes": 2196,
+      "sha256": "50eae2706d8cca0d8e99f959394b6f7072fc2b2af6971ac1861325339c159a9c"
     },
     {
       "group": "recovery_source_policy",
@@ -1888,20 +1969,83 @@
     {
       "group": "recovery_source_policy",
       "path": "scripts/generate-evidence.sh",
-      "expected_sha256": "b4754b9d9bb01902bf4710d0d57c53420123e654ee02a7c781f29de0b95daffb",
+      "expected_sha256": "44a2e6fec5e717e5e6dd40fa86c9a2b4684d73ff6d5513df8c26822f419015ee",
       "restored": true,
       "hash_match": true,
-      "bytes": 20221,
-      "sha256": "b4754b9d9bb01902bf4710d0d57c53420123e654ee02a7c781f29de0b95daffb"
+      "bytes": 20455,
+      "sha256": "44a2e6fec5e717e5e6dd40fa86c9a2b4684d73ff6d5513df8c26822f419015ee"
     },
     {
       "group": "recovery_source_policy",
       "path": "scripts/validate.sh",
-      "expected_sha256": "8475901664691f477a5a6b9b13234bb62d526dc1c5f61e9f508aed5580fb55b2",
+      "expected_sha256": "53052cfae5a065d9370ffd509d45797623ee7243bfe17011813e18fd606ecfa8",
       "restored": true,
       "hash_match": true,
-      "bytes": 36648,
-      "sha256": "8475901664691f477a5a6b9b13234bb62d526dc1c5f61e9f508aed5580fb55b2"
+      "bytes": 37101,
+      "sha256": "53052cfae5a065d9370ffd509d45797623ee7243bfe17011813e18fd606ecfa8"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "config/architecture-decision-policy.json",
+      "expected_sha256": "bf17ba210cff7dcb505551a33d2d03597fd0ed762cc23777117b991a6b34df16",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 5220,
+      "sha256": "bf17ba210cff7dcb505551a33d2d03597fd0ed762cc23777117b991a6b34df16"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/README.md",
+      "expected_sha256": "3eb47ec6a4b1197dbc04b0fcaff57fb60cb2bfb428c21fa4ce673d4e94eba1ac",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 753,
+      "sha256": "3eb47ec6a4b1197dbc04b0fcaff57fb60cb2bfb428c21fa4ce673d4e94eba1ac"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
+      "expected_sha256": "d811d32399951c89f12183135deb6662f5d13dad23dad582b1c60102f3adcd15",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1340,
+      "sha256": "d811d32399951c89f12183135deb6662f5d13dad23dad582b1c60102f3adcd15"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/0002-fail-closed-release-readiness.md",
+      "expected_sha256": "7ce55856348fc16940134557a670784c703d1ad9ab2e8b81bab30c599a2f28b9",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1322,
+      "sha256": "7ce55856348fc16940134557a670784c703d1ad9ab2e8b81bab30c599a2f28b9"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+      "expected_sha256": "3b048e1b5dfccc696de734306943dc46e58ccc960b54846e4171d4f70f9cb0f7",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1180,
+      "sha256": "3b048e1b5dfccc696de734306943dc46e58ccc960b54846e4171d4f70f9cb0f7"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "docs/adr/0004-policy-as-code-change-control.md",
+      "expected_sha256": "cc0e82ba11878d4da80b1af9f71ef012bd4aaf9b83031601a48f2fdd0eb7b38d",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 1327,
+      "sha256": "cc0e82ba11878d4da80b1af9f71ef012bd4aaf9b83031601a48f2fdd0eb7b38d"
+    },
+    {
+      "group": "recovery_source_policy",
+      "path": "demo/architecture_decision_audit.py",
+      "expected_sha256": "f89dff81ea042541238b53f9271baecf21753a3aa56dc4945d00ea9606ea443c",
+      "restored": true,
+      "hash_match": true,
+      "bytes": 10689,
+      "sha256": "f89dff81ea042541238b53f9271baecf21753a3aa56dc4945d00ea9606ea443c"
     }
   ],
   "fixtures": [
@@ -1934,7 +2078,7 @@
       "evidence": {
         "missing": [],
         "duplicates": [],
-        "artifact_count": 118
+        "artifact_count": 127
       }
     },
     {
@@ -1942,8 +2086,8 @@
       "status": "pass",
       "reason": "Every restored artifact matches the source SHA-256 checksum.",
       "evidence": {
-        "restored_count": 118,
-        "hash_match_count": 118,
+        "restored_count": 127,
+        "hash_match_count": 127,
         "hash_mismatches": []
       }
     },
@@ -1956,8 +2100,8 @@
           "deployment_manifests": 6,
           "incident_replay_evidence": 4,
           "observability_contracts": 7,
-          "recovery_source_policy": 53,
-          "release_control_evidence": 26,
+          "recovery_source_policy": 60,
+          "release_control_evidence": 28,
           "security_policy_evidence": 22
         }
       }

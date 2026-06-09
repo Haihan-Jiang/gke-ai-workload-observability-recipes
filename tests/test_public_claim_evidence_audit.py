@@ -47,9 +47,9 @@ class PublicClaimEvidenceAuditTest(unittest.TestCase):
         )
 
         self.assertEqual("pass", report["status"])
-        self.assertGreaterEqual(report["claim_count"], 13)
-        self.assertGreaterEqual(report["evidence_claim_count"], 13)
-        self.assertGreaterEqual(report["release_check_count"], 13)
+        self.assertGreaterEqual(report["claim_count"], 14)
+        self.assertGreaterEqual(report["evidence_claim_count"], 14)
+        self.assertGreaterEqual(report["release_check_count"], 14)
         self.assertEqual(0, report["forbidden_phrase_count"])
         self.assertEqual(6, report["detected_fixture_count"])
 

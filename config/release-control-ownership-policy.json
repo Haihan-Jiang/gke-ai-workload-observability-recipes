@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing ownership, severity, cadence, escalation, rollback, and evidence paths for release-readiness checks.",
-  "minimum_control_count": 64,
-  "minimum_tier0_count": 41,
-  "minimum_every_release_count": 52,
+  "minimum_control_count": 65,
+  "minimum_tier0_count": 42,
+  "minimum_every_release_count": 53,
   "minimum_owner_group_count": 5,
   "minimum_detected_fixtures": 6,
   "allowed_tiers": [
@@ -106,7 +106,8 @@
     {"name": "public_claim_evidence_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/public-claim-evidence-audit.json"},
     {"name": "release_notes_contract_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/release-notes-contract-audit.json"},
     {"name": "evidence_provenance", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/evidence-provenance.json"},
-    {"name": "proof_packet_integrity_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/proof-packet-integrity-audit.json"}
+    {"name": "proof_packet_integrity_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/proof-packet-integrity-audit.json"},
+    {"name": "architecture_decision_audit", "owner": "evidence", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/architecture-decision-audit.json"}
   ],
   "fixtures": [
     {"name": "missing_provenance_owner", "mutation": "remove_control", "control": "evidence_provenance", "expected_failed_check": "control_inventory"},

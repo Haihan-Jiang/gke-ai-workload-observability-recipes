@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing that public README and industry-map claims are backed by committed evidence and release-readiness source checks.",
-  "minimum_claim_count": 13,
-  "minimum_evidence_claim_count": 13,
-  "minimum_release_check_count": 13,
+  "minimum_claim_count": 14,
+  "minimum_evidence_claim_count": 14,
+  "minimum_release_check_count": 14,
   "minimum_boundary_statement_count": 2,
   "minimum_detected_fixtures": 6,
   "boundary_statements": [
@@ -51,8 +51,8 @@
       "evidence_doc": "docs/evidence/validation-contract-audit.md",
       "release_check": "validation_contract_audit",
       "minimum_metrics": {
-        "py_compile_script_count": 68,
-        "committed_json_count": 76,
+        "py_compile_script_count": 69,
+        "committed_json_count": 77,
         "detected_fixture_count": 6
       }
     },
@@ -64,8 +64,8 @@
       "evidence_doc": "docs/evidence/evidence-pipeline-audit.md",
       "release_check": "evidence_pipeline_audit",
       "minimum_metrics": {
-        "step_count": 66,
-        "dependency_count": 150
+        "step_count": 67,
+        "dependency_count": 159
       }
     },
     {
@@ -207,6 +207,20 @@
         "pr_validation_command_count": 3,
         "support_term_count": 5,
         "detected_fixture_count": 6
+      }
+    },
+    {
+      "id": "architecture_decisions",
+      "surface": "README.md",
+      "required_text": "Architecture Decision Records explain the major reliability-lab tradeoffs",
+      "evidence_json": "docs/evidence/architecture-decision-audit.json",
+      "evidence_doc": "docs/evidence/architecture-decision-audit.md",
+      "release_check": "architecture_decision_audit",
+      "minimum_metrics": {
+        "accepted_decision_count": 4,
+        "evidence_link_count": 18,
+        "release_control_count": 18,
+        "detected_fixture_count": 7
       }
     }
   ],

@@ -1,0 +1,204 @@
+{
+  "status": "pass",
+  "failed_count": 0,
+  "check_count": 6,
+  "detected_fixture_count": 7,
+  "required_file_count": 5,
+  "present_file_count": 5,
+  "decision_count": 4,
+  "accepted_decision_count": 4,
+  "evidence_link_count": 18,
+  "existing_evidence_link_count": 18,
+  "release_control_count": 18,
+  "checks": [
+    {
+      "name": "required_files",
+      "ok": true,
+      "evidence": {
+        "missing_files": [],
+        "required_files": [
+          "docs/adr/README.md",
+          "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
+          "docs/adr/0002-fail-closed-release-readiness.md",
+          "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+          "docs/adr/0004-policy-as-code-change-control.md"
+        ]
+      }
+    },
+    {
+      "name": "adr_section_contract",
+      "ok": true,
+      "evidence": {
+        "accepted_decision_count": 4,
+        "minimum_decision_count": 4,
+        "section_gaps": []
+      }
+    },
+    {
+      "name": "decision_rationale",
+      "ok": true,
+      "evidence": {
+        "rationale_gaps": []
+      }
+    },
+    {
+      "name": "evidence_linkage",
+      "ok": true,
+      "evidence": {
+        "evidence_link_count": 18,
+        "existing_evidence_link_count": 18,
+        "minimum_evidence_link_count": 16,
+        "evidence_gaps": []
+      }
+    },
+    {
+      "name": "release_control_linkage",
+      "ok": true,
+      "evidence": {
+        "release_control_count": 18,
+        "minimum_release_control_count": 16,
+        "release_control_gaps": []
+      }
+    },
+    {
+      "name": "negative_fixture_coverage",
+      "ok": true,
+      "evidence": {
+        "detected_fixture_count": 7,
+        "minimum_detected_fixtures": 7,
+        "fixtures": [
+          {
+            "name": "missing_adr_readme",
+            "mutation": "remove_file",
+            "expected_failed_check": "required_files",
+            "failed_checks": [
+              "required_files"
+            ],
+            "detected": true
+          },
+          {
+            "name": "pending_decision_status",
+            "mutation": "replace_text",
+            "expected_failed_check": "adr_section_contract",
+            "failed_checks": [
+              "adr_section_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_decision_section",
+            "mutation": "remove_text",
+            "expected_failed_check": "adr_section_contract",
+            "failed_checks": [
+              "adr_section_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_rejected_alternative",
+            "mutation": "remove_text",
+            "expected_failed_check": "adr_section_contract",
+            "failed_checks": [
+              "adr_section_contract",
+              "decision_rationale"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_evidence_link",
+            "mutation": "remove_text",
+            "expected_failed_check": "evidence_linkage",
+            "failed_checks": [
+              "evidence_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_release_control",
+            "mutation": "remove_text",
+            "expected_failed_check": "release_control_linkage",
+            "failed_checks": [
+              "release_control_linkage"
+            ],
+            "detected": true
+          },
+          {
+            "name": "missing_policy_as_code_term",
+            "mutation": "remove_text",
+            "expected_failed_check": "decision_rationale",
+            "failed_checks": [
+              "decision_rationale"
+            ],
+            "detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_adr_readme",
+      "mutation": "remove_file",
+      "expected_failed_check": "required_files",
+      "failed_checks": [
+        "required_files"
+      ],
+      "detected": true
+    },
+    {
+      "name": "pending_decision_status",
+      "mutation": "replace_text",
+      "expected_failed_check": "adr_section_contract",
+      "failed_checks": [
+        "adr_section_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_decision_section",
+      "mutation": "remove_text",
+      "expected_failed_check": "adr_section_contract",
+      "failed_checks": [
+        "adr_section_contract"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_rejected_alternative",
+      "mutation": "remove_text",
+      "expected_failed_check": "adr_section_contract",
+      "failed_checks": [
+        "adr_section_contract",
+        "decision_rationale"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_evidence_link",
+      "mutation": "remove_text",
+      "expected_failed_check": "evidence_linkage",
+      "failed_checks": [
+        "evidence_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_release_control",
+      "mutation": "remove_text",
+      "expected_failed_check": "release_control_linkage",
+      "failed_checks": [
+        "release_control_linkage"
+      ],
+      "detected": true
+    },
+    {
+      "name": "missing_policy_as_code_term",
+      "mutation": "remove_text",
+      "expected_failed_check": "decision_rationale",
+      "failed_checks": [
+        "decision_rationale"
+      ],
+      "detected": true
+    }
+  ]
+}

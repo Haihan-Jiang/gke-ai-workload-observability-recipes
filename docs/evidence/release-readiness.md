@@ -20,7 +20,7 @@ probe coverage, model release safety coverage, shadow traffic replay
 coverage, accelerator quota fairness coverage, load-shedding policy
 coverage, regional failover coverage,
 waiver governance, release control ownership, control traceability, replay source contract, evidence pipeline ordering, evidence schema contracts, disaster recovery
-drill coverage, documentation link integrity, maintainer intake, public claim evidence, release notes contract, evidence provenance, proof-packet integrity, and committed evidence are
+drill coverage, documentation link integrity, architecture decisions, maintainer intake, public claim evidence, release notes contract, evidence provenance, proof-packet integrity, and committed evidence are
 present and internally
 consistent.
 
@@ -87,6 +87,7 @@ consistent.
 | `validation_contract_audit` | PASS |
 | `disaster_recovery_drill` | PASS |
 | `documentation_link_integrity_audit` | PASS |
+| `architecture_decision_audit` | PASS |
 | `public_claim_evidence_audit` | PASS |
 | `maintainer_intake_audit` | PASS |
 | `release_notes_contract_audit` | PASS |
@@ -237,6 +238,8 @@ consistent.
 | `disaster-recovery-drill.json` | yes |
 | `documentation-link-integrity-audit.md` | yes |
 | `documentation-link-integrity-audit.json` | yes |
+| `architecture-decision-audit.md` | yes |
+| `architecture-decision-audit.json` | yes |
 | `maintainer-intake-audit.md` | yes |
 | `maintainer-intake-audit.json` | yes |
 | `public-claim-evidence-audit.md` | yes |

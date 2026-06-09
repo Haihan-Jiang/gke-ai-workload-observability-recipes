@@ -1,7 +1,7 @@
 {
   "description": "Policy for producing a reproducible provenance manifest for generated lab evidence.",
-  "minimum_evidence_artifacts": 145,
-  "minimum_source_inputs": 146,
+  "minimum_evidence_artifacts": 147,
+  "minimum_source_inputs": 153,
   "required_artifacts": [
     "docs/evidence/README.md",
     "docs/evidence/sample-incident-report.md",
@@ -147,7 +147,9 @@
     "docs/evidence/public-claim-evidence-audit.md",
     "docs/evidence/public-claim-evidence-audit.json",
     "docs/evidence/release-notes-contract-audit.md",
-    "docs/evidence/release-notes-contract-audit.json"
+    "docs/evidence/release-notes-contract-audit.json",
+    "docs/evidence/architecture-decision-audit.md",
+    "docs/evidence/architecture-decision-audit.json"
   ],
   "generated_artifacts": [
     "k8s/gke/alerting-rules.yaml",
@@ -301,7 +303,14 @@
     "policies/admission/gke-ai-inference-admission-policy.yaml",
     "k8s/gke/scheduling.yaml",
     "k8s/gke/collector.yaml",
-    "k8s/gke/sample-app.yaml"
+    "k8s/gke/sample-app.yaml",
+    "demo/architecture_decision_audit.py",
+    "config/architecture-decision-policy.json",
+    "docs/adr/README.md",
+    "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
+    "docs/adr/0002-fail-closed-release-readiness.md",
+    "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+    "docs/adr/0004-policy-as-code-change-control.md"
   ],
   "validation_commands": [
     "./scripts/generate-evidence.sh",

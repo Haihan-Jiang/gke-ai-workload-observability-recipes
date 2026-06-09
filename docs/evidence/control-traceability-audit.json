@@ -1,11 +1,11 @@
 {
   "status": "pass",
-  "control_count": 59,
-  "release_check_count": 64,
-  "evidence_file_count": 119,
-  "source_input_count": 62,
-  "policy_input_count": 60,
-  "test_file_count": 59,
+  "control_count": 60,
+  "release_check_count": 65,
+  "evidence_file_count": 121,
+  "source_input_count": 63,
+  "policy_input_count": 61,
+  "test_file_count": 60,
   "detected_fixture_count": 6,
   "failed_count": 0,
   "check_count": 8,
@@ -14,8 +14,8 @@
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 59,
-        "minimum_control_count": 59,
+        "control_count": 60,
+        "minimum_control_count": 60,
         "duplicate_controls": []
       }
     },
@@ -23,8 +23,8 @@
       "name": "release_gate_linkage",
       "ok": true,
       "evidence": {
-        "release_check_count": 64,
-        "minimum_release_check_count": 64,
+        "release_check_count": 65,
+        "minimum_release_check_count": 65,
         "release_gaps": []
       }
     },
@@ -53,8 +53,8 @@
       "name": "policy_inputs",
       "ok": true,
       "evidence": {
-        "policy_input_count": 60,
-        "minimum_policy_input_count": 60,
+        "policy_input_count": 61,
+        "minimum_policy_input_count": 61,
         "policy_gaps": []
       }
     },
@@ -1138,6 +1138,23 @@
       ],
       "tests": [
         "tests/test_proof_packet_integrity_audit.py"
+      ]
+    },
+    {
+      "name": "architecture_decision_audit",
+      "release_readiness_check": "architecture_decision_audit",
+      "evidence": [
+        "docs/evidence/architecture-decision-audit.json",
+        "docs/evidence/architecture-decision-audit.md"
+      ],
+      "source_inputs": [
+        "demo/architecture_decision_audit.py"
+      ],
+      "policy_inputs": [
+        "config/architecture-decision-policy.json"
+      ],
+      "tests": [
+        "tests/test_architecture_decision_audit.py"
       ]
     }
   ],

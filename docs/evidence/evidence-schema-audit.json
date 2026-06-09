@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "artifact_count": 19,
-  "policy_artifact_count": 19,
-  "required_field_count": 201,
-  "required_check_count": 126,
-  "metric_contract_count": 126,
-  "array_contract_count": 46,
-  "observed_check_count": 126,
-  "detected_fixture_count": 19,
+  "artifact_count": 20,
+  "policy_artifact_count": 20,
+  "required_field_count": 214,
+  "required_check_count": 132,
+  "metric_contract_count": 136,
+  "array_contract_count": 48,
+  "observed_check_count": 132,
+  "detected_fixture_count": 20,
   "failed_count": 0,
   "check_count": 9,
   "checks": [
@@ -16,9 +16,9 @@
       "ok": true,
       "evidence": {
         "missing_artifacts": [],
-        "artifact_count": 19,
-        "policy_artifact_count": 19,
-        "minimum_artifact_count": 19
+        "artifact_count": 20,
+        "policy_artifact_count": 20,
+        "minimum_artifact_count": 20
       }
     },
     {
@@ -74,8 +74,8 @@
       "name": "negative_fixture_coverage",
       "ok": true,
       "evidence": {
-        "detected_fixture_count": 19,
-        "minimum_detected_fixtures": 19,
+        "detected_fixture_count": 20,
+        "minimum_detected_fixtures": 20,
         "fixtures": [
           {
             "name": "missing_developer_runtime_status",
@@ -273,6 +273,16 @@
           {
             "name": "low_maintainer_issue_template_count",
             "artifact": "docs/evidence/maintainer-intake-audit.json",
+            "mutation": "set_field",
+            "expected_failed_check": "metric_contract",
+            "failed_checks": [
+              "metric_contract"
+            ],
+            "detected": true
+          },
+          {
+            "name": "low_architecture_decision_count",
+            "artifact": "docs/evidence/architecture-decision-audit.json",
             "mutation": "set_field",
             "expected_failed_check": "metric_contract",
             "failed_checks": [
@@ -487,6 +497,16 @@
         "metric_contract"
       ],
       "detected": true
+    },
+    {
+      "name": "low_architecture_decision_count",
+      "artifact": "docs/evidence/architecture-decision-audit.json",
+      "mutation": "set_field",
+      "expected_failed_check": "metric_contract",
+      "failed_checks": [
+        "metric_contract"
+      ],
+      "detected": true
     }
   ],
   "artifacts": [
@@ -603,6 +623,12 @@
       "present": true,
       "status": "pass",
       "check_count": 8
+    },
+    {
+      "path": "docs/evidence/architecture-decision-audit.json",
+      "present": true,
+      "status": "pass",
+      "check_count": 6
     }
   ]
 }

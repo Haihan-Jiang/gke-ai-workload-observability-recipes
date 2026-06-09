@@ -238,6 +238,10 @@
       "ok": true
     },
     {
+      "name": "architecture_decision_audit",
+      "ok": true
+    },
+    {
       "name": "public_claim_evidence_audit",
       "ok": true
     },
@@ -817,6 +821,14 @@
     },
     {
       "path": "documentation-link-integrity-audit.json",
+      "exists": true
+    },
+    {
+      "path": "architecture-decision-audit.md",
+      "exists": true
+    },
+    {
+      "path": "architecture-decision-audit.json",
       "exists": true
     },
     {

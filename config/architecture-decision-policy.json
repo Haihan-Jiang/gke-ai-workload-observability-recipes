@@ -1,0 +1,164 @@
+{
+  "description": "Policy for auditing Architecture Decision Records before treating the lab as industrial-grade.",
+  "required_files": [
+    "docs/adr/README.md",
+    "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
+    "docs/adr/0002-fail-closed-release-readiness.md",
+    "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+    "docs/adr/0004-policy-as-code-change-control.md"
+  ],
+  "required_sections": [
+    "Status: Accepted",
+    "## Context",
+    "## Decision",
+    "## Consequences",
+    "Rejected alternative:",
+    "## Evidence",
+    "## Release Controls"
+  ],
+  "minimum_decision_count": 4,
+  "minimum_evidence_link_count": 16,
+  "minimum_release_control_count": 16,
+  "minimum_detected_fixtures": 7,
+  "decisions": [
+    {
+      "id": "ADR 0001",
+      "path": "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
+      "required_terms": [
+        "deterministic, local, and zero-cost",
+        "docs/evidence/",
+        "Rejected alternative:"
+      ],
+      "evidence_links": [
+        "docs/evidence/reliability-gate.md",
+        "docs/evidence/capacity-plan.md",
+        "docs/evidence/incident-runbooks.md",
+        "docs/evidence/developer-runtime-audit.md"
+      ],
+      "release_controls": [
+        "reliability_gate",
+        "capacity_plan",
+        "runbook_coverage",
+        "developer_runtime_audit"
+      ]
+    },
+    {
+      "id": "ADR 0002",
+      "path": "docs/adr/0002-fail-closed-release-readiness.md",
+      "required_terms": [
+        "fail-closed gate",
+        "provenance",
+        "proof packet"
+      ],
+      "evidence_links": [
+        "docs/evidence/release-readiness.md",
+        "docs/evidence/evidence-provenance.md",
+        "docs/evidence/proof-packet-integrity-audit.md",
+        "docs/evidence/disaster-recovery-drill.md",
+        "docs/evidence/validation-contract-audit.md"
+      ],
+      "release_controls": [
+        "release_control_ownership_audit",
+        "evidence_provenance",
+        "proof_packet_integrity_audit",
+        "disaster_recovery_drill",
+        "validation_contract_audit"
+      ]
+    },
+    {
+      "id": "ADR 0003",
+      "path": "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+      "required_terms": [
+        "synthetic, local, and privacy-safe",
+        "customer data",
+        "credentials"
+      ],
+      "evidence_links": [
+        "docs/evidence/replay-source-contract-audit.md",
+        "docs/evidence/secret-hygiene-audit.md",
+        "docs/evidence/telemetry-redaction-audit.md",
+        "docs/evidence/maintainer-intake-audit.md"
+      ],
+      "release_controls": [
+        "replay_source_contract_audit",
+        "secret_hygiene_audit",
+        "telemetry_redaction_audit",
+        "maintainer_intake_audit"
+      ]
+    },
+    {
+      "id": "ADR 0004",
+      "path": "docs/adr/0004-policy-as-code-change-control.md",
+      "required_terms": [
+        "policy-as-code plus tests",
+        "negative fixtures",
+        "public README claims"
+      ],
+      "evidence_links": [
+        "docs/evidence/evidence-pipeline-audit.md",
+        "docs/evidence/evidence-schema-audit.md",
+        "docs/evidence/control-traceability-audit.md",
+        "docs/evidence/public-claim-evidence-audit.md",
+        "docs/evidence/release-notes-contract-audit.md"
+      ],
+      "release_controls": [
+        "evidence_pipeline_audit",
+        "evidence_schema_audit",
+        "control_traceability_audit",
+        "public_claim_evidence_audit",
+        "release_notes_contract_audit"
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "missing_adr_readme",
+      "mutation": "remove_file",
+      "path": "docs/adr/README.md",
+      "expected_failed_check": "required_files"
+    },
+    {
+      "name": "pending_decision_status",
+      "mutation": "replace_text",
+      "path": "docs/adr/0002-fail-closed-release-readiness.md",
+      "from": "Status: Accepted",
+      "to": "Status: Proposed",
+      "expected_failed_check": "adr_section_contract"
+    },
+    {
+      "name": "missing_decision_section",
+      "mutation": "remove_text",
+      "path": "docs/adr/0004-policy-as-code-change-control.md",
+      "text": "## Decision",
+      "expected_failed_check": "adr_section_contract"
+    },
+    {
+      "name": "missing_rejected_alternative",
+      "mutation": "remove_text",
+      "path": "docs/adr/0001-local-zero-cost-evidence-pipeline.md",
+      "text": "Rejected alternative:",
+      "expected_failed_check": "adr_section_contract"
+    },
+    {
+      "name": "missing_evidence_link",
+      "mutation": "remove_text",
+      "path": "docs/adr/0003-privacy-safe-incident-replay-boundary.md",
+      "text": "docs/evidence/telemetry-redaction-audit.md",
+      "expected_failed_check": "evidence_linkage"
+    },
+    {
+      "name": "missing_release_control",
+      "mutation": "remove_text",
+      "path": "docs/adr/0002-fail-closed-release-readiness.md",
+      "text": "proof_packet_integrity_audit",
+      "expected_failed_check": "release_control_linkage"
+    },
+    {
+      "name": "missing_policy_as_code_term",
+      "mutation": "remove_text",
+      "path": "docs/adr/0004-policy-as-code-change-control.md",
+      "text": "policy-as-code plus tests",
+      "expected_failed_check": "decision_rationale"
+    }
+  ]
+}
