@@ -50,6 +50,10 @@
       "ok": true
     },
     {
+      "name": "security_response_audit",
+      "ok": true
+    },
+    {
       "name": "ci_governance_audit",
       "ok": true
     },
@@ -409,6 +413,14 @@
     },
     {
       "path": "sbom-inventory.json",
+      "exists": true
+    },
+    {
+      "path": "security-response-audit.md",
+      "exists": true
+    },
+    {
+      "path": "security-response-audit.json",
       "exists": true
     },
     {

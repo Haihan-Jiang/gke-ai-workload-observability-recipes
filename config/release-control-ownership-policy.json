@@ -1,8 +1,8 @@
 {
   "description": "Policy for auditing ownership, severity, cadence, escalation, rollback, and evidence paths for release-readiness checks.",
-  "minimum_control_count": 52,
-  "minimum_tier0_count": 18,
-  "minimum_every_release_count": 30,
+  "minimum_control_count": 53,
+  "minimum_tier0_count": 30,
+  "minimum_every_release_count": 41,
   "minimum_owner_group_count": 5,
   "minimum_detected_fixtures": 6,
   "allowed_tiers": [
@@ -55,6 +55,7 @@
     {"name": "oss_license_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/oss-license-audit.json"},
     {"name": "secret_hygiene_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/secret-hygiene-audit.json"},
     {"name": "sbom_inventory_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/sbom-inventory-audit.json"},
+    {"name": "security_response_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/security-response-audit.json"},
     {"name": "ci_governance_audit", "owner": "security", "tier": "tier_0_release_blocker", "review_cadence": "every_release", "evidence_path": "docs/evidence/ci-governance-audit.json"},
     {"name": "repository_governance_audit", "owner": "security", "tier": "tier_1_production_guard", "review_cadence": "monthly", "evidence_path": "docs/evidence/repository-governance-audit.json"},
     {"name": "developer_runtime_audit", "owner": "evidence", "tier": "tier_1_production_guard", "review_cadence": "monthly", "evidence_path": "docs/evidence/developer-runtime-audit.json"},

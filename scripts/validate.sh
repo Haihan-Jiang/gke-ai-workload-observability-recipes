@@ -16,6 +16,7 @@ python3 -m py_compile \
   demo/oss_license_audit.py \
   demo/secret_hygiene_audit.py \
   demo/sbom_inventory_audit.py \
+  demo/security_response_audit.py \
   demo/ci_governance_audit.py \
   demo/repository_governance_audit.py \
   demo/developer_runtime_audit.py \
@@ -74,6 +75,7 @@ python3 -m json.tool config/supply-chain-policy.json >/dev/null
 python3 -m json.tool config/oss-license-policy.json >/dev/null
 python3 -m json.tool config/secret-hygiene-policy.json >/dev/null
 python3 -m json.tool config/sbom-inventory-policy.json >/dev/null
+python3 -m json.tool config/security-response-policy.json >/dev/null
 python3 -m json.tool config/ci-governance-policy.json >/dev/null
 python3 -m json.tool config/repository-governance-policy.json >/dev/null
 python3 -m json.tool config/developer-runtime-policy.json >/dev/null
@@ -167,6 +169,10 @@ python3 demo/sbom_inventory_audit.py \
   --policy config/sbom-inventory-policy.json \
   --repo-root . \
   --output-dir out/sbom-inventory-audit-validate >/dev/null
+python3 demo/security_response_audit.py \
+  --policy config/security-response-policy.json \
+  --repo-root . \
+  --output-dir out/security-response-audit-validate >/dev/null
 python3 demo/ci_governance_audit.py \
   --policy config/ci-governance-policy.json \
   --repo-root . \
@@ -409,6 +415,7 @@ python3 demo/release_readiness.py \
   --oss-license docs/evidence/oss-license-audit.json \
   --secret-hygiene docs/evidence/secret-hygiene-audit.json \
   --sbom-inventory docs/evidence/sbom-inventory-audit.json \
+  --security-response docs/evidence/security-response-audit.json \
   --ci-governance docs/evidence/ci-governance-audit.json \
   --repository-governance docs/evidence/repository-governance-audit.json \
   --developer-runtime docs/evidence/developer-runtime-audit.json \
@@ -475,6 +482,7 @@ python3 -m json.tool docs/evidence/oss-license-audit.json >/dev/null
 python3 -m json.tool docs/evidence/secret-hygiene-audit.json >/dev/null
 python3 -m json.tool docs/evidence/sbom-inventory-audit.json >/dev/null
 python3 -m json.tool docs/evidence/sbom-inventory.json >/dev/null
+python3 -m json.tool docs/evidence/security-response-audit.json >/dev/null
 python3 -m json.tool docs/evidence/ci-governance-audit.json >/dev/null
 python3 -m json.tool docs/evidence/repository-governance-audit.json >/dev/null
 python3 -m json.tool docs/evidence/developer-runtime-audit.json >/dev/null

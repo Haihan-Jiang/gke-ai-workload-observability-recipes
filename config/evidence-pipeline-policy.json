@@ -1,7 +1,7 @@
 {
   "description": "Policy for auditing generation-order dependencies across committed evidence artifacts.",
-  "minimum_step_count": 54,
-  "minimum_dependency_count": 61,
+  "minimum_step_count": 55,
+  "minimum_dependency_count": 65,
   "minimum_detected_fixtures": 4,
   "required_steps": [
     {
@@ -51,6 +51,10 @@
     {
       "name": "sbom_inventory_audit",
       "script": "demo/sbom_inventory_audit.py"
+    },
+    {
+      "name": "security_response_audit",
+      "script": "demo/security_response_audit.py"
     },
     {
       "name": "ci_governance_audit",
@@ -363,6 +367,11 @@
       "artifact": "docs/evidence/sbom-inventory-audit.json"
     },
     {
+      "producer": "security_response_audit",
+      "consumer": "control_traceability_audit",
+      "artifact": "docs/evidence/security-response-audit.json"
+    },
+    {
       "producer": "evidence_pipeline_audit",
       "consumer": "evidence_schema_audit",
       "artifact": "docs/evidence/evidence-pipeline-audit.json"
@@ -416,6 +425,11 @@
       "producer": "release_waiver_governance",
       "consumer": "disaster_recovery_drill",
       "artifact": "docs/evidence/release-waiver-governance.json"
+    },
+    {
+      "producer": "security_response_audit",
+      "consumer": "disaster_recovery_drill",
+      "artifact": "docs/evidence/security-response-audit.json"
     },
     {
       "producer": "evidence_schema_audit",
@@ -478,6 +492,11 @@
       "artifact": "docs/evidence/sbom-inventory.json"
     },
     {
+      "producer": "security_response_audit",
+      "consumer": "evidence_provenance",
+      "artifact": "docs/evidence/security-response-audit.json"
+    },
+    {
       "producer": "render_incident_evidence",
       "consumer": "evidence_provenance",
       "artifact": "docs/evidence/README.md"
@@ -516,6 +535,11 @@
       "producer": "sbom_inventory_audit",
       "consumer": "release_readiness",
       "artifact": "docs/evidence/sbom-inventory-audit.json"
+    },
+    {
+      "producer": "security_response_audit",
+      "consumer": "release_readiness",
+      "artifact": "docs/evidence/security-response-audit.json"
     },
     {
       "producer": "disaster_recovery_drill",

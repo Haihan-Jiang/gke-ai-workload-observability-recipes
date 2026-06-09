@@ -9,12 +9,12 @@ committed evidence, source code, policy/config inputs, and tests.
 
 | Metric | Value |
 | --- | ---: |
-| Controls | 47 |
-| Release checks | 52 |
-| Evidence files | 95 |
-| Source inputs | 47 |
-| Policy inputs | 48 |
-| Test files | 47 |
+| Controls | 48 |
+| Release checks | 53 |
+| Evidence files | 97 |
+| Source inputs | 48 |
+| Policy inputs | 49 |
+| Test files | 48 |
 | Detected fixtures | 6 |
 
 ## Checks
@@ -42,6 +42,7 @@ committed evidence, source code, policy/config inputs, and tests.
 | `oss_license_audit` | `oss_license_audit` | 2 |
 | `secret_hygiene_audit` | `secret_hygiene_audit` | 2 |
 | `sbom_inventory_audit` | `sbom_inventory_audit` | 3 |
+| `security_response_audit` | `security_response_audit` | 2 |
 | `ci_governance_audit` | `ci_governance_audit` | 2 |
 | `repository_governance_audit` | `repository_governance_audit` | 2 |
 | `developer_runtime_audit` | `developer_runtime_audit` | 2 |

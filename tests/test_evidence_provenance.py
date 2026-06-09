@@ -19,8 +19,8 @@ class EvidenceProvenanceTest(unittest.TestCase):
         report = evidence_provenance.build_provenance(REPO_ROOT, self.policy)
 
         self.assertEqual("pass", report["status"])
-        self.assertGreaterEqual(report["artifact_count"], 125)
-        self.assertGreaterEqual(report["source_input_count"], 117)
+        self.assertGreaterEqual(report["artifact_count"], 127)
+        self.assertGreaterEqual(report["source_input_count"], 119)
         self.assertTrue(all(len(item["sha256"]) == 64 for item in report["artifacts"]))
 
     def test_detects_missing_required_artifact(self) -> None:

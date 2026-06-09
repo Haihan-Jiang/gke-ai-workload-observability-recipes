@@ -5,7 +5,7 @@
   "estimated_data_loss_minutes": 0,
   "restore_throughput_mib_per_minute": 64,
   "operator_step_minutes": 6,
-  "minimum_artifacts": 69,
+  "minimum_artifacts": 73,
   "minimum_groups": 6,
   "minimum_generated_artifacts": 4,
   "required_rpo_artifacts": [
@@ -17,6 +17,7 @@
     "docs/evidence/oss-license-audit.json",
     "docs/evidence/secret-hygiene-audit.json",
     "docs/evidence/sbom-inventory.json",
+    "docs/evidence/security-response-audit.json",
     "docs/evidence/evidence-pipeline-audit.json",
     "docs/evidence/evidence-schema-audit.json"
   ],
@@ -60,6 +61,8 @@
         "docs/evidence/sbom-inventory-audit.md",
         "docs/evidence/sbom-inventory-audit.json",
         "docs/evidence/sbom-inventory.json",
+        "docs/evidence/security-response-audit.md",
+        "docs/evidence/security-response-audit.json",
         "docs/evidence/k8s-hardening-audit.json",
         "docs/evidence/pod-security-admission-audit.json",
         "docs/evidence/admission-policy-audit.json",
@@ -99,6 +102,7 @@
         "config/oss-license-policy.json",
         "config/secret-hygiene-policy.json",
         "config/sbom-inventory-policy.json",
+        "config/security-response-policy.json",
         "config/evidence-pipeline-policy.json",
         "config/evidence-schema-policy.json",
         "config/disaster-recovery-policy.json",
@@ -115,6 +119,7 @@
         "demo/oss_license_audit.py",
         "demo/secret_hygiene_audit.py",
         "demo/sbom_inventory_audit.py",
+        "demo/security_response_audit.py",
         "demo/evidence_pipeline_audit.py",
         "scripts/generate-evidence.sh",
         "scripts/validate.sh"

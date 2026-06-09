@@ -24,6 +24,9 @@ verifies that generated evidence is stable against the committed files.
 - Add or update unit tests for new checks and negative fixtures.
 - Regenerate committed evidence after changing replay logic, policies,
   manifests, dashboards, SLOs, workflow files, or governance docs.
+- Security-sensitive changes must follow SECURITY.md and keep the
+  security-response-audit evidence aligned with private reporting, severity
+  SLAs, fix evidence, and disclosure updates.
 - Summarize which evidence changed and which validation commands were run.
 
 ## Evidence Rules

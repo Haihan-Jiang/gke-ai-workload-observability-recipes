@@ -60,6 +60,10 @@ python3 demo/sbom_inventory_audit.py \
   --policy config/sbom-inventory-policy.json \
   --repo-root . \
   --output-dir docs/evidence >/dev/null
+python3 demo/security_response_audit.py \
+  --policy config/security-response-policy.json \
+  --repo-root . \
+  --output-dir docs/evidence >/dev/null
 python3 demo/ci_governance_audit.py \
   --policy config/ci-governance-policy.json \
   --repo-root . \
@@ -304,6 +308,7 @@ python3 demo/release_readiness.py \
   --oss-license docs/evidence/oss-license-audit.json \
   --secret-hygiene docs/evidence/secret-hygiene-audit.json \
   --sbom-inventory docs/evidence/sbom-inventory-audit.json \
+  --security-response docs/evidence/security-response-audit.json \
   --ci-governance docs/evidence/ci-governance-audit.json \
   --repository-governance docs/evidence/repository-governance-audit.json \
   --developer-runtime docs/evidence/developer-runtime-audit.json \

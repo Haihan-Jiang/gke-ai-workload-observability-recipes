@@ -3,20 +3,20 @@
   "failed_count": 0,
   "check_count": 7,
   "detected_fixture_count": 6,
-  "control_count": 52,
-  "release_check_count": 52,
-  "covered_release_check_count": 52,
-  "tier0_count": 29,
-  "every_release_count": 40,
+  "control_count": 53,
+  "release_check_count": 53,
+  "covered_release_check_count": 53,
+  "tier0_count": 30,
+  "every_release_count": 41,
   "owner_group_count": 5,
   "checks": [
     {
       "name": "control_inventory",
       "ok": true,
       "evidence": {
-        "control_count": 52,
-        "release_check_count": 52,
-        "minimum_control_count": 52,
+        "control_count": 53,
+        "release_check_count": 53,
+        "minimum_control_count": 53,
         "duplicate_controls": [],
         "missing_release_checks": [],
         "unknown_release_checks": []
@@ -35,12 +35,12 @@
       "ok": true,
       "evidence": {
         "tier_counts": {
-          "tier_0_release_blocker": 29,
+          "tier_0_release_blocker": 30,
           "tier_1_production_guard": 22,
           "tier_2_evidence_guard": 1
         },
         "tier_gaps": [],
-        "minimum_tier0_count": 18
+        "minimum_tier0_count": 30
       }
     },
     {
@@ -48,12 +48,12 @@
       "ok": true,
       "evidence": {
         "cadence_counts": {
-          "every_release": 40,
+          "every_release": 41,
           "monthly": 12,
           "quarterly": 0
         },
         "cadence_gaps": [],
-        "minimum_every_release_count": 30
+        "minimum_every_release_count": 41
       }
     },
     {
@@ -90,7 +90,9 @@
             "mutation": "remove_control",
             "expected_failed_check": "control_inventory",
             "failed_checks": [
-              "control_inventory"
+              "control_inventory",
+              "tier_contract",
+              "review_cadence_contract"
             ],
             "detected": true
           },
@@ -227,6 +229,13 @@
       "tier": "tier_0_release_blocker",
       "review_cadence": "every_release",
       "evidence_path": "docs/evidence/sbom-inventory-audit.json"
+    },
+    {
+      "name": "security_response_audit",
+      "owner": "security",
+      "tier": "tier_0_release_blocker",
+      "review_cadence": "every_release",
+      "evidence_path": "docs/evidence/security-response-audit.json"
     },
     {
       "name": "ci_governance_audit",
@@ -515,7 +524,9 @@
       "mutation": "remove_control",
       "expected_failed_check": "control_inventory",
       "failed_checks": [
-        "control_inventory"
+        "control_inventory",
+        "tier_contract",
+        "review_cadence_contract"
       ],
       "detected": true
     },

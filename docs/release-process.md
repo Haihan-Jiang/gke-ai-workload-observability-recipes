@@ -31,11 +31,17 @@ policy checks are internally consistent at a Git revision.
    - `docs/evidence/disaster-recovery-drill.md`
    - `docs/evidence/repository-governance-audit.md`
    - `docs/evidence/developer-runtime-audit.md`
+   - `docs/evidence/security-response-audit.md`
+   - `docs/evidence/security-response-audit.json`
 
 5. Confirm the pull request CI is green and the PR merge state is clean.
 
 6. Tag the release only after committed evidence and CI agree on the same head
    commit.
+
+If a release candidate contains a security fix, verify the severity tier,
+private reporter update, regression test or audit fixture, regenerated
+evidence, and coordinated disclosure update before tagging.
 
 ## Release Notes
 

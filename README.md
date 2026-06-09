@@ -24,6 +24,9 @@ formats before release readiness is reported.
 SBOM inventory evidence generates a CycloneDX-style component list for GitHub
 Actions, container images, and runtime tools so reviewers can trace third-party
 references back to source files.
+Security response evidence checks private vulnerability reporting, severity
+triage SLAs, fix/regression expectations, and coordinated disclosure updates
+before release readiness is reported.
 Namespace resource governance evidence checks that telemetry and workload
 namespaces have ResourceQuota and LimitRange controls that cover current
 requests and limits with headroom.
@@ -127,6 +130,8 @@ not described as merged.
   evidence for high-confidence credential formats and proves negative fixtures.
 - A SBOM inventory audit that generates a CycloneDX-style third-party component
   list and verifies source traceability for Actions, images, and runtimes.
+- A security response audit that verifies private reporting, severity triage
+  SLAs, fix evidence expectations, disclosure updates, and negative fixtures.
 - A CI governance audit that verifies GitHub Actions use maintained action
   runtime versions, least-privilege permissions, concurrency cancellation,
   bounded execution, and the real validation command.
@@ -379,6 +384,7 @@ script:
 - [OSS license audit](docs/evidence/oss-license-audit.md)
 - [Secret hygiene audit](docs/evidence/secret-hygiene-audit.md)
 - [SBOM inventory audit](docs/evidence/sbom-inventory-audit.md)
+- [Security response audit](docs/evidence/security-response-audit.md)
 - [CI governance audit](docs/evidence/ci-governance-audit.md)
 - [Repository governance audit](docs/evidence/repository-governance-audit.md)
 - [Developer runtime audit](docs/evidence/developer-runtime-audit.md)
@@ -522,70 +528,72 @@ Before adapting this to a real GKE cluster:
    fixtures.
 20. Keep SBOM inventory evidence aligned with GitHub Actions, container images,
    runtime tools, CycloneDX shape, source paths, and negative fixtures.
-21. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
+21. Keep security response evidence aligned with private reporting, severity
+   triage SLAs, regression evidence, release review, and disclosure updates.
+22. Keep alert labels, runbook links, and dashboard hints aligned with the SLO
    alerting evidence before routing pages.
-22. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
-23. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
+23. Keep Grafana dashboard panels aligned with SLO scenarios and runbook links.
+24. Keep the OpenSLO contract aligned with Prometheus SLI queries, runbooks,
    alerting, dashboard, and release-readiness evidence.
-24. Run the observability drift audit after changing alert rules, Grafana
+25. Run the observability drift audit after changing alert rules, Grafana
    panels, OpenSLO links, runbooks, or scenario names.
-25. Audit trace payloads for prompt, response, secret, and direct-identifier
+26. Audit trace payloads for prompt, response, secret, and direct-identifier
    leakage before using inference telemetry as production evidence.
-26. Keep trace sampling and retention budgets explicit before routing all
+27. Keep trace sampling and retention budgets explicit before routing all
    inference telemetry into a paid backend.
-27. Keep the error-budget ledger aligned with the SLO target before treating a
+28. Keep the error-budget ledger aligned with the SLO target before treating a
    canary or dependency incident as release-safe.
-28. Run the rollback drill after changing release gates, runbooks, or SLO
+29. Run the rollback drill after changing release gates, runbooks, or SLO
    budget policy so owner and RTO assumptions stay explicit.
-29. Keep post-incident reviews tied to replayed evidence, rollback timelines,
+30. Keep post-incident reviews tied to replayed evidence, rollback timelines,
    and corrective actions instead of treating them as narrative-only notes.
-30. Run the incident response drill after changing alert severities, runbooks,
+31. Run the incident response drill after changing alert severities, runbooks,
    escalation policy, rollback timelines, or RCA requirements.
-31. Keep dependency contracts aligned with timeout/retry/fallback policy,
+32. Keep dependency contracts aligned with timeout/retry/fallback policy,
    trace attributes, runbook owners, alert severities, and release actions.
-32. Keep synthetic probes aligned with baseline health, dependency failure,
+33. Keep synthetic probes aligned with baseline health, dependency failure,
    canary version, telemetry delivery, alert routing, rollback, and
    error-budget actions.
-33. Keep model release policy aligned with pinned artifacts, offline eval
+34. Keep model release policy aligned with pinned artifacts, offline eval
    thresholds, schema compatibility, canary rollback, token/GPU cost deltas,
    rollback targets, and trace labels.
-34. Keep shadow traffic policy aligned with no-user-serving guarantees,
+35. Keep shadow traffic policy aligned with no-user-serving guarantees,
    disabled writes/side effects, redacted telemetry, rollout comparisons,
    cost review, probe signals, and rollback targets.
-35. Keep accelerator quota policy aligned with tenant tier reservations,
+36. Keep accelerator quota policy aligned with tenant tier reservations,
    GPU/token budgets, load-shedding actions, shadow candidates, and model
    release gates.
-36. Keep load-shedding policy aligned with capacity warnings, tenant tiers,
+37. Keep load-shedding policy aligned with capacity warnings, tenant tiers,
    fallback behavior, token/GPU cost review, preflight probes, runbook owners,
    and release actions.
-37. Keep regional failover policy aligned with DR RTO/RPO, standby capacity,
+38. Keep regional failover policy aligned with DR RTO/RPO, standby capacity,
    synthetic probes, load shedding, rollback paths, runbook owners, and
    Kubernetes control-plane hardening.
-38. Keep release waivers bounded by owner, approver, expiry, rollback drill,
+39. Keep release waivers bounded by owner, approver, expiry, rollback drill,
    post-incident review, linked evidence, and acknowledged error-budget
    impact.
-39. Keep release control ownership aligned with owner groups, severity tiers,
+40. Keep release control ownership aligned with owner groups, severity tiers,
    review cadence, escalation paths, rollback actions, and evidence paths.
-40. Keep control traceability aligned with configured release-readiness checks,
+41. Keep control traceability aligned with configured release-readiness checks,
    evidence files, generator code, policy/config inputs, and tests.
-41. Verify disaster recovery after changing evidence, generated manifests,
+42. Verify disaster recovery after changing evidence, generated manifests,
    dashboards, SLO contracts, admission policies, or release control files.
-42. Regenerate evidence provenance after changing evidence scripts, generated
+43. Regenerate evidence provenance after changing evidence scripts, generated
    manifests, or policy files so reviewers can detect stale artifacts.
-43. Keep CI governance aligned with maintained GitHub Actions versions,
+44. Keep CI governance aligned with maintained GitHub Actions versions,
    least-privilege permissions, concurrency cancellation, job timeouts, and the
    real validation command.
-44. Keep repository governance aligned with contribution validation, security
+45. Keep repository governance aligned with contribution validation, security
    reporting, CODEOWNERS coverage, release process evidence, and project
    boundaries.
-45. Keep the developer runtime contract aligned with Make targets, Python
+46. Keep the developer runtime contract aligned with Make targets, Python
    version pinning, Ruby/YAML validation, zero-dependency assumptions, and
    local output boundaries.
-46. Decide which exporter is authoritative: debug/local, Google Cloud, or an
+47. Decide which exporter is authoritative: debug/local, Google Cloud, or an
    internal telemetry gateway.
-47. For private GKE clusters, verify webhook/firewall access for any operators
+48. For private GKE clusters, verify webhook/firewall access for any operators
    or admission webhooks.
-48. Treat telemetry as production evidence: validate it during staged rollout,
+49. Treat telemetry as production evidence: validate it during staged rollout,
    not after an incident.
 
 ## Case Study
